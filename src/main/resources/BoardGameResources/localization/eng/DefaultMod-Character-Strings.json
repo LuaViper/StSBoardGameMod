@@ -1,0 +1,150 @@
+{
+  "BoardGame:BGIronclad": {
+    "NAMES": [
+      "The Ironclad (Board Game)",
+      "the Ironclad"
+    ],
+    "TEXT": [
+      "This mod is not finished, or even close to finished. There will be bugs. NL Only Acts 1+2 are available. If you try to enter Act 3, you will die a quick and terrible death.",
+      "NL You ready your blade...",
+      "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~brother,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~"
+    ]
+  },
+
+
+
+  "BoardGame:BGColorless": {
+    "NAMES": [
+      "Colorless (Board Game)",
+      "colorless"
+    ],
+    "TEXT": [
+      "This is not a playable character!  What are you doing?",
+      "NL You come up with a @really@ tricky logical paradox...",
+      "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~metaphorical~ ~concept,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~"
+    ]
+  },
+
+  "BoardGame:BGCurse": {
+    "NAMES": [
+      "Curses (Board Game)",
+      "curses"
+    ],
+    "TEXT": [
+      "This is not a playable character!  What are you doing?",
+      "NL You come up with a @really@ tricky logical paradox...",
+      "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~metaphorical~ ~concept,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~"
+    ]
+  },
+
+  "BoardGame:BGNeow Reward": {
+    "NAMES": [],
+    "TEXT": [
+      "[ #gChoose #ga #gCard #gto #gobtain ]",
+      "[ #gObtain #ga #grandom #grare #gCard ]",
+      "[ #gRemove #ga #gCard #gfrom #gyour #gdeck ]",
+      "[ #gUpgrade #ga #gCard ]",
+      "[ #gTransform #ga #gCard ]",
+      "[ #gObtain #g3 #grandom #gPotions ]",
+      "#gObtain #ga #grandom #gRelic ]",
+      "[ #gMax #gHP #g+",
+      "[ #gObtain #g",
+      " #gGold ]",
+      "#gRemove #g2 #gCards ]",
+      "#gObtain #ga #grandom #grare #gRelic ]",
+      "#gChoose #ga #grare #gCard #gto #gobtain ]",
+      "#gGain #g",
+      " #gGold ]",
+      "#gTransform #g2 #gCards ]",
+      "#gMax #gHP #g+",
+      "[ #rLose #r",
+      " #rMax #rHP ",
+      "[ #rLose #r3 #rGold ",
+      "[ #rObtain #ra #rCurse ",
+      "[ #rTake #r",
+      "Choose a Card",
+      "Select a Card to Remove",
+      "Select 2 Cards to Remove",
+      "Select a Card to Transform",
+      "Select 2 Cards to Transform",
+      "Select a Card to Upgrade",
+      "[ #gEnemies #gin #gyour #gnext #gthree #gcombats #ghave #g1 #gHP ]",
+      " #rdamage",
+      "[ #gChoose #ga #gcolorless #gCard #gto #gobtain ]",
+      "#gChoose #ga #grare #gcolorless #gCard #gto #gobtain ]",
+      "[ #gObtain #g4 #gGold ]",
+      "#gGain #g10 #gGold ]",
+      "#gUpgrade #g2 #grandom #gCards ]",
+      "#gObtain #g2 #grandom #gCards ]" ,
+      "#gObtain #g2 #grandom #gcolorless #gCards ]",
+      "#gGain #g8 #gGold ]",
+      "[ Start Game ]",
+      "[ #ySkip to the City ]",
+      "[ #ySkip to the Beyond ]",
+      "[ #ySkip to the Ending ]",
+      "[ #gObtain #g",
+      " #gGold ]",
+      "[ #gChoose #g",
+      " #gCards #gto #gobtain ]",
+      "[ #gTransform #ga #gCard ]",
+      "[ Skip ]",
+      "[ #gRoll #gthe #gDie. #g(Gain #g",
+      " #grandom #greward) ]",
+      " #grandom #grewards) ]",
+      "[ #gObtain #ga #grandom #gPotion ]",
+      "[ #gObtain #g",
+      " #grandom #gRelics ]",
+      "[ #gChoose #g",
+      " #grare #gCard #gto #gobtain ]",
+      " #grare #gCards #gto #gobtain ]",
+      "[ #gRemove #g2 #gCards #gfrom #gyour #gdeck ]",
+      "[ #gUpgrade #g",
+      " #gCards ]",
+      "[ Visit the Merchant ]",
+      "[ #gObtain #ga #grandom #gRelic ]",
+      "[ #gGain #g1 #gGold #gand #gchoose #ga #gCard #gto #gobtain ]",
+      "[ #gGain #g2 #gGold #gand #gobtain #ga #grandom #gPotion ]",
+      "[ #gChoose #g",
+      " #gboss #gRelic ]",
+      " #gboss #gRelics ]",
+      "Select Cards to Upgrade"
+    ],
+    "UNIQUE_REWARDS": [
+      "[ #rLose #ryour #rstarting #rRelic #gObtain #ga #grandom #gboss #gRelic ]"
+    ]
+  },
+  "Merchant": {
+    "NAMES": [
+      "Proceed",
+      "~Welcome!~"
+    ],
+    "TEXT": [
+      "Hi! NL Buy something! NL Buy buy buy!",
+      "I like your haircut",
+      "Do you have the time?",
+      "Are you a dog person or a cat person?",
+      "You look ~dangerous,~ NL hehe...",
+      "Take your time... NL ..... NL ... or not",
+      "Do you like this rug? NL It's not for sale",
+      "Support small business!",
+      "Masks are cool, I would know!",
+      "Hmm... NL ...hmm... NL Oh!",
+      "Stay awhile and listen!",
+      "It's dangerous to go alone! Give me all your gold!",
+      "Buy somethin'",
+      "~*YAWN*~",
+      "I like gold.",
+      "My favorite color is blue. NL How bout you?"
+    ],
+    "OPTIONS": [
+      "How did I get here? NL Beats me.",
+      "Last chance to buy somethin'! NL ~*wink*~ ~*wink*~",
+      "..... NL .... NL .........",
+      "I'm a cat person.",
+      "No rush. NL No rush.",
+      "Now isn't this @exciting!?@",
+      "I used to be like you.",
+      "Heading up?"
+    ]
+  }
+}

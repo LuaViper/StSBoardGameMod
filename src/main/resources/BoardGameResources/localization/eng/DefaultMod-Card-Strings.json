@@ -1,0 +1,292 @@
+{
+  "BoardGame:BGWeakDamage": {
+    "NAME": "Weakened",
+    "DESCRIPTION": "Weakened."
+  },
+  "BoardGame:BGVulnerableDamage": {
+    "NAME": "Vulnerable",
+    "DESCRIPTION": "Vulnerable."
+  },
+  "BoardGame:Bash": {
+    "NAME": "Bash",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! boardgame:Vulnerable."
+  },
+  "BoardGame:BGAnger": {
+    "NAME": "Anger",
+    "DESCRIPTION": "Deal !D! damage. NL Put this card on top of your draw pile."
+  },
+  "BoardGame:BGBerserk": {
+    "NAME": "Berserk",
+    "DESCRIPTION": "Whenever a card is Exhausted, NL deal !M! damage to ALL enemies."
+  },
+  "BoardGame:BGBlind": {
+    "NAME": "Blind",
+    "DESCRIPTION": "Apply !M! boardgame:Weak. NL Exhaust."
+  },
+  "BoardGame:BGBlood for Blood": {
+    "NAME": "Blood for Blood",
+    "DESCRIPTION": "Costs !M! [R] NL if you lost HP this combat. NL Deal !D! damage."
+  },
+  "BoardGame:BGBurn": {
+    "NAME": "Burn",
+    "DESCRIPTION": "Unplayable. NL At the end of your turn, take 1 damage.",
+    "UPGRADE_DESCRIPTION": "Unplayable. NL At the end of your turn, take 2 damage."
+  },
+  "BoardGame:BGClothesline": {
+    "NAME": "Clothesline",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! boardgame:Weak."
+  },
+  "BoardGame:BGCombust": {
+    "NAME": "Combust",
+    "DESCRIPTION": "boardgame:Approximate. NL At the end of your turn, deal !M! damage to ALL enemies."
+  },
+  "BoardGame:BGDecay": {
+    "NAME": "Decay",
+    "DESCRIPTION": "Unplayable. NL At the end of your turn, take 1 damage."
+  },
+  "BoardGame:BGDisarm": {
+    "NAME": "Disarm",
+    "DESCRIPTION": "Apply !M! boardgame:Weak. NL Exhaust."
+  },
+  "BoardGame:BGDouble Tap": {
+    "NAME": "Double Tap",
+    "DESCRIPTION": "boardgame:Approximate. NL This turn, your next Attack is played twice. NL Can't be played if Double Tap is already active.",
+    "UPGRADE_DESCRIPTION": "Double Tap can't be \"played twice\"."
+  },
+  "BoardGame:BGDramatic Entrance": {
+    "NAME": "Dramatic Entrance",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Deals !M! additional damage if it's the first turn of combat."
+  },
+  "BoardGame:BGEntrench": {
+    "NAME": "Entrench",
+    "DESCRIPTION": "Double your Block. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Double your Block."
+  },
+  "BoardGame:BGFeed": {
+    "NAME": "Feed",
+    "DESCRIPTION": "Deal !D! damage. NL If Fatal, gain !M! Strength. Exhaust."
+  },
+  "BoardGame:BGFinesse": {
+    "NAME": "Finesse",
+    "DESCRIPTION": "Gain !B! Block. NL Draw 1 card. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL Draw 1 card."
+  },
+  "BoardGame:BGFlame Barrier": {
+    "NAME": "Flame Barrier",
+    "DESCRIPTION": "Gain !B! Block. NL Deal !M! Thorns damage to all enemies that intend to attack."
+  },
+  "BoardGame:BGFlash of Steel": {
+    "NAME": "Flash of Steel",
+    "DESCRIPTION": "Deal !D! damage. NL Draw 1 card. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Draw 1 card."
+  },
+  "BoardGame:BGFlex": {
+    "NAME": "Flex",
+    "DESCRIPTION": "Gain !M! Strength. NL At the end of this turn, lose !M! Strength. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Gain !M! Strength. NL At the end of this turn, lose !M! Strength."
+  },
+  "BoardGame:BGGremlinHornDrawACard": {
+    "NAME": "Versatility",
+    "DESCRIPTION": "Draw a card."
+  },
+  "BoardGame:BGGremlinHornGainEnergy": {
+    "NAME": "Throughput",
+    "DESCRIPTION": "Gain 1 Energy."
+  },
+  "BoardGame:BGGoldenTicket": {
+    "NAME": "Golden Ticket",
+    "DESCRIPTION": "For debug purposes only."
+  },
+  "BoardGame:BGHandOfGreed": {
+    "NAME": "Hand of Greed",
+    "DESCRIPTION": "Deal !D! damage. NL Deals !M! additional damage if you have 10 or more Gold."
+  },
+  "BoardGame:BGHavoc": {
+    "NAME": "Havoc",
+    "DESCRIPTION": "boardgame:Approximate. NL Play the top card of your draw pile and Exhaust it."
+  },
+  "BoardGame:BGImmolate": {
+    "NAME": "Immolate",
+    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Put 2 *Dazed on top of your draw pile."
+  },
+  "BoardGame:BGIron Wave": {
+    "NAME": "Iron Wave",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !B! Block.",
+    "UPGRADE_DESCRIPTION": "boardgame:Naive. NL 2 damage, 1 Block NL - or -  NL 1 damage, 2 Block."
+  },
+  "BoardGame:BGIronWaveSpear": {
+    "NAME": "Spear",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !B! Block."
+  },
+  "BoardGame:BGIronWaveShield": {
+    "NAME": "Shield",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !B! Block."
+  },
+  "BoardGame:BGJuggernaut": {
+    "NAME": "Juggernaut",
+    "DESCRIPTION": "boardgame:Approximate. NL Whenever you gain Block, deal !M! damage."
+  },
+  "BoardGame:BGMind Blast": {
+    "NAME": "Mind Blast",
+    "DESCRIPTION": "Deal damage equal to the number of cards in your hand.",
+    "UPGRADE_DESCRIPTION": "Deal damage equal to the number of cards in your hand +1.",
+    "EXTENDED_DESCRIPTION": [
+      " NL (Deals !D! damage.)"
+    ]
+  },
+  "BoardGame:BGOffering": {
+    "NAME": "Offering",
+    "DESCRIPTION": "Lose 1 HP. NL Gain [R] [R]. NL Draw !M! cards. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Lose 1 HP. NL Gain [R] [R]. NL Draw !M! cards. NL Exhaust."
+  },
+  "BoardGame:BGPanacea": {
+    "NAME": "Panacea",
+    "DESCRIPTION": "Retain. NL Remove all boardgame:Weak and boardgame:Vulnerable. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Remove all boardgame:Weak and boardgame:Vulnerable. NL Exhaust. NL Upgrading this card is only effective in multiplayer."
+  },
+  "BoardGame:BGPerfected Strike": {
+    "NAME": "Perfected Strike",
+    "DESCRIPTION": "Deal !D! damage. NL Deals !M! additional damage for each other card in your hand containing \"Strike\".",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Deals !M! additional damage for each other card in your hand containing \"Strike\"."
+  },
+  "BoardGame:BGPower Through": {
+    "NAME": "Power Through",
+    "DESCRIPTION": "Gain !B! Block. NL Put a *Dazed on top of your draw pile."
+  },
+  "BoardGame:BGRage": {
+    "NAME": "Rage",
+    "DESCRIPTION": "Gain !B! Block for each Attack in your hand."
+  },
+  "BoardGame:BGRampage": {
+    "NAME": "Rampage",
+    "DESCRIPTION": "Deal damage equal to the number of cards in your Exhaust pile.",
+    "UPGRADE_DESCRIPTION": "Exhaust a card. NL Deal damage equal to the number of cards in your Exhaust pile.",
+    "EXTENDED_DESCRIPTION": [
+      " NL (Deals !D! damage.)",
+      " NL (Deals at least !D! damage.)"
+    ]
+  },
+  "BoardGame:BGRegret": {
+    "NAME": "Regret",
+    "DESCRIPTION": "Exhaust."
+  },
+  "BoardGame:BGRupture": {
+    "NAME": "Rupture",
+    "DESCRIPTION": "Lose 1 HP. NL Gain !M! Strength."
+  },
+  "BoardGame:BGSever Soul": {
+    "NAME": "Sever Soul",
+    "DESCRIPTION": "Deal !D! damage. NL Exhaust a card.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Exhaust 1 or 2 cards."
+  },
+  "BoardGame:BGShockwave": {
+    "NAME": "Shockwave",
+    "DESCRIPTION": "Apply 1 boardgame:Vulnerable and boardgame:Weak to ALL enemies. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Apply 1 boardgame:Vulnerable and !M! boardgame:Weak to ALL enemies. NL Exhaust."
+  },
+  "BoardGame:BGSneckoEyeDrawTwoCards": {
+    "NAME": "Versatility",
+    "DESCRIPTION": "Draw 2 cards."
+  },
+  "BoardGame:BGSneckoEyeGainDazed": {
+    "NAME": "Recklessness",
+    "DESCRIPTION": "Put a *Dazed on top of your draw pile."
+  },
+  "BoardGame:BGSpot Weakness": {
+    "NAME": "Spot Weakness",
+    "DESCRIPTION": "If the die is on 1, 2, or 3, gain !M! Strength.",
+    "UPGRADE_DESCRIPTION": "If the die is on 1, 2, 3, or 4, gain !M! Strength."
+  },
+  "BoardGame:BGThe Bomb": {
+    "NAME": "The Bomb",
+    "DESCRIPTION": "At the end of 3 turns, deal !M! damage to ALL enemies, then Exhaust this card."
+  },
+  "BoardGame:BGThinking Ahead": {
+    "NAME": "Thinking Ahead",
+    "DESCRIPTION": "Draw !M! cards. NL Put a card from your hand on top of your draw pile. NL Exhaust."
+  },
+  "BoardGame:BGTrip": {
+    "NAME": "Trip",
+    "DESCRIPTION": "Apply !M! boardgame:Vulnerable. NL Exhaust."
+  },
+  "BoardGame:BGTrue Grit": {
+    "NAME": "True Grit",
+    "DESCRIPTION": "Gain !B! Block. NL Exhaust 1 card.",
+    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL Exhaust 1 card."
+  },
+  "BoardGame:BGTwin Strike": {
+    "NAME": "Twin Strike",
+    "DESCRIPTION": "Deal !D! damage twice.",
+    "UPGRADE_DESCRIPTION": "boardgame:Naive. NL Deal 2 damage then 1 damage."
+  },
+  "BoardGame:BGUppercut": {
+    "NAME": "Uppercut",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! boardgame:Vulnerable. NL Apply 1 boardgame:Weak.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! boardgame:Vulnerable. NL Apply !M! boardgame:Weak."
+  },
+  "BoardGame:BGWarcry": {
+    "NAME": "Warcry",
+    "DESCRIPTION": "Draw !M! cards. NL Put a card from your hand onto the top of your draw pile. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Draw !M! cards. NL Put a card from your hand onto the top of your draw pile. NL Exhaust."
+  },
+  "BoardGame:BGWhirlwind": {
+    "NAME": "Whirlwind",
+    "DESCRIPTION": "boardgame:Approximate. NL Deal !D! damage to ALL enemies X times.",
+    "UPGRADE_DESCRIPTION": "boardgame:Approximate. NL Deal !D! damage to ALL enemies X+1 times."
+  },
+  "BoardGame:BGWild Strike": {
+    "NAME": "Wild Strike",
+    "DESCRIPTION": "Deal !D! damage. NL Put a *Dazed on top of your draw pile."
+  },
+  "BoardGame:DefaultCommonAttack": {
+    "NAME": "Strike",
+    "DESCRIPTION": "Deal !D! damage. NL [#0000ff]This[] [#ff0000]Is[] [#ffff00]How[] [#88888]color[] [#ff00ff]works.[]"
+  },
+  "BoardGame:DefaultCommonSkill": {
+    "NAME": "Defend",
+    "DESCRIPTION": "Gain !B! Block. NL boardgame:Multiword_Keyword."
+  },
+  "BoardGame:DefaultCommonPower": {
+    "NAME": "Hold Place",
+    "DESCRIPTION": "Gain !M! boardgame:Keyword.",
+    "UPGRADE_DESCRIPTION": "Gain !M! boardgame:Keywords."
+  },
+  "BoardGame:DefaultUncommonAttack": {
+    "NAME": "Big slap",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "BoardGame:DefaultUncommonSkill": {
+    "NAME": "A Better Defend",
+    "DESCRIPTION": "Gain !B! Plated Armor. Affected by Dexterity."
+  },
+  "BoardGame:DefaultUncommonPower": {
+    "NAME": "Weirdness",
+    "DESCRIPTION": "Gain X boardgame:Keywords.",
+    "UPGRADE_DESCRIPTION": "Gain X +1 boardgame:Keywords."
+  },
+  "BoardGame:DefaultRareAttack": {
+    "NAME": "TOUCH",
+    "DESCRIPTION": "Deal !D! damage."
+  },
+  "BoardGame:DefaultRareSkill": {
+    "NAME": "For Each Loop x2",
+    "DESCRIPTION": "Apply !M! Vulnerable to all enemies, 2 times.",
+    "UPGRADE_DESCRIPTION": "Apply !M! Vulnerable to all enemies, 3 times."
+  },
+  "BoardGame:DefaultRarePower": {
+    "NAME": "In-Progress Form",
+    "DESCRIPTION": "At the start of your turn, play a TOUCH."
+  },
+  "BoardGame:DefaultAttackWithVariable": {
+    "NAME": "Special Strike",
+    "DESCRIPTION": "Deal !D! damage [E] times. NL (Deal !BoardGame:ENERGY_DAMAGE! damage total.)"
+  },
+  "BoardGame:DefaultSecondMagicNumberSkill": {
+    "NAME": "Cool 2 Number Card",
+    "DESCRIPTION": "Apply !M! Vulnerable and !BoardGame:SecondMagic! poison to an enemy."
+  },
+  "BoardGame:OrbSkill": {
+    "NAME": "Get Orb",
+    "DESCRIPTION": "Channel 1 Default Orb."
+  }
+}

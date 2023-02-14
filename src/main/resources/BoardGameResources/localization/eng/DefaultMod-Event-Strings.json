@@ -1,0 +1,350 @@
+{
+  "BoardGame:IdentityCrisisEvent": {
+    "NAME": "Identity Crisis",
+    "DESCRIPTIONS": [
+      "As you move through ~The~ ~City~ you come across a #pPurple #pMirror. NL You look at it, but you see no reflection.",
+      "You see no one but #g~You~ #g~wish~ #g~to~ #g~become~ #g~someone.~",
+      "#r@YOU@ #r@EXIST@ #r@AND@ #r@ARE@ #r@VALID!@",
+      "#yYou #yare #yat #ypeace #ywith #yyour #ypresence.",
+      "You have no hands."
+    ],
+    "OPTIONS": [
+      "[Inspiration] #gGain #ga #gRandom #gStarting #gRelic.",
+      "[Denial] #rLose #r",
+      " #rMax #rHP. #gRemove #ga #gCard #gfrom #gyour #gdeck.",
+      "[Acceptance] #gGain #gApotheosis.",
+      "[TOUCH THE MIRROR] TOUCH TOUCH TO#C# TOUCH TO UCH TOUCH #rTOUCH TOUCH",
+      "[Leave]",
+      "Select card to remove."
+    ]
+  },
+
+  "BoardGame:BGAccursed Blacksmith": {
+    "NAME": "Ominous Forge",
+    "DESCRIPTIONS": [
+      "You duck into a small hut. Inside, you find what appears to be a forge. The smithing tools are covered with dust, yet a fire roars inside the furnace. You feel on edge...",
+      "You decide to put the forge to use and... NL #y@CLANG@ #y@CLAAANG@ #y@CLANG!@ NL ...improve your arsenal!",
+      "You decide to see if you can find anything of use. After uncovering tarps, looking through boxes, and checking nooks and crannies, you find a dust covered #y~relic!~ ",
+      " NL NL As you go through the finishing touches, the flames of the forge jump out at you, #r@burning@ #r@and@ #r@scarring@ your arms..",
+      "NL NL Taking the relic, you can't shake a sudden feeling of #r~sharp~ #r~pain~ as you exit the hut. Maybe you disturbed some sort of spirit?",
+      "There doesn't seem to be anything of use. You exit the way you came, the flames of the furnace casting #p~eerie~ #p~shadows~ on the walls inside the hut..."
+    ],
+    "OPTIONS": [
+      "[Forge] #gUpgrade #ga #gcard #gin #gyour #gdeck. #rLose #r2 #rHP.",
+      "[Rummage] #gObtain #ga #gRelic. #r50%: #rGain #ra #rCurse.",
+      "[Leave]",
+      "Choose a Card to Upgrade",
+      "[Locked] Requires: Upgradeable Cards"
+    ]
+  },
+  "BoardGame:BGBack to Basics": {
+    "NAME": "Ancient Writing",
+    "DESCRIPTIONS": [
+      "Scaling the city, you notice a wall covered in the writing of #y~Ancients.~ As you try to wrap your head around what the puzzling symbols and glyphs could mean, the writing begins to #b~glow.~ NL Suddenly, the message becomes clear...",
+      "The answer was elegance. NL Of course.",
+      "The truth is always simple."
+    ],
+    "OPTIONS": [
+      "[Elegance] #gRemove #ga #gcard #gfrom #gyour #gdeck.",
+      "[Simplicity] #gUpgrade #gone #gStrike #gand #gone #gDefend.",
+      "Select a Card to Remove.",
+      "[Leave]"
+    ]
+  },
+  "BoardGame:BGBeggar": {
+    "NAME": "Old Beggar",
+    "DESCRIPTIONS": [
+      "An old beggar cloaked in fur reaches his hands out towards you as you pass. \"Spare some coin, child?\"",
+      "The beggar looks to the floor as you pass. NL \"You will never make a difference... You never do.\"",
+      "The beggar takes off its cloak to reveal that he is #bCleric! NL @\"You@ @are@ @a@ @kind@ @soul.@ @Receive@ @my@ @purification!\"@ he screams. NL You are unsure if he is grateful or mad.",
+      "@\"I@ @hope@ @you@ @do@ @better@ @this@ @time,@ @friend!\"@ he shouts. NL Wondering what was implied by this, you push forward."
+    ],
+    "OPTIONS": [
+      "[Offer Gold] #y",
+      " #yGold: #gRemove #ga #gcard #gfrom #gyour #gdeck.",
+      "[Locked] Requires: ",
+      " Gold.",
+      "[Continue]",
+      "[Leave]",
+      "Select a Card to Remove."
+    ]
+  },
+  "BoardGame:BGBonfire Elementals": {
+    "NAME": "Bonfire Spirits",
+    "DESCRIPTIONS": [
+      "You happen upon a group of what looks like #ppurple #pfire #pspirits ~dancing~ around a large bonfire. NL ",
+      "The spirits toss small bones and fragments into the fire, which ~brilliantly~ ~erupts~ each time. NL As you approach, the spirits all turn to you, expectantly...",
+      "You toss an offering into the bonfire. NL NL ",
+      "However, the spirits aren't happy that you offered a #pCurse... The card fizzles a meek black smoke. You receive a... #p~something~ in return.",
+      "Nothing happens... NL The spirits seem to be ignoring you now. Disappointing...",
+      "The flames grow slightly brighter. NL The spirits continue dancing. You feel slightly warmer from their presence.. NL But nothing else happens. Disappointing...",
+      "The flames erupt, growing significantly stronger! NL The spirits dance around you excitedly, filling you with a ~sense~ ~of~ ~warmth.~ NL You #gheal #b3 HP.",
+      "The flames @burst,@ nearly knocking you off your feet, as the fire @doubles@ in strength. NL The spirits dance around you excitedly before ~merging~ ~into~ ~your~ ~form,~ filling you with warmth and strength. NL You are #ghealed to full HP.",
+      "Moments later, NL NL NL NL NL NL it leaps out of your hands and #p@blows@ #p@up@ #p@in@ #p@your@ #p@face.@"
+    ],
+    "OPTIONS": [
+      "[Continue]",
+      "[Leave]",
+      "[Offer] Receive a reward based on the offer.",
+      "Select a Card to Offer.",
+      "[Prize?] #rLose #r1 #rHP."
+    ]
+  },
+  "BoardGame:BGCursed Tome": {
+    "NAME": "Cursed Tome",
+    "DESCRIPTIONS": [
+      "In an abandoned temple, you find a giant book, open, riddled with #p@cryptic@ #p@writings.@ NL NL As you try to interpret the elaborate script, it begins to #b~shift~ and #b~morph~ into writing you are familiar with.",
+      "Odd. The book seems to be about an #yAncient named #yNeow. NL NL This piques your interest, but you have a general feeling of #p~malaise.~",
+      "The Ancient of Resurrection, #yNeow, was exiled to the bottom of the Spire. NL NL You feel compelled to read more, but your body begins to #r~ache.~",
+      "Seeking vengeance, #yNeow blesses outsiders, using them for her own purposes. NL NL You are starting to feel very #r~weak~ #r~and~ #r~tired...~",
+      "Those resurrected by #yNeow remember only fragments of their past selves, cursed to fight for eternity. NL NL As you near the final page, your #r@old@ #r@wounds@ #r@begin@ #r@to@ #r@reopen!@",
+      "[Placeholder text: take the tome.]",
+      "[Placeholder text: read the tome.]",
+      "[Placeholder text: skim the tome.]"
+    ],
+    "OPTIONS": [
+      "[Take] #gChoose #ga #grare #gcard #gto #gadd #gto #gyour #gdeck. #rGain #ra #rCurse.",
+      "[Read] #gAdd #ga #grandom #grare #gcard #gto #gyour #gdeck. #rLose #r2 #rHP.",
+      "[Skin] #gChoose #ga #gcard #gto #gadd #gto #gyour #gdeck. #rLose #r1 #rHP.",
+      "[Continue] #rLose #r3 #rHP.",
+      "[Stop] #rLose #r3 #rHP.",
+      "[Take] #gObtain #gthe #gBook. #rLose #r",
+      " #rHP.",
+      "[Leave]",
+      "Add a card to your deck."
+    ]
+  },
+  "BoardGame:BGDesigner": {
+    "NAME": "Designer In-Spire",
+    "DESCRIPTIONS": [
+      "You discover a #g~colorful~ shop with the banner \"IN-SPIRE\" and walk in to see what's inside. NL \"No, no way. Nope. Can't let you in!\" NL NL A man with ridiculous clothing appears at the entrance to bar you.",
+      "\"This will not do, no no. What is this style? @Disgusting!@ Are you #rbleeeeding? #p~Groooss.~ @Business??@ You a customer? Fine. ~Whaaatever.\"~ NL He lets out an exaggerated sigh and points at a list of services. NL NL The services seem fine, but you would rather punch this smug man in his smug face.",
+      "\"Okay, bye bye now.\" NL NL ...should've punched him.",
+      "You punch him so hard your fist hurts. NL \"My @FACE!!@ Now I'll have to-\" NL NL He fainted. Who's #p~groooss~ and #rbleeeeding now?"
+    ],
+    "OPTIONS": [
+      "[Continue]",
+      "[Adjustments] #rLose #r",
+      "[Clean Up] #rLose #r",
+      "[Full Service] #rLose #r",
+      "[Punch] #rLose #r",
+      " #rHP.",
+      " #rGold. ",
+      "#gUpgrade #g",
+      " #grandom #gcards.",
+      "#gUpgrade #ga #gcard.",
+      "#gRemove #ga #gcard.",
+      "#gTransform #g",
+      " #gcards.",
+      "#gRemove #ga #gcard #gand #gupgrade #ga #gcard.",
+      "[Leave]",
+      "Choose a Card to Upgrade",
+      "Choose 2 Cards to Transform",
+      "Choose a Card to Remove"
+    ]
+  },
+  "BoardGame:BGDrug Dealer": {
+    "NAME": "Augmenter",
+    "DESCRIPTIONS": [
+      "A man with an eyepatch and a devilish grin strides up to you. NL \"Hey there, stranger. Interested in advancing science? I can make you stronger than any training or blessing. You're gonna need it if you're one of those heroes with a death wish.\" NL NL ~\"Whad'ya~ ~say?\"~",
+      "-",
+      "~\"Superb.\"~ NL The man injects you with three unknown substances and pulls out a notepad. As you begin to feel #p@nauseous,@ he starts to frantically write down notes. NL Losing track of time completely, by the time you regain your senses, the shady character has disappeared.",
+      "~\"Marvelous.\"~ NL You quaff the mysterious substance. Immediately, you are invigorated and feel your muscle fibers #p@twitch.@",
+      "You don't trust this #b\"Augmenter\", so you leave."
+    ],
+    "OPTIONS": [
+      "[Drink Vial] #gUpgrade #ga #gcard. #rLose #r1 #rHP.",
+      "[Become Test Subject] #gTransform #g2 #gcards. #rLose #r2 #rHP.",
+      "-",
+      "[Leave]",
+      "[Locked] Requires: 2 or more cards in deck.",
+      "Select Cards to Transform.",
+      "Select a Card to Upgrade."
+    ]
+  },
+  "BoardGame:BGGolden Idol": {
+    "NAME": "Ancient Temple",
+    "DESCRIPTIONS": [
+      "You come across an ancient temple with a #yshining #ytreasure sitting peacefully inside. It looks incredibly valuable. NL NL You sure don't see any traps nearby.",
+      "As you grab the #yrelic and stow it away, a giant boulder smashes through the ceiling into the ground next to you. NL You realize that the floor is slanted downwards as the boulder starts to roll towards you.",
+      "@RUUUUUUUUUUN!@ NL You barely leap into a side passageway as the boulder rushes by. Unfortunately it feels like you sprained something however.",
+      "You throw yourself at the boulder with everything you have. When the dust clears, you can make a safe way out. NL NL As you leave, the sound of #rmetal #rgrinding #ragainst #rstone echoes in the distance.",
+      "@SQUISH!@ NL The boulder flattens you a little as it passes by, but otherwise you can get out of here.",
+      "If there was ever an obvious trap, this would be it. NL You decide not to interfere with trinkets placed within temples."
+    ],
+    "OPTIONS": [
+      "[Take] #gObtain #ga #gRelic. #rTrigger #ra #rtrap #rand #rtake #r1 #rDamage.",
+      "[Leave]",
+      "[Outrun] #rBecome #rCursed #r- #rInjury.",
+      "[Smash]",
+      "[Hide] #rLose #r",
+      " #rMax #rHP."
+    ]
+  },
+  "BoardGame:BGGolden Shrine": {
+    "NAME": "Golden Shrine",
+    "DESCRIPTIONS": [
+      "Before you lies an elaborate shrine to an ancient spirit. ",
+      "As your hand touches the shrine, #ygold rains from the ceiling ~showering~ ~you~ ~in~ ~riches.~ ",
+      "Each time you strike the shrine, #ygold pours forth again and again! NL NL As you pocket the riches, something #rweighs #rheavily #ron #ryou.",
+      "You ignore the shrine."
+    ],
+    "OPTIONS": [
+      "[Pray] #gGain #g",
+      " #gGold.",
+      "[Desecrate] #gGain #g7 #gGold. #rObtain #ra #rCurse.",
+      "[Leave]"
+    ]
+  },
+  "BoardGame:BGGolden Wing": {
+    "NAME": "Wing Statue",
+    "DESCRIPTIONS": [
+      "Among the stone and boulders, you notice an intricate large blue statue resembling a wing. NL You find #ygold spilling from its cracks. Maybe there is more inside...",
+      "Someone once told you of a cult that worshipped a giant bird. As you kneel in prayer, you begin to ~feel~ ... ~lightheaded~ . NL NL You wake up some time later, feeling strangely fleet of foot.",
+      "With all your might, you hack away at the statue. NL It soon @crumbles,@ revealing a #ypile #yof #ygold. You grab as much as you can and continue onwards.",
+      "The statue makes you feel ~uneasy.~ You walk past and continue onward."
+    ],
+    "OPTIONS": [
+      "[Pray] #gRemove #ga #gcard #gfrom #gyour #gdeck. #rLose #r",
+      " #rHP.",
+      "[Destroy] #gGain #g",
+      "",
+      " #gGold.",
+      "[Locked] Requires: Card with ",
+      " or more damage.",
+      "[Leave]",
+      "[Continue]",
+      "Select a Card to Remove."
+    ]
+  },
+  "BoardGame:BGKnowing Skull": {
+    "NAME": "Knowing Skull",
+    "DESCRIPTIONS": [
+      "You find yourself in an old, decorated chamber. In the center of the room, a large skull sits atop an ornate pedestal. As you approach, the skull #g@bursts@ #g@into@ #g@flames@ and turns to face you.",
+      "\"WHAT IS IT YOU SEEK? WHAT IS IT YOU OFFER?\" NL In sync with its final words, the door behind you @slams@ @shut.@",
+      " NL NL \"ANYTHING ELSE?\" NL NL It's getting #r~hot~ in here.  You can't stay here much longer...",
+      " ",
+      "\"DRINK UP!\" NL You obtain a potion.",
+      "\"PERHAPS THIS WILL HELP?\" NL You obtain a card.",
+      "\"YOU MORTALS NEVER CHANGE. IT IS DONE.\" NL #yGold rains down on you!",
+      "\"BEHIND YOU, MORTAL.\" NL You peek behind the skull. Surely enough, there is a door.",
+      " NL NL \"ANYTHING ELSE?\" NL NL It is now #r@unbearably@ #r@hot@ in here.  Only one thing comes to mind..."
+    ],
+    "OPTIONS": [
+      "[Continue]",
+      " #rHP.",
+      "[Information?] #gReveal #gthe #gBoss. #rLose #r",
+      "[Success?] #gGet #ga #gCard. #rLose #r",
+      "[A Pick Me Up?] #gGet #ga #gPotion. #rLose #r",
+      "[Riches?] #gGain #g",
+      " #gGold. #rLose #r",
+      "[How do I leave?]",
+      "[Leave]"
+    ]
+  },
+  "BoardGame:BGScrap Ooze": {
+    "NAME": "Scrap Ooze",
+    "DESCRIPTIONS": [
+      "As you walk into the room you hear a ~gurgling~ and the @grinding@ of metals. Before you is a slime-like creature that ate too much scrap for its own good. From the center of the creature you see glints of strange light, perhaps something magical? It looks like you can get some #ytreasure if you just reach inside its... opening. However, the acid and sharp objects may #rhurt.",
+      "#r@Ouch!@ NL All you find is corroded metal and a bit of #r@burning@ #r@pain.@ NL However, you're still convinced there's a #yrelic...",
+      "#gSuccess? NL After rummaging through the metal and burning acid, you grab hold of some #ygold and yank it out. NL You pull your way out of the ooze #rdamaged but rewarded.",
+      "#gSuccess! NL After rummaging through the metal and burning acid, you finally grab hold of a #yrelic and yank it out. NL You pull your way out of the ooze #rdamaged but rewarded.",
+      "You decide to leave the area. NL The slime pays no attention, content with its meal."
+    ],
+    "OPTIONS": [
+      "[Reach Inside] #rLose #r",
+      " #rHP. #g",
+      "%: #gFind #g2 #gGold #gor #ga #gRelic.",
+      "[Leave]",
+      "[Deeper] #rLose #r"
+    ]
+  },
+  "BoardGame:BGThe Cleric": {
+    "NAME": "The Cleric",
+    "DESCRIPTIONS": [
+      "A strange blue humanoid with a golden helm(?) approaches you with a huge smile. NL @\"Hello@ @friend!@ I am #bCleric! Are you interested in my services?!\" the creature shouts, loudly.",
+      "A warm golden light envelops your body and dissipates. NL The creature grins. \"Cleric best healer. @Have@ @a@ @good@ @day!\"@",
+      "An eerie silver glow envelops your body and dissipates. NL The creature grins. \"Cleric branching out into new services for #yBoard #yGame. @Have@ @a@ @good@ @day!\"@",
+      "A cold blue flame envelops your body and dissipates. NL The creature grins. \"Cleric talented. @Have@ @a@ @good@ @day!\"@",
+      "You don't trust this #b\"Cleric\", so you leave."
+    ],
+    "OPTIONS": [
+      "[Heal] #y1 #yGold: #gHeal #g3 #gHP.",
+      "[Locked] Requires: 1 Gold.",
+      "[Prayer] #y2 #yGold: #gUpgrade #ga #gcard.",
+      "[Locked] Requires: 2 Gold.",
+      "[Purify] #y3 #yGold: #gRemove #ga #gcard #gfrom #gyour #gdeck.",
+      "[Locked] Requires: 3 Gold.",
+      "[Leave]",
+      "Select a Card to Remove.",
+      "Select a Card to Upgrade."
+    ]
+  },
+  "BoardGame:BGThe Library": {
+    "NAME": "The Library",
+    "DESCRIPTIONS": [
+      "You come across an ornate building which appears abandoned. NL A plaque that has been torn free from a wall is on the floor. It reads, #b\"THE #bLIBRARY\". NL Inside, you find countless rows of scrolls, manuscripts, and books. NL You pick one and cozy yourself into a chair for some quiet time.",
+      "Reading is for chumps. NL You doze off in a comfy chair instead. NL ~Zzz...~ ~zzz...~ ~..Zz....~ NL You wake up feeling refreshed.",
+      "The story is about an insect-controlling teenage girl who aspires to become a hero. The book is filled with creative uses of powers, combat strategies, and varying perspectives. NL Satisfying.",
+      "The story is about a man who journeyed beyond the stars and found himself stuck on a desolate foreign planet. Ingenuity, luck, perseverance, and humor to retain his sanity were his tools to return home. NL Fascinating.",
+      "The story takes place in a giant isolated building underground as the outside conditions have become unbearable. The novel is mired with conspiracies, propaganda, and injustice. You ponder if similar dynamics are at play within the Spire. NL Unsettling."
+    ],
+    "OPTIONS": [
+      "[Read] #gChoose #g1 #gof #g5 #gcards #gto #gadd #gto #gyour #gdeck.",
+      "[Sleep] #gHeal #g",
+      " #gHP.",
+      "[Leave]",
+      "Add a card to your deck."
+    ]
+  },
+  "BoardGame:BGThe Woman in Blue": {
+    "NAME": "The Woman in Blue",
+    "DESCRIPTIONS": [
+      "From the darkness, an arm pulls you into a small shop. As your eyes adjust, you see a pale woman in sharp clothes gesturing towards a wall of potions. NL \"Buy a potion. Now!\" she states.",
+      "\"Good. Now leave.\" NL You exit the shop cautiously.",
+      "#r@WHAM@ NL Her gloved fist collides with your face, nearly knocking you off your feet. NL \"Get out before I litter the floor with your guts.\" You take her word and exit with your guts still safely in your body."
+    ],
+    "OPTIONS": [
+      "[Buy 1 Potion] #y",
+      "[Buy 2 Potions] #y",
+      "[Buy 3 Potions] #y",
+      " #yGold.",
+      "[Leave]",
+      "[Leave] #rTake #r",
+      " #rDamage."
+    ]
+  },
+  "BoardGame:BGTransmorgrifier": {
+    "NAME": "Transmogrifier",
+    "DESCRIPTIONS": [
+      "Before you lies an elaborate shrine to a forgotten spirit.",
+      "As the power of the shrine flows through you, your mind feels altered.",
+      "You ignore the shrine.",
+      "As the power of the shrine flows through you, your mind feels #p@altered.@"
+    ],
+    "OPTIONS": [
+      "[Pray] #gTransform #ga #gcard.",
+      "[Sacrifice] #gTransform #g2 #gcards. #rObtain #ra #rCurse.",
+      "Select a Card to Transform.",
+      "Select 2 Cards to Transform.",
+      "[Leave]"
+    ]
+  },
+  "BoardGame:BGUpgrade Shrine": {
+    "NAME": "Upgrade Shrine",
+    "DESCRIPTIONS": [
+      "Before you lies an elaborate shrine to a forgotten spirit.",
+      "The shrine's energy flows into you, making you stronger.",
+      "You ignore the shrine.",
+      "The shrine's energy is absorbed into you. NL It's #r@scorching@ #r@hot@ ! However, the pain quickly recedes. NL You feel #binvigorated, as though you received a well deserved slap."
+    ],
+    "OPTIONS": [
+      "[Pray] #gUpgrade #ga #gcard.",
+      "[Sacrifice] #gUpgrade #g2 #grandom #gcards. #rLose #r3 #rHP.",
+      "Select a Card to Upgrade.",
+      "[Locked] Requires: Upgradeable Cards",
+      "[Leave]"
+    ]
+  }
+
+}
