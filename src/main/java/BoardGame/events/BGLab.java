@@ -5,13 +5,15 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.events.GenericEventDialog;
+import com.megacrit.cardcrawl.events.shrines.Lab;
 import com.megacrit.cardcrawl.helpers.PotionHelper;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 public class BGLab
-        extends AbstractImageEvent {
+        extends Lab {   //game is hardcoded to check for Lab when completing event
+        //extends AbstractImageEvent {
     public static final String ID = "BGLab";
     private static final EventStrings eventStrings = CardCrawlGame.languagePack.getEventString("Lab");
     public static final String NAME = eventStrings.NAME;
@@ -26,9 +28,10 @@ public class BGLab
     }
 
     public BGLab() {
-        super(NAME, DIALOG_1, "images/events/lab.jpg");
-        this.noCardsInRewards = true;
-        this.imageEventText.setDialogOption(OPTIONS[0]);
+        super();
+//        super(NAME, DIALOG_1, "images/events/lab.jpg");
+//        this.noCardsInRewards = true;
+//        this.imageEventText.setDialogOption(OPTIONS[0]);
     }
 
 
