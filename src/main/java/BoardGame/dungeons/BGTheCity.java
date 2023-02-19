@@ -150,6 +150,9 @@ public class BGTheCity
         CardCrawlGame.music.changeBGM(id);
         AbstractDungeon.currMapNode = new MapRoomNode(0, -1);
         AbstractDungeon.currMapNode.room = (AbstractRoom)new EmptyRoom();
+
+        logger.info("Shuffling reward deck...");
+        rewardDeck.shuffle(cardRng);
     }
 
     public BGTheCity(AbstractPlayer p, SaveFile saveFile) {
@@ -170,6 +173,9 @@ public class BGTheCity
         firstRoomChosen = true;
 
         populatePathTaken(saveFile);
+
+        logger.info("Shuffling reward deck...");
+        rewardDeck.shuffle(cardRng);
     }
 
 
