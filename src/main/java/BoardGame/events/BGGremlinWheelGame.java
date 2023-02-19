@@ -214,7 +214,7 @@ public class BGGremlinWheelGame
                 return;
         }
         this.imageEventText.updateBodyText(DESCRIPTIONS[6]);
-        this.imageEventText.setDialogOption(OPTIONS[6] + (int)(AbstractDungeon.player.maxHealth * this.hpLossPercent) + OPTIONS[7]);
+        this.imageEventText.setDialogOption(OPTIONS[6] + 2 + OPTIONS[7]);
 
         this.color = new Color(0.5F, 0.5F, 0.5F, 1.0F);
     }
