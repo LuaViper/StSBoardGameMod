@@ -18,7 +18,7 @@ public class BGApparition extends AbstractBGCard {
     public static final String ID = "BGGhostly";
 
     public BGApparition() {
-        super("BGGhostly", cardStrings.NAME, "colorless/skill/apparition", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, BGColorless.Enums.CARD_COLOR, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.SELF);
+        super("BGGhostly", cardStrings.NAME, "colorless/skill/apparition", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, BGColorless.Enums.CARD_COLOR, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.SELF);
 
 
 
