@@ -104,6 +104,14 @@
       "#yOnce #yper #ycombat: NL #yExhaust up to #b2 cards in your hand."
     ]
   },
+  "BGCalipers": {
+    "NAME": "Calipers",
+    "FLAVOR": "\"Mechanical precision leads to greatness\" - The Architect",
+    "DESCRIPTIONS": [
+      "#yOnce #yper #ycombat: NL Keep your leftover #yBlock from last turn. NL (Gain #b",
+      " Block.)"
+    ]
+  },
   "BGCalling Bell": {
     "NAME": "Calling Bell",
     "FLAVOR": "This dark iron bell rang 3 times when you found it, but now stays silent.",
@@ -136,6 +144,14 @@
       " at the start of your turn.",
       "Upon pickup, gain #r2 #rCurses.  Gain [E]",
       "Phantoms pursue you..."
+    ]
+  },
+  "BGDollysMirror": {
+    "NAME": "Dolly's Mirror",
+    "FLAVOR": "\"I look funny in this.\"",
+    "DESCRIPTIONS": [
+      "On a #b1, activate ANY die effect.",
+      ""
     ]
   },
   "BGDu-Vu Doll": {
@@ -198,6 +214,20 @@
       "Gain [E]"
     ]
   },
+  "BGGambling Chip": {
+    "NAME": "Gambling Chip",
+    "FLAVOR": "You can see a small inscription on one side. It reads: \"Bear's Lucky Chip!\"",
+    "DESCRIPTIONS": [
+      "#yOnce #yper #yroom: NL Reroll the die."
+    ]
+  },
+  "BGGoldenEye": {
+    "NAME": "Golden Eye",
+    "FLAVOR": "See into the minds of those nearby, predicting their future moves.",
+    "DESCRIPTIONS": [
+      "#yOnce #yper #ycombat: NL #yScry #b3."
+    ]
+  },
   "BGGolden Idol": {
     "NAME": "Golden Idol",
     "FLAVOR": "Made of solid gold, you feel richer just holding it.",
@@ -233,6 +263,20 @@
       "On a #b1 or #b2, gain #b1 #yBlock."
     ]
   },
+  "BGIce Cream": {
+    "NAME": "Ice Cream",
+    "FLAVOR": "\"Delicious!\"",
+    "DESCRIPTIONS": [
+      "Energy is now conserved between turns."
+    ]
+  },
+  "BGIncense Burner": {
+    "NAME": "Incense Burner",
+    "FLAVOR": "The smoke imbues its owner with the spirit of the burned.",
+    "DESCRIPTIONS": [
+      "On a #b6, you can't lose more than 1 HP this turn."
+    ]
+  },
   "BGInkBottle": {
     "NAME": "Ink Bottle",
     "FLAVOR": "Once exhausted, appears to refill itself in a different color.",
@@ -262,6 +306,13 @@
     "FLAVOR": "An enchanted hourglass that endlessly drips.",
     "DESCRIPTIONS": [
       "On a #b1 or #b2, deal #b1 damage to ALL enemies."
+    ]
+  },
+  "BGMolten Egg 2": {
+    "NAME": "Molten Egg",
+    "FLAVOR": "The egg of a Phoenix. It glows red hot with a simmering lava.",
+    "DESCRIPTIONS": [
+      "The next 3 times you add an #yAttack into your deck, #yUpgrade it."
     ]
   },
   "BGMummified Hand": {
@@ -301,12 +352,26 @@
       "On a #b4, gain #b2 #yBlock."
     ]
   },
+  "BGOld Coin": {
+    "NAME": "Old Coin",
+    "FLAVOR": "Unique coins are highly valued by merchants for their historical value and rare metallic composition.",
+    "DESCRIPTIONS": [
+      "Upon pickup, gain #b10 #yGold."
+    ]
+  },
+  "BGDiscardedOld Coin": {
+    "NAME": "Old Coin (Discarded)",
+    "FLAVOR": "Unique coins are highly valued by merchants for their historical value and rare metallic composition.",
+    "DESCRIPTIONS": [
+      "If this appears at The Merchant or The Courier, discard it and draw again."
+    ]
+  },
   "BGOmamori": {
     "NAME": "Omamori",
     "FLAVOR": "A common charm for staving off vile spirits. This one seems to possess a spark of divine energy.",
     "DESCRIPTIONS": [
-      "Negate every #rCurse you obtain.",
-      "Negate every #rCurse you obtain.",
+      "Negate EVERY #rCurse you obtain.",
+      "Negate EVERY #rCurse you obtain.",
       "This relic has been used up."
     ]
   },
@@ -335,6 +400,13 @@
       "Choose 3 cards for "
     ]
   },
+  "BGPeace Pipe": {
+    "NAME": "Peace Pipe",
+    "FLAVOR": "Clears the mind and cleanses the soul.",
+    "DESCRIPTIONS": [
+      "When you rest, you may also remove a card."
+    ]
+  },
   "BGPocketwatch": {
     "NAME": "Pocketwatch",
     "FLAVOR": "The hands seem stuck on the 3 o'clock position.",
@@ -349,6 +421,13 @@
       "#yOnce #yper #ycombat: NL If you've shuffled your draw pile this combat, gain #b1 #yStrength."
     ]
   },
+  "BGRegal Pillow": {
+    "NAME": "Regal Pillow",
+    "FLAVOR": "Now you can get a proper night's rest.",
+    "DESCRIPTIONS": [
+      "Whenever you #yRest, heal an additional #b3 HP."
+    ]
+  },
   "BGRing of the Serpent": {
     "NAME": "Ring of the Serpent",
     "FLAVOR": "Your ring has morphed and changed forms.",
@@ -357,11 +436,27 @@
       "At the start of your turn, draw #b1 additional card."
     ]
   },
+  "BGRunic Pyramid": {
+    "NAME": "Runic Pyramid",
+    "FLAVOR": "The runes are indecipherable.",
+    "DESCRIPTIONS": [
+      "#yOnce #yper #ycombat: NL #yRetain any number of cards this turn.",
+      ""
+    ]
+  },
   "BGSelf Forming Clay": {
     "NAME": "Self-Forming Clay",
     "FLAVOR": "\"Most curious! It appears to form itself loosely on my thoughts! Tele-clay?\" - Ranwid",
     "DESCRIPTIONS": [
       "#yOnce #yper #ycombat: NL If you've lost HP this combat, gain #b3 #yBlock."
+    ]
+  },
+  "BGStrikeDummy": {
+    "NAME": "Strike Dummy",
+    "FLAVOR": "It's beat up.",
+    "DESCRIPTIONS": [
+      "Strikes deal #b",
+      " additional damage."
     ]
   },
   "BGSnecko Eye": {
@@ -404,6 +499,13 @@
       "Tiny House!"
     ]
   },
+  "BGToxic Egg 2": {
+    "NAME": "Toxic Egg",
+    "FLAVOR": "\"What a marvelous discovery! This appears to be the inert egg of some magical creature. Who or what created this?\" - Ranwid",
+    "DESCRIPTIONS": [
+      "The next 3 times you add a #ySkill into your deck, #yUpgrade it."
+    ]
+  },
   "BGTungstenRod": {
     "NAME": "Tungsten Rod",
     "FLAVOR": "It's very very heavy.",
@@ -418,6 +520,22 @@
       "On a #b2, gain #b1 #yStrength. NL Lose that #yStrength at the end of your turn."
     ]
   },
+  "BGWar Paint": {
+    "NAME": "War Paint",
+    "FLAVOR": "In the past, Ironclads would create wards using enchanted war paint before charging into battle.",
+    "DESCRIPTIONS": [
+      "#yUpgrade a Defend and another #ySkill. NL Single-use. Can't be used in combat.",
+      "Choose 1 Skill to upgrade."
+    ]
+  },
+  "BGWhetstone": {
+    "NAME": "Whetstone",
+    "FLAVOR": "\"Flesh never beats steel.\" - Kublai the Great",
+    "DESCRIPTIONS": [
+      "#yUpgrade a Strike and another #yAttack. NL Single-use. Can't be used in combat.",
+      "Choose 1 Attack to upgrade."
+    ]
+  },
   "BGWhite Beast Statue": {
     "NAME": "White Beast Statue (NYI)",
     "FLAVOR": "A small white statue of a creature you have never seen before.",
@@ -429,7 +547,7 @@
     "NAME": "Wing Boots",
     "FLAVOR": "Stylish.",
     "DESCRIPTIONS": [
-      "You may ignore paths when choosing the next room to travel to #b3 times. NL #yDiscard when used up."
+      "You may ignore paths when choosing the next room to travel to #b3 times."
     ]
   },
   "BGWristBlade": {

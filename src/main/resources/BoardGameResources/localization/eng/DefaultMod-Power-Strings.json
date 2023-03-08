@@ -139,10 +139,24 @@
                         "On death, will split into #b3 smaller slimes."
                 ]
         },
+"BoardGame:BGIntangible": {
+        "NAME": "Invincible",
+        "DESCRIPTIONS": [
+                "Can only lose #b",
+                " more HP this turn.",
+                "Can no longer be harmed this turn."
+        ]
+},
 "BoardGame:BGPainful Stabs": {
         "NAME": "Painful Stabs",
         "DESCRIPTIONS": [
                 "When you lose HP from this enemy's attacks, put 1 #yDazed on top of your draw pile."
+        ]
+},
+"BoardGame:BGOneTurnRetain Cards": {
+        "NAME": "Runic Pyramid",
+        "DESCRIPTIONS": [
+                "Retain any number of cards this turn."
         ]
 },
 "BoardGame:Thievery": {

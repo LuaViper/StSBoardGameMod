@@ -2,6 +2,7 @@ package BoardGame.powers;
 
 import BoardGame.actions.BGUpdateDieRelicPulseAction;
 import BoardGame.relics.BGNilrysCodex;
+import BoardGame.thedie.TheDie;
 import BoardGame.util.TextureLoader;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -46,16 +47,21 @@ public class BGTrigger2DieAbilityPower extends AbstractPower {
     }
 
     public void onUseCard(AbstractCard card, UseCardAction action) {
+        //TODO: only if card is not autoplayed (e.g. Mayhem)
         addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, "BGTrigger2DieAbilityPower"));
     }
 
     public void onInitialApplication() {
-        AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, thoughtbubble, true));
-        //TODO: move to DieControlledRelic static function
-        for(AbstractRelic relic : AbstractDungeon.player.relics){
-            if(relic instanceof NilrysCodexCompatible){
-                relic.beginLongPulse();
+        if(!TheDie.forceLockInRoll) {
+            AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, thoughtbubble, true));
+            //TODO: move to DieControlledRelic static function
+            for (AbstractRelic relic : AbstractDungeon.player.relics) {
+                if (relic instanceof NilrysCodexCompatible) {
+                    relic.beginLongPulse();
+                }
             }
+        }else{
+            addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, "BGTrigger2DieAbilityPower"));
         }
     }
     public void onRemove() {

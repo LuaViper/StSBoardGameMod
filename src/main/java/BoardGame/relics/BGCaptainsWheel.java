@@ -19,6 +19,8 @@ public class BGCaptainsWheel
         super("BGCaptainsWheel", "captain_wheel.png", AbstractRelic.RelicTier.COMMON, AbstractRelic.LandingSound.SOLID);
     }
     public int getPrice() {return 8;}
+    public String getQuickSummary(){if(TheDie.monsterRoll==3)return "3 #yBlock";
+        else return "";}
     private static final int AMT = 3;
 
     public String getUpdatedDescription() {

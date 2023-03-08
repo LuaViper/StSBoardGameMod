@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import com.megacrit.cardcrawl.vfx.campfire.CampfireTokeEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import java.util.ArrayList;
 
@@ -29,6 +30,7 @@ public class BGTheLibrary
     private int screenNum = 0;
 
     private boolean pickCard = false;
+    private boolean removeCard=false;
     private static final float HP_HEAL_PERCENT = 0.33F;
     private static final float A_2_HP_HEAL_PERCENT = 0.2F;
     private int healAmt;
@@ -37,9 +39,17 @@ public class BGTheLibrary
         super(NAME, DIALOG_1, "images/events/library.jpg");
 
         this.healAmt = 3;
+        if(AbstractDungeon.player.hasRelic("BGRegal Pillow")){
+            this.healAmt+=3;
+        }
 
         this.imageEventText.setDialogOption(OPTIONS[0]);
-        this.imageEventText.setDialogOption(OPTIONS[1] + this.healAmt + OPTIONS[2]);
+        String option2=OPTIONS[1] + this.healAmt + OPTIONS[2];
+        if(AbstractDungeon.player.hasRelic("BGPeace Pipe")){
+            option2+=OPTIONS[5];
+        }
+
+        this.imageEventText.setDialogOption(option2);
     }
 
 
@@ -55,6 +65,11 @@ public class BGTheLibrary
             AbstractBGDungeon.removeCardFromRewardDeck(AbstractDungeon.gridSelectScreen.selectedCards.get(0));
 
             AbstractDungeon.gridSelectScreen.selectedCards.clear();
+        }
+
+        if (this.removeCard &&
+                !AbstractDungeon.isScreenUp && !AbstractDungeon.gridSelectScreen.selectedCards.isEmpty()) {
+
         }
     }
 
@@ -94,6 +109,9 @@ public class BGTheLibrary
                 this.imageEventText.updateBodyText(SLEEP_RESULT);
                 AbstractDungeon.player.heal(this.healAmt, true);
                 logMetricHeal("The Library", "Heal", this.healAmt);
+                if(AbstractDungeon.player.hasRelic("BGPeace Pipe")) {
+                    AbstractDungeon.effectList.add(new CampfireTokeEffect());
+                }
                 this.screenNum = 1;
                 this.imageEventText.updateDialogOption(0, OPTIONS[3]);
                 this.imageEventText.clearRemainingOptions();

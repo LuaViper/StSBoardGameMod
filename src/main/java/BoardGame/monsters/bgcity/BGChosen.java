@@ -64,8 +64,8 @@ public class BGChosen extends AbstractBGMonster {
 
         setHp(hp);
 
-        this.damage.add(new DamageInfo((AbstractCreature)this, 2));
-        this.damage.add(new DamageInfo((AbstractCreature)this, 4));
+        this.damage.add(new DamageInfo((AbstractCreature)this, 3));
+        this.damage.add(new DamageInfo((AbstractCreature)this, 5));
 
         loadAnimation("images/monsters/theCity/chosen/skeleton.atlas", "images/monsters/theCity/chosen/skeleton.json", 1.0F);
 

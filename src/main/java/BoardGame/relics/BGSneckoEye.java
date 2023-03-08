@@ -33,6 +33,11 @@ public class BGSneckoEye extends AbstractBGRelic implements DieControlledRelic, 
     }
     public int getPrice() {return 8;}
 
+    public String getQuickSummary(){if(TheDie.monsterRoll==1||TheDie.monsterRoll==2)return "Draw 2";
+    else if(TheDie.monsterRoll==3||TheDie.monsterRoll==4)return "[E]";
+    else if(TheDie.monsterRoll==5||TheDie.monsterRoll==6)return "1 #rDazed";
+    else return "";}
+
     public String getUpdatedDescription() {
         if (AbstractDungeon.player != null) {
             return setDescription(AbstractDungeon.player.chosenClass);

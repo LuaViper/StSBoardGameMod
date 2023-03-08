@@ -1,5 +1,6 @@
 package BoardGame.events;
 
+import BoardGame.BoardGame;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -8,8 +9,11 @@ import com.megacrit.cardcrawl.events.GenericEventDialog;
 import com.megacrit.cardcrawl.events.shrines.Lab;
 import com.megacrit.cardcrawl.helpers.PotionHelper;
 import com.megacrit.cardcrawl.localization.EventStrings;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class BGLab
         extends Lab {   //game is hardcoded to check for Lab when completing event
@@ -47,12 +51,23 @@ public class BGLab
 
             case INTRO:
                 GenericEventDialog.hide();
-                (AbstractDungeon.getCurrRoom()).rewards.clear();
 
+                (AbstractDungeon.getCurrRoom()).rewards.clear();
                 (AbstractDungeon.getCurrRoom()).rewards.add(new RewardItem(PotionHelper.getRandomPotion()));
                 int random = AbstractDungeon.miscRng.random(1, 6);
                 if(random>=4) {
                     (AbstractDungeon.getCurrRoom()).rewards.add(new RewardItem(PotionHelper.getRandomPotion()));
+                }else{
+                    AbstractRelic r=AbstractDungeon.player.getRelic("BGGambling Chip");
+                    if(r!=null){
+                        r.flash();
+                        random = AbstractDungeon.miscRng.random(1, 6);
+//                        Logger logger = LogManager.getLogger("temp");
+//                        logger.info("Rerolled: "+random);
+                        if(random>=4) {
+                            (AbstractDungeon.getCurrRoom()).rewards.add(new RewardItem(PotionHelper.getRandomPotion()));
+                        }
+                    }
                 }
 
                 this.screen = CUR_SCREEN.COMPLETE;

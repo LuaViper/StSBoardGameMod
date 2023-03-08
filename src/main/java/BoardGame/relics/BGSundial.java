@@ -22,6 +22,9 @@ public class BGSundial
         super("BGSundial", "sundial.png", AbstractRelic.RelicTier.COMMON, AbstractRelic.LandingSound.SOLID);
     }
     public int getPrice() {return 8;}
+
+    public String getQuickSummary(){if(TheDie.monsterRoll==2)return "[E] [E]";
+    else return "";}
     private static final int ENERGY_AMT = 2;
 
     public String getUpdatedDescription() {

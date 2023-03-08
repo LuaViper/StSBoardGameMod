@@ -34,7 +34,8 @@ public class BGMercuryHourglass
     }
 
 
-
+    public String getQuickSummary(){if(TheDie.monsterRoll==1 || TheDie.monsterRoll==2)return "1 AoE Damage";
+    else return "";}
     public void checkDieAbility(){
         if(TheDie.finalRelicRoll==1 || TheDie.finalRelicRoll==2){
             activateDieAbility();

@@ -8,6 +8,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.rooms.ShopRoom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -21,7 +22,7 @@ public abstract class AbstractBGRelic extends AbstractRelic {
         super(setId, imgName, tier, sfx);
     }
 
-    static final Logger logger = LogManager.getLogger(AbstractBGRelic.class.getName());
+    private static final Logger logger = LogManager.getLogger(AbstractBGRelic.class.getName());
     public static ArrayList<AbstractRelic> relicDeck = new ArrayList<>();
     public static ArrayList<AbstractRelic> bossRelicDeck = new ArrayList<>();
 
@@ -42,30 +43,47 @@ public abstract class AbstractBGRelic extends AbstractRelic {
             relicDeck.add(new BGBirdFacedUrn());
             relicDeck.add(new BGBloodVial());
             relicDeck.add(new BGBlueCandle());
+            relicDeck.add(new BGCalipers());
             relicDeck.add(new BGCaptainsWheel());
             relicDeck.add(new BGDeadBranch());
+            relicDeck.add(new BGDollysMirror());
             relicDeck.add(new BGDuVuDoll());
+            relicDeck.add(new BGGamblingChip());
+            relicDeck.add(new BGGoldenEye());
             relicDeck.add(new BGGoldenIdol());
             relicDeck.add(new BGGremlinHorn());
             relicDeck.add(new BGHappyFlower());
             relicDeck.add(new BGHornCleat());
+            relicDeck.add(new BGIceCream());
+            relicDeck.add(new BGIncenseBurner());
             relicDeck.add(new BGInkBottle());
             relicDeck.add(new BGLantern());
             relicDeck.add(new BGMeatOnTheBone());
             relicDeck.add(new BGMercuryHourglass());
+            relicDeck.add(new BGMoltenEgg2());
             relicDeck.add(new BGMummifiedHand());
             relicDeck.add(new BGMutagenicStrength());
             relicDeck.add(new BGNecronomicon());
             relicDeck.add(new BGNilrysCodex());
             relicDeck.add(new BGOddlySmoothStone());
+            relicDeck.add(new BGOldCoin());
+            relicDeck.add(new BGOmamori());
             relicDeck.add(new BGOrichalcum());
+            relicDeck.add(new BGPeacePipe());
             relicDeck.add(new BGPocketwatch());
             relicDeck.add(new BGRedSkull());
+            relicDeck.add(new BGRegalPillow());
+            relicDeck.add(new BGRunicPyramid());
             relicDeck.add(new BGSelfFormingClay());
+            relicDeck.add(new BGStrikeDummy());
             relicDeck.add(new BGSsserpentHead());
             relicDeck.add(new BGSundial());
+            relicDeck.add(new BGToxicEgg2());
             relicDeck.add(new BGTungstenRod());
             relicDeck.add(new BGVajra());
+            relicDeck.add(new BGWarPaint());
+            relicDeck.add(new BGWhetstone());
+            relicDeck.add(new BGWingBoots());
             Collections.shuffle(relicDeck, new java.util.Random(relicRng.randomLong()));
         }
         public static void initializeBoss(){
@@ -174,8 +192,16 @@ public abstract class AbstractBGRelic extends AbstractRelic {
         @SpirePrefixPatch
         public static SpireReturn<AbstractRelic> returnRandomRelicEnd(AbstractRelic.RelicTier tier) {
             if(CardCrawlGame.dungeon instanceof AbstractBGDungeon) {
-                if(tier!=AbstractRelic.RelicTier.BOSS)
-                    return SpireReturn.Return(drawFromRelicDeck());
+                if(tier!=AbstractRelic.RelicTier.BOSS) {
+                    AbstractRelic r = drawFromRelicDeck();
+                    if(r instanceof BGOldCoin && AbstractDungeon.getCurrRoom() instanceof ShopRoom){
+                        r = new BGDiscardedOldCoin();
+                        r.instantObtain(AbstractDungeon.player, AbstractDungeon.player.relics.size(), true);
+                        r.flash();
+                        r = drawFromRelicDeck();
+                    }
+                    return SpireReturn.Return(r);
+                }
                 else
                     return SpireReturn.Return(drawFromBossRelicDeck());
             }

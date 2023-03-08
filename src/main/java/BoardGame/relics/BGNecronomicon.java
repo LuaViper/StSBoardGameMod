@@ -38,11 +38,14 @@ public class BGNecronomicon extends AbstractBGRelic implements DieControlledReli
 
     private boolean isPlayerTurn = false; // We should make sure the relic is only activateable during our turn, not the enemies'.
 
+    public String getQuickSummary(){if(TheDie.monsterRoll==1)return "1 Double Attack";
+    else return "";}
     public void checkDieAbility(){
         if(TheDie.finalRelicRoll==1){
             activateDieAbility();
         }
     }
+
 
     public void activateDieAbility(){
         flash();

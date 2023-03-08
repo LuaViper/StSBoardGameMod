@@ -39,7 +39,7 @@ import java.util.Collections;
 public class BGTheCity
         extends AbstractBGDungeon
 {
-    //TODO: shuffle reward deck at some point
+
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("TheCity");
     public static final String[] TEXT = uiStrings.TEXT;
 

@@ -73,6 +73,7 @@ public class BGGremlinWheelGame
 
     private static final float A_2_HP_LOSS = 0.15F;
 
+    private boolean alreadyUsedGamblingChip=false;
 
     public BGGremlinWheelGame() {
         super(NAME, INTRO_DIALOG, "images/events/spinTheWheel.jpg");
@@ -189,12 +190,18 @@ public class BGGremlinWheelGame
 
 
     private void preApplyResult() {
+        this.imageEventText.clearAllDialogs();
+        AbstractRelic r=AbstractDungeon.player.getRelic("BGGambling Chip");
+        if(r!=null) {
+            if(!alreadyUsedGamblingChip){
+                this.imageEventText.setDialogOption("[Gambling Chip] Reroll.");
+                //r.flash();
+            }
+        }
         switch (this.result) {
             case 0:
                 this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
                 this.imageEventText.setDialogOption(OPTIONS[1]);
-                AbstractDungeon.effectList.add(new RainingGoldEffect(this.goldAmount));
-                AbstractDungeon.player.gainGold(this.goldAmount);
                 return;
             case 1:
                 this.imageEventText.updateBodyText(DESCRIPTIONS[2]);
@@ -242,6 +249,26 @@ public class BGGremlinWheelGame
                 }
                 return;
             case COMPLETE:
+                boolean tryReroll=false;
+                AbstractRelic r=AbstractDungeon.player.getRelic("BGGambling Chip");
+                if(r!=null) {
+                    if (!alreadyUsedGamblingChip) {
+                        if(buttonPressed==0){
+                            alreadyUsedGamblingChip=true;
+                            r.flash();
+                            GenericEventDialog.hide();
+                            this.result = AbstractDungeon.miscRng.random(0, 5);
+                            this.resultAngle = this.result * 60.0F + MathUtils.random(-10.0F, 10.0F);
+                            this.wheelAngle = 0.0F;
+                            this.startSpin = true;
+                            this.bounceTimer = 2.0F;
+                            this.animTimer = 2.0F;
+                            this.spinVelocity = 1500.0F;
+                            finishSpin = false; doneSpinning = false; bounceIn = true; this.buttonPressed=false;
+                            break;
+                        }
+                    }
+                }
                 applyResult();
                 this.imageEventText.clearAllDialogs();
                 this.imageEventText.setDialogOption(OPTIONS[8]);
@@ -259,10 +286,12 @@ public class BGGremlinWheelGame
 
     private void applyResult() {
         AbstractRelic r;
-        AbstractCard decay;
+        AbstractCard curse;
         switch (this.result) {
 
             case 0:
+                AbstractDungeon.effectList.add(new RainingGoldEffect(this.goldAmount*50 ));
+                AbstractDungeon.player.gainGold(this.goldAmount);
                 this.hasFocus = false;
                 logMetricGainGold("Wheel of Change", "Gold", this.goldAmount);
                 return;
@@ -281,10 +310,10 @@ public class BGGremlinWheelGame
                 this.hasFocus = false;
                 return;
             case 3:
-                decay = AbstractDungeon.getCard(AbstractCard.CardRarity.CURSE);
-                logMetricObtainCard("Wheel of Change", "Cursed", (AbstractCard)decay);
+                curse = AbstractDungeon.getCard(AbstractCard.CardRarity.CURSE);
+                logMetricObtainCard("Wheel of Change", "Cursed", (AbstractCard)curse);
                 AbstractDungeon.effectList.add(new ShowCardAndObtainEffect((AbstractCard)AbstractDungeon.getCard(AbstractCard.CardRarity.CURSE), Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
-                AbstractBGDungeon.removeCardFromRewardDeck(decay);
+                AbstractBGDungeon.removeCardFromRewardDeck(curse);
 
                 this.hasFocus = false;
                 return;

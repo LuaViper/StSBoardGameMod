@@ -43,6 +43,8 @@ import java.util.ArrayList;
 
 public abstract class AbstractBGDungeon extends AbstractDungeon {
     //TODO: we think we've fixed initializeCardPools getting called at the start of act 2+, but test it further to make sure
+    //TODO: pretty sure we drew two Sentinels at one point without loading a saved game.  seed: 30NX63XNS6KC8
+    //TODO: we transformed a Strike into a Fire Breathing then drew another one in the next act, then Seeing Red in acts2+3.  seed: 29R7E12S4HZAJ
     public static boolean initializedCardPools=false;
     public static CardGroup rewardDeck = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
     public static CardGroup rareRewardDeck = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
@@ -81,6 +83,9 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                 }else if(key[0].equals("TheCity")){
                     ArrayList<String>emptyList = new ArrayList<>();
                     return SpireReturn.Return((AbstractDungeon)new BGTheCity(p, emptyList));
+                }else if(key[0].equals("TheBeyond")){
+                    ArrayList<String>emptyList = new ArrayList<>();
+                    return SpireReturn.Return((AbstractDungeon)new BGTheBeyond(p, emptyList));
                 }
             }
             return SpireReturn.Continue();
@@ -104,6 +109,9 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                 }else if(key[0].equals("TheCity")){
                     ArrayList<String>emptyList = new ArrayList<>();
                     return SpireReturn.Return((AbstractDungeon)new BGTheCity(p, saveFile));
+                }else if(key[0].equals("TheBeyond")) {
+                    ArrayList<String> emptyList = new ArrayList<>();
+                    return SpireReturn.Return((AbstractDungeon) new BGTheBeyond(p, saveFile));
                 }
             }
             return SpireReturn.Continue();
@@ -244,6 +252,9 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                                 && !(CardCrawlGame.dungeon instanceof BGExordium)
                                 && getCurrRoom() instanceof MonsterRoomElite){
                             card.upgrade();
+                        }
+                        for (AbstractRelic r : player.relics) {
+                            r.onPreviewObtainCard(card);
                         }
                         retVal.add(card);
                     }

@@ -1,3 +1,5 @@
+//TODO: check if Iron Wave interacts correctly with play-card-twice effects
+
 package BoardGame.cards.BGRed;
 import BoardGame.actions.ChooseOneAttackAction;
 import BoardGame.cards.AbstractAttackCardChoice;

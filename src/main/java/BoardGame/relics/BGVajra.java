@@ -46,7 +46,8 @@ public class BGVajra
         return new BGVajra();
     }
 
-
+    public String getQuickSummary(){if(TheDie.monsterRoll==2)return "1 #Strength";
+    else return "";}
     public void checkDieAbility(){
         if(TheDie.finalRelicRoll==2){
             activateDieAbility();

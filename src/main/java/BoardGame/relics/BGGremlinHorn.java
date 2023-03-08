@@ -27,6 +27,10 @@ public class BGGremlinHorn extends AbstractBGRelic implements DieControlledRelic
     }
     public int getPrice() {return 8;}
 
+    public String getQuickSummary(){if(TheDie.monsterRoll==4)return "Draw 1";
+    else if (TheDie.monsterRoll==5)return "[E]";
+    else return "";}
+
     public String getUpdatedDescription() {
         if (AbstractDungeon.player != null) {
             return setDescription(AbstractDungeon.player.chosenClass);

@@ -61,14 +61,13 @@ public class BGByrd extends AbstractBGMonster implements DieControlledMoves {
     private String behavior="---";
 
     public BGByrd(float x, float y) {
-
-        this(x,y,BGTheCity.getSummonByrd());
+        this(x,y,BGTheCity.getSummonByrd(), 4);
     }
-    public BGByrd(float x, float y, String behavior) {
+    public BGByrd(float x, float y, String behavior, int hp) {
         super(NAME, "BGByrd", 31, 0.0F, 50.0F, 240.0F, 180.0F, null, x, y);
 
 
-        setHp(4);
+        setHp(hp);
         this.behavior = behavior;
 
         this.peckDmg = 1;

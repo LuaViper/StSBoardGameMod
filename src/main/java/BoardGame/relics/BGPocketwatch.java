@@ -33,6 +33,8 @@ public class BGPocketwatch
     }
 
 
+    public String getQuickSummary(){if(TheDie.monsterRoll==3)return "Draw 3";
+    else return "";}
     public void checkDieAbility(){
         if(TheDie.finalRelicRoll==3){
             activateDieAbility();

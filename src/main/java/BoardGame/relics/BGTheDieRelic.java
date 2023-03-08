@@ -1,6 +1,7 @@
 package BoardGame.relics;
 import BoardGame.BoardGame;
 import BoardGame.actions.BGActivateDieAbilityAction;
+import BoardGame.monsters.DieControlledMoves;
 import BoardGame.powers.BGTheDiePower;
 import BoardGame.powers.BGTriggerAnyDieAbilityPower;
 import BoardGame.thedie.TheDie;
@@ -9,10 +10,14 @@ import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import static BoardGame.BoardGame.makeRelicOutlinePath;
 import static BoardGame.BoardGame.makeRelicPath;
@@ -21,6 +26,11 @@ public class BGTheDieRelic extends CustomRelic implements DieControlledRelic {
     public static final String ID = BoardGame.makeID("BGTheDieRelic");
     private static final Texture IMG = TextureLoader.getTexture(makeRelicPath("BGloadedDie.png"));
     private static final Texture OUTLINE = TextureLoader.getTexture(makeRelicOutlinePath("BGloadedDie.png"));
+
+    final Logger logger = LogManager.getLogger(BGTheDieRelic.class.getName());
+    public String getQuickSummary(){if(TheDie.monsterRoll==4 || TheDie.monsterRoll==5)return "1 #yBlock";
+        else if(TheDie.monsterRoll==6)return "Copy any die relic";
+        else return "";}
 
     public BGTheDieRelic() {
         //super(ID, IMG, OUTLINE, RelicTier.SPECIAL, LandingSound.SOLID);
@@ -44,24 +54,32 @@ public class BGTheDieRelic extends CustomRelic implements DieControlledRelic {
 
     public void atTurnStartPostDraw() {
     //public void atTurnStart() {
+        this.isObtained=true;
+        TheDie.forceLockInRoll=false;
+        //logger.info("fLIR false");
         TheDie.roll();
         this.description = getUpdatedDescription();
-        addToTop((AbstractGameAction)new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)AbstractDungeon.player, (AbstractPower)new BGTheDiePower((AbstractCreature)AbstractDungeon.player, TheDie.initialRoll), TheDie.initialRoll));
-        //TODO: roll-changing abilities go here; delay lock roll until then
-        lockRollAndActivateDieRelics();
-        this.description = getUpdatedDescription();
-        this.isObtained=true;
     }
 
+    public void onUseCard(AbstractCard card, UseCardAction action) {
+        //TODO: only if card is not autoplayed (e.g. Mayhem)
+        TheDie.forceLockInRoll=true;
+        lockRollAndActivateDieRelics();
+    }
+    //TODO: also lock and activate on potion use
+
+
+
     public void lockRollAndActivateDieRelics(){
-        TheDie.finalRelicRoll=TheDie.monsterRoll;
-        for(AbstractRelic relic : AbstractDungeon.player.relics){
-            if(relic instanceof DieControlledRelic){
-                ((DieControlledRelic) relic).checkDieAbility();
+        if(TheDie.finalRelicRoll<=0) {
+            TheDie.finalRelicRoll = TheDie.monsterRoll;
+            for (AbstractRelic relic : AbstractDungeon.player.relics) {
+                if (relic instanceof DieControlledRelic) {
+                    ((DieControlledRelic) relic).checkDieAbility();
+                }
             }
+            description = getUpdatedDescription();
         }
-
-
     }
 
     public void checkDieAbility(){
@@ -105,6 +123,8 @@ public class BGTheDieRelic extends CustomRelic implements DieControlledRelic {
 
     @Override
     public void onPlayerEndTurn() {
+        TheDie.forceLockInRoll=true;
+        lockRollAndActivateDieRelics();
         isPlayerTurn = false; // Not our turn now.
         stopPulse();
     }

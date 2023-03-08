@@ -401,7 +401,7 @@ public class BoardGame implements
                 new BGCultist(200.0F, -5.0F)
         }));
         addMonster("BoardGame:3 Byrds",()->new MonsterGroup(new AbstractMonster[]{
-                new BGByrd(-360.0F,MathUtils.random(25.0F, 70.0F), "1S3"),
+                new BGByrd(-360.0F,MathUtils.random(25.0F, 70.0F), "1S3", 5),
                 new BGByrd(-80.0F,MathUtils.random(25.0F, 70.0F)),
                 new BGByrd(200.0F, MathUtils.random(25.0F, 70.0F))
         }));
@@ -459,6 +459,7 @@ public class BoardGame implements
         BaseMod.addEvent(new AddEventParams.Builder(BGScrapOoze.ID, BGScrapOoze.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGAccursedBlacksmith.ID, BGAccursedBlacksmith.class).dungeonID(BGExordium.ID).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGLab.ID, BGLab.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGBigFish.ID, BGBigFish.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
 
         BaseMod.addEvent(new AddEventParams.Builder(BGGoldShrine.ID, BGGoldShrine.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGCursedTome.ID, BGCursedTome.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());

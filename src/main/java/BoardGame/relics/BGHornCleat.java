@@ -30,7 +30,8 @@ public class BGHornCleat extends AbstractBGRelic implements DieControlledRelic, 
     }
 
 
-
+    public String getQuickSummary(){if(TheDie.monsterRoll==1||TheDie.monsterRoll==2)return "1 #yBlock";
+    else return "";}
     public void checkDieAbility(){
         if(TheDie.finalRelicRoll==1 || TheDie.finalRelicRoll==2){
             activateDieAbility();
@@ -50,7 +51,7 @@ public class BGHornCleat extends AbstractBGRelic implements DieControlledRelic, 
 
     private boolean isPlayerTurn = false; // We should make sure the relic is only activateable during our turn, not the enemies'.
 
-    @Override
+
     public void onRightClick() {// On right click
         if (!isObtained || !isPlayerTurn ) {
             return;

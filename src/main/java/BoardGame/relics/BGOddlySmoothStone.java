@@ -20,6 +20,8 @@ public class BGOddlySmoothStone
     }
     public int getPrice() {return 7;}
     private static final int AMT = 2;
+    public String getQuickSummary(){if(TheDie.monsterRoll==4)return "2 #yBlock";
+    else return "";}
 
     public String getUpdatedDescription() {
         return this.DESCRIPTIONS[0];

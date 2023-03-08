@@ -21,6 +21,8 @@ public class BGHappyFlower
         super("BGHappy Flower", "sunflower.png", AbstractRelic.RelicTier.COMMON, AbstractRelic.LandingSound.SOLID);
     }
     public int getPrice() {return 6;}
+    public String getQuickSummary(){if(TheDie.monsterRoll==3 || TheDie.monsterRoll==4)return "[E]";
+    else return "";}
     private static final int ENERGY_AMT = 1;
 
     public String getUpdatedDescription() {

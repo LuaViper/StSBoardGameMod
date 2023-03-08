@@ -1,8 +1,10 @@
 package BoardGame.powers;
 
 import BoardGame.actions.BGUpdateDieRelicPulseAction;
+import BoardGame.relics.BGDollysMirror;
 import BoardGame.relics.BGTheDieRelic;
 import BoardGame.relics.DieControlledRelic;
+import BoardGame.thedie.TheDie;
 import BoardGame.util.TextureLoader;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
@@ -17,9 +19,13 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.ThoughtBubble;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class BGTriggerAnyDieAbilityPower extends AbstractPower {
     public static final String POWER_ID = "BGTriggerAnyDieAbilityPower";
+
+    final Logger logger = LogManager.getLogger(BGTriggerAnyDieAbilityPower.class.getName());
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BGTriggerAnyDieAbilityPower");
     private static final String thoughtbubble = "I can trigger a #rdie #rability!"; //TODO: move to localization
     public static final String NAME = powerStrings.NAME;
@@ -47,16 +53,21 @@ public class BGTriggerAnyDieAbilityPower extends AbstractPower {
     }
 
     public void onUseCard(AbstractCard card, UseCardAction action) {
+        //TODO: only if card is not autoplayed (e.g. Mayhem)
         addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, "BGTriggerAnyDieAbilityPower"));
     }
 
     public void onInitialApplication() {
-        AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, thoughtbubble, true));
-        //TODO: move to DieControlledRelic static function
-        for(AbstractRelic relic : AbstractDungeon.player.relics){
-            if(relic instanceof DieControlledRelic){
-                relic.beginLongPulse();
+        if(!TheDie.forceLockInRoll) {
+            AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, thoughtbubble, true));
+            //TODO: move to DieControlledRelic static function
+            for (AbstractRelic relic : AbstractDungeon.player.relics) {
+                if (relic instanceof DieControlledRelic && !(relic instanceof BGDollysMirror)) {
+                    relic.beginLongPulse();
+                }
             }
+        }else{
+            addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, "BGTriggerAnyDieAbilityPower"));
         }
 
     }

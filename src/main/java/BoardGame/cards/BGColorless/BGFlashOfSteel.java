@@ -29,7 +29,7 @@ public class BGFlashOfSteel extends AbstractBGCard {
 
 
 
-
+        this.exhaust=true;
         this.baseDamage = 1;
     }
 

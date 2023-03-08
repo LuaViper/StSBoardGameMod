@@ -21,7 +21,9 @@ public class BGNilrysCodex extends AbstractBGRelic implements DieControlledRelic
     }
     public static final String ID = "BGNilry's Codex";
 
-
+    public String getQuickSummary(){ if(TheDie.monsterRoll==2)return "Draw 1";
+    else if(TheDie.monsterRoll==4)return "Copy a 2 relic";
+    else return "";}
     public AbstractRelic makeCopy() {
         return new BGNilrysCodex();
     }

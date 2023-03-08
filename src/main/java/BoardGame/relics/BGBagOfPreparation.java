@@ -12,7 +12,7 @@ public class BGBagOfPreparation extends AbstractBGRelic {
     public static final String ID = "BGBag of Preparation";
 
     public BGBagOfPreparation() {
-        super("Bag of Preparation", "bag_of_prep.png", AbstractRelic.RelicTier.COMMON, AbstractRelic.LandingSound.FLAT);
+        super("BGBag of Preparation", "bag_of_prep.png", AbstractRelic.RelicTier.COMMON, AbstractRelic.LandingSound.FLAT);
     }
     public int getPrice() {return 7;}
     private static final int NUM_CARDS = 2;

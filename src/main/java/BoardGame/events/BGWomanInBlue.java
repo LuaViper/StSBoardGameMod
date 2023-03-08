@@ -1,6 +1,7 @@
 package BoardGame.events;
 
 import com.badlogic.gdx.math.MathUtils;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -35,11 +36,12 @@ public class BGWomanInBlue
         super(NAME, DIALOG_1, "images/events/ladyInBlue.jpg");
         this.noCardsInRewards = true;
         //TODO: lock options if player doesn't have enough gold
-        this.imageEventText.setDialogOption(OPTIONS[0] + 2 + OPTIONS[3]);
-        this.imageEventText.setDialogOption(OPTIONS[1] + 3 + OPTIONS[3]);
 
-            this.imageEventText.setDialogOption(OPTIONS[5] +
-                    1 + OPTIONS[6]);
+        this.imageEventText.setDialogOption(OPTIONS[0] + 2 + OPTIONS[3], (AbstractDungeon.player.gold < 2));
+
+        this.imageEventText.setDialogOption(OPTIONS[1] + 3 + OPTIONS[3], (AbstractDungeon.player.gold < 3));
+
+        this.imageEventText.setDialogOption(OPTIONS[5] + 1 + OPTIONS[6]);
 
     }
 
@@ -77,10 +79,10 @@ public class BGWomanInBlue
 
 
                         CardCrawlGame.sound.play("BLUNT_FAST");
-                        if (AbstractDungeon.ascensionLevel >= 15) {
-                            AbstractDungeon.player.damage(new DamageInfo(null,
-                            1, DamageInfo.DamageType.HP_LOSS));
-                        }
+
+                        AbstractDungeon.player.damage(new DamageInfo(null,
+                        1, DamageInfo.DamageType.HP_LOSS));
+
 
                         logMetric("Bought 0 Potions");
                         break;

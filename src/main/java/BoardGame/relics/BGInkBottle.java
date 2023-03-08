@@ -40,7 +40,8 @@ public class BGInkBottle
         return new BGInkBottle();
     }
 
-
+    public String getQuickSummary(){if(TheDie.monsterRoll==5||TheDie.monsterRoll==6)return "Draw 1";
+    else return "";}
     public void checkDieAbility(){
         if(TheDie.finalRelicRoll==5 || TheDie.finalRelicRoll==6){
             activateDieAbility();

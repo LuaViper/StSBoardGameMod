@@ -50,8 +50,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import static BoardGame.neow.BGNeowQuickStart.clearAllRewards;
-import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.getCurrRoom;
-import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.getRewardCards;
+import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.*;
 
 
 public class BGNeowEvent
@@ -505,7 +504,7 @@ public class BGNeowEvent
                         numRewards=BGNeowQuickStart.quickStartQuantities[BGNeowQuickStart.rewardIndex][BGNeowQuickStart.actNumber-2];
                         //logger.info("RollTheDie reward counter: "+BGNeowQuickStart.rewardCounter);
                         if(BGNeowQuickStart.rewardCounter<numRewards) {
-                            int r = TheDie.theDieRng.random(1, 6);
+                            int r = monsterRng.random(1, 6);
                             BGNeowQuickStart.rollTheDieReward = r;
                         }
                         BGNeowQuickStart.setRollTheDieButtons(this);    //also handles moving to next reward index

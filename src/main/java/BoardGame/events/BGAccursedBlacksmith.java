@@ -15,9 +15,13 @@ import com.megacrit.cardcrawl.relics.WarpedTongs;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class BGAccursedBlacksmith extends AbstractImageEvent {
     public static final String ID = "BGAccursed Blacksmith";
+
+    private static final Logger logger = LogManager.getLogger(BGAccursedBlacksmith.class.getName());
     private static final EventStrings eventStrings = CardCrawlGame.languagePack.getEventString("BoardGame:BGAccursed Blacksmith");
     public static final String NAME = eventStrings.NAME;
     public static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
@@ -31,6 +35,9 @@ public class BGAccursedBlacksmith extends AbstractImageEvent {
 
     private int screenNum = 0;
     private boolean pickCard = false;
+    private int pendingReward=0;
+    private boolean usedGamblingChip=false;
+    private boolean gamblingChipButtonWasActive=false;
 
     public BGAccursedBlacksmith() {
         super(NAME, DIALOG_1, "images/events/blacksmith.jpg");
@@ -41,12 +48,20 @@ public class BGAccursedBlacksmith extends AbstractImageEvent {
             this.imageEventText.setDialogOption(OPTIONS[4], true);
         }
 
+        pendingReward=0;
+        usedGamblingChip=false;
+        gamblingChipButtonWasActive=false;
+
         this.imageEventText.setDialogOption(OPTIONS[1]);
         this.imageEventText.setDialogOption(OPTIONS[2]);
     }
 
 
     public void onEnterRoom() {
+        pendingReward=0;
+        usedGamblingChip=false;
+        gamblingChipButtonWasActive=false;
+
         if (Settings.AMBIANCE_ON) {
             CardCrawlGame.sound.play("EVENT_FORGE");
         }
@@ -75,67 +90,113 @@ public class BGAccursedBlacksmith extends AbstractImageEvent {
     protected void buttonEffect(int buttonPressed) {
         AbstractCard pain;
         switch (this.screenNum) {
-
             case 0:
-                switch (buttonPressed) {
-                    case 0:
-                        int damageAmount = (int)(2);
-                        CardCrawlGame.sound.play("ATTACK_POISON");
-                        AbstractDungeon.player.damage(new DamageInfo(null, damageAmount, DamageInfo.DamageType.HP_LOSS));
-
-                        this.pickCard = true;
-                        AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck
-                                .getUpgradableCards(), 1, OPTIONS[3], true, false, false, false);
-
-
-
-
-
-
-                        this.imageEventText.updateBodyText(FORGE_RESULT);
-                        this.screenNum = 2;
-                        this.imageEventText.updateDialogOption(0, OPTIONS[2]);
-                        break;
-
-                    case 1:
-                        this.screenNum = 2;
-                        this.imageEventText.updateBodyText(RUMMAGE_RESULT + CURSE_RESULT2);
-
-                        AbstractRelic r = AbstractDungeon.returnRandomScreenlessRelic(
-                                AbstractDungeon.returnRandomRelicTier());
-                        AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), r);
-
-                        int random = AbstractDungeon.miscRng.random(1, 6);
-                        if(random<=3) {
-
-                            pain = AbstractDungeon.getCard(AbstractCard.CardRarity.CURSE);
-                            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect((AbstractCard) pain, (Settings.WIDTH / 2), (Settings.HEIGHT / 2)));
-                            AbstractBGDungeon.removeCardFromRewardDeck(pain);
-                            logMetricObtainCardAndRelic("Accursed Blacksmith", "Rummage", (AbstractCard)pain, r);
-                            this.imageEventText.updateBodyText(RUMMAGE_RESULT + CURSE_RESULT2);
-                        }else{
-                            this.imageEventText.updateBodyText(RUMMAGE_RESULT );
-                            logMetricObtainRelic("Accursed Blacksmith", "Rummage",  r);
-                        }
-
-
-
-
-
-                        this.imageEventText.updateDialogOption(0, OPTIONS[2]);
-                        break;
-
-                    case 2:
-                        this.screenNum = 2;
-                        logMetricIgnored("Accursed Blacksmith");
-                        this.imageEventText.updateBodyText(LEAVE_RESULT);
-                        this.imageEventText.updateDialogOption(0, OPTIONS[2]);
-                        break;
+                boolean mustTakeResult = true;
+                int random;
+                boolean gamblingChipButtonActive = false;
+                AbstractRelic r = AbstractDungeon.player.getRelic("BGGambling Chip");
+                if (r != null) {
+                    if (!usedGamblingChip) {
+                        mustTakeResult = false;
+                        gamblingChipButtonActive = true;
+                    }
                 }
-                this.imageEventText.clearRemainingOptions();
+                int rerollbutton=-1;
+                int upgradebutton=0;
+                int relicbutton=1;
+                int leavebutton=2;
+                if(gamblingChipButtonWasActive){
+                    gamblingChipButtonWasActive = false;
+                    rerollbutton++;
+                    upgradebutton++;relicbutton++;leavebutton++;
+                }
+                if(buttonPressed==rerollbutton) {
+                    //logger.info("reroll?");
+                    usedGamblingChip = true;
+                    r = AbstractDungeon.player.getRelic("BGGambling Chip");
+                    if (r != null) r.flash();
+                    pendingReward = AbstractDungeon.miscRng.random(1, 6);
+                    this.imageEventText.clearAllDialogs();
+                    if (AbstractDungeon.player.masterDeck.hasUpgradableCards().booleanValue()) { this.imageEventText.setDialogOption(OPTIONS[0],true);    } else {   this.imageEventText.setDialogOption(OPTIONS[4], true);     }
+                    this.imageEventText.setDialogOption(getRewardDescription());
+                    this.imageEventText.setDialogOption(OPTIONS[3], true);
+                }else if(buttonPressed==upgradebutton) {
+                    //logger.info("upgrade?");
+                    int damageAmount = (int) (2);
+                    CardCrawlGame.sound.play("ATTACK_POISON");
+                    AbstractDungeon.player.damage(new DamageInfo(null, damageAmount, DamageInfo.DamageType.HP_LOSS));
+
+                    this.pickCard = true;
+                    AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck
+                            .getUpgradableCards(), 1, OPTIONS[3], true, false, false, false);
+
+                    this.imageEventText.updateBodyText(FORGE_RESULT);
+                    this.screenNum = 2;
+                    this.imageEventText.clearAllDialogs();
+                    this.imageEventText.setDialogOption(OPTIONS[2]);
+                }else if(buttonPressed==relicbutton) {
+                    //logger.info("relic?");
+                    if(pendingReward==0){
+                        pendingReward=AbstractDungeon.miscRng.random(1, 6);
+                        if(mustTakeResult){
+                            getReward();
+                        }else{
+                            this.imageEventText.clearAllDialogs();
+                            if(gamblingChipButtonActive) {
+                                gamblingChipButtonWasActive = true;
+                                this.imageEventText.setDialogOption("[Gambling Chip] Reroll.");
+                            }
+                            if (AbstractDungeon.player.masterDeck.hasUpgradableCards().booleanValue()) { this.imageEventText.setDialogOption(OPTIONS[0],true);    } else {   this.imageEventText.setDialogOption(OPTIONS[4], true);     }
+                            this.imageEventText.setDialogOption(getRewardDescription());
+                            this.imageEventText.setDialogOption(OPTIONS[2], true);
+
+                        }
+                    }else {
+                        getReward();
+                    }
+
+                }else if(buttonPressed==leavebutton){
+
+                    this.screenNum = 2;
+                    logMetricIgnored("Accursed Blacksmith");
+                    this.imageEventText.clearAllDialogs();
+                    this.imageEventText.updateBodyText(LEAVE_RESULT);
+                    this.imageEventText.setDialogOption(OPTIONS[2]);
+
+                }
+
                 return;
         }
         openMap();
+    }
+
+    protected String getRewardDescription(){
+        //TODO: localization
+        if(pendingReward<=3){
+            return "[Result] #pUnlucky! Relic and Curse.";
+        }else if(pendingReward>=4) {
+            return "[Result] #gLucky! Relic. No Curse.";
+        }
+        return "Error: Didn't roll 1-6.";
+    }
+
+    public void getReward(){
+        AbstractRelic r = AbstractDungeon.returnRandomScreenlessRelic(
+                AbstractDungeon.returnRandomRelicTier());
+        AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), r);
+        if (pendingReward <= 3) {
+            AbstractCard pain = AbstractDungeon.getCard(AbstractCard.CardRarity.CURSE);
+            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect((AbstractCard) pain, (Settings.WIDTH / 2), (Settings.HEIGHT / 2)));
+            AbstractBGDungeon.removeCardFromRewardDeck(pain);
+            logMetricObtainCardAndRelic("Accursed Blacksmith", "Rummage", (AbstractCard) pain, r);
+            this.imageEventText.updateBodyText(RUMMAGE_RESULT + CURSE_RESULT2);
+        } else {
+            logMetricObtainRelic("Accursed Blacksmith", "Rummage", r);
+            this.imageEventText.updateBodyText(RUMMAGE_RESULT);
+        }
+        this.screenNum = 2;
+        this.imageEventText.clearAllDialogs();
+        this.imageEventText.setDialogOption(OPTIONS[2]);
     }
 }
 
