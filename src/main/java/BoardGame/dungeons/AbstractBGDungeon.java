@@ -5,27 +5,18 @@ import BoardGame.cards.BGCurse.*;
 import BoardGame.characters.BGColorless;
 import BoardGame.characters.BGIronclad;
 import BoardGame.monsters.MonsterGroupRewardsList;
-import BoardGame.monsters.bgcity.BGBronzeAutomaton;
-import BoardGame.monsters.bgcity.BGChamp;
-import BoardGame.monsters.bgcity.BGTheCollector;
-import BoardGame.monsters.bgexordium.BGHexaghost;
-import BoardGame.monsters.bgexordium.BGSlimeBoss;
-import BoardGame.monsters.bgexordium.BGTheGuardian;
-import com.badlogic.gdx.Gdx;
-import com.badlogic.gdx.math.Interpolation;
+import BoardGame.monsters.bgbeyond.*;
+import BoardGame.monsters.bgcity.*;
+import BoardGame.monsters.bgexordium.*;
 import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.core.SystemStats;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.EventHelper;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.helpers.MonsterHelper;
-import com.megacrit.cardcrawl.helpers.TipTracker;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.random.Random;
@@ -34,17 +25,11 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
-import com.megacrit.cardcrawl.screens.DungeonTransitionScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import javassist.CannotCompileException;
-import javassist.CtBehavior;
 
 import java.util.ArrayList;
 
 public abstract class AbstractBGDungeon extends AbstractDungeon {
-    //TODO: we think we've fixed initializeCardPools getting called at the start of act 2+, but test it further to make sure
-    //TODO: pretty sure we drew two Sentinels at one point without loading a saved game.  seed: 30NX63XNS6KC8
-    //TODO: we transformed a Strike into a Fire Breathing then drew another one in the next act, then Seeing Red in acts2+3.  seed: 29R7E12S4HZAJ
     public static boolean initializedCardPools=false;
     public static CardGroup rewardDeck = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
     public static CardGroup rareRewardDeck = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
@@ -56,7 +41,7 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
     public AbstractBGDungeon(String name, String levelId, AbstractPlayer p, ArrayList<String> newSpecialOneTimeEventList) {
         super(name, levelId, p, newSpecialOneTimeEventList);
 
-        Settings.isFinalActAvailable=false; //TODO: remove this line once we're done recording videos
+        //Settings.isFinalActAvailable=false;
     }
 
     public AbstractBGDungeon(String name, AbstractPlayer p, SaveFile saveFile) {
@@ -160,6 +145,11 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                 cursesRewardDeck.addToTop(new BGRegret());
                 cursesRewardDeck.addToTop(new BGDecay());
                 cursesRewardDeck.addToTop(new BGDecay());
+                cursesRewardDeck.addToTop(new BGParasite());
+                cursesRewardDeck.addToTop(new BGParasite());
+                cursesRewardDeck.addToTop(new BGWrithe());
+                //cursesRewardDeck.addToTop(new BGDoubt());
+                //cursesRewardDeck.addToTop(new BGShame());
                 cursesRewardDeck.shuffle(cardRng);
 
 
@@ -363,19 +353,28 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
         }
     }
 
+    private static void removeOneCardFromOneDeck(String cardname, CardGroup deck){
+//        AbstractCard target=null;
+//        for(AbstractCard c : deck.group){
+//            if(c.cardID==cardname){
+//                target=c;
+//                break;
+//            }
+//        }
+//        if(target!=null){
+//
+//        }
+        if(deck.removeCard(cardname)){
+           logger.info("Successfully removed "+cardname+" from a reward deck");
+        }
+
+    }
+
     public static void removeCardFromRewardDeck(AbstractCard card){
-        if (AbstractBGDungeon.rewardDeck.contains(card)) {
-            AbstractBGDungeon.rewardDeck.removeCard(card);
-        }
-        if (AbstractBGDungeon.rareRewardDeck.contains(card)) {
-            AbstractBGDungeon.rareRewardDeck.removeCard(card);
-        }
-        if (AbstractBGDungeon.colorlessRewardDeck.contains(card)) {
-            AbstractBGDungeon.colorlessRewardDeck.removeCard(card);
-        }
-        if (AbstractBGDungeon.cursesRewardDeck.contains(card)) {
-            AbstractBGDungeon.cursesRewardDeck.removeCard(card);
-        }
+        removeOneCardFromOneDeck(card.cardID, AbstractBGDungeon.rewardDeck);
+        removeOneCardFromOneDeck(card.cardID, AbstractBGDungeon.rareRewardDeck);
+        removeOneCardFromOneDeck(card.cardID, AbstractBGDungeon.colorlessRewardDeck);
+        removeOneCardFromOneDeck(card.cardID, AbstractBGDungeon.cursesRewardDeck);
     }
 
 
@@ -528,6 +527,17 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                         return SpireReturn.Return(new MonsterGroup((AbstractMonster) new BGTheCollector()));
                     case "Champ":
                         return SpireReturn.Return(new MonsterGroup((AbstractMonster) new BGChamp()));
+                    case "Time Eater":
+                        return SpireReturn.Return(new MonsterGroup((AbstractMonster) new BGTimeEater()));
+                    case "Awakened One":
+                        return SpireReturn.Return(new MonsterGroup(new AbstractMonster[] {
+                                (AbstractMonster)new BGCultist(-590.0F, 10.0F, false),
+                                (AbstractMonster)new BGCultist(-298.0F, -10.0F, false),
+                                (AbstractMonster)new BGAwakenedOne(100.0F, 15.0F) }));
+                    case "Donu and Deca":
+                        return SpireReturn.Return(new MonsterGroup(new AbstractMonster[] {
+                                (AbstractMonster)new BGDeca(),
+                                (AbstractMonster)new BGDonu() }));
 
                 }
             }

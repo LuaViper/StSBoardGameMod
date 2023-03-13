@@ -1,3 +1,5 @@
+//TODO: in VG, Headbutt can draw itself if a copy is played.  not allowed in BG.
+
 package BoardGame.cards.BGRed;
 
 import BoardGame.characters.BGIronclad;

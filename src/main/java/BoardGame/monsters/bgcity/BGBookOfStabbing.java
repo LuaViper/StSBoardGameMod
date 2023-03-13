@@ -1,3 +1,5 @@
+//TODO: use GenericStrengthUpPower
+
 package BoardGame.monsters.bgcity;
 import BoardGame.monsters.AbstractBGMonster;
 import BoardGame.monsters.DieControlledMoves;

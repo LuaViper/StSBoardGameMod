@@ -1,3 +1,4 @@
+
 package BoardGame.monsters;
 
 import BoardGame.monsters.bgexordium.BGCultist;
@@ -72,6 +73,23 @@ public class MonsterGroupRewardsList {
         rewards.put("Champ",new MonsterGroupRewards(3));
         rewards.put("Collector",new MonsterGroupRewards(3));
 
+        rewards.put("BoardGame:Jaw Worms (Hard)",new MonsterGroupRewards(2));
+        rewards.put("BoardGame:Spire Growth",new MonsterGroupRewards(1,true));
+        rewards.put("BoardGame:Exploder and Friends",new MonsterGroupRewards(1));
+        rewards.put("BoardGame:Repulsor and Friends",new MonsterGroupRewards(0,true));
+        rewards.put("BoardGame:Orb Walker v2.3",new MonsterGroupRewards(1));
+        rewards.put("BoardGame:Orb Walker v3.2",new MonsterGroupRewards(1));
+        rewards.put("BoardGame:Transient",new MonsterGroupRewards(2));
+        rewards.put("BoardGame:Maw",new MonsterGroupRewards(1));
+        rewards.put("BoardGame:Writhing Mass",new MonsterGroupRewards(0,true));
+        rewards.put("BoardGame:3 Darklings",new MonsterGroupRewards(0,true));
+        rewards.put("BoardGame:Giant Head",new MonsterGroupRewards(3,false, true));
+        rewards.put("BoardGame:Nemesis",new MonsterGroupRewards(3,false, true));
+        rewards.put("BoardGame:Reptomancer",new MonsterGroupRewards(3,false, true));
+
+        rewards.put("Time Eater",new MonsterGroupRewards(0));
+        rewards.put("Awakened One",new MonsterGroupRewards(0));
+        rewards.put("Donu and Deca",new MonsterGroupRewards(0));
 
     }
 }

@@ -2,8 +2,12 @@ package BoardGame.shop;
 
 import BoardGame.cards.BGGoldenTicket;
 import BoardGame.dungeons.AbstractBGDungeon;
+import BoardGame.dungeons.BGExordium;
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
+import com.megacrit.cardcrawl.audio.SoundMaster;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -11,6 +15,8 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.shop.OnSaleTag;
 import com.megacrit.cardcrawl.shop.ShopScreen;
 import com.megacrit.cardcrawl.shop.StoreRelic;
+import javassist.CannotCompileException;
+import javassist.CtBehavior;
 
 import java.util.ArrayList;
 
@@ -120,6 +126,33 @@ public class BGShopScreen {
                 __instance.actualPurgeCost = 3;
             }
         }
+    }
+
+
+    @SpirePatch2(clz = ShopScreen.class, method = "purchaseCard",
+            paramtypez = {AbstractCard.class} )
+    public static class purchaseCardPatch {
+         @SpireInsertPatch(
+                locator= Locator.class,
+                localvars={}
+        )
+        public static SpireReturn<Void> Insert(ShopScreen __instance, AbstractCard hoveredCard){
+            if(CardCrawlGame.dungeon instanceof AbstractBGDungeon){
+                AbstractBGDungeon.removeCardFromRewardDeck(hoveredCard);
+            }
+            return SpireReturn.Continue();
+        }
+        private static class Locator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(SoundMaster.class,"play");
+                return LineFinder.findInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher);
+            }
+
+        }
 
     }
+
+
+
+
 }

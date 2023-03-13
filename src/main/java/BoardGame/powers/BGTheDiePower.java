@@ -1,12 +1,16 @@
 package BoardGame.powers;
 
 import BoardGame.util.TextureLoader;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class BGTheDiePower extends AbstractPower {
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:TheDiePower");
@@ -50,4 +54,12 @@ public class BGTheDiePower extends AbstractPower {
     public void updateDescription() {
         this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
     }
+
+
+//    @Override
+//    public void renderAmount(SpriteBatch sb, float x, float y, Color c) {
+//        //Logger logger = LogManager.getLogger(BoardGame.class.getName());
+//        //logger.info("TheDie render: "+x+" "+y+" "+c+" "+fontScale+" "+this.amount);
+//        super.renderAmount(sb,x,y,c);
+//    }
 }

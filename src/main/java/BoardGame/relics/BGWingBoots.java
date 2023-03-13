@@ -66,7 +66,12 @@ public class BGWingBoots extends AbstractBGRelic {
                 //logger.info("wingedIsConnectedToPatch "+node.y+" "+edge.dstY+" "+AbstractDungeon.player.hasRelic("BGWingedGreaves"));
                 if (node.y == edge.dstY && AbstractDungeon.player.hasRelic("BGWingedGreaves") &&
                         (AbstractDungeon.player.getRelic("BGWingedGreaves")).counter > 0) {
-                    logger.info("return TRUE "+node.x+" "+node.y);
+                    //logger.info("return TRUE "+node.x+" "+node.y);
+                    return SpireReturn.Return(true);
+                }
+                if (node.y >= edge.dstY-1 && AbstractDungeon.player.hasRelic("BGSecretPortalRelic")
+                    && node!=AbstractDungeon.getCurrMapNode()) {
+                    //logger.info("return TRUE "+node.x+" "+node.y);
                     return SpireReturn.Return(true);
                 }
             }
@@ -81,24 +86,53 @@ public class BGWingBoots extends AbstractBGRelic {
                 localvars = {"normalConnection", "wingedConnection"}
         )
         public static SpireReturn<Void> Insert(boolean normalConnection, boolean wingedConnection){
-            logger.info("MapRoomNodeWingedBootsUpdatePatch");
+            if(AbstractDungeon.player.hasRelic("BGSecretPortalRelic")){
+                AbstractDungeon.player.loseRelic("BGSecretPortalRelic");
+                //if we used secretportal, don't proc wingedgreaves
+                return SpireReturn.Continue();
+            }
+
             if (!normalConnection && wingedConnection &&
                     AbstractDungeon.player.hasRelic("BGWingedGreaves")) {
-                (AbstractDungeon.player.getRelic("BGWingedGreaves")).counter--;
-                if ((AbstractDungeon.player.getRelic("BGWingedGreaves")).counter <= 0) {
-                    AbstractDungeon.player.getRelic("BGWingedGreaves").setCounter(-2);
+                if(!AbstractDungeon.player.hasRelic("BGSecretPortalRelic")) {
+                    (AbstractDungeon.player.getRelic("BGWingedGreaves")).counter--;
+                    if ((AbstractDungeon.player.getRelic("BGWingedGreaves")).counter <= 0) {
+                        AbstractDungeon.player.getRelic("BGWingedGreaves").setCounter(-2);
+                    }
                 }
             }
             return SpireReturn.Continue();
         }
         private static class Locator extends SpireInsertLocator {
             public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
-                Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractPlayer.class,"hasRelic");
+                //Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractPlayer.class,"hasRelic");
+                Matcher finalMatcher = new Matcher.FieldAccessMatcher(Settings.class,"FAST_MODE");
                 return LineFinder.findInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher);
             }
         }
     }
 
+//    @SpirePatch(clz = MapRoomNode.class, method = "update",
+//            paramtypez = {})
+//    public static class MapRoomNodeWingedBootsUpdatePatch2 {
+//        @SpireInsertPatch(
+//                locator = Locator.class,
+//                localvars = {}
+//        )
+//        public static SpireReturn<Void> Insert(){
+//            logger.info("MapRoomNodeWingedBootsUpdatePatch2 "+AbstractDungeon.player.hasRelic("BGSecretPortalRelic"));
+//            if(AbstractDungeon.player.hasRelic("BGSecretPortalRelic")){
+//                AbstractDungeon.player.loseRelic("BGSecretPortalRelic");
+//            }
+//            return SpireReturn.Continue();
+//        }
+//        private static class Locator extends SpireInsertLocator {
+//            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+//                Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractPlayer.class,"hasRelic");
+//                return LineFinder.findInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher);
+//            }
+//        }
+//    }
 
     @SpirePatch2(clz = DungeonMapScreen.class, method = "updateControllerInput",
             paramtypez = {})
@@ -109,7 +143,7 @@ public class BGWingBoots extends AbstractBGRelic {
         )
         public static SpireReturn<Void> Insert(@ByRef boolean[] ___flightMatters){
             //logger.info("DungeonMapScreenControllerInputPatch");
-            if(AbstractDungeon.player.hasRelic("BGWingedGreaves")) {
+            if(AbstractDungeon.player.hasRelic("BGWingedGreaves") || AbstractDungeon.player.hasRelic("BGSecretPortalRelic")) {
                 ___flightMatters[0]=true;   //TODO: test if DungeonMapScreenControllerInputPatch actually works
             }
             return SpireReturn.Continue();

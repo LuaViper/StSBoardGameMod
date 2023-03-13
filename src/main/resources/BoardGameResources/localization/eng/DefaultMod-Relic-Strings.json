@@ -293,6 +293,13 @@
       ""
     ]
   },
+  "BGMark of Pain (NYI - breaks campfire healing)": {
+    "NAME": "Mark of Pain",
+    "FLAVOR": "This brand was used by the northern tribes to signify warriors who had mastered pain in battle.",
+    "DESCRIPTIONS": [
+      "Gain [E] at the start of your turn. Your Max HP is #b6."
+    ]
+  },
   "BGMeat on the Bone": {
     "NAME": "Meat on the Bone",
     "FLAVOR": "The meat keeps replenishing, never seeming to fully run out.",
@@ -444,6 +451,13 @@
       ""
     ]
   },
+  "BGSecretPortalRelic": {
+    "NAME": "Secret Portal",
+    "FLAVOR": "WELCOME TO WARP ZONE!",
+    "DESCRIPTIONS": [
+      "Upon pickup, move to any room at or above the current floor."
+    ]
+  },
   "BGSelf Forming Clay": {
     "NAME": "Self-Forming Clay",
     "FLAVOR": "\"Most curious! It appears to form itself loosely on my thoughts! Tele-clay?\" - Ranwid",
@@ -467,7 +481,7 @@
     ]
   },
   "BGSozu": {
-    "NAME": "Sozu (NYI)",
+    "NAME": "Sozu",
     "FLAVOR": "You notice that magical liquids seem to lose their properties when near this relic.",
     "DESCRIPTIONS": [
       " at the start of your turn. You can no longer obtain potions.",

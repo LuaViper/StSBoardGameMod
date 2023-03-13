@@ -62,6 +62,13 @@
                 " #yStrength after your next #yAttack."
         ]
 },
+"BoardGame:BGBeatOfDeath": {
+        "NAME": "Beat Of Death",
+        "DESCRIPTIONS": [
+                "Player takes #b",
+                " damage at end of their turn."
+        ]
+},
 "BoardGame:Berserk": {
         "NAME": "Berserk",
         "DESCRIPTIONS": [
@@ -91,6 +98,13 @@
                 " ."
         ]
 },
+"BoardGame:BGCuriosityPower": {
+        "NAME": "Curiosity",
+        "DESCRIPTIONS": [
+                "Attacks deal #b",
+                " additional damage for each Power card in play. Ignores the Strength cap and physical token limits."
+        ]
+},
 "BoardGame:Curl Up": {
         "NAME": "Curl Up",
         "DESCRIPTIONS": [
@@ -106,6 +120,15 @@
                 " #yAttacks are played twice this turn."
         ]
 },
+        "BoardGame:BGExplosive": {
+                "NAME": "Explosive",
+                "DESCRIPTIONS": [
+                        "Self-destructs in #b",
+                        " turns, #yAttacking for #b",
+                        " damage as it dies.",
+                        "Dies this turn."
+                ]
+        },
         "BoardGame:BGFlight": {
                 "NAME": "Flight",
                 "DESCRIPTIONS": [
@@ -120,11 +143,19 @@
                 " cards you play this turn are placed on top of your draw pile."
         ]
 },
+"BoardGame:BGIntangiblePower": {
+        "NAME": "Intangible",
+        "DESCRIPTIONS": [
+                "Reduce ALL damage taken and HP loss to #b0 this turn. #yIntangible is reapplied every other turn."
+        ]
+},
 "BoardGame:Juggernaut": {
         "NAME": "Juggernaut",
         "DESCRIPTIONS": [
                 "Whenever you gain #yBlock, deal #b",
-                " damage."
+                " damage.",
+                "Now look what you've done.",
+                "Zzz... zzz... zzz..."
         ]
 },
         "BoardGame:Mode Shift": {
@@ -147,6 +178,21 @@
                 "Can no longer be harmed this turn."
         ]
 },
+"BoardGame:BGInvincible": {
+        "NAME": "Invulnerable",
+        "DESCRIPTIONS": [
+                "Can only lose #b",
+                " more HP. NL #rImmune #rto #rWeak.",
+                "Can no longer be harmed. NL #rImmune #rto #rWeak."
+        ]
+},
+"BoardGame:BGOrbWalkerPower": {
+        "NAME": "",
+        "DESCRIPTIONS": [
+                "At the end of its turn, gains #rat #rleast #b",
+                " #yStrength."
+        ]
+},
 "BoardGame:BGPainful Stabs": {
         "NAME": "Painful Stabs",
         "DESCRIPTIONS": [
@@ -159,11 +205,73 @@
                 "Retain any number of cards this turn."
         ]
 },
+        "BoardGame:BGSpiker": {
+                "NAME": "Sharp Hide",
+                "DESCRIPTIONS": [
+                        "Whenever you play an #yAttack against Spiker, take #b",
+                        " damage."
+                ]
+        },
+        "BoardGame:BGSpikerProcced": {
+                "NAME": "Sharp Hide Proc",
+                "DESCRIPTIONS": [
+                        "At the end of this action, player takes ",
+                        " damage."
+                ]
+        },
+        "BoardGame:BGReactivePower": {
+                "NAME": "Reactive",
+                "DESCRIPTIONS": [
+                        "Upon receiving attack damage, rerolls #yThe #yDie."
+                ]
+        },
+        "BoardGame:BGRegrowPower": {
+                "NAME": "Life Link",
+                "DESCRIPTIONS": [
+                        "If other enemies are still alive, revives at the start of the player's turn at #b50% HP."
+                ]
+        },
+"BoardGame:BGShiftingPower": {
+        "NAME": "Shifting",
+        "DESCRIPTIONS": [
+                "",
+                "When Transient loses HP, the player gains that much #yBlock."
+        ]
+},
+"BoardGame:BGSlowPower": {
+        "NAME": "Slow",
+        "DESCRIPTIONS": [
+                " gains #yVulnerable if you play #b",
+                " more cards this turn.",
+                " more card this turn.",
+                " gains #yVulnerable if you play #b4 cards in a single turn.",
+                " (Receives #b",
+                "% more damage)"
+        ]
+},
 "BoardGame:Thievery": {
         "NAME": "Thievery",
         "DESCRIPTIONS": [
                 " steals #b",
                 " #yGold if it escapes from combat."
+        ]
+},
+"BoardGame:BGTimeEaterPhase2WarningPower": {
+        "NAME": "Rewind",
+        "DESCRIPTIONS": [
+                "Time moves in both directions..."
+        ]
+},
+"BoardGame:BGTimeWarpPower": {
+        "NAME": "Time Warp",
+        "DESCRIPTIONS": [
+                "You can only play #b",
+                " more cards this turn.",
+                " more card this turn.",
+                "You can't play any more cards this turn.",
+                "I can only play up to NL #r",
+                " cards this turn."
+
         ]
 },
 "BGTriggerAnyDieAbilityPower": {

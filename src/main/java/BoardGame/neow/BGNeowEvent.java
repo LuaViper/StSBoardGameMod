@@ -7,6 +7,8 @@ import BoardGame.dungeons.AbstractBGDungeon;
 import BoardGame.thedie.TheDie;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.blights.AbstractBlight;
 import com.megacrit.cardcrawl.blights.GrotesqueTrophy;
 import com.megacrit.cardcrawl.blights.MimicInfestation;
@@ -35,6 +37,7 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
+import com.megacrit.cardcrawl.ui.DialogWord;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.*;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
@@ -93,13 +96,8 @@ public class BGNeowEvent
             this.npc = new AnimatedNpc(1534.0F * Settings.xScale, AbstractDungeon.floorY - 60.0F * Settings.yScale, "images/npcs/neow/skeleton.atlas", "images/npcs/neow/skeleton.json", "idle");
         }
 
-
-
-
-
-
         this.roomEventText.clear();
-        playSfx();
+
 
         if (!Settings.isEndless || AbstractDungeon.floorNum <= 1)
         {
@@ -114,7 +112,8 @@ public class BGNeowEvent
         }
         this.body = "";
 
-        if (Settings.isEndless && AbstractDungeon.floorNum > 1) {
+        if(false){
+        //if (Settings.isEndless && AbstractDungeon.floorNum > 1) {
 
             talk(TEXT[MathUtils.random(12, 14)]);
             this.screenNum = 999;
@@ -124,24 +123,17 @@ public class BGNeowEvent
             talk(TEXT[10]);     //Time for a CHALLENGE...
             this.roomEventText.addDialogOption(OPTIONS[1]);
         }
-        else if (!isDone) {
+        else if (!isDone) {     //normally, boardgame starts HERE
+//            this.screenNum = 2;       //standard intro
+//            talk(TEXT[MathUtils.random(1, 3)]);
+//            this.roomEventText.addDialogOption(OPTIONS[1]);
 
-            if (!((Boolean)TipTracker.tips.get("NEOW_INTRO")).booleanValue()) {
-                this.screenNum = 0;
-                TipTracker.neverShowAgain("NEOW_INTRO");
-                talk(TEXT[0]);
-                //this.roomEventText.addDialogOption(OPTIONS[1]);
-                this.roomEventText.addDialogOption(choose_a_card);
-            } else {
+            this.screenNum=-1;          //disclaimer intro
+            this.roomEventText.addDialogOption(EXTRA[68]);
+            this.body=EXTRA[69]+" NL NL "+EXTRA[70];
 
-                this.screenNum = 1;
-                talk(TEXT[MathUtils.random(1, 3)]);
-                //this.roomEventText.addDialogOption(OPTIONS[1]);
-                this.roomEventText.addDialogOption(choose_a_card);
-            }
             AbstractDungeon.topLevelEffects.add(new LevelTransitionTextOverlayEffect(AbstractDungeon.name, AbstractDungeon.levelNum, true));
         } else {
-
             this.screenNum = 99;
             talk(TEXT[8]);
             this.roomEventText.addDialogOption(OPTIONS[3]);
@@ -149,6 +141,15 @@ public class BGNeowEvent
 
         this.hasDialog = true;
         this.hasFocus = true;
+
+
+
+//        this.roomEventText.updateBodyText("");
+//        playSfx();
+//        this.roomEventText.addDialogOption(EXTRA[0]);
+//        talk(TEXT[MathUtils.random(1, 3)]);
+
+
     }
 
     public BGNeowEvent() {
@@ -293,6 +294,14 @@ public class BGNeowEvent
 
     protected void buttonEffect(int buttonPressed) {
         switch (this.screenNum) {
+            case -1:    //DISCLAIMER
+                this.roomEventText.updateBodyText("");
+                playSfx();
+                talk(TEXT[MathUtils.random(1, 3)]);
+                this.screenNum = 2;
+                this.roomEventText.updateDialogOption(0,EXTRA[0]);
+                return;
+
 
             case 0:     //"Greetings..."
                 dismissBubble();
@@ -547,6 +556,7 @@ public class BGNeowEvent
                         this.roomEventText.updateDialogOption(0, EXTRA[54]+upcomingRewards+(upcomingRewards==1 ? EXTRA[55] : EXTRA[56]));
                         break;
                     case 7: //rare cards
+                        talk(EXTRA[71]);
                         BGNeowQuickStart.rewardCounter = 0;
                         numRewards=BGNeowQuickStart.quickStartQuantities[BGNeowQuickStart.rewardIndex][BGNeowQuickStart.actNumber-2];
                         AbstractBGDungeon.forceRareRewards=true;
@@ -608,7 +618,7 @@ public class BGNeowEvent
                             String title=actualRewards==2 ? EXTRA[24] : EXTRA[23];
                             cardOperation=NeowCardOperation.REMOVE;
                             AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck
-                                    .getUpgradableCards(), actualRewards, EXTRA[23], false, false, false, true);
+                                    .getPurgeableCards(), actualRewards, EXTRA[23], false, false, false, true);
                         }
                         BGNeowQuickStart.rewardIndex+=1;
                         upcomingRewards=BGNeowQuickStart.quickStartQuantities[BGNeowQuickStart.rewardIndex][BGNeowQuickStart.actNumber-2];
@@ -920,7 +930,9 @@ public class BGNeowEvent
 
     public void render(SpriteBatch sb) {
         this.npc.render(sb);
+
     }
+
 
 
     public void dispose() {
@@ -934,6 +946,34 @@ public class BGNeowEvent
 
 
 
+
+
+
+    @SpirePatch2
+            (clz=RoomEventDialog.class,method="render",paramtypez={SpriteBatch.class})
+    public static class TempPatch{
+        @SpirePrefixPatch
+        public static void Insert(RoomEventDialog __instance, SpriteBatch sb, ArrayList<DialogWord> ___words,
+                                  float ___curLineWidth, boolean ___show){
+            if(___words.size()>0){
+                logger.info("Test: "+___words.get(___words.size()-1).word);
+            }
+            //logger.info("Test: "+___words.size()+" "+___show);
+        }
+    }
+
+    @SpirePatch2
+            (clz=RoomEventDialog.class,method="clear",paramtypez={})
+    public static class TempPatch2{
+        @SpirePrefixPatch
+        public static void Insert(RoomEventDialog __instance, ArrayList<DialogWord> ___words,
+                                  float ___curLineWidth, boolean ___show){
+//            if(___words.size()>0){
+//                logger.info("Test: "+___curLineWidth);
+//            }
+            logger.info("CLEAR:!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+        }
+    }
 
 
 }

@@ -1,5 +1,4 @@
-//this one is probably doable without much incident
-// ScryAction is in actions/utility/
+//TODO: technically we're not supposed to be able to use this before relicroll is locked in
 
 package BoardGame.relics;
 

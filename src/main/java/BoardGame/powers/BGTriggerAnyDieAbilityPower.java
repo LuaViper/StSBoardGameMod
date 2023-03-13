@@ -75,6 +75,7 @@ public class BGTriggerAnyDieAbilityPower extends AbstractPower {
         if(!doNotActivateOnRemove) {
             BGTheDieRelic die = (BGTheDieRelic) AbstractDungeon.player.getRelic(BGTheDieRelic.ID);
             if (die != null) {
+                //TODO: check for relics with higher Block
                 die.activateDieAbility();
             }
         }

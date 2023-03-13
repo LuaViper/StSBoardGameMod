@@ -21,6 +21,7 @@ import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
+import com.megacrit.cardcrawl.scenes.TheBeyondScene;
 import com.megacrit.cardcrawl.scenes.TheCityScene;
 import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import javassist.CannotCompileException;
@@ -43,7 +44,6 @@ public class BGTheBeyond
     public static final String ID = "TheBeyond";
 
 
-    protected static void setEmeraldElite() {}
 
     public static ArrayList<String> darkMapTokenPool=new ArrayList<>();
     public static ArrayList<String> lightMapTokenPool=new ArrayList<>();
@@ -61,6 +61,18 @@ public class BGTheBeyond
         return lightMapTokenPool.remove(0).charAt(0);
     }
 
+    //TODO: monsters currently don't remember if they're already on the field -- so if the deck is reshuffled, the same monster can be played twice
+    public static ArrayList<String> summonSpikerPool=new ArrayList<>();
+    public static String getSummonSpiker(){
+        if(summonSpikerPool.size()==0){
+            //(2)dmg, (T)horns
+            summonSpikerPool.add("2T");
+            summonSpikerPool.add("T2");
+            Collections.shuffle(summonSpikerPool, new java.util.Random(monsterRng.randomLong()));
+        }
+        return summonSpikerPool.remove(0);
+    }
+
     public BGTheBeyond(AbstractPlayer p, ArrayList<String> emptyList) {
         //super(NAME, "BGExordium", p, emptyList);
         super(NAME, "TheBeyond", p, emptyList);
@@ -70,12 +82,12 @@ public class BGTheBeyond
         if (scene != null) {
             scene.dispose();
         }
-        scene = (AbstractScene)new TheCityScene();
-        fadeColor = Color.valueOf("0a1e1eff");
-        sourceFadeColor = Color.valueOf("0a1e1eff");
+        scene = (AbstractScene)new TheBeyondScene();
+        fadeColor = Color.valueOf("140a1eff");
+        sourceFadeColor = Color.valueOf("140a1eff");
 
         initializeLevelSpecificChances();
-        mapRng = new Random(Long.valueOf(Settings.seed.longValue() + (AbstractDungeon.actNum * 100)));
+        mapRng = new Random(Long.valueOf(Settings.seed.longValue() + (AbstractDungeon.actNum * 200)));
         generateSpecialMap();
 
         CardCrawlGame.music.changeBGM(id);
@@ -92,14 +104,14 @@ public class BGTheBeyond
         if (scene != null) {
             scene.dispose();
         }
-        scene = (AbstractScene)new TheCityScene();
-        fadeColor = Color.valueOf("0a1e1eff");
-        sourceFadeColor = Color.valueOf("0a1e1eff");
+        scene = (AbstractScene)new TheBeyondScene();
+        fadeColor = Color.valueOf("140a1eff");
+        sourceFadeColor = Color.valueOf("140a1eff");
 
         initializeLevelSpecificChances();
         miscRng = new Random(Long.valueOf(Settings.seed.longValue() + saveFile.floor_num));
         CardCrawlGame.music.changeBGM(id);
-        mapRng = new Random(Long.valueOf(Settings.seed.longValue() + (saveFile.act_num * 100)));
+        mapRng = new Random(Long.valueOf(Settings.seed.longValue() + (saveFile.act_num * 200)));
         generateSpecialMap();
         firstRoomChosen = true;
 
@@ -135,7 +147,7 @@ public class BGTheBeyond
 
     protected void generateMonsters() {
         generateWeakEnemies(0);
-        generateStrongEnemies(12);
+        generateStrongEnemies(10);
         generateElites(3);
     }
 
@@ -156,18 +168,16 @@ public class BGTheBeyond
 
     protected void generateStrongEnemies(int count) {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
-        monsters.add(new MonsterInfo("BoardGame:Snecko", 2.0F));
-        monsters.add(new MonsterInfo("BoardGame:SnakePlant", 2.0F));
-        monsters.add(new MonsterInfo("BoardGame:SphericGuardian", 2.0F));
-        monsters.add(new MonsterInfo("BoardGame:3 Byrds", 2.0F));
-        monsters.add(new MonsterInfo("BoardGame:3 Cultists", 2.0F));
-        monsters.add(new MonsterInfo("BoardGame:Shelled Parasite", 2.0F));
-        monsters.add(new MonsterInfo("BoardGame:Chosen and Cultist", 2.0F));
-        monsters.add(new MonsterInfo("BoardGame:Chosen and Byrd", 2.0F));
-        monsters.add(new MonsterInfo("BoardGame:Looter (Hard)", 2.0F));
-        monsters.add(new MonsterInfo("BoardGame:Another Looter (Hard)", 2.0F));
-        monsters.add(new MonsterInfo("BoardGame:Centurion A", 2.0F));
-        monsters.add(new MonsterInfo("BoardGame:Centurion B", 2.0F));
+        monsters.add(new MonsterInfo("BoardGame:Jaw Worms (Hard)", 2.0F));
+        monsters.add(new MonsterInfo("BoardGame:Spire Growth", 2.0F));
+        monsters.add(new MonsterInfo("BoardGame:Exploder and Friends", 2.0F));
+        monsters.add(new MonsterInfo("BoardGame:Repulsor and Friends", 2.0F));
+        monsters.add(new MonsterInfo("BoardGame:Orb Walker v2.3", 2.0F));
+        monsters.add(new MonsterInfo("BoardGame:Orb Walker v3.2", 2.0F));
+        monsters.add(new MonsterInfo("BoardGame:Transient", 2.0F));
+        monsters.add(new MonsterInfo("BoardGame:Maw", 2.0F));
+        monsters.add(new MonsterInfo("BoardGame:Writhing Mass", 2.0F));
+        monsters.add(new MonsterInfo("BoardGame:3 Darklings", 2.0F));
         MonsterInfo.normalizeWeights(monsters);
         populateFirstStrongEnemy(monsters, generateExclusions());
         populateMonsterList(monsters, count, false);
@@ -175,9 +185,9 @@ public class BGTheBeyond
 
     protected void generateElites(int count) {
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
-        monsters.add(new MonsterInfo("BoardGame:Book of Stabbing", 1.0F));
-        monsters.add(new MonsterInfo("BoardGame:Gremlin Leader", 1.0F));
-        monsters.add(new MonsterInfo("BoardGame:Taskmaster", 1.0F));
+        monsters.add(new MonsterInfo("BoardGame:Giant Head", 1.0F));
+        monsters.add(new MonsterInfo("BoardGame:Nemesis", 1.0F));
+        monsters.add(new MonsterInfo("BoardGame:Reptomancer", 1.0F));
         MonsterInfo.normalizeWeights(monsters);
         populateMonsterList(monsters, count, true);
     }

@@ -1,3 +1,4 @@
+
 package BoardGame.cards;
 import BoardGame.dungeons.AbstractBGDungeon;
 import basemod.abstracts.CustomCard;

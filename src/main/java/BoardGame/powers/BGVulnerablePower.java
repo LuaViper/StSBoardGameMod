@@ -1,3 +1,5 @@
+//TODO: Bash an enemy with 3 vuln stacks -> should still have 3 vuln stacks, not 2
+
 package BoardGame.powers;
 
 import BoardGame.BoardGame;

@@ -109,10 +109,12 @@ public class BGConfusionPower extends AbstractPower {
     public static class getCostPatch{
         @SpirePrefixPatch
         private static SpireReturn<String> getCost(){
-            if(AbstractDungeon.player.hasPower("BGConfusion")) {
-                AbstractPower p = AbstractDungeon.player.getPower("BGConfusion");
-                if (p.amount > -1) {
-                    return SpireReturn.Return(Integer.toString(p.amount));
+            if(AbstractDungeon.player!=null) {
+                if (AbstractDungeon.player.hasPower("BGConfusion")) {
+                    AbstractPower p = AbstractDungeon.player.getPower("BGConfusion");
+                    if (p.amount > -1) {
+                        return SpireReturn.Return(Integer.toString(p.amount));
+                    }
                 }
             }
             return SpireReturn.Continue();

@@ -1,8 +1,9 @@
 package BoardGame.monsters.bgcity;
 
+import BoardGame.monsters.AbstractBGMonster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class BGGremlinPlaceholder extends AbstractMonster {
+public class BGGremlinPlaceholder extends AbstractBGMonster {
     public static final String ID = "BGGremlinPlaceholder";
     public static final String NAME = "Placeholder Gremlin";
 

@@ -1,19 +1,26 @@
 package BoardGame.powers;
 
+import BoardGame.relics.BGTheDieRelic;
 import BoardGame.thedie.TheDie;
+import BoardGame.ui.LockInRollButton;
+import com.evacipated.cardcrawl.modthespire.lib.SpireField;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.OverlayMenu;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 public class BGInvinciblePlayerPower extends AbstractPower {
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGIntangible");
@@ -26,6 +33,14 @@ public class BGInvinciblePlayerPower extends AbstractPower {
         this.ID = "BGIntangible";
         this.owner = owner;
         this.amount = 1;
+        if(owner instanceof AbstractPlayer){
+            AbstractRelic r=((AbstractPlayer)owner).getRelic("BoardGame:BGTheDieRelic");
+            if(r!=null){
+                if(((BGTheDieRelic)r).tookDamageThisTurn) { //TODO: move flag to AbstractBGPlayer, if possible (but requires turn start event)
+                    this.amount = 0;
+                }
+            }
+        }
         updateDescription();
         //loadRegion("intangible");
         //this.priority = 75;
@@ -35,6 +50,8 @@ public class BGInvinciblePlayerPower extends AbstractPower {
 
     public void stackPower(int stackAmount) {
         //do nothing
+        this.fontScale = 8.0F;
+        this.amount=1;
     }
 
     public void playApplyPowerSfx() {
@@ -70,9 +87,17 @@ public class BGInvinciblePlayerPower extends AbstractPower {
                 p.amount-=__result;
                 p.updateDescription();
             }
+            if(__result>0 && __instance==AbstractDungeon.player){
+                AbstractRelic r=((AbstractPlayer)__instance).getRelic("BoardGame:BGTheDieRelic");
+                if(r!=null){
+                    ((BGTheDieRelic)r).tookDamageThisTurn=true;
+                }
+            }
             return __result;
         }
     }
+
+
 
 }
 

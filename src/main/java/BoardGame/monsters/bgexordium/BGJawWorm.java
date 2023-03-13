@@ -70,7 +70,7 @@ public class BGJawWorm extends AbstractBGMonster implements BGDamageIcons, DieCo
     private static final byte THRASH = 3; private boolean firstMove = true;
     private int difficulty;
     private String behavior="---";
-    public BGJawWorm(float x, float y, int difficulty) {
+    public BGJawWorm(float x, float y, int difficulty, String behavior) {
         super(NAME, "BGJawWorm", 44, 0.0F, -25.0F, 260.0F, 170.0F, null, x, y);
 
         this.difficulty = difficulty;
@@ -95,7 +95,7 @@ public class BGJawWorm extends AbstractBGMonster implements BGDamageIcons, DieCo
             this.thrashDmg = 3;
             this.thrashBlock = 1;
         }else if(this.difficulty==2){
-            this.behavior="SDA";
+            this.behavior=behavior;
             this.bellowStr = 1;
             this.bellowBlock = 3;
             this.chompDmg = 4;

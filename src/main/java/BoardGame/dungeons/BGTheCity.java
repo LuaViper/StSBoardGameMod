@@ -47,7 +47,6 @@ public class BGTheCity
     public static final String ID = "TheCity";
 
 
-    protected static void setEmeraldElite() {}
 
 
     public static ArrayList<String> darkMapTokenPool=new ArrayList<>();

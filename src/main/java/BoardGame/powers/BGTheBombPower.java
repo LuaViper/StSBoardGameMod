@@ -1,5 +1,6 @@
 package BoardGame.powers;
 
+import BoardGame.cards.BGRed.BGWhirlwind;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
@@ -10,7 +11,10 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class BGTheBombPower extends AbstractPower {
     public static final String POWER_ID = "BGTheBomb";
@@ -39,14 +43,23 @@ public class BGTheBombPower extends AbstractPower {
             addToBot((AbstractGameAction)new ReducePowerAction(this.owner, this.owner, this, 1));
             if (this.amount == 1) {
                 addToBot((AbstractGameAction)new DamageAllEnemiesAction(null,
-
-
                         DamageInfo.createDamageMatrix(this.damage, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE));
 
                 AbstractCard card=originalcard.makeStatEquivalentCopy();
 
                 AbstractDungeon.player.discardPile.addToBottom(card);
                 addToBot(new ExhaustSpecificCardAction(card, AbstractDungeon.player.discardPile,true));
+
+                //Logger logger = LogManager.getLogger(BGTheBombPower.class.getName());
+                //logger.info("Awakened One check...");
+                //this counts as losing a power card, so Awakened One loses 1 str
+                for(AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters){
+                    AbstractPower p=m.getPower("BGCuriosityPower");
+                    //logger.info("check "+m+" "+p);
+                    if(p!=null){
+                        addToBot(new ReducePowerAction((AbstractCreature)m,(AbstractCreature)m,"BGUncappedStrengthPower",1));
+                    }
+                }
             }
         }
     }

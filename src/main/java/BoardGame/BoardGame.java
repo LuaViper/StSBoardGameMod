@@ -2,11 +2,10 @@ package BoardGame;
 
 import BoardGame.characters.BGColorless;
 import BoardGame.characters.BGCurse;
-import BoardGame.monsters.bgcity.*;
-import BoardGame.monsters.bgexordium.BGHexaghost;
-import BoardGame.dungeons.*;
 import BoardGame.monsters.bgexordium.*;
-import BoardGame.monsters.bgexordium.BGFungiBeast;
+import BoardGame.monsters.bgcity.*;
+import BoardGame.monsters.bgbeyond.*;
+import BoardGame.dungeons.*;
 import BoardGame.relics.*;
 import basemod.*;
 import basemod.eventUtil.AddEventParams;
@@ -318,7 +317,7 @@ public class BoardGame implements
         //TODO: non-repeating "monster deck" -- it's still possible to get the same encounter twice, especially with elites
 
         addMonster(BGCultist.ID, ()->new BGCultist(0,0));
-        addMonster("BoardGame:Jaw Worm (Easy)", ()->new BGJawWorm(0,0, 0));
+        addMonster("BoardGame:Jaw Worm (Easy)", ()->new BGJawWorm(0,0, 0, ""));
         addMonster("BoardGame:Easy Small Slimes",()->new MonsterGroup(new AbstractMonster[]{
                 new BGSpikeSlime_S(-200.0F, 0.0F),
                 new BGAcidSlime_M(80.0F, -15.0F)
@@ -355,7 +354,7 @@ public class BoardGame implements
         addMonster("BoardGame:Blue Slaver", ()->new BGBlueSlaver(0.0F, 0.0F,"W2D"));
         addMonster("BoardGame:Red Slaver", ()->new BGRedSlaver(0.0F, 0.0F,"DV3"));
         addMonster("BoardGame:Looter", ()->new BGLooter(0.0F, 0.0F, false));
-        addMonster("BoardGame:Jaw Worm (Medium)", ()->new BGJawWorm(0,0, 1));
+        addMonster("BoardGame:Jaw Worm (Medium)", ()->new BGJawWorm(0,0, 1, ""));
         addMonster("BoardGame:Lagavulin", ()->new BGLagavulin());
         addMonster("BoardGame:Gremlin Nob", ()->new BGGremlinNob(0,0));
         addMonster("BoardGame:3 Sentries",()->new MonsterGroup(new AbstractMonster[]
@@ -432,7 +431,64 @@ public class BoardGame implements
         }));
         addMonster("BoardGame:Champ", ()->new BGChamp());
 
-
+        addMonster("BoardGame:Jaw Worms (Hard)", ()->new MonsterGroup(new AbstractMonster[] {
+                (AbstractMonster)new BGJawWorm(-490.0F, -5.0F, 2, "SDA"),
+                (AbstractMonster)new BGJawWorm(-150.0F, 20.0F, 2, "DAS"),
+                (AbstractMonster)new BGJawWorm(175.0F, 5.0F, 2, "ASD")
+        }));
+        addMonster("BoardGame:Spire Growth", ()->new MonsterGroup(new AbstractMonster[] {
+                (AbstractMonster)new BGSpireGrowth()
+        }));
+        addMonster("BoardGame:Exploder and Friends", ()->new MonsterGroup(new AbstractMonster[] {
+                (AbstractMonster)new BGExploder(-480.0F, 6.0F),
+                (AbstractMonster)new BGRepulsor(-240.0F, -6.0F, "3D"),
+                (AbstractMonster)new BGSpiker(0.0F, -12.0F)
+        }));
+        addMonster("BoardGame:Repulsor and Friends", ()->new MonsterGroup(new AbstractMonster[] {
+                (AbstractMonster)new BGRepulsor(-480.0F, 6.0F, "D3"),
+                (AbstractMonster)new BGExploder(-240.0F, -6.0F),
+                (AbstractMonster)new BGSpiker(0.0F, -12.0F)
+        }));
+        addMonster("BoardGame:Orb Walker v2.3", ()->new MonsterGroup(new AbstractMonster[] {
+                (AbstractMonster)new BGOrbWalker(-30.0F, 20.0F, "23")
+        }));
+        addMonster("BoardGame:Orb Walker v3.2", ()->new MonsterGroup(new AbstractMonster[] {
+                (AbstractMonster)new BGOrbWalker(0.0F, 26.0F, "32")
+        }));
+        addMonster("BoardGame:Transient", ()->new MonsterGroup(new AbstractMonster[] {
+                (AbstractMonster)new BGTransient()
+        }));
+        addMonster("BoardGame:Maw", ()->new MonsterGroup(new AbstractMonster[] {
+                (AbstractMonster)new BGMaw(-70.0F,20.0F)
+        }));
+        addMonster("BoardGame:Writhing Mass", ()->new MonsterGroup(new AbstractMonster[] {
+                (AbstractMonster)new BGWrithingMass()
+        }));
+        addMonster("BoardGame:3 Darklings", ()->new MonsterGroup(new AbstractMonster[] {
+                (AbstractMonster)new BGDarkling(-440.0F, 10.0F,"CUBE"),
+                (AbstractMonster)new BGDarkling(-140.0F, 30.0F,"32S"),
+                (AbstractMonster)new BGDarkling(180.0F, -5.0F,"S32")
+        }));
+        addMonster("BoardGame:Giant Head", ()->new MonsterGroup(new AbstractMonster[] {
+                (AbstractMonster)new BGGiantHead()
+        }));
+        addMonster("BoardGame:Nemesis", ()->new MonsterGroup(new AbstractMonster[] {
+                (AbstractMonster)new BGNemesis()
+        }));
+        addMonster("BoardGame:Reptomancer", ()->new MonsterGroup(new AbstractMonster[] {
+                (AbstractMonster)new BGReptomancer()
+        }));
+        addMonster("BoardGame:Time Eater", ()->new MonsterGroup(new AbstractMonster[] {
+                (AbstractMonster)new BGTimeEater()
+        }));
+        addMonster("BoardGame:Awakened One", ()->new MonsterGroup(new AbstractMonster[] {
+                (AbstractMonster)new BGCultist(-590.0F, 10.0F, false),
+                (AbstractMonster)new BGCultist(-298.0F, -10.0F, false),
+                (AbstractMonster)new BGAwakenedOne(100.0F, 15.0F)
+        }));
+        addMonster("BoardGame:Donu and Deca", ()->new MonsterGroup(new AbstractMonster[] {
+                (AbstractMonster)new BGDeca(), (AbstractMonster)new BGDonu()
+        }));
 
         // =============== EVENTS =================
         // https://github.com/daviscook477/BaseMod/wiki/Custom-Events
@@ -455,12 +511,13 @@ public class BoardGame implements
         BaseMod.addEvent(new AddEventParams.Builder(BGTransmogrifier.ID, BGTransmogrifier.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGCleric.ID, BGCleric.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGUpgradeShrine.ID, BGUpgradeShrine.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
-            BaseMod.addEvent(new AddEventParams.Builder(BGGremlinWheelGame.ID, BGGremlinWheelGame.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGGremlinWheelGame.ID, BGGremlinWheelGame.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGScrapOoze.ID, BGScrapOoze.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGAccursedBlacksmith.ID, BGAccursedBlacksmith.class).dungeonID(BGExordium.ID).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGLab.ID, BGLab.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGBigFish.ID, BGBigFish.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
 
+        BaseMod.addEvent(new AddEventParams.Builder(BGGremlinWheelGame.ID, BGGremlinWheelGame.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGGoldShrine.ID, BGGoldShrine.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGCursedTome.ID, BGCursedTome.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGBackToBasics.ID, BGBackToBasics.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
@@ -470,8 +527,15 @@ public class BoardGame implements
         BaseMod.addEvent(new AddEventParams.Builder(BGBeggar.ID, BGBeggar.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGKnowingSkull.ID, BGKnowingSkull.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
 
-
-
+        BaseMod.addEvent(new AddEventParams.Builder(BGGremlinWheelGame.ID, BGGremlinWheelGame.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGBonfire.ID, BGBonfire.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGPurificationShrine.ID, BGPurificationShrine.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGMindBloom.ID, BGMindBloom.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGTombRedMask.ID, BGTombRedMask.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGFalling.ID, BGFalling.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGSecretPortal.ID, BGSecretPortal.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGWindingHalls.ID, BGWindingHalls.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGSensoryStone.ID, BGSensoryStone.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
 
 
         // =============== /EVENTS/ =================

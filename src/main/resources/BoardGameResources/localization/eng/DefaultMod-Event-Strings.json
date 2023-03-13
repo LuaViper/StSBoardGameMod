@@ -183,6 +183,30 @@
       "Select a Card to Upgrade."
     ]
   },
+  "BoardGame:BGFalling": {
+    "NAME": "Falling",
+    "DESCRIPTIONS": [
+      "As you head upwards hopping from one floating shape to another, you slip. NL NL You begin to fall.",
+      "While in free fall you consider your options...",
+      "You land with extreme grace before continuing on.",
+      "Harnessing and expending some of your raw power, you manage to land unhurt.",
+      "You are able to latch on to the wall, and manage to make a short hop onto another stable platform.",
+      "You seem to fall as slow as a feather, reaching the bottom without a scratch."
+    ],
+    "OPTIONS": [
+      "[Continue]",
+      "[Land] ",
+      "[Locked] Requires more cards",
+      "[Channel] ",
+      "[Locked] Requires more cards",
+      "[Strike] ",
+      "[Locked] Requires more cards",
+      "[Leave]",
+      "[Land] ",
+      "[Flail] ",
+      " #rLose "
+    ]
+  },
   "BoardGame:BGGolden Idol": {
     "NAME": "Ancient Temple",
     "DESCRIPTIONS": [
@@ -238,6 +262,7 @@
       "Select a Card to Remove."
     ]
   },
+
   "BoardGame:BGKnowing Skull": {
     "NAME": "Knowing Skull",
     "DESCRIPTIONS": [
@@ -263,6 +288,36 @@
       "[Leave]"
     ]
   },
+  "BoardGame:BGMindBloom": {
+    "NAME": "Mind Bloom",
+    "DESCRIPTIONS": [
+      "While walking and traversing through the chaos of the Spire, your thoughts suddenly begin to feel very... #p~real...~ NL NL Imaginings of #rmonsters and #yriches begin to manifest themselves into reality. NL The sensation is quickly fleeting. What do you do?",
+      "Can it really be this easy?",
+      "Everything makes sense now. NL The lack of memories, the ascent, the #yAncient #yOne. NL NL This is the way it always was. NL This is the way it always will be. NL All will be forgotten again soon..."
+    ],
+    "OPTIONS": [
+      "[I am War] #rFight #ra #rBoss #rfrom #rAct #r1. #gObtain #ga #gRelic.",
+      "[I am Rich] #gGain #g5 #gGold.",
+      "[I am Healthy] #gHeal #gto #gfull #gHP. #rGain #ra #rCurse.",
+      "[I am Awake] #gUpgrade #g2 #gCards. #rLose #r3 #rHP.",
+      "[Leave]"
+    ]
+  },
+  "BoardGame:BGPurificationShrine": {
+    "NAME": "Purifier",
+    "DESCRIPTIONS": [
+      "Before you lies an elaborate shrine to a forgotten spirit.",
+      "As you kneel in reverence, you feel a weight lifted off your shoulders.",
+      "As you kneel in reverence, you feel a #pdark #pgrasp loosen.",
+      "You ignore the shrine."
+    ],
+    "OPTIONS": [
+      "[Pray] #gRemove #ga #gcard #gfrom #gyour #gdeck.",
+      "[Cleanse] #gRemove #gall #gCurses #gfrom #gyour #gdeck.",
+      "[Leave]",
+      "Select a Card to Remove."
+    ]
+  },
   "BoardGame:BGScrap Ooze": {
     "NAME": "Scrap Ooze",
     "DESCRIPTIONS": [
@@ -278,6 +333,37 @@
       "%: #gFind #g2 #gGold #gor #ga #gRelic.",
       "[Leave]",
       "[Deeper] #rLose #r"
+    ]
+  },
+  "BoardGame:BGSecretPortal": {
+    "NAME": "Secret Portal",
+    "DESCRIPTIONS": [
+      "Before you is a sight that seems out of place in the alien landscape around you. Strangely placed into one of the living walls of the Beyond is an enclosed stone entrance filled with a #p~swirling~ #p~magical~ #p~portal.~ NL NL You aren't sure where it leads, but maybe it could speed your journey through the Spire.",
+      "Jumping through the portal, your sense of time and space is completely torn apart.",
+      "Careful and cautious seems the better approach for reaching the top of the Spire. Ignoring the portal you continue on."
+    ],
+    "OPTIONS": [
+      "[Enter the Portal]",
+      "[Leave]"
+    ]
+  },
+  "BoardGame:BGSensoryStone": {
+    "NAME": "Sensory Stone",
+    "DESCRIPTIONS": [
+      "Navigating through the Beyond, you discover a #bglowing #btesseract @spinning@ and ~shifting~ gently in the air.",
+      "You touch it. NL NL A #r@sharp@ #r@pain@ flows through you, followed by vivid flashes of a distant memory. NL ...whose memories are these?",
+      "#r~FEAR.~ NL NL A demonic creature towers above you, wings spread wide as it howls with laughter. Dead bodies of a tribe surround you while the village is engulfed in terrible #p~dark~ #p~flames.~ NL NL The demon calls out, taunting you. NL NL \" #r@YOU@ #r@REALLY@ #r@ARE@ #r@THE@ #r@STRONGEST@ #r@NOW!@ #r@Haha..@ #r@HEHE...@ #r@HAHAHAAAAH!!@ \" NL NL This laughter echoes forever... ",
+      "#g~TRIUMPH.~ NL NL The remains of a #p~ghostly~ #p~creature~ sink slowly into the mud before you, barely visible in the moonlight. You have proven yourself amongst your sisters. NL NL Standing victoriously, you wait in silence as the others ceremoniously place the #ycreature's #yskull atop your head. The ritual has concluded. NL NL You head towards the Spire...",
+      "#b~CONFUSION.~ NL NL #y[OBJECTIVE] #gBALANCE #gmust #gbe #gENFORCED NL #y[DEFINE] #gBALANCE NL #y[ERROR] #gBALANCE #gNOT #gFOUND NL #y[DEFINE] #gBALANCE NL #y[ERROR] #gBALANCE #gNOT #gFOUND NL #y[WARNING] #rLarge #robject #rapproaching NL NL ~\"I...~ ~..am~ ~....Neow..\"~",
+      "#p~SERENITY.~ NL NL Two primitive creatures fight over a carcass on the side of the road. You observe, devoid of emotion. NL #yWatch. #yRemember. #yLive. This is the Watcher's mission. NL NL Recently, one of your peers had stopped reporting on their assignment: a Spire of unknown origin. NL NL As the fight ends, you continue onward, unfazed by the bloody scene that took place."
+    ],
+    "OPTIONS": [
+      "[Recall] #gAdd #g1 #gColorless #gcard #gto #gyour #gdeck.",
+      "[Recall] #gAdd #g2 #gColorless #gcards #gto #gyour #gdeck. #rLose #r",
+      "[Recall] #gAdd #g3 #gColorless #gcards #gto #gyour #gdeck. #rLose #r",
+      " #rHP.",
+      "[Leave]",
+      "[Interact]"
     ]
   },
   "BoardGame:BGThe Cleric": {
@@ -299,6 +385,29 @@
       "[Leave]",
       "Select a Card to Remove.",
       "Select a Card to Upgrade."
+    ]
+  },
+  "BoardGame:BGThe Joust": {
+    "NAME": "The Joust",
+    "DESCRIPTIONS": [
+      "As you make your way through the large buildings you come across a long narrow bridge and spot knights on either side, facing one another. You approach... NL @\"Halt!\"@ NL NL A knight forcefully gestures you to stop with its giant lance.",
+      "\"Today is the day I must settle the score with the #rmurderer of my beloved pet, #yNoodles. NL NL Fellow witness, why don't you #bbet on who you think will emerge victorious?\"",
+      "\"I can't believe you're betting against #yNoodles!\" NL NL Furious, he clamps down his helmet and rushes towards his nemesis.",
+      "\"Give me strength, #yNoodles!\" NL NL Clamping down his helmet, the knight charges forward.",
+      "NL #y@*CRASH!!!*@ #r@*KLAAAANG!*@ NL NL #g@*POW!*@",
+      "The nemesis was slain. NL NL ",
+      "The owner died. NL NL ",
+      "You #gwin the bet. Unsure what to think, you grab your winnings and leave.",
+      "You #rlost the bet, but at least you weren't gouged by a lance.",
+      "[Placeholder text: skip event.]"
+    ],
+    "OPTIONS": [
+      "[Continue]",
+      "[Bet 2 Gold] #g50%: #gwin #g6 #gGold.",
+      "[Bet a Relic] #g50%: #gwin #g6 #gGold.",
+      "[Bet a Potion] #g50%: #gwin #g6 #gGold.",
+      "[Watch]",
+      "[Leave]"
     ]
   },
   "BoardGame:BGThe Library": {
@@ -334,6 +443,21 @@
       "[Leave]",
       "[Leave] #rTake #r",
       " #rDamage."
+    ]
+  },
+  "BoardGame:BGTombRedMask": {
+    "NAME": "Tomb of Lord Red Mask",
+    "DESCRIPTIONS": [
+      "A highly ornamented tomb can be seen on the other side of a floating path. Upon reaching the tomb, you notice a slot for #ygold coins with a scratched out inscription above it.",
+      "You don the mask and the tomb starts to ~flake~ ~away...~ a secret passage! NL NL The passage is lined with countless stolen goods and mounds of #ygold!",
+      "An opening appears in the tomb and out slides a small trinket with a note attached. \"Take from others as I have taken from you!\""
+    ],
+    "OPTIONS": [
+      "[Don the Red Mask] #gGain #g6 #gGold.",
+      "[Locked] Requires: Red Mask.",
+      "[Offer: ",
+      " Gold] #rLose #rall #rGold. #gObtain #ga #gRelic.",
+      "[Leave]"
     ]
   },
   "BoardGame:BGTransmorgrifier": {
@@ -391,6 +515,26 @@
       " #rHP.",
       "[Leave]",
       "Select a Card to Remove."
+    ]
+  },
+  "BoardGame:BGWindingHalls": {
+    "NAME": "Winding Halls",
+    "DESCRIPTIONS": [
+      "As you slowly make your way up the twisting pathways, you constantly find yourself losing your way as the walls and ground seem to inexplicably shift before your eyes. NL NL The constant #p~whispering~ #p~voices~ in the back of your head aren't helping things either.",
+      "Passing by a structure you are certain you have previously seen you start to question if you are going insane, or if the impossible geography of this place is starting to get to you. You need to change something, and soon. NL NL That's what the #p~voices~ say anyway, and why would they lie?",
+      "Something in you cracks. NL NL Only the truly mad can understand a place like this, so you give into the chattering voices and continue on with a #p~\"new\"~ perspective. NL Things do seem to make so much more sense now.",
+      "As you take a moment to stop and carefully observe the undulating landscape around you, the hint of a pattern starts to emerge from within the randomness. Whenever the demented noises begin to interrupt your thoughts, you struggle through the mental pain and ignore it. NL NL Eventually you successfully map out a path forward, and continue on, now resistant to the nefarious nature of this alien place.",
+      "You spend what seems like an eternity lost in the maze. Slowly but surely, you are able to retrace your steps, reorient yourself, and make it out of the twisting passages. NL NL You feel #r~drained~ from the experience."
+    ],
+    "OPTIONS": [
+      "...",
+      "[Embrace Madness] #gObtain #g2 #grandom #gCards",
+      " #rHP.",
+      "[Focus] #rGain #ra #rCurse. #gHeal #g",
+      "[Leave]",
+      " #gHP.",
+      "[Retrace Your Steps] #rLose #r",
+      " #rHP."
     ]
   }
 }

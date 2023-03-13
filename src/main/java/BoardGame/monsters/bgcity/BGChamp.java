@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.unique.CanLoseAction;
 import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
+import com.megacrit.cardcrawl.actions.utility.TextAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -304,6 +305,7 @@ public class BGChamp
 
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new ShoutAction((AbstractCreature) this, getLimitBreak(), 2.0F, 3.0F));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new WaitAction(1.0F));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new TextAboveCreatureAction((AbstractCreature)this, "Anger"));    //TODO: localization
                 addToBot((AbstractGameAction) new RemoveSpecificPowerAction((AbstractCreature) this, (AbstractCreature) this, "BGChampPhase2WarningPower"));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new HealAction((AbstractCreature) this, (AbstractCreature) this, this.maxHealth));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new CanLoseAction());

@@ -45,8 +45,6 @@ public class BGExordium
     public static final String ID = "Exordium";
 
 
-    protected static void setEmeraldElite() {}
-
 
     public static ArrayList<String> darkMapTokenPool=new ArrayList<>();
     public static ArrayList<String> lightMapTokenPool=new ArrayList<>();

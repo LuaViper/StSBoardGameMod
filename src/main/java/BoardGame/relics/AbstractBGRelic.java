@@ -1,6 +1,7 @@
 package BoardGame.relics;
 
 import BoardGame.dungeons.AbstractBGDungeon;
+import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
@@ -104,6 +105,7 @@ public abstract class AbstractBGRelic extends AbstractRelic {
             bossRelicDeck.add(new BGRingOfTheSerpent());
             bossRelicDeck.add(new BGWristBlade());
             bossRelicDeck.add(new BGCursedKey());
+            bossRelicDeck.add(new BGSozu());
 
             Collections.shuffle(bossRelicDeck, new java.util.Random(relicRng.randomLong()));
         }

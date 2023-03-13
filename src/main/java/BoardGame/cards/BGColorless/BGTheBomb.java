@@ -21,14 +21,6 @@ public class BGTheBomb extends AbstractBGCard {
         super("BGThe Bomb", cardStrings.NAME, "colorless/skill/the_bomb", 2, cardStrings.DESCRIPTION, AbstractCard.CardType.POWER, BGColorless.Enums.CARD_COLOR, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.SELF);
 
 
-
-
-
-
-
-
-
-
         this.baseMagicNumber = 10;
         this.magicNumber = this.baseMagicNumber;
     }

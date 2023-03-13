@@ -5,7 +5,7 @@
       "the Ironclad"
     ],
     "TEXT": [
-      "This mod is not finished, or even close to finished. There will be bugs. NL Savefiles are not implemented. If you try to save the game and reload, everything will break in hilarious ways. NL Only Acts 1+2 are available. If you try to enter Act 3, you will die a quick and terrible death.",
+      "The remaining soldier of the Ironclads. NL Sold his soul to harness demonic energies.",
       "NL You ready your blade...",
       "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~brother,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~"
     ]
@@ -107,13 +107,17 @@
       "[ #gChoose #g",
       " #gboss #gRelic ]",
       " #gboss #gRelics ]",
-      "Select Cards to Upgrade"
+      "Select Cards to Upgrade",
+      "[ Proceed ]",
+      "#yDISCLAIMER",
+      "This project was created with the purpose of rapidly and repeatedly playtesting the board game in order to judge the relative difficulty of each encounter in a single-player game. The mod remains very much a work in progress. You may notice missing content, rule inaccuracies, bugs, and even softlocks. Ascension Mode is not yet implemented. NL NL Most importantly, #ysave #yfiles #yare #ynot #yready #yyet.  If you try to save the game and reload, everything will break in hilarious and horrifying ways.",
+      "If the game softlocks on a reward screen, try opening and closing the map."
     ],
     "UNIQUE_REWARDS": [
       "[ #rLose #ryour #rstarting #rRelic #gObtain #ga #grandom #gboss #gRelic ]"
     ]
   },
-  "Merchant": {
+  "BoardGame:Merchant": {
     "NAMES": [
       "Proceed",
       "~Welcome!~"
@@ -146,5 +150,51 @@
       "I used to be like you.",
       "Heading up?"
     ]
+  },
+
+
+  "BoardGame:Random Tips": {
+    "NAMES": [],
+    "TEXT": [
+      "Cards may not behave exactly as you remember.  Read them carefully.",
+      "The Die controls the behavior of several relics and enemies.",
+      "Many relics will not take effect until you right-click them.",
+      "You must activate die abilities before playing cards.",
+      "Relics which let you reroll the die can also be used in events.",
+      "Many bosses can deal more damage than you have maximum health.",
+      "Max Energy is 6, max Strength is 8, and max Block is 20.",
+      "You can only add one copy of an Uncommon or Rare card to your deck.",
+      "Sometimes, card rewards will contain two copies of a Common card.",
+      "Monsters who seem unusually talkative may be planning to inflict you with Vulnerable.",
+      "Engage with other players to discover new and effective strategies.",
+      "There is always a rest site before a boss.",
+      "Spend gold at shops! (Tip paid for by Merchant)",
+      "Take a break every now and then.",
+      "During combat, you can view the contents of your discard pile.",
+      "There is no limit to how many relics you can carry.",
+      "The chest in Act 1 will always drop a relic.",
+      "Elite enemies will always drop a relic.",
+      "You will never see the same relic twice in one run.",
+      "You will never see the same rare card twice in one run.",
+      "Uncommon cards have a blue frame and banner.",
+      "Rare cards have a golden frame and banner.",
+      "The rarity of a card is visible on the card itself.",
+      "It is not always wise to add cards to your deck.",
+      "Cards exhausted during combat are not removed from your deck.",
+      "There is no maximum hand size.",
+      "Status cards go away at the end of combat.",
+      "Curses cannot be transformed. (Editor's note: for now, use the honor system.)",
+      "Upgraded cards may appear in elite combat rewards past Act 1.",
+      "Prior to Ascension 3, unknown rooms will contain only events.",
+      "The Merchant doesn't offer refunds. He is a jerk.",
+      "The card removal service does not increase in price each time you use it.",
+      "The card removal service can only be used once at each shop.",
+      "Damage from potions, relics, and powers are not considered attack damage."
+    ],
+    "OPTIONS": [
+      "You can discard potions to make room for others."
+    ]
   }
+
+
 }

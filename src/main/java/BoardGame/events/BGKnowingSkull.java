@@ -169,7 +169,6 @@ public class BGKnowingSkull
                 this.potionCost++;
                 this.optionsChosen += "POTION ";
                 this.imageEventText.updateBodyText(POTION_MSG + nextmsg);
-                //TODO: strictly speaking, in BG, player can draw potion card then choose to discard a different potion
                 if (AbstractDungeon.player.hasRelic("Sozu")) {
                     AbstractDungeon.player.getRelic("Sozu").flash();
                     break;
@@ -178,6 +177,7 @@ public class BGKnowingSkull
                     AbstractDungeon.player.getRelic("BGSozu").flash();
                     break;
                 }
+                //TODO: in BG, player can still draw potion card while inventory is full, then choose to discard a different potion
                 p = PotionHelper.getRandomPotion();
                 this.potions.add(p.ID);
                 AbstractDungeon.player.obtainPotion(p);

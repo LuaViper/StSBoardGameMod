@@ -23,6 +23,8 @@ import BoardGame.monsters.AbstractBGMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.RitualPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
+import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
+import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -158,12 +160,22 @@ public class BGCultist extends AbstractBGMonster implements BGDamageIcons {
         if (this.talky &&
                 this.saidPower) {
             AbstractDungeon.effectList.add(new SpeechBubble(this.hb.cX + this.dialogX, this.hb.cY + this.dialogY, 2.5F, DIALOG[2], false));
-
-
             this.deathTimer += 1.5F;
         }
-
         super.die();
+
+        //Awakened One check
+        if(AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss) {
+            if (AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
+                useFastShakeAnimation(5.0F);
+                CardCrawlGame.screenShake.rumble(4.0F);
+
+                onBossVictoryLogic();
+                UnlockTracker.hardUnlockOverride("CROW");
+                UnlockTracker.unlockAchievement("CROW");
+                onFinalBossVictoryLogic();
+            }
+        }
     }
 
 

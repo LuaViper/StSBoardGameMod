@@ -149,6 +149,10 @@
     "DESCRIPTION": "Retain. NL Remove all boardgame:Weak and boardgame:Vulnerable. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Retain. NL Remove all boardgame:Weak and boardgame:Vulnerable. NL Exhaust. NL Upgrading this card is only effective in multiplayer."
   },
+  "BoardGame:BGParasite": {
+    "NAME": "Parasite",
+    "DESCRIPTION": "Unplayable. NL If removed from your deck, lose 2 HP."
+  },
   "BoardGame:BGPerfected Strike": {
     "NAME": "Perfected Strike",
     "DESCRIPTION": "Deal !D! damage. NL Deals !M! additional damage for each other card in your hand containing \"Strike\".",
@@ -173,7 +177,7 @@
   },
   "BoardGame:BGRegret": {
     "NAME": "Regret",
-    "DESCRIPTION": "Exhaust."
+    "DESCRIPTION": "Unplayable. NL Retain."
   },
   "BoardGame:BGRupture": {
     "NAME": "Rupture",
@@ -229,6 +233,10 @@
     "DESCRIPTION": "Deal !D! damage. NL Apply !M! boardgame:Vulnerable. NL Apply 1 boardgame:Weak.",
     "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Apply !M! boardgame:Vulnerable. NL Apply !M! boardgame:Weak."
   },
+  "BoardGame:BGVoidCard": {
+    "NAME": "Void",
+    "DESCRIPTION": "Exhaust. NL This card automatically plays when drawn."
+  },
   "BoardGame:BGWarcry": {
     "NAME": "Warcry",
     "DESCRIPTION": "Draw !M! cards. NL Put a card from your hand onto the top of your draw pile. NL Exhaust.",
@@ -242,6 +250,10 @@
   "BoardGame:BGWild Strike": {
     "NAME": "Wild Strike",
     "DESCRIPTION": "Deal !D! damage. NL Put a *Dazed on top of your draw pile."
+  },
+  "BoardGame:BGWrithe": {
+    "NAME": "Writhe",
+    "DESCRIPTION": "Exhaust."
   },
   "BoardGame:DefaultCommonAttack": {
     "NAME": "Strike",
