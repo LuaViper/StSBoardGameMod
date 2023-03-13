@@ -949,31 +949,31 @@ public class BGNeowEvent
 
 
 
-    @SpirePatch2
-            (clz=RoomEventDialog.class,method="render",paramtypez={SpriteBatch.class})
-    public static class TempPatch{
-        @SpirePrefixPatch
-        public static void Insert(RoomEventDialog __instance, SpriteBatch sb, ArrayList<DialogWord> ___words,
-                                  float ___curLineWidth, boolean ___show){
-            if(___words.size()>0){
-                logger.info("Test: "+___words.get(___words.size()-1).word);
-            }
-            //logger.info("Test: "+___words.size()+" "+___show);
-        }
-    }
-
-    @SpirePatch2
-            (clz=RoomEventDialog.class,method="clear",paramtypez={})
-    public static class TempPatch2{
-        @SpirePrefixPatch
-        public static void Insert(RoomEventDialog __instance, ArrayList<DialogWord> ___words,
-                                  float ___curLineWidth, boolean ___show){
+//    @SpirePatch2
+//            (clz=RoomEventDialog.class,method="render",paramtypez={SpriteBatch.class})
+//    public static class TempPatch{
+//        @SpirePrefixPatch
+//        public static void Insert(RoomEventDialog __instance, SpriteBatch sb, ArrayList<DialogWord> ___words,
+//                                  float ___curLineWidth, boolean ___show){
 //            if(___words.size()>0){
-//                logger.info("Test: "+___curLineWidth);
+//                //logger.info("Test: "+___words.get(___words.size()-1).word);
 //            }
-            logger.info("CLEAR:!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
-        }
-    }
+//            //logger.info("Test: "+___words.size()+" "+___show);
+//        }
+//    }
+//
+//    @SpirePatch2
+//            (clz=RoomEventDialog.class,method="clear",paramtypez={})
+//    public static class TempPatch2{
+//        @SpirePrefixPatch
+//        public static void Insert(RoomEventDialog __instance, ArrayList<DialogWord> ___words,
+//                                  float ___curLineWidth, boolean ___show){
+////            if(___words.size()>0){
+////                logger.info("Test: "+___curLineWidth);
+////            }
+//            //logger.info("CLEAR:!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+//        }
+//    }
 
 
 }
