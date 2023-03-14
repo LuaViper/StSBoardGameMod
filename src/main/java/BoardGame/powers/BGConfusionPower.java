@@ -60,6 +60,7 @@ public class BGConfusionPower extends AbstractPower {
 
     public void onAfterCardPlayed(AbstractCard usedCard){
         this.amount=-1;
+        //logger.info("Confusion: onAfterCardPlayed");
         updateDescription();
     }
 

@@ -26,12 +26,10 @@ This mod was thrown together haphazardly with no regard whatsoever for proper co
 # Board Game inaccuracies
 - Several cards are marked with the "Approximate" keyword to denote they don't behave *exactly* like the board game
 - Physical token limits are not yet implemented
-- X-cost cards still use all energy
 - Non-card-reward decks (monsters, potions, relics etc) can produce duplicates of unique cards
 - Some potion-granting events still try to add a potion directly to your inventory (prevents you from first discarding one if you're full)
 - Curses are still transformable
 - Merchant card removal tooltip still says "the cost of this service increases by 25 for the rest of the run"
-- Havoc will play X-cost cards for full energy instead of 0 energy
 - If Ironclad plays an Exhausting Skill card vs Gremlin Nob while Feel No Pain is active, Gremlin Nob's Anger procs before Feel No Pain adds Block
 
 

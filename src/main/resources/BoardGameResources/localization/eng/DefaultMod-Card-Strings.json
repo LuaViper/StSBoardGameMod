@@ -108,7 +108,7 @@
   },
   "BoardGame:BGHavoc": {
     "NAME": "Havoc",
-    "DESCRIPTION": "boardgame:Approximate. NL Play the top card of your draw pile and Exhaust it."
+    "DESCRIPTION": "boardgame:Approximate. NL Play the top card of your draw pile for 0 Energy and Exhaust it."
   },
   "BoardGame:BGImmolate": {
     "NAME": "Immolate",
@@ -244,8 +244,8 @@
   },
   "BoardGame:BGWhirlwind": {
     "NAME": "Whirlwind",
-    "DESCRIPTION": "boardgame:Approximate. NL Deal !D! damage to ALL enemies X times.",
-    "UPGRADE_DESCRIPTION": "boardgame:Approximate. NL Deal !D! damage to ALL enemies X+1 times."
+    "DESCRIPTION": "Deal !D! damage to ALL enemies X times.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies X+1 times."
   },
   "BoardGame:BGWild Strike": {
     "NAME": "Wild Strike",
@@ -254,6 +254,11 @@
   "BoardGame:BGWrithe": {
     "NAME": "Writhe",
     "DESCRIPTION": "Exhaust."
+  },
+  "BoardGame:BGXCostChoice": {
+    "NAME": "X Cost Choice",
+    "DESCRIPTION": "For debug purposes only. NL In the Board Game, you can choose how much Energy to spend on X Cost cards.",
+    "UPGRADE_DESCRIPTION":"Spend !M! Energy."
   },
   "BoardGame:DefaultCommonAttack": {
     "NAME": "Strike",

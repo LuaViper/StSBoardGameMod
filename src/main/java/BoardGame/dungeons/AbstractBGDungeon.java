@@ -494,19 +494,6 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
         }
     }
 
-    @SpirePatch2(clz = AbstractRoom.class, method = "addSapphireKey",
-            paramtypez = {RewardItem.class})
-    public static class addSapphireKeyPatch {
-        @SpirePrefixPatch
-        public static SpireReturn<Void> addSapphireKey(RewardItem item) {
-            if(CardCrawlGame.dungeon instanceof AbstractBGDungeon){
-                //this.rewards.add(new RewardItem(item, RewardItem.RewardType.SAPPHIRE_KEY));
-                return SpireReturn.Return();
-            }
-            return SpireReturn.Continue();
-        }
-    }
-
 
     @SpirePatch2(clz = MonsterHelper.class, method = "getEncounter",
             paramtypez = {String.class})

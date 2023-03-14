@@ -48,6 +48,9 @@ public class BGHavoc extends AbstractBGCard {
     public AbstractCard makeCopy() {
         return new BGHavoc();
     }
+
+
+
 }
 
 
