@@ -3,6 +3,7 @@ package BoardGame.powers;
 import BoardGame.BoardGame;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -175,6 +176,13 @@ public class BGWeakPower extends AbstractPower {
         final Logger logger = LogManager.getLogger(BoardGame.class.getName());
         logger.info("BGWeakPower: onAfterUseCard ");
         //onUseCard -> onAttack -> onAfterUseCard
+    }
+
+    public void onInitialApplication() {
+        //TODO: if possible, don't apply the power in the first place (requires a very specific insert patch)
+        if(this.owner.hasPower("BGInvinciblePower")){
+            addToBot((AbstractGameAction) new RemoveSpecificPowerAction(this.owner, this.owner, "BGWeakened"));
+        }
     }
 }
 

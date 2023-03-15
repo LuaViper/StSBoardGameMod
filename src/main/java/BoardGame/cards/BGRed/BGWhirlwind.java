@@ -37,8 +37,8 @@ public class BGWhirlwind extends AbstractBGCard {
         }
 //        Logger logger = LogManager.getLogger(BGWhirlwind.class.getName());
 //        logger.info("BGWhirlwind "+ignoreEnergyOnUse+" "+energyOnUse);
-        addToBot((AbstractGameAction)new BGXCostCardAction(this, this.energyOnUse,
-                (e)->addToBot((AbstractGameAction)new BGWhirlwindAction(AbstractDungeon.player, this.multiDamage, this.damageTypeForTurn, this.freeToPlayOnce, e,this.magicNumber))));
+        addToTop((AbstractGameAction)new BGXCostCardAction(this, this.energyOnUse,
+                (e)->addToTop((AbstractGameAction)new BGWhirlwindAction(AbstractDungeon.player, this.multiDamage, this.damageTypeForTurn, this.freeToPlayOnce, e,this.magicNumber))));
     }
 
 

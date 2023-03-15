@@ -5,7 +5,7 @@ import BoardGame.characters.BGCurse;
 import BoardGame.monsters.bgexordium.*;
 import BoardGame.monsters.bgcity.*;
 import BoardGame.monsters.bgbeyond.*;
-//import BoardGame.monsters.bgending.*;
+import BoardGame.monsters.bgending.*;
 import BoardGame.dungeons.*;
 import BoardGame.relics.*;
 import basemod.*;
@@ -490,7 +490,9 @@ public class BoardGame implements
         addMonster("BoardGame:Donu and Deca", ()->new MonsterGroup(new AbstractMonster[] {
                 (AbstractMonster)new BGDeca(), (AbstractMonster)new BGDonu()
         }));
-
+        addMonster("BoardGame:The Heart", ()->new MonsterGroup(new AbstractMonster[] {
+                (AbstractMonster)new BGCorruptHeart()
+        }));
 
         // =============== EVENTS =================
         // https://github.com/daviscook477/BaseMod/wiki/Custom-Events

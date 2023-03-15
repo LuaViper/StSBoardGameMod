@@ -2,6 +2,8 @@ package BoardGame.events;
 
 import BoardGame.dungeons.BGTheCity;
 import BoardGame.dungeons.BGTheEnding;
+import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -14,8 +16,10 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.EventRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
+import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
@@ -34,24 +38,47 @@ public class FakeMonsterRoomEvent extends AbstractEvent {
     private static final String INTRO_MSG = DESCRIPTIONS[0];
     private CurScreen screen = CurScreen.INTRO;
 
+    private int phase=1;
     private enum CurScreen {
-        INTRO, PRE_COMBAT, END;
+        INTRO, PRE_COMBAT, COMPLETE;
     }
 
 
     public FakeMonsterRoomEvent() {
-        this.screen=CurScreen.END;
         this.hasDialog = true;
         this.hasFocus = true;
         this.body="";
+        this.phase=0;
+        this.waitTimer=2.0F;
     }
 
     public void update() {
         super.update();
 
-        if (!RoomEventDialog.waitForInput) {
-            buttonEffect(this.roomEventText.getSelectedOption());
+//        Logger logger = LogManager.getLogger(FakeMonsterRoomEvent.class.getName());
+//        logger.info("FMRE: "+this.hasDialog+" "+" "+this.phase+" "+this.waitTimer);
+
+        if(this.hasDialog){
+            if (this.waitTimer >= 0.0F) {
+                this.waitTimer -= Gdx.graphics.getDeltaTime();
+                if (this.waitTimer < 0.0F) {
+                    this.phase+=1;
+                    if(this.phase==1){
+                        AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, DESCRIPTIONS[0], true));
+                        this.waitTimer=3.0F;
+                    }else{
+                        this.hasDialog=false;
+
+                    }
+                }
+            }
+        }else{
+            this.screen = CurScreen.COMPLETE;
+            (AbstractDungeon.getCurrRoom()).phase = AbstractRoom.RoomPhase.COMPLETE;
+            AbstractDungeon.overlayMenu.proceedButton.show();
         }
+
+
     }
 
 
@@ -60,6 +87,10 @@ public class FakeMonsterRoomEvent extends AbstractEvent {
     }
 
 
+    @Override
+    public void renderRoomEventPanel(SpriteBatch sb) {
+        //do nothing
+    }
 
 
 //    @SpirePatch2(clz= AbstractDungeon.class,method="nextRoomTransition",

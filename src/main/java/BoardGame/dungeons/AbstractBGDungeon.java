@@ -7,6 +7,7 @@ import BoardGame.characters.BGIronclad;
 import BoardGame.monsters.MonsterGroupRewardsList;
 import BoardGame.monsters.bgbeyond.*;
 import BoardGame.monsters.bgcity.*;
+import BoardGame.monsters.bgending.BGCorruptHeart;
 import BoardGame.monsters.bgexordium.*;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -532,7 +533,9 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                         return SpireReturn.Return(new MonsterGroup(new AbstractMonster[] {
                                 (AbstractMonster)new BGDeca(),
                                 (AbstractMonster)new BGDonu() }));
-
+                    case "The Heart":
+                        return SpireReturn.Return(new MonsterGroup(new AbstractMonster[] {
+                                (AbstractMonster)new BGCorruptHeart()}));
                 }
             }
             return SpireReturn.Continue();

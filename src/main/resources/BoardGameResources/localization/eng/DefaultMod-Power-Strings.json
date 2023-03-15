@@ -62,7 +62,7 @@
                 " #yStrength after your next #yAttack."
         ]
 },
-"BoardGame:BGBeatOfDeath": {
+"BoardGame:BGBeatOfDeathPower": {
         "NAME": "Beat Of Death",
         "DESCRIPTIONS": [
                 "Player takes #b",
@@ -178,12 +178,12 @@
                 "Can no longer be harmed this turn."
         ]
 },
-"BoardGame:BGInvincible": {
-        "NAME": "Invulnerable",
+"BoardGame:BGInvinciblePower": {
+        "NAME": "Invincible",
         "DESCRIPTIONS": [
                 "Can only lose #b",
-                " more HP. NL #rImmune #rto #rWeak.",
-                "Can no longer be harmed. NL #rImmune #rto #rWeak."
+                " more HP. NL Immune to Weak.",
+                "Can no longer be harmed. NL Immune to Weak."
         ]
 },
 "BoardGame:BGOrbWalkerPower": {

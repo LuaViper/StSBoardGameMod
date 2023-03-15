@@ -91,5 +91,7 @@ public class MonsterGroupRewardsList {
         rewards.put("Awakened One",new MonsterGroupRewards(0));
         rewards.put("Donu and Deca",new MonsterGroupRewards(0));
 
+        rewards.put("The Heart",new MonsterGroupRewards(0));
+
     }
 }
