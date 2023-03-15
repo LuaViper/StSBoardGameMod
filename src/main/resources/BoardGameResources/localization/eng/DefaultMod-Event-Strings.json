@@ -536,5 +536,14 @@
       "[Retrace Your Steps] #rLose #r",
       " #rHP."
     ]
+  },
+  "BoardGame:FakeMonsterRoomEvent": {
+    "NAME": "Empty Room",
+    "DESCRIPTIONS": [
+      "...?"
+    ],
+    "OPTIONS": [
+      "Proceed"
+    ]
   }
 }

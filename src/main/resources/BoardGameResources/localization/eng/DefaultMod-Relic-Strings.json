@@ -554,7 +554,8 @@
     "NAME": "White Beast Statue (NYI)",
     "FLAVOR": "A small white statue of a creature you have never seen before.",
     "DESCRIPTIONS": [
-      "At the end of combat, obtain a(n additional) Potion."
+      "At the end of combat, obtain a(n additional) Potion.",
+      "Will not work without more coding (double potion chance, act 3 bosses)."
     ]
   },
   "BGWingedGreaves": {

@@ -5,6 +5,7 @@ import BoardGame.characters.BGCurse;
 import BoardGame.monsters.bgexordium.*;
 import BoardGame.monsters.bgcity.*;
 import BoardGame.monsters.bgbeyond.*;
+//import BoardGame.monsters.bgending.*;
 import BoardGame.dungeons.*;
 import BoardGame.relics.*;
 import basemod.*;
@@ -490,6 +491,7 @@ public class BoardGame implements
                 (AbstractMonster)new BGDeca(), (AbstractMonster)new BGDonu()
         }));
 
+
         // =============== EVENTS =================
         // https://github.com/daviscook477/BaseMod/wiki/Custom-Events
 
@@ -536,6 +538,12 @@ public class BoardGame implements
         BaseMod.addEvent(new AddEventParams.Builder(BGSecretPortal.ID, BGSecretPortal.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGWindingHalls.ID, BGWindingHalls.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGSensoryStone.ID, BGSensoryStone.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
+
+        BaseMod.addEvent(new AddEventParams.Builder(FakeMonsterRoomEvent.ID, FakeMonsterRoomEvent.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
+//        BaseMod.addEvent(new AddEventParams.Builder(BGMindBloom.ID, BGMindBloom.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
+//        BaseMod.addEvent(new AddEventParams.Builder(BGTombRedMask.ID, BGTombRedMask.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
+//        BaseMod.addEvent(new AddEventParams.Builder(BGFalling.ID, BGFalling.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
+//        BaseMod.addEvent(new AddEventParams.Builder(BGSecretPortal.ID, BGSecretPortal.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
 
 
         // =============== /EVENTS/ =================

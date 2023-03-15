@@ -71,6 +71,10 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                 }else if(key[0].equals("TheBeyond")){
                     ArrayList<String>emptyList = new ArrayList<>();
                     return SpireReturn.Return((AbstractDungeon)new BGTheBeyond(p, emptyList));
+                }else if(key[0].equals("TheEnding")){
+                    ArrayList<String>emptyList = new ArrayList<>();
+                    return SpireReturn.Return((AbstractDungeon)new BGTheEnding(p, emptyList));
+
                 }
             }
             return SpireReturn.Continue();
@@ -97,6 +101,9 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                 }else if(key[0].equals("TheBeyond")) {
                     ArrayList<String> emptyList = new ArrayList<>();
                     return SpireReturn.Return((AbstractDungeon) new BGTheBeyond(p, saveFile));
+                }else if(key[0].equals("TheEnding")) {
+                    ArrayList<String> emptyList = new ArrayList<>();
+                    return SpireReturn.Return((AbstractDungeon) new BGTheEnding(p, saveFile));
                 }
             }
             return SpireReturn.Continue();

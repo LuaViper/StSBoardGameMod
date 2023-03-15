@@ -157,9 +157,10 @@
     "NAMES": [],
     "TEXT": [
       "Cards may not behave exactly as you remember.  Read them carefully.",
-      "The Die controls the behavior of several relics and enemies.",
+      "The Die determines the behavior of certain relics and enemies.",
       "Many relics will not take effect until you right-click them.",
-      "You must activate die abilities before playing cards.",
+      "Some cards gain additional effects in multiplayer games.",
+      "You must activate die abilities before you play your first card each turn.",
       "Relics which let you reroll the die can also be used in events.",
       "Some enemies can deal more damage than you have maximum health.",
       "Max Energy is 6, max Strength is 8, and max Block is 20.",
