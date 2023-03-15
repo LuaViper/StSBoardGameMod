@@ -1,4 +1,5 @@
-package BoardGame.monsters.bgbeyond;
+package BoardGame.monsters.bgbeyond; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.DieControlledMoves;
 import BoardGame.thedie.TheDie;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -21,7 +22,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BGRepulsor extends AbstractBGMonster implements DieControlledMoves {
+public class BGRepulsor extends AbstractBGMonster implements DieControlledMoves, BGDamageIcons {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Repulsor"); public static final String ID = "Repulsor";
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;

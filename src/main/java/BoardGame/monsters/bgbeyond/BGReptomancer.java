@@ -1,6 +1,7 @@
 //TODO: there is an unhandled edge case where right dagger kills itself via Thorns after Reptomancer has already checked if daggers are dead
 
-package BoardGame.monsters.bgbeyond;
+package BoardGame.monsters.bgbeyond; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.DieControlledMoves;
 import BoardGame.powers.BGWeakPower;
 import com.megacrit.cardcrawl.actions.common.*;
@@ -27,7 +28,7 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 
-public class BGReptomancer extends AbstractBGMonster {
+public class BGReptomancer extends AbstractBGMonster implements BGDamageIcons {
     public static final String ID = "BGReptomancer";
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Reptomancer");
     public static final String NAME = monsterStrings.NAME;

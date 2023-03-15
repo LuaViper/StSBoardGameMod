@@ -1,4 +1,5 @@
-package BoardGame.monsters.bgcity;
+package BoardGame.monsters.bgcity; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.AbstractBGMonster;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
@@ -23,7 +24,7 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.BarricadePower;
 import com.megacrit.cardcrawl.powers.FrailPower;
 
-public class BGSphericGuardian extends AbstractBGMonster {
+public class BGSphericGuardian extends AbstractBGMonster implements BGDamageIcons {
     public static final String ID = "BGSphericGuardian";
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("SphericGuardian");
     public static final String NAME = monsterStrings.NAME;

@@ -1,4 +1,5 @@
-package BoardGame.monsters.bgbeyond;
+package BoardGame.monsters.bgbeyond; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.AbstractBGMonster;
 import BoardGame.monsters.DieControlledMoves;
 import BoardGame.powers.BGReactivePower;
@@ -32,7 +33,7 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BGWrithingMass extends AbstractBGMonster implements DieControlledMoves {
+public class BGWrithingMass extends AbstractBGMonster implements DieControlledMoves, BGDamageIcons {
     public static final String ID = "BGWrithingMass";
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("WrithingMass");
     public static final String NAME = monsterStrings.NAME;

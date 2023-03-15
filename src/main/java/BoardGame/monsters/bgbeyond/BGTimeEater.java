@@ -1,6 +1,7 @@
 //use NoSkillsPower+VelvetChoker as a base for BGTimeWarpPower
 
-package BoardGame.monsters.bgbeyond;
+package BoardGame.monsters.bgbeyond; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.cards.BGStatus.BGSlimed;
 import BoardGame.monsters.DieControlledMoves;
 import BoardGame.powers.BGInvinciblePlayerPower;
@@ -35,7 +36,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 
-public class BGTimeEater extends AbstractBGMonster {
+public class BGTimeEater extends AbstractBGMonster implements BGDamageIcons {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("TimeEater");
     public static final String ID = "BGTimeEater";
     public static final String NAME = monsterStrings.NAME;

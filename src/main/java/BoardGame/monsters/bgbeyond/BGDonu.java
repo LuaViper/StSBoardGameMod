@@ -1,4 +1,5 @@
-package BoardGame.monsters.bgbeyond;
+package BoardGame.monsters.bgbeyond; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.DieControlledMoves;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import BoardGame.monsters.AbstractBGMonster;
@@ -24,7 +25,7 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
-public class BGDonu extends AbstractBGMonster {
+public class BGDonu extends AbstractBGMonster implements BGDamageIcons {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Donu");
     public static final String ID = "BGDonu";
     public static final String NAME = monsterStrings.NAME;

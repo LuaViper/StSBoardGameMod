@@ -1,4 +1,5 @@
-package BoardGame.monsters.bgcity;
+package BoardGame.monsters.bgcity; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.AbstractBGMonster;
 
 import BoardGame.powers.BGChampPhase2WarningPower;
@@ -37,7 +38,7 @@ import com.megacrit.cardcrawl.vfx.combat.InflameEffect;
 import java.util.ArrayList;
 
 public class BGChamp
-        extends AbstractBGMonster {
+        extends AbstractBGMonster implements BGDamageIcons {
     public static final String ID = "BGChamp";
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Champ");
     public static final String NAME = monsterStrings.NAME;

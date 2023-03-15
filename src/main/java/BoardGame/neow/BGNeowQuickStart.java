@@ -185,7 +185,9 @@ public class BGNeowQuickStart {
                             CardCrawlGame.nextDungeon="TheBeyond";
                         }else if(actNumber==4){
                             CardCrawlGame.nextDungeon="TheEnding";
-                            //TODO: give player all 3 keys here
+                            Settings.hasRubyKey=true;
+                            Settings.hasSapphireKey=true;
+                            Settings.hasEmeraldKey=true;
                         }
                         CardCrawlGame.music.fadeOutBGM();
                         CardCrawlGame.music.fadeOutTempBGM();

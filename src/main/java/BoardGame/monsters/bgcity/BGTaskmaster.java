@@ -1,6 +1,7 @@
 //TODO: use GenericStrengthUpPower
 
-package BoardGame.monsters.bgcity;
+package BoardGame.monsters.bgcity; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.AbstractBGMonster;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
@@ -22,7 +23,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
-public class BGTaskmaster extends AbstractBGMonster {
+public class BGTaskmaster extends AbstractBGMonster implements BGDamageIcons {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("SlaverBoss");
     public static final String ID = "BGSlaverBoss";
     public static final String NAME = monsterStrings.NAME;

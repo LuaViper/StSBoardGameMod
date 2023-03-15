@@ -6,7 +6,8 @@
     //attacking should be easy enough, just have a 3 dmg action then a delay action then a 2 dmg action
 
 
- package BoardGame.monsters.bgcity;
+ package BoardGame.monsters.bgcity; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.AbstractBGMonster;
 import BoardGame.monsters.DieControlledMoves;
 import BoardGame.monsters.MixedAttacks;

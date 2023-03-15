@@ -91,7 +91,7 @@ public class BGMoltenEgg2 extends AbstractBGRelic  {
     }
 
 
-
+//TODO: shop screen broke hilariously when we used up a Toxic Egg buying a card, ended up duping a MasterOfStrategy with MasterOfStrategy+
     public static void resetCardUpgradesWhenEggsUsedUp(){
         if(AbstractDungeon.currMapNode!=null && AbstractDungeon.getCurrRoom()!=null && AbstractDungeon.getCurrRoom() instanceof ShopRoom) {
             {

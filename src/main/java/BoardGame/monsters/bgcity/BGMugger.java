@@ -1,4 +1,5 @@
-package BoardGame.monsters.bgcity;
+package BoardGame.monsters.bgcity; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.actions.BGFakeStealGoldDamageAction;
 import BoardGame.monsters.AbstractBGMonster;
 import BoardGame.powers.BGThieveryPower;
@@ -26,7 +27,7 @@ import com.megacrit.cardcrawl.powers.ThieveryPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.SmokeBombEffect;
 
-public class BGMugger extends AbstractBGMonster {
+public class BGMugger extends AbstractBGMonster implements BGDamageIcons {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Mugger"); public static final String ID = "Mugger";
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;

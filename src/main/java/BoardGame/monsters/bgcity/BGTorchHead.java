@@ -1,4 +1,5 @@
-package BoardGame.monsters.bgcity;
+package BoardGame.monsters.bgcity; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.AbstractBGMonster;
 
 import com.badlogic.gdx.Gdx;
@@ -18,7 +19,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.TorchHeadFireEffect;
 
-public class BGTorchHead extends AbstractBGMonster {
+public class BGTorchHead extends AbstractBGMonster implements BGDamageIcons {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("TorchHead");
     public static final String ID = "BGTorchHead";
     public static final String NAME = monsterStrings.NAME;

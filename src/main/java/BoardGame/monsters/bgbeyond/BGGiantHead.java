@@ -1,4 +1,5 @@
-package BoardGame.monsters.bgbeyond;
+package BoardGame.monsters.bgbeyond; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.AbstractBGMonster;
 import BoardGame.powers.BGSlowPower;
 import com.badlogic.gdx.math.MathUtils;
@@ -22,7 +23,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import java.util.ArrayList;
 
-public class BGGiantHead extends AbstractBGMonster {
+public class BGGiantHead extends AbstractBGMonster implements BGDamageIcons {
     public static final String ID = "BGGiantHead";
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("GiantHead");
     public static final String NAME = monsterStrings.NAME;

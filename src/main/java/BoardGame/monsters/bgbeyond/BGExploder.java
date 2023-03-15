@@ -1,4 +1,5 @@
-package BoardGame.monsters.bgbeyond;
+package BoardGame.monsters.bgbeyond; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.DieControlledMoves;
 import BoardGame.powers.BGExplosivePower;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -23,7 +24,7 @@ import com.megacrit.cardcrawl.powers.ExplosivePower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 
-public class BGExploder extends AbstractBGMonster {
+public class BGExploder extends AbstractBGMonster implements BGDamageIcons {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Exploder"); public static final String ID = "Exploder";
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;

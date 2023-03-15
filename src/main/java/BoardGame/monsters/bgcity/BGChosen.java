@@ -1,4 +1,5 @@
-package BoardGame.monsters.bgcity;
+package BoardGame.monsters.bgcity; 
+ import BoardGame.monsters.BGDamageIcons;
 
 import BoardGame.cards.BGStatus.BGDazed;
 import BoardGame.monsters.AbstractBGMonster;
@@ -24,7 +25,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 
-public class BGChosen extends AbstractBGMonster {
+public class BGChosen extends AbstractBGMonster implements BGDamageIcons {
     public static final String ID = "BGChosen";
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Chosen");
     public static final String NAME = monsterStrings.NAME;

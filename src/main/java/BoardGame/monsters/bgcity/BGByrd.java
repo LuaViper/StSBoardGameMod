@@ -1,4 +1,5 @@
-package BoardGame.monsters.bgcity;
+package BoardGame.monsters.bgcity; 
+ import BoardGame.monsters.BGDamageIcons;
 
 import BoardGame.dungeons.BGTheCity;
 import BoardGame.monsters.AbstractBGMonster;
@@ -30,7 +31,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BGByrd extends AbstractBGMonster implements DieControlledMoves {
+public class BGByrd extends AbstractBGMonster implements DieControlledMoves, BGDamageIcons {
     public static final String ID = "BGByrd";
     final Logger logger = LogManager.getLogger(DieControlledMoves.class.getName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Byrd");

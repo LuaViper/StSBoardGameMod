@@ -1,6 +1,7 @@
 //TODO: "At the end of its turn, gains #rat #rleast #b",
 
-package BoardGame.monsters.bgbeyond;
+package BoardGame.monsters.bgbeyond; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.DieControlledMoves;
 import BoardGame.powers.BGOrbWalkerPower;
 import BoardGame.thedie.TheDie;
@@ -27,7 +28,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BGOrbWalker extends AbstractBGMonster implements DieControlledMoves {
+public class BGOrbWalker extends AbstractBGMonster implements DieControlledMoves, BGDamageIcons {
     public static final String ID = "BGOrb Walker";
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Orb Walker");
     public static final String DOUBLE_ENCOUNTER = "Double Orb Walker";

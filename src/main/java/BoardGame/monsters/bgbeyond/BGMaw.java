@@ -1,4 +1,5 @@
-package BoardGame.monsters.bgbeyond;
+package BoardGame.monsters.bgbeyond; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.BoardGame;
 import BoardGame.monsters.DieControlledMoves;
 import BoardGame.powers.BGThieveryPower;
@@ -34,7 +35,7 @@ import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BGMaw extends AbstractBGMonster {
+public class BGMaw extends AbstractBGMonster implements BGDamageIcons {
     public static final String ID = "BGMaw";
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Maw");
     public static final String NAME = monsterStrings.NAME;

@@ -1,4 +1,5 @@
-package BoardGame.monsters.bgbeyond;
+package BoardGame.monsters.bgbeyond; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.cards.BGStatus.BGSlimed;
 import BoardGame.cards.BGStatus.BGVoidCard;
 import BoardGame.monsters.DieControlledMoves;

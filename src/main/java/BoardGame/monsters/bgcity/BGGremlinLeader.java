@@ -1,5 +1,6 @@
 
-package BoardGame.monsters.bgcity;
+package BoardGame.monsters.bgcity; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.actions.BGSpawnTwoGremlinsForGremlinLeaderAction;
 import BoardGame.dungeons.BGExordium;
 import BoardGame.monsters.AbstractBGMonster;
@@ -25,7 +26,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import java.util.ArrayList;
 
-public class BGGremlinLeader extends AbstractBGMonster {
+public class BGGremlinLeader extends AbstractBGMonster implements BGDamageIcons {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("GremlinLeader");
     public static final String ID = "BGGremlinLeader";
     public static final String NAME = monsterStrings.NAME;

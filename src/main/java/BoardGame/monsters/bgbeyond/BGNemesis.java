@@ -1,4 +1,5 @@
-package BoardGame.monsters.bgbeyond;
+package BoardGame.monsters.bgbeyond; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.AbstractBGMonster;
 import BoardGame.powers.BGIntangiblePower;
 import com.badlogic.gdx.Gdx;
@@ -25,7 +26,7 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.NemesisFireParticle;
 import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 
-public class BGNemesis extends AbstractBGMonster {
+public class BGNemesis extends AbstractBGMonster implements BGDamageIcons {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Nemesis");
     public static final String ID = "BGNemesis";
     public static final String NAME = monsterStrings.NAME;

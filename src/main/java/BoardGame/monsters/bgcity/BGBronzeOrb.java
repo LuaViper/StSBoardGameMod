@@ -1,4 +1,5 @@
-package BoardGame.monsters.bgcity;
+package BoardGame.monsters.bgcity; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.cards.BGStatus.BGDazed;
 import BoardGame.dungeons.BGTheCity;
 import BoardGame.monsters.AbstractBGMonster;
@@ -29,7 +30,7 @@ import com.megacrit.cardcrawl.vfx.combat.SmallLaserEffect;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BGBronzeOrb extends AbstractBGMonster implements DieControlledMoves {
+public class BGBronzeOrb extends AbstractBGMonster implements DieControlledMoves, BGDamageIcons {
     public static final String ID = "BGBronzeOrb";
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("BronzeOrb");
     public static final String[] MOVES = monsterStrings.MOVES;

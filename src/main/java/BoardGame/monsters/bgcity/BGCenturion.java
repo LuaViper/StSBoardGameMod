@@ -1,4 +1,5 @@
-package BoardGame.monsters.bgcity;
+package BoardGame.monsters.bgcity; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.BoardGame;
 import BoardGame.actions.DieMoveAction;
 import BoardGame.monsters.AbstractBGMonster;
@@ -23,7 +24,7 @@ import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BGCenturion extends AbstractBGMonster implements DieControlledMoves {
+public class BGCenturion extends AbstractBGMonster implements DieControlledMoves, BGDamageIcons {
     public static final String ID = "BGCenturion";
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Centurion");
     public static final String NAME = monsterStrings.NAME;

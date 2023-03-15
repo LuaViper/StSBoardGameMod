@@ -1,4 +1,5 @@
-package BoardGame.monsters.bgbeyond;
+package BoardGame.monsters.bgbeyond; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.cards.BGStatus.BGDazed;
 import BoardGame.cards.BGStatus.BGSlimed;
 import BoardGame.cards.BGStatus.BGVoidCard;
@@ -24,7 +25,7 @@ import com.megacrit.cardcrawl.powers.ArtifactPower;
 import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
-public class BGDeca extends AbstractBGMonster {
+public class BGDeca extends AbstractBGMonster implements BGDamageIcons {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Deca");
     public static final String ID = "BGDeca";
     public static final String NAME = monsterStrings.NAME;

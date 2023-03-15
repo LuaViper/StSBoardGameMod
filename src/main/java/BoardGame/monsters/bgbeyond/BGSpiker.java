@@ -1,6 +1,7 @@
 //TODO: Spiker isn't correctly reflecting damage if killing it triggers end-of-combat
 
-package BoardGame.monsters.bgbeyond;
+package BoardGame.monsters.bgbeyond; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.dungeons.BGTheBeyond;
 import BoardGame.monsters.DieControlledMoves;
 import BoardGame.powers.BGSpikerPower;
@@ -26,7 +27,7 @@ import com.megacrit.cardcrawl.powers.ThornsPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BGSpiker extends AbstractBGMonster implements DieControlledMoves {
+public class BGSpiker extends AbstractBGMonster implements DieControlledMoves, BGDamageIcons {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Spiker"); public static final String ID = "Spiker";
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;

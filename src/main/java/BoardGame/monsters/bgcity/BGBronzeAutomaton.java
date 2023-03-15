@@ -1,4 +1,5 @@
-package BoardGame.monsters.bgcity;
+package BoardGame.monsters.bgcity; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.AbstractBGMonster;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
@@ -24,7 +25,7 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.InflameEffect;
 import com.megacrit.cardcrawl.vfx.combat.LaserBeamEffect;
 
-public class BGBronzeAutomaton extends AbstractBGMonster {
+public class BGBronzeAutomaton extends AbstractBGMonster implements BGDamageIcons {
     public static final String ID = "BGBronzeAutomaton";
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("BronzeAutomaton");
     public static final String NAME = monsterStrings.NAME;

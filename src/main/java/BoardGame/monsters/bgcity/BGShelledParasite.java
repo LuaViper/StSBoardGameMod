@@ -1,4 +1,5 @@
-package BoardGame.monsters.bgcity;
+package BoardGame.monsters.bgcity; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.AbstractBGMonster;
 import BoardGame.monsters.DieControlledMoves;
 import BoardGame.powers.BGVulnerablePower;
@@ -27,7 +28,7 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 
-public class BGShelledParasite extends AbstractBGMonster implements DieControlledMoves {
+public class BGShelledParasite extends AbstractBGMonster implements DieControlledMoves, BGDamageIcons {
     public static final String ID = "BGShelled Parasite";
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Shelled Parasite");
     public static final String NAME = monsterStrings.NAME;

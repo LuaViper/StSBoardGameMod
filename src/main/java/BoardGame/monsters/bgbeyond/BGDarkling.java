@@ -1,4 +1,5 @@
-package BoardGame.monsters.bgbeyond;
+package BoardGame.monsters.bgbeyond; 
+ import BoardGame.monsters.BGDamageIcons;
 
 import BoardGame.actions.CreateIntentAction;
 import BoardGame.monsters.AbstractBGMonster;
@@ -36,7 +37,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BGDarkling extends AbstractBGMonster implements DieControlledMoves {
+public class BGDarkling extends AbstractBGMonster implements DieControlledMoves, BGDamageIcons {
     private static final Logger logger = LogManager.getLogger(BGDarkling.class.getName());
     public static final String ID = "BGDarkling";
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Darkling");

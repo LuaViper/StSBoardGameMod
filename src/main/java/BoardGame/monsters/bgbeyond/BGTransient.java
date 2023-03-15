@@ -1,4 +1,5 @@
-package BoardGame.monsters.bgbeyond;
+package BoardGame.monsters.bgbeyond; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.DieControlledMoves;
 import BoardGame.powers.BGShiftingPower;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -23,7 +24,7 @@ import com.megacrit.cardcrawl.powers.FadingPower;
 import com.megacrit.cardcrawl.powers.ShiftingPower;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
-public class BGTransient extends AbstractBGMonster {
+public class BGTransient extends AbstractBGMonster implements BGDamageIcons {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Transient");
     public static final String ID = "BGTransient";
     public static final String NAME = monsterStrings.NAME;

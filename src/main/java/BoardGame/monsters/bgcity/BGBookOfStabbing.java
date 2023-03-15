@@ -1,6 +1,7 @@
 //TODO: use GenericStrengthUpPower
 
-package BoardGame.monsters.bgcity;
+package BoardGame.monsters.bgcity; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.AbstractBGMonster;
 import BoardGame.monsters.DieControlledMoves;
 import BoardGame.powers.BGPainfulStabsPower;
@@ -24,7 +25,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BGBookOfStabbing extends AbstractBGMonster implements DieControlledMoves {
+public class BGBookOfStabbing extends AbstractBGMonster implements DieControlledMoves, BGDamageIcons {
     public static final String ID = "BGBookOfStabbing";
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("BookOfStabbing");
     public static final String NAME = monsterStrings.NAME;

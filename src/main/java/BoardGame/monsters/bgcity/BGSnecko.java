@@ -1,7 +1,8 @@
 
 
 
-package BoardGame.monsters.bgcity;
+package BoardGame.monsters.bgcity; 
+ import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.AbstractBGMonster;
 import BoardGame.monsters.DieControlledMoves;
 import BoardGame.powers.BGConfusionPower;
@@ -37,7 +38,7 @@ import com.megacrit.cardcrawl.vfx.combat.IntimidateEffect;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BGSnecko extends AbstractBGMonster implements DieControlledMoves {
+public class BGSnecko extends AbstractBGMonster implements DieControlledMoves, BGDamageIcons {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Snecko");
     public static final String ID = "BGSnecko";
     public static final String NAME = monsterStrings.NAME;

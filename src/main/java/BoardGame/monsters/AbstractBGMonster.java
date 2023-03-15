@@ -14,6 +14,7 @@ import BoardGame.monsters.AbstractBGMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
+//TODO: can we just have AbstractBGMonster implement BGDamageIcons instead of every individual monster?
 public abstract class AbstractBGMonster extends AbstractMonster {
 
 
