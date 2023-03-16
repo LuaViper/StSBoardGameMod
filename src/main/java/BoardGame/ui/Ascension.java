@@ -1,3 +1,5 @@
+//TODO: switching from another character to BGIronclad incorrectly keeps Ascension active at whatever level it was for the first character
+
 package BoardGame.ui;
 
 import BoardGame.characters.BGIronclad;
