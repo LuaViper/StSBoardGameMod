@@ -110,7 +110,7 @@
       "Select Cards to Upgrade",
       "[ Proceed ]",
       "#yDISCLAIMER",
-      "This project was created for the purpose of rapidly and repeatedly playtesting the board game in order to judge the relative difficulty of each encounter in a single-player game. The mod remains very much a work in progress. You may notice missing content, rule inaccuracies, bugs, and even softlocks. Ascension Mode is not yet implemented. NL NL Most importantly, #ysave #yfiles #yare #ynot #yready #yyet.  If you try to save the game and reload, everything will break in hilarious and horrifying ways.",
+      "This project was hastily thrown together for the purpose of playtesting the board game, specifically in order to judge the relative difficulty of each encounter in a single-player game. The mod remains very much a work in progress. You may notice missing content, rule inaccuracies, bugs, and even softlocks. Ascension Mode is not yet implemented. NL NL Most importantly, #ysave #yfiles #yare #ynot #yready #yyet.  If you try to save the game and reload, everything will break in hilarious and horrifying ways.",
       "If the game softlocks on a reward screen, try opening and closing the map."
     ],
     "UNIQUE_REWARDS": [

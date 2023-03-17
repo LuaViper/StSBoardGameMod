@@ -1,11 +1,10 @@
-//TODO: switching from another character to BGIronclad incorrectly keeps Ascension active at whatever level it was for the first character
-
 package BoardGame.ui;
 
 import BoardGame.characters.BGIronclad;
 import com.evacipated.cardcrawl.modthespire.lib.ByRef;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.ui.panels.SeedPanel;
@@ -21,6 +20,7 @@ public class Ascension {
                     if (o.selected) {
                         if (o.c instanceof BGIronclad) {
                             ___isAscensionModeUnlocked[0] = false;
+                            __instance.isAscensionMode=false;
                         }
                     }
                 }
