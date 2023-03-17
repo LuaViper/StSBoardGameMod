@@ -158,9 +158,9 @@
     "TEXT": [
       "Cards may not behave exactly as you remember.  Read them carefully.",
       "The Die determines the behavior of certain relics and enemies.",
-      "Many relics will not take effect until you right-click them.",
+      "Many relics will not take effect until you right-click them. Don't forget them!",
       "Some cards gain additional effects in multiplayer games.",
-      "You must activate die abilities before you play your first card each turn.",
+      "When you roll a 6, you can trigger ANY die ability, but you must do so before playing a card.",
       "Relics which let you reroll the die can also be used in events.",
       "Some enemies can deal more damage than you have maximum health.",
       "Max Energy is 6, max Strength is 8, and max Block is 20.",
@@ -169,15 +169,12 @@
       "Monsters who seem unusually talkative may be planning to inflict you with Vulnerable.",
       "Cards which cost \"X\" can be played for any amount of Energy, including 0.",
       "Take a break every now and then.",
-      "During combat, you can view the contents of your discard pile.",
-      "The chest in Act 1 will always drop a relic.",
-      "You will never see the same relic twice in one run.",
+      "When you Exhaust a Status card, it disappears instead of going into your Exhaust pile.",
       "You will never see the same rare card twice in one run.",
       "There is no maximum hand size.",
       "Curses cannot be transformed. (Editor's note: for now, use the honor system.)",
-      "Upgraded cards may appear in elite combat rewards past Act 1.",
-      "Prior to Ascension 3, unknown rooms will contain only events.",
-      "The card removal service does not increase in price each time you use it."
+      "Unknown rooms contain only events until Ascension 3.",
+      "The card removal service does not increase in price each time you use it. Ignore that tooltip."
     ],
     "OPTIONS": [
       "You can discard potions to make room for others."
