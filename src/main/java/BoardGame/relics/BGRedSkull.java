@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 
 public class BGRedSkull
         extends AbstractBGRelic implements ClickableRelic {
@@ -37,23 +38,34 @@ public class BGRedSkull
 
     public String getUpdatedDescription() {
         String desc = this.DESCRIPTIONS[0];
-        if (this.usedUp) desc += DieControlledRelic.USED_THIS_COMBAT;
-        else desc += DieControlledRelic.RIGHT_CLICK_TO_ACTIVATE;
+        //if (this.usedUp) desc += DieControlledRelic.USED_THIS_COMBAT;
+        //else desc += DieControlledRelic.RIGHT_CLICK_TO_ACTIVATE;
         return desc;
     }
 
+    private static final String thoughtbubble = "I can trigger #rRed #rSkull!"; //TODO: move to localization
     public void onShuffle(){
+//        if(!usedThisTurn && !shuffledThisCombat){
+//            AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, thoughtbubble, true));
+//        }
         shuffledThisCombat=true;
-        if (!usedThisTurn && shuffledThisCombat) beginLongPulse();     // Pulse while the player can click on it.
+        if (!usedThisTurn && shuffledThisCombat) {
+            //beginLongPulse();     // Pulse while the player can click on it.
+            activate();
+        }
     }
 
     @Override
     public void onRightClick() {// On right click
-        if (!isObtained || usedThisTurn || !isPlayerTurn || !shuffledThisCombat) {
-            // If it has been used this turn, the player doesn't actually have the relic (i.e. it's on display in the shop room), or it's the enemy's turn
-            return; // Don't do anything.
-        }
+        if(true)return;
+//        if (!isObtained || usedThisTurn || !isPlayerTurn || !shuffledThisCombat) {
+//            // If it has been used this turn, the player doesn't actually have the relic (i.e. it's on display in the shop room), or it's the enemy's turn
+//            return; // Don't do anything.
+//        }
+//        activate();
+    }
 
+    public void activate(){
         if (AbstractDungeon.getCurrRoom() != null && AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) { // Only if you're in combat
             usedThisTurn = true; // Set relic as "Used this turn"
             flash(); // Flash

@@ -76,14 +76,30 @@ public class BGOmamori extends AbstractBGRelic  {
             //logger.info("BGOMAMORI SHOWCARDANDOBTAINEFFECT PATCH");
             if (card.color == BGCurse.Enums.BG_CURSE && AbstractDungeon.player.hasRelic("BGOmamori")) {
                 ((BGOmamori)AbstractDungeon.player.getRelic("BGOmamori")).use();
-                logger.info("DING");
+                logger.info(card.cardID+": BGOmamori goes DING");
                 effect.duration = 0.0F;
                 effect.isDone = true;
                 ___converge[0] = convergeCards;
+
             }
             return SpireReturn.Continue();
         }
     }
+
+
+    @SpirePatch(clz = ShowCardAndObtainEffect.class, method = "update",
+            paramtypez = {})
+    public static class ShowCardAndObtainEffectPatch2 {
+        @SpirePrefixPatch public static SpireReturn<Void> update(ShowCardAndObtainEffect __instance){
+            //TODO: if this really is a bug with vanilla, give the player a choice whether to fix it
+            if (__instance.isDone) {
+                return SpireReturn.Return();
+            }
+            logger.info("ShowCardAndObtainEffect duration "+__instance.duration);
+            return SpireReturn.Continue();
+        }
+    }
+
 
     @SpirePatch(clz = FastCardObtainEffect.class, method = SpirePatch.CONSTRUCTOR,
             paramtypez = {AbstractCard.class, float.class, float.class})
@@ -94,13 +110,15 @@ public class BGOmamori extends AbstractBGRelic  {
             //logger.info("BGOMAMORI FASTCARDOBTAINEFFECT PATCH");
             if (card.color == BGCurse.Enums.BG_CURSE && AbstractDungeon.player.hasRelic("BGOmamori")) {
                 ((BGOmamori)AbstractDungeon.player.getRelic("BGOmamori")).use();
-                logger.info("DING");
+                logger.info(card.cardID+": BGOmamori goes DING");
                 effect.duration = 0.0F;
                 effect.isDone = true;
             }
             return SpireReturn.Continue();
         }
     }
+
+
 }
 
 

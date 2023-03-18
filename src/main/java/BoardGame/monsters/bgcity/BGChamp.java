@@ -139,7 +139,7 @@ public class BGChamp
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new WaitAction(0.4F));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractGameEffect)new GoldenSlashEffect(AbstractDungeon.player.hb.cX - 60.0F * Settings.scale, AbstractDungeon.player.hb.cY, false), vfxSpeed));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
-                        .get(2), AbstractGameAction.AttackEffect.NONE));
+                        .get(1), AbstractGameAction.AttackEffect.NONE));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new GainBlockAction((AbstractCreature)this, 3));
                 setMove((byte)1, AbstractMonster.Intent.ATTACK, ((DamageInfo)this.damage.get(1)).base);
                 break;

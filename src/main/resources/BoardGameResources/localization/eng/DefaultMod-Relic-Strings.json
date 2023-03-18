@@ -425,7 +425,7 @@
     "NAME": "Red Skull",
     "FLAVOR": "A small skull covered in ornamental paint.",
     "DESCRIPTIONS": [
-      "#yOnce #yper #ycombat: NL If you've shuffled your draw pile this combat, gain #b1 #yStrength."
+      "#yApproximate. NL The first time you shuffle your draw pile each combat, gain #b1 #yStrength."
     ]
   },
   "BGRegal Pillow": {
@@ -469,7 +469,7 @@
     "NAME": "Strike Dummy",
     "FLAVOR": "It's beat up.",
     "DESCRIPTIONS": [
-      "Strikes deal #b",
+      "Basic Strikes deal #b",
       " additional damage."
     ]
   },
@@ -538,7 +538,7 @@
     "NAME": "War Paint",
     "FLAVOR": "In the past, Ironclads would create wards using enchanted war paint before charging into battle.",
     "DESCRIPTIONS": [
-      "#yUpgrade a Defend and another #ySkill. NL Single-use. Can't be used in combat.",
+      "#yUpgrade a Defend and another #ySkill. NL Single-use. Can't be used in combat or while otherwise occupied.",
       "Choose 1 Skill to upgrade."
     ]
   },
@@ -546,7 +546,7 @@
     "NAME": "Whetstone",
     "FLAVOR": "\"Flesh never beats steel.\" - Kublai the Great",
     "DESCRIPTIONS": [
-      "#yUpgrade a Strike and another #yAttack. NL Single-use. Can't be used in combat.",
+      "#yUpgrade a Strike and another #yAttack. NL Single-use. Can't be used in combat or while otherwise occupied.",
       "Choose 1 Attack to upgrade."
     ]
   },

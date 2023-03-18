@@ -159,7 +159,6 @@
       "Cards may not behave exactly as you remember.  Read them carefully.",
       "The Die determines the behavior of certain relics and enemies.",
       "Many relics will not take effect until you right-click them. Don't forget them!",
-      "Some cards, relics, and events gain additional effects in multiplayer games.",
       "When you roll a 6, you can trigger ANY die ability, but you must do so before playing a card.",
       "Relics which let you reroll the die can also be used in events.",
       "Some enemies can deal more damage than you have maximum health.",
@@ -174,7 +173,8 @@
       "There is no maximum hand size.",
       "Curses cannot be transformed. (Editor's note: for now, use the honor system.)",
       "Unknown rooms contain only events until Ascension 3.",
-      "The card removal service does not increase in price each time you use it. Ignore that tooltip."
+      "The card removal service does not increase in price each time you use it. Ignore that tooltip.",
+      "Some cards, relics, and events gain additional effects in multiplayer games."
     ],
     "OPTIONS": [
       "You can discard potions to make room for others."

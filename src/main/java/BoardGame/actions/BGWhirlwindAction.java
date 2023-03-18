@@ -1,6 +1,4 @@
 
-//TODO: EnemyVulnerable doesn't decrease correctly if procced by a 0-cost Whirlwind
-
 package BoardGame.actions;
 
 import BoardGame.cards.BGRed.BGWhirlwind;

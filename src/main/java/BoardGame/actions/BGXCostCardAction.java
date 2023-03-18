@@ -56,7 +56,7 @@ public class BGXCostCardAction extends AbstractGameAction {
 
 
         if(this.choices.size()>1) {
-            //TODO: if energy is high enough, player has to scroll to the right for more options.  can we change to scroll down instead?
+            //TODO: if energy is high enough, player has to scroll to the right for more options.  does one of the BaseMod classes solve this?
             AbstractDungeon.cardRewardScreen.chooseOneOpen(this.choices);
             this.isDone=true;
             return;

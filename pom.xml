@@ -6,8 +6,8 @@
     <groupId>boardgame</groupId>
     <artifactId>BoardGame</artifactId> <!--Keep a note of this one: this is the ID used in the "auto add cards" method-->
     <name>STS Board Game Mod</name>
-    <version>0.1.0</version>
-    <description>Slay the Spire: The Board Game.</description>
+    <version>0.1.2</version>
+    <description>Based on the upcoming board game adaptation by Contention Games.</description>
 
     <properties>
         <maven.compiler.source>1.8</maven.compiler.source>
