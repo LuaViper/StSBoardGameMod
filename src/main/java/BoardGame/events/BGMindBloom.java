@@ -70,6 +70,7 @@ public class BGMindBloom
                 //TODO: log it
                 AbstractDungeon.topLevelEffects.add(new UpgradeShineEffect(Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
                 awake = false;
+                AbstractDungeon.gridSelectScreen.selectedCards.clear();
             }
         }
     }
