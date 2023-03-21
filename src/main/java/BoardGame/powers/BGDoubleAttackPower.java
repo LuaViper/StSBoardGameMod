@@ -1,8 +1,12 @@
 package BoardGame.powers;
 
 
+import BoardGame.actions.TargetSelectScreenAction;
+import BoardGame.cards.AbstractBGCard;
+import BoardGame.screen.TargetSelectScreen;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardQueueItem;
@@ -14,6 +18,8 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import BoardGame.monsters.AbstractBGMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 public class BGDoubleAttackPower extends AbstractPower {
     public static final String POWER_ID = "BGDouble Attack";
@@ -21,7 +27,6 @@ public class BGDoubleAttackPower extends AbstractPower {
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    //TODOLATER: somehow allow 2nd attack to be targeted
     public BGDoubleAttackPower(AbstractCreature owner, int amount) {
         this.name = NAME;
         this.ID = "BGDouble Attack";
@@ -31,6 +36,10 @@ public class BGDoubleAttackPower extends AbstractPower {
         loadRegion("doubleTap");
     }
 
+    public void stackPower(int stackAmount) {
+        if(stackAmount>0) this.amount=1;
+        //this.fontScale = 8.0F;
+    }
 
     public void updateDescription() {
         if (this.amount == 1) {
@@ -42,16 +51,14 @@ public class BGDoubleAttackPower extends AbstractPower {
 
     public void onUseCard(AbstractCard card, UseCardAction action) {
         if(this.owner.getPower("BGDouble Tap")!=null){
-            //Double Tap doesn't stack in the BG, so use it first
+            //neither Double Tap nor Double Attack stack in the BG
+            //it's slightly more likely that Double Attack will be available twice, so use it up first
             return;
         }
         if (!card.purgeOnUse && card.type == AbstractCard.CardType.ATTACK && this.amount > 0) {
             flash();
             AbstractMonster m = null;
 
-            if (action.target != null) {
-                m = (AbstractMonster)action.target;
-            }
 
             AbstractCard tmp = card.makeSameInstanceOf();
             AbstractDungeon.player.limbo.addToBottom(tmp);
@@ -60,12 +67,34 @@ public class BGDoubleAttackPower extends AbstractPower {
             tmp.target_x = Settings.WIDTH / 2.0F - 300.0F * Settings.scale;
             tmp.target_y = Settings.HEIGHT / 2.0F;
 
-            if (m != null) {
-                tmp.calculateCardDamage(m);
+            tmp.purgeOnUse = true;
+
+            Logger logger = LogManager.getLogger(BGDoubleTapPower.class.getName());
+            //logger.info("DoubleAttackPower instanceof check");
+            if(card instanceof AbstractBGCard){
+                //logger.info("set old card's copy reference: "+tmp);
+                ((AbstractBGCard)card).copiedCard=(AbstractBGCard)tmp;
             }
 
-            tmp.purgeOnUse = true;
-            AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, m, card.energyOnUse, true, true), true);
+            //AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, m, card.energyOnUse, true, true), true);
+
+            //logger.info("DoubleTap card target type: "+card.target);
+            if(card.target== AbstractCard.CardTarget.ENEMY || card.target== AbstractCard.CardTarget.SELF_AND_ENEMY) {
+                TargetSelectScreen.TargetSelectAction tssAction = (target) -> {
+                    //logger.info("DoubleTap tssAction.execute");
+                    if (target != null) {
+                        tmp.calculateCardDamage(target);
+                    }
+                    //logger.info("DoubleTap final target: "+target);
+                    addToBot((AbstractGameAction) new NewQueueCardAction(tmp, target, true, true));
+                };
+                //logger.info("DoubleTap addToTop");
+                addToBot((AbstractGameAction)new TargetSelectScreenAction(tssAction,"Choose a target for the copy of "+card.name+"."));
+            }else{
+                addToBot((AbstractGameAction) new NewQueueCardAction(tmp, null, true, true));
+            }
+
+
 
 
             this.amount--;

@@ -1,5 +1,6 @@
 package BoardGame.cards.BGRed;
 
+import BoardGame.actions.BGPlayTopCardAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGIronclad;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -16,7 +17,7 @@ public class BGHavoc extends AbstractBGCard {
     public static final String ID = "BGHavoc";
 
     public BGHavoc() {
-        super("BGHavoc", cardStrings.NAME, "red/skill/havoc", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, BGIronclad.Enums.BG_RED, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.ENEMY);
+        super("BGHavoc", cardStrings.NAME, "red/skill/havoc", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, BGIronclad.Enums.BG_RED, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE);
     }
 
 
@@ -30,9 +31,7 @@ public class BGHavoc extends AbstractBGCard {
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot((AbstractGameAction)new PlayTopCardAction(
-
-                (AbstractCreature)m, true));
+        addToBot((AbstractGameAction)new BGPlayTopCardAction(true));
     }
 
 

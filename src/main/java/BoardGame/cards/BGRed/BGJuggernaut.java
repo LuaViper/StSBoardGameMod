@@ -19,7 +19,7 @@ public class BGJuggernaut extends AbstractBGCard {
         public static final String ID = "BGJuggernaut";
 
         public BGJuggernaut() {
-            super("BGJuggernaut", cardStrings.NAME, "red/power/juggernaut", 2, cardStrings.DESCRIPTION, AbstractCard.CardType.POWER, BGIronclad.Enums.BG_RED, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.SELF_AND_ENEMY);
+            super("BGJuggernaut", cardStrings.NAME, "red/power/juggernaut", 2, cardStrings.DESCRIPTION, AbstractCard.CardType.POWER, BGIronclad.Enums.BG_RED, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.SELF);
 
 
 

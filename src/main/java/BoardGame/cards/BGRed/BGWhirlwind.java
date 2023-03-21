@@ -1,3 +1,6 @@
+//TODO: copying Whirlwind is currently treated as spending 0 energy on it
+
+
 package BoardGame.cards.BGRed;
 
 
@@ -33,10 +36,13 @@ public class BGWhirlwind extends AbstractBGCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         if(this.ignoreEnergyOnUse){
+            //TODO: only if card was played for free. if card was copied, energyOnUse is whatever the previous card used
             this.energyOnUse=0;
         }
-//        Logger logger = LogManager.getLogger(BGWhirlwind.class.getName());
-//        logger.info("BGWhirlwind "+ignoreEnergyOnUse+" "+energyOnUse);
+        if(this.copiedCardEnergyOnUse!=-99){
+            this.energyOnUse=this.copiedCardEnergyOnUse;
+        }
+
         addToTop((AbstractGameAction)new BGXCostCardAction(this, this.energyOnUse,
                 (e)->addToTop((AbstractGameAction)new BGWhirlwindAction(AbstractDungeon.player, this.multiDamage, this.damageTypeForTurn, this.freeToPlayOnce, e,this.magicNumber))));
     }

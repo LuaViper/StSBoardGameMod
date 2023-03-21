@@ -50,7 +50,7 @@
   },
   "BoardGame:BGDouble Tap": {
     "NAME": "Double Tap",
-    "DESCRIPTION": "boardgame:Approximate. NL This turn, your next Attack is played twice. NL Can't be played if Double Tap is already active.",
+    "DESCRIPTION": "This turn, your next Attack is played twice. NL Can't be played if Double Tap is already active.",
     "UPGRADE_DESCRIPTION": "Double Tap can't be \"played twice\"."
   },
   "BoardGame:BGDramatic Entrance": {
@@ -108,7 +108,7 @@
   },
   "BoardGame:BGHavoc": {
     "NAME": "Havoc",
-    "DESCRIPTION": "boardgame:Approximate. NL Play the top card of your draw pile for 0 Energy and Exhaust it."
+    "DESCRIPTION": "Play the top card of your draw pile for 0 Energy and Exhaust it."
   },
   "BoardGame:BGImmolate": {
     "NAME": "Immolate",
@@ -129,7 +129,11 @@
   },
   "BoardGame:BGJuggernaut": {
     "NAME": "Juggernaut",
-    "DESCRIPTION": "boardgame:Approximate. NL Whenever you gain Block, deal !M! damage."
+    "DESCRIPTION": "Whenever you gain Block, deal !M! damage."
+  },
+  "Mayhem": {
+    "NAME": "Mayhem",
+    "DESCRIPTION": "At the start of your turn, play the top card of your draw pile for 0 Energy."
   },
   "BoardGame:BGMind Blast": {
     "NAME": "Mind Blast",
@@ -148,6 +152,10 @@
     "NAME": "Panacea",
     "DESCRIPTION": "Retain. NL Remove all boardgame:Weak and boardgame:Vulnerable. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Retain. NL Remove all boardgame:Weak and boardgame:Vulnerable. NL Exhaust. NL Upgrading this card is only effective in multiplayer."
+  },
+  "BoardGame:BGPanache": {
+    "NAME": "Panache",
+    "DESCRIPTION": "Each time your hand is empty at the end of your turn, deal !M! damage to ALL enemies."
   },
   "BoardGame:BGParasite": {
     "NAME": "Parasite",

@@ -31,6 +31,8 @@ public abstract class AbstractBGCard extends CustomCard {
     private static TextureAtlas cardAtlas;
     private static TextureAtlas oldCardAtlas;
 
+    public AbstractBGCard copiedCard=null;
+    public int copiedCardEnergyOnUse=-99;
 
     public AbstractBGCard(final String id,
                           final String name,

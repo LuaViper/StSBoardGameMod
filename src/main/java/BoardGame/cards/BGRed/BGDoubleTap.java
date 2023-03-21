@@ -1,3 +1,5 @@
+//TODO: currently, copied cards are played after the original card (VG) instead of before the original card (BG)
+
 package BoardGame.cards.BGRed;
 
 import BoardGame.powers.BGDoubleTapPower;

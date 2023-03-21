@@ -2,6 +2,7 @@ package BoardGame.cards.BGColorless;
 
 import BoardGame.actions.BGXCostCardAction;
 import BoardGame.cards.AbstractAttackCardChoice;
+import BoardGame.cards.AbstractBGCard;
 import BoardGame.cards.BGRed.BGWhirlwind;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
@@ -50,6 +51,9 @@ public class BGXCostChoice extends AbstractAttackCardChoice {
 
     public void onChoseThisOption() {
         if(action!=null) {
+            if(this.copiedCard!=null){
+                this.copiedCard.copiedCardEnergyOnUse=this.cost;
+            }
             action.execute(this.cost);
         }
     }

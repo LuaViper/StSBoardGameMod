@@ -1,5 +1,8 @@
+//TODO: make sure this still interacts correctly with Weak/Vuln
+
 package BoardGame.actions;
 
+import BoardGame.cards.AbstractBGCard;
 import BoardGame.cards.BGColorless.BGXCostChoice;
 import BoardGame.cards.BGRed.BGWhirlwind;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -34,6 +37,11 @@ public class BGXCostCardAction extends AbstractGameAction {
         if(p!=null && p.amount>-1){
             this.minEnergy=maxEnergy;
         }
+        if(card instanceof AbstractBGCard){
+            //TODO: there might be an edge case we haven't thought of where we're forced to play a copied card for free
+            if(((AbstractBGCard)card).copiedCardEnergyOnUse!=-99)
+                this.minEnergy=((AbstractBGCard)card).copiedCardEnergyOnUse;
+        }
         this.duration = Settings.ACTION_DUR_XFAST;
         this.card=card;
 
@@ -44,12 +52,15 @@ public class BGXCostCardAction extends AbstractGameAction {
     public void update() {
         if(!choicesHaveBeenSetup){
             this.choices=new ArrayList<>();
-            //Logger logger = LogManager.getLogger("TEMP");
-            //logger.info("BGXCostCardAction.update");
 
             for(int i=minEnergy;i<=maxEnergy;i+=1){
-                BGXCostChoice card=new BGXCostChoice(this.card,i,this.action);
-                choices.add(card);
+                BGXCostChoice c=new BGXCostChoice(this.card,i,this.action);
+                choices.add(c);
+                if(card instanceof AbstractBGCard){
+                    Logger logger = LogManager.getLogger("TEMP");
+                    logger.info("set BGXCostChoice's copiedcard to "+((AbstractBGCard)this.card).copiedCard);
+                    ((AbstractBGCard)c).copiedCard=((AbstractBGCard)this.card).copiedCard;
+                }
             }
             choicesHaveBeenSetup=true;
         }
@@ -61,7 +72,13 @@ public class BGXCostCardAction extends AbstractGameAction {
             this.isDone=true;
             return;
         }else{
-            action.execute(minEnergy);      //minenergy == card[0].cost == maxenergy
+            //minenergy == card[0].cost == maxenergy
+//            if(card instanceof AbstractBGCard){
+//                if(((AbstractBGCard)card).copiedCard != null){
+//                    ((AbstractBGCard)card).copiedCard.copiedCardEnergy=minEnergy;
+//                }
+//            }
+            action.execute(minEnergy);
         }
         tickDuration();
         this.isDone=true;

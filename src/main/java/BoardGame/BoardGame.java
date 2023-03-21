@@ -8,6 +8,7 @@ import BoardGame.monsters.bgbeyond.*;
 import BoardGame.monsters.bgending.*;
 import BoardGame.dungeons.*;
 import BoardGame.relics.*;
+import BoardGame.screen.TargetSelectScreen;
 import basemod.*;
 import basemod.eventUtil.AddEventParams;
 import basemod.interfaces.*;
@@ -37,6 +38,7 @@ import BoardGame.variables.DefaultSecondMagicNumber;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.annotation.Target;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
@@ -313,6 +315,9 @@ public class BoardGame implements
 //        settingsPanel.addUIElement(enableNormalsButton); // Add the button to the settings panel. Button is a go.
 
 //        BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
+
+        BaseMod.addCustomScreen(new TargetSelectScreen());
+
 
 
         //TODO: non-repeating "monster deck" -- it's still possible to get the same encounter twice, especially with elites

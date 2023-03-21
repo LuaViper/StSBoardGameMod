@@ -115,8 +115,8 @@
 "BoardGame:BGDouble Attack": {
         "NAME": "Double Attack",
         "DESCRIPTIONS": [
-                "Your next #yAttack is played twice this turn.",
-                "Your next ",
+                "Your first #yAttack is played twice this turn.",
+                "Your first ",
                 " #yAttacks are played twice this turn."
         ]
 },
@@ -158,10 +158,25 @@
                 "Zzz... zzz... zzz..."
         ]
 },
+        "BoardGame:BGMayhemPower": {
+                "NAME": "Mayhem",
+                "DESCRIPTIONS": [
+                        "At the start of your turn, play the top card of your draw pile for 0 Energy.",
+                        "At the start of your turn, play the top #b",
+                        " cards of your draw pile for 0 Energy."
+                ]
+        },
         "BoardGame:Mode Shift": {
                 "NAME": "Mode Shift",
                 "DESCRIPTIONS": [
                         "If its #yBlock is broken, changes to a defensive mode."
+                ]
+        },
+        "BoardGame:BGPanachePower": {
+                "NAME": "Panache",
+                "DESCRIPTIONS": [
+                        "If your hand is empty at the end of your turn, deal #b",
+                        " damage to ALL enemies."
                 ]
         },
         "BoardGame:Split": {
