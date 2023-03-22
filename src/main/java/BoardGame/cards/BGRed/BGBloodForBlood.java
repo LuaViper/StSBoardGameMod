@@ -25,13 +25,6 @@ public class BGBloodForBlood extends AbstractBGCard {
 
 
 
-
-
-
-
-
-
-
         this.baseDamage = 4;
         this.baseMagicNumber=1;
         this.magicNumber=this.baseMagicNumber;

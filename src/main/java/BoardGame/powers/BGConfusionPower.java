@@ -10,9 +10,9 @@
 package BoardGame.powers;
 
 import BoardGame.monsters.DieControlledMoves;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
+import BoardGame.relics.BGRegalPillow;
+import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -24,9 +24,14 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.ui.campfire.RestOption;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
+import javassist.CannotCompileException;
+import javassist.CtBehavior;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.ArrayList;
 
 public class BGConfusionPower extends AbstractPower {
     public static final String POWER_ID = "BGConfusion";
@@ -102,14 +107,42 @@ public class BGConfusionPower extends AbstractPower {
                 this.description = DESCRIPTIONS[0];
                 break;
         }
-
     }
+
+    //hasEnoughEnergy checks if we're allowed to play the card in the first place
+    @SpirePatch2(clz=AbstractCard.class,method="hasEnoughEnergy",paramtypez={})
+    public static class hasEnoughEnergyPatch{
+        @SpireInsertPatch(
+                locator= Locator.class,
+                localvars={}
+        )
+        public static SpireReturn<Boolean> hasEnoughEnergy(){
+            AbstractPower p=AbstractDungeon.player.getPower("BGConfusion");
+            if(p!=null) {
+                if(p.amount>0) {
+                    //TODO: is there ever a time when energy<3 at start of turn?  does Fasting exist in BG?
+                    //logger.info("CONFUSION totalCount: " + EnergyPanel.totalCount + " power.amount: " + p.amount);
+                    if (EnergyPanel.totalCount >= p.amount) {
+                        return SpireReturn.Return(true);
+                    }
+                }
+            }
+            return SpireReturn.Continue();
+        }
+        private static class Locator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new Matcher.FieldAccessMatcher(EnergyPanel.class,"totalCount");
+                return LineFinder.findInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher);
+            }
+        }
+    }
+
 
     //getCost affects card display, but not the actual energy paid for it
     @SpirePatch2(clz=AbstractCard.class, method="getCost", paramtypez={})
     public static class getCostPatch{
         @SpirePrefixPatch
-        private static SpireReturn<String> getCost(){
+        public static SpireReturn<String> getCost(){
             if(AbstractDungeon.player!=null) {
                 if (AbstractDungeon.player.hasPower("BGConfusion")) {
                     AbstractPower p = AbstractDungeon.player.getPower("BGConfusion");
