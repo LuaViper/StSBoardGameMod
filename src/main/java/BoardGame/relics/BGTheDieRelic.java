@@ -2,6 +2,7 @@ package BoardGame.relics;
 import BoardGame.BoardGame;
 import BoardGame.actions.BGActivateDieAbilityAction;
 import BoardGame.monsters.DieControlledMoves;
+import BoardGame.powers.BGMayhemPower;
 import BoardGame.powers.BGTheDiePower;
 import BoardGame.powers.BGTriggerAnyDieAbilityPower;
 import BoardGame.thedie.TheDie;
@@ -65,7 +66,6 @@ public class BGTheDieRelic extends CustomRelic implements DieControlledRelic {
     }
 
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        //TODO: only if card is not autoplayed (e.g. Mayhem)
         TheDie.forceLockInRoll=true;
         lockRollAndActivateDieRelics();
     }
@@ -74,6 +74,7 @@ public class BGTheDieRelic extends CustomRelic implements DieControlledRelic {
 
 
     public void lockRollAndActivateDieRelics(){
+        //TODO: all "start of turn" powers and relics are supposed to activate AFTER the roll is locked in
         if(TheDie.finalRelicRoll<=0) {
             TheDie.finalRelicRoll = TheDie.monsterRoll;
             for (AbstractRelic relic : AbstractDungeon.player.relics) {
@@ -82,6 +83,12 @@ public class BGTheDieRelic extends CustomRelic implements DieControlledRelic {
                 }
             }
             description = getUpdatedDescription();
+
+            AbstractPower p = AbstractDungeon.player.getPower("BGMayhemPower"); //TODO: maybe implement diecontrolled
+            logger.info("Mayhem check: "+p);
+            if(p!=null){
+                ((BGMayhemPower)p).onRollLockedIn();
+            }
         }
     }
 

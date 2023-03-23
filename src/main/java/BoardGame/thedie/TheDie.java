@@ -63,6 +63,7 @@ public class TheDie {
             if(((BGGamblingChip)relic).available)gambleok=true;
         }
         if(gambleok) {
+            //AbstractDungeon.overlayMenu.endTurnButton.disable(false); //DO NOT DO THIS. many sideeffects.
             //TODO: check for +1/-1 relics too
             LockInRollButton.OverlayMenuDiceInterface.lockinrollbutton.get(AbstractDungeon.overlayMenu).visible = true;
         }else{

@@ -35,6 +35,9 @@ public class BGWhirlwind extends AbstractBGCard {
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
+        if(this.freeToPlay()){
+            this.energyOnUse=0;
+        }
         if(this.ignoreEnergyOnUse){
             //TODO: only if card was played for free. if card was copied, energyOnUse is whatever the previous card used
             this.energyOnUse=0;

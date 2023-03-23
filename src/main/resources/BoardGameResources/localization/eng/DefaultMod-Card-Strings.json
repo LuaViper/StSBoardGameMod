@@ -15,6 +15,10 @@
     "NAME": "Anger",
     "DESCRIPTION": "Deal !D! damage. NL Put this card on top of your draw pile."
   },
+  "BoardGame:BGApotheosis": {
+    "NAME": "Apotheosis",
+    "DESCRIPTION": "Your starter Strikes deal +1 damage. NL NL Your starter Defends gain +1 Block."
+  },
   "BoardGame:BGBerserk": {
     "NAME": "Berserk",
     "DESCRIPTION": "Whenever a card is Exhausted, NL deal !M! damage to ALL enemies."
@@ -39,6 +43,10 @@
   "BoardGame:BGCombust": {
     "NAME": "Combust",
     "DESCRIPTION": "boardgame:Approximate. NL At the end of your turn, deal !M! damage to ALL enemies."
+  },
+  "BoardGame:BGDarkShackles": {
+    "NAME": "Dark Shackles",
+    "DESCRIPTION": "Gain !M! Block for each enemy that intends to attack you. NL Exhaust."
   },
   "BoardGame:BGDecay": {
     "NAME": "Decay",
@@ -131,9 +139,13 @@
     "NAME": "Juggernaut",
     "DESCRIPTION": "Whenever you gain Block, deal !M! damage."
   },
-  "Mayhem": {
+  "BoardGame:BGMadness": {
+    "NAME": "Madness",
+    "DESCRIPTION": "The next card you play this turn costs 0."
+  },
+  "BoardGame:BGMayhem": {
     "NAME": "Mayhem",
-    "DESCRIPTION": "At the start of your turn, play the top card of your draw pile for 0 Energy."
+    "DESCRIPTION": "boardgame:Approximate. At the start of your turn, play the top card of your draw pile for 0 Energy."
   },
   "BoardGame:BGMind Blast": {
     "NAME": "Mind Blast",
@@ -166,6 +178,10 @@
     "DESCRIPTION": "Deal !D! damage. NL Deals !M! additional damage for each other card in your hand containing \"Strike\".",
     "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Deals !M! additional damage for each other card in your hand containing \"Strike\"."
   },
+  "BoardGame:BGPain": {
+    "NAME": "Pain",
+    "DESCRIPTION": "Unplayable. NL If 2 or fewer cards are in your hand at the end of your turn, lose 1 HP."
+  },
   "BoardGame:BGPower Through": {
     "NAME": "Power Through",
     "DESCRIPTION": "Gain !B! Block. NL Put a *Dazed on top of your draw pile."
@@ -195,6 +211,10 @@
     "NAME": "Sever Soul",
     "DESCRIPTION": "Deal !D! damage. NL Exhaust a card.",
     "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Exhaust 1 or 2 cards."
+  },
+  "BoardGame:BGShame": {
+    "NAME": "Shame",
+    "DESCRIPTION": "Unplayable. NL At the end of your turn, lose 1 Block."
   },
   "BoardGame:BGShockwave": {
     "NAME": "Shockwave",

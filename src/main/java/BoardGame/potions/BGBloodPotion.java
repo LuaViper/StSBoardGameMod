@@ -1,3 +1,5 @@
+//TODO: blood potion has different appearance in the BG
+
 package BoardGame.potions;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;

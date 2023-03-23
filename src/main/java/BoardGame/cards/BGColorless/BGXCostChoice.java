@@ -25,9 +25,10 @@ public class BGXCostChoice extends AbstractAttackCardChoice {
     }
     public BGXCostChoice(AbstractCard card, int energyOnUse, BGXCostCardAction.XCostAction action) {
         super("BGXCostChoice", cardStrings.NAME, card.assetUrl, energyOnUse, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, AbstractCard.CardColor.COLORLESS, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE);
+
+        //Important: original card class must check for energy/freeplay restrictions (see BGWhirlwind.java for example)
         if(cost==-1) {
-//            this.name=cardStrings.NAME;
-//            this.originalName=cardStrings.NAME;
+            //do nothing; probably browsing the compendium
         }else{
             this.name=card.name;
             this.originalName=card.originalName;

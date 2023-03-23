@@ -52,7 +52,8 @@ public class BGDoubleAttackPower extends AbstractPower {
     public void onUseCard(AbstractCard card, UseCardAction action) {
         if(this.owner.getPower("BGDouble Tap")!=null){
             //neither Double Tap nor Double Attack stack in the BG
-            //it's slightly more likely that Double Attack will be available twice, so use it up first
+            //it's slightly more likely that Double Tap will be available twice, so use it up first
+            //TODO: hang on that's wrong! Double Attack (Necronomicon) ONLY applies to the First Attack Each Turn, so use it first instead
             return;
         }
         if (!card.purgeOnUse && card.type == AbstractCard.CardType.ATTACK && this.amount > 0) {

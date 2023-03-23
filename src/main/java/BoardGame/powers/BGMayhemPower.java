@@ -17,7 +17,7 @@ public class BGMayhemPower extends AbstractPower {
 
     public BGMayhemPower(AbstractCreature owner, int amount) {
         this.name = NAME;
-        this.ID = "Mayhem";
+        this.ID = "BGMayhemPower";
         this.owner = owner;
         this.amount = amount;
         updateDescription();
@@ -34,7 +34,7 @@ public class BGMayhemPower extends AbstractPower {
     }
 
 
-    public void atStartOfTurn() {
+    public void onRollLockedIn() {
         flash();
         for (int i = 0; i < this.amount; i++) {
 
@@ -43,10 +43,6 @@ public class BGMayhemPower extends AbstractPower {
                 public void update() {
                     addToBot((AbstractGameAction)new BGPlayTopCardAction(
                             false));
-
-
-
-
                     this.isDone = true;
                 }
             });

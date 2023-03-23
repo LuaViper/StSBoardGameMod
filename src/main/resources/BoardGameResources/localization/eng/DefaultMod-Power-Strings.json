@@ -62,6 +62,13 @@
                 " #yStrength after your next #yAttack."
         ]
 },
+        "BoardGame:BGApotheosisPower": {
+                "NAME": "Apotheosis",
+                "DESCRIPTIONS": [
+                        "Starter Strikes and Defends gain #b+",
+                        " effectiveness."
+                ]
+        },
 "BoardGame:BGBeatOfDeathPower": {
         "NAME": "Beat Of Death",
         "DESCRIPTIONS": [
@@ -133,6 +140,14 @@
                 "NAME": "Flight",
                 "DESCRIPTIONS": [
                         "Reduce all damage from #yAttacks to 1."
+                ]
+        },
+        "BoardGame:BGFreeCardPower": {
+                "NAME": "Madness",
+                "DESCRIPTIONS": [
+                        "The next card you play this turn costs 0.",
+                        "The next #b",
+                        " cards you play this turn cost 0."
                 ]
         },
 "BoardGame:Instant Rebound": {
