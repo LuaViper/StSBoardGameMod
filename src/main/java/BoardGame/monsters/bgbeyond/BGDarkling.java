@@ -84,7 +84,7 @@ public class BGDarkling extends AbstractBGMonster implements DieControlledMoves,
 //            this.nipDmg = AbstractDungeon.monsterHpRng.random(7, 11);
 //        }
 
-        setHp(10);
+        setHp(8);
 
         this.dialogX = -50.0F * Settings.scale;
         this.damage.add(new DamageInfo((AbstractCreature)this, 2));
@@ -264,7 +264,7 @@ public class BGDarkling extends AbstractBGMonster implements DieControlledMoves,
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new SFXAction("DARKLING_REGROW_1",
                         MathUtils.random(-0.1F, 0.1F)));
             }
-            AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new HealAction((AbstractCreature) this, (AbstractCreature) this, 5));
+            AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new HealAction((AbstractCreature) this, (AbstractCreature) this, 4));
             AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new ChangeStateAction((AbstractMonster)this, "REVIVE"));
             AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new ApplyPowerAction((AbstractCreature) this, (AbstractCreature) this, (AbstractPower) new BGRegrowPower((AbstractCreature) this), 1));
             for (AbstractRelic r : AbstractDungeon.player.relics) {

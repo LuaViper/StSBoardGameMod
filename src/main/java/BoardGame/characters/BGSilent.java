@@ -1,6 +1,8 @@
+//TODO: energy panel is wrong, currently uses Ironclad's orb appearance instead
+
 package BoardGame.characters;
 
-import BoardGame.cards.BGRed.*;
+import BoardGame.cards.BGGreen.*;
 import BoardGame.relics.BGTheDieRelic;
 import BoardGame.relics.BGBurningBlood;
 import basemod.BaseMod;
@@ -34,23 +36,22 @@ import BoardGame.BoardGame;
 import java.util.ArrayList;
 
 import static BoardGame.BoardGame.*;
-import static BoardGame.characters.BGIronclad.Enums.BG_RED;
 
 //Wiki-page https://github.com/daviscook477/BaseMod/wiki/Custom-Characters
 //and https://github.com/daviscook477/BaseMod/wiki/Migrating-to-5.0
 //All text (starting description and loadout, anything labeled TEXT[]) can be found in DefaultMod-character-Strings.json in the resources
 
-public class BGIronclad extends CustomPlayer implements AbstractBGCharacter {
+public class BGSilent extends CustomPlayer implements AbstractBGCharacter {
     public static final Logger logger = LogManager.getLogger(BoardGame.class.getName());
 
     // =============== CHARACTER ENUMERATORS =================
 
     public static class Enums {
         @SpireEnum
-        public static AbstractPlayer.PlayerClass BG_IRONCLAD;
-        @SpireEnum(name = "BG_IRONCLAD_RED_COLOR") // These two HAVE to have the same absolutely identical name.
-        public static AbstractCard.CardColor BG_RED;
-        @SpireEnum(name = "BG_IRONCLAD_RED_COLOR")
+        public static AbstractPlayer.PlayerClass BG_SILENT;
+        @SpireEnum(name = "BG_SILENT_GREEN_COLOR") // These two HAVE to have the same absolutely identical name.
+        public static AbstractCard.CardColor BG_GREEN;
+        @SpireEnum(name = "BG_SILENT_GREEN_COLOR")
         public static CardLibrary.LibraryType LIBRARY_COLOR;
     }
 
@@ -60,8 +61,8 @@ public class BGIronclad extends CustomPlayer implements AbstractBGCharacter {
     // =============== BASE STATS =================
 
     public static final int ENERGY_PER_TURN = 3;
-    public static final int STARTING_HP = 10;
-    public static final int MAX_HP = 10;
+    public static final int STARTING_HP = 9;
+    public static final int MAX_HP = 9;
     public static final int STARTING_GOLD = 5;
     public static final int CARD_DRAW = 5;
     public static final int ORB_SLOTS = 0;
@@ -71,7 +72,7 @@ public class BGIronclad extends CustomPlayer implements AbstractBGCharacter {
 
     // =============== STRINGS =================
 
-    private static final String ID = makeID("BGIronclad");
+    private static final String ID = makeID("BGSilent");
     private static final CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString(ID);
     private static final String[] NAMES = characterStrings.NAMES;
     private static final String[] TEXT = characterStrings.TEXT;
@@ -98,10 +99,10 @@ public class BGIronclad extends CustomPlayer implements AbstractBGCharacter {
 
     // =============== CHARACTER CLASS START =================
 
-    public BGIronclad(String name, PlayerClass setClass) {
+    public BGSilent(String name, PlayerClass setClass) {
         super(name, setClass, orbTextures,
                 "BoardGameResources/images/char/defaultCharacter/orb/vfx.png", null,
-            "");
+                "");
 //                new SpriterAnimation(
 //                        "BoardGameResources/images/char/defaultCharacter/Spriter/theDefaultAnimation.scml"));
 
@@ -114,7 +115,7 @@ public class BGIronclad extends CustomPlayer implements AbstractBGCharacter {
 //                THE_DEFAULT_SHOULDER_2, // campfire pose
 //                THE_DEFAULT_SHOULDER_1, // another campfire pose
 //                THE_DEFAULT_CORPSE, // dead corpse
-        initializeClass((String)null, "images/characters/ironclad/shoulder2.png", "images/characters/ironclad/shoulder.png", "images/characters/ironclad/corpse.png",
+        initializeClass((String)null, "images/characters/theSilent/shoulder2.png", "images/characters/theSilent/shoulder.png", "images/characters/theSilent/corpse.png",
                 getLoadout(), 20.0F, -10.0F, 220.0F, 290.0F, new EnergyManager(ENERGY_PER_TURN)); // energy manager
 
         // =============== /TEXTURES, ENERGY, LOADOUT/ =================
@@ -123,11 +124,11 @@ public class BGIronclad extends CustomPlayer implements AbstractBGCharacter {
         // =============== ANIMATIONS =================
 
         loadAnimation(
-                BGIRONCLAD_SKELETON_ATLAS,
-                BGIRONCLAD_SKELETON_JSON,
+                BGSILENT_SKELETON_ATLAS,
+                BGSILENT_SKELETON_JSON,
                 1.0f);
         //loadAnimation("images/characters/ironclad/idle/skeleton.atlas", "images/characters/ironclad/idle/skeleton.json", 1.0F);
-       // AnimationState.TrackEntry e = state.setAnimation(0, "animation", true);
+        // AnimationState.TrackEntry e = state.setAnimation(0, "animation", true);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
         e.setTimeScale(0.6F);
         //e.setTime(e.getEndTime() * MathUtils.random());
@@ -163,16 +164,18 @@ public class BGIronclad extends CustomPlayer implements AbstractBGCharacter {
 
         logger.info("Begin loading starter Deck Strings");
 
-        retVal.add(BGStrike_Red.ID);
-        retVal.add(BGStrike_Red.ID);
-        retVal.add(BGStrike_Red.ID);
-        retVal.add(BGStrike_Red.ID);
-        retVal.add(BGStrike_Red.ID);
-        retVal.add(BGDefend_Red.ID);
-        retVal.add(BGDefend_Red.ID);
-        retVal.add(BGDefend_Red.ID);
-        retVal.add(BGDefend_Red.ID);
-        retVal.add(BGBash.ID);
+        retVal.add(BGStrike_Green.ID);
+        retVal.add(BGStrike_Green.ID);
+        retVal.add(BGStrike_Green.ID);
+        retVal.add(BGStrike_Green.ID);
+        retVal.add(BGStrike_Green.ID);
+        retVal.add(BGDefend_Green.ID);
+        retVal.add(BGDefend_Green.ID);
+        retVal.add(BGDefend_Green.ID);
+        retVal.add(BGDefend_Green.ID);
+        retVal.add(BGDefend_Green.ID);
+        retVal.add(BGNeutralize.ID);
+        retVal.add(BGSurvivor.ID);
 
 //        retVal.add(BGFeed.ID);
 //        retVal.add(BGFeed.ID);
@@ -186,13 +189,14 @@ public class BGIronclad extends CustomPlayer implements AbstractBGCharacter {
         return retVal;
     }
 
-    // Starting Relics	
+    // Starting Relics
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
 
         logger.info("getStartingRelics: "+BGTheDieRelic.ID+" "+BGBurningBlood.ID);
         retVal.add(BGTheDieRelic.ID);
-        retVal.add(BGBurningBlood.ID);
+        //retVal.add(BGRingOfTheSerpent.ID); //!!!
+        //retVal.add(BGShivs.ID);   //!!!
         //retVal.add(FrozenEye.ID);
 
         // Mark relics as seen - makes it visible in the compendium immediately
@@ -206,15 +210,15 @@ public class BGIronclad extends CustomPlayer implements AbstractBGCharacter {
     // character Select screen effect
     @Override
     public void doCharSelectScreenSelectEffect() {
-        CardCrawlGame.sound.playA("ATTACK_HEAVY", MathUtils.random(-0.2F, 0.2F));
-        CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, true);
+        CardCrawlGame.sound.playA("ATTACK_DAGGER_2", MathUtils.random(-0.2F, 0.2F));
+        CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, false);
 
     }
 
     // character Select on-button-press sound effect
     @Override
     public String getCustomModeCharacterButtonSoundKey() {
-        return "ATTACK_DAGGER_1";
+        return "ATTACK_DAGGER_2";
     }
 
     // Should return how much HP your maximum HP reduces by when starting a run at
@@ -227,20 +231,20 @@ public class BGIronclad extends CustomPlayer implements AbstractBGCharacter {
     // Should return the card color enum to be associated with your character.
     @Override
     public AbstractCard.CardColor getCardColor() {
-        return BG_RED;
+        return Enums.BG_GREEN;
     }
 
     // Should return a color object to be used to color the trail of moving cards
     @Override
     public Color getCardTrailColor() {
-        return BoardGame.BG_IRONCLAD_RED;
+        return BoardGame.BG_SILENT_GREEN;
     }
 
     // Should return a BitmapFont object that you can use to customize how your
     // energy is displayed from within the energy orb.
     @Override
     public BitmapFont getEnergyNumFont() {
-        return FontHelper.energyNumFontRed;
+        return FontHelper.energyNumFontGreen;
     }
 
     // Should return class name as it appears in run history screen.
@@ -252,7 +256,7 @@ public class BGIronclad extends CustomPlayer implements AbstractBGCharacter {
     //Which card should be obtainable from the Match and Keep event?
     @Override
     public AbstractCard getStartCardForEvent() {
-        return new BGStrike_Red();
+        return new BGStrike_Green();
     }
 
     // The class name as it appears next to your player name in-game
@@ -264,20 +268,20 @@ public class BGIronclad extends CustomPlayer implements AbstractBGCharacter {
     // Should return a new instance of your character, sending name as its name parameter.
     @Override
     public AbstractPlayer newInstance() {
-        return new BGIronclad(name, chosenClass);
+        return new BGSilent(name, chosenClass);
     }
 
     // Should return a Color object to be used to color the miniature card images in run history.
     @Override
     public Color getCardRenderColor() {
-        return BoardGame.BG_IRONCLAD_RED;
+        return BoardGame.BG_SILENT_GREEN;
     }
 
     // Should return a Color object to be used as screen tint effect when your
     // character attacks the heart.
     @Override
     public Color getSlashAttackColor() {
-        return BoardGame.BG_IRONCLAD_RED;
+        return BoardGame.BG_SILENT_GREEN;
     }
 
     // Should return an AttackEffect array of any size greater than 0. These effects
@@ -285,10 +289,13 @@ public class BGIronclad extends CustomPlayer implements AbstractBGCharacter {
     // Attack effects are the same as used in DamageAction and the like.
     @Override
     public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect() {
-        return new AbstractGameAction.AttackEffect[]{
-                AbstractGameAction.AttackEffect.BLUNT_HEAVY,
-                AbstractGameAction.AttackEffect.BLUNT_HEAVY,
-                AbstractGameAction.AttackEffect.BLUNT_HEAVY};
+        return new AbstractGameAction.AttackEffect[]
+                { AbstractGameAction.AttackEffect.SLASH_HEAVY,
+                AbstractGameAction.AttackEffect.POISON,
+                AbstractGameAction.AttackEffect.SLASH_DIAGONAL,
+                AbstractGameAction.AttackEffect.SLASH_HEAVY,
+                AbstractGameAction.AttackEffect.POISON,
+                AbstractGameAction.AttackEffect.SLASH_DIAGONAL };
     }
 
     // Should return a string containing what text is shown when your character is

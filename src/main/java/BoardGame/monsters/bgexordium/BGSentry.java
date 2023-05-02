@@ -51,7 +51,10 @@ public class BGSentry extends AbstractBGMonster implements BGDamageIcons, DieCon
 
         this.type = AbstractMonster.EnemyType.ELITE;
 
-        setHp(8);
+        if(behavior=="D3" || behavior=="2D")
+            setHp(7);
+        else
+            setHp(8);
 
         this.dazedAmt = 1;
 

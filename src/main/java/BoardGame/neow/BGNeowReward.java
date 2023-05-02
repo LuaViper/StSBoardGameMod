@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.neow.NeowEvent;
 import com.megacrit.cardcrawl.neow.NeowRoom;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
@@ -122,6 +123,8 @@ public class BGNeowReward
         switch(reward) {
             case '4':
                 return new NeowRewardDef(NeowRewardType.FOUR_GOLD, TEXT[32]);
+            case '5':
+                return new NeowRewardDef(NeowRewardType.FIVE_GOLD, "[ #gObtain #g5 #gGold ]"); //TODO: localization
             case '8':
                 return new NeowRewardDef(NeowRewardType.EIGHT_GOLD, TEXT[37]);
             case 'X':
@@ -138,6 +141,8 @@ public class BGNeowReward
                 return new NeowRewardDef(NeowRewardType.UPGRADE_CARD, TEXT[3]);
             case 'U':
                 return new NeowRewardDef(NeowRewardType.UPGRADE_TWO_RANDOM, TEXT[34]);
+            case 'c':
+                return new NeowRewardDef(NeowRewardType.CHOOSE_A_CARD, "[ #gChoose #ga #gCard #gto #gobtain ]"); //TODO: localization
             case 'C':
                 return new NeowRewardDef(NeowRewardType.GET_TWO_RANDOM_CARDS, TEXT[35]);
             case 'P':
@@ -152,6 +157,10 @@ public class BGNeowReward
                 return new NeowRewardDef(NeowRewardType.CHOOSE_COLORLESS_CARD, TEXT[30]);
             case '+':
                 return new NeowRewardDef(NeowRewardType.GET_TWO_RANDOM_COLORLESS_CARDS, TEXT[36]);
+            case 'V':
+                return new NeowRewardDef(NeowRewardType.CHOOSE_TWO_CARDS, " #gChoose #g2 #gCards #gto #gobtain ]"); //TODO: localization
+            case ')':
+                return new NeowRewardDef(NeowRewardType.CHOOSE_TWO_COLORLESS_CARDS, " #gChoose #g2 #gcolorless #gCards #gto #gobtain ]"); //TODO: localization
             default:
                 logger.info("Unrecognized BGNeow reward char: "+reward);
         }
@@ -282,6 +291,10 @@ public class BGNeowReward
                     CardCrawlGame.sound.play("GOLD_JINGLE");
                     AbstractDungeon.player.gainGold(4);
                     break;
+                case FIVE_GOLD:
+                    CardCrawlGame.sound.play("GOLD_JINGLE");
+                    AbstractDungeon.player.gainGold(5);
+                    break;
 
                 case EIGHT_GOLD:
                     CardCrawlGame.sound.play("GOLD_JINGLE");
@@ -378,6 +391,12 @@ public class BGNeowReward
                             AbstractDungeon.returnRandomRelic(AbstractRelic.RelicTier.COMMON));
                     break;
 
+                case CHOOSE_A_CARD:
+                    AbstractDungeon.cardRewardScreen.open(
+                            AbstractDungeon.getRewardCards(), null,
+
+                            (CardCrawlGame.languagePack.getUIString("CardRewardScreen")).TEXT[1]);
+                    break;
 
                 case CHOOSE_COLORLESS_CARD:
                     AbstractDungeon.cardRewardScreen.open(
@@ -404,7 +423,26 @@ public class BGNeowReward
 
                     break;
 
+                case CHOOSE_TWO_COLORLESS_CARDS:
+                    AbstractDungeon.getCurrRoom().event.noCardsInRewards=true;  //prevent extra regular card from appearing when reward screen is opened
+                    (AbstractDungeon.getCurrRoom()).rewards.clear();
+                    for (i = 0; i < 2; i++) {
+                        AbstractDungeon.getCurrRoom().addCardReward(new RewardItem(AbstractCard.CardColor.COLORLESS));
+                    }
+                    AbstractDungeon.combatRewardScreen.open();
+                    AbstractDungeon.getCurrRoom().event.noCardsInRewards=false;
+                    break;
 
+                case CHOOSE_TWO_CARDS:
+                    AbstractDungeon.getCurrRoom().event.noCardsInRewards=true;
+                    (AbstractDungeon.getCurrRoom()).rewards.clear();
+                    for (i = 0; i < 2; i++) {
+                        //AbstractDungeon.getCurrRoom().addCardToRewards();
+                        AbstractDungeon.getCurrRoom().addCardReward(new RewardItem());
+                    }
+                    AbstractDungeon.combatRewardScreen.open();
+                    AbstractDungeon.getCurrRoom().event.noCardsInRewards=false;
+                    break;
             }
         }
 
@@ -451,9 +489,10 @@ public class BGNeowReward
     private NeowRewardDrawbackDef drawbackDef;
 
     public enum NeowRewardType
-    {   FOUR_GOLD, EIGHT_GOLD, TEN_GOLD, REMOVE_CARD, REMOVE_TWO, TRANSFORM_CARD, TRANSFORM_TWO_CARDS,
-    UPGRADE_CARD, UPGRADE_TWO_RANDOM, GET_TWO_RANDOM_CARDS, THREE_POTIONS,
-        RANDOM_RARE_CARD, CHOOSE_RARE_CARD, RELIC, CHOOSE_COLORLESS_CARD, GET_TWO_RANDOM_COLORLESS_CARDS }
+    {   FOUR_GOLD, FIVE_GOLD, EIGHT_GOLD, TEN_GOLD, REMOVE_CARD, REMOVE_TWO, TRANSFORM_CARD, TRANSFORM_TWO_CARDS,
+    UPGRADE_CARD, UPGRADE_TWO_RANDOM, CHOOSE_A_CARD, GET_TWO_RANDOM_CARDS, THREE_POTIONS,
+        RANDOM_RARE_CARD, CHOOSE_RARE_CARD, RELIC, CHOOSE_COLORLESS_CARD, GET_TWO_RANDOM_COLORLESS_CARDS,
+        CHOOSE_TWO_CARDS, CHOOSE_TWO_COLORLESS_CARDS}
 
 
     public enum NeowRewardDrawback {

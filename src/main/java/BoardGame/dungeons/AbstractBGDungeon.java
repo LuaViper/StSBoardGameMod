@@ -2,6 +2,7 @@ package BoardGame.dungeons;
 
 import BoardGame.cards.BGGoldenTicket;
 import BoardGame.cards.BGCurse.*;
+import BoardGame.characters.AbstractBGCharacter;
 import BoardGame.characters.BGColorless;
 import BoardGame.characters.BGIronclad;
 import BoardGame.monsters.MonsterGroupRewardsList;
@@ -56,7 +57,7 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
     public static class getDungeonPatch {
         @SpirePrefixPatch
         public static SpireReturn<AbstractDungeon> Prefix(@ByRef String[] key, AbstractPlayer p) {
-            if(p instanceof BGIronclad) {
+            if(p instanceof AbstractBGCharacter) {
                 if (key[0].equals("BoardGameSetupDungeon")){
 //                    //logger.info("BOARDGAME SETUPDUNGEON DETECTED");
 //                    ArrayList<String>emptyList = new ArrayList<>();
@@ -89,7 +90,7 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
         @SpirePrefixPatch
         public static SpireReturn<AbstractDungeon> Prefix(@ByRef String[] key, AbstractPlayer p, SaveFile saveFile) {
             //logger.info("SAVEFILE CHECK GOES HERE "+key[0]+" "+p);
-            if(p instanceof BGIronclad) {
+            if(p instanceof AbstractBGCharacter) {
                 if (key[0].equals("BoardGameSetupDungeon")) {
 //                    return SpireReturn.Return((AbstractDungeon)new BGSetupDungeon(p, saveFile));
                 }else if (key[0].equals("Exordium")) {

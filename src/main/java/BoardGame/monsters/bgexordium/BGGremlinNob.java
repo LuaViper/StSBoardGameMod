@@ -55,7 +55,8 @@ public class BGGremlinNob extends AbstractBGMonster implements BGDamageIcons {
         this.dialogY = 50.0F * Settings.scale;
         this.canVuln = setVuln;
 
-        setHp(17);
+        //setHp(17);
+        setHp(15);
 
         this.rushDmg = 3;
         this.bashDmg = 3;

@@ -844,6 +844,7 @@ public class BGNeowEvent
         //G: lose 3 gold
 
         //4: gain 4 gold
+        //5: gain 5 gold
         //8: gain 8 gold
         //X: gain 10 gold
         //r: remove 1 card
@@ -852,38 +853,68 @@ public class BGNeowEvent
         //T: transform 2 cards
         //u: upgrade 1 card
         //U: upgrade 2 RANDOM cards
+        //c: choose a card
         //C: get 2 RANDOM cards
+        //V: choose 2 cards
         //P: get 3 potions
         //?: get 1 RANDOM rare card
         //!: choose a rare card
         //%: gain a relic
         //=: choose a colorless card
         //+: get 2 RANDOM colorless cards
+        //): choose 2 colorless cards
 
+        //TODO: match flavor text on card to speech bubble message
         ArrayList<String> rewardoptions=new ArrayList<String>(Arrays.asList(
-                "-4 -r CU",
-                "-u -t D8",
-                "-r -4 DC",
-                "-r -4 DU",
-                "-t -r GU",
-                "-? -4 GR",
-                "-u -? D%",
-                "-u -? DX",
-                "-u -P CT",
-                "-t -P C!",
-                "-u -= DR",
-                "-u -r G+",
-                "-= -P C%",
-                "-= -4 G!",
-                "-= -P D%",
-                "-= -u G%"
-
+                "-= -t DX", //colorless unlock
+                "-u -r DX",
+                "-u -? CX",
+                "-= -r D!", //colorless unlock
+                "-u -P C!",
+                "-5 -? G!", //colorless unlock
+                "-= -? G%", //colorless unlock
+                "-u -5 C%",
+                "-P -c G%",
+                "-r -t D%",
+                "-= -u GR", //colorless unlock
+                "-t -5 GR",
+                "-? -c DR",
+                "-? -t CU",
+                "-r -5 GU",
+                "-u -P DU",
+                "-= -P CT", //colorless unlock
+                "-r -t DT",
+                "-t -5 C)", //colorless unlock
+                "-r -P CV"
         ));
+
+
+
+        //OLD REWARD LIST
+//        ArrayList<String> rewardoptions=new ArrayList<String>(Arrays.asList(
+//                "-4 -r CU",
+//                "-u -t D8",
+//                "-r -4 DC",
+//                "-r -4 DU",
+//                "-t -r GU",
+//                "-? -4 GR",
+//                "-u -? D%",
+//                "-u -? DX",
+//                "-u -P CT",
+//                "-t -P C!",
+//                "-u -= DR",
+//                "-u -r G+",
+//                "-= -P C%",
+//                "-= -4 G!",
+//                "-= -P D%",
+//                "-= -u G%"
+//        ));
+
 
 
         Collections.shuffle(rewardoptions, new java.util.Random(NeowEvent.rng.randomLong()));
         String card=rewardoptions.get(0);
-        //card="-u -P CT";
+        card="-r -P CV";
         //logger.info("Card: "+card);
         String[] rewards=card.split(" ");
         logger.info("Neow card: "+rewards[0]+" "+rewards[1]+" "+rewards[2]);

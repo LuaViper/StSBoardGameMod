@@ -39,15 +39,15 @@ public class BGTheLibrary
         super(NAME, DIALOG_1, "images/events/library.jpg");
 
         this.healAmt = 3;
-        if(AbstractDungeon.player.hasRelic("BGRegal Pillow")){
-            this.healAmt+=3;
-        }
+//        if(AbstractDungeon.player.hasRelic("BGRegal Pillow")){
+//            this.healAmt+=3;
+//        }
 
         this.imageEventText.setDialogOption(OPTIONS[0]);
         String option2=OPTIONS[1] + this.healAmt + OPTIONS[2];
-        if(AbstractDungeon.player.hasRelic("BGPeace Pipe")){
-            option2+=OPTIONS[5];
-        }
+//        if(AbstractDungeon.player.hasRelic("BGPeace Pipe")){
+//            option2+=OPTIONS[5];
+//        }
 
         this.imageEventText.setDialogOption(option2);
     }
@@ -109,9 +109,9 @@ public class BGTheLibrary
                 this.imageEventText.updateBodyText(SLEEP_RESULT);
                 AbstractDungeon.player.heal(this.healAmt, true);
                 logMetricHeal("The Library", "Heal", this.healAmt);
-                if(AbstractDungeon.player.hasRelic("BGPeace Pipe")) {
-                    AbstractDungeon.effectList.add(new CampfireTokeEffect());
-                }
+//                if(AbstractDungeon.player.hasRelic("BGPeace Pipe")) {
+//                    AbstractDungeon.effectList.add(new CampfireTokeEffect());
+//                }
                 this.screenNum = 1;
                 this.imageEventText.updateDialogOption(0, OPTIONS[3]);
                 this.imageEventText.clearRemainingOptions();

@@ -155,6 +155,10 @@
       " NL (Deals !D! damage.)"
     ]
   },
+  "BoardGame:BGNeutralize": {
+    "NAME": "Neutralize",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! boardgame:Weak."
+  },
   "BoardGame:BGOffering": {
     "NAME": "Offering",
     "DESCRIPTION": "Lose 1 HP. NL Gain [R] [R]. NL Draw !M! cards. NL Exhaust.",

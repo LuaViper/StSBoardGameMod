@@ -48,7 +48,7 @@ public class BGBludgeon extends AbstractBGCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeDamage(2);
+            upgradeDamage(3);
         }
     }
 

@@ -2,6 +2,7 @@ package BoardGame;
 
 import BoardGame.characters.BGColorless;
 import BoardGame.characters.BGCurse;
+import BoardGame.characters.BGSilent;
 import BoardGame.monsters.bgexordium.*;
 import BoardGame.monsters.bgcity.*;
 import BoardGame.monsters.bgbeyond.*;
@@ -38,7 +39,6 @@ import BoardGame.variables.DefaultSecondMagicNumber;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.annotation.Target;
 import java.nio.charset.StandardCharsets;
 import java.util.Properties;
 
@@ -78,7 +78,9 @@ public class BoardGame implements
 
     // Colors (RGB)
     // Character Color
-    public static final Color BG_IRONCLAD_RED = CardHelper.getColor(128.0f, 25.6f, 25.6f);
+    //public static final Color BG_IRONCLAD_RED = CardHelper.getColor(128.0f, 25.6f, 25.6f);
+    public static final Color BG_IRONCLAD_RED = CardHelper.getColor(121, 12, 28);
+    public static final Color BG_SILENT_GREEN = CardHelper.getColor(52, 123, 8);
     public static final Color BG_CURSE_BLACK = CardHelper.getColor(29, 29, 29);
     public static final Color BG_COLORLESS_GRAY = CardHelper.getColor(0.15F, 0.15F, 0.15F);
     // Potion Colors in RGB
@@ -89,21 +91,40 @@ public class BoardGame implements
 
 
     // Card backgrounds - The actual rectangular card.
-    private static final String BGATTACK = "BoardGameResources/images/512/bg_attack_default_gray.png";
-    private static final String BGSKILL = "BoardGameResources/images/512/bg_skill_default_gray.png";
-    private static final String BGPOWER = "BoardGameResources/images/512/bg_power_default_gray.png";
+    private static final String BGATTACK_IRONCLAD = "BoardGameResources/images/512/bg_attack_default_gray.png";
+    private static final String BGSKILL_IRONCLAD = "BoardGameResources/images/512/bg_skill_default_gray.png";
+    private static final String BGPOWER_IRONCLAD = "BoardGameResources/images/512/bg_power_default_gray.png";
 
-    private static final String ENERGY_ORB = "BoardGameResources/images/512/card_default_gray_orb.png";
-    private static final String SMALL_ORB = "BoardGameResources/images/512/card_small_orb.png";
+    private static final String ENERGY_ORB_IRONCLAD = "BoardGameResources/images/512/card_default_gray_orb.png";
+    private static final String SMALL_ORB_IRONCLAD = "BoardGameResources/images/512/card_small_orb.png";
 
-    private static final String BGATTACK_P = "BoardGameResources/images/1024/bg_attack_default_gray.png";
-    private static final String BGSKILL_P = "BoardGameResources/images/1024/bg_skill_default_gray.png";
-    private static final String BGPOWER_P = "BoardGameResources/images/1024/bg_power_default_gray.png";
-    private static final String ENERGY_ORB_P = "BoardGameResources/images/1024/card_default_gray_orb.png";
+
+    private static final String BGATTACK_P_IRONCLAD = "BoardGameResources/images/1024/bg_attack_default_gray.png";
+    private static final String BGSKILL_P_IRONCLAD = "BoardGameResources/images/1024/bg_skill_default_gray.png";
+    private static final String BGPOWER_P_IRONCLAD = "BoardGameResources/images/1024/bg_power_default_gray.png";
+    private static final String ENERGY_ORB_P_IRONCLAD = "BoardGameResources/images/1024/card_default_gray_orb.png";
 
     // Character assets
-    private static final String CHAR_SELECT_BUTTON = "images/ui/charSelect/ironcladButton.png";
-    private static final String CHAR_SELECT_PORTRAIT = "images/ui/charSelect/ironcladPortrait.jpg";
+    private static final String CHAR_SELECT_BUTTON_IRONCLAD = "images/ui/charSelect/ironcladButton.png";
+    private static final String CHAR_SELECT_PORTRAIT_IRONCLAD = "images/ui/charSelect/ironcladPortrait.jpg";
+
+    private static final String BGATTACK_SILENT = "BoardGameResources/images/512/bg_attack_theSilent.png";
+    private static final String BGSKILL_SILENT = "BoardGameResources/images/512/bg_skill_theSilent.png";
+    private static final String BGPOWER_SILENT = "BoardGameResources/images/512/bg_power_theSilent.png";
+
+    private static final String ENERGY_ORB_SILENT = "BoardGameResources/images/512/card_orb_theSilent.png";
+    private static final String SMALL_ORB_SILENT = "BoardGameResources/images/512/card_small_orb.png";
+
+
+    private static final String BGATTACK_P_SILENT = "BoardGameResources/images/1024/bg_attack_theSilent.png";
+    private static final String BGSKILL_P_SILENT = "BoardGameResources/images/1024/bg_skill_theSilent.png";
+    private static final String BGPOWER_P_SILENT = "BoardGameResources/images/1024/bg_power_theSilent.png";
+    private static final String ENERGY_ORB_P_SILENT = "BoardGameResources/images/1024/card_default_gray_orb_theSilent.png";
+
+    // Character assets
+    private static final String CHAR_SELECT_BUTTON_SILENT = "images/ui/charSelect/silentButton.png";
+    private static final String CHAR_SELECT_PORTRAIT_SILENT = "images/ui/charSelect/silentPortrait.jpg";
+
 //    public static final String SHOULDER_1 = "BoardGameResources/images/char/defaultCharacter/shoulder.png";
 //    public static final String SHOULDER_2 = "BoardGameResources/images/char/defaultCharacter/shoulder2.png";
 //    public static final String CORPSE = "BoardGameResources/images/char/defaultCharacter/corpse.png";
@@ -116,6 +137,8 @@ public class BoardGame implements
     public static final String BGIRONCLAD_SKELETON_ATLAS = "images/characters/ironclad/idle/skeleton.atlas";
     public static final String BGIRONCLAD_SKELETON_JSON = "images/characters/ironclad/idle/skeleton.json";
 
+    public static final String BGSILENT_SKELETON_ATLAS = "images/characters/theSilent/idle/skeleton.atlas";
+    public static final String BGSILENT_SKELETON_JSON = "images/characters/theSilent/idle/skeleton.json";
 
 
     private static final String ATTACK_COLORLESS = "BoardGameResources/images/512/colorless_bg_attack.png";
@@ -168,25 +191,29 @@ public class BoardGame implements
         logger.info("Done subscribing");
 
         logger.info("Creating the color " + BGIronclad.Enums.BG_RED.toString());
-
         BaseMod.addColor(BGIronclad.Enums.BG_RED, BG_IRONCLAD_RED,
-                BGATTACK, BGSKILL, BGPOWER, ENERGY_ORB,
-                BGATTACK_P, BGSKILL_P, BGPOWER_P,
-                ENERGY_ORB_P, SMALL_ORB);
-
+                BGATTACK_IRONCLAD, BGSKILL_IRONCLAD, BGPOWER_IRONCLAD, ENERGY_ORB_IRONCLAD,
+                BGATTACK_P_IRONCLAD, BGSKILL_P_IRONCLAD, BGPOWER_P_IRONCLAD,
+                ENERGY_ORB_P_IRONCLAD, SMALL_ORB_IRONCLAD);
         logger.info("Done creating the color");
+
+        logger.info("Creating the color " + BGSilent.Enums.BG_GREEN.toString());
+        BaseMod.addColor(BGSilent.Enums.BG_GREEN, BG_SILENT_GREEN,
+                BGATTACK_SILENT, BGSKILL_SILENT, BGPOWER_SILENT, ENERGY_ORB_SILENT,
+                BGATTACK_P_SILENT, BGSKILL_P_SILENT, BGPOWER_P_SILENT,
+                ENERGY_ORB_P_SILENT, SMALL_ORB_SILENT);
 
         logger.info("Creating the color " + BGCurse.Enums.BG_CURSE.toString());
         BaseMod.addColor(BGCurse.Enums.BG_CURSE, BG_CURSE_BLACK,
-                BGATTACK, BGSKILL, BGPOWER, ENERGY_ORB,
-                BGATTACK_P, BGSKILL_P, BGPOWER_P,
-                ENERGY_ORB_P, SMALL_ORB);
+                BGATTACK_IRONCLAD, BGSKILL_IRONCLAD, BGPOWER_IRONCLAD, ENERGY_ORB_IRONCLAD,
+                BGATTACK_P_IRONCLAD, BGSKILL_P_IRONCLAD, BGPOWER_P_IRONCLAD,
+                ENERGY_ORB_P_IRONCLAD, SMALL_ORB_IRONCLAD);
 
         logger.info("Creating the color " + BGColorless.Enums.CARD_COLOR.toString());
         BaseMod.addColor(BGColorless.Enums.CARD_COLOR, BG_COLORLESS_GRAY,
-                ATTACK_COLORLESS, SKILL_COLORLESS, POWER_COLORLESS, ENERGY_ORB,
-                BGATTACK_P, BGSKILL_P, BGPOWER_P,
-                ENERGY_ORB_P, SMALL_ORB);
+                ATTACK_COLORLESS, SKILL_COLORLESS, POWER_COLORLESS, ENERGY_ORB_IRONCLAD,
+                BGATTACK_P_IRONCLAD, BGSKILL_P_IRONCLAD, BGPOWER_P_IRONCLAD,
+                ENERGY_ORB_P_IRONCLAD, SMALL_ORB_IRONCLAD);
 
         logger.info("Done creating the color");
 
@@ -267,11 +294,14 @@ public class BoardGame implements
         logger.info("Beginning to edit characters. " + "Add " + BGIronclad.Enums.BG_IRONCLAD.toString());
 
         BaseMod.addCharacter(new BGIronclad("the Ironclad", BGIronclad.Enums.BG_IRONCLAD),
-                CHAR_SELECT_BUTTON, CHAR_SELECT_PORTRAIT, BGIronclad.Enums.BG_IRONCLAD);
+                CHAR_SELECT_BUTTON_IRONCLAD, CHAR_SELECT_PORTRAIT_IRONCLAD, BGIronclad.Enums.BG_IRONCLAD);
 
         receiveEditPotions();
         logger.info("Added " + BGIronclad.Enums.BG_IRONCLAD.toString());
 
+        BaseMod.addCharacter(new BGSilent("the Silent", BGSilent.Enums.BG_SILENT),
+                CHAR_SELECT_BUTTON_SILENT, CHAR_SELECT_PORTRAIT_SILENT, BGSilent.Enums.BG_SILENT);
+        logger.info("Added " + BGSilent.Enums.BG_SILENT.toString());
 
 
 
@@ -521,7 +551,8 @@ public class BoardGame implements
         BaseMod.addEvent(new AddEventParams.Builder(BGCleric.ID, BGCleric.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGUpgradeShrine.ID, BGUpgradeShrine.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGGremlinWheelGame.ID, BGGremlinWheelGame.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGScrapOoze.ID, BGScrapOoze.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
+        //Scrap Ooze was moved to A3
+        //BaseMod.addEvent(new AddEventParams.Builder(BGScrapOoze.ID, BGScrapOoze.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGAccursedBlacksmith.ID, BGAccursedBlacksmith.class).dungeonID(BGExordium.ID).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGLab.ID, BGLab.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGBigFish.ID, BGBigFish.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).create());

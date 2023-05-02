@@ -421,7 +421,7 @@
     ],
     "OPTIONS": [
       "[Read] #gChoose #g1 #gof #g5 #gcards #gto #gadd #gto #gyour #gdeck.",
-      "[Rest] #gHeal #g",
+      "[Sleep] #gHeal #g",
       " #gHP.",
       "[Leave]",
       "Add a card to your deck.",
@@ -486,7 +486,7 @@
     ],
     "OPTIONS": [
       "[Pray] #gUpgrade #ga #gcard.",
-      "[Sacrifice] #gUpgrade #g2 #grandom #gcards. #rLose #r3 #rHP.",
+      "[Sacrifice] #gUpgrade #g2 #grandom #gcards. #rLose #r2 #rHP.",
       "Select a Card to Upgrade.",
       "[Locked] Requires: Upgradeable Cards",
       "[Leave]"

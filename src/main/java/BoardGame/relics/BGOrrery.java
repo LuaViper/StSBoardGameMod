@@ -1,10 +1,12 @@
 package BoardGame.relics;
 
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.rewards.RewardItem;
 
 public class BGOrrery extends AbstractBGRelic  {
     public static final String ID = "BGOrrery";
@@ -21,8 +23,10 @@ public class BGOrrery extends AbstractBGRelic  {
 
 
     public void onEquip() {
+        (AbstractDungeon.getCurrRoom()).rewards.clear();
         for (int i = 0; i < 3; i++) {
-            AbstractDungeon.getCurrRoom().addCardToRewards();
+            //AbstractDungeon.getCurrRoom().addCardToRewards();
+            AbstractDungeon.getCurrRoom().addCardReward(new RewardItem());
         }
 
         AbstractDungeon.combatRewardScreen.open(this.DESCRIPTIONS[1]);

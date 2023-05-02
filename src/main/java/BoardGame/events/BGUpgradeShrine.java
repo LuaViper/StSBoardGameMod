@@ -82,7 +82,7 @@ public class BGUpgradeShrine
                         (AbstractDungeon.getCurrRoom()).phase = AbstractRoom.RoomPhase.COMPLETE;
 
                         CardCrawlGame.sound.play("ATTACK_POISON");
-                        AbstractDungeon.player.damage(new DamageInfo(null,3, DamageInfo.DamageType.HP_LOSS));
+                        AbstractDungeon.player.damage(new DamageInfo(null,2, DamageInfo.DamageType.HP_LOSS));
 
                         upgradeTwoCards();
 

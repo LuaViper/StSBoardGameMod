@@ -1,4 +1,4 @@
-package BoardGame.cards.BGRed;
+package BoardGame.cards.BGGreen;
 
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGIronclad;
@@ -16,12 +16,12 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class BGStrike_Red extends AbstractBGCard {
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Strike_R");
-    public static final String ID = "BGStrike_R";
+public class BGStrike_Green extends AbstractBGCard {
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Strike_G");
+    public static final String ID = "BGStrike_G";
 
-    public BGStrike_Red() {
-        super("BGStrike_R", cardStrings.NAME, "red/attack/strike", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, BGIronclad.Enums.BG_RED, AbstractCard.CardRarity.BASIC, AbstractCard.CardTarget.ENEMY);
+    public BGStrike_Green() {
+        super("BGStrike_G", cardStrings.NAME, "green/attack/strike", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, BGSilent.Enums.BG_GREEN, AbstractCard.CardRarity.BASIC, AbstractCard.CardTarget.ENEMY);
 
 
 
@@ -50,7 +50,7 @@ public class BGStrike_Red extends AbstractBGCard {
                 addToBot((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, 150, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
             }
         } else {
-            addToBot((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
+            addToBot((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
         }
     }
 
@@ -64,7 +64,7 @@ public class BGStrike_Red extends AbstractBGCard {
 
 
     public AbstractCard makeCopy() {
-        return new BGStrike_Red();
+        return new BGStrike_Green();
     }
 }
 

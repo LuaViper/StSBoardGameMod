@@ -1,5 +1,6 @@
 package BoardGame.ui;
 
+import BoardGame.characters.AbstractBGCharacter;
 import BoardGame.characters.BGIronclad;
 import com.evacipated.cardcrawl.modthespire.lib.ByRef;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
@@ -18,7 +19,7 @@ public class Ascension {
                 for (CharacterOption o : __instance.options) {
                     //o.update();
                     if (o.selected) {
-                        if (o.c instanceof BGIronclad) {
+                        if (o.c instanceof AbstractBGCharacter) {
                             ___isAscensionModeUnlocked[0] = false;
                             __instance.isAscensionMode=false;
                         }
