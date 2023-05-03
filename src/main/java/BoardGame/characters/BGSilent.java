@@ -83,17 +83,17 @@ public class BGSilent extends CustomPlayer implements AbstractBGCharacter {
     // =============== TEXTURES OF BIG ENERGY ORB ===============
 
     public static final String[] orbTextures = {
-            "BoardGameResources/images/char/defaultCharacter/orb/layer1.png",
-            "BoardGameResources/images/char/defaultCharacter/orb/layer2.png",
-            "BoardGameResources/images/char/defaultCharacter/orb/layer3.png",
-            "BoardGameResources/images/char/defaultCharacter/orb/layer4.png",
-            "BoardGameResources/images/char/defaultCharacter/orb/layer5.png",
-            "BoardGameResources/images/char/defaultCharacter/orb/layer6.png",
-            "BoardGameResources/images/char/defaultCharacter/orb/layer1d.png",
-            "BoardGameResources/images/char/defaultCharacter/orb/layer2d.png",
-            "BoardGameResources/images/char/defaultCharacter/orb/layer3d.png",
-            "BoardGameResources/images/char/defaultCharacter/orb/layer4d.png",
-            "BoardGameResources/images/char/defaultCharacter/orb/layer5d.png",};
+            "BoardGameResources/images/char/theSilent/orb/layer1.png",
+            "BoardGameResources/images/char/theSilent/orb/layer2.png",
+            "BoardGameResources/images/char/theSilent/orb/layer3.png",
+            "BoardGameResources/images/char/theSilent/orb/layer4.png",
+            "BoardGameResources/images/char/theSilent/orb/layer5.png",
+            "BoardGameResources/images/char/theSilent/orb/layer6.png",
+            "BoardGameResources/images/char/theSilent/orb/layer1d.png",
+            "BoardGameResources/images/char/theSilent/orb/layer2d.png",
+            "BoardGameResources/images/char/theSilent/orb/layer3d.png",
+            "BoardGameResources/images/char/theSilent/orb/layer4d.png",
+            "BoardGameResources/images/char/theSilent/orb/layer5d.png",};
 
     // =============== /TEXTURES OF BIG ENERGY ORB/ ===============
 
@@ -101,7 +101,7 @@ public class BGSilent extends CustomPlayer implements AbstractBGCharacter {
 
     public BGSilent(String name, PlayerClass setClass) {
         super(name, setClass, orbTextures,
-                "BoardGameResources/images/char/defaultCharacter/orb/vfx.png", null,
+                "BoardGameResources/images/char/theSilent/orb/vfx.png", null,
                 "");
 //                new SpriterAnimation(
 //                        "BoardGameResources/images/char/defaultCharacter/Spriter/theDefaultAnimation.scml"));
