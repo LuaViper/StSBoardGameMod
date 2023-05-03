@@ -42,5 +42,3 @@ public class BGRingOfTheSerpent
         return new BGRingOfTheSerpent();
     }
 }
-
-
