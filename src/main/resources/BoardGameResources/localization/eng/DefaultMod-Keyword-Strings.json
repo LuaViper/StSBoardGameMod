@@ -16,6 +16,17 @@
     "DESCRIPTION": "Damage and block modifiers will not display correctly on this card."
   },
   {
+    "PROPER_NAME": "Shiv",
+    "NAMES": [
+      "Shiv",
+      "Shivs",
+      "Shivs(BG)",
+      "shiv",
+      "shivs"
+    ],
+    "DESCRIPTION": "Shivs are #b0 cost Attack tokens which deal #b1 damage."
+  },
+  {
     "PROPER_NAME": "Cooperative (NYI)",
     "NAMES": [
       "Cooperative",

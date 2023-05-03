@@ -39,7 +39,7 @@
 "BoardGame:VulnerableWatchPlayer": {
         "NAME": "Check Enemy Intent (Player Vulnerable)",
         "DESCRIPTIONS": [
-                "If this enemy intends to attack, player loses 1 Vulnerable(BG)."
+                "If this enemy intends to #yAttack, player loses 1 Vulnerable(BG)."
         ]
 },
 "BoardGame:WeakProcced": {

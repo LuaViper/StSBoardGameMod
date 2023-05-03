@@ -3,6 +3,8 @@
 package BoardGame.characters;
 
 import BoardGame.cards.BGGreen.*;
+import BoardGame.relics.BGShivs;
+import BoardGame.relics.BGSnakeRing;
 import BoardGame.relics.BGTheDieRelic;
 import BoardGame.relics.BGBurningBlood;
 import basemod.BaseMod;
@@ -195,8 +197,8 @@ public class BGSilent extends CustomPlayer implements AbstractBGCharacter {
 
         logger.info("getStartingRelics: "+BGTheDieRelic.ID+" "+BGBurningBlood.ID);
         retVal.add(BGTheDieRelic.ID);
-        //retVal.add(BGRingOfTheSerpent.ID); //!!!
-        //retVal.add(BGShivs.ID);   //!!!
+        retVal.add(BGSnakeRing.ID);
+        retVal.add(BGShivs.ID);
         //retVal.add(FrozenEye.ID);
 
         // Mark relics as seen - makes it visible in the compendium immediately

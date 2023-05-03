@@ -435,6 +435,14 @@
       "Whenever you #yRest, heal an additional #b3 HP."
     ]
   },
+  "BGRing of the Snake": {
+    "NAME": "Ring of the Snake",
+    "FLAVOR": "Made from a fossilized snake. Represents great skill as a huntress.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, draw #b",
+      " additional cards."
+    ]
+  },
   "BGRing of the Serpent": {
     "NAME": "Ring of the Serpent",
     "FLAVOR": "Your ring has morphed and changed forms.",
@@ -465,12 +473,11 @@
       "#yOnce #yper #ycombat: NL If you've lost HP this combat, gain #b3 #yBlock."
     ]
   },
-  "BGStrikeDummy": {
-    "NAME": "Strike Dummy",
-    "FLAVOR": "It's beat up.",
+  "BoardGame:BGShivs": {
+    "NAME": "Shivs",
+    "FLAVOR": "It's like bringing a knife to a card fight.",
     "DESCRIPTIONS": [
-      "Basic Strikes deal #b",
-      " additional damage."
+      "Holds boardgame:Shivs generated during combat. #bRight-Click to use them."
     ]
   },
   "BGSnecko Eye": {
@@ -494,6 +501,14 @@
     "DESCRIPTIONS": [
       "Whenever you enter a #y? room, gain #b",
       " #yGold."
+    ]
+  },
+  "BGStrikeDummy": {
+    "NAME": "Strike Dummy",
+    "FLAVOR": "It's beat up.",
+    "DESCRIPTIONS": [
+      "Basic Strikes deal #b",
+      " additional damage."
     ]
   },
   "BGSundial": {

@@ -626,6 +626,8 @@ public class BoardGame implements
 
         BaseMod.addRelicToCustomPool(new BGBurningBlood(), BGIronclad.Enums.BG_RED);
         BaseMod.addRelicToCustomPool(new BGTheDieRelic(),BGIronclad.Enums.BG_RED);
+        BaseMod.addRelicToCustomPool(new BGShivs(),BGIronclad.Enums.BG_RED);
+
 
 
 //        // This adds a relic to the Shared pool. Every character can find this relic.
