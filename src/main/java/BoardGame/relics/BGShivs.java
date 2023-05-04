@@ -28,7 +28,13 @@ public class BGShivs extends CustomRelic {
     private static final Texture OUTLINE = TextureLoader.getTexture(makeRelicOutlinePath("BGshivs.png"));
 
     public BGShivs() {
+
         super(ID, IMG, OUTLINE, RelicTier.STARTER, LandingSound.CLINK);
+        setCounter(0);
+    }
+
+    public void setCounter(int setCounter) {
+        this.counter = setCounter;
     }
 
     public String getUpdatedDescription() {

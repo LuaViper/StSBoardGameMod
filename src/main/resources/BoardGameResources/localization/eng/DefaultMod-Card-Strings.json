@@ -36,6 +36,13 @@
     "DESCRIPTION": "Unplayable. NL At the end of your turn, take 1 damage.",
     "UPGRADE_DESCRIPTION": "Unplayable. NL At the end of your turn, take 2 damage."
   },
+  "BoardGame:BGChoke": {
+    "NAME": "Choke",
+    "DESCRIPTION": "Deals damage equal to !M! plus the target's combined boardgame:Weak and boardgame:Poison.",
+    "EXTENDED_DESCRIPTION": [
+      " NL (Deals !D! damage.)"
+    ]
+  },
   "BoardGame:BGClothesline": {
     "NAME": "Clothesline",
     "DESCRIPTION": "Deal !D! damage. NL Apply !M! boardgame:Weak."

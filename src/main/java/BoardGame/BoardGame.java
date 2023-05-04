@@ -119,7 +119,7 @@ public class BoardGame implements
     private static final String BGATTACK_P_SILENT = "BoardGameResources/images/1024/bg_attack_theSilent.png";
     private static final String BGSKILL_P_SILENT = "BoardGameResources/images/1024/bg_skill_theSilent.png";
     private static final String BGPOWER_P_SILENT = "BoardGameResources/images/1024/bg_power_theSilent.png";
-    private static final String ENERGY_ORB_P_SILENT = "BoardGameResources/images/1024/card_default_gray_orb_theSilent.png";
+    private static final String ENERGY_ORB_P_SILENT = "BoardGameResources/images/1024/card_orb_theSilent.png";
 
     // Character assets
     private static final String CHAR_SELECT_BUTTON_SILENT = "images/ui/charSelect/silentButton.png";

@@ -51,6 +51,19 @@
     "DESCRIPTION": "Weakened creatures deal #b1 less damage with the next Attack."
   },
   {
+    "PROPER_NAME": "Poison",
+    "NAMES": [
+      "Poison (BG)",
+      "poison_(bg)",
+      "poison(bg)",
+      "poisoned (bg)",
+      "poisoned_(bg)",
+      "poison",
+      "poisoned"
+    ],
+    "DESCRIPTION": "Poisoned creatures lose HP at the start of their turn."
+  },
+  {
     "NAMES": [
       "keyword",
       "keywords"
