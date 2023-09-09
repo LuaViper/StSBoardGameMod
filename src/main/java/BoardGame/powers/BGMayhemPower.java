@@ -34,19 +34,24 @@ public class BGMayhemPower extends AbstractPower {
     }
 
 
-    public void onRollLockedIn() {
+    public void atStartOfTurn() {
         flash();
-        for (int i = 0; i < this.amount; i++) {
 
+        for (int i = 0; i < this.amount; i++) {
             addToBot(new AbstractGameAction()
             {
                 public void update() {
+                    //TODO: this doesn't work -- mayhem is already false again by the time the card is processed
                     addToBot((AbstractGameAction)new BGPlayTopCardAction(
                             false));
                     this.isDone = true;
+
                 }
             });
         }
+
+
+
     }
 }
 

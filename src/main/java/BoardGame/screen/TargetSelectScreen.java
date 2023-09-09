@@ -95,7 +95,6 @@ public class TargetSelectScreen extends CustomScreen {
     {
         //logger.info("CLOSE TARGETSELECTSCREEN "+AbstractDungeon.screen+" "+AbstractDungeon.previousScreen);
         genericScreenOverlayReset();
-        GameCursor.hidden = false;
         //AbstractDungeon.player.isUsingClickDragControl = false;
         AbstractDungeon.player.inSingleTargetMode = false;
         GameCursor.hidden = false;

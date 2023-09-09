@@ -68,7 +68,6 @@ public class BGPlayTopCardAction extends AbstractGameAction {
                     };
                     addToTop((AbstractGameAction) new TargetSelectScreenAction(tssAction, "Choose a target for " + card.name + "."));
                 }else {
-
                     addToBot((AbstractGameAction) new NewQueueCardAction(card, null, false, true));
                 }
 

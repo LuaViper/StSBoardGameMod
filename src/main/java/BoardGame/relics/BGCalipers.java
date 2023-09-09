@@ -108,6 +108,7 @@ public class BGCalipers
                 localvars = {}
         )
         public static SpireReturn<Void> Insert(){
+            //TODO: with Barricade + Metallicize, Calipers displays "gain 1 block" instead of 0.
             BGCalipers.blockLastTurn=0;
             //logger.info("BGCalipers: insertpatch...");
             if (!AbstractDungeon.player.hasPower("Barricade") && !AbstractDungeon.player.hasPower("Blur")) {

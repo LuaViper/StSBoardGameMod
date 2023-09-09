@@ -33,7 +33,7 @@ public class BGDarkShacklesAction extends AbstractGameAction {
     public void update() {
         for (AbstractMonster mo : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
             //avoid attacking dead monsters (and corresponding visual fx)
-            if (!mo.isDying && !mo.isDead) {    //TODO: do we need a halfDead check here too?
+            if (!mo.isDying && !mo.isDead && !mo.halfDead ) {
                 if (mo.getIntentBaseDmg() >= 0) {
                     EnemyMoveInfo move = AbstractBGMonster.PublicMoveField.publicmove.get(mo);
                     if (move != null) {

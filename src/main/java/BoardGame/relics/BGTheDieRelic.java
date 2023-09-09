@@ -1,6 +1,7 @@
 package BoardGame.relics;
 import BoardGame.BoardGame;
 import BoardGame.actions.BGActivateDieAbilityAction;
+import BoardGame.characters.AbstractBGCharacter;
 import BoardGame.monsters.DieControlledMoves;
 import BoardGame.powers.BGMayhemPower;
 import BoardGame.powers.BGTheDiePower;
@@ -17,6 +18,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -66,10 +68,22 @@ public class BGTheDieRelic extends CustomRelic implements DieControlledRelic {
     }
 
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        TheDie.forceLockInRoll=true;
-        lockRollAndActivateDieRelics();
+        if ((AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT) {
+            //mayhem fix
+            //TODO: mayhem fix is still wrong -- player should have the chance to lock the roll + activate relics before playing mayhem (some cards change depending on roll)
+            if(!card.isInAutoplay){
+                TheDie.forceLockInRoll = true;
+                lockRollAndActivateDieRelics();
+            }
+        }
     }
-    //TODO: also lock and activate on potion use
+
+    public void onUsePotion(){
+        if ((AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT) {
+            TheDie.forceLockInRoll = true;
+            lockRollAndActivateDieRelics();
+        }
+    }
 
 
 
@@ -84,11 +98,11 @@ public class BGTheDieRelic extends CustomRelic implements DieControlledRelic {
             }
             description = getUpdatedDescription();
 
-            AbstractPower p = AbstractDungeon.player.getPower("BGMayhemPower"); //TODO: maybe implement diecontrolled
-            logger.info("Mayhem check: "+p);
-            if(p!=null){
-                ((BGMayhemPower)p).onRollLockedIn();
-            }
+//            AbstractPower p = AbstractDungeon.player.getPower("BGMayhemPower"); //TODO: maybe implement diecontrolled
+//            logger.info("Mayhem check: "+p);
+//            if(p!=null){
+//                ((BGMayhemPower)p).onRollLockedIn();
+//            }
         }
     }
 

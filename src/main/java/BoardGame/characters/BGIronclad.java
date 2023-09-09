@@ -40,7 +40,7 @@ import static BoardGame.characters.BGIronclad.Enums.BG_RED;
 //and https://github.com/daviscook477/BaseMod/wiki/Migrating-to-5.0
 //All text (starting description and loadout, anything labeled TEXT[]) can be found in DefaultMod-character-Strings.json in the resources
 
-public class BGIronclad extends CustomPlayer implements AbstractBGCharacter {
+public class BGIronclad extends AbstractBGCharacter {
     public static final Logger logger = LogManager.getLogger(BoardGame.class.getName());
 
     // =============== CHARACTER ENUMERATORS =================

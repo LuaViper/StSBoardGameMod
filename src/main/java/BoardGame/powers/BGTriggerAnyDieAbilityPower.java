@@ -53,8 +53,11 @@ public class BGTriggerAnyDieAbilityPower extends AbstractPower {
     }
 
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        //TODO: only if card is not autoplayed (e.g. Mayhem)
-        addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, "BGTriggerAnyDieAbilityPower"));
+        //mayhem fix
+        //TODO: mayhem fix is still wrong -- player should have the chance to lock the roll + activate relics before playing mayhem (some cards change depending on roll)
+        if(!card.isInAutoplay) {
+            addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, "BGTriggerAnyDieAbilityPower"));
+        }
     }
 
     public void onInitialApplication() {
