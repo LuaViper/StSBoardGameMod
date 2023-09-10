@@ -18,7 +18,7 @@ public class BGThinkingAhead extends AbstractBGCard {
     public static final String ID = "BGThinking Ahead";
 
     public BGThinkingAhead() {
-        super("BGThinking Ahead", cardStrings.NAME, "colorless/skill/thinking_ahead", 0, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, BGColorless.Enums.CARD_COLOR, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.NONE);
+        super("BGThinking Ahead", cardStrings.NAME, "colorless/skill/thinking_ahead", 0, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, BGColorless.Enums.CARD_COLOR, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.NONE);
 
 
 

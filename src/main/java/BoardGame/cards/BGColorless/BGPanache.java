@@ -19,7 +19,7 @@ public class BGPanache extends AbstractBGCard {
     public static final String ID = "BGPanache";
 
     public BGPanache() {
-        super("BGPanache", cardStrings.NAME, "colorless/power/panache", 0, cardStrings.DESCRIPTION, AbstractCard.CardType.POWER, BGColorless.Enums.CARD_COLOR, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.SELF);
+        super("BGPanache", cardStrings.NAME, "colorless/power/panache", 0, cardStrings.DESCRIPTION, AbstractCard.CardType.POWER, BGColorless.Enums.CARD_COLOR, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.SELF);
 
 
 

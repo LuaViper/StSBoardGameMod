@@ -15,7 +15,7 @@ public class BGSeeingRed extends AbstractBGCard {
     public static final String ID = "BGSeeing Red";
 
     public BGSeeingRed() {
-        super("BGSeeing Red", cardStrings.NAME, "red/skill/seeing_red", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, BGIronclad.Enums.BG_RED, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.NONE);
+        super("BGSeeing Red", cardStrings.NAME, "red/skill/seeing_red", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, BGIronclad.Enums.BG_RED, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE);
 
 
 

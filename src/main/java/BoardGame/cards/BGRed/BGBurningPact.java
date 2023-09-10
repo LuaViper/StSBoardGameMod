@@ -1,4 +1,6 @@
 package BoardGame.cards.BGRed;
+import BoardGame.cards.AbstractBGCard;
+import BoardGame.characters.BGIronclad;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.ExhaustAction;
@@ -10,12 +12,12 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import BoardGame.monsters.AbstractBGMonster;
 
-public class BGBurningPact extends AbstractCard {
+public class BGBurningPact extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Burning Pact");
     public static final String ID = "BGBurning Pact";
 
     public BGBurningPact() {
-        super("BGBurning Pact", cardStrings.NAME, "red/skill/burning_pact", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, AbstractCard.CardColor.RED, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.NONE);
+        super("BGBurning Pact", cardStrings.NAME, "red/skill/burning_pact", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, BGIronclad.Enums.BG_RED, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.NONE);
 
 
 

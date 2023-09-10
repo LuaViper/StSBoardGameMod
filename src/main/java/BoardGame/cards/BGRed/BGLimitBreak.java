@@ -1,5 +1,7 @@
 package BoardGame.cards.BGRed;
 
+import BoardGame.cards.AbstractBGCard;
+import BoardGame.characters.BGIronclad;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.unique.LimitBreakAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -9,12 +11,12 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import BoardGame.monsters.AbstractBGMonster;
 
-public class BGLimitBreak extends AbstractCard {
+public class BGLimitBreak extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Limit Break");
     public static final String ID = "BGLimit Break";
 
     public BGLimitBreak() {
-        super("BGLimit Break", cardStrings.NAME, "red/skill/limit_break", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, AbstractCard.CardColor.RED, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.SELF);
+        super("BGLimit Break", cardStrings.NAME, "red/skill/limit_break", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, BGIronclad.Enums.BG_RED, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.SELF);
 
 
 

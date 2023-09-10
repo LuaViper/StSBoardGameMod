@@ -21,7 +21,7 @@ public class BGBloodForBlood extends AbstractBGCard {
     public static final String ID = "BGBlood for Blood";
 
     public BGBloodForBlood() {
-        super("BGBlood for Blood", cardStrings.NAME, "red/attack/blood_for_blood", 4, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, BGIronclad.Enums.BG_RED, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.ENEMY);
+        super("BGBlood for Blood", cardStrings.NAME, "red/attack/blood_for_blood", 3, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, BGIronclad.Enums.BG_RED, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.ENEMY);
 
 
 

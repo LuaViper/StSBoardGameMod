@@ -19,7 +19,7 @@ public class BGClash extends AbstractBGCard {
     public static final String ID = "BGClash";
 
     public BGClash() {
-        super("BGClash", cardStrings.NAME, "red/attack/clash", 0, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, BGIronclad.Enums.BG_RED, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.ENEMY);
+        super("BGClash", cardStrings.NAME, "red/attack/clash", 0, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, BGIronclad.Enums.BG_RED, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.ENEMY);
 
 
 

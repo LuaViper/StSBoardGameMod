@@ -19,7 +19,7 @@ public class BGWildStrike extends AbstractBGCard {
     public static final String ID = "BGWild Strike";
 
     public BGWildStrike() {
-        super("BGWild Strike", cardStrings.NAME, "red/attack/reckless_charge", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, BGIronclad.Enums.BG_RED, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.ENEMY);
+        super("BGWild Strike", cardStrings.NAME, "red/attack/reckless_charge", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, BGIronclad.Enums.BG_RED, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.ENEMY);
 
 
 
