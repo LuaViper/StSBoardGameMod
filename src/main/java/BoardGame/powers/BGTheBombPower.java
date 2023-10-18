@@ -16,7 +16,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BGTheBombPower extends AbstractPower {
+public class BGTheBombPower extends AbstractBGPower {
     public static final String POWER_ID = "BGTheBomb";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("TheBomb");
     public static final String NAME = powerStrings.NAME;

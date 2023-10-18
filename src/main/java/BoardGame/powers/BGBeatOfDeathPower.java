@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-public class BGBeatOfDeathPower extends AbstractPower {
+public class BGBeatOfDeathPower extends AbstractBGPower {
     public static final String POWER_ID = "BGBeatOfDeathPower";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGBeatOfDeathPower");
     public static final String NAME = powerStrings.NAME;

@@ -18,7 +18,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 
-public class BGTrigger2DieAbilityPower extends AbstractPower {
+public class BGTrigger2DieAbilityPower extends AbstractBGPower {
     public static final String POWER_ID = "BGTrigger2DieAbilityPower";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BGTrigger2DieAbilityPower");
     private static final String thoughtbubble = "I can trigger a #rdie #rability!"; //TODO: move to localization
@@ -52,6 +52,7 @@ public class BGTrigger2DieAbilityPower extends AbstractPower {
         if(!card.isInAutoplay) {
             addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, "BGTrigger2DieAbilityPower"));
         }
+        //TODO: also trigger on use potion and on rightclick power
     }
 
     public void onInitialApplication() {

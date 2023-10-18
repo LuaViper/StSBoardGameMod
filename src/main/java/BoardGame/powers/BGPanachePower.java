@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 public class BGPanachePower
-        extends AbstractPower {
+        extends AbstractBGPower {
     public static final String POWER_ID = "BGPanachePower";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGPanachePower");
     public static final String NAME = powerStrings.NAME;

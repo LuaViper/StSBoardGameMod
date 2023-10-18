@@ -5,7 +5,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-public class BGChampPhase2WarningPower extends AbstractPower {
+public class BGChampPhase2WarningPower extends AbstractBGPower {
     public static final String POWER_ID = "BGChampPhase2WarningPower";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGChampPhase2WarningPower");
     public static final String NAME = powerStrings.NAME;

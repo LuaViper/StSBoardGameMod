@@ -20,7 +20,7 @@ import static BoardGame.BoardGame.makePowerPath;
 
 //Gain 1 dex for the turn for each card played.
 
-public class CommonPower extends AbstractPower implements CloneablePowerInterface {
+public class CommonPower extends AbstractBGPower implements CloneablePowerInterface {
     public AbstractCreature source;
 
     public static final String POWER_ID = BoardGame.makeID("CommonPower");

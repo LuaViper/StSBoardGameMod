@@ -21,7 +21,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BGDoubleAttackPower extends AbstractPower {
+public class BGDoubleAttackPower extends AbstractBGPower {
     public static final String POWER_ID = "BGDouble Attack";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGDouble Attack");
     public static final String NAME = powerStrings.NAME;

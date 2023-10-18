@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 //TODO: are you allowed to duplicate Madness in the BG?
 
-public class BGFreeCardPower extends AbstractPower {
+public class BGFreeCardPower extends AbstractBGPower {
     public static final String POWER_ID = "BGFreeCardPower";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGFreeCardPower");
 

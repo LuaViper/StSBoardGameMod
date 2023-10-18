@@ -16,7 +16,7 @@ import BoardGame.monsters.AbstractBGMonster;
 ////import BoardGame.cards.DefaultRareAttack;
 //import BoardGame.util.TextureLoader;
 //
-//public class RarePower extends AbstractPower implements CloneablePowerInterface {
+//public class RarePower extends AbstractBGPower implements CloneablePowerInterface {
 //    public AbstractCreature source;
 //
 //    public static final String POWER_ID = BoardGame.makeID("RarePower");

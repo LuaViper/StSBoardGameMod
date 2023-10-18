@@ -12,7 +12,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class BGSadisticPower
-        extends AbstractPower {
+        extends AbstractBGPower {
     public static final String POWER_ID = "BGSadisticPower";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("Sadistic");
     public static final String NAME = powerStrings.NAME;

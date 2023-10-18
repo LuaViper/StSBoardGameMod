@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import BoardGame.monsters.AbstractBGMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-public class BGVulnerableWatchPlayerPower extends AbstractPower  {  //optional: "implements InvisiblePower"
+public class BGVulnerableWatchPlayerPower extends AbstractBGPower  {  //optional: "implements InvisiblePower"
     public static final String POWER_ID = BoardGame.makeID("VulnerableWatchPlayer");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;

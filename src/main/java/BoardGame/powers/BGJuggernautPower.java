@@ -18,7 +18,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 
-public class BGJuggernautPower extends AbstractPower {
+public class BGJuggernautPower extends AbstractBGPower {
     public static final String POWER_ID = "BGJuggernaut";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:Juggernaut");
     public static final String NAME = powerStrings.NAME;

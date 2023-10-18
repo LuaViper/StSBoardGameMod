@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-public class BGPainfulStabsPower extends AbstractPower {
+public class BGPainfulStabsPower extends AbstractBGPower {
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGPainful Stabs");
     public static final String POWER_ID = "BGPainful Stabs";
     public static final String NAME = powerStrings.NAME;

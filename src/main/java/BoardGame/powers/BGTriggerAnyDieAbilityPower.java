@@ -22,7 +22,7 @@ import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BGTriggerAnyDieAbilityPower extends AbstractPower {
+public class BGTriggerAnyDieAbilityPower extends AbstractBGPower {
     public static final String POWER_ID = "BGTriggerAnyDieAbilityPower";
 
     final Logger logger = LogManager.getLogger(BGTriggerAnyDieAbilityPower.class.getName());
@@ -58,6 +58,7 @@ public class BGTriggerAnyDieAbilityPower extends AbstractPower {
         if(!card.isInAutoplay) {
             addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, "BGTriggerAnyDieAbilityPower"));
         }
+        //TODO: also trigger on use potion and on rightclick power
     }
 
     public void onInitialApplication() {

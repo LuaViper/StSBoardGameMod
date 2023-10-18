@@ -18,7 +18,7 @@ import org.apache.logging.log4j.Logger;
 
 import static BoardGame.powers.WeakVulnCancel.*;
 
-public class BGVulnerablePower extends AbstractPower {
+public class BGVulnerablePower extends AbstractBGPower {
     public static final String POWER_ID = BoardGame.makeID("Vulnerable (BG)");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
 

@@ -33,7 +33,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
-public class BGConfusionPower extends AbstractPower {
+public class BGConfusionPower extends AbstractBGPower {
     public static final String POWER_ID = "BGConfusion";
 
     private static final Logger logger = LogManager.getLogger(BGConfusionPower.class.getName());

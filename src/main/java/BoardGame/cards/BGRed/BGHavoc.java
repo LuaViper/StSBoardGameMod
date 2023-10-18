@@ -31,6 +31,7 @@ public class BGHavoc extends AbstractBGCard {
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
+        //TODO: need to DRAW the card too
         addToBot((AbstractGameAction)new BGPlayTopCardAction(true));
     }
 

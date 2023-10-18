@@ -17,7 +17,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BGWeakPower extends AbstractPower {
+public class BGWeakPower extends AbstractBGPower {
     public static final String POWER_ID = BoardGame.makeID("Weakened (BG)");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;

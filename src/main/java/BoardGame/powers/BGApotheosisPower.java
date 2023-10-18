@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 public class BGApotheosisPower
-        extends AbstractPower {
+        extends AbstractBGPower {
     public static final String POWER_ID = "BGApotheosisPower";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGApotheosisPower");
 

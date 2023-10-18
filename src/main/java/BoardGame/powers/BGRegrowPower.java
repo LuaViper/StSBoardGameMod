@@ -20,7 +20,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BGRegrowPower extends AbstractPower {
+public class BGRegrowPower extends AbstractBGPower {
     public static final String POWER_ID = "BGRegrowPower";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGRegrowPower");
     public static final String NAME = powerStrings.NAME;

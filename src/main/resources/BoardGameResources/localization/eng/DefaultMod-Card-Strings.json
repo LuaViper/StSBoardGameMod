@@ -49,7 +49,7 @@
   },
   "BoardGame:BGCombust": {
     "NAME": "Combust",
-    "DESCRIPTION": "boardgame:Approximate. NL At the end of your turn, deal !M! damage to ALL enemies."
+    "DESCRIPTION": "Once per turn, deal !M! damage to ALL enemies."
   },
   "BoardGame:BGDarkShackles": {
     "NAME": "Dark Shackles",
@@ -123,7 +123,7 @@
   },
   "BoardGame:BGHavoc": {
     "NAME": "Havoc",
-    "DESCRIPTION": "Play the top card of your draw pile for 0 Energy and Exhaust it."
+    "DESCRIPTION": "boardgame:Approximate. Draw a card, play it for 0 Energy, and Exhaust it."
   },
   "BoardGame:BGImmolate": {
     "NAME": "Immolate",
@@ -152,7 +152,7 @@
   },
   "BoardGame:BGMayhem": {
     "NAME": "Mayhem",
-    "DESCRIPTION": "boardgame:Approximate. At the start of your turn, play the top card of your draw pile for 0 Energy."
+    "DESCRIPTION": "boardgame:Approximate. Once per turn, draw a card and play it for 0 Energy."
   },
   "BoardGame:BGMind Blast": {
     "NAME": "Mind Blast",

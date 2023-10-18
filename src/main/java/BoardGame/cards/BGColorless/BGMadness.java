@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 public class BGMadness extends AbstractBGCard {
+    //TODO: card was buffed to cost 0.  not sure what upgrade does now
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGMadness");
     public static final String ID = "BGMadness";
 

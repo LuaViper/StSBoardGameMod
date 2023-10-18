@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-public class BGSpikerProccedPower extends AbstractPower {//optional: "implements InvisiblePower"
+public class BGSpikerProccedPower extends AbstractBGPower {//optional: "implements InvisiblePower"
     public static final String POWER_ID = BoardGame.makeID("BGSpikerProcced");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;

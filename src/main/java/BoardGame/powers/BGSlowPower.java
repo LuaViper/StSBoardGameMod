@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-public class BGSlowPower extends AbstractPower {
+public class BGSlowPower extends AbstractBGPower {
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGSlowPower");
     public static final String POWER_ID = "BGSlowPower";
     public static final String NAME = powerStrings.NAME;

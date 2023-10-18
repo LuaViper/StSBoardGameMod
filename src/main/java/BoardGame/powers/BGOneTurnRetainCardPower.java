@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.random.Random;
 
-public class BGOneTurnRetainCardPower extends AbstractPower {
+public class BGOneTurnRetainCardPower extends AbstractBGPower {
     public static final String POWER_ID = "BGOneTurnRetain Cards";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGOneTurnRetain Cards");
     public static final String NAME = powerStrings.NAME;

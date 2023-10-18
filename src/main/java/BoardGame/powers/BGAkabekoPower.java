@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
-public class BGAkabekoPower extends AbstractPower {
+public class BGAkabekoPower extends AbstractBGPower {
     public static final String POWER_ID = "BGAkabeko";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:Akabeko");
 

@@ -23,6 +23,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import java.util.ArrayList;
 
+//TODO: BGSlowPower was redesigned -- BGGiantHead now takes +1 damage from all Attacks
 public class BGGiantHead extends AbstractBGMonster implements BGDamageIcons {
     public static final String ID = "BGGiantHead";
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("GiantHead");

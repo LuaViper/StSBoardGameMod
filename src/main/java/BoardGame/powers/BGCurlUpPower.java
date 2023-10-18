@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import BoardGame.monsters.AbstractBGMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-public class BGCurlUpPower extends AbstractPower {
+public class BGCurlUpPower extends AbstractBGPower {
     public static final String POWER_ID = "BGCurl Up";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:Curl Up");
     public static final String NAME = powerStrings.NAME;

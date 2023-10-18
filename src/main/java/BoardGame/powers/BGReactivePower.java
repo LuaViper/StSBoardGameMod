@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-public class BGReactivePower extends AbstractPower {
+public class BGReactivePower extends AbstractBGPower {
     public static final String POWER_ID = "BGReactivePower";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGReactivePower");
     public static final String NAME = powerStrings.NAME;

@@ -92,7 +92,7 @@
 "BoardGame:Combust": {
         "NAME": "Combust",
         "DESCRIPTIONS": [
-                "At the end of your turn,",
+                "Once per turn,",
                 " deal #b",
                 " damage to ALL enemies."
         ]

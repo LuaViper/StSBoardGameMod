@@ -22,7 +22,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
-public class BGInvinciblePlayerPower extends AbstractPower {
+public class BGInvinciblePlayerPower extends AbstractBGPower {
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGIntangible");
     public static final String POWER_ID = "BGIntangible";
     public static final String NAME = powerStrings.NAME;

@@ -150,15 +150,15 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                 cursesRewardDeck.addToTop(new BGInjury());
                 cursesRewardDeck.addToTop(new BGClumsy());
                 cursesRewardDeck.addToTop(new BGClumsy());
-                cursesRewardDeck.addToTop(new BGRegret());
-                cursesRewardDeck.addToTop(new BGRegret());
                 cursesRewardDeck.addToTop(new BGParasite());
                 cursesRewardDeck.addToTop(new BGParasite());
+                cursesRewardDeck.addToTop(new BGRegret());
+                cursesRewardDeck.addToTop(new BGRegret());
                 cursesRewardDeck.addToTop(new BGWrithe());
-                cursesRewardDeck.addToTop(new BGDecay());
                 cursesRewardDeck.addToTop(new BGDoubt());
-                cursesRewardDeck.addToTop(new BGShame());
                 cursesRewardDeck.addToTop(new BGPain());
+                cursesRewardDeck.addToTop(new BGShame());
+                cursesRewardDeck.addToTop(new BGDecay());
                 cursesRewardDeck.shuffle(cardRng);
 
 

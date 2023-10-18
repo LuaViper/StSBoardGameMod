@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BGInstantReboundPower extends AbstractPower {
+public class BGInstantReboundPower extends AbstractBGPower {
     public static final String POWER_ID = BoardGame.makeID("Instant Rebound");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
     public static final String NAME = powerStrings.NAME;

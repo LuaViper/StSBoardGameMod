@@ -8,7 +8,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
-public class BGOrbWalkerPower extends AbstractPower {
+public class BGOrbWalkerPower extends AbstractBGPower {
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGOrbWalkerPower");
     public static final String POWER_ID = "BGOrbWalkerPower";
     public static final String NAME = powerStrings.NAME;

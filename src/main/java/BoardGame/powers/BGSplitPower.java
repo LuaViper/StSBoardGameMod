@@ -6,7 +6,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-public class BGSplitPower extends AbstractPower {
+public class BGSplitPower extends AbstractBGPower {
     public static final String POWER_ID = "Split";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:Split");
     public static final String NAME = powerStrings.NAME;

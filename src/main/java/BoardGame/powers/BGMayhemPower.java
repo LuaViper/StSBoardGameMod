@@ -9,7 +9,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-public class BGMayhemPower extends AbstractPower {
+public class BGMayhemPower extends AbstractBGPower {
     public static final String POWER_ID = "BGMayhemPower";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGMayhemPower");
     public static final String NAME = powerStrings.NAME;
@@ -20,6 +20,8 @@ public class BGMayhemPower extends AbstractPower {
         this.ID = "BGMayhemPower";
         this.owner = owner;
         this.amount = amount;
+        this.clickable=true;
+        this.autoActivate=true;
         updateDescription();
         loadRegion("mayhem");
     }
@@ -27,29 +29,32 @@ public class BGMayhemPower extends AbstractPower {
 
     public void updateDescription() {
         if (this.amount == 1) {
-            this.description = DESCRIPTIONS[0];
+            this.description = DESCRIPTIONS[0] + getRightClickDescriptionText();
         } else {
-            this.description = DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[2];
+            this.description = DESCRIPTIONS[1] + this.amount + DESCRIPTIONS[2] + getRightClickDescriptionText();
         }
     }
 
 
-    public void atStartOfTurn() {
-        flash();
+    public void onRightClick() {
+        //TODO: this doesn't work -- "I can only play cards on my turn"
+        //TODO: phantom cards are still a thing
+        if(!onCooldown) {
+            onCooldown=true;
+            flash();
 
-        for (int i = 0; i < this.amount; i++) {
-            addToBot(new AbstractGameAction()
-            {
-                public void update() {
-                    //TODO: this doesn't work -- mayhem is already false again by the time the card is processed
-                    addToBot((AbstractGameAction)new BGPlayTopCardAction(
-                            false));
-                    this.isDone = true;
+            for (int i = 0; i < this.amount; i++) {
+                addToBot(new AbstractGameAction() {
+                    public void update() {
+                        //TODO: need to DRAW the card too
+                        addToBot((AbstractGameAction) new BGPlayTopCardAction(
+                                false));
+                        this.isDone = true;
 
-                }
-            });
+                    }
+                });
+            }
         }
-
 
 
     }

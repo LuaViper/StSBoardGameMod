@@ -85,6 +85,13 @@ public class BGTheDieRelic extends CustomRelic implements DieControlledRelic {
         }
     }
 
+    public void onUsePower(){
+        if ((AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT) {
+            TheDie.forceLockInRoll = true;
+            lockRollAndActivateDieRelics();
+        }
+    }
+
 
 
     public void lockRollAndActivateDieRelics(){

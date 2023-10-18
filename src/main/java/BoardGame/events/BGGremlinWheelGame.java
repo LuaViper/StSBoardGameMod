@@ -41,7 +41,7 @@ public class BGGremlinWheelGame
 {
     private static final Logger logger = LogManager.getLogger(BGGremlinWheelGame.class.getName());
     public static final String ID = "BGWheel of Change";
-    private static final EventStrings eventStrings = CardCrawlGame.languagePack.getEventString("Wheel of Change");
+    private static final EventStrings eventStrings = CardCrawlGame.languagePack.getEventString("BoardGame:BGWheel of Change");
     public static final String NAME = eventStrings.NAME;
     public static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
     public static final String[] OPTIONS = eventStrings.OPTIONS;

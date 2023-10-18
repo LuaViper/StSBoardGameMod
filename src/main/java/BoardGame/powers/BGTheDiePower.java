@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BGTheDiePower extends AbstractPower {
+public class BGTheDiePower extends AbstractBGPower {
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:TheDiePower");
     public static final String POWER_ID = "BGTheDiePower";
     public static final String NAME = powerStrings.NAME;

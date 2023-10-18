@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 
-public class BGExplosivePower extends AbstractPower {
+public class BGExplosivePower extends AbstractBGPower {
     public static final String POWER_ID = "BGExplosive";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGExplosive");
     public static final String NAME = powerStrings.NAME;

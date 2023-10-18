@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-public class BGShiftingPower extends AbstractPower {
+public class BGShiftingPower extends AbstractBGPower {
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGShiftingPower");
     public static final String POWER_ID = "BGShiftingPower";
     public static final String NAME = powerStrings.NAME;

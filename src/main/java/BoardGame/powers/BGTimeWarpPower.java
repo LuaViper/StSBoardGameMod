@@ -14,7 +14,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 
-public class BGTimeWarpPower extends AbstractPower {
+public class BGTimeWarpPower extends AbstractBGPower {
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGTimeWarpPower");
     public static final String POWER_ID = "BGTimeWarpPower";
     public static final String NAME = powerStrings.NAME;

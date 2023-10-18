@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 public class BGFlightPower
-        extends AbstractPower {
+        extends AbstractBGPower {
     public static final String POWER_ID = "BGFlight";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGFlight");
     public static final String NAME = powerStrings.NAME;
