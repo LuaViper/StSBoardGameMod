@@ -69,7 +69,7 @@ public class BGWingBoots extends AbstractBGRelic {
                     //logger.info("return TRUE "+node.x+" "+node.y);
                     return SpireReturn.Return(true);
                 }
-                if (node.y >= edge.dstY-1 && AbstractDungeon.player.hasRelic("BGSecretPortalRelic")
+                if (node.y >= edge.dstY && AbstractDungeon.player.hasRelic("BGSecretPortalRelic")
                     && node!=AbstractDungeon.getCurrMapNode()) {
                     //logger.info("return TRUE "+node.x+" "+node.y);
                     return SpireReturn.Return(true);
