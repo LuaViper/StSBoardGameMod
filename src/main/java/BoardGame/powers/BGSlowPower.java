@@ -24,46 +24,61 @@ public class BGSlowPower extends AbstractBGPower {
         this.name = NAME;
         this.ID = "BGSlowPower";
         this.owner = owner;
-        this.amount = 4;
+        this.amount = 1;
         updateDescription();
         loadRegion("slow");
         this.type = AbstractPower.PowerType.DEBUFF;
     }
 
-
-    public void atEndOfRound() {
-        this.amount = 4;
-        updateDescription();
-    }
-
-    public void stackPower(int stackAmount) {
-        this.fontScale = 8.0F;
-        this.amount += stackAmount;
-        if (this.amount <= 0) {
-            this.amount=-2;
-        }
-    }
-
     public void updateDescription() {
         this.description = FontHelper.colorString(this.owner.name, "y");
 
-        if (this.amount > 1 ) {
-            this.description += DESCRIPTIONS[0] + (this.amount) + DESCRIPTIONS[1];
-        }else if(this.amount==1){
-            this.description += DESCRIPTIONS[0] + (this.amount) + DESCRIPTIONS[2];
-        }else{
-            this.description += DESCRIPTIONS[3];
-        }
+        this.description += DESCRIPTIONS[0] + (this.amount) + DESCRIPTIONS[1];
     }
 
-
-    public void onAfterUseCard(AbstractCard card, UseCardAction action) {
-        boolean applyVulnerable=(this.amount==1);
-        addToBot((AbstractGameAction)new ApplyPowerAction(this.owner, this.owner, new BGSlowPower(this.owner,-1), -1));
-        if(applyVulnerable){
-            addToBot((AbstractGameAction)new ApplyPowerAction(this.owner, AbstractDungeon.player, new BGVulnerablePower(this.owner,1,false), 1));
+    public float atDamageReceive(float damage, DamageInfo.DamageType type) {
+        if (type == DamageInfo.DamageType.NORMAL) {
+            if(this.amount>0){
+                return damage + this.amount;
+            }
         }
+
+        return damage;
     }
+
+//    public void atEndOfRound() {
+//        this.amount = 4;
+//        updateDescription();
+//    }
+//
+//    public void stackPower(int stackAmount) {
+//        this.fontScale = 8.0F;
+//        this.amount += stackAmount;
+//        if (this.amount <= 0) {
+//            this.amount=-2;
+//        }
+//    }
+//
+//    public void updateDescription() {
+//        this.description = FontHelper.colorString(this.owner.name, "y");
+//
+//        if (this.amount > 1 ) {
+//            this.description += DESCRIPTIONS[0] + (this.amount) + DESCRIPTIONS[1];
+//        }else if(this.amount==1){
+//            this.description += DESCRIPTIONS[0] + (this.amount) + DESCRIPTIONS[2];
+//        }else{
+//            this.description += DESCRIPTIONS[3];
+//        }
+//    }
+//
+//
+//    public void onAfterUseCard(AbstractCard card, UseCardAction action) {
+//        boolean applyVulnerable=(this.amount==1);
+//        addToBot((AbstractGameAction)new ApplyPowerAction(this.owner, this.owner, new BGSlowPower(this.owner,-1), -1));
+//        if(applyVulnerable){
+//            addToBot((AbstractGameAction)new ApplyPowerAction(this.owner, AbstractDungeon.player, new BGVulnerablePower(this.owner,1,false), 1));
+//        }
+//    }
 
 
 //    public float atDamageReceive(float damage, DamageInfo.DamageType type) {

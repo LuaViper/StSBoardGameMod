@@ -271,6 +271,8 @@
 "BoardGame:BGSlowPower": {
         "NAME": "Slow",
         "DESCRIPTIONS": [
+                " takes #b",
+                " additional damage from Attacks.",
                 " gains #yVulnerable if you play #b",
                 " more cards this turn.",
                 " more card this turn.",
