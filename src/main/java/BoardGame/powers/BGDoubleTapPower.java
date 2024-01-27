@@ -52,6 +52,7 @@ public class BGDoubleTapPower extends AbstractBGPower {
     }
 
     public void onUseCard(AbstractCard card, UseCardAction action) {
+        //TODO: copied card needs to get played FIRST, somehow
         if (!card.purgeOnUse && card.type == AbstractCard.CardType.ATTACK && this.amount > 0) {
             flash();
             //AbstractMonster m = null;

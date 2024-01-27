@@ -43,6 +43,7 @@ import java.util.ArrayList;
 
 public class BGTheEnding extends AbstractBGDungeon {
 
+    //TODO: Victory screen lacks character-specific heartkill animations -- probably because we're only on floor 40
     private static final Logger logger = LogManager.getLogger(BGTheEnding.class.getName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("TheEnding");
     public static final String[] TEXT = uiStrings.TEXT;

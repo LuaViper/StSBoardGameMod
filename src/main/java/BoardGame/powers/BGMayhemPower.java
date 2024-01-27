@@ -37,22 +37,36 @@ public class BGMayhemPower extends AbstractBGPower {
 
 
     public void onRightClick() {
-        //TODO: this doesn't work -- "I can only play cards on my turn"
-        //TODO: phantom cards are still a thing
+        //"I can only play cards on my turn" has been fixed
+        //Phantom cards have been fixed -- we forgot to UnlimboCardAction during BGPlayTopCardAction
         if(!onCooldown) {
             onCooldown=true;
             flash();
 
             for (int i = 0; i < this.amount; i++) {
+                BoardGame.BoardGame.logger.info("addToBot lambda");
                 addToBot(new AbstractGameAction() {
                     public void update() {
                         //TODO: need to DRAW the card too
+                        BoardGame.BoardGame.logger.info("addToBot BGPlayTopCardAction");
                         addToBot((AbstractGameAction) new BGPlayTopCardAction(
                                 false));
                         this.isDone = true;
 
                     }
                 });
+
+//                BoardGame.BoardGame.logger.info("addToBot lambda");
+//                addToBot(new AbstractGameAction() {
+//                    public void update() {
+//                        //TODO: need to DRAW the card too
+//                        BoardGame.BoardGame.logger.info("addToBot BGPlayTopCardAction");
+//                        addToBot((AbstractGameAction) new BGPlayTopCardAction(
+//                                false));
+//                        this.isDone = true;
+//
+//                    }
+//                });
             }
         }
 

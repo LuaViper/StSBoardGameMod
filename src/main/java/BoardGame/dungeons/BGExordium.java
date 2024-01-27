@@ -289,6 +289,7 @@ public class BGExordium
     }
 
     protected void generateElites(int count) {
+        //TODO: same elite can incorrectly be encountered twice (not in a row) -- update to use deck system
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
         monsters.add(new MonsterInfo("BoardGame:Gremlin Nob", 1.0F));
         monsters.add(new MonsterInfo("BoardGame:Lagavulin", 1.0F));

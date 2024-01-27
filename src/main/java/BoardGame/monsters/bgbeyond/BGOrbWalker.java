@@ -90,6 +90,7 @@ public class BGOrbWalker extends AbstractBGMonster implements DieControlledMoves
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new AnimateSlowAttackAction((AbstractCreature)this));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                         .get(0), AbstractGameAction.AttackEffect.SLASH_HEAVY));
+                //TODO: the way this currently works, it shows "+1 Strength" twice instead of "+2 Strength" once.  do we want to change that?
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new StrengthPower((AbstractCreature)this, 1), 1));
                 break;
             case 2:
