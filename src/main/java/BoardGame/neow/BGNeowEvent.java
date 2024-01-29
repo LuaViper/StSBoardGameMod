@@ -914,7 +914,7 @@ public class BGNeowEvent
 
         Collections.shuffle(rewardoptions, new java.util.Random(NeowEvent.rng.randomLong()));
         String card=rewardoptions.get(0);
-        //card="-r -P CV"; //for debugging only
+        card="-r -P CV";
         //logger.info("Card: "+card);
         String[] rewards=card.split(" ");
         logger.info("Neow card: "+rewards[0]+" "+rewards[1]+" "+rewards[2]);

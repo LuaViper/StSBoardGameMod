@@ -123,7 +123,7 @@
   },
   "BoardGame:BGHavoc": {
     "NAME": "Havoc",
-    "DESCRIPTION": "Draw a card, play it for 0 Energy, and Exhaust it."
+    "DESCRIPTION": "boardgame:Approximate. Draw a card, play it for 0 Energy, and Exhaust it."
   },
   "BoardGame:BGImmolate": {
     "NAME": "Immolate",
@@ -152,7 +152,7 @@
   },
   "BoardGame:BGMayhem": {
     "NAME": "Mayhem",
-    "DESCRIPTION": "Once per turn, draw a card and play it for 0 Energy."
+    "DESCRIPTION": "boardgame:Approximate. Once per turn, draw a card and play it for 0 Energy."
   },
   "BoardGame:BGMind Blast": {
     "NAME": "Mind Blast",
