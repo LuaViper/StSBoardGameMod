@@ -1,0 +1,12 @@
+{
+  "modid": "BoardGame",
+  "name": "STS Board Game Mod",
+  "author_list": ["Lua Viper"],
+  "credits": "Basemod, ModTheSpire, #modding-technical, #sts-playtesting-public",
+  "description": "Based on the upcoming board game adaptation by Contention Games.",
+  "version": "0.1.7",
+  "sts_version": "01-23-2019",
+  "mts_version": "3.8.0",
+  "dependencies": ["basemod", "stslib"],
+  "update_json": ""
+}

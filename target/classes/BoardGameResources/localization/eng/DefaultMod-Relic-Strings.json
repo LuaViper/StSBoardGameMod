@@ -1,0 +1,590 @@
+{
+  "BoardGame:BGTheDieRelic": {
+    "NAME": "Loaded Die",
+    "FLAVOR": "Best not dwell on the other meaning of the word.",
+    "DESCRIPTIONS": [
+      "On a #b4 or #b5, gain 1 #yBlock. NL On a #b6, activate ANY die effect.",
+      " NL You rolled a #b",
+      "."
+    ]
+  },
+  "BoardGame:PlaceholderRelic2": {
+    "NAME": "Placeholder Relic 2",
+    "FLAVOR": "You feel stronger.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, gain #b1 #yStrength."
+    ]
+  },
+  "BoardGame:DefaultClickableRelic": {
+    "NAME": "Right-Clicky Relic",
+    "FLAVOR": "The more you right-click it, the more orbs you've evoked in your lifetime.",
+    "DESCRIPTIONS": [
+      "[#2aecd7]Usable [#2aecd7]once [#2aecd7]per [#2aecd7]turn.[] NL #yEvoke your rightmost Orb.",
+      "YOU ARE MINE!"
+    ]
+  },
+  "BoardGame:BottledPlaceholderRelic": {
+    "NAME": "Bottled Placeholder",
+    "FLAVOR": "What is this?",
+    "DESCRIPTIONS": [
+      "Choose a card. Whenever you take play any card, draw the chosen card.",
+      "Whenever you play a card, draw ",
+      ".",
+      "Select a card to bottle for "
+    ]
+  },
+
+  "BoardGame:BurningBlood": {
+    "NAME": "Burning Blood",
+    "FLAVOR": "Your body's own blood burns with an undying rage.",
+    "DESCRIPTIONS": [
+      "At the end of combat, heal #b1 HP."
+    ]
+  },
+
+
+
+  "BGAkabeko": {
+    "NAME": "Akabeko",
+    "FLAVOR": "\"Muuu~\"",
+    "DESCRIPTIONS": [
+      "#yOnce #yper #ycombat: NL Your next Attack has #b+1 #yStrength."
+    ]
+  },
+  "BGAnchor": {
+    "NAME": "Anchor",
+    "FLAVOR": "Holding this miniature trinket, you feel heavier and more stable.",
+    "DESCRIPTIONS": [
+      "Start each combat with #b",
+      " #yBlock."
+    ]
+  },
+  "BGAstrolabe": {
+    "NAME": "Astrolabe",
+    "FLAVOR": "A tool to glean invaluable knowledge from the stars.",
+    "DESCRIPTIONS": [
+      "Upon pickup, #yUpgrade #b3 cards.",
+      "Choose 3 cards for "
+    ]
+  },
+  "BGBag of Preparation": {
+    "NAME": "Bag of Preparation",
+    "FLAVOR": "Oversized adventurer's pack. Has many pockets and straps.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, draw #b",
+      " additional cards."
+    ]
+  },
+  "BGBird Faced Urn": {
+    "NAME": "Bird-Faced Urn",
+    "FLAVOR": "This urn shows the crow god Mazaleth looking mischievous.",
+    "DESCRIPTIONS": [
+      "Whenever you play a #yPower card, gain #b1 #yBlock."
+    ]
+  },
+  "BGBlack Blood": {
+    "NAME": "Black Blood",
+    "FLAVOR": "The rage grows darker.",
+    "DESCRIPTIONS": [
+      "At the end of combat, heal #b",
+      " HP."
+    ]
+  },
+  "BGBlood Vial": {
+    "NAME": "Blood Vial",
+    "FLAVOR": "A vial containing the blood of a pure and elder vampire.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, heal #b1 HP."
+    ]
+  },
+  "BGBlue Candle": {
+    "NAME": "Blue Candle",
+    "FLAVOR": "Holding this miniature trinket, you feel heavier and more stable.",
+    "DESCRIPTIONS": [
+      "#yOnce #yper #ycombat: NL #yExhaust up to #b2 cards in your hand."
+    ]
+  },
+  "BGCalipers": {
+    "NAME": "Calipers",
+    "FLAVOR": "\"Mechanical precision leads to greatness\" - The Architect",
+    "DESCRIPTIONS": [
+      "#yOnce #yper #ycombat: NL Keep your leftover #yBlock from last turn. NL (Gain #b",
+      " Block.)"
+    ]
+  },
+  "BGCalling Bell": {
+    "NAME": "Calling Bell",
+    "FLAVOR": "This dark iron bell rang 3 times when you found it, but now stays silent.",
+    "DESCRIPTIONS": [
+      "Upon pickup, obtain a random #rCurse and #b3 relics.",
+      "The Bell Tolls...",
+      "Skip Rewards",
+      "Close"
+    ]
+  },
+  "BGCaptainsWheel": {
+    "NAME": "Captain's Wheel",
+    "FLAVOR": "Wooden trinket carved with delicate precision. A name is carved into it but the language is foreign.",
+    "DESCRIPTIONS": [
+      "On a #b3, gain #b3 #yBlock."
+    ]
+  },
+  "BGCoffee Dripper": {
+    "NAME": "Coffee Dripper",
+    "FLAVOR": "\"Yes, another cup please. Back to work. Back to work!\" - The Architect",
+    "DESCRIPTIONS": [
+      " at the start of your turn. You can no longer #yRest at Rest Sites.",
+      "Gain [E]"
+    ]
+  },
+  "BGCursed Key": {
+    "NAME": "Cursed Key",
+    "FLAVOR": "You can feel the malicious energy emanating from the key. Power comes at a price.",
+    "DESCRIPTIONS": [
+      " at the start of your turn.",
+      "Upon pickup, gain #r2 #rCurses.  Gain [E]",
+      "Phantoms pursue you..."
+    ]
+  },
+  "BGDollysMirror": {
+    "NAME": "Dolly's Mirror",
+    "FLAVOR": "\"I look funny in this.\"",
+    "DESCRIPTIONS": [
+      "On a #b1, activate ANY die effect.",
+      ""
+    ]
+  },
+  "BGDu-Vu Doll": {
+    "NAME": "Du-Vu Doll",
+    "FLAVOR": "A doll devised to gain strength from malicious energy.",
+    "DESCRIPTIONS": [
+      "Whenever you draw a #yCurse card, gain #b1 #yStrength. NL Lose that #yStrength at the end of your turn."
+    ]
+  },
+  "BGDead Branch": {
+    "NAME": "Dead Branch",
+    "FLAVOR": "The branch of a tree from a forgotten era.",
+    "DESCRIPTIONS": [
+      "#yOnce #yper #ycombat: NL Draw a card for each card in your #yExhaust pile."
+    ]
+  },
+  "BGEctoplasm": {
+    "NAME": "Ectoplasm",
+    "FLAVOR": "This blob of slime and energy seems to pulse with life.",
+    "DESCRIPTIONS": [
+      " You can no longer gain #yGold.",
+      "Gain [E] at the start of your turn."
+    ]
+  },
+  "BGEmpty Cage": {
+    "NAME": "Empty Cage",
+    "FLAVOR": "\"How unusual to cage that which you worship.\" - Ranwid",
+    "DESCRIPTIONS": [
+      "Upon pickup, remove #b2 cards from your deck.",
+      "Choose 2 Cards to Remove."
+    ]
+  },
+  "BGEnchiridion": {
+    "NAME": "Enchiridion",
+    "FLAVOR": "The legendary journal of an ancient lich.",
+    "DESCRIPTIONS": [
+      "Upon pickup, choose one of #b5 rare cards to add to your deck.",
+      "Add a card to your deck."
+    ]
+  },
+  "BGEternal Feather": {
+    "NAME": "Eternal Feather",
+    "FLAVOR": "This feather appears to be completely indestructible. What bird does this possibly come from?",
+    "DESCRIPTIONS": [
+      "Heal #b4 HP whenever you enter a Rest Site."
+    ]
+  },
+  "BGFrozenCore": {
+    "NAME": "Frozen Core (NYI)",
+    "FLAVOR": "The crack in your core has been filled with a pulsating cold energy.",
+    "DESCRIPTIONS": [
+      "At the end of your turn, gain #b1 #yBlock."
+    ]
+  },
+  "BGFusion Hammer": {
+    "NAME": "Fusion Hammer",
+    "FLAVOR": "Once wielded, the owner can never let go.",
+    "DESCRIPTIONS": [
+      " at the start of your turn. You can no longer #ySmith at Rest Sites.",
+      "Gain [E]"
+    ]
+  },
+  "BGGambling Chip": {
+    "NAME": "Gambling Chip",
+    "FLAVOR": "You can see a small inscription on one side. It reads: \"Bear's Lucky Chip!\"",
+    "DESCRIPTIONS": [
+      "#yOnce #yper #yroom: NL Reroll the die."
+    ]
+  },
+  "BGGoldenEye": {
+    "NAME": "Golden Eye",
+    "FLAVOR": "See into the minds of those nearby, predicting their future moves.",
+    "DESCRIPTIONS": [
+      "#yOnce #yper #ycombat: NL #yScry #b3."
+    ]
+  },
+  "BGGolden Idol": {
+    "NAME": "Golden Idol",
+    "FLAVOR": "Made of solid gold, you feel richer just holding it.",
+    "DESCRIPTIONS": [
+      "At the end of combat, gain #b1 #yGold."
+    ]
+  },
+  "BGGremlin Horn": {
+    "NAME": "Gremlin Horn",
+    "FLAVOR": "\"Gremlin Nobs are capable of growing until the day they die. Remarkable.\" - Ranwid",
+    "DESCRIPTIONS": [
+      "On a #b4, draw #b1 card. NL On a #b5, gain [E] ."
+    ]
+  },
+  "BGHappy Flower": {
+    "NAME": "Happy Flower",
+    "FLAVOR": "This unceasingly joyous plant is a popular novelty item among nobles.",
+    "DESCRIPTIONS": [
+      "On a #b3 or #b4, gain [E] ."
+    ]
+  },
+  "BGHolyWater": {
+    "NAME": "Holy Water",
+    "FLAVOR": "Collected from a time before the Spire.",
+    "DESCRIPTIONS": [
+      "#yTwice #yper #ycombat: NL Gain [E] ."
+    ]
+  },
+  "BGHornCleat": {
+    "NAME": "Horn Cleat",
+    "FLAVOR": "Pleasant to hold in the hand. What was it for?",
+    "DESCRIPTIONS": [
+      "On a #b1 or #b2, gain #b1 #yBlock."
+    ]
+  },
+  "BGIce Cream": {
+    "NAME": "Ice Cream",
+    "FLAVOR": "\"Delicious!\"",
+    "DESCRIPTIONS": [
+      "Energy is now conserved between turns."
+    ]
+  },
+  "BGIncense Burner": {
+    "NAME": "Incense Burner",
+    "FLAVOR": "The smoke imbues its owner with the spirit of the burned.",
+    "DESCRIPTIONS": [
+      "On a #b6, you can't lose more than 1 HP this turn."
+    ]
+  },
+  "BGInkBottle": {
+    "NAME": "Ink Bottle",
+    "FLAVOR": "Once exhausted, appears to refill itself in a different color.",
+    "DESCRIPTIONS": [
+      "On a #b5 or #b6, draw #b1 card."
+    ]
+  },
+  "BGLantern": {
+    "NAME": "Lantern",
+    "FLAVOR": "An eerie lantern which illuminates only for the wielder.",
+    "DESCRIPTIONS": [
+      "Start each combat with an additional ",
+      "[E] ",
+      ""
+    ]
+  },
+  "BGMark of Pain (NYI - breaks campfire healing)": {
+    "NAME": "Mark of Pain",
+    "FLAVOR": "This brand was used by the northern tribes to signify warriors who had mastered pain in battle.",
+    "DESCRIPTIONS": [
+      "Gain [E] at the start of your turn. Your Max HP is #b6."
+    ]
+  },
+  "BGMeat on the Bone": {
+    "NAME": "Meat on the Bone",
+    "FLAVOR": "The meat keeps replenishing, never seeming to fully run out.",
+    "DESCRIPTIONS": [
+      "If your HP is below #b4 at the end of combat, your HP becomes #b4.",
+      " HP."
+    ]
+  },
+  "BGMercury Hourglass": {
+    "NAME": "Mercury Hourglass",
+    "FLAVOR": "An enchanted hourglass that endlessly drips.",
+    "DESCRIPTIONS": [
+      "On a #b1 or #b2, deal #b1 damage to ALL enemies."
+    ]
+  },
+  "BGMolten Egg 2": {
+    "NAME": "Molten Egg",
+    "FLAVOR": "The egg of a Phoenix. It glows red hot with a simmering lava.",
+    "DESCRIPTIONS": [
+      "The next 3 times you add an #yAttack into your deck, #yUpgrade it."
+    ]
+  },
+  "BGMummified Hand": {
+    "NAME": "Mummified Hand",
+    "FLAVOR": "Frequently twitches, especially when your pulse is high.",
+    "DESCRIPTIONS": [
+      "#yOnce #yper #ycombat: NL If you played a #yPower card this turn, gain [E] [E] ."
+    ]
+  },
+  "BGMutagenicStrength": {
+    "NAME": "Mutagenic Strength",
+    "FLAVOR": "\"The results seem fleeting, triggering when the subject is in danger.\" - Unknown",
+    "DESCRIPTIONS": [
+      "Start each combat with #b",
+      " #yStrength. At the end of your first turn, lose #b",
+      " #yStrength."
+    ]
+  },
+  "BGNecronomicon": {
+    "NAME": "Necronomicon",
+    "FLAVOR": "Only a fool would try and harness this evil power. At night your dreams are haunted by images of the book devouring your mind.",
+    "DESCRIPTIONS": [
+      "On a #b1, your first #yAttack this turn is played twice."
+    ]
+  },
+  "BGNilry's Codex": {
+    "NAME": "Nilry's Codex",
+    "FLAVOR": "Crafted by the infamous game master himself. Said to expand one's mind.",
+    "DESCRIPTIONS": [
+      "On a #b2, draw #b1 card. NL On a #b4, trigger a #b2 die ability."
+    ]
+  },
+  "BGOddly Smooth Stone": {
+    "NAME": "Oddly Smooth Stone",
+    "FLAVOR": "You have never seen something so smooth and pristine. This must be the work of the Ancients.",
+    "DESCRIPTIONS": [
+      "On a #b4, gain #b2 #yBlock."
+    ]
+  },
+  "BGOld Coin": {
+    "NAME": "Old Coin",
+    "FLAVOR": "Unique coins are highly valued by merchants for their historical value and rare metallic composition.",
+    "DESCRIPTIONS": [
+      "Upon pickup, gain #b10 #yGold."
+    ]
+  },
+  "BGDiscardedOld Coin": {
+    "NAME": "Old Coin (Discarded)",
+    "FLAVOR": "Unique coins are highly valued by merchants for their historical value and rare metallic composition.",
+    "DESCRIPTIONS": [
+      "If this appears at The Merchant or The Courier, discard it and draw again."
+    ]
+  },
+  "BGOmamori": {
+    "NAME": "Omamori",
+    "FLAVOR": "A common charm for staving off vile spirits. This one seems to possess a spark of divine energy.",
+    "DESCRIPTIONS": [
+      "Negate EVERY #rCurse you obtain.",
+      "Negate EVERY #rCurse you obtain.",
+      "This relic has been used up."
+    ]
+  },
+  "BGOrichalcum": {
+    "NAME": "Orichalcum",
+    "FLAVOR": "A green tinted metal of an unknown origin. Seemingly indestructible.",
+    "DESCRIPTIONS": [
+      "If you end your turn without #yBlock, gain #b",
+      " #yBlock."
+    ]
+  },
+  "BGOrrery": {
+    "NAME": "Orrery",
+    "FLAVOR": "\"Once you understand the universe...\" - Zoroth",
+    "DESCRIPTIONS": [
+      "Upon pickup, choose and add #b4 cards to your deck.",
+      "Knowledge!"
+    ]
+  },
+  "BGPandora's Box": {
+    "NAME": "Pandora's Box",
+    "FLAVOR": "You have a bad feeling about opening this.",
+    "DESCRIPTIONS": [
+      "Upon pickup, #yTransform #b3 cards.",
+      "Pandora's Box has been opened...",
+      "Choose 3 cards for "
+    ]
+  },
+  "BGPeace Pipe": {
+    "NAME": "Peace Pipe",
+    "FLAVOR": "Clears the mind and cleanses the soul.",
+    "DESCRIPTIONS": [
+      "When you rest, you may also remove a card."
+    ]
+  },
+  "BGPocketwatch": {
+    "NAME": "Pocketwatch",
+    "FLAVOR": "The hands seem stuck on the 3 o'clock position.",
+    "DESCRIPTIONS": [
+      "On a #b3, draw #b3 cards."
+    ]
+  },
+  "BGRed Skull": {
+    "NAME": "Red Skull",
+    "FLAVOR": "A small skull covered in ornamental paint.",
+    "DESCRIPTIONS": [
+      "The first time you shuffle your draw pile each combat, gain #b1 #yStrength."
+    ]
+  },
+  "BGRegal Pillow": {
+    "NAME": "Regal Pillow",
+    "FLAVOR": "Now you can get a proper night's rest.",
+    "DESCRIPTIONS": [
+      "Whenever you #yRest, heal an additional #b3 HP."
+    ]
+  },
+  "BGRing of the Snake": {
+    "NAME": "Ring of the Snake",
+    "FLAVOR": "Made from a fossilized snake. Represents great skill as a huntress.",
+    "DESCRIPTIONS": [
+      "At the start of each combat, draw #b",
+      " additional cards."
+    ]
+  },
+  "BGRing of the Serpent": {
+    "NAME": "Ring of the Serpent",
+    "FLAVOR": "Your ring has morphed and changed forms.",
+    "DESCRIPTIONS": [
+      "",
+      "At the start of your turn, draw #b1 additional card."
+    ]
+  },
+  "BGRunic Pyramid": {
+    "NAME": "Runic Pyramid",
+    "FLAVOR": "The runes are indecipherable.",
+    "DESCRIPTIONS": [
+      "#yOnce #yper #ycombat: NL #yRetain any number of cards this turn.",
+      ""
+    ]
+  },
+  "BGSecretPortalRelic": {
+    "NAME": "Secret Portal",
+    "FLAVOR": "WELCOME TO WARP ZONE!",
+    "DESCRIPTIONS": [
+      "Upon pickup, move to any room at or above the current floor."
+    ]
+  },
+  "BGSelf Forming Clay": {
+    "NAME": "Self-Forming Clay",
+    "FLAVOR": "\"Most curious! It appears to form itself loosely on my thoughts! Tele-clay?\" - Ranwid",
+    "DESCRIPTIONS": [
+      "#yOnce #yper #ycombat: NL If you've lost HP this combat, gain #b3 #yBlock."
+    ]
+  },
+  "BoardGame:BGShivs": {
+    "NAME": "Shivs",
+    "FLAVOR": "It's like bringing a knife to a card fight.",
+    "DESCRIPTIONS": [
+      "Holds Shivs* generated during combat. #bRight-Click to use them."
+    ]
+  },
+  "BGSnecko Eye": {
+    "NAME": "Snecko Eye",
+    "FLAVOR": "An eye of a fallen snecko. Much larger than you imagined.",
+    "DESCRIPTIONS": [
+      "On a #b1 or #b2, draw #b2 cards. NL On a #b3 or #b4, gain [E] . NL On a #b5 or #b6, put a #rDazed on top of your draw pile."
+    ]
+  },
+  "BGSozu": {
+    "NAME": "Sozu",
+    "FLAVOR": "You notice that magical liquids seem to lose their properties when near this relic.",
+    "DESCRIPTIONS": [
+      " at the start of your turn. You can no longer obtain potions.",
+      "Gain [E]"
+    ]
+  },
+  "BGSsserpentHead": {
+    "NAME": "Ssserpent Head",
+    "FLAVOR": "The most fulfilling of lives is that in which you can buy anything!",
+    "DESCRIPTIONS": [
+      "Whenever you enter a #y? room, gain #b",
+      " #yGold."
+    ]
+  },
+  "BGStrikeDummy": {
+    "NAME": "Strike Dummy",
+    "FLAVOR": "It's beat up.",
+    "DESCRIPTIONS": [
+      "Basic Strikes deal #b",
+      " additional damage."
+    ]
+  },
+  "BGSundial": {
+    "NAME": "Sundial",
+    "FLAVOR": "\"Early man's foolish obsession with time caused them to look to the sky for guidance, hoping for something permanent.\" - Zoroth",
+    "DESCRIPTIONS": [
+      "On a #b2, gain [E] [E] ."
+    ]
+  },
+  "BGTiny House": {
+    "NAME": "Tiny House (NYI)",
+    "FLAVOR": "\"A near perfect implementation of miniaturization. My finest work to date, but still not adequate.\" - The Architect",
+    "DESCRIPTIONS": [
+      "Upon pickup, obtain #b1 potion. NL Gain #b",
+      " #yGold.",
+      " NL Obtain #b1 card. NL Upgrade #b1 card.",
+      "Tiny House!"
+    ]
+  },
+  "BGToxic Egg 2": {
+    "NAME": "Toxic Egg",
+    "FLAVOR": "\"What a marvelous discovery! This appears to be the inert egg of some magical creature. Who or what created this?\" - Ranwid",
+    "DESCRIPTIONS": [
+      "The next 3 times you add a #ySkill into your deck, #yUpgrade it."
+    ]
+  },
+  "BGTungstenRod": {
+    "NAME": "Tungsten Rod",
+    "FLAVOR": "It's very very heavy.",
+    "DESCRIPTIONS": [
+      "On a #b5, gain #b3 #yBlock."
+    ]
+  },
+  "BGVajra": {
+    "NAME": "Vajra",
+    "FLAVOR": "An ornamental relic given to warriors displaying glory in battle.",
+    "DESCRIPTIONS": [
+      "On a #b2, gain #b1 #yStrength. NL Lose that #yStrength at the end of your turn."
+    ]
+  },
+  "BGWar Paint": {
+    "NAME": "War Paint",
+    "FLAVOR": "In the past, Ironclads would create wards using enchanted war paint before charging into battle.",
+    "DESCRIPTIONS": [
+      "#yUpgrade a Defend and another #ySkill. NL Single-use. Can't be used in combat or while otherwise occupied.",
+      "Choose 1 Skill to upgrade."
+    ]
+  },
+  "BGWhetstone": {
+    "NAME": "Whetstone",
+    "FLAVOR": "\"Flesh never beats steel.\" - Kublai the Great",
+    "DESCRIPTIONS": [
+      "#yUpgrade a Strike and another #yAttack. NL Single-use. Can't be used in combat or while otherwise occupied.",
+      "Choose 1 Attack to upgrade."
+    ]
+  },
+  "BGWhite Beast Statue": {
+    "NAME": "White Beast Statue (NYI)",
+    "FLAVOR": "A small white statue of a creature you have never seen before.",
+    "DESCRIPTIONS": [
+      "At the end of combat, obtain a(n additional) Potion.",
+      "Will not work without more coding (double potion chance, act 3 bosses)."
+    ]
+  },
+  "BGWingedGreaves": {
+    "NAME": "Wing Boots",
+    "FLAVOR": "Stylish.",
+    "DESCRIPTIONS": [
+      "You may ignore paths when choosing the next room to travel to #b3 times."
+    ]
+  },
+  "BGWristBlade": {
+    "NAME": "Wrist Blade",
+    "FLAVOR": "Handy for assassinations.",
+    "DESCRIPTIONS": [
+      "#yAttacks that cost #b0 deal #b1 additional damage."
+    ]
+  }
+}
