@@ -1,0 +1,3 @@
+BoardGame\powers\AbstractBGPower$EndTurnPatch.class
+BoardGame\actions\BGPlayDrawnCardAction.class
+BoardGame\powers\AbstractBGPower$EndTurnPatch$Locator.class

@@ -1,0 +1,329 @@
+{
+"BoardGame:TheDiePower": {
+        "NAME": "Roll the Die",
+        "DESCRIPTIONS": [
+                "You rolled a #b",
+                "."
+        ]
+},
+"BoardGame:Vulnerable (BG)": {
+        "NAME": "Vulnerable",
+        "DESCRIPTIONS": [
+                "Receive #b",
+                "% more damage from the next #b",
+                "Attack.",
+                " Attacks."
+        ]
+},
+"BoardGame:Weakened (BG)": {
+        "NAME": "Weakened",
+        "DESCRIPTIONS": [
+                "The next #b",
+                "Attack deals #b",
+                " Attacks deal #b",
+                " less damage."
+        ]
+},
+"BoardGame:VulnerableProccedPlayer": {
+                "NAME": "DEPRECATED_Decrement Vulnerable (Player)",
+                "DESCRIPTIONS": [
+                        "At the end of this action, player loses 1 Vulnerable(BG)."
+                ]
+},
+"BoardGame:VulnerableProcced": {
+        "NAME": "Enemy Vulnerable -1",
+        "DESCRIPTIONS": [
+                "At the end of this action, lose 1 Vulnerable(BG)."
+        ]
+},
+"BoardGame:VulnerableWatchPlayer": {
+        "NAME": "Check Enemy Intent (Player Vulnerable)",
+        "DESCRIPTIONS": [
+                "If this enemy intends to #yAttack, player loses 1 Vulnerable(BG)."
+        ]
+},
+"BoardGame:WeakProcced": {
+        "NAME": "DEPRECATED_Decrement Weakened",
+        "DESCRIPTIONS": [
+                "At the end of this action, lose 1 Weakened(BG)."
+        ]
+},
+        "BoardGame:Anger": {
+                "NAME": "Anger",
+                "DESCRIPTIONS": [
+                        "Whenever you play a #ySkill, take #b",
+                        " damage."
+                ]
+        },
+"BoardGame:Akabeko": {
+        "NAME": "Akabeko",
+        "DESCRIPTIONS": [
+                "Lose #b",
+                " #yStrength after your next #yAttack."
+        ]
+},
+        "BoardGame:BGApotheosisPower": {
+                "NAME": "Apotheosis",
+                "DESCRIPTIONS": [
+                        "Starter Strikes and Defends gain #b+",
+                        " effectiveness."
+                ]
+        },
+"BoardGame:BGBeatOfDeathPower": {
+        "NAME": "Beat Of Death",
+        "DESCRIPTIONS": [
+                "Player takes #b",
+                " damage at end of their turn."
+        ]
+},
+"BoardGame:Berserk": {
+        "NAME": "Berserk",
+        "DESCRIPTIONS": [
+                "Whenever a card is #yExhausted, deal #b",
+                " damage to ALL enemies."
+        ]
+},
+"BoardGame:BGChampPhase2WarningPower": {
+        "NAME": "Undefeated",
+        "DESCRIPTIONS": [
+                "This enemy won't lose gracefully..."
+        ]
+},
+"BoardGame:Combust": {
+        "NAME": "Combust",
+        "DESCRIPTIONS": [
+                "Once per turn,",
+                " deal #b",
+                " damage to ALL enemies."
+        ]
+},
+"BoardGame:BGConfusion": {
+        "NAME": "Confusion",
+        "DESCRIPTIONS": [
+                "The first card you play each turn has its cost randomized.",
+                "The first card you play this turn costs ",
+                " ."
+        ]
+},
+"BoardGame:BGCuriosityPower": {
+        "NAME": "Curiosity",
+        "DESCRIPTIONS": [
+                "Attacks deal #b",
+                " additional damage for each Power card in play. Ignores the Strength cap and physical token limits."
+        ]
+},
+"BoardGame:Curl Up": {
+        "NAME": "Curl Up",
+        "DESCRIPTIONS": [
+                "On receiving damage, rolls up and gains #b",
+                " #yBlock. (Once per combat)"
+        ]
+},
+"BoardGame:BGDouble Attack": {
+        "NAME": "Double Attack",
+        "DESCRIPTIONS": [
+                "Your first #yAttack is played twice this turn.",
+                "Your first ",
+                " #yAttacks are played twice this turn."
+        ]
+},
+        "BoardGame:BGExplosive": {
+                "NAME": "Explosive",
+                "DESCRIPTIONS": [
+                        "Self-destructs in #b",
+                        " turns, #yAttacking for #b",
+                        " damage as it dies.",
+                        "Dies this turn."
+                ]
+        },
+        "BoardGame:BGFlight": {
+                "NAME": "Flight",
+                "DESCRIPTIONS": [
+                        "Reduce all damage from #yAttacks to 1."
+                ]
+        },
+        "BoardGame:BGFreeCardPower": {
+                "NAME": "Madness",
+                "DESCRIPTIONS": [
+                        "The next card you play this turn costs 0.",
+                        "The next #b",
+                        " cards you play this turn cost 0."
+                ]
+        },
+"BoardGame:Instant Rebound": {
+        "NAME": "Instant Rebound",
+        "DESCRIPTIONS": [
+                "The card you just played is placed on top of your draw pile.",
+                "The next #b",
+                " cards you play this turn are placed on top of your draw pile."
+        ]
+},
+"BoardGame:BGIntangiblePower": {
+        "NAME": "Intangible",
+        "DESCRIPTIONS": [
+                "Reduce ALL damage taken and HP loss to #b0 this turn. #yIntangible is reapplied every other turn."
+        ]
+},
+"BoardGame:Juggernaut": {
+        "NAME": "Juggernaut",
+        "DESCRIPTIONS": [
+                "Whenever you gain #yBlock, deal #b",
+                " damage.",
+                "Now look what you've done.",
+                "Zzz... zzz... zzz..."
+        ]
+},
+        "BoardGame:BGMayhemPower": {
+                "NAME": "Mayhem",
+                "DESCRIPTIONS": [
+                        "At the start of your turn, play the top card of your draw pile for 0 Energy.",
+                        "At the start of your turn, play the top #b",
+                        " cards of your draw pile for 0 Energy."
+                ]
+        },
+        "BoardGame:Mode Shift": {
+                "NAME": "Mode Shift",
+                "DESCRIPTIONS": [
+                        "If its #yBlock is broken, changes to a defensive mode."
+                ]
+        },
+        "BoardGame:BGPanachePower": {
+                "NAME": "Panache",
+                "DESCRIPTIONS": [
+                        "If your hand is empty at the end of your turn, deal #b",
+                        " damage to ALL enemies."
+                ]
+        },
+        "BoardGame:Split": {
+                "NAME": "Split",
+                "DESCRIPTIONS": [
+                        "On death, will split into #b3 smaller slimes."
+                ]
+        },
+"BoardGame:BGIntangible": {
+        "NAME": "Invincible",
+        "DESCRIPTIONS": [
+                "Can only lose #b",
+                " more HP this turn.",
+                "Can no longer be harmed this turn."
+        ]
+},
+"BoardGame:BGInvinciblePower": {
+        "NAME": "Invincible",
+        "DESCRIPTIONS": [
+                "Can only lose #b",
+                " more HP. NL Immune to Weak.",
+                "Can no longer be harmed. NL Immune to Weak."
+        ]
+},
+"BoardGame:BGOrbWalkerPower": {
+        "NAME": "",
+        "DESCRIPTIONS": [
+                "At the end of its turn, gains #rat #rleast #b",
+                " #yStrength."
+        ]
+},
+"BoardGame:BGPainful Stabs": {
+        "NAME": "Painful Stabs",
+        "DESCRIPTIONS": [
+                "When you lose HP from this enemy's attacks, put 1 #yDazed on top of your draw pile."
+        ]
+},
+"BoardGame:BGOneTurnRetain Cards": {
+        "NAME": "Runic Pyramid",
+        "DESCRIPTIONS": [
+                "Retain any number of cards this turn."
+        ]
+},
+        "BoardGame:BGSpiker": {
+                "NAME": "Sharp Hide",
+                "DESCRIPTIONS": [
+                        "Whenever you play an #yAttack against Spiker, take #b",
+                        " damage."
+                ]
+        },
+        "BoardGame:BGSpikerProcced": {
+                "NAME": "Sharp Hide Proc",
+                "DESCRIPTIONS": [
+                        "At the end of this action, player takes ",
+                        " damage."
+                ]
+        },
+        "BoardGame:BGReactivePower": {
+                "NAME": "Reactive",
+                "DESCRIPTIONS": [
+                        "Upon receiving attack damage, rerolls #yThe #yDie."
+                ]
+        },
+        "BoardGame:BGRegrowPower": {
+                "NAME": "Life Link",
+                "DESCRIPTIONS": [
+                        "If other enemies are still alive, revives at the start of the player's turn at #b50% HP."
+                ]
+        },
+"BoardGame:BGShiftingPower": {
+        "NAME": "Shifting",
+        "DESCRIPTIONS": [
+                "",
+                "When Transient loses HP, the player gains that much #yBlock."
+        ]
+},
+"BoardGame:BGSlowPower": {
+        "NAME": "Slow",
+        "DESCRIPTIONS": [
+                " takes #b",
+                " additional damage from Attacks.",
+                " gains #yVulnerable if you play #b",
+                " more cards this turn.",
+                " more card this turn.",
+                " gains #yVulnerable if you play #b4 cards in a single turn.",
+                " (Receives #b",
+                "% more damage)"
+        ]
+},
+"BoardGame:Thievery": {
+        "NAME": "Thievery",
+        "DESCRIPTIONS": [
+                " steals #b",
+                " #yGold if it escapes from combat."
+        ]
+},
+"BoardGame:BGTimeEaterPhase2WarningPower": {
+        "NAME": "Rewind",
+        "DESCRIPTIONS": [
+                "Time moves in both directions..."
+        ]
+},
+"BoardGame:BGTimeWarpPower": {
+        "NAME": "Time Warp",
+        "DESCRIPTIONS": [
+                "You can only play #b",
+                " more cards this turn.",
+                " more card this turn.",
+                "You can't play any more cards this turn.",
+                "I can only play up to NL #r",
+                " cards this turn."
+
+        ]
+},
+"BGTriggerAnyDieAbilityPower": {
+        "NAME": "Wildcard",
+        "DESCRIPTIONS": [
+                "At the start of this turn, #bRight-Click a relic with any die ability to trigger it an extra time. NL If unused, will automatically trigger Loaded Die's #b1 #yBlock ability."
+        ]
+},
+"BGTrigger2DieAbilityPower": {
+        "NAME": "Nilry's Codex",
+        "DESCRIPTIONS": [
+                "At the start of this turn, #bRight-Click a relic with a #b2 die ability to trigger it an extra time. NL If unused, will automatically trigger Nilry's Codex's draw #b1 card ability."
+        ]
+},
+"BoardGame:CommonPower": {
+        "NAME": "Placeholder Power",
+        "DESCRIPTIONS": ["You applied #b", " keyword.", " keywords."]
+},
+"BoardGame:RarePower": {
+        "NAME": "Placeholder Power",
+        "DESCRIPTIONS": ["At the start of your turn, TOUCH #b", " enemy." , " enemies."]
+}
+}

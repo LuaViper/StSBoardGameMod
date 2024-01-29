@@ -1,0 +1,84 @@
+[
+  {
+    "PROPER_NAME": "Approximate",
+    "NAMES": [
+      "Approximate",
+      "approximate"
+    ],
+    "DESCRIPTION": "This card or effect behaves slightly differently than it's supposed to."
+  },
+  {
+    "PROPER_NAME": "Naive",
+    "NAMES": [
+      "Naive",
+      "naive"
+    ],
+    "DESCRIPTION": "Damage and block modifiers will not display correctly on this card."
+  },
+  {
+    "PROPER_NAME": "Cooperative (NYI)",
+    "NAMES": [
+      "Cooperative",
+      "cooperative"
+    ],
+    "DESCRIPTION": "This card does something more interesting when you are playing with #bfriends."
+  },
+  {
+    "PROPER_NAME": "Vulnerable",
+    "NAMES": [
+      "Vulnerable (BG)",
+      "vulnerable_(bg)",
+      "vulnerable(bg)",
+      "vulnerable"
+    ],
+    "DESCRIPTION": "Vulnerable creatures take #b100% more damage from the next Attack."
+  },
+  {
+    "PROPER_NAME": "Weak",
+    "NAMES": [
+      "Weak (BG)",
+      "weak_(bg)",
+      "weak(bg)",
+      "weakened (bg)",
+      "weakened_(bg)",
+      "weakens (bg)",
+      "weakens_(bg)",
+      "weakens(bg)",
+      "weak",
+      "weakened",
+      "weakens"
+    ],
+    "DESCRIPTION": "Weakened creatures deal #b1 less damage with the next Attack."
+  },
+  {
+    "PROPER_NAME": "Poison",
+    "NAMES": [
+      "Poison (BG)",
+      "poison_(bg)",
+      "poison(bg)",
+      "poisoned (bg)",
+      "poisoned_(bg)",
+      "poison",
+      "poisoned"
+    ],
+    "DESCRIPTION": "Poisoned creatures lose HP at the start of their turn."
+  },
+  {
+    "NAMES": [
+      "keyword",
+      "keywords"
+    ],
+    "DESCRIPTION": "Whenever you play a card, gain 1 dexterity this turn only."
+  },
+  {
+    "PROPER_NAME": "Multiword Keyword",
+    "NAMES": [
+      "Multiword Keyword",
+      "multiword_keyword",
+      "multiword_keywords",
+      "multikey",
+      "multikeyword"
+    ],
+    "DESCRIPTION": "Make sure the first element in the NAMES is the same as your PROPER_NAME. The rest is to match keywords like the single word keyword."
+  }
+]
