@@ -1,6 +1,5 @@
 package BoardGame.monsters.bgexordium;
 
-
 import BoardGame.powers.BGModeShiftPower;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -31,6 +30,8 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.*;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+//TODO: patch clearPostCombatActions so that DAMAGE actions aren't processed after combat ends in AbstractBGDungeon
 
 public class BGTheGuardian extends AbstractBGMonster {
     private static final Logger logger = LogManager.getLogger(BGTheGuardian.class.getName());
