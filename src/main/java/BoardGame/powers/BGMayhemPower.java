@@ -1,13 +1,11 @@
 package BoardGame.powers;
 
-import BoardGame.actions.BGPlayTopCardAction;
+import BoardGame.actions.BGPlayDrawnCardAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.PlayTopCardAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 
 public class BGMayhemPower extends AbstractBGPower {
     public static final String POWER_ID = "BGMayhemPower";
@@ -44,29 +42,13 @@ public class BGMayhemPower extends AbstractBGPower {
             flash();
 
             for (int i = 0; i < this.amount; i++) {
-                BoardGame.BoardGame.logger.info("addToBot lambda");
                 addToBot(new AbstractGameAction() {
                     public void update() {
-                        //TODO: need to DRAW the card too
-                        BoardGame.BoardGame.logger.info("addToBot BGPlayTopCardAction");
-                        addToBot((AbstractGameAction) new BGPlayTopCardAction(
-                                false));
+                        addToBot((AbstractGameAction)new DrawCardAction(1, (AbstractGameAction)new BGPlayDrawnCardAction(false)));
                         this.isDone = true;
 
                     }
                 });
-
-//                BoardGame.BoardGame.logger.info("addToBot lambda");
-//                addToBot(new AbstractGameAction() {
-//                    public void update() {
-//                        //TODO: need to DRAW the card too
-//                        BoardGame.BoardGame.logger.info("addToBot BGPlayTopCardAction");
-//                        addToBot((AbstractGameAction) new BGPlayTopCardAction(
-//                                false));
-//                        this.isDone = true;
-//
-//                    }
-//                });
             }
         }
 
