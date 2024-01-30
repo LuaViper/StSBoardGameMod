@@ -327,7 +327,8 @@ public class BGTheEnding extends AbstractBGDungeon {
             if(CardCrawlGame.dungeon instanceof AbstractBGDungeon){
                 if (Settings.isFinalActAvailable && (AbstractDungeon.getCurrMapNode()).hasEmeraldKey) {
                     AbstractCard c = new BGBurn();
-                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new MakeTempCardInDrawPileAction((AbstractCard)c, 2,true,false));
+                    //TODO: the burns no longer overlap in center (good), but the left burn appears to be missing a "move to draw pile" animation (bad)
+                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new MakeTempCardInDrawPileAction((AbstractCard)c, 2,true,true));
                     return SpireReturn.Return();
                 }
             }

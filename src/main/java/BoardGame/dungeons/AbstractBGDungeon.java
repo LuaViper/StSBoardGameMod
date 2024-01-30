@@ -396,7 +396,7 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
         public static SpireReturn<Void> transformCardPatch(AbstractCard c, boolean autoUpgrade, Random rng) {
             if(CardCrawlGame.dungeon instanceof AbstractBGDungeon){
                 transformedCard = DrawFromRewardDeck();
-                //TODO: not allowed to transform BGCurses
+                //TODO: not allowed to transform BGCurses (also, colorless cards transform into color cards)
                 UnlockTracker.markCardAsSeen(transformedCard.cardID);
                 if (autoUpgrade && transformedCard.canUpgrade()) {
                     transformedCard.upgrade();

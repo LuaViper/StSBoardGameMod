@@ -11,8 +11,9 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+//TODO: "to any player"
 public class BGDefend_Red extends AbstractBGCard {
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Defend_R");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGDefend_R");
     public static final String ID = "BGDefend_R";
 
     public BGDefend_Red() {
@@ -45,6 +46,8 @@ public class BGDefend_Red extends AbstractBGCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeBlock(1);
+            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+            initializeDescription();
         }
     }
 

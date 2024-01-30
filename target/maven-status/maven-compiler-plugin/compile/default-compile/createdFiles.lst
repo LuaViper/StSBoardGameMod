@@ -1,5 +1,6 @@
 BoardGame\cards\BGRed\BGSeverSoul$BGHandCardSelectScreenPatch.class
 BoardGame\powers\AbstractBGPower$EndTurnPatch.class
+BoardGame\cards\BGGreen\BGDoppelganger.class
 BoardGame\actions\BGPlayDrawnCardAction.class
 BoardGame\powers\AbstractBGPower$EndTurnPatch$Locator.class
 BoardGame\cards\BGRed\BGSeverSoul$BGHandCardSelectScreenPatch$Locator.class

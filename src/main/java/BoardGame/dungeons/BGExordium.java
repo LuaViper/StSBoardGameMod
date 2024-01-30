@@ -395,16 +395,11 @@ public class BGExordium
         return node;
     }
     protected static void generateSpecialMap() {
-
+        //TODO: Act 1 has a 2nd map layout, 50-50 chance
 
         long startTime = System.currentTimeMillis();
-
         shuffleMapTokens();
-
         map = new ArrayList<>();
-
-
-
         //Do not place TreasureRoomBoss on map!
         // creating it makes the game think that the current act is complete and messes everything up
         ArrayList<String>quickmap= new ArrayList<String>(Arrays.asList(
