@@ -167,7 +167,9 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                 //logger.info("Adding colorless cards to reward deck?:");
                 for (AbstractCard c : tmpPool) {
                     //logger.info("Add "+c);
-                    colorlessRewardDeck.addToTop(c.makeCopy());
+                    if(c.type!=AbstractCard.CardType.STATUS) {
+                        colorlessRewardDeck.addToTop(c.makeCopy());
+                    }
                 }
                 colorlessRewardDeck.shuffle(cardRng);
             }

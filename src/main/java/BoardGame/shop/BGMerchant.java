@@ -58,7 +58,6 @@ public class BGMerchant {
                 c = AbstractDungeon.getColorlessCardFromPool(AbstractCard.CardRarity.COMMON);
                 ___cards1[0].add(c);
 
-
                 c = AbstractDungeon.getColorlessCardFromPool(AbstractCard.CardRarity.COMMON);
                 ___cards2[0].add(c);
 

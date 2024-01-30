@@ -1,4 +1,4 @@
-//TODO: this card is not supposed to be on sale at the merchant...
+//this card is not supposed to be on sale at the merchant... keep an eye out in case the fix didn't work
 
 package BoardGame.cards.BGStatus;
 
