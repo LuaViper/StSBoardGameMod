@@ -1,4 +1,4 @@
-//TODO: copying Whirlwind is currently treated as spending 0 energy on it
+//copying Whirlwind is currently treated as spending 0 energy on it? ...false alarm, we played DoubleTap instead of BGDoubleTap
 
 
 package BoardGame.cards.BGRed;
@@ -39,7 +39,6 @@ public class BGWhirlwind extends AbstractBGCard {
             this.energyOnUse=0;
         }
         if(this.ignoreEnergyOnUse){
-            //TODO: only if card was played for free. if card was copied, energyOnUse is whatever the previous card used
             this.energyOnUse=0;
         }
         if(this.copiedCardEnergyOnUse!=-99){

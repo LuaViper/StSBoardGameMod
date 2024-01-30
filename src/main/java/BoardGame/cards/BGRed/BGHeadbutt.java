@@ -1,4 +1,4 @@
-//TODO: in VG, Headbutt can draw itself if a copy is played.  not allowed in BG.
+//TODO: in VG, Headbutt can draw itself if a copy is played.  not allowed in BG (copy is played first).
 
 package BoardGame.cards.BGRed;
 
@@ -21,15 +21,6 @@ public class BGHeadbutt extends AbstractBGCard {
 
     public BGHeadbutt() {
         super("BGHeadbutt", cardStrings.NAME, "red/attack/headbutt", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, BGIronclad.Enums.BG_RED, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.ENEMY);
-
-
-
-
-
-
-
-
-
 
         this.baseDamage = 2;
     }

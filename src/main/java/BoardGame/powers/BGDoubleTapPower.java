@@ -38,6 +38,7 @@ public class BGDoubleTapPower extends AbstractBGPower {
         this.amount = amount;
         updateDescription();
         loadRegion("doubleTap");
+        logger.info("BGDOUBLETAPPOWER.CONSTRUCTOR");
     }
 
 
@@ -52,6 +53,8 @@ public class BGDoubleTapPower extends AbstractBGPower {
     }
 
     public void onUseCard(AbstractCard card, UseCardAction action) {
+        Logger logger = LogManager.getLogger(BGDoubleTapPower.class.getName());
+        logger.info("BGDOUBLETAPPOWER.ONUSECARD");
         //TODO: copied card needs to get played FIRST, somehow
         if (!card.purgeOnUse && card.type == AbstractCard.CardType.ATTACK && this.amount > 0) {
             flash();
@@ -67,10 +70,10 @@ public class BGDoubleTapPower extends AbstractBGPower {
             tmp.target_y = Settings.HEIGHT / 2.0F;
 
             tmp.purgeOnUse = true;
-            Logger logger = LogManager.getLogger(BGDoubleTapPower.class.getName());
-            //logger.info("DoubleAttackPower instanceof check");
+
+            logger.info("DoubleTapPower instanceof check");
             if(card instanceof AbstractBGCard){
-                //logger.info("set old card's copy reference: "+tmp);
+                logger.info("set old card's copy reference: "+tmp);
                 ((AbstractBGCard)card).copiedCard=(AbstractBGCard)tmp;
             }
 

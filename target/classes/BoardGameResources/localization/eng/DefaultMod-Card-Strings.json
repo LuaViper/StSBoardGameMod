@@ -148,7 +148,8 @@
   },
   "BoardGame:BGMadness": {
     "NAME": "Madness",
-    "DESCRIPTION": "The next card you play this turn costs 0."
+    "DESCRIPTION": "The next card you play this turn costs 0. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Retain. NL The next card you play this turn costs 0. NL Exhaust."
   },
   "BoardGame:BGMayhem": {
     "NAME": "Mayhem",
