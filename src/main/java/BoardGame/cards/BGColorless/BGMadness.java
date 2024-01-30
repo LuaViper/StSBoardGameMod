@@ -22,7 +22,7 @@ public class BGMadness extends AbstractBGCard {
     public static final String ID = "BGMadness";
 
     public BGMadness() {
-        super("BGMadness", cardStrings.NAME, "colorless/skill/madness", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, BGColorless.Enums.CARD_COLOR, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.SELF);
+        super("BGMadness", cardStrings.NAME, "colorless/skill/madness", 0, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, BGColorless.Enums.CARD_COLOR, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.SELF);
 
 
 
@@ -31,6 +31,7 @@ public class BGMadness extends AbstractBGCard {
         this.baseMagicNumber=1;
         this.magicNumber=this.baseMagicNumber;
 
+        this.exhaust=true;
 
     }
 
@@ -45,7 +46,9 @@ public class BGMadness extends AbstractBGCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeBaseCost(0);
+            this.selfRetain=true;
+            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+            initializeDescription();
         }
     }
 

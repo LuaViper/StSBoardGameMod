@@ -32,7 +32,7 @@ import java.util.ArrayList;
 // Note that some cards use vanilla powers instead of BG powers and won't extend this class
 public class AbstractBGPower extends AbstractPower {
 
-    //TODO: clickbox is too large atm
+    //TODO: clickbox is not entirely correct size
     private static final float iconsize=48*1.17F;
     public Hitbox hb;
 
