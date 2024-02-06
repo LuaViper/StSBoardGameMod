@@ -1,9 +1,0 @@
-BoardGame\actions\BGCopyAndPlayCardAction.class
-BoardGame\cards\BGRed\BGSeverSoul$BGHandCardSelectScreenPatch.class
-BoardGame\powers\AbstractBGPower$EndTurnPatch.class
-BoardGame\cards\BGGreen\BGDoppelganger.class
-BoardGame\cards\BGGreen\BGDoppelganger$UseCardActionPatch.class
-BoardGame\actions\BGPlayDrawnCardAction.class
-BoardGame\actions\BGDoppelgangerAction.class
-BoardGame\powers\AbstractBGPower$EndTurnPatch$Locator.class
-BoardGame\cards\BGRed\BGSeverSoul$BGHandCardSelectScreenPatch$Locator.class
