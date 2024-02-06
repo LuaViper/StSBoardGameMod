@@ -21,7 +21,7 @@
   },
   "BoardGame:BGBerserk": {
     "NAME": "Berserk",
-    "DESCRIPTION": "Whenever a card is Exhausted, NL deal !M! damage to ALL enemies."
+    "DESCRIPTION": "Whenever a card is Exhausted, NL deal !M! damage to any row."
   },
   "BoardGame:BGBlind": {
     "NAME": "Blind",
@@ -49,7 +49,7 @@
   },
   "BoardGame:BGCombust": {
     "NAME": "Combust",
-    "DESCRIPTION": "Once per turn, deal !M! damage to ALL enemies."
+    "DESCRIPTION": "Once per turn, deal !M! damage to any row."
   },
   "BoardGame:BGDarkShackles": {
     "NAME": "Dark Shackles",
@@ -62,12 +62,12 @@
   "BoardGame:BGDefend_G": {
     "NAME": "Defend",
     "DESCRIPTION": "Gain !B! Block.",
-    "UPGRADE_DESCRIPTION": "!B! Block to any player."
+    "UPGRADE_DESCRIPTION": "Apply !B! Block to any player."
   },
   "BoardGame:BGDefend_R": {
     "NAME": "Defend",
     "DESCRIPTION": "Gain !B! Block.",
-    "UPGRADE_DESCRIPTION": "!B! Block to any player."
+    "UPGRADE_DESCRIPTION": "Apply !B! Block to any player."
   },
   "BoardGame:BGDisarm": {
     "NAME": "Disarm",
@@ -76,7 +76,12 @@
   "BoardGame:BGDoppelganger": {
     "NAME": "Doppelganger",
     "DESCRIPTION": "Copy the last Attack or Skill anyone played this turn with cost equal to X. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Copy the last Attack or Skill anyone played this turn with cost equal to X."
+    "UPGRADE_DESCRIPTION": "Copy the last Attack or Skill anyone played this turn with cost equal to X.",
+    "EXTENDED_DESCRIPTION": [
+      "No copyable cards have been played this turn.",
+      "I can't play this for less than ",
+      " Energy right now."
+      ]
   },
   "BoardGame:BGDouble Tap": {
     "NAME": "Double Tap",
@@ -85,7 +90,7 @@
   },
   "BoardGame:BGDramatic Entrance": {
     "NAME": "Dramatic Entrance",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Deals !M! additional damage if it's the first turn of combat."
+    "DESCRIPTION": "Deal !D! damage to any row. NL Deals !M! additional damage if it's the first turn of combat."
   },
   "BoardGame:BGEntrench": {
     "NAME": "Entrench",
@@ -103,7 +108,7 @@
   },
   "BoardGame:BGFlame Barrier": {
     "NAME": "Flame Barrier",
-    "DESCRIPTION": "Gain !B! Block. NL Deal !M! Thorns damage to all enemies that intend to attack."
+    "DESCRIPTION": "Gain !B! Block. NL Deal !M! Thorns damage to all enemies that intend to attack you."
   },
   "BoardGame:BGFlash of Steel": {
     "NAME": "Flash of Steel",
@@ -122,11 +127,11 @@
   },
   "BoardGame:BGGhostly Armor": {
     "NAME": "Ghostly Armor",
-    "DESCRIPTION": "Ethereal. NL !B! Block to any player."
+    "DESCRIPTION": "Ethereal. NL Apply !B! Block to any player."
   },
   "BoardGame:BGGood Instincts": {
     "NAME": "Good Instincts",
-    "DESCRIPTION": "!B! Block to any player."
+    "DESCRIPTION": "Apply !B! Block to any player."
   },
   "BoardGame:BGGremlinHornDrawACard": {
     "NAME": "Versatility",
@@ -150,7 +155,7 @@
   },
   "BoardGame:BGImmolate": {
     "NAME": "Immolate",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies. NL Put 2 *Dazed on top of your draw pile."
+    "DESCRIPTION": "Deal !D! damage to any row. NL Put 2 *Dazed on top of your draw pile."
   },
   "BoardGame:BGIron Wave": {
     "NAME": "Iron Wave",
@@ -202,7 +207,7 @@
   },
   "BoardGame:BGPanache": {
     "NAME": "Panache",
-    "DESCRIPTION": "Each time your hand is empty at the end of your turn, deal !M! damage to ALL enemies."
+    "DESCRIPTION": "Each time your hand is empty at the end of your turn, deal !M! damage to any row."
   },
   "BoardGame:BGParasite": {
     "NAME": "Parasite",
@@ -219,7 +224,7 @@
   },
   "BoardGame:BGPower Through": {
     "NAME": "Power Through",
-    "DESCRIPTION": "!B! Block to any player. NL Put a *Dazed on top of your draw pile."
+    "DESCRIPTION": "Apply !B! Block to any player. NL Put a *Dazed on top of your draw pile."
   },
   "BoardGame:BGRage": {
     "NAME": "Rage",
@@ -244,8 +249,8 @@
   },
   "BoardGame:BGSentinel": {
     "NAME": "Sentinel",
-    "DESCRIPTION": "!B! Block to any player. NL If this card is Exhausted, NL gain [R] [R].",
-    "UPGRADE_DESCRIPTION": "!B! Block to any player. NL If this card is Exhausted, NL gain [R] [R] [R]."
+    "DESCRIPTION": "Apply !B! Block to any player. NL If this card is Exhausted, NL gain [R] [R].",
+    "UPGRADE_DESCRIPTION": "Apply !B! Block to any player. NL If this card is Exhausted, NL gain [R] [R] [R]."
   },
   "BoardGame:BGSever Soul": {
     "NAME": "Sever Soul",
@@ -258,8 +263,8 @@
   },
   "BoardGame:BGShockwave": {
     "NAME": "Shockwave",
-    "DESCRIPTION": "Apply 1 boardgame:Vulnerable and boardgame:Weak to ALL enemies. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Apply 1 boardgame:Vulnerable and !M! boardgame:Weak to ALL enemies. NL Exhaust."
+    "DESCRIPTION": "Apply 1 boardgame:Vulnerable and boardgame:Weak to any row. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Apply 1 boardgame:Vulnerable and !M! boardgame:Weak to any row. NL Exhaust."
   },
   "BoardGame:BGSneckoEyeDrawTwoCards": {
     "NAME": "Versatility",
@@ -288,8 +293,8 @@
   },
   "BoardGame:BGTrue Grit": {
     "NAME": "True Grit",
-    "DESCRIPTION": "!B! Block to any player. NL Exhaust 1 card.",
-    "UPGRADE_DESCRIPTION": "!B! Block to any player. NL Exhaust 1 card."
+    "DESCRIPTION": "Apply !B! Block to any player. NL Exhaust 1 card.",
+    "UPGRADE_DESCRIPTION": "Apply !B! Block to any player. NL Exhaust 1 card."
   },
   "BoardGame:BGTwin Strike": {
     "NAME": "Twin Strike",
@@ -312,8 +317,8 @@
   },
   "BoardGame:BGWhirlwind": {
     "NAME": "Whirlwind",
-    "DESCRIPTION": "Deal !D! damage to ALL enemies X times.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage to ALL enemies X+1 times."
+    "DESCRIPTION": "Deal !D! damage X times to any row.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage X+1 times to any row."
   },
   "BoardGame:BGWild Strike": {
     "NAME": "Wild Strike",
@@ -326,57 +331,11 @@
   "BoardGame:BGXCostChoice": {
     "NAME": "X Cost Choice",
     "DESCRIPTION": "For debug purposes only. NL In the Board Game, you can choose how much Energy to spend on X Cost cards.",
-    "UPGRADE_DESCRIPTION":"Spend !M! Energy."
-  },
-  "BoardGame:DefaultCommonAttack": {
-    "NAME": "Strike",
-    "DESCRIPTION": "Deal !D! damage. NL [#0000ff]This[] [#ff0000]Is[] [#ffff00]How[] [#88888]color[] [#ff00ff]works.[]"
-  },
-  "BoardGame:DefaultCommonSkill": {
-    "NAME": "Defend",
-    "DESCRIPTION": "Gain !B! Block. NL boardgame:Multiword_Keyword."
-  },
-  "BoardGame:DefaultCommonPower": {
-    "NAME": "Hold Place",
-    "DESCRIPTION": "Gain !M! boardgame:Keyword.",
-    "UPGRADE_DESCRIPTION": "Gain !M! boardgame:Keywords."
-  },
-  "BoardGame:DefaultUncommonAttack": {
-    "NAME": "Big slap",
-    "DESCRIPTION": "Deal !D! damage."
-  },
-  "BoardGame:DefaultUncommonSkill": {
-    "NAME": "A Better Defend",
-    "DESCRIPTION": "Gain !B! Plated Armor. Affected by Dexterity."
-  },
-  "BoardGame:DefaultUncommonPower": {
-    "NAME": "Weirdness",
-    "DESCRIPTION": "Gain X boardgame:Keywords.",
-    "UPGRADE_DESCRIPTION": "Gain X +1 boardgame:Keywords."
-  },
-  "BoardGame:DefaultRareAttack": {
-    "NAME": "TOUCH",
-    "DESCRIPTION": "Deal !D! damage."
-  },
-  "BoardGame:DefaultRareSkill": {
-    "NAME": "For Each Loop x2",
-    "DESCRIPTION": "Apply !M! Vulnerable to all enemies, 2 times.",
-    "UPGRADE_DESCRIPTION": "Apply !M! Vulnerable to all enemies, 3 times."
-  },
-  "BoardGame:DefaultRarePower": {
-    "NAME": "In-Progress Form",
-    "DESCRIPTION": "At the start of your turn, play a TOUCH."
-  },
-  "BoardGame:DefaultAttackWithVariable": {
-    "NAME": "Special Strike",
-    "DESCRIPTION": "Deal !D! damage [E] times. NL (Deal !BoardGame:ENERGY_DAMAGE! damage total.)"
-  },
-  "BoardGame:DefaultSecondMagicNumberSkill": {
-    "NAME": "Cool 2 Number Card",
-    "DESCRIPTION": "Apply !M! Vulnerable and !BoardGame:SecondMagic! poison to an enemy."
-  },
-  "BoardGame:OrbSkill": {
-    "NAME": "Get Orb",
-    "DESCRIPTION": "Channel 1 Default Orb."
+    "UPGRADE_DESCRIPTION":"Spend !M! Energy.",
+    "EXTENDED_DESCRIPTION": [
+      "Spend !M! Energy, copying ",
+      "."
+    ]
   }
+
 }

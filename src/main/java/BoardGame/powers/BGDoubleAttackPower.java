@@ -37,6 +37,7 @@ public class BGDoubleAttackPower extends AbstractBGPower {
     }
 
     public void stackPower(int stackAmount) {
+        //TODO: Necronomicon is now supposed to stack with Attack Potion as expected
         if(stackAmount>0) this.amount=1;
         //this.fontScale = 8.0F;
     }

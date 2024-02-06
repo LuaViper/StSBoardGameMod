@@ -19,7 +19,7 @@ import com.megacrit.cardcrawl.vfx.combat.ExplosionSmallEffect;
 
 public class BGExplosivePotion extends AbstractPotion {
     public static final String POTION_ID = "BGExplosive Potion";
-    private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString("Explosive Potion");
+    private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString("BoardGame:BGExplosive Potion");
 
 
 

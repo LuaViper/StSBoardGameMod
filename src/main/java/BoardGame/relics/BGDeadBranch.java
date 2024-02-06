@@ -9,6 +9,8 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
+//TODO: don't flash Dead Branch if exhaust pile is empty
+
 public class BGDeadBranch extends AbstractBGRelic implements ClickableRelic {
     public BGDeadBranch() {
         super("BGDead Branch", "deadBranch.png", AbstractRelic.RelicTier.RARE, AbstractRelic.LandingSound.FLAT);

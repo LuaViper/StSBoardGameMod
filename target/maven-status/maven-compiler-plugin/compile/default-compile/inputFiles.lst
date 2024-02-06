@@ -49,6 +49,7 @@ C:\Users\Account-1\IdeaProjects\StSBoardGameMod\src\main\java\BoardGame\relics\B
 C:\Users\Account-1\IdeaProjects\StSBoardGameMod\src\main\java\BoardGame\actions\BGSpawnTwoGremlinsAction.java
 C:\Users\Account-1\IdeaProjects\StSBoardGameMod\src\main\java\BoardGame\characters\BGCurse.java
 C:\Users\Account-1\IdeaProjects\StSBoardGameMod\src\main\java\BoardGame\monsters\bgexordium\BGFungiBeast.java
+C:\Users\Account-1\IdeaProjects\StSBoardGameMod\src\main\java\BoardGame\actions\BGCopyAndPlayCardAction.java
 C:\Users\Account-1\IdeaProjects\StSBoardGameMod\src\main\java\BoardGame\monsters\bgcity\BGGremlinPlaceholder.java
 C:\Users\Account-1\IdeaProjects\StSBoardGameMod\src\main\java\BoardGame\cards\BGCurse\BGClumsy.java
 C:\Users\Account-1\IdeaProjects\StSBoardGameMod\src\main\java\BoardGame\potions\PotionHelperPatch.java
@@ -395,6 +396,7 @@ C:\Users\Account-1\IdeaProjects\StSBoardGameMod\src\main\java\BoardGame\monsters
 C:\Users\Account-1\IdeaProjects\StSBoardGameMod\src\main\java\BoardGame\actions\SpikerReflectAction.java
 C:\Users\Account-1\IdeaProjects\StSBoardGameMod\src\main\java\BoardGame\relics\BGBirdFacedUrn.java
 C:\Users\Account-1\IdeaProjects\StSBoardGameMod\src\main\java\BoardGame\monsters\bgexordium\BGAcidSlime_M.java
+C:\Users\Account-1\IdeaProjects\StSBoardGameMod\src\main\java\BoardGame\actions\BGDoppelgangerAction.java
 C:\Users\Account-1\IdeaProjects\StSBoardGameMod\src\main\java\BoardGame\cards\BGColorless\BGHandOfGreed.java
 C:\Users\Account-1\IdeaProjects\StSBoardGameMod\src\main\java\BoardGame\actions\BGWhirlwindAction.java
 C:\Users\Account-1\IdeaProjects\StSBoardGameMod\src\main\java\BoardGame\cards\BGCurse\BGDecay.java

@@ -18,12 +18,19 @@ public class BGXCostChoice extends AbstractAttackCardChoice {
     public static final String ID = "BGXCostChoice";
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGXCostChoice");
 
-    private BGXCostCardAction.XCostAction action;
+    //TODO LATER: action could be private if our DoppelgangerAction was better structured.  Alternately, public card.executeAction()
+    public BGXCostCardAction.XCostAction action;
+    private AbstractCard doppelgangerCard;
 
     public BGXCostChoice(){
         this(new BGWhirlwind(), -1, null);
     }
+
     public BGXCostChoice(AbstractCard card, int energyOnUse, BGXCostCardAction.XCostAction action) {
+        this(card,energyOnUse,action,null);
+    }
+
+    public BGXCostChoice(AbstractCard card, int energyOnUse, BGXCostCardAction.XCostAction action, AbstractCard doppelgangerCard) {
         super("BGXCostChoice", cardStrings.NAME, card.assetUrl, energyOnUse, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, AbstractCard.CardColor.COLORLESS, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE);
 
         //Important: original card class must check for energy/freeplay restrictions (see BGWhirlwind.java for example)
@@ -36,10 +43,15 @@ public class BGXCostChoice extends AbstractAttackCardChoice {
         this.baseMagicNumber=cost;
         this.magicNumber=cost;
         this.action=action;
+        this.doppelgangerCard=doppelgangerCard;
         if (cost==-1) {
             this.rawDescription = cardStrings.DESCRIPTION;
         }else{
-            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+            if(this.doppelgangerCard==null) {
+                this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+            }else{
+                this.rawDescription = cardStrings.EXTENDED_DESCRIPTION[0]+doppelgangerCard.name+cardStrings.EXTENDED_DESCRIPTION[1];
+            }
         }
         initializeDescription();
     }

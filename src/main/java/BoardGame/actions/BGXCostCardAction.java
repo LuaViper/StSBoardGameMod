@@ -18,17 +18,17 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 
 public class BGXCostCardAction extends AbstractGameAction {
-    private AbstractCard card;
-    private ArrayList<AbstractCard> choices;
-    private boolean choicesHaveBeenSetup=false;
+    protected AbstractCard card;
+    protected ArrayList<AbstractCard> choices;
+    protected boolean choicesHaveBeenSetup=false;
 
-    private int minEnergy;
-    private int maxEnergy;
+    protected int minEnergy;
+    protected int maxEnergy;
     public interface XCostAction{
         void execute(int energySpent);
     }
 
-    private XCostAction action;
+    protected XCostAction action;
 
     public BGXCostCardAction(AbstractCard card, int maxEnergy, XCostAction action){
         this.minEnergy=0;

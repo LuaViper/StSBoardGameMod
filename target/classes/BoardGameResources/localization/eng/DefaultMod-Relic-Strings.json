@@ -63,7 +63,7 @@
     "NAME": "Astrolabe",
     "FLAVOR": "A tool to glean invaluable knowledge from the stars.",
     "DESCRIPTIONS": [
-      "Upon pickup, #yUpgrade #b3 cards.",
+      "Upon pickup, #yUpgrade #b3 cards. NL Discard relic after use.",
       "Choose 3 cards for "
     ]
   },
@@ -116,7 +116,7 @@
     "NAME": "Calling Bell",
     "FLAVOR": "This dark iron bell rang 3 times when you found it, but now stays silent.",
     "DESCRIPTIONS": [
-      "Upon pickup, obtain a random #rCurse and #b3 relics.",
+      "Upon pickup, obtain a random #rCurse and #b3 relics. NL Discard relic after use.",
       "The Bell Tolls...",
       "Skip Rewards",
       "Close"
@@ -180,7 +180,7 @@
     "NAME": "Empty Cage",
     "FLAVOR": "\"How unusual to cage that which you worship.\" - Ranwid",
     "DESCRIPTIONS": [
-      "Upon pickup, remove #b2 cards from your deck.",
+      "Upon pickup, remove #b2 cards from your deck. NL Discard relic after use.",
       "Choose 2 Cards to Remove."
     ]
   },
@@ -188,7 +188,7 @@
     "NAME": "Enchiridion",
     "FLAVOR": "The legendary journal of an ancient lich.",
     "DESCRIPTIONS": [
-      "Upon pickup, choose one of #b5 rare cards to add to your deck.",
+      "Upon pickup, choose one of #b5 rare cards to add to your deck. NL Discard relic after use.",
       "Add a card to your deck."
     ]
   },
@@ -312,14 +312,14 @@
     "NAME": "Mercury Hourglass",
     "FLAVOR": "An enchanted hourglass that endlessly drips.",
     "DESCRIPTIONS": [
-      "On a #b1 or #b2, deal #b1 damage to ALL enemies."
+      "On a #b1 or #b2, deal #b1 damage to any row."
     ]
   },
   "BGMolten Egg 2": {
     "NAME": "Molten Egg",
     "FLAVOR": "The egg of a Phoenix. It glows red hot with a simmering lava.",
     "DESCRIPTIONS": [
-      "The next 3 times you add an #yAttack into your deck, #yUpgrade it."
+      "The next 3 times you add an #yAttack into your deck, #yUpgrade it. NL Discard relic after use."
     ]
   },
   "BGMummified Hand": {
@@ -349,14 +349,14 @@
     "NAME": "Nilry's Codex",
     "FLAVOR": "Crafted by the infamous game master himself. Said to expand one's mind.",
     "DESCRIPTIONS": [
-      "On a #b2, draw #b1 card. NL On a #b4, trigger a #b2 die ability."
+      "On a #b2, draw #b1 card. NL On a #b4, trigger a #b2 die ability. Its owner gains the effect."
     ]
   },
   "BGOddly Smooth Stone": {
     "NAME": "Oddly Smooth Stone",
     "FLAVOR": "You have never seen something so smooth and pristine. This must be the work of the Ancients.",
     "DESCRIPTIONS": [
-      "On a #b4, gain #b2 #yBlock."
+      "On a #b4, apply #b2 #yBlock to any player."
     ]
   },
   "BGOld Coin": {
@@ -370,7 +370,7 @@
     "NAME": "Old Coin (Discarded)",
     "FLAVOR": "Unique coins are highly valued by merchants for their historical value and rare metallic composition.",
     "DESCRIPTIONS": [
-      "If this appears at The Merchant or The Courier, discard it and draw again."
+      "Old Coin was drawn at The Merchant or The Courier and subsequently discarded."
     ]
   },
   "BGOmamori": {
@@ -394,7 +394,7 @@
     "NAME": "Orrery",
     "FLAVOR": "\"Once you understand the universe...\" - Zoroth",
     "DESCRIPTIONS": [
-      "Upon pickup, choose and add #b4 cards to your deck.",
+      "Upon pickup, choose and add #b4 cards to your deck. NL Discard relic after use.",
       "Knowledge!"
     ]
   },
@@ -402,7 +402,7 @@
     "NAME": "Pandora's Box",
     "FLAVOR": "You have a bad feeling about opening this.",
     "DESCRIPTIONS": [
-      "Upon pickup, #yTransform #b3 cards.",
+      "Upon pickup, #yTransform #b3 cards. NL Discard relic after use.",
       "Pandora's Box has been opened...",
       "Choose 3 cards for "
     ]
@@ -524,7 +524,7 @@
     "DESCRIPTIONS": [
       "Upon pickup, obtain #b1 potion. NL Gain #b",
       " #yGold.",
-      " NL Obtain #b1 card. NL Upgrade #b1 card.",
+      " NL Obtain #b1 card. NL Upgrade #b1 card. NL Discard relic after use.",
       "Tiny House!"
     ]
   },
@@ -532,14 +532,14 @@
     "NAME": "Toxic Egg",
     "FLAVOR": "\"What a marvelous discovery! This appears to be the inert egg of some magical creature. Who or what created this?\" - Ranwid",
     "DESCRIPTIONS": [
-      "The next 3 times you add a #ySkill into your deck, #yUpgrade it."
+      "The next 3 times you add a #ySkill into your deck, #yUpgrade it. NL Discard relic after use."
     ]
   },
   "BGTungstenRod": {
     "NAME": "Tungsten Rod",
     "FLAVOR": "It's very very heavy.",
     "DESCRIPTIONS": [
-      "On a #b5, gain #b3 #yBlock."
+      "On a #b5, ALL players gain #b1 #yBlock. NL (If solo, instead gain #b3 #yBlock.)"
     ]
   },
   "BGVajra": {
@@ -553,7 +553,7 @@
     "NAME": "War Paint",
     "FLAVOR": "In the past, Ironclads would create wards using enchanted war paint before charging into battle.",
     "DESCRIPTIONS": [
-      "#yUpgrade a Defend and another #ySkill. NL Single-use. Can't be used in combat or while otherwise occupied.",
+      "#yUpgrade a Defend and another #ySkill. NL Single-use. Can't be used in combat or while otherwise occupied. NL Discard relic after use.",
       "Choose 1 Skill to upgrade."
     ]
   },
@@ -561,7 +561,7 @@
     "NAME": "Whetstone",
     "FLAVOR": "\"Flesh never beats steel.\" - Kublai the Great",
     "DESCRIPTIONS": [
-      "#yUpgrade a Strike and another #yAttack. NL Single-use. Can't be used in combat or while otherwise occupied.",
+      "#yUpgrade a Strike and another #yAttack. NL Single-use. Can't be used in combat or while otherwise occupied. NL Discard relic after use.",
       "Choose 1 Attack to upgrade."
     ]
   },
@@ -577,7 +577,7 @@
     "NAME": "Wing Boots",
     "FLAVOR": "Stylish.",
     "DESCRIPTIONS": [
-      "You may ignore paths when choosing the next room to travel to #b3 times."
+      "You may ignore paths when choosing the next room to travel to #b3 times. NL Discard relic after use."
     ]
   },
   "BGWristBlade": {

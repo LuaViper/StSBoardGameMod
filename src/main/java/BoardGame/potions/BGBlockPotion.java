@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 
 public class BGBlockPotion extends AbstractPotion {
-    private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString("Block Potion");
+    private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString("BoardGame:BGBlock Potion");
 
     public static final String POTION_ID = "BGBlock Potion";
 

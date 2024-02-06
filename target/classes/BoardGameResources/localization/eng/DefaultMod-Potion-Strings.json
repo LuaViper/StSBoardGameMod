@@ -3,6 +3,13 @@
         "NAME": "Placeholder Potion",
         "DESCRIPTIONS": ["Gain ", " At the end of your turn, lose ", " Strength."]
 },
+"BoardGame:BGBlock Potion": {
+        "NAME": "Block Potion",
+        "DESCRIPTIONS": [
+                "Apply #b",
+                " #yBlock to any player."
+        ]
+},
 "BoardGame:BGBloodPotion": {
         "NAME": "Blood Potion",
         "DESCRIPTIONS": [
@@ -13,6 +20,13 @@
         "NAME": "Elixir",
         "DESCRIPTIONS": [
                 "#yExhaust up to #b3 cards in your hand."
+        ]
+},
+"BoardGame:BGExplosive Potion": {
+        "NAME": "Explosive Potion",
+        "DESCRIPTIONS": [
+                "Deal #b",
+                " damage to any row."
         ]
 },
 "BoardGame:BGFairyPotion": {
