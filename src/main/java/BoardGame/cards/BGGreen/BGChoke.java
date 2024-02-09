@@ -25,12 +25,12 @@ public class BGChoke extends AbstractBGCard {
 
     static Logger logger = LogManager.getLogger(BGChoke.class.getName());
     public BGChoke() {
-        super("Choke", cardStrings.NAME, "green/attack/choke", 2, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, BGSilent.Enums.BG_GREEN, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.ENEMY);
+        super("BGChoke", cardStrings.NAME, "green/attack/choke", 2, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, BGSilent.Enums.BG_GREEN, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.ENEMY);
 
 
 
-        this.baseDamage = 0;
-        this.baseMagicNumber = 3;
+        this.baseDamage = 3;
+        this.baseMagicNumber = 1;
         this.magicNumber = this.baseMagicNumber;
     }
 
@@ -53,45 +53,42 @@ public class BGChoke extends AbstractBGCard {
         //logger.info("Choke use");
         this.target=m;
         addToBot((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_HEAVY));
-        if(this.target!=null) {
-            this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
-        }else{
-            this.rawDescription = cardStrings.DESCRIPTION;
-        }
-        initializeDescription();
+//        if(this.target!=null) {
+//            this.rawDescription = cardStrings.DESCRIPTION;
+//        }
+//        initializeDescription();
     }
 
     public void applyPowers() {
-        //logger.info("Choke applyPowers");
-        this.baseDamage = this.magicNumber;
-        baseDamage+=countTargetDebuffs(this.target);
-        //logger.info("baseDamage was changed to "+baseDamage);
+        int realBaseDamage = this.baseDamage;
+        //this.baseDamage += this.magicNumber * 0;
+
         super.applyPowers();
-        if(this.target!=null) {
-            this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
-        }else{
-            this.rawDescription = cardStrings.DESCRIPTION;
-        }
-        initializeDescription();
+
+        this.baseDamage = realBaseDamage;
+
+        this.isDamageModified = (this.damage != this.baseDamage);
+
+
     }
 
 
     public void calculateCardDamage(AbstractMonster mo) {
-        //logger.info("Choke calculateCardDamage");
-        this.target=mo;
+        int realBaseDamage = this.baseDamage;
+        this.baseDamage += this.magicNumber * countTargetDebuffs(mo);
+
         super.calculateCardDamage(mo);
-        if(this.target!=null) {
-            this.rawDescription = cardStrings.DESCRIPTION + cardStrings.EXTENDED_DESCRIPTION[0];
-        }else{
-            this.rawDescription = cardStrings.DESCRIPTION;
-        }
-        initializeDescription();
+
+        this.baseDamage = realBaseDamage;
+
+        this.isDamageModified = (this.damage != this.baseDamage);
+
     }
 
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeMagicNumber(1);
+            upgradeDamage(1);
         }
         this.rawDescription = cardStrings.DESCRIPTION;
         initializeDescription();

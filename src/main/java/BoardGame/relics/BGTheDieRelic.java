@@ -25,6 +25,7 @@ import org.apache.logging.log4j.Logger;
 import static BoardGame.BoardGame.makeRelicOutlinePath;
 import static BoardGame.BoardGame.makeRelicPath;
 
+//TODO: if we roll a 6, don't allow Incense Burner to be triggered a second time
 public class BGTheDieRelic extends CustomRelic implements DieControlledRelic {
     public static final String ID = BoardGame.makeID("BGTheDieRelic");
     private static final Texture IMG = TextureLoader.getTexture(makeRelicPath("BGloadedDie.png"));
@@ -139,7 +140,7 @@ public class BGTheDieRelic extends CustomRelic implements DieControlledRelic {
     @Override
     public void onRightClick() {// On right click
         if (!isObtained || !isPlayerTurn ) {
-            // If it has been used this turn, the player doesn't actually have the relic (i.e. it's on display in the shop room), or it's the enemy's turn
+            // If it has been used this turn, or the player doesn't actually have the relic (i.e. it's on display in the shop room), or it's the enemy's turn
             return; // Don't do anything.
         }
         //final Logger logger = LogManager.getLogger(BoardGame.class.getName());

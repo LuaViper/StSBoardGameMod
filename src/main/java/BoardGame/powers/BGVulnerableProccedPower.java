@@ -52,8 +52,9 @@ public class BGVulnerableProccedPower extends AbstractBGPower {//optional: "impl
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
         //if monster, wears off after card resolves
         //be careful when using with "slow" cards -- damage action must go on top of stack
-        addToBot((AbstractGameAction) new ReducePowerAction(this.owner, this.owner, "BGVulnerable", 1));
-        addToBot((AbstractGameAction) new RemoveSpecificPowerAction(this.owner, this.owner, "VulnerableProcced"));
+        addToTop((AbstractGameAction) new RemoveSpecificPowerAction(this.owner, this.owner, "VulnerableProcced"));
+        addToTop((AbstractGameAction) new ReducePowerAction(this.owner, this.owner, "BGVulnerable", 1));
+
     }
 
     public void updateDescription() {

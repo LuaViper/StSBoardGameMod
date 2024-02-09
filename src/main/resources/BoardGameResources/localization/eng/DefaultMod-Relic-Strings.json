@@ -356,7 +356,7 @@
     "NAME": "Oddly Smooth Stone",
     "FLAVOR": "You have never seen something so smooth and pristine. This must be the work of the Ancients.",
     "DESCRIPTIONS": [
-      "On a #b4, apply #b2 #yBlock to any player."
+      "On a #b4, #b2 #yBlock to any player."
     ]
   },
   "BGOld Coin": {
@@ -477,7 +477,7 @@
     "NAME": "Shivs",
     "FLAVOR": "It's like bringing a knife to a card fight.",
     "DESCRIPTIONS": [
-      "Holds Shivs* generated during combat. #bRight-Click to use them."
+      "Holds tokens generated during combat. #bRight-Click to use them to #yAttack for #b1 damage."
     ]
   },
   "BGSnecko Eye": {

@@ -19,6 +19,7 @@ public class BGTungstenRod
         super("BGTungstenRod", "tungsten.png", AbstractRelic.RelicTier.COMMON, AbstractRelic.LandingSound.SOLID);
     }
     public int getPrice() {return 8;}
+    //TODO: 3 Block solo, 1 AOE Block in a group
     public String getQuickSummary(){if(TheDie.monsterRoll==5)return "3 #yBlock";
     else return "";}
     private static final int AMT = 3;

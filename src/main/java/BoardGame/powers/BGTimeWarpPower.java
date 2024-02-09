@@ -1,6 +1,7 @@
 package BoardGame.powers;
 
 import BoardGame.BoardGame;
+import BoardGame.cards.BGColorless.BGFakeShiv;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
@@ -63,9 +64,11 @@ public class BGTimeWarpPower extends AbstractBGPower {
 
 
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
-        flashWithoutSound();
-        this.amount--;
-        updateDescription();
+        if(!(card instanceof BGFakeShiv)){
+            flashWithoutSound();
+            this.amount--;
+            updateDescription();
+        }
     }
 
 //    @Override

@@ -38,10 +38,7 @@
   },
   "BoardGame:BGChoke": {
     "NAME": "Choke",
-    "DESCRIPTION": "Deals damage equal to !M! plus the target's combined boardgame:Weak and boardgame:Poison.",
-    "EXTENDED_DESCRIPTION": [
-      " NL (Deals !D! damage.)"
-    ]
+    "DESCRIPTION": "Deal !D! damage. NL Deals !M! additional damage for each boardgame:Weak and boardgame:Poison on the target."
   },
   "BoardGame:BGClothesline": {
     "NAME": "Clothesline",
@@ -62,12 +59,12 @@
   "BoardGame:BGDefend_G": {
     "NAME": "Defend",
     "DESCRIPTION": "Gain !B! Block.",
-    "UPGRADE_DESCRIPTION": "Apply !B! Block to any player."
+    "UPGRADE_DESCRIPTION": "!B! Block to any player."
   },
   "BoardGame:BGDefend_R": {
     "NAME": "Defend",
     "DESCRIPTION": "Gain !B! Block.",
-    "UPGRADE_DESCRIPTION": "Apply !B! Block to any player."
+    "UPGRADE_DESCRIPTION": "!B! Block to any player."
   },
   "BoardGame:BGDisarm": {
     "NAME": "Disarm",
@@ -97,6 +94,11 @@
     "DESCRIPTION": "Double your Block. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Double your Block."
   },
+  "BoardGame:BGFakeShiv": {
+    "NAME": "Shiv",
+    "DESCRIPTION": "For debug purposes only. NL In the Board Game, Shivs are tokens, not cards.",
+    "UPGRADE_DESCRIPTION": "For debug purposes only. NL You can't upgrade Shivs in the Board Game."
+  },
   "BoardGame:BGFeed": {
     "NAME": "Feed",
     "DESCRIPTION": "Deal !D! damage. NL If Fatal, gain !M! Strength. Exhaust."
@@ -120,6 +122,11 @@
     "DESCRIPTION": "Gain !M! Strength. NL At the end of this turn, lose !M! Strength. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Gain !M! Strength. NL At the end of this turn, lose !M! Strength."
   },
+  "BoardGame:BGFootwork": {
+    "NAME": "Footwork",
+    "DESCRIPTION": "Gain !M! boardgame:Dexterity.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Gain !M! boardgame:Dexterity."
+  },
   "BoardGame:BGGhostly": {
     "NAME": "Apparition",
     "DESCRIPTION": "Ethereal. NL You can't lose more than 1 HP this turn. NL Exhaust.",
@@ -127,11 +134,11 @@
   },
   "BoardGame:BGGhostly Armor": {
     "NAME": "Ghostly Armor",
-    "DESCRIPTION": "Ethereal. NL Apply !B! Block to any player."
+    "DESCRIPTION": "Ethereal. NL !B! Block to any player."
   },
   "BoardGame:BGGood Instincts": {
     "NAME": "Good Instincts",
-    "DESCRIPTION": "Apply !B! Block to any player."
+    "DESCRIPTION": "!B! Block to any player."
   },
   "BoardGame:BGGremlinHornDrawACard": {
     "NAME": "Versatility",
@@ -157,6 +164,11 @@
     "NAME": "Immolate",
     "DESCRIPTION": "Deal !D! damage to any row. NL Put 2 *Dazed on top of your draw pile."
   },
+  "BoardGame:BGInfinite Blades": {
+    "NAME": "Infinite Blades",
+    "DESCRIPTION": "At the start of your turn, gain !M! boardgame:Shiv.",
+    "UPGRADE_DESCRIPTION": "At the start of your turn, gain !M! boardgame:Shivs."
+  },
   "BoardGame:BGIron Wave": {
     "NAME": "Iron Wave",
     "DESCRIPTION": "Deal !D! damage. NL Gain !B! Block.",
@@ -174,10 +186,17 @@
     "NAME": "Juggernaut",
     "DESCRIPTION": "Whenever you gain Block, deal !M! damage."
   },
+  "BoardGame:BGLeg Sweep": {
+    "NAME": "Leg Sweep",
+    "DESCRIPTION": "Gain !B! Block. NL Apply !M! boardgame:Weak."
+  },
   "BoardGame:BGMadness": {
-    "NAME": "Madness",
-    "DESCRIPTION": "The next card you play this turn costs 0. NL Exhaust.",
+    "NAME": "Madness",    "DESCRIPTION": "The next card you play this turn costs 0. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Retain. NL The next card you play this turn costs 0. NL Exhaust."
+  },
+  "BoardGame:BGMasterful Stab": {
+    "NAME": "Masterful Stab",
+    "DESCRIPTION": "Costs [G] [G] NL if you lost HP this combat. NL Deal !D! damage."
   },
   "BoardGame:BGMayhem": {
     "NAME": "Mayhem",
@@ -195,6 +214,11 @@
     "NAME": "Neutralize",
     "DESCRIPTION": "Deal !D! damage. NL Apply !M! boardgame:Weak."
   },
+  "BoardGame:BGNoxiousFumes": {
+    "NAME": "Noxious Fumes",
+    "DESCRIPTION": "At the start of your turn, apply 1 boardgame:Poison.",
+    "UPGRADE_DESCRIPTION": "At the start of your turn, apply 1 boardgame:Poison to any row."
+  },
   "BoardGame:BGOffering": {
     "NAME": "Offering",
     "DESCRIPTION": "Lose 1 HP. NL Gain [R] [R]. NL Draw !M! cards. NL Exhaust.",
@@ -204,6 +228,10 @@
     "NAME": "Panacea",
     "DESCRIPTION": "Retain. NL Remove all boardgame:Weak and boardgame:Vulnerable from any player. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Retain. NL Remove all boardgame:Weak and boardgame:Vulnerable from ALL players. NL Exhaust."
+  },
+  "BoardGame:BGPain": {
+    "NAME": "Pain",
+    "DESCRIPTION": "Unplayable. NL If 2 or fewer cards are in your hand at the end of your turn, lose 1 HP."
   },
   "BoardGame:BGPanache": {
     "NAME": "Panache",
@@ -218,13 +246,13 @@
     "DESCRIPTION": "Deal !D! damage. NL Deals !M! additional damage for each other card in your hand containing \"Strike\".",
     "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Deals !M! additional damage for each other card in your hand containing \"Strike\"."
   },
-  "BoardGame:BGPain": {
-    "NAME": "Pain",
-    "DESCRIPTION": "Unplayable. NL If 2 or fewer cards are in your hand at the end of your turn, lose 1 HP."
-  },
   "BoardGame:BGPower Through": {
     "NAME": "Power Through",
-    "DESCRIPTION": "Apply !B! Block to any player. NL Put a *Dazed on top of your draw pile."
+    "DESCRIPTION": "!B! Block to any player. NL Put a *Dazed on top of your draw pile."
+  },
+  "BoardGame:BGPredator": {
+    "NAME": "Predator",
+    "DESCRIPTION": "Deal !D! damage. NL Any player draws !M! cards."
   },
   "BoardGame:BGRage": {
     "NAME": "Rage",
@@ -249,8 +277,13 @@
   },
   "BoardGame:BGSentinel": {
     "NAME": "Sentinel",
-    "DESCRIPTION": "Apply !B! Block to any player. NL If this card is Exhausted, NL gain [R] [R].",
-    "UPGRADE_DESCRIPTION": "Apply !B! Block to any player. NL If this card is Exhausted, NL gain [R] [R] [R]."
+    "DESCRIPTION": "!B! Block to any player. NL If this card is Exhausted, NL gain [R] [R].",
+    "UPGRADE_DESCRIPTION": "!B! Block to any player. NL If this card is Exhausted, NL gain [R] [R] [R]."
+  },
+  "BoardGame:BGSetup": {
+    "NAME": "Setup",
+    "DESCRIPTION": "[G] to any player. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "[G] [G] to any player. NL Exhaust."
   },
   "BoardGame:BGSever Soul": {
     "NAME": "Sever Soul",
@@ -293,8 +326,8 @@
   },
   "BoardGame:BGTrue Grit": {
     "NAME": "True Grit",
-    "DESCRIPTION": "Apply !B! Block to any player. NL Exhaust 1 card.",
-    "UPGRADE_DESCRIPTION": "Apply !B! Block to any player. NL Exhaust 1 card."
+    "DESCRIPTION": "!B! Block to any player. NL Exhaust 1 card.",
+    "UPGRADE_DESCRIPTION": "!B! Block to any player. NL Exhaust 1 card."
   },
   "BoardGame:BGTwin Strike": {
     "NAME": "Twin Strike",

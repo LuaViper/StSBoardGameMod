@@ -34,6 +34,13 @@
     "DESCRIPTION": "Vulnerable creatures take #b100% more damage from the next Attack."
   },
   {
+    "PROPER_NAME": "Dexterity",
+    "NAMES": [
+      "dexterity"
+    ],
+    "DESCRIPTION": "Dexterity improves Block applied by your cards."
+  },
+  {
     "PROPER_NAME": "Weak",
     "NAMES": [
       "Weak (BG)",
@@ -62,6 +69,14 @@
       "poisoned"
     ],
     "DESCRIPTION": "Poisoned creatures lose HP at the start of their turn."
+  },
+  {
+    "PROPER_NAME": "Shivs",
+    "NAMES": [
+      "shiv",
+      "shivs"
+    ],
+    "DESCRIPTION": "Shivs are tokens that may be used whenever you could play a card to Attack for #y1 damage."
   },
   {
     "NAMES": [

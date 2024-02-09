@@ -109,7 +109,7 @@
         "NAME": "Curiosity",
         "DESCRIPTIONS": [
                 "Attacks deal #b",
-                " additional damage for each Power card in play. Ignores the Strength cap and physical token limits."
+                " additional damage to each player for each Power card they have in play. Ignores the Strength cap and physical token limits."
         ]
 },
 "BoardGame:Curl Up": {
@@ -119,6 +119,14 @@
                 " #yBlock. (Once per combat)"
         ]
 },
+        "BoardGame:BGDexterity": {
+                "NAME": "Dexterity",
+                "DESCRIPTIONS": [
+                        "Increases #yBlock applied by cards by #b",
+                        "Decreases #yBlock applied by cards by #b",
+                        "."
+                ]
+        },
 "BoardGame:BGDouble Attack": {
         "NAME": "Double Attack",
         "DESCRIPTIONS": [
@@ -150,6 +158,14 @@
                         " cards you play this turn cost 0."
                 ]
         },
+        "BoardGame:BGInfinite Blades": {
+                "NAME": "Infinite Blades",
+                "DESCRIPTIONS": [
+                        "At the start of your turn, gain #b",
+                        " #yShivs.",
+                        " #yShiv."
+                ]
+        },
 "BoardGame:Instant Rebound": {
         "NAME": "Instant Rebound",
         "DESCRIPTIONS": [
@@ -158,12 +174,29 @@
                 " cards you play this turn are placed on top of your draw pile."
         ]
 },
+        "BoardGame:BGIntangible": {
+                "NAME": "Invincible",
+                "DESCRIPTIONS": [
+                        "Can only lose #b",
+                        " more HP this turn.",
+                        "Can no longer be harmed this turn."
+                ]
+        },
 "BoardGame:BGIntangiblePower": {
         "NAME": "Intangible",
         "DESCRIPTIONS": [
                 "Reduce ALL damage taken and HP loss to #b0 this turn. #yIntangible is reapplied every other turn."
         ]
 },
+
+        "BoardGame:BGInvinciblePower": {
+                "NAME": "Invincible",
+                "DESCRIPTIONS": [
+                        "Can only lose #b",
+                        " more HP. NL Immune to Weak.",
+                        "Can no longer be harmed. NL Immune to Weak."
+                ]
+        },
 "BoardGame:Juggernaut": {
         "NAME": "Juggernaut",
         "DESCRIPTIONS": [
@@ -187,6 +220,14 @@
                         "If its #yBlock is broken, changes to a defensive mode."
                 ]
         },
+        "BoardGame:BGNoxiousFumes": {
+                "NAME": "Noxious Fumes",
+                "DESCRIPTIONS": [
+                        "At the start of your turn, apply #b",
+                        " #yPoison.",
+                        " #yPoison to any row."
+                ]
+        },
         "BoardGame:BGPanachePower": {
                 "NAME": "Panache",
                 "DESCRIPTIONS": [
@@ -200,22 +241,14 @@
                         "On death, will split into #b3 smaller slimes."
                 ]
         },
-"BoardGame:BGIntangible": {
-        "NAME": "Invincible",
-        "DESCRIPTIONS": [
-                "Can only lose #b",
-                " more HP this turn.",
-                "Can no longer be harmed this turn."
-        ]
-},
-"BoardGame:BGInvinciblePower": {
-        "NAME": "Invincible",
-        "DESCRIPTIONS": [
-                "Can only lose #b",
-                " more HP. NL Immune to Weak.",
-                "Can no longer be harmed. NL Immune to Weak."
-        ]
-},
+
+
+        "BoardGame:BGOneTurnRetain Cards": {
+                "NAME": "Runic Pyramid",
+                "DESCRIPTIONS": [
+                        "Retain any number of cards this turn."
+                ]
+        },
 "BoardGame:BGOrbWalkerPower": {
         "NAME": "",
         "DESCRIPTIONS": [
@@ -229,12 +262,14 @@
                 "When you lose HP from this enemy's attacks, put 1 #yDazed on top of your draw pile."
         ]
 },
-"BoardGame:BGOneTurnRetain Cards": {
-        "NAME": "Runic Pyramid",
-        "DESCRIPTIONS": [
-                "Retain any number of cards this turn."
-        ]
-},
+        "BoardGame:BGPoison": {
+                "NAME": "Poison",
+                "DESCRIPTIONS": [
+                        "At the start of your turn, lose #b",
+                        " HP.",
+                        "At the start of its turn, loses #b"
+                ]
+        },
         "BoardGame:BGSpiker": {
                 "NAME": "Sharp Hide",
                 "DESCRIPTIONS": [

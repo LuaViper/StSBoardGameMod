@@ -34,6 +34,8 @@ public abstract class AbstractBGCard extends CustomCard {
     public AbstractBGCard copiedCard=null;
     public int copiedCardEnergyOnUse=-99;
 
+    public boolean cannotBeCopied=false;
+
     public AbstractBGCard(final String id,
                           final String name,
                           final String img,

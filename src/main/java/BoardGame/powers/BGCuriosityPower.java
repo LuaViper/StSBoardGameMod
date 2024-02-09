@@ -35,6 +35,8 @@ public class BGCuriosityPower extends AbstractBGPower {
         if (card.type == AbstractCard.CardType.POWER) {
             flash();
             addToBot((AbstractGameAction)new ApplyPowerAction(this.owner, this.owner, new BGUncappedStrengthPower(this.owner, this.amount), this.amount));
+            //TODO: Curiosity won't work in multiplayer as currently implemented
+            //TODO: Even as currently implemented, Curiosity doesn't decrease when a power card is moved to the exhaust pile
         }
     }
 }

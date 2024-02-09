@@ -48,7 +48,7 @@ public class BGMummifiedHand
     public void onRightClick() {// On right click
         logger.info("BGMummifiedHand.onRightClick "+isObtained+ " "+usedThisTurn+" "+isPlayerTurn+" "+powerCardUsedThisTurn );
         if (!isObtained || usedThisTurn || !isPlayerTurn || !powerCardUsedThisTurn) {
-            // If it has been used this turn, the player doesn't actually have the relic (i.e. it's on display in the shop room), or it's the enemy's turn
+            // If it has been used this turn, or the player doesn't actually have the relic (i.e. it's on display in the shop room), or it's the enemy's turn
             return; // Don't do anything.
         }
 

@@ -6,7 +6,7 @@
 "BoardGame:BGBlock Potion": {
         "NAME": "Block Potion",
         "DESCRIPTIONS": [
-                "Apply #b",
+                "#b",
                 " #yBlock to any player."
         ]
 },

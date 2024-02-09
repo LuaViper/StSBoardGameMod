@@ -52,7 +52,7 @@ public class BGSelfFormingClay extends AbstractBGRelic implements ClickableRelic
     @Override
     public void onRightClick() {// On right click
         if (!isObtained || usedThisTurn || !isPlayerTurn || !lostHPThisCombat) {
-            // If it has been used this turn, the player doesn't actually have the relic (i.e. it's on display in the shop room), or it's the enemy's turn
+            // If it has been used this turn, or the player doesn't actually have the relic (i.e. it's on display in the shop room), or it's the enemy's turn
             return; // Don't do anything.
         }
 

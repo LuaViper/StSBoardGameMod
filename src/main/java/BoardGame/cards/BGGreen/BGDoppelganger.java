@@ -104,7 +104,10 @@ public class BGDoppelganger extends AbstractBGCard {
     @SpirePatch2(clz = UseCardAction.class,method= SpirePatch.CONSTRUCTOR,paramtypez={AbstractCard.class, AbstractCreature.class})
     public static class UseCardActionPatch {
         @SpirePrefixPatch public static void Prefix(AbstractCard card, AbstractCreature target) {
-            //TODO: cards with cannotBeCopied cannot be copied
+            //TODO: most uncopyable cards haven't been flagged cannotBeCopied yet (only BGFakeShiv atm)
+            if(card instanceof AbstractBGCard)
+                if(((AbstractBGCard)card).cannotBeCopied)
+                    return;
             //TODO: copies cannot be copied
             BoardGame.logger.info("Adding "+card.name+" to the Doppelganger stack...");
             cardsPlayedThisTurn.add(card);

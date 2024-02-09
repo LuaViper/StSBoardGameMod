@@ -170,7 +170,7 @@ public class BGWeakPower extends AbstractBGPower {
             //logger.info("BGWeakPower: player onAfterUseCard");
             if (card.type == AbstractCard.CardType.ATTACK) {
                 //logger.info("BGWeakPower: played an ATTACK");
-                addToBot((AbstractGameAction) new ReducePowerAction(this.owner, this.owner, "BGWeakened", 1));
+                addToTop((AbstractGameAction) new ReducePowerAction(this.owner, this.owner, "BGWeakened", 1));
             }
         }
         final Logger logger = LogManager.getLogger(BoardGame.class.getName());
@@ -181,7 +181,7 @@ public class BGWeakPower extends AbstractBGPower {
     public void onInitialApplication() {
         //TODO: if possible, don't apply the power in the first place (requires a very specific insert patch)
         if(this.owner.hasPower("BGInvinciblePower")){
-            addToBot((AbstractGameAction) new RemoveSpecificPowerAction(this.owner, this.owner, "BGWeakened"));
+            addToTop((AbstractGameAction) new RemoveSpecificPowerAction(this.owner, this.owner, "BGWeakened"));
         }
     }
 }
