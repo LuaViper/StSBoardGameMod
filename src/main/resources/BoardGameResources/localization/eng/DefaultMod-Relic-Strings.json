@@ -200,7 +200,7 @@
     ]
   },
   "BGFrozenCore": {
-    "NAME": "Frozen Core (NYI)",
+    "NAME": "Frozen Core",
     "FLAVOR": "The crack in your core has been filled with a pulsating cold energy.",
     "DESCRIPTIONS": [
       "At the end of your turn, gain #b1 #yBlock."
@@ -293,11 +293,12 @@
       ""
     ]
   },
-  "BGMark of Pain (NYI - breaks campfire healing)": {
+  "BGMarkOfPain": {
     "NAME": "Mark of Pain",
     "FLAVOR": "This brand was used by the northern tribes to signify warriors who had mastered pain in battle.",
     "DESCRIPTIONS": [
-      "Gain [E] at the start of your turn. Your Max HP is #b6."
+      " at the start of your turn. Your Max HP is #b6.",
+      "Gain [E]"
     ]
   },
   "BGMeat on the Bone": {
@@ -519,12 +520,29 @@
     ]
   },
   "BGTiny House": {
-    "NAME": "Tiny House (NYI)",
+    "NAME": "Tiny House",
     "FLAVOR": "\"A near perfect implementation of miniaturization. My finest work to date, but still not adequate.\" - The Architect",
     "DESCRIPTIONS": [
-      "Upon pickup, obtain #b1 potion. NL Gain #b",
+      "Upon pickup, obtain #b1 card. NL Obtain #b1 potion. NL Gain #b",
       " #yGold.",
-      " NL Obtain #b1 card. NL Upgrade #b1 card. NL Discard relic after use.",
+      " NL Upgrade #b1 card. NL Discard relic after use.",
+      "Tiny House!"
+    ]
+  },
+  "BGTheBoot": {
+    "NAME": "The Boot",
+    "FLAVOR": "When wound up, the boot grows larger in size.",
+    "DESCRIPTIONS": [
+      "On a #b4, #b5, or #b6, deal 1 damage."
+    ]
+  },
+  "BGUpgrade1Card": {
+    "NAME": "Upgrade 1 card",
+    "FLAVOR": "This is not a real relic. You're not supposed to be reading this.",
+    "DESCRIPTIONS": [
+      "Upon pickup, upgrade #b1 card. NL Discard relic after use.",
+      "",
+      "",
       "Tiny House!"
     ]
   },
@@ -566,7 +584,7 @@
     ]
   },
   "BGWhite Beast Statue": {
-    "NAME": "White Beast Statue (NYI)",
+    "NAME": "White Beast Statue",
     "FLAVOR": "A small white statue of a creature you have never seen before.",
     "DESCRIPTIONS": [
       "At the end of combat, obtain a(n additional) Potion.",

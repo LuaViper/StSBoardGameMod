@@ -18,6 +18,8 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
+//TODO: Shame eats Metallicize -- it probably shouldn't
+
 public class BGShame extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGShame");
     public static final String ID = "BGShame";

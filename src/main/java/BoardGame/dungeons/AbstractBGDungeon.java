@@ -1,5 +1,6 @@
 package BoardGame.dungeons;
 
+import BoardGame.BoardGame;
 import BoardGame.cards.BGGoldenTicket;
 import BoardGame.cards.BGCurse.*;
 import BoardGame.characters.AbstractBGCharacter;
@@ -237,6 +238,10 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                 }
                 if (ModHelper.isModEnabled("Binary")) {
                     numCards--;
+                }
+                if(AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss && CardCrawlGame.dungeon instanceof BGTheBeyond){
+                    //no card drops allowed in act3 boss room
+                    numCards = 0;
                 }
                 boolean rare=false;
                 if((getCurrRoom() instanceof MonsterRoomBoss) || AbstractBGDungeon.forceRareRewards==true)
@@ -481,11 +486,13 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
             paramtypez = {})
     public static class addPotionToRewardsPatch {
         @SpirePrefixPatch
-        public static SpireReturn<Void> addGoldToRewards(AbstractRoom __instance) {
+        public static SpireReturn<Void> addPotionToRewards(AbstractRoom __instance) {
             boolean potion=false;
             String encounter="";
+            //BoardGame.logger.info("addPotionToRewardsPatch...");
             if(__instance instanceof MonsterRoomBoss){
-                encounter="NO POTION";
+                //BoardGame.logger.info("...MonsterRoomBoss...");
+                encounter = "NO POTION";
             }else if(__instance instanceof MonsterRoomElite){
                 encounter = AbstractDungeon.eliteMonsterList.get(0);
             }else if(__instance instanceof MonsterRoom) {
@@ -495,6 +502,11 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                 potion=MonsterGroupRewardsList.rewards.get(encounter).potion;
             }
             if(potion){
+                CardCrawlGame.metricData.potions_floor_spawned.add(Integer.valueOf(AbstractDungeon.floorNum));
+                __instance.rewards.add(new RewardItem(AbstractDungeon.returnRandomPotion()));
+            }
+            if(AbstractDungeon.player.hasRelic("BGWhite Beast Statue")){
+                //BoardGame.logger.info("...BGWhite Beast Statue...");
                 CardCrawlGame.metricData.potions_floor_spawned.add(Integer.valueOf(AbstractDungeon.floorNum));
                 __instance.rewards.add(new RewardItem(AbstractDungeon.returnRandomPotion()));
             }

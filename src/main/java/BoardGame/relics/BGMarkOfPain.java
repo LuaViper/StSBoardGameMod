@@ -1,22 +1,18 @@
 package BoardGame.relics;
 
-import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-
-
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
 import com.megacrit.cardcrawl.ui.campfire.SmithOption;
 
-public class BGFusionHammer extends AbstractBGRelic  {
-    public static final String ID = "BGFusion Hammer";
+public class BGMarkOfPain extends AbstractBGRelic  {
+    public static final String ID = "BGMarkOfPain";
 
-    public BGFusionHammer() {
-        super("BGFusion Hammer", "burnHammer.png", AbstractRelic.RelicTier.BOSS, AbstractRelic.LandingSound.HEAVY);
+    public BGMarkOfPain() {
+        super("BGMarkOfPain", "mark_of_pain.png", RelicTier.BOSS, LandingSound.MAGICAL);
     }
-
 
     public String getUpdatedDescription() {
         if (AbstractDungeon.player != null) {
@@ -27,7 +23,6 @@ public class BGFusionHammer extends AbstractBGRelic  {
 
 
     private String setDescription(AbstractPlayer.PlayerClass c) {
-        //TODO: relics don't show player-specific energy symbol, is this fixable?
         return this.DESCRIPTIONS[1] + this.DESCRIPTIONS[0];
     }
 
@@ -42,26 +37,19 @@ public class BGFusionHammer extends AbstractBGRelic  {
 
     public void onEquip() {
         AbstractDungeon.player.energy.energyMaster++;
+        AbstractDungeon.player.maxHealth=6;
+        if (AbstractDungeon.player.currentHealth > AbstractDungeon.player.maxHealth)
+            AbstractDungeon.player.currentHealth = AbstractDungeon.player.maxHealth;
     }
 
 
     public void onUnequip() {
         AbstractDungeon.player.energy.energyMaster--;
+        //TODO LATER: maybe also restore original max HP (not a high priority as BG boss relics shouldn't be unequippable)
     }
-
-
-
-    public boolean canUseCampfireOption(AbstractCampfireOption option) {
-        if (option instanceof SmithOption && option.getClass().getName().equals(SmithOption.class.getName())) {
-            ((SmithOption)option).updateUsability(false);
-            return false;
-        }
-        return true;
-    }
-
 
     public AbstractRelic makeCopy() {
-        return new BGFusionHammer();
+        return new BGMarkOfPain();
     }
 }
 

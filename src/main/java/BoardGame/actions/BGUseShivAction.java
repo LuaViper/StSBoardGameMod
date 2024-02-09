@@ -47,6 +47,7 @@ public class BGUseShivAction extends AbstractGameAction {
                 TargetSelectScreen.TargetSelectAction tssAction = (target) -> {
                     //double-check that we actually have a Shiv to spend (but Cunning Potion doesn't count)
                     if(relic.counter>0 || !isARealShiv) {
+                        ((BGShivs)relic).shivsPlayedThisTurn+=1;
                         if(isARealShiv) relic.counter = relic.counter - 1;  //don't decrement Shivs if we throw a Cunning Potion!
                         BGFakeShiv fakeShiv=new BGFakeShiv();
                         UseCardAction fakeShivAction=new UseCardAction(fakeShiv,target);

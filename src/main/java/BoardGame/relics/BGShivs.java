@@ -47,6 +47,7 @@ public class BGShivs extends CustomRelic implements ClickableRelic {
     }
 
     private boolean isPlayerTurn = false; // We should make sure the relic is only activateable during our turn, not the enemies'.
+    public int shivsPlayedThisTurn=0;
 
     @Override
     public void onRightClick() {// On right click
@@ -63,6 +64,7 @@ public class BGShivs extends CustomRelic implements ClickableRelic {
 
     public void atTurnStart() {
         isPlayerTurn = true; // It's our turn!
+        shivsPlayedThisTurn=0;
     }
 
     @Override

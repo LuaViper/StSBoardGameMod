@@ -1,4 +1,6 @@
 
+//TODO: Confusion+Corruption shows >0 displayed card cost, but skills cost 0.  change this?  leave it?
+
 //AbstractCard.hasEnoughEnergy
 //AbstractCard.getCost
 //AbstractPlayer.useCard

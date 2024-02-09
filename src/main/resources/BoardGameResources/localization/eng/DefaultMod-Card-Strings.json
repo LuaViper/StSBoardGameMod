@@ -52,6 +52,10 @@
     "NAME": "Dark Shackles",
     "DESCRIPTION": "Gain !M! Block for each enemy that intends to attack you. NL Exhaust."
   },
+  "BoardGame:BGDash": {
+    "NAME": "Dash",
+    "DESCRIPTION": "Deal !D! damage. NL Gain !B! Block. NL You may switch rows with another player."
+  },
   "BoardGame:BGDecay": {
     "NAME": "Decay",
     "DESCRIPTION": "Unplayable. NL At the end of your turn, take 1 damage."
@@ -72,8 +76,8 @@
   },
   "BoardGame:BGDoppelganger": {
     "NAME": "Doppelganger",
-    "DESCRIPTION": "Copy the last Attack or Skill anyone played this turn with cost equal to X. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Copy the last Attack or Skill anyone played this turn with cost equal to X.",
+    "DESCRIPTION": "Copy the last Attack or Skill with cost equal to X anybody played this turn. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Copy the last Attack or Skill with cost equal to X anybody played this turn.",
     "EXTENDED_DESCRIPTION": [
       "No copyable cards have been played this turn.",
       "I can't play this for less than ",
@@ -96,8 +100,8 @@
   },
   "BoardGame:BGFakeShiv": {
     "NAME": "Shiv",
-    "DESCRIPTION": "For debug purposes only. NL In the Board Game, Shivs are tokens, not cards.",
-    "UPGRADE_DESCRIPTION": "For debug purposes only. NL You can't upgrade Shivs in the Board Game."
+    "DESCRIPTION": "Deal !D! damage. NL For debug purposes only. In the Board Game, Shivs are tokens, not cards.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL For debug purposes only. You can't upgrade Shivs in the Board Game."
   },
   "BoardGame:BGFeed": {
     "NAME": "Feed",
@@ -108,6 +112,15 @@
     "DESCRIPTION": "Gain !B! Block. NL Draw 1 card. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Gain !B! Block. NL Draw 1 card."
   },
+  "BoardGame:BGFinisher": {
+    "NAME": "Finisher",
+    "DESCRIPTION": "Deal !D! damage for each Attack played this turn.",
+    "EXTENDED_DESCRIPTION": [
+      " NL (",
+      " Attack played.)",
+      " Attacks played.)"
+    ]
+  },
   "BoardGame:BGFlame Barrier": {
     "NAME": "Flame Barrier",
     "DESCRIPTION": "Gain !B! Block. NL Deal !M! Thorns damage to all enemies that intend to attack you."
@@ -116,6 +129,16 @@
     "NAME": "Flash of Steel",
     "DESCRIPTION": "Deal !D! damage. NL Draw 1 card. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Draw 1 card."
+  },
+  "BoardGame:BGFlechettes": {
+    "NAME": "Flechettes",
+    "DESCRIPTION": "Deal !D! damage for each Skill in your hand.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage for each Skill in your hand +!M!.",
+    "EXTENDED_DESCRIPTION": [
+      " NL (You have ",
+      " Skill).",
+      " Skills)."
+    ]
   },
   "BoardGame:BGFlex": {
     "NAME": "Flex",
@@ -298,6 +321,11 @@
     "NAME": "Shockwave",
     "DESCRIPTION": "Apply 1 boardgame:Vulnerable and boardgame:Weak to any row. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Apply 1 boardgame:Vulnerable and !M! boardgame:Weak to any row. NL Exhaust."
+  },
+  "BoardGame:BGSkewer": {
+    "NAME": "Skewer",
+    "DESCRIPTION": "Deal !D! damage X+1 times.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage X times."
   },
   "BoardGame:BGSneckoEyeDrawTwoCards": {
     "NAME": "Versatility",

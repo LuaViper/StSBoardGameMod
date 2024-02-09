@@ -30,6 +30,7 @@ import java.util.ArrayList;
 
 //at the moment, we're only using this class as a way to implement clickable powers
 // Note that some cards use vanilla powers instead of BG powers and won't extend this class
+//TODO: perhaps a warning on the mod page that controllers aren't supported, mouse cursor is required?
 public class AbstractBGPower extends AbstractPower {
 
     //TODO: clickbox is not entirely correct size

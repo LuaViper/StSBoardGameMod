@@ -1,4 +1,4 @@
-//TODO: energy panel is wrong, currently uses Ironclad's orb appearance instead
+//TODO: campfire healing is still 2, not 3
 
 package BoardGame.characters;
 

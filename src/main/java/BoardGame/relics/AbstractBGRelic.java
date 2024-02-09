@@ -79,6 +79,7 @@ public abstract class AbstractBGRelic extends AbstractRelic {
             relicDeck.add(new BGStrikeDummy());
             relicDeck.add(new BGSsserpentHead());
             relicDeck.add(new BGSundial());
+            relicDeck.add(new BGTheBoot());
             relicDeck.add(new BGToxicEgg2());
             relicDeck.add(new BGTungstenRod());
             relicDeck.add(new BGVajra());
@@ -106,6 +107,11 @@ public abstract class AbstractBGRelic extends AbstractRelic {
             bossRelicDeck.add(new BGWristBlade());
             bossRelicDeck.add(new BGCursedKey());
             bossRelicDeck.add(new BGSozu());
+            bossRelicDeck.add(new BGMarkOfPain());
+//            bossRelicDeck.add(new BGTinyHouse()); //TODO: this one is still broken
+            bossRelicDeck.add(new BGWhiteBeast());
+            bossRelicDeck.add(new BGFrozenCore());
+
 
             Collections.shuffle(bossRelicDeck, new java.util.Random(relicRng.randomLong()));
         }

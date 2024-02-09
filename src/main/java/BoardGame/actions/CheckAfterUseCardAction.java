@@ -8,6 +8,7 @@ import BoardGame.powers.NilrysCodexCompatible;
 import BoardGame.relics.DieControlledRelic;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.actions.utility.HandCheckAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -43,6 +44,7 @@ public class CheckAfterUseCardAction
                     p.onAfterUseCard(fakeShiv, fakeShivAction);
             }
         }
+        addToBot(new HandCheckAction());
         this.isDone = true;
     }
 
