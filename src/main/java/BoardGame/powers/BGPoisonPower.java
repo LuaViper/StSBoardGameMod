@@ -1,6 +1,7 @@
 package BoardGame.powers;
 
 //TODO: see if we can get the green poison HP bar thing working with this one too
+//TODO: why are some power counters green and others white?  is that what IsTurnBased is for?
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.unique.PoisonLoseHpAction;
@@ -36,7 +37,7 @@ public class BGPoisonPower extends AbstractBGPower {
         updateDescription();
         loadRegion("poison");
         this.type = AbstractPower.PowerType.DEBUFF;
-        this.isTurnBased = true;
+        //this.isTurnBased = true;
     }
 
     public void playApplyPowerSfx() {

@@ -1,5 +1,10 @@
 package BoardGame.actions;
 import BoardGame.BoardGame;
+import BoardGame.cards.AbstractAttackCardChoice;
+import BoardGame.cards.BGColorless.BGDuality2Block;
+import BoardGame.cards.BGColorless.BGDuality2Damage;
+import BoardGame.cards.BGColorless.BGShivsDiscardExtraShiv;
+import BoardGame.cards.BGColorless.BGShivsUseExtraShiv;
 import BoardGame.monsters.MixedAttacks;
 import BoardGame.relics.BGShivs;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -16,6 +21,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import BoardGame.monsters.AbstractBGMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+
+import java.util.ArrayList;
 
 public class BGGainShivAction extends AbstractGameAction {
     private int amount;
@@ -37,7 +44,11 @@ public class BGGainShivAction extends AbstractGameAction {
         }
         //TODO: also check global token cap (5*number_of_Silents) (only relevant if prismatic shard)
         for(int i=relic.counter;i>5;i-=1){
-            addToTop(new BGUseShivAction(true,true,0));
+            ArrayList<AbstractAttackCardChoice> attackChoices = new ArrayList<>();
+            attackChoices.add(new BGShivsUseExtraShiv());
+            attackChoices.add(new BGShivsDiscardExtraShiv());
+            addToBot((AbstractGameAction)new ChooseOneAttackAction(attackChoices,null,null));
+            //
         }
 
 

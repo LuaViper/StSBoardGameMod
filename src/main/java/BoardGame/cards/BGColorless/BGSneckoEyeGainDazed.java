@@ -18,7 +18,7 @@ public class BGSneckoEyeGainDazed extends AbstractAttackCardChoice {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGSneckoEyeGainDazed");
 
     public BGSneckoEyeGainDazed() {
-        super("BGSneckoEyeGainDazed", cardStrings.NAME, "red/attack/reckless_charge", -2, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, AbstractCard.CardColor.COLORLESS, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE);
+        super("BGSneckoEyeGainDazed", cardStrings.NAME, "red/attack/reckless_charge", -2, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, AbstractCard.CardColor.COLORLESS, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.NONE);
     }
 
 

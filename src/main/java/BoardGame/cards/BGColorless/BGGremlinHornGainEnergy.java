@@ -14,7 +14,7 @@ public class BGGremlinHornGainEnergy extends AbstractAttackCardChoice {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGGremlinHornGainEnergy");
 
     public BGGremlinHornGainEnergy() {
-        super("BGGremlinHornGainEnergy", cardStrings.NAME, "blue/skill/double_energy", -2, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, AbstractCard.CardColor.COLORLESS, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE);
+        super("BGGremlinHornGainEnergy", cardStrings.NAME, "blue/skill/double_energy", -2, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, AbstractCard.CardColor.COLORLESS, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.NONE);
     }
 
 

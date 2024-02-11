@@ -154,6 +154,13 @@
       ""
     ]
   },
+  "BGDuality": {
+    "NAME": "Duality",
+    "FLAVOR": "\"And the sun was extinguished forever, as if curtains fell before it.\" - Zoroth",
+    "DESCRIPTIONS": [
+      "On a #b2, gain #b2 Block. NL On a #b4, deal #b2 damage."
+    ]
+  },
   "BGDu-Vu Doll": {
     "NAME": "Du-Vu Doll",
     "FLAVOR": "A doll devised to gain strength from malicious energy.",
@@ -353,6 +360,13 @@
       "On a #b2, draw #b1 card. NL On a #b4, trigger a #b2 die ability. Its owner gains the effect."
     ]
   },
+  "BGNinjaScroll": {
+    "NAME": "Ninja Scroll",
+    "FLAVOR": "Contains the secrets of assassination.",
+    "DESCRIPTIONS": [
+      "Once per combat, #yAttack twice for #b1 damage each."
+    ]
+  },
   "BGOddly Smooth Stone": {
     "NAME": "Oddly Smooth Stone",
     "FLAVOR": "You have never seen something so smooth and pristine. This must be the work of the Ancients.",
@@ -415,11 +429,25 @@
       "When you rest, you may also remove a card."
     ]
   },
+  "BGPen Nib": {
+    "NAME": "Pen Nib",
+    "FLAVOR": "Holding the nib, you can see everyone ever slain by a previous owner of the pen. A violent history.",
+    "DESCRIPTIONS": [
+      "On a #b5, apply #b1 #yboardgame:Vulnerable."
+    ]
+  },
   "BGPocketwatch": {
     "NAME": "Pocketwatch",
     "FLAVOR": "The hands seem stuck on the 3 o'clock position.",
     "DESCRIPTIONS": [
       "On a #b3, draw #b3 cards."
+    ]
+  },
+  "BGRedMask": {
+    "NAME": "Red Mask",
+    "FLAVOR": "This very stylish looking mask belongs to the leader of the Red Mask Bandits. Technically that makes you the leader now?",
+    "DESCRIPTIONS": [
+      "On a #b5 or #b6, apply #b1 #yboardgame:Weak."
     ]
   },
   "BGRed Skull": {
@@ -464,7 +492,7 @@
     "NAME": "Secret Portal",
     "FLAVOR": "WELCOME TO WARP ZONE!",
     "DESCRIPTIONS": [
-      "Upon pickup, move to any room at or above the current floor."
+      "Upon pickup, move to any room above the current floor."
     ]
   },
   "BGSelf Forming Clay": {
@@ -502,6 +530,13 @@
     "DESCRIPTIONS": [
       "Whenever you enter a #y? room, gain #b",
       " #yGold."
+    ]
+  },
+  "BGStoneCalendar": {
+    "NAME": "Stone Calendar",
+    "FLAVOR": "The passage of time is imperceptible in the Spire.",
+    "DESCRIPTIONS": [
+      "On a #b4, deal #b4 damage."
     ]
   },
   "BGStrikeDummy": {

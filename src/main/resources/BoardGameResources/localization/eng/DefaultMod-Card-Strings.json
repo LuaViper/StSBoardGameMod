@@ -31,6 +31,10 @@
     "NAME": "Blood for Blood",
     "DESCRIPTION": "Costs !M! [R] NL if you lost HP this combat. NL Deal !D! damage."
   },
+  "BoardGame:BGBouncingFlask": {
+    "NAME": "Bouncing Flask",
+    "DESCRIPTION": "Apply 1 boardgame:Poison !M! times. NL Each boardgame:Poison may have a different target."
+  },
   "BoardGame:BGBurn": {
     "NAME": "Burn",
     "DESCRIPTION": "Unplayable. NL At the end of your turn, take 1 damage.",
@@ -47,6 +51,10 @@
   "BoardGame:BGCombust": {
     "NAME": "Combust",
     "DESCRIPTION": "Once per turn, deal !M! damage to any row."
+  },
+  "BoardGame:BGCripplingCloud": {
+    "NAME": "Crippling Cloud",
+    "DESCRIPTION": "Apply !M! boardgame:Poison and 1 Weak to any row. NL Exhaust."
   },
   "BoardGame:BGDarkShackles": {
     "NAME": "Dark Shackles",
@@ -93,10 +101,23 @@
     "NAME": "Dramatic Entrance",
     "DESCRIPTION": "Deal !D! damage to any row. NL Deals !M! additional damage if it's the first turn of combat."
   },
+  "BoardGame:BGDuality2Block":{
+    "NAME": "Yin",
+    "DESCRIPTION": "Gain !B! Block."
+  },
+  "BoardGame:BGDuality2Damage":{
+    "NAME": "Yang",
+    "DESCRIPTION": "Deal !D! damage."
+  },
   "BoardGame:BGEntrench": {
     "NAME": "Entrench",
     "DESCRIPTION": "Double your Block. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Double your Block."
+  },
+  "BoardGame:BGEscapePlan": {
+    "NAME": "Escape Plan",
+    "DESCRIPTION": "Draw 1 card. NL If you draw a Skill, gain !B! Block.",
+    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL Draw 1 card."
   },
   "BoardGame:BGFakeShiv": {
     "NAME": "Shiv",
@@ -237,6 +258,13 @@
     "NAME": "Neutralize",
     "DESCRIPTION": "Deal !D! damage. NL Apply !M! boardgame:Weak."
   },
+  "BoardGame:BGNinjaScroll": {
+    "NAME": "Ninja Scroll",
+    "FLAVOR": "Contains the secrets of assassination.",
+    "DESCRIPTIONS": [
+      "Once per combat, make #b2 free Attacks for #b1 damage each."
+    ]
+  },
   "BoardGame:BGNoxiousFumes": {
     "NAME": "Noxious Fumes",
     "DESCRIPTION": "At the start of your turn, apply 1 boardgame:Poison.",
@@ -294,6 +322,10 @@
     "NAME": "Regret",
     "DESCRIPTION": "Unplayable. NL Retain."
   },
+  "BoardGame:BGRiddleWithHoles": {
+    "NAME": "Riddle With Holes",
+    "DESCRIPTION": "Gain !M! Shivs."
+  },
   "BoardGame:BGRupture": {
     "NAME": "Rupture",
     "DESCRIPTION": "Lose 1 HP. NL Gain !M! Strength."
@@ -317,6 +349,15 @@
     "NAME": "Shame",
     "DESCRIPTION": "Unplayable. NL At the end of your turn, lose 1 Block."
   },
+  "BoardGame:BGShivsDiscardExtraShiv": {
+    "NAME": "Discard",
+    "DESCRIPTION": "Discard the extra boardgame:Shiv without using it."
+  },
+  "BoardGame:BGShivsUseExtraShiv": {
+    "NAME": "Shiv",
+    "DESCRIPTION": "Too many boardgame:Shivs! Use one now."
+  },
+
   "BoardGame:BGShockwave": {
     "NAME": "Shockwave",
     "DESCRIPTION": "Apply 1 boardgame:Vulnerable and boardgame:Weak to any row. NL Exhaust.",
@@ -339,6 +380,19 @@
     "NAME": "Spot Weakness",
     "DESCRIPTION": "If the die is on 1, 2, or 3, gain !M! Strength.",
     "UPGRADE_DESCRIPTION": "If the die is on 1, 2, 3, or 4, gain !M! Strength."
+  },
+  "BoardGame:BGTactician": {
+    "NAME": "Tactician",
+    "DESCRIPTION": "Unplayable. NL If this card is discarded from your hand, gain [G] [G] and Exhaust.",
+    "UPGRADE_DESCRIPTION": "Unplayable. NL If this card is discarded from your hand, gain [G] [G] [G] and Exhaust.",
+    "EXTENDED_DESCRIPTION": [
+      "I can't play this card."
+    ]
+  },
+  "BoardGame:BGTerror": {
+    "NAME": "Terror",
+    "DESCRIPTION": "Apply !M! Vulnerable. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Apply !M! Vulnerable."
   },
   "BoardGame:BGThe Bomb": {
     "NAME": "The Bomb",

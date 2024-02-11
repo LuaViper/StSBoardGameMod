@@ -17,6 +17,9 @@ import org.apache.logging.log4j.Logger;
 public class TargetSelectScreenAction extends AbstractGameAction {
     private TargetSelectScreen.TargetSelectAction action;
     private String description;
+    private boolean allowCancel;
+    private TargetSelectScreen.TargetSelectAction cancelAction;
+
     public TargetSelectScreenAction(TargetSelectScreen.TargetSelectAction action,String description) {
         this.action=action;
         this.description=description;

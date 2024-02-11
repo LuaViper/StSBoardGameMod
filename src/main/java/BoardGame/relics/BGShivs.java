@@ -58,7 +58,7 @@ public class BGShivs extends CustomRelic implements ClickableRelic {
         //final Logger logger = LogManager.getLogger(BoardGame.class.getName());
         //logger.info("BGTheDieRelic.onRightClick");
         if(this.counter>0) {
-            addToBot((AbstractGameAction) new BGUseShivAction(true, false, 0)); //can't discard shiv, +0 damage
+            addToBot((AbstractGameAction) new BGUseShivAction(true, false, 0,"Choose a target for Shiv.")); //can't discard shiv, +0 damage
         }
     }
 

@@ -50,6 +50,7 @@ public class BGTheBombPower extends AbstractBGPower {
                 AbstractDungeon.player.discardPile.addToBottom(card);
                 addToBot(new ExhaustSpecificCardAction(card, AbstractDungeon.player.discardPile,true));
 
+
                 //Logger logger = LogManager.getLogger(BGTheBombPower.class.getName());
                 //logger.info("Awakened One check...");
                 //this counts as losing a power card, so Awakened One loses 1 str

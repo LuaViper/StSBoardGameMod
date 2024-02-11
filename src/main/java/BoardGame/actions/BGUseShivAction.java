@@ -25,19 +25,21 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import BoardGame.cards.BGColorless.BGFakeShiv;
 
 public class BGUseShivAction extends AbstractGameAction {
-    private boolean isARealShiv;        //false if we play Cunning Potion
+    private boolean isARealShiv;        //false if we play Cunning Potion or Ninja Scroll
     private int bonusDamage;
     private int baseDamage;
     private int damage;
-    private boolean canDiscard;
+    private boolean canDiscard;     //currently unused.
     private AbstractPlayer player;
+    private String message;
 
-    public BGUseShivAction(boolean isARealShiv, boolean canDiscard, int bonusDamage) {
+    public BGUseShivAction(boolean isARealShiv, boolean canDiscard, int bonusDamage, String message) {
         this.duration = 0.0F;
         this.actionType = AbstractGameAction.ActionType.WAIT;
         this.isARealShiv=isARealShiv;
         this.canDiscard=canDiscard;
         this.bonusDamage=bonusDamage;
+        this.message=message;
     }
 
     public void update() {
@@ -56,16 +58,10 @@ public class BGUseShivAction extends AbstractGameAction {
                         addToTop((AbstractGameAction) new CheckAfterUseCardAction(fakeShiv,fakeShivAction));
                         addToTop((AbstractGameAction) new DamageAction((AbstractCreature) target, new DamageInfo((AbstractCreature) AbstractDungeon.player, fakeShiv.damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
                         //reminder: order of operations is now DamageAction -> (proc weak/vuln) -> CheckAfterUseCardAction
-
                     }
                 };
-                //logger.info("DoubleTap addToTop");
-                String message = "Choose a target for Shiv.";
-                if (relic.counter > 5) {
-                    //TODO: also check global token cap (5*number_of_Silents) (only relevant if prismatic shard)
-                    message = "Too many Shivs! Use one now or discard it.";
-                }
                 addToTop((AbstractGameAction) new TargetSelectScreenAction(tssAction, message));
+
             }
         }
 

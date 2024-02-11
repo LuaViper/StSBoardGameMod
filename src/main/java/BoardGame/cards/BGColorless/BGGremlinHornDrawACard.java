@@ -16,7 +16,7 @@ public class BGGremlinHornDrawACard extends AbstractAttackCardChoice {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGGremlinHornDrawACard");
 
     public BGGremlinHornDrawACard() {
-        super("BGGremlinHornDrawACard", cardStrings.NAME, "colorless/skill/finesse", -2, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, AbstractCard.CardColor.COLORLESS, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE);
+        super("BGGremlinHornDrawACard", cardStrings.NAME, "colorless/skill/finesse", -2, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, AbstractCard.CardColor.COLORLESS, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.NONE);
     }
 
 
