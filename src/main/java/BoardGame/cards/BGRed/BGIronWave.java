@@ -20,6 +20,8 @@ import com.megacrit.cardcrawl.vfx.combat.IronWaveEffect;
 
 import java.util.ArrayList;
 
+//TODO: make sure this doesn't crash if played targetless via Havoc etc
+//TODO: can we drop the Naive keyword if we use the SecondMagicNumber property or whatever?
 public class BGIronWave extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGIron Wave");
     public static final String ID = "BGIron Wave";

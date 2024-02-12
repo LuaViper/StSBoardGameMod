@@ -24,11 +24,7 @@ public class BGFakeShiv extends AbstractBGCard {
     public boolean isARealShiv;
     public BGFakeShiv() {
         super("BGFakeShiv", cardStrings.NAME, "colorless/attack/shiv", 0, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, AbstractCard.CardColor.COLORLESS, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.ENEMY);
-        if (AbstractDungeon.player != null && AbstractDungeon.player.hasPower("BGAccuracy")) {
-            this.baseDamage = 1 + (AbstractDungeon.player.getPower("BGAccuracy")).amount;
-        } else {
-            this.baseDamage = 1;
-        }
+        this.baseDamage = 1;
         this.exhaust = true;
         this.cannotBeCopied=true;
     }

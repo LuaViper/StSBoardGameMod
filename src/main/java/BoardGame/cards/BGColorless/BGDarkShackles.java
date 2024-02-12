@@ -26,13 +26,12 @@ public class BGDarkShackles extends AbstractBGCard {
 
 
         this.exhaust = true;
-        this.baseMagicNumber = 2;
-        this.magicNumber = this.baseMagicNumber;
+        this.baseBlock = 2;
     }
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot((AbstractGameAction)new BGDarkShacklesAction(this.magicNumber,p));
+        addToBot((AbstractGameAction)new BGDarkShacklesAction(this.block,p));
 
     }
 
@@ -40,7 +39,7 @@ public class BGDarkShackles extends AbstractBGCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeMagicNumber(1);
+            upgradeBlock(1);
         }
     }
 

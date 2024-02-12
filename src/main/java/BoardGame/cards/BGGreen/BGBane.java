@@ -1,7 +1,7 @@
 package BoardGame.cards.BGGreen;
-import BoardGame.actions.BGPainAction;
-import BoardGame.characters.BGSilent;
+
 import BoardGame.cards.AbstractBGCard;
+import BoardGame.characters.BGSilent;
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -17,48 +17,35 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BGChoke extends AbstractBGCard {
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGChoke");
-    public static final String ID = "BGChoke";
+public class BGBane extends AbstractBGCard {
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGBane");
+    public static final String ID = "BGBane";
 
     private AbstractMonster target;
 
-    static Logger logger = LogManager.getLogger(BGChoke.class.getName());
-    public BGChoke() {
-        super("BGChoke", cardStrings.NAME, "green/attack/choke", 2, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, BGSilent.Enums.BG_GREEN, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.ENEMY);
+    static Logger logger = LogManager.getLogger(BGBane.class.getName());
+    public BGBane() {
+        super("BGBane", cardStrings.NAME, "green/attack/bane", 1, cardStrings.DESCRIPTION, CardType.ATTACK, BGSilent.Enums.BG_GREEN, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
 
 
-        this.baseDamage = 3;
-        this.baseMagicNumber = 1;
+        this.baseDamage = 2;
+        this.baseMagicNumber = 2;
         this.magicNumber = this.baseMagicNumber;
     }
 
-    public static int countTargetDebuffs(AbstractMonster target){
-        //logger.info("Choke countTargetDebuffs target "+target);
+    public static int checkTargetPoison(AbstractMonster target){
         if(target==null)return 0;
-        AbstractPower weak=target.getPower("BGWeakened");
         AbstractPower poison=target.getPower("BGPoison");
         int total=0;
-        //
-        if(weak!=null && weak.amount>0){        //strictly speaking >0 check shouldn't be necessary for weak/poison.  in theory.
-            total+=weak.amount;
-            //logger.info("Weak:"+weak.amount);
-        }
         if (poison != null && poison.amount > 0) {
-            total+=poison.amount;
-            //logger.info("Poison:"+poison.amount);
+            total=1;
         }
         return total;
     }
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //logger.info("Choke use");
         this.target=m;
-        addToBot((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_HEAVY));
-//        if(this.target!=null) {
-//            this.rawDescription = cardStrings.DESCRIPTION;
-//        }
-//        initializeDescription();
+        addToBot((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
     }
 
     public void applyPowers() {
@@ -70,21 +57,18 @@ public class BGChoke extends AbstractBGCard {
         this.baseDamage = realBaseDamage;
 
         this.isDamageModified = (this.damage != this.baseDamage);
-
-
     }
 
 
     public void calculateCardDamage(AbstractMonster mo) {
         int realBaseDamage = this.baseDamage;
-        this.baseDamage += this.magicNumber * countTargetDebuffs(mo);
+        this.baseDamage += this.magicNumber * checkTargetPoison(mo);
 
         super.calculateCardDamage(mo);
 
         this.baseDamage = realBaseDamage;
 
         this.isDamageModified = (this.damage != this.baseDamage);
-
     }
 
     public void upgrade() {
@@ -109,7 +93,7 @@ public class BGChoke extends AbstractBGCard {
     }
 
     public AbstractCard makeCopy() {
-        return new BGChoke();
+        return new BGBane();
     }
 }
 

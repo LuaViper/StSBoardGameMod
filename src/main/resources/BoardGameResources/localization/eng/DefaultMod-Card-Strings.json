@@ -11,13 +11,29 @@
     "NAME": "Bash",
     "DESCRIPTION": "Deal !D! damage. NL Apply !M! boardgame:Vulnerable."
   },
+  "BoardGame:BGAccuracy": {
+    "NAME": "Accuracy",
+    "DESCRIPTION": "Your boardgame:Shivs deal !M! additional damage."
+  },
   "BoardGame:BGAnger": {
     "NAME": "Anger",
     "DESCRIPTION": "Deal !D! damage. NL Put this card on top of your draw pile."
   },
+  "BoardGame:BGAllOutAttack": {
+    "NAME": "All-Out Attack",
+    "DESCRIPTION": "Deal !D! damage to any row. NL Discard 1 card."
+  },
   "BoardGame:BGApotheosis": {
     "NAME": "Apotheosis",
     "DESCRIPTION": "Your starter Strikes deal +1 damage. NL NL Your starter Defends gain +1 Block."
+  },
+  "BoardGame:BGBackstab": {
+    "NAME": "Backstab",
+    "DESCRIPTION": "Deal !D! damage. NL Deals !M! additional damage if the enemy is at full HP. NL Exhaust."
+  },
+  "BoardGame:BGBane": {
+    "NAME": "Bane",
+    "DESCRIPTION": "Deal !D! damage. NL Deals !M! additional damage if the target is boardgame:Poisoned."
   },
   "BoardGame:BGBerserk": {
     "NAME": "Berserk",
@@ -31,6 +47,10 @@
     "NAME": "Blood for Blood",
     "DESCRIPTION": "Costs !M! [R] NL if you lost HP this combat. NL Deal !D! damage."
   },
+  "BoardGame:BGBlur": {
+    "NAME": "Blur",
+    "DESCRIPTION": "Gain !B! Block. Then, if you discarded a card this turn, gain !M! Block."
+  },
   "BoardGame:BGBouncingFlask": {
     "NAME": "Bouncing Flask",
     "DESCRIPTION": "Apply 1 boardgame:Poison !M! times. NL Each boardgame:Poison may have a different target."
@@ -39,6 +59,11 @@
     "NAME": "Burn",
     "DESCRIPTION": "Unplayable. NL At the end of your turn, take 1 damage.",
     "UPGRADE_DESCRIPTION": "Unplayable. NL At the end of your turn, take 2 damage."
+  },
+  "BoardGame:BGCatalyst": {
+    "NAME": "Catalyst",
+    "DESCRIPTION": "Double the enemy's boardgame:Poison. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Triple the enemy's boardgame:Poison. NL Exhaust."
   },
   "BoardGame:BGChoke": {
     "NAME": "Choke",
@@ -52,13 +77,18 @@
     "NAME": "Combust",
     "DESCRIPTION": "Once per turn, deal !M! damage to any row."
   },
+  "BoardGame:BGConcentrate": {
+    "NAME": "Concentrate",
+    "DESCRIPTION": "Discard any number of cards. Gain [G] for each card discarded. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Discard any number of cards. Gain [G] for each card discarded +!M!. NL Exhaust."
+  },
   "BoardGame:BGCripplingCloud": {
     "NAME": "Crippling Cloud",
     "DESCRIPTION": "Apply !M! boardgame:Poison and 1 Weak to any row. NL Exhaust."
   },
   "BoardGame:BGDarkShackles": {
     "NAME": "Dark Shackles",
-    "DESCRIPTION": "Gain !M! Block for each enemy that intends to attack you. NL Exhaust."
+    "DESCRIPTION": "Gain !B! Block for each enemy that intends to attack you. NL Exhaust."
   },
   "BoardGame:BGDash": {
     "NAME": "Dash",
@@ -81,6 +111,10 @@
   "BoardGame:BGDisarm": {
     "NAME": "Disarm",
     "DESCRIPTION": "Apply !M! boardgame:Weak. NL Exhaust."
+  },
+  "BoardGame:BGDistraction": {
+    "NAME": "Distraction",
+    "DESCRIPTION": "Once per turn: NL When you put a token on an enemy, gain !M! Block."
   },
   "BoardGame:BGDoppelganger": {
     "NAME": "Doppelganger",
@@ -121,8 +155,8 @@
   },
   "BoardGame:BGFakeShiv": {
     "NAME": "Shiv",
-    "DESCRIPTION": "Deal !D! damage. NL For debug purposes only. In the Board Game, Shivs are tokens, not cards.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL For debug purposes only. You can't upgrade Shivs in the Board Game."
+    "DESCRIPTION": "Deal !D! damage. NL For debug purposes only. In the Board Game, boardgame:Shivs are tokens, not cards.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL For debug purposes only. You can't upgrade boardgame:Shivs in the Board Game."
   },
   "BoardGame:BGFeed": {
     "NAME": "Feed",
@@ -275,6 +309,11 @@
     "DESCRIPTION": "Lose 1 HP. NL Gain [R] [R]. NL Draw !M! cards. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Lose 1 HP. NL Gain [R] [R]. NL Draw !M! cards. NL Exhaust."
   },
+  "BoardGame:BGOutmaneuver": {
+    "NAME": "Outmaneuver",
+    "DESCRIPTION": "Retain. NL When played, if you Retained this card last turn, gain [E] [E].",
+    "UPGRADE_DESCRIPTION": "Retain. NL When played, if you Retained this card last turn, gain [E] [E] [E]."
+  },
   "BoardGame:BGPanacea": {
     "NAME": "Panacea",
     "DESCRIPTION": "Retain. NL Remove all boardgame:Weak and boardgame:Vulnerable from any player. NL Exhaust.",
@@ -296,6 +335,10 @@
     "NAME": "Perfected Strike",
     "DESCRIPTION": "Deal !D! damage. NL Deals !M! additional damage for each other card in your hand containing \"Strike\".",
     "UPGRADE_DESCRIPTION": "Deal !D! damage. NL Deals !M! additional damage for each other card in your hand containing \"Strike\"."
+  },
+  "BoardGame:BGPiercingWail": {
+    "NAME": "Piercing Wail",
+    "DESCRIPTION": "Gain !B! Block. NL Apply !M! boardgame:Weak to any row. NL Exhaust."
   },
   "BoardGame:BGPower Through": {
     "NAME": "Power Through",
@@ -324,7 +367,7 @@
   },
   "BoardGame:BGRiddleWithHoles": {
     "NAME": "Riddle With Holes",
-    "DESCRIPTION": "Gain !M! Shivs."
+    "DESCRIPTION": "Gain !M! boardgame:Shivs."
   },
   "BoardGame:BGRupture": {
     "NAME": "Rupture",

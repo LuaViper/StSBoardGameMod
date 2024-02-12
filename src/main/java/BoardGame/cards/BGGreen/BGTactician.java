@@ -1,6 +1,7 @@
 package BoardGame.cards.BGGreen;
 
 import BoardGame.cards.AbstractBGCard;
+import BoardGame.characters.BGSilent;
 import BoardGame.powers.BGVulnerablePower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -21,7 +22,7 @@ public class BGTactician extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGTactician");
 
     public BGTactician() {
-        super("BGTactician", cardStrings.NAME, "green/skill/tactician", -2, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, AbstractCard.CardColor.GREEN, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.NONE);
+        super("BGTactician", cardStrings.NAME, "green/skill/tactician", -2, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, BGSilent.Enums.BG_GREEN, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.NONE);
         this.baseMagicNumber = 2;
         this.magicNumber = this.baseMagicNumber;
     }

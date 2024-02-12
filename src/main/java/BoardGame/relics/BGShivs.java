@@ -7,28 +7,42 @@ import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.PowerTip;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import static BoardGame.BoardGame.makeRelicOutlinePath;
 import static BoardGame.BoardGame.makeRelicPath;
 
 public class BGShivs extends CustomRelic implements ClickableRelic {
-    public static final String ID = BoardGame.makeID("BGShivs");
+    public static final String ID = "BoardGame:BGShivs";
     private static final String IMGPATH="BGshivs.png";
     private static final Texture IMG = TextureLoader.getTexture(makeRelicPath(IMGPATH));
     private static final Texture OUTLINE = TextureLoader.getTexture(makeRelicOutlinePath(IMGPATH));
-
+    public int accuracy;
     public BGShivs() {
         super(ID, IMG, AbstractRelic.RelicTier.STARTER, AbstractRelic.LandingSound.CLINK);
         setCounter(0);
+        accuracy=0;
+        updateDescription(accuracy);
     }
 
     public void setCounter(int setCounter) {
         this.counter = setCounter;
     }
 
+
+    public void updateDescription(int accuracy) {
+        this.accuracy=accuracy;
+        this.description = getUpdatedDescription();
+        //BoardGame.logger.info("updateDescription: "+this.description);
+        this.tips.clear();this.tips.add(new PowerTip(this.name, this.description));initializeTips();
+    }
+
     public String getUpdatedDescription() {
-        return this.DESCRIPTIONS[0];
+        return this.DESCRIPTIONS[0]+Integer.toString(1+this.accuracy)+this.DESCRIPTIONS[1];
     }
 
 

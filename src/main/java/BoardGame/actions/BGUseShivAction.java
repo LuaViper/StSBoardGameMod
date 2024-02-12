@@ -50,10 +50,17 @@ public class BGUseShivAction extends AbstractGameAction {
                     //double-check that we actually have a Shiv to spend (but Cunning Potion doesn't count)
                     if(relic.counter>0 || !isARealShiv) {
                         ((BGShivs)relic).shivsPlayedThisTurn+=1;
-                        if(isARealShiv) relic.counter = relic.counter - 1;  //don't decrement Shivs if we throw a Cunning Potion!
+                        if(isARealShiv) {
+                            relic.counter = relic.counter - 1;  //don't decrement Shivs if we throw a Cunning Potion!
+                        }
                         BGFakeShiv fakeShiv=new BGFakeShiv();
+                        if(isARealShiv) {
+                            AbstractPower accuracy = AbstractDungeon.player.getPower("BGAccuracy");
+                            if (accuracy != null) {
+                                fakeShiv.baseDamage+=accuracy.amount;
+                            }
+                        }
                         UseCardAction fakeShivAction=new UseCardAction(fakeShiv,target);
-
                         fakeShiv.calculateCardDamage(target);
                         addToTop((AbstractGameAction) new CheckAfterUseCardAction(fakeShiv,fakeShivAction));
                         addToTop((AbstractGameAction) new DamageAction((AbstractCreature) target, new DamageInfo((AbstractCreature) AbstractDungeon.player, fakeShiv.damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));

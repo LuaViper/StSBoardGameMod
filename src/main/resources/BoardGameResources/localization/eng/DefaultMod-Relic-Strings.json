@@ -506,7 +506,8 @@
     "NAME": "Shivs",
     "FLAVOR": "It's like bringing a knife to a card fight.",
     "DESCRIPTIONS": [
-      "Holds tokens generated during combat. #bRight-Click to use them to #yAttack for #b1 damage."
+      "Holds tokens generated during combat. #bRight-Click to use them to #yAttack for #b",
+      " damage."
     ]
   },
   "BGSnecko Eye": {

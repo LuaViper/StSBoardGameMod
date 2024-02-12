@@ -55,6 +55,13 @@
                         " damage."
                 ]
         },
+        "BoardGame:BGAccuracyPower": {
+                "NAME": "Accuracy",
+                "DESCRIPTIONS": [
+                        "Your #yShivs deal #b",
+                        " additional damage."
+                ]
+        },
 "BoardGame:Akabeko": {
         "NAME": "Akabeko",
         "DESCRIPTIONS": [
@@ -122,9 +129,16 @@
         "BoardGame:BGDexterity": {
                 "NAME": "Dexterity",
                 "DESCRIPTIONS": [
-                        "Increases #yBlock applied by cards by #b",
-                        "Decreases #yBlock applied by cards by #b",
+                        "Increases #yBlock applied by your cards by #b",
+                        "Decreases #yBlock applied by your cards by #b",
                         "."
+                ]
+        },
+        "BoardGame:BGDistractionPower": {
+                "NAME": "Distraction",
+                "DESCRIPTIONS": [
+                        "#yOnce #yper #yturn: NL When you put a token on an enemy, gain #b",
+                        " #yBlock."
                 ]
         },
 "BoardGame:BGDouble Attack": {

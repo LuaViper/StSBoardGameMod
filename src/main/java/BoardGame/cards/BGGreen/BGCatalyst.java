@@ -1,7 +1,10 @@
 package BoardGame.cards.BGGreen;
 
+import BoardGame.actions.BGDoublePoisonAction;
 import BoardGame.actions.BGGainShivAction;
+import BoardGame.actions.BGTriplePoisonAction;
 import BoardGame.cards.AbstractBGCard;
+import BoardGame.characters.BGSilent;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.unique.DoublePoisonAction;
 import com.megacrit.cardcrawl.actions.unique.TriplePoisonAction;
@@ -15,17 +18,17 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 public class BGCatalyst extends AbstractBGCard {
     public static final String ID = "BGCatalyst";
 
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Catalyst");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGCatalyst");
     public BGCatalyst() {
-        super("BGCatalyst", cardStrings.NAME, "green/skill/catalyst", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, AbstractCard.CardColor.GREEN, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.ENEMY);
+        super("BGCatalyst", cardStrings.NAME, "green/skill/catalyst", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, BGSilent.Enums.BG_GREEN, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.ENEMY);
         this.exhaust = true;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (!this.upgraded) {
-            addToBot((AbstractGameAction)new DoublePoisonAction((AbstractCreature)m, (AbstractCreature)p));
+            addToBot((AbstractGameAction)new BGDoublePoisonAction((AbstractCreature)m, (AbstractCreature)p));
         } else {
-            addToBot((AbstractGameAction)new TriplePoisonAction((AbstractCreature)m, (AbstractCreature)p));
+            addToBot((AbstractGameAction)new BGTriplePoisonAction((AbstractCreature)m, (AbstractCreature)p));
         }
     }
 

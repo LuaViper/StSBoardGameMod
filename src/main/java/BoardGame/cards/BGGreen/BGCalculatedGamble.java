@@ -1,6 +1,7 @@
 package BoardGame.cards.BGGreen;
 
 import BoardGame.cards.AbstractBGCard;
+import BoardGame.characters.BGSilent;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.unique.CalculatedGambleAction;
 import com.megacrit.cardcrawl.actions.unique.DoublePoisonAction;
@@ -18,7 +19,7 @@ public class BGCalculatedGamble extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Calculated Gamble");
 
     public BGCalculatedGamble() {
-        super("BGCalculatedGamble", cardStrings.NAME, "green/skill/calculated_gamble", 0, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, AbstractCard.CardColor.GREEN, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.NONE);
+        super("BGCalculatedGamble", cardStrings.NAME, "green/skill/calculated_gamble", 0, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, BGSilent.Enums.BG_GREEN, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.NONE);
         this.exhaust = true;
     }
 

@@ -1,6 +1,8 @@
 package BoardGame.cards.BGGreen;
 
 import BoardGame.actions.BGDamagePerAttackPlayedAction;
+import BoardGame.cards.AbstractBGCard;
+import BoardGame.characters.BGSilent;
 import BoardGame.relics.BGShivs;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.unique.DamagePerAttackPlayedAction;
@@ -13,13 +15,13 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class BGFinisher extends AbstractCard {
+public class BGFinisher extends AbstractBGCard {
     public static final String ID = "BGFinisher";
 
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGFinisher");
 
     public BGFinisher() {
-        super("BGFinisher", cardStrings.NAME, "green/attack/finisher", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, AbstractCard.CardColor.GREEN, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.ENEMY);
+        super("BGFinisher", cardStrings.NAME, "green/attack/finisher", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, BGSilent.Enums.BG_GREEN, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.ENEMY);
         this.baseDamage = 1;
     }
 

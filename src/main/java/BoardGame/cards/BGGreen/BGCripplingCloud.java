@@ -1,6 +1,7 @@
 package BoardGame.cards.BGGreen;
 
 import BoardGame.cards.AbstractBGCard;
+import BoardGame.characters.BGSilent;
 import BoardGame.powers.BGPoisonPower;
 import BoardGame.powers.BGVulnerablePower;
 import BoardGame.powers.BGWeakPower;
@@ -21,7 +22,7 @@ public class BGCripplingCloud extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGCripplingCloud");
 
     public BGCripplingCloud() {
-        super("BGCripplingCloud", cardStrings.NAME, "green/skill/crippling_poison", 2, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, AbstractCard.CardColor.GREEN, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.ALL_ENEMY);
+        super("BGCripplingCloud", cardStrings.NAME, "green/skill/crippling_poison", 2, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, BGSilent.Enums.BG_GREEN, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.ALL_ENEMY);
         this.baseMagicNumber = 1;
         this.magicNumber = this.baseMagicNumber;
         this.exhaust = true;

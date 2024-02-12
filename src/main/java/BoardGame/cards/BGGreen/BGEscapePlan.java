@@ -21,7 +21,7 @@ public class BGEscapePlan extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGEscapePlan");
 
     public BGEscapePlan() {
-        super("BGEscapePlan", cardStrings.NAME, "green/skill/escape_plan", 0, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, AbstractCard.CardColor.GREEN, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.SELF);
+        super("BGEscapePlan", cardStrings.NAME, "green/skill/escape_plan", 0, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, BGSilent.Enums.BG_GREEN, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.SELF);
         this.baseBlock = 1;
     }
 
@@ -29,7 +29,7 @@ public class BGEscapePlan extends AbstractBGCard {
         if(!this.upgraded) {
             addToBot((AbstractGameAction) new DrawCardAction(1, (AbstractGameAction) new EscapePlanAction(this.block)));
         }else{
-            addToBot((AbstractGameAction) new GainBlockAction(AbstractDungeon.player,this.baseBlock));
+            addToBot((AbstractGameAction) new GainBlockAction(AbstractDungeon.player,this.block));
             addToBot((AbstractGameAction) new DrawCardAction(1));
         }
     }
