@@ -38,6 +38,7 @@ public class BGTheBombPower extends AbstractBGPower {
     }
 
 
+
     public void atEndOfTurn(boolean isPlayer) {
         if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
             addToBot((AbstractGameAction)new ReducePowerAction(this.owner, this.owner, this, 1));

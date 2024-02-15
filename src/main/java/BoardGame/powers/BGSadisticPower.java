@@ -37,7 +37,7 @@ public class BGSadisticPower
         //TODO: make sure all debuffs are correctly labeled as source==player
         if (source == this.owner && target != this.owner &&
                 !target.hasPower("Artifact")) {
-            //TODO: Corrupted Heart needs to check for Invulnerable debuff too
+            //TODO: Corrupted Heart needs to check for Invincible buff too
             if(power.ID.equals("BGWeakened") || power.ID.equals("BGVulnerable") || power.ID.equals("BGPoison")) {
                 flash();
                 //Logger logger = LogManager.getLogger(BoardGame.class.getName());

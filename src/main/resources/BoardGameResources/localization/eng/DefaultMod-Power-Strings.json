@@ -119,6 +119,15 @@
                 " ."
         ]
 },
+        "BoardGame:BGCorpseExplosionPower": {
+                "NAME": "Corpse Explosion",
+                "DESCRIPTIONS":
+                [
+                        "(Unused) On death, deal damage equal to its Max HP to ALL enemies.",
+                        "On death, deal #b",
+                        " damage to its row."
+                ]
+        },
 "BoardGame:BGCuriosityPower": {
         "NAME": "Curiosity",
         "DESCRIPTIONS": [
@@ -362,6 +371,14 @@
 
         ]
 },
+        "BoardGame:BGWraithFormPower": {
+                "NAME": "Wraith Form",
+                "DESCRIPTIONS": [
+                        "You can't lose more than #b1 HP per round.",
+                        "You can't lose more than #b1 HP per round for the next #b",
+                        " rounds."
+                ]
+        },
 "BGTriggerAnyDieAbilityPower": {
         "NAME": "Wildcard",
         "DESCRIPTIONS": [

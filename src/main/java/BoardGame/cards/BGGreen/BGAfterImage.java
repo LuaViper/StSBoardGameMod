@@ -31,11 +31,6 @@ public class BGAfterImage extends AbstractBGCard {
         this.magicNumber=this.baseMagicNumber;
     }
 
-    public static ArrayList<AbstractCard> cardsPlayedThisTurn=new ArrayList<AbstractCard>();
-    public void atTurnStart(){
-        cardsPlayedThisTurn=new ArrayList<AbstractCard>();
-    }
-
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new BGAfterImagePower((AbstractCreature)p, this.magicNumber), this.magicNumber));
     }

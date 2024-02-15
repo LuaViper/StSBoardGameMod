@@ -90,6 +90,10 @@
     "DESCRIPTION": "Discard any number of cards. Gain [G] for each card discarded. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Discard any number of cards. Gain [G] for each card discarded +!M!. NL Exhaust."
   },
+  "BoardGame:BGCorpseExplosion": {
+    "NAME": "Corpse Explosion",
+    "DESCRIPTION": "Apply !M! boardgame:Poison and attach to the target. When the target dies, deal !BoardGame:SecondMagic! damage to its row and discard this card."
+  },
   "BoardGame:BGCripplingCloud": {
     "NAME": "Crippling Cloud",
     "DESCRIPTION": "Apply !M! boardgame:Poison and 1 Weak to any row. NL Exhaust."
@@ -513,6 +517,10 @@
   "BoardGame:BGWild Strike": {
     "NAME": "Wild Strike",
     "DESCRIPTION": "Deal !D! damage. NL Put a *Dazed on top of your draw pile."
+  },
+  "BoardGame:BGWraithForm": {
+    "NAME": "Wraith Form",
+    "DESCRIPTION": "You can't lose more than 1 HP per round. NL After !M! rounds, Exhaust this card."
   },
   "BoardGame:BGWrithe": {
     "NAME": "Writhe",

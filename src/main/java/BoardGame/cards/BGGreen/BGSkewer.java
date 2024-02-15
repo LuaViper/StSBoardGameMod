@@ -33,11 +33,6 @@ public class BGSkewer extends AbstractBGCard {
         this.magicNumber=this.baseMagicNumber;
     }
 
-    public static ArrayList<AbstractCard> cardsPlayedThisTurn=new ArrayList<AbstractCard>();
-    public void atTurnStart(){
-        cardsPlayedThisTurn=new ArrayList<AbstractCard>();
-    }
-
     public void use(AbstractPlayer p, AbstractMonster m) {
         if(this.freeToPlay()){
             this.energyOnUse=0;

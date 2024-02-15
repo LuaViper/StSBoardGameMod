@@ -50,8 +50,9 @@ public class BGInvinciblePlayerPower extends AbstractBGPower {
 
     public void stackPower(int stackAmount) {
         //do nothing
-        this.fontScale = 8.0F;
-        this.amount=1;
+        //TODO: make sure amount stays at 0 if it's already 0
+        //this.fontScale = 8.0F;
+        //this.amount=1;
     }
 
     public void playApplyPowerSfx() {
