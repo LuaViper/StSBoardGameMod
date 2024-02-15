@@ -70,7 +70,6 @@ public class BGSeverSoul extends AbstractBGCard {
         public static void Insert(HandCardSelectScreen __instance, @ByRef boolean[] ___anyNumber) {
             //we're not 100% sure this patch doesn't break anything, so only do it if we're playing the board game
             if(!(CardCrawlGame.dungeon instanceof AbstractBGDungeon)){
-                SpireReturn.Continue();
                 return;
             }
             if (__instance.selectedCards.size() >= 1 && ___anyNumber[0] && !__instance.canPickZero) {

@@ -62,6 +62,13 @@
                         " additional damage."
                 ]
         },
+        "BoardGame:BGAfterImagePower": {
+                "NAME": "After Image",
+                "DESCRIPTIONS": [
+                        "Whenever you discard one or more cards during your turn, gain #b",
+                        " Block."
+                ]
+        },
 "BoardGame:Akabeko": {
         "NAME": "Akabeko",
         "DESCRIPTIONS": [

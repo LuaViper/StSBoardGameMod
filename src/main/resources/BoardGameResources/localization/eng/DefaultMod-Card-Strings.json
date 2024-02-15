@@ -15,6 +15,10 @@
     "NAME": "Accuracy",
     "DESCRIPTION": "Your boardgame:Shivs deal !M! additional damage."
   },
+  "BoardGame:BGAfterImage": {
+    "NAME": "After Image",
+    "DESCRIPTION": "Whenever you discard one or more cards during your turn, gain !M! Block."
+  },
   "BoardGame:BGAnger": {
     "NAME": "Anger",
     "DESCRIPTION": "Deal !D! damage. NL Put this card on top of your draw pile."
