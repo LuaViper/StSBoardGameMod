@@ -39,6 +39,10 @@
     "NAME": "Berserk",
     "DESCRIPTION": "Whenever a card is Exhausted, NL deal !M! damage to any row."
   },
+  "BoardGame:BGBladeDance": {
+    "NAME": "Blade Dance",
+    "DESCRIPTION": "Gain !M! Shivs."
+  },
   "BoardGame:BGBlind": {
     "NAME": "Blind",
     "DESCRIPTION": "Apply !M! boardgame:Weak. NL Exhaust."
@@ -49,7 +53,7 @@
   },
   "BoardGame:BGBlur": {
     "NAME": "Blur",
-    "DESCRIPTION": "Gain !B! Block. Then, if you discarded a card this turn, gain !M! Block."
+    "DESCRIPTION": "Gain !B! Block. NL Then, if you discarded a card this turn, gain !M! Block."
   },
   "BoardGame:BGBouncingFlask": {
     "NAME": "Bouncing Flask",
@@ -86,6 +90,10 @@
     "NAME": "Crippling Cloud",
     "DESCRIPTION": "Apply !M! boardgame:Poison and 1 Weak to any row. NL Exhaust."
   },
+  "BoardGame:BGDaggerSpray": {
+    "NAME": "Dagger Spray",
+    "DESCRIPTION": "Deal !D! damage !M! times to any row."
+  },
   "BoardGame:BGDarkShackles": {
     "NAME": "Dark Shackles",
     "DESCRIPTION": "Gain !B! Block for each enemy that intends to attack you. NL Exhaust."
@@ -93,6 +101,10 @@
   "BoardGame:BGDash": {
     "NAME": "Dash",
     "DESCRIPTION": "Deal !D! damage. NL Gain !B! Block. NL You may switch rows with another player."
+  },
+  "BoardGame:BGDeadlyPoison": {
+    "NAME": "Deadly Poison",
+    "DESCRIPTION": "Apply !M! boardgame:Poison."
   },
   "BoardGame:BGDecay": {
     "NAME": "Decay",
@@ -108,6 +120,10 @@
     "DESCRIPTION": "Gain !B! Block.",
     "UPGRADE_DESCRIPTION": "!B! Block to any player."
   },
+  "BoardGame:BGDeflect": {
+    "NAME": "Deflect",
+    "DESCRIPTION": "Gain !B! Block. NL Then, if you have a boardgame:Shiv, gain !M! Block."
+  },
   "BoardGame:BGDisarm": {
     "NAME": "Disarm",
     "DESCRIPTION": "Apply !M! boardgame:Weak. NL Exhaust."
@@ -115,6 +131,10 @@
   "BoardGame:BGDistraction": {
     "NAME": "Distraction",
     "DESCRIPTION": "Once per turn: NL When you put a token on an enemy, gain !M! Block."
+  },
+  "BoardGame:BGDodgeAndRoll": {
+    "NAME": "Dodge and Roll",
+    "DESCRIPTION": "Apply !B! Block to any player !M! times."
   },
   "BoardGame:BGDoppelganger": {
     "NAME": "Doppelganger",
@@ -340,6 +360,10 @@
     "NAME": "Piercing Wail",
     "DESCRIPTION": "Gain !B! Block. NL Apply !M! boardgame:Weak to any row. NL Exhaust."
   },
+  "BoardGame:BGPoisonedStab": {
+    "NAME": "PoisonedStab",
+    "DESCRIPTION": "Deal !D! damage. NL Apply !M! boardgame:Poison. NL Exhaust."
+  },
   "BoardGame:BGPower Through": {
     "NAME": "Power Through",
     "DESCRIPTION": "!B! Block to any player. NL Put a *Dazed on top of your draw pile."
@@ -410,6 +434,10 @@
     "NAME": "Skewer",
     "DESCRIPTION": "Deal !D! damage X+1 times.",
     "UPGRADE_DESCRIPTION": "Deal !D! damage X times."
+  },
+  "BoardGame:BGSlice": {
+    "NAME": "Slice",
+    "DESCRIPTION": "Deal !D! damage. NL Deals !M! additional damage if you have a boardgame:Shiv."
   },
   "BoardGame:BGSneckoEyeDrawTwoCards": {
     "NAME": "Versatility",
