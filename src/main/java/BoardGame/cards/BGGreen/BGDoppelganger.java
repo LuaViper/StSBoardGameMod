@@ -35,7 +35,7 @@ public class BGDoppelganger extends AbstractBGCard {
         this.exhaust=true;
     }
 
-    //TODO: ...can we just use ActionManager's card list and exclude uncopyable cards?
+    //TODO LATER: ...can we just use ActionManager's card list and skip uncopyable cards?
     public static ArrayList<AbstractCard> cardsPlayedThisTurn=new ArrayList<AbstractCard>();
     public void atTurnStart(){
         cardsPlayedThisTurn=new ArrayList<AbstractCard>();

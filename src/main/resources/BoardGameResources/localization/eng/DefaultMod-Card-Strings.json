@@ -460,6 +460,11 @@
     "DESCRIPTION": "If the die is on 1, 2, or 3, gain !M! Strength.",
     "UPGRADE_DESCRIPTION": "If the die is on 1, 2, 3, or 4, gain !M! Strength."
   },
+  "BoardGame:BGStormOfSteel": {
+    "NAME": "Storm of Steel",
+    "DESCRIPTION": "Discard any number of cards. Gain a boardgame:Shiv for each card discarded.",
+    "UPGRADE_DESCRIPTION": "Discard any number of cards. Gain a Shiv for each card discarded +1."
+  },
   "BoardGame:BGTactician": {
     "NAME": "Tactician",
     "DESCRIPTION": "Unplayable. NL If this card is discarded from your hand, gain [G] [G] and Exhaust.",
