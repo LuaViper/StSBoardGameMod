@@ -39,7 +39,7 @@ public class BGWraithFormPower extends AbstractBGPower {
         //loadRegion("intangible");
         //this.priority = 75;
         loadRegion("wraithForm");
-        this.priority = 75;
+        this.priority = 100;    //must be higher than Invincible or the existing Invincible buff will stack and vanish after we try to apply it
     }
 
     public void playApplyPowerSfx() {

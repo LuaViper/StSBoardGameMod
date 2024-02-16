@@ -16,30 +16,27 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import BoardGame.monsters.AbstractBGMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BGDoubleAttackPower extends AbstractBGPower {
-    public static final String POWER_ID = "BGDouble Attack";
-    private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGDouble Attack");
+public class BGBurstPower extends AbstractBGPower {
+    public static final String POWER_ID = "BoardGame:BGBurstPower";
+    private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGBurstPower");
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    public BGDoubleAttackPower(AbstractCreature owner, int amount) {
+    public BGBurstPower(AbstractCreature owner, int amount) {
         this.name = NAME;
-        this.ID = "BGDouble Attack";
+        this.ID = "BoardGame:BGBurstPower";
         this.owner = owner;
         this.amount = amount;
         updateDescription();
-        loadRegion("doubleTap");
+        loadRegion("burst");
     }
 
     public void stackPower(int stackAmount) {
-        //TODO: Necronomicon is now supposed to stack with Attack Potion as expected
-        if(stackAmount>0) this.amount=1;
-        //this.fontScale = 8.0F;
+        this.fontScale = 8.0F;
+        this.amount += stackAmount;
     }
 
     public void updateDescription() {
@@ -53,16 +50,15 @@ public class BGDoubleAttackPower extends AbstractBGPower {
     public void onUseCard(AbstractCard card, UseCardAction action) {
         //TODO: copied card needs to get played FIRST, somehow
         //TODO: check card.cannotBeCopied flag
-        if(this.owner.getPower("BGDouble Tap")!=null){
-            //neither Double Tap nor Double Attack stack in the BG
-            //it's slightly more likely that Double Tap will be available twice, so use it up first
-            return;
+        boolean copyOK=true;
+        if(card instanceof AbstractBGCard){
+            if(((AbstractBGCard)card).cannotBeCopied) copyOK=false;
         }
-        if (!card.purgeOnUse && card.type == AbstractCard.CardType.ATTACK && this.amount > 0) {
+        if (!card.purgeOnUse && card.type == AbstractCard.CardType.SKILL && this.amount > 0 && copyOK) {
             flash();
             AbstractMonster m = null;
-
-
+            if (action.target != null)
+                m = (AbstractMonster)action.target;
             AbstractCard tmp = card.makeSameInstanceOf();
             AbstractDungeon.player.limbo.addToBottom(tmp);
             tmp.current_x = card.current_x;
@@ -72,37 +68,21 @@ public class BGDoubleAttackPower extends AbstractBGPower {
 
             tmp.purgeOnUse = true;
 
-            Logger logger = LogManager.getLogger(BGDoubleTapPower.class.getName());
-            //logger.info("DoubleAttackPower instanceof check");
             if(card instanceof AbstractBGCard){
                 //logger.info("set old card's copy reference: "+tmp);
                 ((AbstractBGCard)card).copiedCard=(AbstractBGCard)tmp;
             }
 
-            //AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, m, card.energyOnUse, true, true), true);
-
-            //logger.info("DoubleTap card target type: "+card.target);
-            if(card.target== AbstractCard.CardTarget.ENEMY || card.target== AbstractCard.CardTarget.SELF_AND_ENEMY) {
-                TargetSelectScreen.TargetSelectAction tssAction = (target) -> {
-                    //logger.info("DoubleTap tssAction.execute");
-                    if (target != null) {
-                        tmp.calculateCardDamage(target);
-                    }
-                    //logger.info("DoubleTap final target: "+target);
-                    addToBot((AbstractGameAction) new NewQueueCardAction(tmp, target, true, true));
-                };
-                //logger.info("DoubleTap addToTop");
-                addToBot((AbstractGameAction)new TargetSelectScreenAction(tssAction,"Choose a target for the copy of "+card.name+"."));
-            }else{
-                addToBot((AbstractGameAction) new NewQueueCardAction(tmp, null, true, true));
-            }
-
+            if (m != null)
+                tmp.calculateCardDamage(m);
+            tmp.purgeOnUse = true;
+            AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, m, card.energyOnUse, true, true), true);
 
 
 
             this.amount--;
             if (this.amount == 0) {
-                addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, "BGDouble Attack"));
+                addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, "BoardGame:BGBurstPower"));
             }
         }
     }
@@ -110,7 +90,7 @@ public class BGDoubleAttackPower extends AbstractBGPower {
 
     public void atEndOfTurn(boolean isPlayer) {
         if (isPlayer)
-            addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, "BGDouble Attack"));
+            addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, "BoardGame:BGBurstPower"));
     }
 }
 

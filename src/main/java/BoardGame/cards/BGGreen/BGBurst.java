@@ -1,11 +1,13 @@
 //TODO: currently, copied cards are played after the original card (VG) instead of before the original card (BG)
-//TODO: NYI: Double Tap CAN be copied, but CANNOT be PlayedTwice
+//TODO: if Doppelganger is forced to copy Burst via e.g. Havoc, is Doppelganger Unplayable or does it merely have no effect?
 
-package BoardGame.cards.BGRed;
+package BoardGame.cards.BGGreen;
 
-import BoardGame.powers.BGDoubleTapPower;
-import BoardGame.characters.BGIronclad;
 import BoardGame.cards.AbstractBGCard;
+import BoardGame.characters.BGIronclad;
+import BoardGame.characters.BGSilent;
+import BoardGame.powers.BGBurstPower;
+import BoardGame.powers.BGDoubleTapPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -15,15 +17,17 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-public class BGDoubleTap extends AbstractBGCard {
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGDouble Tap");
-    public static final String ID = "BGDouble Tap";
 
-    public BGDoubleTap() {
-        super("BGDouble Tap", cardStrings.NAME, "red/skill/double_tap", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, BGIronclad.Enums.BG_RED, AbstractCard.CardRarity.RARE, AbstractCard.CardTarget.SELF);
+public class BGBurst extends AbstractBGCard {
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGBurst");
+    public static final String ID = "BGBurst";
+
+    public BGBurst() {
+        super("BGBurst", cardStrings.NAME, "green/skill/burst", 1, cardStrings.DESCRIPTION, CardType.SKILL, BGSilent.Enums.BG_GREEN, CardRarity.RARE, CardTarget.SELF);
 
         this.baseMagicNumber = 1;
         this.magicNumber = this.baseMagicNumber;
+        this.cannotBeCopied=true;
     }
 
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
@@ -32,7 +36,7 @@ public class BGDoubleTap extends AbstractBGCard {
             return false;
         }
 
-        if (p.hasPower("BGDouble Tap")) {
+        if (p.hasPower("BoardGame:BGBurstPower")) {
             this.cantUseMessage = cardStrings.UPGRADE_DESCRIPTION;
             return false;
         }
@@ -40,7 +44,7 @@ public class BGDoubleTap extends AbstractBGCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new BGDoubleTapPower((AbstractCreature)p, this.magicNumber), this.magicNumber));
+        addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new BGBurstPower((AbstractCreature)p, this.magicNumber), this.magicNumber));
     }
 
 
@@ -53,7 +57,7 @@ public class BGDoubleTap extends AbstractBGCard {
 
 
     public AbstractCard makeCopy() {
-        return new BGDoubleTap();
+        return new BGBurst();
     }
 }
 

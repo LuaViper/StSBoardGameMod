@@ -83,6 +83,13 @@
                         " effectiveness."
                 ]
         },
+        "BoardGame:BGAThousandCutsPower": {
+                "NAME": "A Thousand Cuts",
+                "DESCRIPTIONS": [
+                        "Whenever you shuffle your draw pile, deal #b",
+                        " damage to any row."
+                ]
+        },
 "BoardGame:BGBeatOfDeathPower": {
         "NAME": "Beat Of Death",
         "DESCRIPTIONS": [
@@ -97,6 +104,14 @@
                 " damage to ALL enemies."
         ]
 },
+        "BoardGame:BGBurstPower": {
+                "NAME": "Burst",
+                "DESCRIPTIONS": [
+                        "Your next #ySkill is played twice this turn.",
+                        "Your next ",
+                        " #ySkills are played twice this turn."
+                ]
+        },
 "BoardGame:BGChampPhase2WarningPower": {
         "NAME": "Undefeated",
         "DESCRIPTIONS": [
@@ -165,6 +180,12 @@
                 " #yAttacks are played twice this turn."
         ]
 },
+        "BoardGame:BGEnvenom": {
+                "NAME": "Envenom",
+                "DESCRIPTIONS": [
+                        "Your Attacks also apply #b1 Poison."
+                ]
+        },
         "BoardGame:BGExplosive": {
                 "NAME": "Explosive",
                 "DESCRIPTIONS": [
@@ -374,7 +395,7 @@
         "BoardGame:BGWraithFormPower": {
                 "NAME": "Wraith Form",
                 "DESCRIPTIONS": [
-                        "You can't lose more than #b1 HP per round.",
+                        "You can't lose more than #b1 HP this round.",
                         "You can't lose more than #b1 HP per round for the next #b",
                         " rounds."
                 ]

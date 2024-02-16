@@ -53,6 +53,9 @@ public class AbstractBGPower extends AbstractPower {
      public void onRightClick(){
         //override
      }
+    public void onShuffle(){
+         //override
+    }
 
      public void atStartOfTurnPostDraw(){
          super.atStartOfTurnPostDraw();

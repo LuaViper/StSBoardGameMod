@@ -28,7 +28,7 @@ public class BGInvinciblePlayerPower extends AbstractBGPower {
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
-    public BGInvinciblePlayerPower(AbstractCreature owner, int turns) {
+    public BGInvinciblePlayerPower(AbstractCreature owner, int turns) { //TODO: not using "turns" atm (BGWraithFormPower handles that)
         this.name = NAME;
         this.ID = "BGIntangible";
         this.owner = owner;

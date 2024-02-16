@@ -3,6 +3,7 @@ package BoardGame.cards.BGGreen;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGSilent;
 import BoardGame.powers.BGAfterImagePower;
+import BoardGame.powers.BGInvinciblePlayerPower;
 import BoardGame.powers.BGWraithFormPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -28,6 +29,7 @@ public class BGWraithForm extends AbstractBGCard {
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
+        addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new BGInvinciblePlayerPower((AbstractCreature)p, 1), 1));
         addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new BGWraithFormPower((AbstractCreature)p, this.magicNumber, this), this.magicNumber));
     }
 

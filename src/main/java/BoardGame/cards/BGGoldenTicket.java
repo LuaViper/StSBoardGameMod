@@ -1,5 +1,8 @@
 package BoardGame.cards;
 
+import BoardGame.cards.BGGreen.BGMalaise;
+import BoardGame.characters.BGColorless;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import BoardGame.monsters.AbstractBGMonster;
@@ -25,10 +28,10 @@ public class BGGoldenTicket extends AbstractDynamicCard {
 
     // STAT DECLARATION
 
-    private static final CardRarity RARITY = CardRarity.COMMON;
+    private static final CardRarity RARITY = CardRarity.SPECIAL;
     private static final CardTarget TARGET = CardTarget.SELF;
     private static final CardType TYPE = CardType.STATUS;
-    public static final CardColor COLOR = BGIronclad.Enums.BG_RED;
+    public static final CardColor COLOR = BGColorless.Enums.CARD_COLOR;
 
     private static final int COST = -2;
     private static final int UPGRADE_COST = 1;
@@ -57,5 +60,9 @@ public class BGGoldenTicket extends AbstractDynamicCard {
             upgradeName();
             initializeDescription();
         }
+    }
+
+    public AbstractCard makeCopy() {
+        return new BGGoldenTicket();
     }
 }

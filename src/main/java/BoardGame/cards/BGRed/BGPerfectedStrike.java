@@ -20,14 +20,6 @@ public class BGPerfectedStrike extends AbstractBGCard {
         super("BGPerfected Strike", cardStrings.NAME, "red/attack/perfected_strike", 2, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, BGIronclad.Enums.BG_RED, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.ENEMY);
 
 
-
-
-
-
-
-
-
-
         this.baseDamage = 3;
         this.baseMagicNumber = 1;
         this.magicNumber = this.baseMagicNumber;

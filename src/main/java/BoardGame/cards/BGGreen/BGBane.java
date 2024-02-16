@@ -50,7 +50,7 @@ public class BGBane extends AbstractBGCard {
 
     public void applyPowers() {
         int realBaseDamage = this.baseDamage;
-        //this.baseDamage += this.magicNumber * 0;
+        //this.baseDamage += this.magicNumber * 0;  //TODO: why did we have to comment this out again?
 
         super.applyPowers();
 

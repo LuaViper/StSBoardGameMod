@@ -56,6 +56,7 @@ public class BGDoubleTapPower extends AbstractBGPower {
         Logger logger = LogManager.getLogger(BGDoubleTapPower.class.getName());
         logger.info("BGDOUBLETAPPOWER.ONUSECARD");
         //TODO: copied card needs to get played FIRST, somehow
+        //TODO: check card.cannotBeCopied flag
         if (!card.purgeOnUse && card.type == AbstractCard.CardType.ATTACK && this.amount > 0) {
             flash();
             //AbstractMonster m = null;

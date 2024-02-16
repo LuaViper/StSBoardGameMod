@@ -55,7 +55,7 @@ public class BGSlice extends AbstractBGCard {
 
     public void applyPowers() {
         int realBaseDamage = this.baseDamage;
-        //this.baseDamage += this.magicNumber * 0;
+        this.baseDamage += this.magicNumber * checkShivs();
 
         super.applyPowers();
 
@@ -88,17 +88,17 @@ public class BGSlice extends AbstractBGCard {
         initializeDescription();
     }
 
-    @Override
-    public void update() {
-        super.update();
-        if(AbstractDungeon.player!=null) {
-            AbstractMonster mo = ReflectionHacks.getPrivate(AbstractDungeon.player, AbstractPlayer.class, "hoveredMonster");
-            if(mo==null){
-                this.target=null;
-                this.applyPowers();
-            }
-        }
-    }
+//    @Override
+//    public void update() {
+//        super.update();
+//        if(AbstractDungeon.player!=null) {
+//            AbstractMonster mo = ReflectionHacks.getPrivate(AbstractDungeon.player, AbstractPlayer.class, "hoveredMonster");
+//            if(mo==null){
+//                this.target=null;
+//                this.applyPowers();
+//            }
+//        }
+//    }
 
     public AbstractCard makeCopy() {
         return new BGSlice();

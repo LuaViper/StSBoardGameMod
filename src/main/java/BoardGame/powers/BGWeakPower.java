@@ -29,6 +29,7 @@ public class BGWeakPower extends AbstractBGPower {
         this.name = NAME;
         this.ID = "BGWeakened";
         this.owner = owner;
+        if(amount>3)amount=3;
         this.amount = amount;
         updateDescription();
         loadRegion("weak");
@@ -39,6 +40,8 @@ public class BGWeakPower extends AbstractBGPower {
 
         this.type = AbstractPower.PowerType.DEBUFF;
         this.isTurnBased = false;
+
+
 
 
         this.priority = 99;

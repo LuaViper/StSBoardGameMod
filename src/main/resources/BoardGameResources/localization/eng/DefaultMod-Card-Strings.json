@@ -31,6 +31,10 @@
     "NAME": "Apotheosis",
     "DESCRIPTION": "Your starter Strikes deal +1 damage. NL NL Your starter Defends gain +1 Block."
   },
+  "BoardGame:BGAThousandCuts": {
+    "NAME": "A Thousand Cuts",
+    "DESCRIPTION": "Whenever you shuffle your draw pile, deal !M! damage to any row."
+  },
   "BoardGame:BGBackstab": {
     "NAME": "Backstab",
     "DESCRIPTION": "Deal !D! damage. NL Deals !M! additional damage if the enemy is at full HP. NL Exhaust."
@@ -39,13 +43,18 @@
     "NAME": "Bane",
     "DESCRIPTION": "Deal !D! damage. NL Deals !M! additional damage if the target is boardgame:Poisoned."
   },
+  "BoardGame:BGCloakAndDagger": {
+    "NAME": "Cloak and Dagger",
+    "DESCRIPTION": "Gain !M! boardgame:Shiv. NL Gain 1 Block.",
+    "UPGRADE_DESCRIPTION": "Gain !M! boardgame:Shivs. NL Gain 1 Block."
+  },
   "BoardGame:BGBerserk": {
     "NAME": "Berserk",
     "DESCRIPTION": "Whenever a card is Exhausted, NL deal !M! damage to any row."
   },
   "BoardGame:BGBladeDance": {
     "NAME": "Blade Dance",
-    "DESCRIPTION": "Gain !M! Shivs."
+    "DESCRIPTION": "Gain !M! boardgame:Shivs."
   },
   "BoardGame:BGBlind": {
     "NAME": "Blind",
@@ -57,7 +66,7 @@
   },
   "BoardGame:BGBlur": {
     "NAME": "Blur",
-    "DESCRIPTION": "Gain !B! Block. NL Then, if you discarded a card this turn, gain !M! Block."
+    "DESCRIPTION": "Gain !B! Block. NL Gain another !M! Block if you have discarded a card this turn."
   },
   "BoardGame:BGBouncingFlask": {
     "NAME": "Bouncing Flask",
@@ -67,6 +76,11 @@
     "NAME": "Burn",
     "DESCRIPTION": "Unplayable. NL At the end of your turn, take 1 damage.",
     "UPGRADE_DESCRIPTION": "Unplayable. NL At the end of your turn, take 2 damage."
+  },
+  "BoardGame:BGBurst": {
+    "NAME": "Burst",
+    "DESCRIPTION": "This turn, your next Skill is played twice. NL Burst can't be copied or \"played twice\".",
+    "UPGRADE_DESCRIPTION": "Burst can't be \"played twice\"."
   },
   "BoardGame:BGCatalyst": {
     "NAME": "Catalyst",
@@ -130,7 +144,7 @@
   },
   "BoardGame:BGDeflect": {
     "NAME": "Deflect",
-    "DESCRIPTION": "Gain !B! Block. NL Then, if you have a boardgame:Shiv, gain !M! Block."
+    "DESCRIPTION": "Gain !B! Block. NL Gain another !M! Block if you have a boardgame:Shiv."
   },
   "BoardGame:BGDisarm": {
     "NAME": "Disarm",
@@ -142,7 +156,7 @@
   },
   "BoardGame:BGDodgeAndRoll": {
     "NAME": "Dodge and Roll",
-    "DESCRIPTION": "Apply !B! Block to any player !M! times."
+    "DESCRIPTION": "!B! Block to any player !M! times. NL (You can pick different targets for each.)"
   },
   "BoardGame:BGDoppelganger": {
     "NAME": "Doppelganger",
@@ -156,7 +170,7 @@
   },
   "BoardGame:BGDouble Tap": {
     "NAME": "Double Tap",
-    "DESCRIPTION": "This turn, your next Attack is played twice. NL Can't be played if Double Tap is already active.",
+    "DESCRIPTION": "This turn, your next Attack is played twice. NL Double Tap can't be \"played twice\".",
     "UPGRADE_DESCRIPTION": "Double Tap can't be \"played twice\"."
   },
   "BoardGame:BGDramatic Entrance": {
@@ -175,6 +189,10 @@
     "NAME": "Entrench",
     "DESCRIPTION": "Double your Block. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Double your Block."
+  },
+  "BoardGame:BGEnvenom": {
+    "NAME": "Envenom",
+    "DESCRIPTION": "Your Attacks, including boardgame:Shivs, also apply !M! Poison."
   },
   "BoardGame:BGEscapePlan": {
     "NAME": "Escape Plan",
@@ -300,6 +318,11 @@
     "NAME": "Madness",    "DESCRIPTION": "The next card you play this turn costs 0. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Retain. NL The next card you play this turn costs 0. NL Exhaust."
   },
+  "BoardGame:BGMalaise": {
+    "NAME": "Malaise",
+    "DESCRIPTION": "Apply 1 Weak and 1 Poison X times. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Apply 1 Weak and 1 Poison X+1 times. NL Exhaust."
+  },
   "BoardGame:BGMasterful Stab": {
     "NAME": "Masterful Stab",
     "DESCRIPTION": "Costs [G] [G] NL if you lost HP this combat. NL Deal !D! damage."
@@ -339,8 +362,8 @@
   },
   "BoardGame:BGOutmaneuver": {
     "NAME": "Outmaneuver",
-    "DESCRIPTION": "Retain. NL When played, if you Retained this card last turn, gain [E] [E].",
-    "UPGRADE_DESCRIPTION": "Retain. NL When played, if you Retained this card last turn, gain [E] [E] [E]."
+    "DESCRIPTION": "Retain. NL When played, if you Retained this card last turn, gain [G] [G].",
+    "UPGRADE_DESCRIPTION": "Retain. NL When played, if you Retained this card last turn, gain [G] [G] [G]."
   },
   "BoardGame:BGPanacea": {
     "NAME": "Panacea",
@@ -369,7 +392,7 @@
     "DESCRIPTION": "Gain !B! Block. NL Apply !M! boardgame:Weak to any row. NL Exhaust."
   },
   "BoardGame:BGPoisonedStab": {
-    "NAME": "PoisonedStab",
+    "NAME": "Poisoned Stab",
     "DESCRIPTION": "Deal !D! damage. NL Apply !M! boardgame:Poison. NL Exhaust."
   },
   "BoardGame:BGPower Through": {
@@ -499,6 +522,10 @@
     "NAME": "Twin Strike",
     "DESCRIPTION": "Deal !D! damage twice.",
     "UPGRADE_DESCRIPTION": "boardgame:Naive. NL Deal 2 damage then 1 damage."
+  },
+  "BoardGame:BGUnload": {
+    "NAME": "Unload",
+    "DESCRIPTION": "Deal !D! damage. Use all of your boardgame:Shivs now; they each deal +!M! damage. (Each boardgame:Shiv is still a separate Attack.)"
   },
   "BoardGame:BGUppercut": {
     "NAME": "Uppercut",

@@ -128,6 +128,9 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                 AbstractBGDungeon.cursesRewardDeck = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
                 AbstractBGDungeon.colorlessRewardDeck = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
 
+                AbstractCard goldenTicket=new BGGoldenTicket();
+                rewardDeck.addToTop(goldenTicket.makeCopy());
+                rewardDeck.addToTop(goldenTicket.makeCopy());
                 ArrayList<AbstractCard> tmpPool = new ArrayList<>();
                 player.getCardPool(tmpPool);
                 for (AbstractCard c : tmpPool) {

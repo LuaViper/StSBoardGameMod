@@ -17,12 +17,12 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-public class BGStormOfSteel extends AbstractBGCard implements CardDoesNotDiscardWhenPlayed {
+public class BGStormOfSteel extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGStormOfSteel");
     public static final String ID = "BGStormOfSteel";
 
     public BGStormOfSteel() {
-        super("BGStormOfSteel", cardStrings.NAME, "green/skill/storm_of_steel", 1, cardStrings.DESCRIPTION, CardType.SKILL, BGSilent.Enums.BG_GREEN, CardRarity.RARE, CardTarget.ENEMY);
+        super("BGStormOfSteel", cardStrings.NAME, "green/skill/storm_of_steel", 1, cardStrings.DESCRIPTION, CardType.SKILL, BGSilent.Enums.BG_GREEN, CardRarity.RARE, CardTarget.SELF);
 
         this.baseMagicNumber=0;
         this.magicNumber=this.baseMagicNumber;

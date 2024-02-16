@@ -1,6 +1,7 @@
 package BoardGame.actions;
 
 
+import BoardGame.powers.BGAfterImagePower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
@@ -11,6 +12,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 public class BGStormOfSteelAction extends AbstractGameAction {
     private AbstractPlayer p;
@@ -30,18 +32,27 @@ public class BGStormOfSteelAction extends AbstractGameAction {
 
     public void update() {
         if (this.duration == 0.5F) {
+            //TODO: maybe change text from "replace" to "discard"
             AbstractDungeon.handCardSelectScreen.open(TEXT[1], 99, true, true);
             addToBot((AbstractGameAction)new WaitAction(0.25F));
             tickDuration();
             return;
         }
         if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved) {
-            if (!AbstractDungeon.handCardSelectScreen.selectedCards.group.isEmpty()) {
-                addToTop((AbstractGameAction) new BGGainShivAction(AbstractDungeon.handCardSelectScreen.selectedCards.group.size()+bonus));
+            int total=AbstractDungeon.handCardSelectScreen.selectedCards.group.size()+bonus;
+            if(total>0) {
+                addToTop((AbstractGameAction) new BGGainShivAction(total));
                 for (AbstractCard c : AbstractDungeon.handCardSelectScreen.selectedCards.group) {
                     AbstractDungeon.player.hand.moveToDiscardPile(c);
                     GameActionManager.incrementDiscard(false);
                     c.triggerOnManualDiscard();
+                }
+            }
+            if (!AbstractDungeon.handCardSelectScreen.selectedCards.group.isEmpty()) {
+                //That did NOT trigger DiscardAction's AfterImage call, so do that now
+                AbstractPower pw=AbstractDungeon.player.getPower("BoardGame:BGAfterImagePower");
+                if(pw!=null){
+                    ((BGAfterImagePower)pw).onDiscardAction();
                 }
             }
             AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;

@@ -20,10 +20,10 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 public class BGCloakAndDagger extends AbstractBGCard {
     public static final String ID = "BGCloakAndDagger";
 
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Cloak And Dagger");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGCloakAndDagger");
 
     public BGCloakAndDagger() {
-        super("BGDeflect", cardStrings.NAME, "green/skill/cloak_and_dagger", 1, cardStrings.DESCRIPTION, CardType.SKILL, BGSilent.Enums.BG_GREEN, CardRarity.COMMON, CardTarget.SELF);
+        super("BGCloakAndDagger", cardStrings.NAME, "green/skill/cloak_and_dagger", 1, cardStrings.DESCRIPTION, CardType.SKILL, BGSilent.Enums.BG_GREEN, CardRarity.COMMON, CardTarget.SELF);
         this.baseBlock = 1;
         this.baseMagicNumber=1;
         this.magicNumber=this.baseMagicNumber;
@@ -39,6 +39,8 @@ public class BGCloakAndDagger extends AbstractBGCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeMagicNumber(1);
+            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+            initializeDescription();
         }
     }
 

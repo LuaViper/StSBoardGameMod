@@ -25,7 +25,7 @@ public class BGPrepared extends AbstractBGCard {
 
     public BGPrepared() {
         super("BGPrepared", cardStrings.NAME, "green/skill/prepared", 0, cardStrings.DESCRIPTION, CardType.SKILL, BGSilent.Enums.BG_GREEN, CardRarity.COMMON, CardTarget.NONE);
-        this.baseMagicNumber=2;
+        this.baseMagicNumber=1;
         this.magicNumber=this.baseMagicNumber;
     }
 

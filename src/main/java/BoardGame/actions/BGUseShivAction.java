@@ -60,6 +60,7 @@ public class BGUseShivAction extends AbstractGameAction {
                                 fakeShiv.baseDamage+=accuracy.amount;
                             }
                         }
+                        fakeShiv.baseDamage+=bonusDamage;
                         UseCardAction fakeShivAction=new UseCardAction(fakeShiv,target);
                         fakeShiv.calculateCardDamage(target);
                         addToTop((AbstractGameAction) new CheckAfterUseCardAction(fakeShiv,fakeShivAction));
