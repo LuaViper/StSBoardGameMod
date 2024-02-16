@@ -35,9 +35,14 @@ public abstract class PotionHelperPatch {
                 potionDeck.add("BoardGame:BGWeak Potion");
                 potionDeck.add("BoardGame:BGFearPotion");
                 potionDeck.add("BoardGame:BGSteroidPotion");
-                potionDeck.add("BoardGame:BGSteroidPotion");
                 potionDeck.add("BoardGame:BGBloodPotion");
+                //potionDeck.add("BoardGame:BGGhostInAJar");
+                //potionDeck.add("BoardGame:BGDistilledChaos");
+                //potionDeck.add("BoardGame:BGEntropicBrew");
                 //potionDeck.add("BoardGame:BGFairyPotion");
+                //potionDeck.add("BoardGame:BGAttackPotion");
+                //potionDeck.add("BoardGame:BGSkillPotion");
+                //potionDeck.add("BoardGame:BGAncientPotion");
                 potionDeck.add("BoardGame:BGBlock Potion");
                 potionDeck.add("BoardGame:BGEnergy Potion");
                 potionDeck.add("BoardGame:BGExplosive Potion");
@@ -46,8 +51,10 @@ public abstract class PotionHelperPatch {
                 potionDeck.add("BoardGame:BGWeak Potion");
                 potionDeck.add("BoardGame:BGFearPotion");
                 potionDeck.add("BoardGame:BGSteroidPotion");
+                //potionDeck.add("BoardGame:BGLiquidMemories");
                 potionDeck.add("BoardGame:BGSneckoOil");
                 potionDeck.add("BoardGame:BGElixirPotion");
+                //potionDeck.add("BoardGame:BGCunningPotion");
                 Collections.shuffle(potionDeck, new java.util.Random(cardRng.randomLong()));
                 return SpireReturn.Continue();
             }

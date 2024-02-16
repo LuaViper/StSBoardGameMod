@@ -38,6 +38,9 @@ public class BGJuggernautPower extends AbstractBGPower {
 
 
     public void onGainedBlock(float blockAmount) {
+        if(AbstractDungeon.player.currentBlock>=20)
+            return;
+
         if (blockAmount > 0.0F) {
             flash();
 //            if(target==null || target.halfDead || target.isDead || target.isDying || target.isEscaping) {
@@ -52,27 +55,27 @@ public class BGJuggernautPower extends AbstractBGPower {
 
             TargetSelectScreen.TargetSelectAction action=(target)->{
                 addToTop((AbstractGameAction) new DamageAction((AbstractCreature) target, new DamageInfo(this.owner, this.amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-                if(target instanceof BGTransient){
-                    transientSkipCounter--;
-                    if(transientSkipCounter==0){
-                        AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, DESCRIPTIONS[2], true));
-                    }else if(transientSkipCounter==-5){
-                        CardCrawlGame.startOver=false;
-                        CardCrawlGame.fadeToBlack(2.0F);
-                        transientFadedOut=true;
-                    }else if(transientSkipCounter==-10){
-                        if(target.currentHealth>10*this.amount){
-                            int damage=target.currentHealth-10*this.amount;
-                            addToTop((AbstractGameAction) new DamageSpecificEnemyOrRandomIfDeadAction(target, new DamageInfo(this.owner, damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-                            //this.target.currentHealth=10*this.amount;
-                        }
-                    }else if(transientSkipCounter==-12){
-                        CardCrawlGame.fadeIn(2.0F);
-                        transientFadedOut=false;
-                    }else if(transientSkipCounter==-15){
-                        AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 2.0F, DESCRIPTIONS[3], true));
-                    }
-                }
+//                if(target instanceof BGTransient){
+//                    transientSkipCounter--;
+//                    if(transientSkipCounter==0){
+//                        AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, DESCRIPTIONS[2], true));
+//                    }else if(transientSkipCounter==-5){
+//                        CardCrawlGame.startOver=false;
+//                        CardCrawlGame.fadeToBlack(2.0F);
+//                        transientFadedOut=true;
+//                    }else if(transientSkipCounter==-10){
+//                        if(target.currentHealth>10*this.amount){
+//                            int damage=target.currentHealth-10*this.amount;
+//                            addToTop((AbstractGameAction) new DamageSpecificEnemyOrRandomIfDeadAction(target, new DamageInfo(this.owner, damage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+//                            //this.target.currentHealth=10*this.amount;
+//                        }
+//                    }else if(transientSkipCounter==-12){
+//                        CardCrawlGame.fadeIn(2.0F);
+//                        transientFadedOut=false;
+//                    }else if(transientSkipCounter==-15){
+//                        AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 2.0F, DESCRIPTIONS[3], true));
+//                    }
+//                }
             };
 
             addToTop((AbstractGameAction)new TargetSelectScreenAction(action,"You gained Block.  Choose a target for Juggernaut ("+Integer.toString(this.amount)+" damage)."));

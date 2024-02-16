@@ -54,6 +54,7 @@ public class BGBurstPower extends AbstractBGPower {
         if(card instanceof AbstractBGCard){
             if(((AbstractBGCard)card).cannotBeCopied) copyOK=false;
         }
+        //TODO: depending on ruling, maybe preserve burst and wait until next card?
         if (!card.purgeOnUse && card.type == AbstractCard.CardType.SKILL && this.amount > 0 && copyOK) {
             flash();
             AbstractMonster m = null;

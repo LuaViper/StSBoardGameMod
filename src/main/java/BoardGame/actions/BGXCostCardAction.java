@@ -30,9 +30,10 @@ public class BGXCostCardAction extends AbstractGameAction {
 
     protected XCostAction action;
 
-    public BGXCostCardAction(AbstractCard card, int maxEnergy, XCostAction action){
-        this.minEnergy=0;
+    public BGXCostCardAction(AbstractCard card, int minEnergy, int maxEnergy, XCostAction action){
+        this.minEnergy=minEnergy;
         //we have to check for confusion now -- by the time we get to action.update, it wears off
+        //TODO: is confusion check still necessary after changes to costForTurn and minEnergy?
         AbstractPower p=AbstractDungeon.player.getPower("BGConfusion");
         if(p!=null && p.amount>-1){
             this.minEnergy=maxEnergy;

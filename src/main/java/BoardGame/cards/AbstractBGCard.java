@@ -107,6 +107,42 @@ public abstract class AbstractBGCard extends CustomCard {
         }
     }
 
+
+    public void setCostForTurn(int amt) {
+        if (this.costForTurn >= -1) {       //X-cost cards can be modified too.
+            this.costForTurn = amt;
+            if (this.costForTurn < 0) {
+                this.costForTurn = 0;
+            }
+
+            if (this.costForTurn != this.cost) {
+                this.isCostModifiedForTurn = true;
+            }
+        }
+    }
+
+    @SpirePatch(clz = AbstractCard.class, method = "getCost",
+            paramtypez = {})
+    public static class AbstractCardGetCostPatch {
+        @SpirePrefixPatch
+        public static SpireReturn<String> Prefix(AbstractCard __instance) {
+            if(!(__instance instanceof AbstractBGCard))return SpireReturn.Continue();
+
+            if (__instance.cost == -1) {
+                if(__instance.costForTurn!=-1)
+                    return SpireReturn.Return(Integer.toString(__instance.costForTurn));
+                else
+                    return SpireReturn.Return("X");
+            }
+            if (__instance.freeToPlay())
+                return SpireReturn.Return("0");
+            return SpireReturn.Return(Integer.toString(__instance.costForTurn));
+        }
+    }
+
+
+
+
     public void displayUpgrades() { // Display the upgrade - when you click a card to upgrade it
         super.displayUpgrades();
         if (upgradedDefaultSecondMagicNumber) { // If we set upgradedDefaultSecondMagicNumber = true in our card.

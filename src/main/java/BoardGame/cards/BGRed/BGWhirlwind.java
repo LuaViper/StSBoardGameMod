@@ -35,6 +35,11 @@ public class BGWhirlwind extends AbstractBGCard {
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
+        int minEnergy=0;
+        if(this.isCostModifiedForTurn){
+            minEnergy=this.costForTurn;
+            this.energyOnUse=this.costForTurn;
+        }
         if(this.freeToPlay()){
             this.energyOnUse=0;
         }
@@ -45,7 +50,7 @@ public class BGWhirlwind extends AbstractBGCard {
             this.energyOnUse=this.copiedCardEnergyOnUse;
         }
 
-        addToTop((AbstractGameAction)new BGXCostCardAction(this, this.energyOnUse,
+        addToTop((AbstractGameAction)new BGXCostCardAction(this, minEnergy, this.energyOnUse,
                 (e)->addToTop((AbstractGameAction)new BGWhirlwindAction(AbstractDungeon.player, this.multiDamage, this.damageTypeForTurn, this.freeToPlayOnce, e,this.magicNumber))));
     }
 

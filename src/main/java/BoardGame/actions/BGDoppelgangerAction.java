@@ -17,8 +17,8 @@ import java.util.ArrayList;
 
 public class BGDoppelgangerAction extends BGXCostCardAction {
 
-    public BGDoppelgangerAction(AbstractCard card, int maxEnergy, BGXCostCardAction.XCostAction action) {
-        super(card, maxEnergy, action);
+    public BGDoppelgangerAction(AbstractCard card, int minEnergy, int maxEnergy, BGXCostCardAction.XCostAction action) {
+        super(card, minEnergy, maxEnergy, action);
     }
 
     public void update() {

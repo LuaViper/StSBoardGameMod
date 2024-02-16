@@ -37,6 +37,7 @@ public class TheDie {
     }
 
     public static void roll(){
+        //TODO: can we get TheDie's displayed number to update BEFORE applying Block (and triggering a 20-hit Transient combo)?
         int r=monsterRng.random(1,6);
         final Logger logger = LogManager.getLogger(BoardGame.class.getName());
         logger.info("ROLL THE DIE: "+r);

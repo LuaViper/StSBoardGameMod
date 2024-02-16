@@ -31,11 +31,11 @@ public class BGBurst extends AbstractBGCard {
     }
 
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
+        //TODO: this logic isn't 100% accurate especially if we bring in two physical Burst cards
         boolean canUse = super.canUse(p, m);
         if (!canUse) {
             return false;
         }
-
         if (p.hasPower("BoardGame:BGBurstPower")) {
             this.cantUseMessage = cardStrings.UPGRADE_DESCRIPTION;
             return false;

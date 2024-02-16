@@ -42,6 +42,11 @@ public class BGDoppelganger extends AbstractBGCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
+        int minEnergy=0;
+        if(this.isCostModifiedForTurn){
+            minEnergy=this.costForTurn;
+            this.energyOnUse=this.costForTurn;
+        }
         if(this.freeToPlay()){
             this.energyOnUse=0;
         }
@@ -52,7 +57,7 @@ public class BGDoppelganger extends AbstractBGCard {
             this.energyOnUse=this.copiedCardEnergyOnUse;
         }
         //BoardGame.logger.info("Doppelganger energyOnUse: "+this.energyOnUse);
-        addToTop((AbstractGameAction)new BGDoppelgangerAction(this, this.energyOnUse, (e)-> {}));
+        addToTop((AbstractGameAction)new BGDoppelgangerAction(this, minEnergy, this.energyOnUse, (e)-> {}));
     }
 
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
