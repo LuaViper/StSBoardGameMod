@@ -55,7 +55,7 @@ public abstract class PotionHelperPatch {
                 potionDeck.add("BoardGame:BGLiquidMemories");
                 potionDeck.add("BoardGame:BGSneckoOil");
                 potionDeck.add("BoardGame:BGElixirPotion");
-                //potionDeck.add("BoardGame:BGCunningPotion");
+                potionDeck.add("BoardGame:BGCunningPotion");
                 Collections.shuffle(potionDeck, new java.util.Random(cardRng.randomLong()));
                 return SpireReturn.Continue();
             }

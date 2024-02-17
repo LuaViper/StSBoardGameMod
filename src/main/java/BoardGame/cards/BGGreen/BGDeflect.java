@@ -34,12 +34,6 @@ public class BGDeflect extends AbstractBGCard {
         addToBot((AbstractGameAction)new BGGainBlockIfShivAction(this.magicNumber));
     }
 
-    public void triggerOnGlowCheck() {
-        this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
-        if (GameActionManager.totalDiscardedThisTurn > 0)
-            this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
-
-    }
 
     protected void applyPowersToBlock() {
         super.applyPowersToBlock();

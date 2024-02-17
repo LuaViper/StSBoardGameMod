@@ -397,87 +397,163 @@ public class BGExordium
     protected static void generateSpecialMap() {
         //TODO: Act 1 has a 2nd map layout, 50-50 chance
 
+
+
         long startTime = System.currentTimeMillis();
         shuffleMapTokens();
         map = new ArrayList<>();
         //Do not place TreasureRoomBoss on map!
         // creating it makes the game think that the current act is complete and messes everything up
-        ArrayList<String>quickmap= new ArrayList<String>(Arrays.asList(
-                "...B...",
-                ".RR.RR.",
-                "D.$.D.?",
-                "L.M.?.L",
-                ".D..L.D",
-                "M.?.D.M",
-                "T..T.T.",
-                ".L..L.D",
-                "D.M.D.L",
-                "M.L.?.?",
-                "?..M..M",
-                ".?.?.?.",
-                "...M..."));
+        ArrayList<String>quickmap;
+        ArrayList<String[]>connections;
+        ArrayList<ArrayList<MapRoomNode>> rows = new ArrayList<ArrayList<MapRoomNode>>();
+
+        if(AbstractDungeon.mapRng.random(1,2)==1) {
+
+            quickmap = new ArrayList<String>(Arrays.asList(
+                    "...B...",
+                    ".RR.RR.",
+                    "D.$.D.?",
+                    "L.M.?.L",
+                    ".D..L.D",
+                    "M.?.D.M",
+                    "T..T.T.",
+                    ".L..L.D",
+                    "D.M.D.L",
+                    "M.L.?.?",
+                    "?..M..M",
+                    ".?.?.?.",
+                    "...M..."));
 
 
-
-        ArrayList<ArrayList<MapRoomNode>>rows=new ArrayList<ArrayList<MapRoomNode>>();
-        for(int i=0;i<quickmap.size();i+=1){
-            rows.add(new ArrayList<MapRoomNode>());
-        }
-
-
-        for(int i=0,y=rows.size()-1;y>=0;i+=1,y-=1){
-            //logger.info("Map: "+" "+i+" "+quickmap.get(y));
-            for(int x=0;x<=6;x+=1) {
-                //logger.info("Node: "+" "+x+" "+i+" "+quickmap.get(y).charAt(x));
-                rows.get(i).add(getMapRoomNode(x, i, quickmap.get(y).charAt(x)));
+            for (int i = 0; i < quickmap.size(); i += 1) {
+                rows.add(new ArrayList<MapRoomNode>());
             }
+
+            for (int i = 0, y = rows.size() - 1; y >= 0; i += 1, y -= 1) {
+                //logger.info("Map: "+" "+i+" "+quickmap.get(y));
+                for (int x = 0; x <= 6; x += 1) {
+                    //logger.info("Node: "+" "+x+" "+i+" "+quickmap.get(y).charAt(x));
+                    rows.get(i).add(getMapRoomNode(x, i, quickmap.get(y).charAt(x)));
+                }
+            }
+
+            connections = new ArrayList<String[]>();
+            connections.add(new String[]{"0-3", "1-1", "1-3", "1-5"});
+            connections.add(new String[]{"1-1", "2-0"});
+            connections.add(new String[]{"1-3", "2-3"});
+            connections.add(new String[]{"1-5", "2-6"});
+            connections.add(new String[]{"2-0", "3-0"});
+            connections.add(new String[]{"2-3", "3-2"});
+            connections.add(new String[]{"2-3", "3-4"});
+            connections.add(new String[]{"2-6", "3-6"});
+            connections.add(new String[]{"3-0", "4-0", "4-2"});
+            connections.add(new String[]{"3-2", "4-2", "4-4"});
+            connections.add(new String[]{"3-4", "4-4"});
+            connections.add(new String[]{"3-6", "4-6"});
+            connections.add(new String[]{"4-0", "5-1"});
+            connections.add(new String[]{"4-2", "5-4"});
+            connections.add(new String[]{"4-4", "5-4"});
+            connections.add(new String[]{"4-6", "5-6"});
+            connections.add(new String[]{"5-1", "6-0", "6-3"});
+            connections.add(new String[]{"5-4", "6-3", "6-5"});
+            connections.add(new String[]{"5-6", "6-5"});
+            connections.add(new String[]{"6-0", "7-0"});
+            connections.add(new String[]{"6-3", "7-2", "7-4"});
+            connections.add(new String[]{"6-5", "7-4", "7-6"});
+            connections.add(new String[]{"7-0", "8-1"});
+            connections.add(new String[]{"7-2", "8-1"});
+            connections.add(new String[]{"7-4", "8-4"});
+            connections.add(new String[]{"7-6", "8-6"});
+            connections.add(new String[]{"8-1", "9-0", "9-2"});
+            connections.add(new String[]{"8-4", "9-2", "9-4"});
+            connections.add(new String[]{"8-6", "9-6"});
+            connections.add(new String[]{"9-0", "10-0"});
+            connections.add(new String[]{"9-2", "10-2"});
+            connections.add(new String[]{"9-4", "10-4"});
+            connections.add(new String[]{"9-6", "10-4", "10-6"});
+            connections.add(new String[]{"10-0", "11-1"});
+            connections.add(new String[]{"10-2", "11-2"});
+            connections.add(new String[]{"10-4", "11-4"});
+            connections.add(new String[]{"10-6", "11-5"});
+            connections.add(new String[]{"11-1", "12-3"});
+            connections.add(new String[]{"11-2", "12-3"});
+            connections.add(new String[]{"11-4", "12-3"});
+            connections.add(new String[]{"11-5", "12-3"});
+            //connections.add(new String[]{"12-3","13-3"});
+        }else{
+            quickmap = new ArrayList<String>(Arrays.asList(
+                    "...B...",
+                    ".RR.RR.",
+                    "?.D.D.?",
+                    "E.L.?.D",
+                    "L.?.L.L",
+                    ".M.D.D.",
+                    ".T.TT.T",
+                    "?.D.M.D",
+                    "D.M.L.L",
+                    "$.L.?.M",
+                    "M..M..?",
+                    ".?.?.?.",
+                    "...M..."));
+
+            for (int i = 0; i < quickmap.size(); i += 1) {
+                rows.add(new ArrayList<MapRoomNode>());
+            }
+
+            for (int i = 0, y = rows.size() - 1; y >= 0; i += 1, y -= 1) {
+                //logger.info("Map: "+" "+i+" "+quickmap.get(y));
+                for (int x = 0; x <= 6; x += 1) {
+                    //logger.info("Node: "+" "+x+" "+i+" "+quickmap.get(y).charAt(x));
+                    rows.get(i).add(getMapRoomNode(x, i, quickmap.get(y).charAt(x)));
+                }
+            }
+
+            connections = new ArrayList<String[]>();
+            connections.add(new String[]{"0-3", "1-1", "1-3", "1-5"});
+            connections.add(new String[]{"1-1", "2-0"});
+            connections.add(new String[]{"1-3", "2-3"});
+            connections.add(new String[]{"1-5", "2-6"});
+            connections.add(new String[]{"2-0", "3-0", "3-2"});
+            connections.add(new String[]{"2-3", "3-2", "3-4"});
+            connections.add(new String[]{"2-6", "3-6"});
+            connections.add(new String[]{"3-0", "4-0"});
+            connections.add(new String[]{"3-2", "4-2"});
+            connections.add(new String[]{"3-4", "4-4"});
+            connections.add(new String[]{"3-6", "4-6"});
+            connections.add(new String[]{"4-0", "5-0"});
+            connections.add(new String[]{"4-2", "5-0", "5-2"});
+            connections.add(new String[]{"4-4", "5-2","5-4"});
+            connections.add(new String[]{"4-6", "5-4", "5-6"});
+            connections.add(new String[]{"5-0", "6-1"});
+            connections.add(new String[]{"5-2", "6-1"});
+            connections.add(new String[]{"5-4", "6-3", "6-4"});
+            connections.add(new String[]{"5-6", "6-6"});
+            connections.add(new String[]{"6-1", "7-1","7-3"});
+            connections.add(new String[]{"6-3", "7-3"});
+            connections.add(new String[]{"6-4", "7-5"});
+            connections.add(new String[]{"6-6", "7-5"});
+            connections.add(new String[]{"7-1", "8-0","8-2"});
+            connections.add(new String[]{"7-3", "8-2","8-4"});
+            connections.add(new String[]{"7-5", "8-4","8-6"});
+            connections.add(new String[]{"8-0", "9-0"});
+            connections.add(new String[]{"8-2", "9-2"});
+            connections.add(new String[]{"8-4", "9-4"});
+            connections.add(new String[]{"8-6", "9-6"});
+            connections.add(new String[]{"9-0", "10-0"});
+            connections.add(new String[]{"9-2", "10-2","10-4"});
+            connections.add(new String[]{"9-4", "10-4"});
+            connections.add(new String[]{"9-6", "10-6"});
+            connections.add(new String[]{"10-0", "11-1"});
+            connections.add(new String[]{"10-2", "11-2"});
+            connections.add(new String[]{"10-4", "11-4"});
+            connections.add(new String[]{"10-6", "11-5"});
+            connections.add(new String[]{"11-1", "12-3"});
+            connections.add(new String[]{"11-2", "12-3"});
+            connections.add(new String[]{"11-4", "12-3"});
+            connections.add(new String[]{"11-5", "12-3"});
+
         }
-
-
-        ArrayList<String[]>connections= new ArrayList<String[]>();
-        connections.add(new String[]{"0-3","1-1","1-3","1-5"});
-        connections.add(new String[]{"1-1","2-0"});
-        connections.add(new String[]{"1-3","2-3"});
-        connections.add(new String[]{"1-5","2-6"});
-        connections.add(new String[]{"2-0","3-0"});
-        connections.add(new String[]{"2-3","3-2"});
-        connections.add(new String[]{"2-3","3-4"});
-        connections.add(new String[]{"2-6","3-6"});
-        connections.add(new String[]{"3-0","4-0","4-2"});
-        connections.add(new String[]{"3-2","4-2","4-4"});
-        connections.add(new String[]{"3-4","4-4"});
-        connections.add(new String[]{"3-6","4-6"});
-        connections.add(new String[]{"4-0","5-1"});
-        connections.add(new String[]{"4-2","5-4"});
-        connections.add(new String[]{"4-4","5-4"});
-        connections.add(new String[]{"4-6","5-6"});
-        connections.add(new String[]{"5-1","6-0","6-3"});
-        connections.add(new String[]{"5-4","6-3","6-5"});
-        connections.add(new String[]{"5-6","6-5"});
-        connections.add(new String[]{"6-0","7-0"});
-        connections.add(new String[]{"6-3","7-2","7-4"});
-        connections.add(new String[]{"6-5","7-4","7-6"});
-        connections.add(new String[]{"7-0","8-1"});
-        connections.add(new String[]{"7-2","8-1"});
-        connections.add(new String[]{"7-4","8-4"});
-        connections.add(new String[]{"7-6","8-6"});
-        connections.add(new String[]{"8-1","9-0","9-2"});
-        connections.add(new String[]{"8-4","9-2","9-4"});
-        connections.add(new String[]{"8-6","9-6"});
-        connections.add(new String[]{"9-0","10-0"});
-        connections.add(new String[]{"9-2","10-2"});
-        connections.add(new String[]{"9-4","10-4"});
-        connections.add(new String[]{"9-6","10-4","10-6"});
-        connections.add(new String[]{"10-0","11-1"});
-        connections.add(new String[]{"10-2","11-2"});
-        connections.add(new String[]{"10-4","11-4"});
-        connections.add(new String[]{"10-6","11-5"});
-        connections.add(new String[]{"11-1","12-3"});
-        connections.add(new String[]{"11-2","12-3"});
-        connections.add(new String[]{"11-4","12-3"});
-        connections.add(new String[]{"11-5","12-3"});
-        //connections.add(new String[]{"12-3","13-3"});
-
 
         for(int i=0;i<connections.size();i+=1){
             String[] base=connections.get(i)[0].split("-");
