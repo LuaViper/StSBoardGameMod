@@ -11,7 +11,9 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -121,6 +123,8 @@ public abstract class AbstractBGCard extends CustomCard {
         }
     }
 
+
+    //getCost affects card display, but not the actual energy paid for it
     @SpirePatch(clz = AbstractCard.class, method = "getCost",
             paramtypez = {})
     public static class AbstractCardGetCostPatch {
@@ -128,6 +132,14 @@ public abstract class AbstractBGCard extends CustomCard {
         public static SpireReturn<String> Prefix(AbstractCard __instance) {
             if(!(__instance instanceof AbstractBGCard))return SpireReturn.Continue();
 
+            if(AbstractDungeon.player!=null) {
+                if (AbstractDungeon.player.hasPower("BGConfusion")) {
+                    AbstractPower p = AbstractDungeon.player.getPower("BGConfusion");
+                    if (p.amount > -1) {
+                        return SpireReturn.Return(Integer.toString(p.amount));
+                    }
+                }
+            }
             if (__instance.cost == -1) {
                 if(__instance.costForTurn!=-1)
                     return SpireReturn.Return(Integer.toString(__instance.costForTurn));
@@ -136,8 +148,10 @@ public abstract class AbstractBGCard extends CustomCard {
             }
             if (__instance.freeToPlay())
                 return SpireReturn.Return("0");
+
             return SpireReturn.Return(Integer.toString(__instance.costForTurn));
         }
+
     }
 
 

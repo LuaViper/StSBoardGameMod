@@ -8,6 +8,7 @@ import BoardGame.monsters.bgcity.*;
 import BoardGame.monsters.bgbeyond.*;
 import BoardGame.monsters.bgending.*;
 import BoardGame.dungeons.*;
+import BoardGame.potions.*;
 import BoardGame.relics.*;
 import BoardGame.screen.TargetSelectScreen;
 import basemod.*;
@@ -31,7 +32,6 @@ import org.apache.logging.log4j.Logger;
 import BoardGame.cards.*;
 import BoardGame.characters.BGIronclad;
 import BoardGame.events.*;
-import BoardGame.potions.PlaceholderPotion;
 import BoardGame.util.IDCheckDontTouchPls;
 import BoardGame.util.TextureLoader;
 import BoardGame.variables.DefaultCustomVariable;
@@ -601,6 +601,11 @@ public class BoardGame implements
         // just remove the player class at the end (in this case the "TheDefaultEnum.THE_DEFAULT".
         // Remember, you can press ctrl+P inside parentheses like addPotions)
         BaseMod.addPotion(PlaceholderPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, PlaceholderPotion.POTION_ID, BGIronclad.Enums.BG_IRONCLAD);
+
+//        BaseMod.addPotion(BGCunningPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, BGCunningPotion.POTION_ID, BGSilent.Enums.BG_SILENT);
+//        BaseMod.addPotion(BGAncientPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, BGAncientPotion.POTION_ID, BGSilent.Enums.BG_SILENT);
+
+
 
 
         logger.info("Done editing potions");

@@ -140,22 +140,7 @@ public class BGConfusionPower extends AbstractBGPower {
     }
 
 
-    //getCost affects card display, but not the actual energy paid for it
-    @SpirePatch2(clz=AbstractCard.class, method="getCost", paramtypez={})
-    public static class getCostPatch{
-        @SpirePrefixPatch
-        public static SpireReturn<String> getCost(){
-            if(AbstractDungeon.player!=null) {
-                if (AbstractDungeon.player.hasPower("BGConfusion")) {
-                    AbstractPower p = AbstractDungeon.player.getPower("BGConfusion");
-                    if (p.amount > -1) {
-                        return SpireReturn.Return(Integer.toString(p.amount));
-                    }
-                }
-            }
-            return SpireReturn.Continue();
-        }
-    }
+
 
 
     @SpirePatch2(clz= AbstractPlayer.class,method="useCard",

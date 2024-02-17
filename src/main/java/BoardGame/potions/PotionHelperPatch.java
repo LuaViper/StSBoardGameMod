@@ -36,13 +36,14 @@ public abstract class PotionHelperPatch {
                 potionDeck.add("BoardGame:BGFearPotion");
                 potionDeck.add("BoardGame:BGSteroidPotion");
                 potionDeck.add("BoardGame:BGBloodPotion");
-                //potionDeck.add("BoardGame:BGGhostInAJar");
+                potionDeck.add("BoardGame:BGGhostInAJar");
+                //when uncommenting these, remember to also update the getPotion function below
                 //potionDeck.add("BoardGame:BGDistilledChaos");
                 //potionDeck.add("BoardGame:BGEntropicBrew");
-                //potionDeck.add("BoardGame:BGFairyPotion");
-                //potionDeck.add("BoardGame:BGAttackPotion");
-                //potionDeck.add("BoardGame:BGSkillPotion");
-                //potionDeck.add("BoardGame:BGAncientPotion");
+                potionDeck.add("BoardGame:BGFairyPotion");
+                potionDeck.add("BoardGame:BGAttackPotion");
+                potionDeck.add("BoardGame:BGSkillPotion");
+                potionDeck.add("BoardGame:BGAncientPotion");
                 potionDeck.add("BoardGame:BGBlock Potion");
                 potionDeck.add("BoardGame:BGEnergy Potion");
                 potionDeck.add("BoardGame:BGExplosive Potion");
@@ -51,7 +52,7 @@ public abstract class PotionHelperPatch {
                 potionDeck.add("BoardGame:BGWeak Potion");
                 potionDeck.add("BoardGame:BGFearPotion");
                 potionDeck.add("BoardGame:BGSteroidPotion");
-                //potionDeck.add("BoardGame:BGLiquidMemories");
+                potionDeck.add("BoardGame:BGLiquidMemories");
                 potionDeck.add("BoardGame:BGSneckoOil");
                 potionDeck.add("BoardGame:BGElixirPotion");
                 //potionDeck.add("BoardGame:BGCunningPotion");
@@ -131,12 +132,24 @@ public abstract class PotionHelperPatch {
                         return SpireReturn.Return((AbstractPotion) new BGSteroidPotion());
                     case "BoardGame:BGBloodPotion":
                         return SpireReturn.Return((AbstractPotion) new BGBloodPotion());
-//                    case "BoardGame:BGFairyPotion":
-//                        return SpireReturn.Return((AbstractPotion) new BGFairyPotion());
+                    case "BoardGame:BGGhostInAJar":
+                        return SpireReturn.Return((AbstractPotion) new BGGhostInAJar());
+                    case "BoardGame:BGAttackPotion":
+                        return SpireReturn.Return((AbstractPotion) new BGAttackPotion());
+                    case "BoardGame:BGSkillPotion":
+                        return SpireReturn.Return((AbstractPotion) new BGSkillPotion());
+                    case "BoardGame:BGAncientPotion":
+                        return SpireReturn.Return((AbstractPotion) new BGAncientPotion());
+                    case "BoardGame:BGFairyPotion":
+                        return SpireReturn.Return((AbstractPotion) new BGFairyPotion());
+                    case "BoardGame:BGLiquidMemories":
+                        return SpireReturn.Return((AbstractPotion) new BGLiquidMemories());
                     case "BoardGame:BGSneckoOil":
                         return SpireReturn.Return((AbstractPotion) new BGSneckoOil());
                     case "BoardGame:BGElixirPotion":
                         return SpireReturn.Return((AbstractPotion) new BGElixir());
+                    case "BoardGame:BGCunningPotion":
+                        return SpireReturn.Return((AbstractPotion) new BGCunningPotion());
                 }
             }
             return SpireReturn.Continue();

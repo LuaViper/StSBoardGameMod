@@ -3,7 +3,19 @@
         "NAME": "Placeholder Potion",
         "DESCRIPTIONS": ["Gain ", " At the end of your turn, lose ", " Strength."]
 },
-"BoardGame:BGBlock Potion": {
+        "BoardGame:BGAttackPotion": {
+                "NAME": "Attack Potion",
+                "DESCRIPTIONS": [
+                        "The next Attack you play this turn is played twice."
+                ]
+        },
+        "BoardGame:BGAncientPotion": {
+                "NAME": "Ancient Potion",
+                "DESCRIPTIONS": [
+                        "Remove all #yWeak and #yVulnerable from your character."
+                ]
+        },
+        "BoardGame:BGBlock Potion": {
         "NAME": "Block Potion",
         "DESCRIPTIONS": [
                 "#b",
@@ -16,6 +28,12 @@
                 "Heal #b2 HP."
         ]
 },
+        "BoardGame:BGCunningPotion": {
+                "NAME": "Cunning Potion",
+                "DESCRIPTIONS": [
+                        "Make #b3 #yAttacks for #b1 damage each."
+                ]
+        },
 "BoardGame:BGElixirPotion": {
         "NAME": "Elixir",
         "DESCRIPTIONS": [
@@ -42,6 +60,18 @@
                 " #yVulnerable."
         ]
 },
+        "BoardGame:BGGhostInAJar": {
+                "NAME": "Ghost in a Jar",
+                "DESCRIPTIONS": [
+                        "You can't lose more than #b1 HP this turn."
+                ]
+        },
+        "BoardGame:BGSkillPotion": {
+                "NAME": "Skill Potion",
+                "DESCRIPTIONS": [
+                        "The next Skill you play this turn is played twice."
+                ]
+        },
 "BoardGame:BGSneckoOil": {
         "NAME": "Snecko Oil",
         "DESCRIPTIONS": [

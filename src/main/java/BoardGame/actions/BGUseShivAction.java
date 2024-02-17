@@ -45,7 +45,7 @@ public class BGUseShivAction extends AbstractGameAction {
     public void update() {
         AbstractRelic relic = AbstractDungeon.player.getRelic("BoardGame:BGShivs");
         if(relic!=null) {
-            if(relic.counter>0) {
+            if(relic.counter>0 || !isARealShiv) {
                 TargetSelectScreen.TargetSelectAction tssAction = (target) -> {
                     //double-check that we actually have a Shiv to spend (but Cunning Potion doesn't count)
                     if(relic.counter>0 || !isARealShiv) {
@@ -55,6 +55,7 @@ public class BGUseShivAction extends AbstractGameAction {
                         }
                         BGFakeShiv fakeShiv=new BGFakeShiv();
                         if(isARealShiv) {
+                            //similarly don't apply Accuracy to Cunning Potions
                             AbstractPower accuracy = AbstractDungeon.player.getPower("BGAccuracy");
                             if (accuracy != null) {
                                 fakeShiv.baseDamage+=accuracy.amount;
