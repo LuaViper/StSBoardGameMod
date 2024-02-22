@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class BGBodySlam extends AbstractBGCard {
     public static final String ID = "BGBody Slam";
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Body Slam");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGBodySlam");
 
     public BGBodySlam() {
         super("BGBody Slam", cardStrings.NAME, "red/attack/body_slam", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, BGIronclad.Enums.BG_RED, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.ENEMY);

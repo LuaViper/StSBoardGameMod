@@ -12,6 +12,8 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+//TODO LATER: change font size, hide 2nd "block" keyword
+
 public class BGEntrench extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGEntrench");
     public static final String ID = "BGEntrench";

@@ -1,22 +1,21 @@
 package BoardGame.cards;
 
-import BoardGame.cards.AbstractBGCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public abstract class AbstractAttackCardChoice extends AbstractBGCard {
+public abstract class AbstractBGAttackCardChoice extends AbstractBGCard {
     protected AbstractPlayer p;
     protected AbstractMonster m;
 
-    public AbstractAttackCardChoice(final String id,
-                               final String name,
-                               final String img,
-                               final int cost,
-                               final String rawDescription,
-                               final CardType type,
-                               final CardColor color,
-                               final CardRarity rarity,
-                               final CardTarget target) {
+    public AbstractBGAttackCardChoice(final String id,
+                                      final String name,
+                                      final String img,
+                                      final int cost,
+                                      final String rawDescription,
+                                      final CardType type,
+                                      final CardColor color,
+                                      final CardRarity rarity,
+                                      final CardTarget target) {
 
         super(id, name, img, cost, rawDescription, type, color, rarity, target);
 

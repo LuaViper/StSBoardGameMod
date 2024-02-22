@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FeelNoPainPower;
 
 public class BGFeelNoPain extends AbstractBGCard {
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Feel No Pain");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGFeelNoPain");
     public static final String ID = "BGFeel No Pain";
 
     public BGFeelNoPain() {

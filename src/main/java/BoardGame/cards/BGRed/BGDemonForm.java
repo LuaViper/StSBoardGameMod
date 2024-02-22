@@ -14,7 +14,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DemonFormPower;
 
 public class BGDemonForm extends AbstractBGCard {
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Demon Form");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGDemonForm");
     public static final String ID = "BGDemon Form";
 
     public BGDemonForm() {

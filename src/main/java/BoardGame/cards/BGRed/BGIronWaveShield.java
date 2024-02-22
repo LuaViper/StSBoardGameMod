@@ -1,6 +1,6 @@
 package BoardGame.cards.BGRed;
 
-import BoardGame.cards.AbstractAttackCardChoice;
+import BoardGame.cards.AbstractBGAttackCardChoice;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -16,7 +16,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.IronWaveEffect;
 
-public class BGIronWaveShield extends AbstractAttackCardChoice {
+public class BGIronWaveShield extends AbstractBGAttackCardChoice {
     public static final String ID = "BGIronWaveShield";
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGIronWaveShield");
 
@@ -42,7 +42,7 @@ public class BGIronWaveShield extends AbstractAttackCardChoice {
 
 
     public void onChoseThisOption() {
-
+        applyPowers();
         calculateCardDamage(this.m);
         addToTop((AbstractGameAction) new DamageAction((AbstractCreature) this.m, new DamageInfo((AbstractCreature) this.p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
         addToBot((AbstractGameAction) new WaitAction(0.1F));

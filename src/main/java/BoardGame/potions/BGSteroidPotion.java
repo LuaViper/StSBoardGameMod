@@ -16,7 +16,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 public class BGSteroidPotion extends AbstractPotion {
-    private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString("SteroidPotion");
+    private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString("BoardGame:BGFlexPotion");
 
     public static final String POTION_ID = "BGSteroidPotion";
 
@@ -30,7 +30,9 @@ public class BGSteroidPotion extends AbstractPotion {
 
     public void initializeData() {
         this.potency = getPotency();
-        this.description = potionStrings.DESCRIPTIONS[0] + this.potency + potionStrings.DESCRIPTIONS[1] + this.potency + potionStrings.DESCRIPTIONS[2];
+        //this.description = potionStrings.DESCRIPTIONS[0] + this.potency + potionStrings.DESCRIPTIONS[1] + this.potency + potionStrings.DESCRIPTIONS[2];
+        this.description = potionStrings.DESCRIPTIONS[0];
+
 
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));

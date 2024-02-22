@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import BoardGame.monsters.AbstractBGMonster;
 
 public class BGLimitBreak extends AbstractBGCard {
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Limit Break");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGLimitBreak");
     public static final String ID = "BGLimit Break";
 
     public BGLimitBreak() {

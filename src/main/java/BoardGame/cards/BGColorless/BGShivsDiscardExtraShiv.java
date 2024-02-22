@@ -1,7 +1,6 @@
 package BoardGame.cards.BGColorless;
 
-import BoardGame.actions.BGUseShivAction;
-import BoardGame.cards.AbstractAttackCardChoice;
+import BoardGame.cards.AbstractBGAttackCardChoice;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -10,7 +9,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
-public class BGShivsDiscardExtraShiv extends AbstractAttackCardChoice {
+public class BGShivsDiscardExtraShiv extends AbstractBGAttackCardChoice {
     public static final String ID = "BGShivsDiscardExtraShiv";
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGShivsDiscardExtraShiv");
 

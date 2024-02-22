@@ -47,8 +47,6 @@ public class BGDeflect extends AbstractBGCard {
         if (tmp < 0.0F)
             tmp = 0.0F;
         this.magicNumber = MathUtils.floor(tmp);
-
-
     }
 
     public void upgrade() {

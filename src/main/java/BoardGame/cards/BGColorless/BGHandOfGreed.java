@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 
+//TODO LATER: need 10 gold icon
 public class BGHandOfGreed extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGHandOfGreed");
     public static final String ID = "BGHandOfGreed";

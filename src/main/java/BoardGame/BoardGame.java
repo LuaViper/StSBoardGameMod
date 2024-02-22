@@ -3,6 +3,7 @@ package BoardGame;
 import BoardGame.characters.BGColorless;
 import BoardGame.characters.BGCurse;
 import BoardGame.characters.BGSilent;
+import BoardGame.icons.*;
 import BoardGame.monsters.bgexordium.*;
 import BoardGame.monsters.bgcity.*;
 import BoardGame.monsters.bgbeyond.*;
@@ -20,6 +21,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.mod.stslib.Keyword;
+import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.helpers.CardHelper;
@@ -296,7 +298,6 @@ public class BoardGame implements
         BaseMod.addCharacter(new BGIronclad("the Ironclad", BGIronclad.Enums.BG_IRONCLAD),
                 CHAR_SELECT_BUTTON_IRONCLAD, CHAR_SELECT_PORTRAIT_IRONCLAD, BGIronclad.Enums.BG_IRONCLAD);
 
-        receiveEditPotions();
         logger.info("Added " + BGIronclad.Enums.BG_IRONCLAD.toString());
 
         BaseMod.addCharacter(new BGSilent("the Silent", BGSilent.Enums.BG_SILENT),
@@ -304,7 +305,7 @@ public class BoardGame implements
         logger.info("Added " + BGSilent.Enums.BG_SILENT.toString());
 
 
-
+        receiveEditPotions();
     }
 
     // =============== /LOAD THE CHARACTER/ =================
@@ -602,8 +603,9 @@ public class BoardGame implements
         // Remember, you can press ctrl+P inside parentheses like addPotions)
         BaseMod.addPotion(PlaceholderPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, PlaceholderPotion.POTION_ID, BGIronclad.Enums.BG_IRONCLAD);
 
-//        BaseMod.addPotion(BGCunningPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, BGCunningPotion.POTION_ID, BGSilent.Enums.BG_SILENT);
-//        BaseMod.addPotion(BGAncientPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, BGAncientPotion.POTION_ID, BGSilent.Enums.BG_SILENT);
+        BaseMod.addPotion(BGFearPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, BGFearPotion.POTION_ID, BGSilent.Enums.BG_SILENT);
+        BaseMod.addPotion(BGWeakenPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, BGWeakenPotion.POTION_ID, BGSilent.Enums.BG_SILENT);
+        BaseMod.addPotion(BGAncientPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, BGAncientPotion.POTION_ID, BGSilent.Enums.BG_SILENT);
 
 
 
@@ -653,9 +655,29 @@ public class BoardGame implements
 
     @Override
     public void receiveEditCards() {
-        logger.info("Adding variables");
         //Ignore this
         pathCheck();
+
+        logger.info("Adding icons");
+        CustomIconHelper.addCustomIcon(HitIcon.get());
+        CustomIconHelper.addCustomIcon(VulnIcon.get());
+        CustomIconHelper.addCustomIcon(BlockIcon.get());
+        CustomIconHelper.addCustomIcon(StrIcon.get());
+        CustomIconHelper.addCustomIcon(AOEIcon.get());
+        CustomIconHelper.addCustomIcon(WeakIcon.get());
+        CustomIconHelper.addCustomIcon(DazedIcon.get());
+        CustomIconHelper.addCustomIcon(BurnIcon.get());
+        CustomIconHelper.addCustomIcon(SlimedIcon.get());
+        CustomIconHelper.addCustomIcon(Die1Icon.get());
+        CustomIconHelper.addCustomIcon(Die2Icon.get());
+        CustomIconHelper.addCustomIcon(Die3Icon.get());
+        CustomIconHelper.addCustomIcon(Die4Icon.get());
+        CustomIconHelper.addCustomIcon(Die5Icon.get());
+        CustomIconHelper.addCustomIcon(Die6Icon.get());
+        CustomIconHelper.addCustomIcon(GoldIcon.get());
+
+        logger.info("Adding variables");
+
         // Add the Custom Dynamic Variables
         logger.info("Add variables");
         // Add the Custom Dynamic variables

@@ -24,14 +24,11 @@
     "DESCRIPTION": "This card does something more interesting when you are playing with #bfriends."
   },
   {
-    "PROPER_NAME": "Vulnerable",
+    "PROPER_NAME": "[BoardGame:VulnIcon] Vulnerable",
     "NAMES": [
-      "Vulnerable (BG)",
-      "vulnerable_(bg)",
-      "vulnerable(bg)",
       "vulnerable"
     ],
-    "DESCRIPTION": "Vulnerable creatures take #b100% more damage from the next Attack."
+    "DESCRIPTION": "Deal 2x damage on each [BoardGame:HitIcon] in the next Attack, then remove a [BoardGame:VulnIcon] token."
   },
   {
     "PROPER_NAME": "Dexterity",
@@ -41,21 +38,11 @@
     "DESCRIPTION": "Dexterity improves Block applied by your cards."
   },
   {
-    "PROPER_NAME": "Weak",
+    "PROPER_NAME": "[BoardGame:WeakIcon] Weak",
     "NAMES": [
-      "Weak (BG)",
-      "weak_(bg)",
-      "weak(bg)",
-      "weakened (bg)",
-      "weakened_(bg)",
-      "weakens (bg)",
-      "weakens_(bg)",
-      "weakens(bg)",
-      "weak",
-      "weakened",
-      "weakens"
+      "weak"
     ],
-    "DESCRIPTION": "Weakened creatures deal #b1 less damage with the next Attack."
+    "DESCRIPTION": "Deal -1 damage on each [BoardGame:HitIcon] in the next Attack, then remove a [BoardGame:WeakIcon] token."
   },
   {
     "PROPER_NAME": "Poison",
@@ -96,4 +83,6 @@
     ],
     "DESCRIPTION": "Make sure the first element in the NAMES is the same as your PROPER_NAME. The rest is to match keywords like the single word keyword."
   }
+
+
 ]

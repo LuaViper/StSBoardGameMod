@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.BarricadePower;
 
 public class BGBarricade extends AbstractBGCard {
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Barricade");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGBarricade");
     public static final String ID = "BGBarricade";
 
     public BGBarricade() {

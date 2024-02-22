@@ -1,10 +1,10 @@
 package BoardGame.relics;
 
 import BoardGame.actions.BGActivateDieAbilityAction;
-import BoardGame.actions.ChooseOneAttackAction;
+import BoardGame.actions.BGChooseOneAttackAction;
 import BoardGame.cards.BGColorless.BGGremlinHornDrawACard;
 import BoardGame.cards.BGColorless.BGGremlinHornGainEnergy;
-import BoardGame.cards.AbstractAttackCardChoice;
+import BoardGame.cards.AbstractBGAttackCardChoice;
 import BoardGame.thedie.TheDie;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -84,10 +84,10 @@ public class BGGremlinHorn extends AbstractBGRelic implements DieControlledRelic
     public void activateDieAbility(){
         flash();
         addToBot((AbstractGameAction)new RelicAboveCreatureAction((AbstractCreature)AbstractDungeon.player, this));
-        ArrayList<AbstractAttackCardChoice> attackChoices = new ArrayList<>();
+        ArrayList<AbstractBGAttackCardChoice> attackChoices = new ArrayList<>();
         attackChoices.add(new BGGremlinHornDrawACard());
         attackChoices.add(new BGGremlinHornGainEnergy());
-        addToBot((AbstractGameAction)new ChooseOneAttackAction(attackChoices,null,null));
+        addToBot((AbstractGameAction)new BGChooseOneAttackAction(attackChoices,null,null));
         stopPulse();
     }
 

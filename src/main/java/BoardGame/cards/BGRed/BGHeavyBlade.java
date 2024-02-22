@@ -18,7 +18,7 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.VerticalImpactEffect;
 
 public class BGHeavyBlade extends AbstractBGCard {
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Heavy Blade");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGHeavy Blade");
     public static final String ID = "BGHeavy Blade";
 
     public BGHeavyBlade() {

@@ -1,8 +1,9 @@
 package BoardGame.cards.BGRed;
-import BoardGame.actions.ChooseOneAttackAction;
-import BoardGame.cards.AbstractAttackCardChoice;
+import BoardGame.actions.BGChooseOneAttackAction;
+import BoardGame.cards.AbstractBGAttackCardChoice;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGIronclad;
+import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -13,15 +14,16 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.IronWaveEffect;
 
 import java.util.ArrayList;
 
 //TODO: make sure this doesn't crash if played targetless via Havoc etc
-//TODO: can we drop the Naive keyword if we use the SecondMagicNumber property or whatever?
 public class BGIronWave extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGIron Wave");
     public static final String ID = "BGIron Wave";
@@ -31,6 +33,10 @@ public class BGIronWave extends AbstractBGCard {
 
         this.baseDamage = 1;
         this.baseBlock = 1;
+        this.baseMagicNumber=1;
+        this.magicNumber=this.baseMagicNumber;
+        this.defaultBaseSecondMagicNumber=1;
+        this.defaultSecondMagicNumber=this.defaultBaseSecondMagicNumber;
     }
 
 
@@ -43,19 +49,81 @@ public class BGIronWave extends AbstractBGCard {
             }
             addToBot((AbstractGameAction) new GainBlockAction((AbstractCreature) p, (AbstractCreature) p, this.block));
         }else{
-            ArrayList<AbstractAttackCardChoice> attackChoices = new ArrayList<>();
-            attackChoices.add(new BGIronWaveSpear());
-            attackChoices.add(new BGIronWaveShield());
-            addToBot((AbstractGameAction)new ChooseOneAttackAction(attackChoices,p,m));
+            //TODO: can we get BGIronWaveShield and BGIronWaveSpear to apply their modifiers to the targeted enemy?
+            ArrayList<AbstractBGAttackCardChoice> attackChoices = new ArrayList<>();
+            BGIronWaveSpear spear=new BGIronWaveSpear();
+            spear.applyPowers();
+            spear.calculateCardDamage(m);
+            BGIronWaveShield shield=new BGIronWaveShield();
+            shield.applyPowers();
+            shield.calculateCardDamage(m);
+            attackChoices.add(spear);
+            attackChoices.add(shield);
+            addToBot((AbstractGameAction)new BGChooseOneAttackAction(attackChoices,p,m));
         }
+    }
+
+    public void applyPowers() {
+        super.applyPowers();
+        int actualBaseDamage=baseDamage;
+        int actualDamage=damage;
+        boolean actualIsDamageModified=isDamageModified;
+
+        baseDamage=defaultBaseSecondMagicNumber;
+
+        super.applyPowers();
+        defaultSecondMagicNumber=damage;
+        isDefaultSecondMagicNumberModified=isDamageModified;
+
+        baseDamage=actualBaseDamage;
+        damage=actualDamage;
+        isDamageModified=isDamageModified;
+
+
+
+
+
+    }
+
+
+    public void calculateCardDamage(AbstractMonster mo) {
+        super.calculateCardDamage(mo);
+        int actualBaseDamage=baseDamage;
+        int actualDamage=damage;
+        boolean actualIsDamageModified=isDamageModified;
+
+        baseDamage=defaultBaseSecondMagicNumber;
+
+        super.calculateCardDamage(mo);
+        defaultSecondMagicNumber=damage;
+        isDefaultSecondMagicNumberModified=isDamageModified;
+
+        baseDamage=actualBaseDamage;
+        damage=actualDamage;
+        isDamageModified=isDamageModified;
+
+    }
+
+    protected void applyPowersToBlock() {
+        super.applyPowersToBlock();
+        float tmp=this.baseMagicNumber;
+        for (AbstractPower p : AbstractDungeon.player.powers)
+            tmp = p.modifyBlock(tmp, this);
+        for (AbstractPower p : AbstractDungeon.player.powers)
+            tmp = p.modifyBlockLast(tmp);
+        if (this.baseMagicNumber != MathUtils.floor(tmp))
+            this.isMagicNumberModified = true;
+        if (tmp < 0.0F)
+            tmp = 0.0F;
+        this.magicNumber = MathUtils.floor(tmp);
     }
 
 
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            //upgradeDamage(1);
-            //upgradeBlock(1);
+            upgradeDamage(1);
+            upgradeBlock(1);
             this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
             initializeDescription();
         }

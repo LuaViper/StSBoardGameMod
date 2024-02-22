@@ -126,7 +126,7 @@
     "OPTIONS": [
       "[Take] #gChoose #ga #grare #gcard #gto #gadd #gto #gyour #gdeck. #rGain #ra #rCurse.",
       "[Read] #gAdd #ga #grandom #grare #gcard #gto #gyour #gdeck. #rLose #r2 #rHP.",
-      "[Skin] #gChoose #ga #gcard #gto #gadd #gto #gyour #gdeck. #rLose #r1 #rHP.",
+      "[Skim] #gChoose #ga #gcard #gto #gadd #gto #gyour #gdeck. #rLose #r1 #rHP.",
       "[Continue] #rLose #r3 #rHP.",
       "[Stop] #rLose #r3 #rHP.",
       "[Take] #gObtain #gthe #gBook. #rLose #r",

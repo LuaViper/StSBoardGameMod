@@ -13,7 +13,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.FireBreathingPower;
 
 public class BGFireBreathing extends AbstractBGCard {
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Fire Breathing");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGFireBreathing");
     public static final String ID = "BGFire Breathing";
 
 

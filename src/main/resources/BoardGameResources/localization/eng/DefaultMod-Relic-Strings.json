@@ -108,7 +108,7 @@
     "NAME": "Calipers",
     "FLAVOR": "\"Mechanical precision leads to greatness\" - The Architect",
     "DESCRIPTIONS": [
-      "#yOnce #yper #ycombat: NL Keep your leftover #yBlock from last turn. NL (Gain #b",
+      "#yOnce #yper #ycombat: NL Keep your leftover #yBlock [BoardGame:BlockIcon] from last turn. NL (Gain #b",
       " Block.)"
     ]
   },
@@ -165,7 +165,7 @@
     "NAME": "Du-Vu Doll",
     "FLAVOR": "A doll devised to gain strength from malicious energy.",
     "DESCRIPTIONS": [
-      "Whenever you draw a #yCurse card, gain #b1 #yStrength. NL Lose that #yStrength at the end of your turn."
+      "Gain [BoardGame:StrIcon] when you draw a Curse. NL Lose that [BoardGame:StrIcon] at end of turn."
     ]
   },
   "BGDead Branch": {
@@ -239,7 +239,7 @@
     "NAME": "Golden Idol",
     "FLAVOR": "Made of solid gold, you feel richer just holding it.",
     "DESCRIPTIONS": [
-      "At the end of combat, gain #b1 #yGold."
+      "#yEnd #yof #ycombat: NL Gain [BoardGame:GoldIcon] ."
     ]
   },
   "BGGremlin Horn": {
@@ -327,7 +327,7 @@
     "NAME": "Molten Egg",
     "FLAVOR": "The egg of a Phoenix. It glows red hot with a simmering lava.",
     "DESCRIPTIONS": [
-      "The next 3 times you add an #yAttack into your deck, #yUpgrade it. NL Discard relic after use."
+      "When you add an Attack to your deck, upgrade it. NL Use 3x then discard."
     ]
   },
   "BGMummified Hand": {
@@ -392,8 +392,8 @@
     "NAME": "Omamori",
     "FLAVOR": "A common charm for staving off vile spirits. This one seems to possess a spark of divine energy.",
     "DESCRIPTIONS": [
-      "Negate EVERY #rCurse you obtain.",
-      "Negate EVERY #rCurse you obtain.",
+      "You can't gain Curses.",
+      "You can't gain Curses.",
       "This relic has been used up."
     ]
   },
@@ -499,7 +499,7 @@
     "NAME": "Self-Forming Clay",
     "FLAVOR": "\"Most curious! It appears to form itself loosely on my thoughts! Tele-clay?\" - Ranwid",
     "DESCRIPTIONS": [
-      "#yOnce #yper #ycombat: NL If you've lost HP this combat, gain #b3 #yBlock."
+      "#yOnce #yper #ycombat: NL 3 [BoardGame:BlockIcon] if you lost HP this combat."
     ]
   },
   "BoardGame:BGShivs": {
@@ -586,7 +586,7 @@
     "NAME": "Toxic Egg",
     "FLAVOR": "\"What a marvelous discovery! This appears to be the inert egg of some magical creature. Who or what created this?\" - Ranwid",
     "DESCRIPTIONS": [
-      "The next 3 times you add a #ySkill into your deck, #yUpgrade it. NL Discard relic after use."
+      "When you add Skill to your deck, upgrade it. NL Use 3x then discard."
     ]
   },
   "BGTungstenRod": {
@@ -631,7 +631,7 @@
     "NAME": "Wing Boots",
     "FLAVOR": "Stylish.",
     "DESCRIPTIONS": [
-      "You may ignore paths when choosing the next room to travel to #b3 times. NL Discard relic after use."
+      "You may ignore paths when moving up to the next room. NL Use this 3x, then discard it."
     ]
   },
   "BGWristBlade": {

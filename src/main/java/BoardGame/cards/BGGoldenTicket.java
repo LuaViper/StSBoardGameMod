@@ -12,6 +12,8 @@ import BoardGame.characters.BGIronclad;
 
 import static BoardGame.BoardGame.makeCardPath;
 
+//TODO: exact wording of Golden Ticket card seems to have changed just before printing -- check physical copies when available
+
 public class BGGoldenTicket extends AbstractDynamicCard {
 
     /*

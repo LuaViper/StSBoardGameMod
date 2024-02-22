@@ -1,5 +1,6 @@
 package BoardGame.powers;
 
+//TODO NEXT: we were not given the opportunity to switch targets when duplicating CorpseExplosion
 
 import BoardGame.actions.TargetSelectScreenAction;
 import BoardGame.cards.AbstractBGCard;
@@ -74,6 +75,7 @@ public class BGBurstPower extends AbstractBGPower {
                 ((AbstractBGCard)card).copiedCard=(AbstractBGCard)tmp;
             }
 
+            //TODO: restore DoubleAttack's target-picker code here
             if (m != null)
                 tmp.calculateCardDamage(m);
             tmp.purgeOnUse = true;

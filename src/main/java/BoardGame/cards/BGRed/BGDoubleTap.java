@@ -3,6 +3,7 @@
 
 package BoardGame.cards.BGRed;
 
+import BoardGame.powers.BGDoubleAttackPower;
 import BoardGame.powers.BGDoubleTapPower;
 import BoardGame.characters.BGIronclad;
 import BoardGame.cards.AbstractBGCard;
@@ -26,21 +27,22 @@ public class BGDoubleTap extends AbstractBGCard {
         this.magicNumber = this.baseMagicNumber;
     }
 
-    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
-        boolean canUse = super.canUse(p, m);
-        if (!canUse) {
-            return false;
-        }
-
-        if (p.hasPower("BGDouble Tap")) {
-            this.cantUseMessage = cardStrings.UPGRADE_DESCRIPTION;
-            return false;
-        }
-        return canUse;
-    }
+//    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
+//        boolean canUse = super.canUse(p, m);
+//        if (!canUse) {
+//            return false;
+//        }
+//
+//        if (p.hasPower("BGDouble Tap")) {
+//            this.cantUseMessage = cardStrings.UPGRADE_DESCRIPTION;
+//            return false;
+//        }
+//        return canUse;
+//    }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new BGDoubleTapPower((AbstractCreature)p, this.magicNumber), this.magicNumber));
+        //addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new BGDoubleTapPower((AbstractCreature)p, this.magicNumber), this.magicNumber));
+        addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new BGDoubleAttackPower((AbstractCreature)p, this.magicNumber), this.magicNumber));
     }
 
 

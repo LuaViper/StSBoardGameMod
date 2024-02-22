@@ -1,14 +1,11 @@
 package BoardGame.relics;
 
 import BoardGame.actions.BGActivateDieAbilityAction;
-import BoardGame.actions.ChooseOneAttackAction;
+import BoardGame.actions.BGChooseOneAttackAction;
 import BoardGame.actions.TargetSelectScreenAction;
-import BoardGame.cards.AbstractAttackCardChoice;
+import BoardGame.cards.AbstractBGAttackCardChoice;
 import BoardGame.cards.BGColorless.BGDuality2Block;
 import BoardGame.cards.BGColorless.BGDuality2Damage;
-import BoardGame.cards.BGColorless.BGGremlinHornDrawACard;
-import BoardGame.cards.BGColorless.BGGremlinHornGainEnergy;
-import BoardGame.powers.BGTrigger2DieAbilityPower;
 import BoardGame.powers.NilrysCodexCompatible;
 import BoardGame.screen.TargetSelectScreen;
 import BoardGame.thedie.TheDie;
@@ -17,7 +14,6 @@ import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import java.util.ArrayList;
@@ -56,10 +52,10 @@ public class BGDuality extends AbstractBGRelic implements DieControlledRelic, Ni
     public void activateDieAbility(){
         flash();
         addToBot((AbstractGameAction)new RelicAboveCreatureAction((AbstractCreature)AbstractDungeon.player, this));
-        ArrayList<AbstractAttackCardChoice> attackChoices = new ArrayList<>();
+        ArrayList<AbstractBGAttackCardChoice> attackChoices = new ArrayList<>();
         attackChoices.add(new BGDuality2Block());
         attackChoices.add(new BGDuality2Damage());
-        addToBot((AbstractGameAction)new ChooseOneAttackAction(attackChoices,null,null));
+        addToBot((AbstractGameAction)new BGChooseOneAttackAction(attackChoices,null,null));
         stopPulse();
     }
 

@@ -17,7 +17,8 @@ import com.megacrit.cardcrawl.vfx.combat.CleaveEffect;
 //TODO: Cleave, and maybe some other cards, need "to all enemies" changed to "to any row" (they're using the vanilla text strings atm)
 
 public class BGCleave extends AbstractBGCard {
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Cleave"); public static final String ID = "Cleave";
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGCleave");
+    public static final String ID = "BGCleave";
 
     public BGCleave() {
         super("BGCleave", cardStrings.NAME, "red/attack/cleave", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, BGIronclad.Enums.BG_RED, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.ALL_ENEMY);

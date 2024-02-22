@@ -26,6 +26,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import java.util.ArrayList;
 import java.util.Collections;
 
+//TODO: Doppelganger should copy Shiv and (1x) Cunning Potion if it isn't already
+
 public class BGDoppelganger extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGDoppelganger");
     public static final String ID = "BGDoppelganger";

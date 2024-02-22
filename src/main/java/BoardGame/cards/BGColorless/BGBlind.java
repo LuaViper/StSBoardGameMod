@@ -51,8 +51,8 @@ public class BGBlind extends AbstractBGCard {
             upgradeName();
             this.upgradeMagicNumber(1);
             //this.target = AbstractCard.CardTarget.ALL_ENEMY;
-            //this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-            //initializeDescription();
+            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+            initializeDescription();
         }
     }
 

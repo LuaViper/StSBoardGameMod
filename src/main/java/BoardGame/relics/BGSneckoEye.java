@@ -1,10 +1,9 @@
 package BoardGame.relics;
 
 import BoardGame.actions.BGActivateDieAbilityAction;
-import BoardGame.actions.ChooseOneAttackAction;
-import BoardGame.cards.BGColorless.BGGremlinHornDrawACard;
+import BoardGame.actions.BGChooseOneAttackAction;
 import BoardGame.cards.BGColorless.BGGremlinHornGainEnergy;
-import BoardGame.cards.AbstractAttackCardChoice;
+import BoardGame.cards.AbstractBGAttackCardChoice;
 import BoardGame.cards.BGColorless.BGSneckoEyeDrawTwoCards;
 import BoardGame.cards.BGColorless.BGSneckoEyeGainDazed;
 import BoardGame.cards.BGStatus.BGDazed;
@@ -85,11 +84,11 @@ public class BGSneckoEye extends AbstractBGRelic implements DieControlledRelic, 
     public void activateDieAbility(){
         flash();
         addToBot((AbstractGameAction)new RelicAboveCreatureAction((AbstractCreature)AbstractDungeon.player, this));
-        ArrayList<AbstractAttackCardChoice> attackChoices = new ArrayList<>();
+        ArrayList<AbstractBGAttackCardChoice> attackChoices = new ArrayList<>();
         attackChoices.add(new BGSneckoEyeDrawTwoCards());
         attackChoices.add(new BGGremlinHornGainEnergy());
         attackChoices.add(new BGSneckoEyeGainDazed());
-        addToBot((AbstractGameAction)new ChooseOneAttackAction(attackChoices,null,null));
+        addToBot((AbstractGameAction)new BGChooseOneAttackAction(attackChoices,null,null));
         stopPulse();
     }
 

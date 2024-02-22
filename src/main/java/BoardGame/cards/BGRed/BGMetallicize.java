@@ -13,15 +13,11 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.MetallicizePower;
 
 public class BGMetallicize extends AbstractBGCard {
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Metallicize");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGMetallicize");
     public static final String ID = "BGMetallicize";
 
     public BGMetallicize() {
         super("BGMetallicize", cardStrings.NAME, "red/power/metallicize", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.POWER, BGIronclad.Enums.BG_RED, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.SELF);
-
-
-
-
 
 
 

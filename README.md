@@ -23,7 +23,6 @@ This mod was thrown together haphazardly with no regard whatsoever for proper co
 - Strange things can happen if an Egg relic is used up on the shop screen
 
 # Board Game inaccuracies
-- Several cards are marked with the "Approximate" keyword to denote they don't behave *exactly* like the board game
 - Physical token limits are not yet implemented
 - Non-card-reward decks (monsters, potions, relics etc) can produce duplicates of unique cards
 - Some potion-granting events still try to add a potion directly to your inventory (prevents you from first discarding one if you're full)

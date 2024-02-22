@@ -12,8 +12,10 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.EvolvePower;
 
+//TODO: many cards disagree whether it's "draw a card" or "draw 1 card", check physical copies when available
+
 public class BGEvolve extends AbstractBGCard {
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Evolve");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGEvolve");
     public static final String ID = "BGEvolve";
 
     public BGEvolve() {

@@ -30,7 +30,7 @@ public class BGDramaticEntrance extends AbstractBGCard {
 
         this.baseDamage = 2;
         this.isMultiDamage=true;
-        this.baseMagicNumber=2;
+        this.baseMagicNumber=1;
         this.magicNumber=this.baseMagicNumber;
         //this.exhaust = true;
     }

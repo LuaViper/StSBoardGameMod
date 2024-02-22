@@ -1,5 +1,6 @@
 package BoardGame.potions;
 import BoardGame.powers.BGWeakPower;
+import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -13,11 +14,11 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 public class BGWeakenPotion extends AbstractPotion {
     private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString("BoardGame:BGWeak Potion");
 
-    public static final String POTION_ID = "BGWeak Potion";
+    public static final String POTION_ID = "BGWeak_Potion";
 
 
     public BGWeakenPotion() {
-        super(potionStrings.NAME, "BGWeak Potion", AbstractPotion.PotionRarity.COMMON, AbstractPotion.PotionSize.H, AbstractPotion.PotionColor.WEAK);
+        super(potionStrings.NAME, "BGWeak_Potion", AbstractPotion.PotionRarity.COMMON, AbstractPotion.PotionSize.H, AbstractPotion.PotionColor.WEAK);
         this.isThrown = true;
         this.targetRequired = true;
     }
@@ -26,14 +27,10 @@ public class BGWeakenPotion extends AbstractPotion {
 
     public void initializeData() {
         this.potency = getPotency();
-        this.description = potionStrings.DESCRIPTIONS[0] + this.potency + potionStrings.DESCRIPTIONS[1];
+        this.description = potionStrings.DESCRIPTIONS[0];
         this.tips.clear();
         this.tips.add(new PowerTip(this.name, this.description));
-        //TODO: determine how to add tips for custom keywords
-//        this.tips.add(new PowerTip(
-//
-//                TipHelper.capitalize(GameDictionary.WEAK.NAMES[0]), (String)GameDictionary.keywords
-//                .get(GameDictionary.WEAK.NAMES[0])));
+        this.tips.add(new PowerTip(BaseMod.getKeywordTitle("boardgame:weak"), BaseMod.getKeywordDescription("boardgame:weak")));
     }
 
 

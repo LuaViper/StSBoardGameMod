@@ -1,6 +1,6 @@
 package BoardGame.actions;
 
-import BoardGame.cards.AbstractAttackCardChoice;
+import BoardGame.cards.AbstractBGAttackCardChoice;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -10,16 +10,16 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
 
-public class ChooseOneAttackAction
+public class BGChooseOneAttackAction
         extends AbstractGameAction {
     private ArrayList<AbstractCard> choices;
     private AbstractPlayer p;
     private AbstractMonster m;
 
-    public ChooseOneAttackAction(ArrayList<AbstractAttackCardChoice> choices,AbstractPlayer p, AbstractMonster m) {
+    public BGChooseOneAttackAction(ArrayList<AbstractBGAttackCardChoice> choices, AbstractPlayer p, AbstractMonster m) {
         this.duration = Settings.ACTION_DUR_FAST;
         this.choices = new ArrayList<>();
-        for(AbstractAttackCardChoice card : choices){
+        for(AbstractBGAttackCardChoice card : choices){
             card.setTargets(p,m);
             this.choices.add(card);
         }

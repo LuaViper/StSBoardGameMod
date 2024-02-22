@@ -15,7 +15,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.SadisticPower;
 
 public class BGSadisticNature extends AbstractBGCard {
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Sadistic Nature");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGSadisticNature");
     public static final String ID = "BGSadistic Nature";
 
     public BGSadisticNature() {
