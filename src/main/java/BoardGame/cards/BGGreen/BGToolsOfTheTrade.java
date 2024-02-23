@@ -17,7 +17,7 @@ import com.megacrit.cardcrawl.powers.ToolsOfTheTradePower;
 import java.util.ArrayList;
 
 public class BGToolsOfTheTrade extends AbstractBGCard {
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Tools of the Trade");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGToolsOfTheTrade");
     public static final String ID = "BGToolsOfTheTrade";
 
     public BGToolsOfTheTrade() {

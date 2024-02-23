@@ -21,7 +21,7 @@ public class BGSkillPotion
     private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString("BoardGame:BGSkillPotion");
 
     public BGSkillPotion() {
-        super(potionStrings.NAME, "BGAttackPotion", PotionRarity.COMMON, PotionSize.CARD, PotionColor.FIRE);
+        super(potionStrings.NAME, "BGSkillPotion", PotionRarity.COMMON, PotionSize.CARD, PotionColor.GREEN);
         this.isThrown = false;
     }
 

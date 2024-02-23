@@ -312,6 +312,12 @@ public class BGIronclad extends AbstractBGCharacter {
     protected float blockScale = 1.0F;
 
 
+
+    public void applyStartOfTurnRelics() {
+        super.applyStartOfTurnRelics();
+        this.shivsPlayedThisTurn=0;
+    }
+
     //TODO: move addBlock to CustomBoardGameCreature class (which itself will require various sweeping changes to implement)
     public void addBlock(int blockAmount) {
         float tmp = blockAmount;

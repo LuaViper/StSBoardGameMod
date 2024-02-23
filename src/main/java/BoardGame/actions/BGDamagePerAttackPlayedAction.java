@@ -1,6 +1,7 @@
 package BoardGame.actions;
 
 
+import BoardGame.characters.AbstractBGCharacter;
 import BoardGame.powers.WeakVulnCancel;
 import BoardGame.relics.BGShivs;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -33,10 +34,9 @@ public class BGDamagePerAttackPlayedAction extends AbstractGameAction {
                 if (c.type == AbstractCard.CardType.ATTACK)
                     count++;
             }
-            BGShivs relic = (BGShivs) AbstractDungeon.player.getRelic("BoardGame:BGShivs");
-            if (relic != null) {
-                count += relic.shivsPlayedThisTurn;
-            }
+            if(AbstractDungeon.player instanceof AbstractBGCharacter)
+                count+=((AbstractBGCharacter)AbstractDungeon.player).shivsPlayedThisTurn;
+
             count--;
             if(count>0) {
                 for (int i = 0; i < count; i++)

@@ -46,7 +46,7 @@ public class BGCunningPotion
         AbstractPlayer abstractPlayer = AbstractDungeon.player;
         if ((AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT) {
             for(int i=0;i<potency;i+=1){
-            addToBot((AbstractGameAction) new BGUseShivAction(false,false,0,"Choose a target for Cunning Potion."));
+                addToBot((AbstractGameAction) new BGUseShivAction(false,false,0,"Choose a target for Cunning Potion."));
             }
         }
     }

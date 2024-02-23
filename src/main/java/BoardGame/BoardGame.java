@@ -603,9 +603,9 @@ public class BoardGame implements
         // Remember, you can press ctrl+P inside parentheses like addPotions)
         BaseMod.addPotion(PlaceholderPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, PlaceholderPotion.POTION_ID, BGIronclad.Enums.BG_IRONCLAD);
 
-        BaseMod.addPotion(BGFearPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, BGFearPotion.POTION_ID, BGSilent.Enums.BG_SILENT);
-        BaseMod.addPotion(BGWeakenPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, BGWeakenPotion.POTION_ID, BGSilent.Enums.BG_SILENT);
-        BaseMod.addPotion(BGAncientPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, BGAncientPotion.POTION_ID, BGSilent.Enums.BG_SILENT);
+//        BaseMod.addPotion(BGFearPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, BGFearPotion.POTION_ID, BGSilent.Enums.BG_SILENT);
+//        BaseMod.addPotion(BGWeakenPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, BGWeakenPotion.POTION_ID, BGSilent.Enums.BG_SILENT);
+//        BaseMod.addPotion(BGAncientPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, BGAncientPotion.POTION_ID, BGSilent.Enums.BG_SILENT);
 
 
 
@@ -663,6 +663,8 @@ public class BoardGame implements
         CustomIconHelper.addCustomIcon(VulnIcon.get());
         CustomIconHelper.addCustomIcon(BlockIcon.get());
         CustomIconHelper.addCustomIcon(StrIcon.get());
+        CustomIconHelper.addCustomIcon(ShivIcon.get());
+        CustomIconHelper.addCustomIcon(PoisonIcon.get());
         CustomIconHelper.addCustomIcon(AOEIcon.get());
         CustomIconHelper.addCustomIcon(WeakIcon.get());
         CustomIconHelper.addCustomIcon(DazedIcon.get());
@@ -675,6 +677,11 @@ public class BoardGame implements
         CustomIconHelper.addCustomIcon(Die5Icon.get());
         CustomIconHelper.addCustomIcon(Die6Icon.get());
         CustomIconHelper.addCustomIcon(GoldIcon.get());
+        CustomIconHelper.addCustomIcon(CardpackIcon.get());
+        CustomIconHelper.addCustomIcon(RarepackIcon.get());
+        CustomIconHelper.addCustomIcon(PotionIcon.get());
+        CustomIconHelper.addCustomIcon(RelicIcon.get());
+
 
         logger.info("Adding variables");
 

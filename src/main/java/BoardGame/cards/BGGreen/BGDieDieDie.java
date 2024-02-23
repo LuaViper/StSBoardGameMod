@@ -21,7 +21,7 @@ import com.megacrit.cardcrawl.vfx.combat.DieDieDieEffect;
 public class BGDieDieDie extends AbstractBGCard {
     public static final String ID = "BGDieDieDie";
 
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Die Die Die");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGDieDieDie");
 
     public BGDieDieDie() {
         super("BGDieDieDie", cardStrings.NAME, "green/attack/die_die_die", 1, cardStrings.DESCRIPTION, CardType.ATTACK, BGSilent.Enums.BG_GREEN, CardRarity.RARE, CardTarget.ALL_ENEMY);

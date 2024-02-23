@@ -55,6 +55,8 @@ public class BGCorpseExplosion extends AbstractBGCard implements CardDoesNotDisc
             upgradeName();
             upgradeMagicNumber(1);
             upgradeDefaultSecondMagicNumber(4);
+            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+            initializeDescription();
         }
     }
 

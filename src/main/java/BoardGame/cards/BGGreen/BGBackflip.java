@@ -16,7 +16,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 public class BGBackflip extends AbstractBGCard {
     public static final String ID = "BGBackflip";
 
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Backflip");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGBackflip");
     public BGBackflip() {
         super("BGBackflip", cardStrings.NAME, "green/skill/backflip", 1, cardStrings.DESCRIPTION, CardType.SKILL, BGSilent.Enums.BG_GREEN, CardRarity.COMMON, CardTarget.SELF);
         this.baseBlock=1;

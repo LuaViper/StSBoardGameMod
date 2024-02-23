@@ -23,7 +23,7 @@ import com.megacrit.cardcrawl.vfx.combat.ThrowDaggerEffect;
 public class BGDaggerThrow extends AbstractBGCard {
     public static final String ID = "BGDaggerThrow";
 
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Dagger Throw");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGDaggerThrow");
 
     public BGDaggerThrow() {
         super("BGDaggerThrow", cardStrings.NAME, "green/attack/dagger_throw", 1, cardStrings.DESCRIPTION, CardType.ATTACK, BGSilent.Enums.BG_GREEN, CardRarity.COMMON, CardTarget.ENEMY);

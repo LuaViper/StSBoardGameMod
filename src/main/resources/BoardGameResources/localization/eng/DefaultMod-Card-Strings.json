@@ -13,11 +13,11 @@
   },
   "BoardGame:BGAccuracy": {
     "NAME": "Accuracy",
-    "DESCRIPTION": "Your boardgame:Shivs deal !M! additional damage."
+    "DESCRIPTION": "Your [BoardGame:ShivIcon] deal NL +!M! damage."
   },
   "BoardGame:BGAfterImage": {
     "NAME": "After Image",
-    "DESCRIPTION": "Whenever you discard one or more cards during your turn, gain !M! Block."
+    "DESCRIPTION": "Whenever you discard one or more cards during your turn, !M! [BoardGame:BlockIcon] ."
   },
   "BoardGame:BGAnger": {
     "NAME": "Anger",
@@ -25,7 +25,7 @@
   },
   "BoardGame:BGAllOutAttack": {
     "NAME": "All-Out Attack",
-    "DESCRIPTION": "Deal !D! damage to any row. NL Discard 1 card."
+    "DESCRIPTION": "[BoardGame:AOEIcon] !D! [BoardGame:HitIcon] NL Discard 1 card."
   },
   "BoardGame:BGApotheosis": {
     "NAME": "Apotheosis",
@@ -35,13 +35,17 @@
     "NAME": "A Thousand Cuts",
     "DESCRIPTION": "Whenever you shuffle your draw pile, deal !M! damage to any row."
   },
+  "BoardGame:BGBackflip": {
+    "NAME": "Backflip",
+    "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL Draw 2 cards."
+  },
   "BoardGame:BGBackstab": {
     "NAME": "Backstab",
-    "DESCRIPTION": "Deal !D! damage. NL Deals !M! additional damage if the enemy is at full HP. NL Exhaust."
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL +!M! damage if the enemy is at full HP. NL Exhaust."
   },
   "BoardGame:BGBane": {
     "NAME": "Bane",
-    "DESCRIPTION": "Deal !D! damage. NL Deals !M! additional damage if the target is boardgame:Poisoned."
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL +!M! damage if the target has [BoardGame:PoisonIcon] ."
   },
   "BoardGame:BGBarricade": {
     "NAME": "Barricade",
@@ -62,8 +66,8 @@
   },
   "BoardGame:BGCloakAndDagger": {
     "NAME": "Cloak and Dagger",
-    "DESCRIPTION": "Gain !M! boardgame:Shiv. NL Gain 1 Block.",
-    "UPGRADE_DESCRIPTION": "Gain !M! boardgame:Shivs. NL Gain 1 Block."
+    "DESCRIPTION": "[BoardGame:ShivIcon] NL 1 [BoardGame:BlockIcon]",
+    "UPGRADE_DESCRIPTION": "[BoardGame:ShivIcon] [BoardGame:ShivIcon] NL 1 [BoardGame:BlockIcon]"
   },
   "BoardGame:BGBerserk": {
     "NAME": "Berserk",
@@ -71,7 +75,8 @@
   },
   "BoardGame:BGBladeDance": {
     "NAME": "Blade Dance",
-    "DESCRIPTION": "Gain !M! boardgame:Shivs."
+    "DESCRIPTION": "[BoardGame:ShivIcon] [BoardGame:ShivIcon]",
+    "UPGRADE_DESCRIPTION": "[BoardGame:ShivIcon] [BoardGame:ShivIcon] [BoardGame:ShivIcon]"
   },
   "BoardGame:BGBlind": {
     "NAME": "Blind",
@@ -84,11 +89,13 @@
   },
   "BoardGame:BGBlur": {
     "NAME": "Blur",
-    "DESCRIPTION": "Gain !B! Block. NL Gain another !M! Block if you have discarded a card this turn."
+    "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL +1 [BoardGame:BlockIcon] if you discarded a card this turn."
   },
   "BoardGame:BGBouncingFlask": {
     "NAME": "Bouncing Flask",
-    "DESCRIPTION": "Apply 1 boardgame:Poison !M! times. NL Each boardgame:Poison may have a different target."
+    "DESCRIPTION": "[BoardGame:PoisonIcon] [BoardGame:PoisonIcon] NL Each boardgame:Poison may have a different target.",
+    "UPGRADE_DESCRIPTION": "[BoardGame:PoisonIcon] [BoardGame:PoisonIcon] [BoardGame:PoisonIcon] NL Each boardgame:Poison may have a different target."
+
   },
   "BoardGame:BGBurn": {
     "NAME": "Burn",
@@ -106,12 +113,12 @@
   },
   "BoardGame:BGCatalyst": {
     "NAME": "Catalyst",
-    "DESCRIPTION": "Double the enemy's boardgame:Poison. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Triple the enemy's boardgame:Poison. NL Exhaust."
+    "DESCRIPTION": "Double the enemy's [BoardGame:PoisonIcon] . NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Triple the enemy's [BoardGame:PoisonIcon] . NL Exhaust."
   },
   "BoardGame:BGChoke": {
     "NAME": "Choke",
-    "DESCRIPTION": "Deal !D! damage. NL Deals !M! additional damage for each boardgame:Weak and boardgame:Poison on the target."
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL +1 damage for each [BoardGame:WeakIcon] and [BoardGame:PoisonIcon] on the target."
   },
   "BoardGame:BGCleave": {
     "NAME": "Cleave",
@@ -132,15 +139,22 @@
   },
   "BoardGame:BGCorpseExplosion": {
     "NAME": "Corpse Explosion",
-    "DESCRIPTION": "Apply !M! boardgame:Poison and attach to the target. When the target dies, deal !BoardGame:SecondMagic! damage to its row and discard this card."
+    "DESCRIPTION": "[BoardGame:PoisonIcon] [BoardGame:PoisonIcon] NL Attach to the target. When it dies, deal !BoardGame:SecondMagic! damage to its row and discard this card.",
+    "UPGRADE_DESCRIPTION": "[BoardGame:PoisonIcon] [BoardGame:PoisonIcon] [BoardGame:PoisonIcon] NL Attach to the target. When it dies, deal !BoardGame:SecondMagic! damage to its row and discard this card."
   },
   "BoardGame:BGCripplingCloud": {
     "NAME": "Crippling Cloud",
-    "DESCRIPTION": "Apply !M! boardgame:Poison and 1 Weak to any row. NL Exhaust."
+    "DESCRIPTION": "[BoardGame:AOEIcon] [BoardGame:PoisonIcon] [BoardGame:WeakIcon] NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "[BoardGame:AOEIcon] [BoardGame:PoisonIcon] [BoardGame:PoisonIcon] [BoardGame:WeakIcon] NL Exhaust."
   },
   "BoardGame:BGDaggerSpray": {
     "NAME": "Dagger Spray",
-    "DESCRIPTION": "Deal !D! damage !M! times to any row."
+    "DESCRIPTION": "[BoardGame:AOEIcon] 1 [BoardGame:HitIcon] 1 [BoardGame:HitIcon]",
+    "UPGRADE_DESCRIPTION": "[BoardGame:AOEIcon] 1 [BoardGame:HitIcon] 1 [BoardGame:HitIcon] 1 [BoardGame:HitIcon]"
+  },
+  "BoardGame:BGDaggerThrow": {
+    "NAME": "Dagger Throw",
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL Draw 1 card. NL Discard 1 card."
   },
   "BoardGame:BGDarkShackles": {
     "NAME": "Dark Shackles",
@@ -148,11 +162,11 @@
   },
   "BoardGame:BGDash": {
     "NAME": "Dash",
-    "DESCRIPTION": "Deal !D! damage. NL Gain !B! Block. NL You may switch rows with another player."
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] !B! [BoardGame:BlockIcon] NL You may switch rows with another player."
   },
   "BoardGame:BGDeadlyPoison": {
     "NAME": "Deadly Poison",
-    "DESCRIPTION": "Apply !M! boardgame:Poison."
+    "DESCRIPTION": "[BoardGame:PoisonIcon]"
   },
   "BoardGame:BGDecay": {
     "NAME": "Decay",
@@ -160,8 +174,8 @@
   },
   "BoardGame:BGDefend_G": {
     "NAME": "Defend",
-    "DESCRIPTION": "Gain !B! Block.",
-    "UPGRADE_DESCRIPTION": "!B! Block to any player."
+    "DESCRIPTION": "!B! [BoardGame:BlockIcon]",
+    "UPGRADE_DESCRIPTION": "!B! [BoardGame:BlockIcon] to any player."
   },
   "BoardGame:BGDefend_R": {
     "NAME": "Defend",
@@ -170,11 +184,15 @@
   },
   "BoardGame:BGDeflect": {
     "NAME": "Deflect",
-    "DESCRIPTION": "Gain !B! Block. NL Gain another !M! Block if you have a boardgame:Shiv."
+    "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL +!M! [BoardGame:BlockIcon] if you have a [BoardGame:ShivIcon] ."
   },
   "BoardGame:BGDemonForm": {
     "NAME": "Demon Form",
     "DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: NL Gain [BoardGame:StrIcon] ."
+  },
+  "BoardGame:BGDieDieDie": {
+    "NAME": "Die Die Die",
+    "DESCRIPTION": "[BoardGame:AOEIcon] !D! [BoardGame:HitIcon] NL Exhaust."
   },
   "BoardGame:BGDisarm": {
     "NAME": "Disarm",
@@ -183,16 +201,18 @@
   },
   "BoardGame:BGDistraction": {
     "NAME": "Distraction",
-    "DESCRIPTION": "Once per turn: NL When you put a token on an enemy, gain !M! Block."
+    "DESCRIPTION": "[#EFC851]Once [#EFC851]per [#EFC851]turn[]: NL When you put a token on an enemy, !M! [BoardGame:BlockIcon] ."
   },
   "BoardGame:BGDodgeAndRoll": {
     "NAME": "Dodge and Roll",
-    "DESCRIPTION": "!B! Block to any player !M! times. NL (You can pick different targets for each.)"
+    "DESCRIPTION": "[BoardGame:BlockIcon] [BoardGame:BlockIcon] NL Each [BoardGame:BlockIcon] can go to any player.",
+    "UPGRADE_DESCRIPTION": "[BoardGame:BlockIcon] [BoardGame:BlockIcon] [BoardGame:BlockIcon] NL Each [BoardGame:BlockIcon] can go to any player."
+
   },
   "BoardGame:BGDoppelganger": {
     "NAME": "Doppelganger",
-    "DESCRIPTION": "Copy the last Attack or Skill with cost equal to X anybody played this turn. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Copy the last Attack or Skill with cost equal to X anybody played this turn.",
+    "DESCRIPTION": "Play a copy of the last Attack or Skill played by any player this turn with cost equal to X. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Play a copy of the last Attack or Skill played by any player this turn with cost equal to X.",
     "EXTENDED_DESCRIPTION": [
       "No copyable cards have been played this turn.",
       "I can't play this for less than ",
@@ -227,12 +247,12 @@
   },
   "BoardGame:BGEnvenom": {
     "NAME": "Envenom",
-    "DESCRIPTION": "Your Attacks, including boardgame:Shivs, also apply !M! Poison."
+    "DESCRIPTION": "Your [BoardGame:HitIcon] also apply [BoardGame:PoisonIcon] . (Include [BoardGame:ShivIcon] .)"
   },
   "BoardGame:BGEscapePlan": {
     "NAME": "Escape Plan",
-    "DESCRIPTION": "Draw 1 card. NL If you draw a Skill, gain !B! Block.",
-    "UPGRADE_DESCRIPTION": "Gain !B! Block. NL Draw 1 card."
+    "DESCRIPTION": "Draw 1 card. NL If you draw a Skill, NL !B! [BoardGame:BlockIcon] .",
+    "UPGRADE_DESCRIPTION": "[BoardGame:BlockIcon] NL Draw 1 card."
   },
   "BoardGame:BGEvolve": {
     "NAME": "Evolve",
@@ -263,7 +283,7 @@
   },
   "BoardGame:BGFinisher": {
     "NAME": "Finisher",
-    "DESCRIPTION": "Deal !D! damage for each Attack played this turn.",
+    "DESCRIPTION": "Deal !D! [BoardGame:HitIcon] for each other Attack you played this turn (including [BoardGame:ShivIcon] ).",
     "EXTENDED_DESCRIPTION": [
       " NL (",
       " Attack played.)",
@@ -285,8 +305,8 @@
   },
   "BoardGame:BGFlechettes": {
     "NAME": "Flechettes",
-    "DESCRIPTION": "Deal !D! damage for each Skill in your hand.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage for each Skill in your hand +!M!.",
+    "DESCRIPTION": "Deal !D! [BoardGame:HitIcon] for each Skill in your hand.",
+    "UPGRADE_DESCRIPTION": "Deal !D! [BoardGame:HitIcon] for each Skill in your hand +!M!.",
     "EXTENDED_DESCRIPTION": [
       " NL (You have ",
       " Skill).",
@@ -300,8 +320,8 @@
   },
   "BoardGame:BGFootwork": {
     "NAME": "Footwork",
-    "DESCRIPTION": "Gain !M! boardgame:Dexterity.",
-    "UPGRADE_DESCRIPTION": "Retain. NL Gain !M! boardgame:Dexterity."
+    "DESCRIPTION": "Each [BoardGame:BlockIcon] on your Attacks and Skills gets +1 Block.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Each [BoardGame:BlockIcon] on your Attacks and Skills gets +1 Block."
   },
   "BoardGame:BGGhostly": {
     "NAME": "Apparition",
@@ -315,6 +335,10 @@
   "BoardGame:BGGood Instincts": {
     "NAME": "Good Instincts",
     "DESCRIPTION": "!B! [BoardGame:BlockIcon] to any player."
+  },
+  "BoardGame:BGGrandFinale": {
+    "NAME": "Grand Finale",
+    "DESCRIPTION": "Can only be played if there are no cards in your draw pile. NL [BoardGame:AOEIcon] !D! [BoardGame:HitIcon]"
   },
   "BoardGame:BGGremlinHornDrawACard": {
     "NAME": "Versatility",
@@ -355,8 +379,8 @@
   },
   "BoardGame:BGInfinite Blades": {
     "NAME": "Infinite Blades",
-    "DESCRIPTION": "At the start of your turn, gain !M! boardgame:Shiv.",
-    "UPGRADE_DESCRIPTION": "At the start of your turn, gain !M! boardgame:Shivs."
+    "DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: NL [BoardGame:ShivIcon]",
+    "UPGRADE_DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: NL [BoardGame:ShivIcon] [BoardGame:ShivIcon]"
   },
   "BoardGame:BGInflame": {
     "NAME": "Inflame",
@@ -369,11 +393,11 @@
   },
   "BoardGame:BGIronWaveSpear": {
     "NAME": "Spear",
-    "DESCRIPTION": "Deal !D! damage. NL Gain !B! Block."
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] !B! [BoardGame:BlockIcon]"
   },
   "BoardGame:BGIronWaveShield": {
     "NAME": "Shield",
-    "DESCRIPTION": "Deal !D! damage. NL Gain !B! Block."
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] !B! [BoardGame:BlockIcon]"
   },
   "BoardGame:BGJuggernaut": {
     "NAME": "Juggernaut",
@@ -381,7 +405,7 @@
   },
   "BoardGame:BGLeg Sweep": {
     "NAME": "Leg Sweep",
-    "DESCRIPTION": "Gain !B! Block. NL Apply !M! boardgame:Weak."
+    "DESCRIPTION": "[BoardGame:WeakIcon] NL !B! [BoardGame:BlockIcon]"
   },
   "BoardGame:BGLimitBreak": {
     "NAME": "Limit Break",
@@ -394,12 +418,12 @@
   },
   "BoardGame:BGMalaise": {
     "NAME": "Malaise",
-    "DESCRIPTION": "Apply 1 Weak and 1 Poison X times. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Apply 1 Weak and 1 Poison X+1 times. NL Exhaust."
+    "DESCRIPTION": "Apply [BoardGame:WeakIcon] [BoardGame:PoisonIcon] to an enemy X times. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Apply [BoardGame:WeakIcon] [BoardGame:PoisonIcon] to an enemy X+1 times. NL Exhaust."
   },
   "BoardGame:BGMasterful Stab": {
     "NAME": "Masterful Stab",
-    "DESCRIPTION": "Costs [G] [G] NL if you lost HP this combat. NL Deal !D! damage."
+    "DESCRIPTION": "Costs !M! if you lost HP this combat. NL !D! [BoardGame:HitIcon]"
   },
   "BoardGame:BGMayhem": {
     "NAME": "Mayhem",
@@ -419,7 +443,7 @@
   },
   "BoardGame:BGNeutralize": {
     "NAME": "Neutralize",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! boardgame:Weak."
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] !M! [BoardGame:WeakIcon]"
   },
   "BoardGame:BGNinjaScroll": {
     "NAME": "Ninja Scroll",
@@ -430,8 +454,8 @@
   },
   "BoardGame:BGNoxiousFumes": {
     "NAME": "Noxious Fumes",
-    "DESCRIPTION": "At the start of your turn, apply 1 boardgame:Poison.",
-    "UPGRADE_DESCRIPTION": "At the start of your turn, apply 1 boardgame:Poison to any row."
+    "DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: NL [BoardGame:PoisonIcon]",
+    "UPGRADE_DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: NL [BoardGame:AOEIcon] [BoardGame:PoisonIcon]"
   },
   "BoardGame:BGOffering": {
     "NAME": "Offering",
@@ -440,8 +464,8 @@
   },
   "BoardGame:BGOutmaneuver": {
     "NAME": "Outmaneuver",
-    "DESCRIPTION": "Retain. NL When played, if you Retained this card last turn, gain [G] [G].",
-    "UPGRADE_DESCRIPTION": "Retain. NL When played, if you Retained this card last turn, gain [G] [G] [G]."
+    "DESCRIPTION": "Retain. NL When played, if you Retained this last turn, gain [G] [G] .",
+    "UPGRADE_DESCRIPTION": "Retain. NL When played, if you Retained card last turn, gain [G] [G] [G] ."
   },
   "BoardGame:BGPanacea": {
     "NAME": "Panacea",
@@ -454,7 +478,7 @@
   },
   "BoardGame:BGPanache": {
     "NAME": "Panache",
-    "DESCRIPTION": "[#EFC851]End [#EFC851]of [#EFC851]turn[]: NL deal !M! damage to any row."
+    "DESCRIPTION": "[#EFC851]End [#EFC851]of [#EFC851]turn[]: NL If your hand is empty, deal !M! damage to any row."
   },
   "BoardGame:BGParasite": {
     "NAME": "Parasite",
@@ -467,16 +491,17 @@
   },
   "BoardGame:BGPiercingWail": {
     "NAME": "Piercing Wail",
-    "DESCRIPTION": "Gain !B! Block. NL Apply !M! boardgame:Weak to any row. NL Exhaust."
+    "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL [BoardGame:AOEIcon] [BoardGame:WeakIcon] NL Exhaust."
   },
   "BoardGame:BGPoisonedStab": {
     "NAME": "Poisoned Stab",
-    "DESCRIPTION": "Deal !D! damage. NL Apply !M! boardgame:Poison. NL Exhaust."
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] [BoardGame:PoisonIcon] NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "!D! [BoardGame:HitIcon] [BoardGame:PoisonIcon] [BoardGame:PoisonIcon] NL Exhaust."
   },
   "BoardGame:BGPommelStrike": {
     "NAME": "Pommel Strike",
-    "DESCRIPTION": "2 [BoardGame:HitIcon] NL Draw a card.",
-    "UPGRADE_DESCRIPTION": "2 [Boardgame:HitIcon] NL Draw !M! cards."
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL Draw a card.",
+    "UPGRADE_DESCRIPTION": "!D! [Boardgame:HitIcon] NL Draw !M! cards."
   },
   "BoardGame:BGPower Through": {
     "NAME": "Power Through",
@@ -484,7 +509,7 @@
   },
   "BoardGame:BGPredator": {
     "NAME": "Predator",
-    "DESCRIPTION": "Deal !D! damage. NL Any player draws !M! cards."
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL Any player draws !M! cards."
   },
   "BoardGame:BGRage": {
     "NAME": "Rage",
@@ -503,9 +528,18 @@
     "NAME": "Regret",
     "DESCRIPTION": "Unplayable. NL Retain."
   },
+  "BoardGame:BGReflex": {
+    "NAME": "Reflex",
+    "DESCRIPTION": "Unplayable. NL If this card is discarded by a card's effect, draw !M! cards.",
+    "UPGRADE_DESCRIPTION": "Unplayable. NL If this card is discarded by a card's effect, draw !M! cards.",
+    "EXTENDED_DESCRIPTION": [
+      "I can't play this card."
+    ]
+  },
   "BoardGame:BGRiddleWithHoles": {
     "NAME": "Riddle With Holes",
-    "DESCRIPTION": "Gain !M! boardgame:Shivs."
+    "DESCRIPTION": "[BoardGame:ShivIcon] [BoardGame:ShivIcon] [BoardGame:ShivIcon] [BoardGame:ShivIcon]",
+    "UPGRADE_DESCRIPTION": "[BoardGame:ShivIcon] [BoardGame:ShivIcon] [BoardGame:ShivIcon] [BoardGame:ShivIcon] [BoardGame:ShivIcon]"
   },
   "BoardGame:BGRupture": {
     "NAME": "Rupture",
@@ -558,12 +592,16 @@
   },
   "BoardGame:BGSkewer": {
     "NAME": "Skewer",
-    "DESCRIPTION": "Deal !D! damage X+1 times.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage X times."
+    "DESCRIPTION": "Deal !D! [BoardGame:HitIcon] NL X+1 times.",
+    "UPGRADE_DESCRIPTION": "Deal !D! [BoardGame:HitIcon] X times."
   },
   "BoardGame:BGSlice": {
     "NAME": "Slice",
-    "DESCRIPTION": "Deal !D! damage. NL Deals !M! additional damage if you have a boardgame:Shiv."
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL +!M! damage if you have a [BoardGame:ShivIcon] ."
+  },
+  "BoardGame:BGSneakyStrike": {
+    "NAME": "Sneaky Strike",
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL If you discarded a card this turn, gain [G] [G] ."
   },
   "BoardGame:BGSneckoEyeDrawTwoCards": {
     "NAME": "Versatility",
@@ -580,8 +618,8 @@
   },
   "BoardGame:BGStormOfSteel": {
     "NAME": "Storm of Steel",
-    "DESCRIPTION": "Discard any number of cards. Gain a boardgame:Shiv for each card discarded.",
-    "UPGRADE_DESCRIPTION": "Discard any number of cards. Gain a Shiv for each card discarded +1."
+    "DESCRIPTION": "Discard any number of cards. Gain [BoardGame:ShivIcon] for each card discarded.",
+    "UPGRADE_DESCRIPTION": "Discard any number of cards. Gain [BoardGame:ShivIcon] for each card discarded +1."
   },
   "BoardGame:BGSwiftStrike": {
     "NAME": "Swift Strike",
@@ -595,18 +633,22 @@
     "NAME": "Strike",
     "DESCRIPTION": "!D! [BoardGame:HitIcon]"
   },
+  "BoardGame:BGSurvivor": {
+    "NAME": "Survivor",
+    "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL Discard 1 card."
+  },
   "BoardGame:BGTactician": {
     "NAME": "Tactician",
-    "DESCRIPTION": "Unplayable. NL If this card is discarded from your hand, gain [G] [G] and Exhaust.",
-    "UPGRADE_DESCRIPTION": "Unplayable. NL If this card is discarded from your hand, gain [G] [G] [G] and Exhaust.",
+    "DESCRIPTION": "Unplayable. NL If this card is discarded by a card's effect, gain [G] [G] and Exhaust.",
+    "UPGRADE_DESCRIPTION": "Unplayable. NL If this card is discarded by a card's effect, gain [G] [G] [G] and Exhaust.",
     "EXTENDED_DESCRIPTION": [
       "I can't play this card."
     ]
   },
   "BoardGame:BGTerror": {
     "NAME": "Terror",
-    "DESCRIPTION": "Apply !M! Vulnerable. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Apply !M! Vulnerable."
+    "DESCRIPTION": "[BoardGame:VulnIcon] NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "[BoardGame:VulnIcon]"
   },
   "BoardGame:BGThe Bomb": {
     "NAME": "The Bomb",
@@ -615,6 +657,10 @@
   "BoardGame:BGThinking Ahead": {
     "NAME": "Thinking Ahead",
     "DESCRIPTION": "Draw !M! cards. NL Then put a card from your hand on top of your draw pile. NL Exhaust."
+  },
+  "BoardGame:BGToolsOfTheTrade": {
+    "NAME": "Tools of the Trade",
+    "DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: NL Draw 1 card then NL discard 1 card."
   },
   "BoardGame:BGTrip": {
     "NAME": "Trip",
@@ -632,7 +678,7 @@
   },
   "BoardGame:BGUnload": {
     "NAME": "Unload",
-    "DESCRIPTION": "Deal !D! damage. Use all of your boardgame:Shivs now; they each deal +!M! damage. (Each boardgame:Shiv is still a separate Attack.)"
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] . Use all of your [BoardGame:ShivIcon] now. They each deal +!M! damage. (Each [BoardGame:ShivIcon] is a separate attack.)"
   },
   "BoardGame:BGUppercut": {
     "NAME": "Uppercut",
@@ -647,6 +693,11 @@
     "NAME": "Warcry",
     "DESCRIPTION": "Draw !M! cards. NL Then put a card from your hand onto the top of your draw pile. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Draw !M! cards. NL Then put a card from your hand onto the top of your draw pile. NL Exhaust."
+  },
+  "BoardGame:BGWellLaidPlans": {
+    "NAME": "Well Laid Plans",
+    "DESCRIPTION": "[#EFC851]End [#EFC851]of [#EFC851]turn[]: NL You may Retain !M! card.",
+    "UPGRADE_DESCRIPTION": "[#EFC851]End [#EFC851]of [#EFC851]turn[]: NL You may Retain up to !M! cards."
   },
   "BoardGame:BGWhirlwind": {
     "NAME": "Whirlwind",

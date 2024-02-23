@@ -20,7 +20,7 @@ public class BGMutagenicStrength extends AbstractBGRelic {
     private static final int STR_AMT = 1;
 
     public String getUpdatedDescription() {
-        return this.DESCRIPTIONS[0] + '\003' + this.DESCRIPTIONS[1] + STR_AMT + this.DESCRIPTIONS[2];
+        return this.DESCRIPTIONS[0];
     }
 
 

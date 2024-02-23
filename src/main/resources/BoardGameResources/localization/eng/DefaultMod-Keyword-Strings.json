@@ -58,12 +58,12 @@
     "DESCRIPTION": "Poisoned creatures lose HP at the start of their turn."
   },
   {
-    "PROPER_NAME": "Shivs",
+    "PROPER_NAME": "[BoardGame:ShivIcon] Shivs",
     "NAMES": [
       "shiv",
       "shivs"
     ],
-    "DESCRIPTION": "Shivs are tokens that may be used whenever you could play a card to Attack for #y1 damage."
+    "DESCRIPTION": "Shivs [BoardGame:ShivIcon] are tokens that may be used whenever you could play a card to deal 1 [BoardGame:HitIcon] ."
   },
   {
     "NAMES": [

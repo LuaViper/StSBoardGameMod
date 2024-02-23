@@ -22,7 +22,7 @@ import com.megacrit.cardcrawl.vfx.combat.ThrowDaggerEffect;
 public class BGSneakyStrike extends AbstractBGCard {
     public static final String ID = "BGSneakyStrike";
 
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Underhanded Strike");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGSneakyStrike");
 
     public BGSneakyStrike() {
         super("BGSneakyStrike", cardStrings.NAME, "green/attack/sneaky_strike", 2, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, BGSilent.Enums.BG_GREEN, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.ENEMY);

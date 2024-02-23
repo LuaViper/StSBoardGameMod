@@ -16,6 +16,8 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import static BoardGame.BoardGame.makeRelicOutlinePath;
 import static BoardGame.BoardGame.makeRelicPath;
 
+//TODO: if another character obtains this relic, it won't be clickable on the turn it's obtained
+
 public class BGShivs extends CustomRelic implements ClickableRelic {
     public static final String ID = "BoardGame:BGShivs";
     private static final String IMGPATH="BGshivs.png";
@@ -42,6 +44,7 @@ public class BGShivs extends CustomRelic implements ClickableRelic {
     }
 
     public String getUpdatedDescription() {
+        //TODO: maybe also check for wristblade/strength/weak/etc...
         return this.DESCRIPTIONS[0]+Integer.toString(1+this.accuracy)+this.DESCRIPTIONS[1];
     }
 
@@ -61,7 +64,6 @@ public class BGShivs extends CustomRelic implements ClickableRelic {
     }
 
     private boolean isPlayerTurn = false; // We should make sure the relic is only activateable during our turn, not the enemies'.
-    public int shivsPlayedThisTurn=0;
 
     @Override
     public void onRightClick() {// On right click
@@ -78,7 +80,6 @@ public class BGShivs extends CustomRelic implements ClickableRelic {
 
     public void atTurnStart() {
         isPlayerTurn = true; // It's our turn!
-        shivsPlayedThisTurn=0;
     }
 
     @Override

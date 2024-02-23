@@ -17,7 +17,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class BGWellLaidPlans extends AbstractBGCard {
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Well Laid Plans");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGWellLaidPlans");
 
     public BGWellLaidPlans() {
         super("BGWellLaidPlans", cardStrings.NAME, "green/power/well_laid_plans", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.POWER, BGSilent.Enums.BG_GREEN, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.NONE);

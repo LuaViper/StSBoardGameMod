@@ -57,6 +57,7 @@ public abstract class PotionHelperPatch {
                 potionDeck.add("BoardGame:BGElixirPotion");
                 potionDeck.add("BoardGame:BGCunningPotion");
                 Collections.shuffle(potionDeck, new java.util.Random(cardRng.randomLong()));
+                BoardGame.BoardGame.logger.info("Shuffled potion deck successfully");
                 return SpireReturn.Continue();
             }
             return SpireReturn.Continue();

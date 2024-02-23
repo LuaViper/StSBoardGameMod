@@ -79,7 +79,22 @@ public class BGBurstPower extends AbstractBGPower {
             if (m != null)
                 tmp.calculateCardDamage(m);
             tmp.purgeOnUse = true;
-            AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, m, card.energyOnUse, true, true), true);
+
+            if(card.target== AbstractCard.CardTarget.ENEMY || card.target== AbstractCard.CardTarget.SELF_AND_ENEMY) {
+                TargetSelectScreen.TargetSelectAction tssAction = (target) -> {
+                    //logger.info("DoubleTap tssAction.execute");
+                    if (target != null) {
+                        tmp.calculateCardDamage(target);
+                    }
+                    //logger.info("DoubleTap final target: "+target);
+                    addToBot((AbstractGameAction) new NewQueueCardAction(tmp, target, true, true));
+                };
+                //logger.info("DoubleTap addToTop");
+                addToBot((AbstractGameAction)new TargetSelectScreenAction(tssAction,"Choose a target for the copy of "+card.name+"."));
+            }else {
+                //AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, m, card.energyOnUse, true, true), true);
+                addToBot((AbstractGameAction) new NewQueueCardAction(tmp, null, true, true));
+            }
 
 
 

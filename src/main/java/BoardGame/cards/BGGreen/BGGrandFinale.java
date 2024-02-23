@@ -18,7 +18,7 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.GrandFinalEffect;
 
 public class BGGrandFinale extends AbstractBGCard {
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Grand Finale");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGGrandFinale");
     public static final String ID = "BGGrandFinale";
 
     public BGGrandFinale() {

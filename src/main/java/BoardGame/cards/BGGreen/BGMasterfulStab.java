@@ -28,12 +28,14 @@ public class BGMasterfulStab extends AbstractBGCard {
         super("BGMasterful Stab", cardStrings.NAME, "green/attack/masterful_stab", 0, cardStrings.DESCRIPTION, CardType.ATTACK, BGSilent.Enums.BG_GREEN, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
         this.baseDamage = 2;
+        this.baseMagicNumber=2;
+        this.magicNumber=this.baseMagicNumber;
     }
 
     public void tookDamage() {
         //TODO: multiplayer doppelganger implementation will be Not Fun
         //TODO: we haven't actually tested to make sure this stops at cost 2
-        if(this.cost<2) updateCost(2);
+        if(this.cost<this.magicNumber) updateCost(this.magicNumber);
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
@@ -44,6 +46,7 @@ public class BGMasterfulStab extends AbstractBGCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeDamage(1);
+            upgradeMagicNumber(-1);
         }
     }
 

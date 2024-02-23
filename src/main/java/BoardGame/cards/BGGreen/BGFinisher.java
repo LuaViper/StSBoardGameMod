@@ -2,6 +2,7 @@ package BoardGame.cards.BGGreen;
 
 import BoardGame.actions.BGDamagePerAttackPlayedAction;
 import BoardGame.cards.AbstractBGCard;
+import BoardGame.characters.AbstractBGCharacter;
 import BoardGame.characters.BGSilent;
 import BoardGame.relics.BGShivs;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -38,10 +39,9 @@ public class BGFinisher extends AbstractBGCard {
             if (c.type == AbstractCard.CardType.ATTACK)
                 count++;
         }
-        BGShivs relic = (BGShivs)AbstractDungeon.player.getRelic("BoardGame:BGShivs");
-        if(relic!=null){
-            count+=relic.shivsPlayedThisTurn;
-        }
+        if(AbstractDungeon.player instanceof AbstractBGCharacter)
+            count+=((AbstractBGCharacter)AbstractDungeon.player).shivsPlayedThisTurn;
+
         this.rawDescription = cardStrings.DESCRIPTION;
         this.rawDescription += cardStrings.EXTENDED_DESCRIPTION[0] + count;
         if (count == 1) {

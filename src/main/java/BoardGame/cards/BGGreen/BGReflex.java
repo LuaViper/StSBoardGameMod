@@ -17,7 +17,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 public class BGReflex extends AbstractBGCard {
     public static final String ID = "BGReflex";
 
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Reflex");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGReflex");
 
     public BGReflex() {
         super("BGReflex", cardStrings.NAME, "green/skill/reflex", -2, cardStrings.DESCRIPTION, AbstractCard.CardType.SKILL, BGSilent.Enums.BG_GREEN, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.NONE);

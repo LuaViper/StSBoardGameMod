@@ -3,6 +3,8 @@ package BoardGame.icons;
 import BoardGame.util.TextureLoader;
 import com.evacipated.cardcrawl.mod.stslib.icons.AbstractCustomIcon;
 
+//TODO: icon needs some serious contrast/readability work
+
 public class GoldIcon extends AbstractCustomIcon {
     public static final String ID = "BoardGame:Gold";    //reminder: "Icon" is automatically added
     private static GoldIcon singleton;

@@ -33,7 +33,7 @@ public class BGEnvenomPower extends AbstractBGPower {
 
 
     public void updateDescription() {
-        this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+        this.description = DESCRIPTIONS[0];
     }
 
     //TODO: do Shivs and CunningPotions proc this correctly?

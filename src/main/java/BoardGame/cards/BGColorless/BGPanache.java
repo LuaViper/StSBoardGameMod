@@ -24,7 +24,7 @@ public class BGPanache extends AbstractBGCard {
 
 
 
-        this.baseMagicNumber = 2;
+        this.baseMagicNumber = 3;
         this.magicNumber = this.baseMagicNumber;
     }
 

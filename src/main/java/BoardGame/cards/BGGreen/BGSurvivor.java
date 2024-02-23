@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class BGSurvivor extends AbstractBGCard {
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Survivor");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGSurvivor");
     public static final String ID = "BGSurvivor";
 
     public BGSurvivor() {

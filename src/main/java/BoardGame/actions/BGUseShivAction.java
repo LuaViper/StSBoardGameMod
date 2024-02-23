@@ -1,6 +1,7 @@
 package BoardGame.actions;
 import BoardGame.BoardGame;
 import BoardGame.cards.AbstractBGCard;
+import BoardGame.characters.AbstractBGCharacter;
 import BoardGame.monsters.MixedAttacks;
 import BoardGame.powers.BGPoisonPower;
 import BoardGame.relics.BGShivs;
@@ -44,36 +45,39 @@ public class BGUseShivAction extends AbstractGameAction {
 
     public void update() {
         AbstractRelic relic = AbstractDungeon.player.getRelic("BoardGame:BGShivs");
-        if(relic!=null) {
-            if(relic.counter>0 || !isARealShiv) {
-                TargetSelectScreen.TargetSelectAction tssAction = (target) -> {
-                    //double-check that we actually have a Shiv to spend (but Cunning Potion doesn't count)
-                    if(relic.counter>0 || !isARealShiv) {
-                        ((BGShivs)relic).shivsPlayedThisTurn+=1;
-                        if(isARealShiv) {
-                            relic.counter = relic.counter - 1;  //don't decrement Shivs if we throw a Cunning Potion!
-                        }
-                        BGFakeShiv fakeShiv=new BGFakeShiv();
-                        if(isARealShiv) {
-                            //similarly don't apply Accuracy to Cunning Potions
-                            AbstractPower accuracy = AbstractDungeon.player.getPower("BGAccuracy");
-                            if (accuracy != null) {
-                                fakeShiv.baseDamage+=accuracy.amount;
-                            }
-                        }
-                        fakeShiv.baseDamage+=bonusDamage;
-                        UseCardAction fakeShivAction=new UseCardAction(fakeShiv,target);
-                        fakeShiv.calculateCardDamage(target);
-                        addToTop((AbstractGameAction) new CheckAfterUseCardAction(fakeShiv,fakeShivAction));
-                        addToTop((AbstractGameAction) new DamageAction((AbstractCreature) target, new DamageInfo((AbstractCreature) AbstractDungeon.player, fakeShiv.damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-                        //reminder: order of operations is now DamageAction -> (proc weak/vuln) -> CheckAfterUseCardAction
+        int reliccounter=0;
+
+        if(relic!=null) reliccounter=relic.counter;
+
+        if(reliccounter>0 || !isARealShiv) {
+            int finalReliccounter = reliccounter; //because lambdas
+            TargetSelectScreen.TargetSelectAction tssAction = (target) -> {
+                //double-check that we actually have a Shiv to spend (but Cunning Potion doesn't count)
+                if(finalReliccounter>0 || !isARealShiv) {
+                    if(AbstractDungeon.player instanceof AbstractBGCharacter)
+                        ((AbstractBGCharacter)AbstractDungeon.player).shivsPlayedThisTurn+=1;
+                    if(isARealShiv && relic!=null) {
+                        relic.counter = relic.counter - 1;  //don't decrement Shivs if we throw a Cunning Potion!
                     }
-                };
-                addToTop((AbstractGameAction) new TargetSelectScreenAction(tssAction, message));
+                    BGFakeShiv fakeShiv=new BGFakeShiv();
+                    if(isARealShiv) {
+                        //similarly don't apply Accuracy to Cunning Potions
+                        AbstractPower accuracy = AbstractDungeon.player.getPower("BGAccuracy");
+                        if (accuracy != null) {
+                            fakeShiv.baseDamage+=accuracy.amount;
+                        }
+                    }
+                    fakeShiv.baseDamage+=bonusDamage;
+                    UseCardAction fakeShivAction=new UseCardAction(fakeShiv,target);
+                    fakeShiv.calculateCardDamage(target);
+                    addToTop((AbstractGameAction) new CheckAfterUseCardAction(fakeShiv,fakeShivAction));
+                    addToTop((AbstractGameAction) new DamageAction((AbstractCreature) target, new DamageInfo((AbstractCreature) AbstractDungeon.player, fakeShiv.damage, DamageInfo.DamageType.NORMAL), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
+                    //reminder: order of operations is now DamageAction -> (proc weak/vuln) -> CheckAfterUseCardAction
+                }
+            };
+            addToTop((AbstractGameAction) new TargetSelectScreenAction(tssAction, message));
 
-            }
         }
-
 
 
 

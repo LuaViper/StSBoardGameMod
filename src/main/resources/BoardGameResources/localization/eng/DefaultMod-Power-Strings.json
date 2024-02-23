@@ -180,9 +180,10 @@
                 " #yAttacks are played twice this turn."
         ]
 },
-        "BoardGame:BGEnvenom": {
+        "BoardGame:BGEnvenomPower": {
                 "NAME": "Envenom",
                 "DESCRIPTIONS": [
+                        "Your Attacks also apply #b1 Poison.",
                         "Your Attacks also apply #b1 Poison."
                 ]
         },
@@ -283,7 +284,7 @@
                 "NAME": "Panache",
                 "DESCRIPTIONS": [
                         "If your hand is empty at the end of your turn, deal #b",
-                        " damage to ALL enemies."
+                        " damage to any row."
                 ]
         },
         "BoardGame:Split": {

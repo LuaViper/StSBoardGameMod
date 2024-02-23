@@ -338,6 +338,11 @@ public class BGSilent extends AbstractBGCharacter {
     }
 
 
+    public void applyStartOfTurnRelics() {
+        super.applyStartOfTurnRelics();
+        this.shivsPlayedThisTurn=0;
+    }
+
     //TODO: move addBlock to CustomBoardGameCreature class (which itself will require various sweeping changes to implement)
     public void addBlock(int blockAmount) {
         float tmp = blockAmount;
