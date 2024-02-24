@@ -1,8 +1,6 @@
 package BoardGame;
 
-import BoardGame.characters.BGColorless;
-import BoardGame.characters.BGCurse;
-import BoardGame.characters.BGSilent;
+import BoardGame.characters.*;
 import BoardGame.icons.*;
 import BoardGame.monsters.bgexordium.*;
 import BoardGame.monsters.bgcity.*;
@@ -32,7 +30,6 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import BoardGame.cards.*;
-import BoardGame.characters.BGIronclad;
 import BoardGame.events.*;
 import BoardGame.util.IDCheckDontTouchPls;
 import BoardGame.util.TextureLoader;
@@ -83,6 +80,7 @@ public class BoardGame implements
     //public static final Color BG_IRONCLAD_RED = CardHelper.getColor(128.0f, 25.6f, 25.6f);
     public static final Color BG_IRONCLAD_RED = CardHelper.getColor(121, 12, 28);
     public static final Color BG_SILENT_GREEN = CardHelper.getColor(52, 123, 8);
+    public static final Color BG_DEFECT_BLUE = CardHelper.getColor(52, 123, 8);
     public static final Color BG_CURSE_BLACK = CardHelper.getColor(29, 29, 29);
     public static final Color BG_COLORLESS_GRAY = CardHelper.getColor(0.15F, 0.15F, 0.15F);
     // Potion Colors in RGB
@@ -113,19 +111,26 @@ public class BoardGame implements
     private static final String BGATTACK_SILENT = "BoardGameResources/images/512/bg_attack_theSilent.png";
     private static final String BGSKILL_SILENT = "BoardGameResources/images/512/bg_skill_theSilent.png";
     private static final String BGPOWER_SILENT = "BoardGameResources/images/512/bg_power_theSilent.png";
-
     private static final String ENERGY_ORB_SILENT = "BoardGameResources/images/512/card_orb_theSilent.png";
     private static final String SMALL_ORB_SILENT = "BoardGameResources/images/512/card_small_orb.png";
-
-
     private static final String BGATTACK_P_SILENT = "BoardGameResources/images/1024/bg_attack_theSilent.png";
     private static final String BGSKILL_P_SILENT = "BoardGameResources/images/1024/bg_skill_theSilent.png";
     private static final String BGPOWER_P_SILENT = "BoardGameResources/images/1024/bg_power_theSilent.png";
     private static final String ENERGY_ORB_P_SILENT = "BoardGameResources/images/1024/card_orb_theSilent.png";
-
-    // Character assets
     private static final String CHAR_SELECT_BUTTON_SILENT = "images/ui/charSelect/silentButton.png";
     private static final String CHAR_SELECT_PORTRAIT_SILENT = "images/ui/charSelect/silentPortrait.jpg";
+
+    private static final String BGATTACK_DEFECT = "BoardGameResources/images/512/bg_attack_theDefect.png";
+    private static final String BGSKILL_DEFECT = "BoardGameResources/images/512/bg_skill_theDefect.png";
+    private static final String BGPOWER_DEFECT = "BoardGameResources/images/512/bg_power_theDefect.png";
+    private static final String ENERGY_ORB_DEFECT = "BoardGameResources/images/512/card_orb_theDefect.png";
+    private static final String SMALL_ORB_DEFECT = "BoardGameResources/images/512/card_small_orb.png";
+    private static final String BGATTACK_P_DEFECT = "BoardGameResources/images/1024/bg_attack_theDefect.png";
+    private static final String BGSKILL_P_DEFECT = "BoardGameResources/images/1024/bg_skill_theDefect.png";
+    private static final String BGPOWER_P_DEFECT = "BoardGameResources/images/1024/bg_power_theDefect.png";
+    private static final String ENERGY_ORB_P_DEFECT = "BoardGameResources/images/1024/card_orb_theDefect.png";
+    private static final String CHAR_SELECT_BUTTON_DEFECT = "images/ui/charSelect/defectButton.png";
+    private static final String CHAR_SELECT_PORTRAIT_DEFECT = "images/ui/charSelect/defectPortrait.jpg";
 
 //    public static final String SHOULDER_1 = "BoardGameResources/images/char/defaultCharacter/shoulder.png";
 //    public static final String SHOULDER_2 = "BoardGameResources/images/char/defaultCharacter/shoulder2.png";
@@ -141,6 +146,9 @@ public class BoardGame implements
 
     public static final String BGSILENT_SKELETON_ATLAS = "images/characters/theSilent/idle/skeleton.atlas";
     public static final String BGSILENT_SKELETON_JSON = "images/characters/theSilent/idle/skeleton.json";
+
+    public static final String BGDEFECT_SKELETON_ATLAS = "images/characters/theDefect/idle/skeleton.atlas";
+    public static final String BGDEFECT_SKELETON_JSON = "images/characters/theDefect/idle/skeleton.json";
 
 
     private static final String ATTACK_COLORLESS = "BoardGameResources/images/512/colorless_bg_attack.png";
@@ -204,6 +212,12 @@ public class BoardGame implements
                 BGATTACK_SILENT, BGSKILL_SILENT, BGPOWER_SILENT, ENERGY_ORB_SILENT,
                 BGATTACK_P_SILENT, BGSKILL_P_SILENT, BGPOWER_P_SILENT,
                 ENERGY_ORB_P_SILENT, SMALL_ORB_SILENT);
+
+        logger.info("Creating the color " + BGDefect.Enums.BG_BLUE.toString());
+        BaseMod.addColor(BGDefect.Enums.BG_BLUE, BG_DEFECT_BLUE,
+                BGATTACK_DEFECT, BGSKILL_DEFECT, BGPOWER_DEFECT, ENERGY_ORB_DEFECT,
+                BGATTACK_P_DEFECT, BGSKILL_P_DEFECT, BGPOWER_P_DEFECT,
+                ENERGY_ORB_P_DEFECT, SMALL_ORB_DEFECT);
 
         logger.info("Creating the color " + BGCurse.Enums.BG_CURSE.toString());
         BaseMod.addColor(BGCurse.Enums.BG_CURSE, BG_CURSE_BLACK,
@@ -297,12 +311,15 @@ public class BoardGame implements
 
         BaseMod.addCharacter(new BGIronclad("the Ironclad", BGIronclad.Enums.BG_IRONCLAD),
                 CHAR_SELECT_BUTTON_IRONCLAD, CHAR_SELECT_PORTRAIT_IRONCLAD, BGIronclad.Enums.BG_IRONCLAD);
-
         logger.info("Added " + BGIronclad.Enums.BG_IRONCLAD.toString());
 
         BaseMod.addCharacter(new BGSilent("the Silent", BGSilent.Enums.BG_SILENT),
                 CHAR_SELECT_BUTTON_SILENT, CHAR_SELECT_PORTRAIT_SILENT, BGSilent.Enums.BG_SILENT);
         logger.info("Added " + BGSilent.Enums.BG_SILENT.toString());
+
+        BaseMod.addCharacter(new BGDefect("the Defect", BGDefect.Enums.BG_DEFECT),
+                CHAR_SELECT_BUTTON_DEFECT, CHAR_SELECT_PORTRAIT_DEFECT, BGDefect.Enums.BG_DEFECT);
+        logger.info("Added " + BGDefect.Enums.BG_DEFECT.toString());
 
 
         receiveEditPotions();

@@ -1,25 +1,31 @@
 package BoardGame.characters;
 
-import BoardGame.cards.BGGreen.*;
-import BoardGame.dungeons.AbstractBGDungeon;
+//TODO: does Recycle interact correctly with card cost changes?
+//TODO: when discarding cards, topmost card in discard pile must be 0 cost if possible
+
+import BoardGame.BoardGame;
+import BoardGame.cards.BGBlue.BGStrike_Blue;
+import BoardGame.cards.BGGreen.BGDefend_Green;
+import BoardGame.cards.BGGreen.BGNeutralize;
+import BoardGame.cards.BGGreen.BGStrike_Green;
+import BoardGame.cards.BGGreen.BGSurvivor;
+import BoardGame.relics.BGBurningBlood;
 import BoardGame.relics.BGShivs;
 import BoardGame.relics.BGSnakeRing;
 import BoardGame.relics.BGTheDieRelic;
-import BoardGame.relics.BGBurningBlood;
 import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
-import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.cutscenes.Cutscene;
 import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
@@ -30,12 +36,10 @@ import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import BoardGame.BoardGame;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -46,17 +50,17 @@ import static BoardGame.BoardGame.*;
 //and https://github.com/daviscook477/BaseMod/wiki/Migrating-to-5.0
 //All text (starting description and loadout, anything labeled TEXT[]) can be found in DefaultMod-character-Strings.json in the resources
 
-public class BGSilent extends AbstractBGCharacter {
+public class BGDefect extends AbstractBGCharacter {
     public static final Logger logger = LogManager.getLogger(BoardGame.class.getName());
 
     // =============== CHARACTER ENUMERATORS =================
 
     public static class Enums {
         @SpireEnum
-        public static AbstractPlayer.PlayerClass BG_SILENT;
-        @SpireEnum(name = "BG_SILENT_GREEN_COLOR") // These two HAVE to have the same absolutely identical name.
-        public static AbstractCard.CardColor BG_GREEN;
-        @SpireEnum(name = "BG_SILENT_GREEN_COLOR")
+        public static PlayerClass BG_DEFECT;
+        @SpireEnum(name = "BG_DEFECT_BLUE_COLOR") // These two HAVE to have the same absolutely identical name.
+        public static AbstractCard.CardColor BG_BLUE;
+        @SpireEnum(name = "BG_DEFECT_BLUE_COLOR")
         public static CardLibrary.LibraryType LIBRARY_COLOR;
     }
 
@@ -77,7 +81,7 @@ public class BGSilent extends AbstractBGCharacter {
 
     // =============== STRINGS =================
 
-    private static final String ID = makeID("BGSilent");
+    private static final String ID = makeID("BGDefect");   //show up after Silent on character select screen
     private static final CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString(ID);
     private static final String[] NAMES = characterStrings.NAMES;
     private static final String[] TEXT = characterStrings.TEXT;
@@ -88,28 +92,26 @@ public class BGSilent extends AbstractBGCharacter {
     // =============== TEXTURES OF BIG ENERGY ORB ===============
 
     public static final String[] orbTextures = {
-            "BoardGameResources/images/char/theSilent/orb/layer1.png",
-            "BoardGameResources/images/char/theSilent/orb/layer2.png",
-            "BoardGameResources/images/char/theSilent/orb/layer3.png",
-            "BoardGameResources/images/char/theSilent/orb/layer4.png",
-            "BoardGameResources/images/char/theSilent/orb/layer5.png",
-            "BoardGameResources/images/char/theSilent/orb/layer6.png",
-            "BoardGameResources/images/char/theSilent/orb/layer1d.png",
-            "BoardGameResources/images/char/theSilent/orb/layer2d.png",
-            "BoardGameResources/images/char/theSilent/orb/layer3d.png",
-            "BoardGameResources/images/char/theSilent/orb/layer4d.png",
-            "BoardGameResources/images/char/theSilent/orb/layer5d.png",};
+            "BoardGameResources/images/char/theDefect/orb/layer1.png",
+            "BoardGameResources/images/char/theDefect/orb/layer2.png",
+            "BoardGameResources/images/char/theDefect/orb/layer3.png",
+            "BoardGameResources/images/char/theDefect/orb/layer4.png",
+            "BoardGameResources/images/char/theDefect/orb/layer5.png",
+            "BoardGameResources/images/char/theDefect/orb/layer6.png",
+            "BoardGameResources/images/char/theDefect/orb/layer1d.png",
+            "BoardGameResources/images/char/theDefect/orb/layer2d.png",
+            "BoardGameResources/images/char/theDefect/orb/layer3d.png",
+            "BoardGameResources/images/char/theDefect/orb/layer4d.png",
+            "BoardGameResources/images/char/theDefect/orb/layer5d.png",};
 
     // =============== /TEXTURES OF BIG ENERGY ORB/ ===============
 
     // =============== CHARACTER CLASS START =================
 
-    public BGSilent(String name, PlayerClass setClass) {
+    public BGDefect(String name, PlayerClass setClass) {
         super(name, setClass, orbTextures,
-                "BoardGameResources/images/char/theSilent/orb/vfx.png", null,
+                "BoardGameResources/images/char/theDefect/orb/vfx.png", null,
                 "");
-//                new SpriterAnimation(
-//                        "BoardGameResources/images/char/defaultCharacter/Spriter/theDefaultAnimation.scml"));
 
 
 
@@ -120,7 +122,7 @@ public class BGSilent extends AbstractBGCharacter {
 //                THE_DEFAULT_SHOULDER_2, // campfire pose
 //                THE_DEFAULT_SHOULDER_1, // another campfire pose
 //                THE_DEFAULT_CORPSE, // dead corpse
-        initializeClass((String)null, "images/characters/theSilent/shoulder2.png", "images/characters/theSilent/shoulder.png", "images/characters/theSilent/corpse.png",
+        initializeClass((String)null, "images/characters/theDefect/shoulder2.png", "images/characters/theDefect/shoulder.png", "images/characters/theDefect/corpse.png",
                 getLoadout(), 20.0F, -10.0F, 220.0F, 290.0F, new EnergyManager(ENERGY_PER_TURN)); // energy manager
 
         // =============== /TEXTURES, ENERGY, LOADOUT/ =================
@@ -173,23 +175,12 @@ public class BGSilent extends AbstractBGCharacter {
         retVal.add(BGStrike_Green.ID);
         retVal.add(BGStrike_Green.ID);
         retVal.add(BGStrike_Green.ID);
-        retVal.add(BGStrike_Green.ID);
         retVal.add(BGDefend_Green.ID);
         retVal.add(BGDefend_Green.ID);
         retVal.add(BGDefend_Green.ID);
         retVal.add(BGDefend_Green.ID);
-        retVal.add(BGDefend_Green.ID);
-        retVal.add(BGNeutralize.ID);
-        retVal.add(BGSurvivor.ID);
-
-//        retVal.add(BGFeed.ID);
-//        retVal.add(BGFeed.ID);
-//        retVal.add(BGStrike_Red.ID);
-//        retVal.add(BGStrike_Red.ID);
-//        retVal.add(BGBash.ID);
-//        retVal.add(BGFlameBarrier.ID);
-//        retVal.add(BGStrike_Red.ID);
-//        retVal.add(BGBash.ID);
+//        retVal.add(BGZap.ID);
+//        retVal.add(BGDualcast.ID);
 
         return retVal;
     }
@@ -198,16 +189,14 @@ public class BGSilent extends AbstractBGCharacter {
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
 
-        logger.info("getStartingRelics: "+BGTheDieRelic.ID+" "+BGBurningBlood.ID);
+        logger.info("getStartingRelics: "+BGTheDieRelic.ID+" "+"TODO: BGCrackedCore");
         retVal.add(BGTheDieRelic.ID);
-        retVal.add(BGSnakeRing.ID);
-        retVal.add(BGShivs.ID);
-        //retVal.add(FrozenEye.ID);
+        //retVal.add(BGCrackedCore.ID);
 
         // Mark relics as seen - makes it visible in the compendium immediately
         // If you don't have this it won't be visible in the compendium until you see them in game
         UnlockTracker.markRelicAsSeen(BGTheDieRelic.ID);
-        UnlockTracker.markRelicAsSeen(BGBurningBlood.ID);
+        //UnlockTracker.markRelicAsSeen(BGCrackedCore.ID);
 
         return retVal;
     }
@@ -215,7 +204,7 @@ public class BGSilent extends AbstractBGCharacter {
     // character Select screen effect
     @Override
     public void doCharSelectScreenSelectEffect() {
-        CardCrawlGame.sound.playA("ATTACK_DAGGER_2", MathUtils.random(-0.2F, 0.2F));
+        CardCrawlGame.sound.playA("ATTACK_MAGIC_BEAM_SHORT", MathUtils.random(-0.2F, 0.2F));
         CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.MED, ScreenShake.ShakeDur.SHORT, false);
 
     }
@@ -223,7 +212,7 @@ public class BGSilent extends AbstractBGCharacter {
     // character Select on-button-press sound effect
     @Override
     public String getCustomModeCharacterButtonSoundKey() {
-        return "ATTACK_DAGGER_2";
+        return "ATTACK_MAGIC_BEAM_SHORT";
     }
 
     // Should return how much HP your maximum HP reduces by when starting a run at
@@ -236,20 +225,20 @@ public class BGSilent extends AbstractBGCharacter {
     // Should return the card color enum to be associated with your character.
     @Override
     public AbstractCard.CardColor getCardColor() {
-        return Enums.BG_GREEN;
+        return Enums.BG_BLUE;
     }
 
     // Should return a color object to be used to color the trail of moving cards
     @Override
     public Color getCardTrailColor() {
-        return BoardGame.BG_SILENT_GREEN;
+        return BoardGame.BG_DEFECT_BLUE;
     }
 
     // Should return a BitmapFont object that you can use to customize how your
     // energy is displayed from within the energy orb.
     @Override
     public BitmapFont getEnergyNumFont() {
-        return FontHelper.energyNumFontGreen;
+        return FontHelper.energyNumFontBlue;
     }
 
     // Should return class name as it appears in run history screen.
@@ -261,19 +250,19 @@ public class BGSilent extends AbstractBGCharacter {
     //Which card should be obtainable from the Match and Keep event?
     @Override
     public AbstractCard getStartCardForEvent() {
-        return new BGStrike_Green();
+        return new BGStrike_Blue();
     }
 
     // The class name as it appears next to your player name in-game
     @Override
-    public String getTitle(AbstractPlayer.PlayerClass playerClass) {
+    public String getTitle(PlayerClass playerClass) {
         return NAMES[1];
     }
 
     // Should return a new instance of your character, sending name as its name parameter.
     @Override
     public AbstractPlayer newInstance() {
-        return new BGSilent(name, chosenClass);
+        return new BGDefect(name, chosenClass);
     }
 
     // Should return a Color object to be used to color the miniature card images in run history.

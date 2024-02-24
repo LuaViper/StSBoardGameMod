@@ -8,5 +8,36 @@
       " NL #yEvoke: Deal #b",
       " damage to all enemies."
     ]
+  },
+
+  "BoardGame:BGLightning": {
+    "NAME": "Lightning",
+    "DESCRIPTION": [
+      "#yPassive: End of turn: deal #b",
+      " damage.",
+      " damage.",
+      " NL #yEvoke: Deal #b",
+      " damage."
+    ]
+  },
+  "BoardGame:BGFrost": {
+    "NAME": "Frost",
+    "DESCRIPTION": [
+      "#yPassive: End of turn: #b",
+      " [BoardGame:BGBlockIcon] .",
+      " [BoardGame:BGBlockIcon] .",
+      " NL #yEvoke: #b",
+      " [BoardGame:BGBlockIcon] ."
+    ]
+  },
+  "BoardGame:BGDark": {
+    "NAME": "Dark",
+    "DESCRIPTION": [
+      "#yPassive: (you shouldn't see this)",
+      " ...",
+      " ...",
+      " NL #yEvoke: Deal ",
+      " damage + 1 for each Power you have in play."
+    ]
   }
 }

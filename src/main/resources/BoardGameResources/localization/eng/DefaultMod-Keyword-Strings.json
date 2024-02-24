@@ -66,6 +66,22 @@
     "DESCRIPTION": "Shivs [BoardGame:ShivIcon] are tokens that may be used whenever you could play a card to deal 1 [BoardGame:HitIcon] ."
   },
   {
+  "PROPER_NAME": "Channel",
+    "NAMES": [
+      "channel",
+      "channeled"
+    ],
+    "DESCRIPTION": "Channeling an Orb puts it into your first empty slot. If you have no empty slots, one of your Orbs is #yEvoked to make room."
+  },
+  {
+  "PROPER_NAME": "Evoke",
+    "NAMES": [
+      "evoke",
+      "evoked"
+    ],
+    "DESCRIPTION": "Consume one of your Orbs and use its Evoke effect."
+  },
+  {
     "NAMES": [
       "keyword",
       "keywords"
