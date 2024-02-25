@@ -4,6 +4,7 @@ package BoardGame.characters;
 //TODO: when discarding cards, topmost card in discard pile must be 0 cost if possible
 
 import BoardGame.BoardGame;
+import BoardGame.cards.BGBlue.BGDefend_Blue;
 import BoardGame.cards.BGBlue.BGStrike_Blue;
 import BoardGame.cards.BGGreen.BGDefend_Green;
 import BoardGame.cards.BGGreen.BGNeutralize;
@@ -171,14 +172,14 @@ public class BGDefect extends AbstractBGCharacter {
 
         logger.info("Begin loading starter Deck Strings");
 
-        retVal.add(BGStrike_Green.ID);
-        retVal.add(BGStrike_Green.ID);
-        retVal.add(BGStrike_Green.ID);
-        retVal.add(BGStrike_Green.ID);
-        retVal.add(BGDefend_Green.ID);
-        retVal.add(BGDefend_Green.ID);
-        retVal.add(BGDefend_Green.ID);
-        retVal.add(BGDefend_Green.ID);
+        retVal.add(BGStrike_Blue.ID);
+        retVal.add(BGStrike_Blue.ID);
+        retVal.add(BGStrike_Blue.ID);
+        retVal.add(BGStrike_Blue.ID);
+        retVal.add(BGDefend_Blue.ID);
+        retVal.add(BGDefend_Blue.ID);
+        retVal.add(BGDefend_Blue.ID);
+        retVal.add(BGDefend_Blue.ID);
 //        retVal.add(BGZap.ID);
 //        retVal.add(BGDualcast.ID);
 

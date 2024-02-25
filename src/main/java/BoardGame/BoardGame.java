@@ -80,7 +80,8 @@ public class BoardGame implements
     //public static final Color BG_IRONCLAD_RED = CardHelper.getColor(128.0f, 25.6f, 25.6f);
     public static final Color BG_IRONCLAD_RED = CardHelper.getColor(121, 12, 28);
     public static final Color BG_SILENT_GREEN = CardHelper.getColor(52, 123, 8);
-    public static final Color BG_DEFECT_BLUE = CardHelper.getColor(52, 123, 8);
+    //TODO: we're just guessing here
+    public static final Color BG_DEFECT_BLUE = CardHelper.getColor(8, 52, 123);
     public static final Color BG_CURSE_BLACK = CardHelper.getColor(29, 29, 29);
     public static final Color BG_COLORLESS_GRAY = CardHelper.getColor(0.15F, 0.15F, 0.15F);
     // Potion Colors in RGB

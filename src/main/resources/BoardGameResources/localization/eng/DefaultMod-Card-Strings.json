@@ -848,7 +848,7 @@
     "DESCRIPTION": "X [BoardGame:BlockIcon] to any player. NL X is how many Orbs you have.",
     "UPGRADE_DESCRIPTION": "X+1 [BoardGame:BlockIcon] to any player. NL X is how many Orbs you have."
   },
-  "BoardGame:SteamBarrier":{
+  "BoardGame:BGSteamBarrier":{
     "NAME": "Steam Barrier",
     "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL +1 [BoardGame:BlockIcon] if the topmost card of your discard pile costs 0."
   },
@@ -856,11 +856,11 @@
     "NAME": "Storm",
     "DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: NL boardgame:Channel !M! boardgame:Lightning."
   },
-  "BoardGame:Streamline":{
+  "BoardGame:BGStreamline":{
     "NAME": "Streamline",
     "DESCRIPTION": "!D! [BoardGame:HitIcon] NL Costs 1 less [B] for each Power you have in play."
   },
-  "BoardGame:Strike_B": {
+  "BoardGame:BGStrike_B": {
     "NAME": "Strike",
     "DESCRIPTION": "!D! [BoardGame:HitIcon]"
   },

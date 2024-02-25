@@ -17,11 +17,11 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class BGStrike_Blue extends AbstractBGCard {
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:Strike_B");
-    public static final String ID = "Strike_B";
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGStrike_B");
+    public static final String ID = "BGStrike_B";
 
     public BGStrike_Blue() {
-        super("Strike_B", cardStrings.NAME, "blue/attack/strike", 1, cardStrings.DESCRIPTION, CardType.ATTACK, BGDefect.Enums.BG_BLUE, CardRarity.BASIC, CardTarget.ENEMY);
+        super("BGStrike_B", cardStrings.NAME, "blue/attack/strike", 1, cardStrings.DESCRIPTION, CardType.ATTACK, BGDefect.Enums.BG_BLUE, CardRarity.BASIC, CardTarget.ENEMY);
 
 
 
