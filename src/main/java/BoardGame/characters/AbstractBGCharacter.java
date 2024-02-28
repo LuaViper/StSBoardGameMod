@@ -25,6 +25,7 @@ public abstract class AbstractBGCharacter extends CustomPlayer {
 //            "BoardGameResources/images/char/defaultCharacter/orb/layer4d.png",
 //            "BoardGameResources/images/char/defaultCharacter/orb/layer5d.png",};
 
+    //TODO: maybe move PlayedThisTurn to TheDie relic
     public int shivsPlayedThisTurn=0;
     public boolean mayhemActive=false;
     public AbstractBGCharacter(String name, PlayerClass setClass, String[] orbTextures, String orbVfxPath, String model, String animation) {

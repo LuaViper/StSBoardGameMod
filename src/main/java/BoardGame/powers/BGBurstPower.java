@@ -1,7 +1,5 @@
 package BoardGame.powers;
 
-//TODO NEXT: we were not given the opportunity to switch targets when duplicating CorpseExplosion
-
 import BoardGame.actions.TargetSelectScreenAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.screen.TargetSelectScreen;

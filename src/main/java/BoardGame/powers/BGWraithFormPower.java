@@ -73,6 +73,7 @@ public class BGWraithFormPower extends AbstractBGPower {
                     addToBot(new ReducePowerAction((AbstractCreature)m,(AbstractCreature)m,"BGUncappedStrengthPower",1));
                 }
             }
+            BGTheDieRelic.powersPlayedThisCombat-=1;
         }
 
 

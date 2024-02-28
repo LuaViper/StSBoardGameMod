@@ -32,7 +32,7 @@ public class BGTheDieRelic extends CustomRelic implements DieControlledRelic {
     private static final Texture OUTLINE = TextureLoader.getTexture(makeRelicOutlinePath("BGloadedDie.png"));
 
     public boolean tookDamageThisTurn=false;
-
+    public static int powersPlayedThisCombat=0;
     final Logger logger = LogManager.getLogger(BGTheDieRelic.class.getName());
     public String getQuickSummary(){if(TheDie.monsterRoll==4 || TheDie.monsterRoll==5)return "1 #yBlock";
         else if(TheDie.monsterRoll==6)return "Copy any die relic";
@@ -52,11 +52,9 @@ public class BGTheDieRelic extends CustomRelic implements DieControlledRelic {
     }
 
 
-//    public void atBattleStart() {
-//        //flash();
-//        TheDie.roll();
-//        addToTop((AbstractGameAction)new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)AbstractDungeon.player, (AbstractPower)new BGTheDiePower((AbstractCreature)AbstractDungeon.player, 1), TheDie.initialRoll));
-//    }
+    public void atBattleStart() {
+        powersPlayedThisCombat=0;
+    }
 
 
     public void atTurnStartPostDraw() {
@@ -76,6 +74,9 @@ public class BGTheDieRelic extends CustomRelic implements DieControlledRelic {
                 TheDie.forceLockInRoll = true;
                 lockRollAndActivateDieRelics();
             }
+        }
+        if (card.type == AbstractCard.CardType.POWER) {
+            powersPlayedThisCombat+=1;
         }
     }
 

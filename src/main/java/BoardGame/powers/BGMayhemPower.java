@@ -36,7 +36,7 @@ public class BGMayhemPower extends AbstractBGPower {
 
     public void onRightClick() {
         //"I can only play cards on my turn" has been fixed
-        //Phantom cards have been fixed -- we forgot to UnlimboCardAction during BGPlayTopCardAction
+        //Phantom cards have been fixed -- we forgot to UnlimboAction during BGPlayDrawnCardAction
         if(!onCooldown) {
             onCooldown=true;
             flash();

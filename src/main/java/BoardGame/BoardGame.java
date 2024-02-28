@@ -9,6 +9,7 @@ import BoardGame.monsters.bgending.*;
 import BoardGame.dungeons.*;
 import BoardGame.potions.*;
 import BoardGame.relics.*;
+import BoardGame.screen.OrbSelectScreen;
 import BoardGame.screen.TargetSelectScreen;
 import basemod.*;
 import basemod.eventUtil.AddEventParams;
@@ -133,6 +134,8 @@ public class BoardGame implements
     private static final String CHAR_SELECT_BUTTON_DEFECT = "images/ui/charSelect/defectButton.png";
     private static final String CHAR_SELECT_PORTRAIT_DEFECT = "images/ui/charSelect/defectPortrait.jpg";
 
+    private static final String ENERGY_ORB_COLORLESS = "BoardGameResources/images/512/card_orb_Colorless.png";
+
 //    public static final String SHOULDER_1 = "BoardGameResources/images/char/defaultCharacter/shoulder.png";
 //    public static final String SHOULDER_2 = "BoardGameResources/images/char/defaultCharacter/shoulder2.png";
 //    public static final String CORPSE = "BoardGameResources/images/char/defaultCharacter/corpse.png";
@@ -148,8 +151,8 @@ public class BoardGame implements
     public static final String BGSILENT_SKELETON_ATLAS = "images/characters/theSilent/idle/skeleton.atlas";
     public static final String BGSILENT_SKELETON_JSON = "images/characters/theSilent/idle/skeleton.json";
 
-    public static final String BGDEFECT_SKELETON_ATLAS = "images/characters/theDefect/idle/skeleton.atlas";
-    public static final String BGDEFECT_SKELETON_JSON = "images/characters/theDefect/idle/skeleton.json";
+    public static final String BGDEFECT_SKELETON_ATLAS = "images/characters/defect/idle/skeleton.atlas";
+    public static final String BGDEFECT_SKELETON_JSON = "images/characters/defect/idle/skeleton.json";
 
 
     private static final String ATTACK_COLORLESS = "BoardGameResources/images/512/colorless_bg_attack.png";
@@ -222,13 +225,13 @@ public class BoardGame implements
 
         logger.info("Creating the color " + BGCurse.Enums.BG_CURSE.toString());
         BaseMod.addColor(BGCurse.Enums.BG_CURSE, BG_CURSE_BLACK,
-                BGATTACK_IRONCLAD, BGSKILL_IRONCLAD, BGPOWER_IRONCLAD, ENERGY_ORB_IRONCLAD,
+                BGATTACK_IRONCLAD, BGSKILL_IRONCLAD, BGPOWER_IRONCLAD, ENERGY_ORB_COLORLESS,
                 BGATTACK_P_IRONCLAD, BGSKILL_P_IRONCLAD, BGPOWER_P_IRONCLAD,
                 ENERGY_ORB_P_IRONCLAD, SMALL_ORB_IRONCLAD);
 
         logger.info("Creating the color " + BGColorless.Enums.CARD_COLOR.toString());
         BaseMod.addColor(BGColorless.Enums.CARD_COLOR, BG_COLORLESS_GRAY,
-                ATTACK_COLORLESS, SKILL_COLORLESS, POWER_COLORLESS, ENERGY_ORB_IRONCLAD,
+                ATTACK_COLORLESS, SKILL_COLORLESS, POWER_COLORLESS, ENERGY_ORB_COLORLESS,
                 BGATTACK_P_IRONCLAD, BGSKILL_P_IRONCLAD, BGPOWER_P_IRONCLAD,
                 ENERGY_ORB_P_IRONCLAD, SMALL_ORB_IRONCLAD);
 
@@ -366,6 +369,7 @@ public class BoardGame implements
 //        BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
         BaseMod.addCustomScreen(new TargetSelectScreen());
+        BaseMod.addCustomScreen(new OrbSelectScreen());
 
 
 
@@ -561,46 +565,46 @@ public class BoardGame implements
         // btw if you don't provide event type, normal is assumed by default
 
 
-        BaseMod.addEvent(new AddEventParams.Builder(BGLivingWall.ID, BGLivingWall.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGTheLibrary.ID, BGTheLibrary.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGGoldenIdolEvent.ID, BGGoldenIdolEvent.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGGoldenWing.ID, BGGoldenWing.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGBonfire.ID, BGBonfire.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGTransmogrifier.ID, BGTransmogrifier.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGCleric.ID, BGCleric.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGUpgradeShrine.ID, BGUpgradeShrine.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGGremlinWheelGame.ID, BGGremlinWheelGame.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGLivingWall.ID, BGLivingWall.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGTheLibrary.ID, BGTheLibrary.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGGoldenIdolEvent.ID, BGGoldenIdolEvent.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGGoldenWing.ID, BGGoldenWing.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGBonfire.ID, BGBonfire.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGTransmogrifier.ID, BGTransmogrifier.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGCleric.ID, BGCleric.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGUpgradeShrine.ID, BGUpgradeShrine.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGGremlinWheelGame.ID, BGGremlinWheelGame.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
         //Scrap Ooze was moved to A3
-        //BaseMod.addEvent(new AddEventParams.Builder(BGScrapOoze.ID, BGScrapOoze.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGAccursedBlacksmith.ID, BGAccursedBlacksmith.class).dungeonID(BGExordium.ID).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGLab.ID, BGLab.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGBigFish.ID, BGBigFish.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
+        //BaseMod.addEvent(new AddEventParams.Builder(BGScrapOoze.ID, BGScrapOoze.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGAccursedBlacksmith.ID, BGAccursedBlacksmith.class).dungeonID(BGExordium.ID).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGLab.ID, BGLab.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGBigFish.ID, BGBigFish.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
 
-        BaseMod.addEvent(new AddEventParams.Builder(BGGremlinWheelGame.ID, BGGremlinWheelGame.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGGoldShrine.ID, BGGoldShrine.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGCursedTome.ID, BGCursedTome.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGBackToBasics.ID, BGBackToBasics.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGDrugDealer.ID, BGDrugDealer.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGDesigner.ID, BGDesigner.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGWomanInBlue.ID, BGWomanInBlue.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGBeggar.ID, BGBeggar.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGKnowingSkull.ID, BGKnowingSkull.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGGremlinWheelGame.ID, BGGremlinWheelGame.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGGoldShrine.ID, BGGoldShrine.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGCursedTome.ID, BGCursedTome.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGBackToBasics.ID, BGBackToBasics.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGDrugDealer.ID, BGDrugDealer.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGDesigner.ID, BGDesigner.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGWomanInBlue.ID, BGWomanInBlue.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGBeggar.ID, BGBeggar.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGKnowingSkull.ID, BGKnowingSkull.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
 
-        BaseMod.addEvent(new AddEventParams.Builder(BGGremlinWheelGame.ID, BGGremlinWheelGame.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGBonfire.ID, BGBonfire.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGPurificationShrine.ID, BGPurificationShrine.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGMindBloom.ID, BGMindBloom.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGTombRedMask.ID, BGTombRedMask.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGFalling.ID, BGFalling.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGSecretPortal.ID, BGSecretPortal.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGWindingHalls.ID, BGWindingHalls.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGSensoryStone.ID, BGSensoryStone.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGGremlinWheelGame.ID, BGGremlinWheelGame.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGBonfire.ID, BGBonfire.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGPurificationShrine.ID, BGPurificationShrine.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGMindBloom.ID, BGMindBloom.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGTombRedMask.ID, BGTombRedMask.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGFalling.ID, BGFalling.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGSecretPortal.ID, BGSecretPortal.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGWindingHalls.ID, BGWindingHalls.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGSensoryStone.ID, BGSensoryStone.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
 
-        BaseMod.addEvent(new AddEventParams.Builder(FakeMonsterRoomEvent.ID, FakeMonsterRoomEvent.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-//        BaseMod.addEvent(new AddEventParams.Builder(BGMindBloom.ID, BGMindBloom.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-//        BaseMod.addEvent(new AddEventParams.Builder(BGTombRedMask.ID, BGTombRedMask.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-//        BaseMod.addEvent(new AddEventParams.Builder(BGFalling.ID, BGFalling.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
-//        BaseMod.addEvent(new AddEventParams.Builder(BGSecretPortal.ID, BGSecretPortal.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).create());
+        BaseMod.addEvent(new AddEventParams.Builder(FakeMonsterRoomEvent.ID, FakeMonsterRoomEvent.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+//        BaseMod.addEvent(new AddEventParams.Builder(BGMindBloom.ID, BGMindBloom.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+//        BaseMod.addEvent(new AddEventParams.Builder(BGTombRedMask.ID, BGTombRedMask.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+//        BaseMod.addEvent(new AddEventParams.Builder(BGFalling.ID, BGFalling.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
+//        BaseMod.addEvent(new AddEventParams.Builder(BGSecretPortal.ID, BGSecretPortal.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).create());
 
 
         // =============== /EVENTS/ =================

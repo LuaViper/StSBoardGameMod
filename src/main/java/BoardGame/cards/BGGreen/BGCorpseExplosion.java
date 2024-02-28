@@ -39,7 +39,7 @@ public class BGCorpseExplosion extends AbstractBGCard implements CardDoesNotDisc
 
         //TODO: the current check isn't good enough -- need to actually check if this card Is A Copy
             //not only because we might be running more than one physical copy of CE,
-            //but there are some shenanigans which allow a Copy Of CE to be played while no enemy has the debuff
+            //but there are some shenanigans which allow a Copy Of CE (or the original, whichever comes 2nd) to be played while no enemy has the debuff
         for(AbstractMonster m2 : (AbstractDungeon.getCurrRoom()).monsters.monsters){
             AbstractPower pw=m2.getPower("BoardGame:BGCorpseExplosionPower");
             if(pw!=null){

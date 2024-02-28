@@ -865,6 +865,7 @@ public class BGNeowEvent
         //): choose 2 colorless cards
 
         //TODO: match flavor text on card to speech bubble message
+        //TODO: cards have been changed! also implement "lose 3 HP" and "choose card + get 5 gold"
         ArrayList<String> rewardoptions=new ArrayList<String>(Arrays.asList(
                 "-= -t DX", //colorless unlock
                 "-u -r DX",

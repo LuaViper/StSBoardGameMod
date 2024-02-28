@@ -320,7 +320,7 @@
     "NAME": "Dramatic Entrance",
     "DESCRIPTION": "[BoardGame:AOEIcon] !D! [BoardGame:HitIcon] NL +!M! damage if it's the first turn of combat."
   },
-  "BoardGame:BGDualCast":{
+  "BoardGame:BGDualcast":{
     "NAME": "Dual Cast",
     "DESCRIPTION": "boardgame:Evoke an Orb twice."
   },
@@ -982,7 +982,7 @@
       "."
     ]
   },
-  "BoardGame:Zap":{
+  "BoardGame:BGZap":{
     "NAME": "Zap",
     "DESCRIPTION": "boardgame:Channel 1 boardgame:Lightning."
   }

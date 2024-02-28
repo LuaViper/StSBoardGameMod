@@ -13,31 +13,27 @@
   "BoardGame:BGLightning": {
     "NAME": "Lightning",
     "DESCRIPTION": [
-      "#yPassive: End of turn: deal #b",
-      " damage.",
-      " damage.",
-      " NL #yEvoke: Deal #b",
+      "#yPassive: At the end of turn, deal #b",
+      " damage. NL #yEvoke: Deal #b",
       " damage."
     ]
   },
   "BoardGame:BGFrost": {
     "NAME": "Frost",
     "DESCRIPTION": [
-      "#yPassive: End of turn: #b",
-      " [BoardGame:BGBlockIcon] .",
-      " [BoardGame:BGBlockIcon] .",
-      " NL #yEvoke: #b",
-      " [BoardGame:BGBlockIcon] ."
+      "#yPassive: At the end of turn, gain #b",
+      " #yBlock. NL #yEvoke: Gain #b",
+      " #yBlock."
     ]
   },
   "BoardGame:BGDark": {
     "NAME": "Dark",
     "DESCRIPTION": [
-      "#yPassive: (you shouldn't see this)",
+      "(DNT - you shouldn't see this message)",
       " ...",
       " ...",
-      " NL #yEvoke: Deal ",
-      " damage + 1 for each Power you have in play."
+      "#yEvoke: Deal #b",
+      " damage. Deals 1 additional damage for each Power you have in play."
     ]
   }
 }

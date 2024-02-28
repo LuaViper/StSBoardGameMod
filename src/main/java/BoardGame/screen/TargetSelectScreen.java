@@ -142,7 +142,6 @@ public class TargetSelectScreen extends CustomScreen {
     @Override
     public void render(SpriteBatch sb){
         FontHelper.renderDeckViewTip(sb, this.description, 96.0F * Settings.scale, Settings.CREAM_COLOR);
-
     }
 
     @SpirePatch2(clz= AbstractDungeon.class,method="update",paramtypez={})
@@ -203,6 +202,7 @@ public class TargetSelectScreen extends CustomScreen {
                                                                  Vector2 ___startArrowVector, Vector2 ___endArrowVector){
 
             if(__instance.hoveredCard==null){
+                //TODO: implement support for orb arrows and relic arrows, maybe
                 ___arrowX[0] = MathHelper.mouseLerpSnap(___arrowX[0], InputHelper.mX);
                 ___arrowY[0] = MathHelper.mouseLerpSnap(___arrowY[0], InputHelper.mY);
                 ___controlPoint.x = __instance.hb.cX - (___arrowX[0] - __instance.hb.cX) / 4.0F;
@@ -248,14 +248,14 @@ public class TargetSelectScreen extends CustomScreen {
     }
 
 
-    @SpirePatch2(clz= AbstractPlayer.class,method="updateSingleTargetInput",paramtypez={})
-    public static class temp{
-        @SpirePostfixPatch public static SpireReturn<Void> Prefix(AbstractMonster ___hoveredMonster){
-            Logger logger = LogManager.getLogger(TargetSelectScreen.class.getName());
-            //logger.info("updateinput: "+___hoveredMonster);
-            return SpireReturn.Continue();
-        }
-    }
+//    @SpirePatch2(clz= AbstractPlayer.class,method="updateSingleTargetInput",paramtypez={})
+//    public static class temp{
+//        @SpirePostfixPatch public static SpireReturn<Void> Prefix(AbstractMonster ___hoveredMonster){
+//            Logger logger = LogManager.getLogger(TargetSelectScreen.class.getName());
+//            //logger.info("updateinput: "+___hoveredMonster);
+//            return SpireReturn.Continue();
+//        }
+//    }
 
     @SpirePatch2(clz= AbstractPlayer.class,method="updateSingleTargetInput",paramtypez={})
     public static class UpdateSingleTargetInputPatch {
@@ -310,7 +310,6 @@ public class TargetSelectScreen extends CustomScreen {
                 if (InputHelper.justClickedLeft || InputActionSet.confirm.isJustPressed() || CInputActionSet.select
                         .isJustPressed()) {
                     InputHelper.justClickedLeft = false;
-
 
                     if (___hoveredMonster[0] == null) {
                         CardCrawlGame.sound.play("UI_CLICK_1");

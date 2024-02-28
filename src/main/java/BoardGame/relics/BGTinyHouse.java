@@ -16,6 +16,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Random;
 
+//TODO: github.com/daviscook477/BaseMod/wiki/Custom-Rewards
 //TODO: BGTinyHouse needs to upgrade a NON-random card
 //TODO: BGTinyHouse breaks Neow's quickstart reward screen (rewards are autopicked, relic is removed)
 

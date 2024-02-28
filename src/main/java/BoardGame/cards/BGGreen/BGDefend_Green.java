@@ -47,6 +47,9 @@ public class BGDefend_Green extends AbstractBGCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeBlock(1);
+            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+            initializeDescription();
+
         }
     }
 

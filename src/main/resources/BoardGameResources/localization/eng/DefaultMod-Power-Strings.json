@@ -280,6 +280,14 @@
                         " #yPoison to any row."
                 ]
         },
+        "BoardGame:BGOrbEvokePower": {
+                "NAME": "Consume",
+                "DESCRIPTIONS": [
+                        "Orb #yEvoke effects get #b",
+                        "Orb #yEvoke effects get -#b",
+                        "."
+                ]
+        },
         "BoardGame:BGPanachePower": {
                 "NAME": "Panache",
                 "DESCRIPTIONS": [
@@ -368,6 +376,14 @@
                 "% more damage)"
         ]
 },
+        "BoardGame:BGTemporaryRetainCardsPower": {
+                "NAME": "Equilibrium",
+                "DESCRIPTIONS": [
+                        "You may retain #b",
+                        " card this turn.",
+                        " cards this turn."
+                ]
+        },
 "BoardGame:Thievery": {
         "NAME": "Thievery",
         "DESCRIPTIONS": [

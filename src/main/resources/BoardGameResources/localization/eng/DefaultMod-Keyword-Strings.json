@@ -82,6 +82,30 @@
     "DESCRIPTION": "Consume one of your Orbs and use its Evoke effect."
   },
   {
+    "PROPER_NAME": "Lightning",
+    "NAMES": [
+      "lightning",
+      "lightning+"
+    ],
+    "DESCRIPTION": "Orb: Deals damage to enemies."
+  },
+  {
+  "PROPER_NAME": "Frost",
+    "NAMES": [
+      "frost",
+      "frost+"
+    ],
+    "DESCRIPTION": "Orb: Gains #yBlock."
+  },
+  {
+    "PROPER_NAME": "Dark",
+    "NAMES": [
+      "dark",
+      "dark+"
+    ],
+    "DESCRIPTION": "Orb: When #yEvoked, deals damage based on active Powers."
+  },
+  {
     "NAMES": [
       "keyword",
       "keywords"

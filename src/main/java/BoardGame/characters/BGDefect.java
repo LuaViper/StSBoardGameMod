@@ -5,15 +5,14 @@ package BoardGame.characters;
 
 import BoardGame.BoardGame;
 import BoardGame.cards.BGBlue.BGDefend_Blue;
+import BoardGame.cards.BGBlue.BGDualcast;
 import BoardGame.cards.BGBlue.BGStrike_Blue;
+import BoardGame.cards.BGBlue.BGZap;
 import BoardGame.cards.BGGreen.BGDefend_Green;
 import BoardGame.cards.BGGreen.BGNeutralize;
 import BoardGame.cards.BGGreen.BGStrike_Green;
 import BoardGame.cards.BGGreen.BGSurvivor;
-import BoardGame.relics.BGBurningBlood;
-import BoardGame.relics.BGShivs;
-import BoardGame.relics.BGSnakeRing;
-import BoardGame.relics.BGTheDieRelic;
+import BoardGame.relics.*;
 import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -75,7 +74,7 @@ public class BGDefect extends AbstractBGCharacter {
     public static final int MAX_HP = 9;
     public static final int STARTING_GOLD = 5;
     public static final int CARD_DRAW = 5;
-    public static final int ORB_SLOTS = 0;
+    public static final int ORB_SLOTS = 3;
 
     // =============== /BASE STATS/ =================
 
@@ -123,7 +122,7 @@ public class BGDefect extends AbstractBGCharacter {
 //                THE_DEFAULT_SHOULDER_2, // campfire pose
 //                THE_DEFAULT_SHOULDER_1, // another campfire pose
 //                THE_DEFAULT_CORPSE, // dead corpse
-        initializeClass((String)null, "images/characters/theDefect/shoulder2.png", "images/characters/theDefect/shoulder.png", "images/characters/theDefect/corpse.png",
+        initializeClass((String)null, "images/characters/defect/shoulder2.png", "images/characters/defect/shoulder.png", "images/characters/defect/corpse.png",
                 getLoadout(), 20.0F, -10.0F, 220.0F, 290.0F, new EnergyManager(ENERGY_PER_TURN)); // energy manager
 
         // =============== /TEXTURES, ENERGY, LOADOUT/ =================
@@ -132,8 +131,8 @@ public class BGDefect extends AbstractBGCharacter {
         // =============== ANIMATIONS =================
 
         loadAnimation(
-                BGSILENT_SKELETON_ATLAS,
-                BGSILENT_SKELETON_JSON,
+                BGDEFECT_SKELETON_ATLAS,
+                BGDEFECT_SKELETON_JSON,
                 1.0f);
         //loadAnimation("images/characters/ironclad/idle/skeleton.atlas", "images/characters/ironclad/idle/skeleton.json", 1.0F);
         // AnimationState.TrackEntry e = state.setAnimation(0, "animation", true);
@@ -180,8 +179,8 @@ public class BGDefect extends AbstractBGCharacter {
         retVal.add(BGDefend_Blue.ID);
         retVal.add(BGDefend_Blue.ID);
         retVal.add(BGDefend_Blue.ID);
-//        retVal.add(BGZap.ID);
-//        retVal.add(BGDualcast.ID);
+        retVal.add(BGZap.ID);
+        retVal.add(BGDualcast.ID);
 
         return retVal;
     }
@@ -192,12 +191,12 @@ public class BGDefect extends AbstractBGCharacter {
 
         logger.info("getStartingRelics: "+BGTheDieRelic.ID+" "+"TODO: BGCrackedCore");
         retVal.add(BGTheDieRelic.ID);
-        //retVal.add(BGCrackedCore.ID);
+        retVal.add(BGCrackedCore.ID);
 
         // Mark relics as seen - makes it visible in the compendium immediately
         // If you don't have this it won't be visible in the compendium until you see them in game
         UnlockTracker.markRelicAsSeen(BGTheDieRelic.ID);
-        //UnlockTracker.markRelicAsSeen(BGCrackedCore.ID);
+        UnlockTracker.markRelicAsSeen(BGCrackedCore.ID);
 
         return retVal;
     }
@@ -269,14 +268,14 @@ public class BGDefect extends AbstractBGCharacter {
     // Should return a Color object to be used to color the miniature card images in run history.
     @Override
     public Color getCardRenderColor() {
-        return BoardGame.BG_SILENT_GREEN;
+        return BoardGame.BG_DEFECT_BLUE;
     }
 
     // Should return a Color object to be used as screen tint effect when your
     // character attacks the heart.
     @Override
     public Color getSlashAttackColor() {
-        return BoardGame.BG_SILENT_GREEN;
+        return BoardGame.BG_DEFECT_BLUE;
     }
 
     // Should return an AttackEffect array of any size greater than 0. These effects
