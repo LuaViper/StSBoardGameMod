@@ -73,7 +73,6 @@ public class BGBurstPower extends AbstractBGPower {
                 ((AbstractBGCard)card).copiedCard=(AbstractBGCard)tmp;
             }
 
-            //TODO: restore DoubleAttack's target-picker code here
             if (m != null)
                 tmp.calculateCardDamage(m);
             tmp.purgeOnUse = true;

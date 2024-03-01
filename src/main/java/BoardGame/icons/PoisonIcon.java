@@ -25,7 +25,7 @@ public class PoisonIcon extends AbstractCustomIcon {
 
     public List<TooltipInfo> getCustomTooltips() {
         List<TooltipInfo>list=new ArrayList<>();
-        list.add(new TooltipInfo("[BoardGame:Poison] PoisonIcon","At the end of turn, enemies with [BoardGame:PoisonIcon] lose 1 HP per [BoardGame:PoisonIcon] token they have."));
+        list.add(new TooltipInfo("[BoardGame:PoisonIcon] PoisonIcon","At the end of turn, enemies with [BoardGame:PoisonIcon] lose 1 HP per [BoardGame:PoisonIcon] token they have."));
         return list;
     }
 }

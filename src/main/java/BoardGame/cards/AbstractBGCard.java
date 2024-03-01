@@ -143,9 +143,12 @@ public abstract class AbstractBGCard extends CustomCard {
             if (__instance.cost == -1) {
                 if(__instance.costForTurn!=-1)
                     return SpireReturn.Return(Integer.toString(__instance.costForTurn));
+                else if(__instance.freeToPlay())
+                    return SpireReturn.Return("0");
                 else
                     return SpireReturn.Return("X");
             }
+
             if (__instance.freeToPlay())
                 return SpireReturn.Return("0");
 

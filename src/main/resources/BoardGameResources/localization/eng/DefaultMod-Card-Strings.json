@@ -65,11 +65,12 @@
   },
   "BoardGame:BGBarrage": {
     "NAME": "Barrage",
-    "DESCRIPTION": "Deal !D! [BoardGame:HitIcon] for each Orb you have."
+    "DESCRIPTION": "Deal !D! [BoardGame:HitIcon] for each Orb you have.",
+    "UPGRADE_DESCRIPTION": "Deal !D! [BoardGame:HitIcon] for each Orb you have +1."
   },
   "BoardGame:BGBeamCell": {
     "NAME": "Beam Cell",
-    "DESCRIPTION": "[BoardGame:Die1Icon] [BoardGame:Die2Icon] [BoardGame:Die3Icon] !D! [BoardGame:HitIcon] [BoardGame:VulnIcon] NL [BoardGame:Die4Icon] [BoardGame:Die5Icon] [BoardGame:Die6Icon] [BoardGame:HitIcon]",
+    "DESCRIPTION": "[BoardGame:Die1Icon] [BoardGame:Die2Icon] [BoardGame:Die3Icon] !D! [BoardGame:HitIcon] [BoardGame:VulnIcon] NL [BoardGame:Die4Icon] [BoardGame:Die5Icon] [BoardGame:Die6Icon] !D! [BoardGame:HitIcon]    ",
     "UPGRADE_DESCRIPTION": "!D! [BoardGame:HitIcon] [BoardGame:VulnIcon]"
   },
   "BoardGame:BGBerserk": {
@@ -142,7 +143,18 @@
   },
   "BoardGame:BGChaos": {
     "NAME": "Chaos",
-    "DESCRIPTION": "boardgame:Channel the Orb the die is on. NL [BoardGame:Die1Icon] [BoardGame:Die2Icon] boardgame:Lightning NL [BoardGame:Die3Icon] [BoardGame:Die4Icon] boardgame:Frost NL [BoardGame:Die5Icon] [BoardGame:Die6Icon] boardgame:Dark"
+    "DESCRIPTION": "boardgame:Channel the Orb the die is on. NL [BoardGame:Die1Icon] [BoardGame:Die2Icon] boardgame:Lightning NL [BoardGame:Die3Icon] [BoardGame:Die4Icon] boardgame:Frost        NL [BoardGame:Die5Icon] [BoardGame:Die6Icon] boardgame:Dark       ",
+    "EXTENDED_DESCRIPTION": [
+      "boardgame:Channel the Orb the die is on. NL [BoardGame:Die1Icon] [BoardGame:Die2Icon] ",
+      "boardgame:Lightning NL [BoardGame:Die3Icon] [BoardGame:Die4Icon] ",
+      "boardgame:Frost        NL [BoardGame:Die5Icon] [BoardGame:Die6Icon] ",
+      "boardgame:Dark       ",
+      " NL (Channel 1 ",
+      "boardgame:Lightning. )",
+      "boardgame:Frost. )",
+      "boardgame:Dark. )"
+
+    ]
   },
   "BoardGame:BGChargeBattery": {
     "NAME": "Charge Battery",
@@ -264,7 +276,7 @@
   },
   "BoardGame:BGDefragment": {
     "NAME": "Defragment",
-    "DESCRIPTION": "Ethereal. Orb [#EFC851]End [#EFC851]of [#EFC851]turn[] effects get +1.",
+    "DESCRIPTION": "Ethereal. NL NL Orb [#EFC851]End [#EFC851]of [#EFC851]turn[] effects get +1.",
     "UPGRADE_DESCRIPTION": "Orb [#EFC851]End [#EFC851]of [#EFC851]turn[] effects get +1."
   },
   "BoardGame:BGDemonForm": {
@@ -462,7 +474,7 @@
   },
   "BoardGame:BGGoForTheEyes": {
     "NAME": "Go for the Eyes",
-    "DESCRIPTION": "[BoardGame:Die1Icon] [BoardGame:Die2Icon] [BoardGame:Die3Icon] !D! [BoardGame:HitIcon] NL [BoardGame:Die4Icon] [BoardGame:Die5Icon] [BoardGame:Die6Icon] [BoardGame:HitIcon] [BoardGame:WeakIcon]",
+    "DESCRIPTION": "[BoardGame:Die1Icon] [BoardGame:Die2Icon] [BoardGame:Die3Icon] !D! [BoardGame:HitIcon]     NL [BoardGame:Die4Icon] [BoardGame:Die5Icon] [BoardGame:Die6Icon] !D! [BoardGame:HitIcon] [BoardGame:WeakIcon]",
     "UPGRADE_DESCRIPTION": "!D! [BoardGame:HitIcon] [BoardGame:WeakIcon]"
   },
   "BoardGame:BGGood Instincts": {
@@ -552,7 +564,7 @@
   },
   "BoardGame:BGLeap": {
     "NAME": "Leap",
-    "DESCRIPTION": "2 [BoardGame:BlockIcon] to any player. NL You may switch rows with another player."
+    "DESCRIPTION": "!B! [BoardGame:BlockIcon] to any player. NL You may switch rows with another player."
   },
   "BoardGame:BGLeg Sweep": {
     "NAME": "Leg Sweep",
@@ -611,7 +623,8 @@
   },
   "BoardGame:BGMultiCast": {
     "NAME": "Multi-Cast",
-    "DESCRIPTION": "boardgame:Evoke 1 Orb X times."
+    "DESCRIPTION": "boardgame:Evoke 1 Orb X times.",
+    "UPGRADE_DESCRIPTION": "boardgame:Evoke 1 Orb X+1 times."
   },
   "BoardGame:BGNeutralize": {
     "NAME": "Neutralize",
@@ -641,7 +654,7 @@
   },
   "BoardGame:BGOverclock": {
     "NAME": "Overclock",
-    "DESCRIPTION": "Draw !M! cards. NL Put a [BoardGame:DazedIcon] in your discard pile."
+    "DESCRIPTION": "Draw !M! cards. NL Put a [BoardGame:FakeDazedIcon] in your discard pile."
   },
   "BoardGame:BGPanacea": {
     "NAME": "Panacea",
@@ -728,7 +741,10 @@
   "BoardGame:BGReinforcedBody": {
     "NAME": "Reinforced Body",
     "DESCRIPTION": "X+1 [BoardGame:BlockIcon] NL X can't be 0.",
-    "UPGRADE_DESCRIPTION": "X [BoardGame:BlockIcon] X [BoardGame:BlockIcon]"
+    "UPGRADE_DESCRIPTION": "X [BoardGame:BlockIcon] X [BoardGame:BlockIcon]",
+    "EXTENDED_DESCRIPTION": [
+      "I can't play this card for 0 Energy."
+    ]
   },
   "BoardGame:BGReprogram": {
     "NAME": "Reprogram",
@@ -824,7 +840,7 @@
   },
   "BoardGame:BGStaticDischarge": {
     "NAME": "Static Discharge",
-    "DESCRIPTION": "boardgame:Lightning Orb NL [#EFC851]End [#EFC851]of [#EFC851]turn[] effects get +!M!."
+    "DESCRIPTION": "boardgame:Lightning Orb NL [#EFC851]End [#EFC851]of [#EFC851]turn[] effects NL get +!M!."
   },
   "BoardGame:BGStormOfSteel": {
     "NAME": "Storm of Steel",
@@ -850,7 +866,7 @@
   },
   "BoardGame:BGSteamBarrier":{
     "NAME": "Steam Barrier",
-    "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL +1 [BoardGame:BlockIcon] if the topmost card of your discard pile costs 0."
+    "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL +!M! [BoardGame:BlockIcon] if the topmost card of your discard pile costs 0."
   },
   "BoardGame:BGStorm": {
     "NAME": "Storm",
@@ -926,8 +942,8 @@
   },
   "BoardGame:BGTURBO": {
     "NAME": "TURBO",
-    "DESCRIPTION": "Gain [B] [B]. NL Put a [BoardGame:DazedIcon] in your discard pile. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Gain [B] [B] [B]. NL Put a [BoardGame:DazedIcon] in your discard pile. NL Exhaust."
+    "DESCRIPTION": "Gain [B] [B]. NL Put a [BoardGame:FakeDazedIcon] in your discard pile. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Gain [B] [B] [B]. NL Put a [BoardGame:FakeDazedIcon] in your discard pile. NL Exhaust."
   },
   "BoardGame:BGTwin Strike": {
     "NAME": "Twin Strike",

@@ -64,7 +64,7 @@ public class BGTempestAction
         if (effect > 0) {
             for (int i = effect - 1; i >= 0; i--) {
                 BGLightning lightning = new BGLightning();
-                addToBot((AbstractGameAction)new ChannelAction((AbstractOrb)lightning));
+                addToTop((AbstractGameAction)new ChannelAction((AbstractOrb)lightning));
             }
             if (!this.freeToPlayOnce) {
                 this.p.energy.use(this.energyOnUse);

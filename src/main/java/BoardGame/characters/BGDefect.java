@@ -231,7 +231,7 @@ public class BGDefect extends AbstractBGCharacter {
     // Should return a color object to be used to color the trail of moving cards
     @Override
     public Color getCardTrailColor() {
-        return BoardGame.BG_DEFECT_BLUE;
+        return Color.SKY.cpy();
     }
 
     // Should return a BitmapFont object that you can use to customize how your
@@ -268,14 +268,14 @@ public class BGDefect extends AbstractBGCharacter {
     // Should return a Color object to be used to color the miniature card images in run history.
     @Override
     public Color getCardRenderColor() {
-        return BoardGame.BG_DEFECT_BLUE;
+        return Color.SKY;
     }
 
     // Should return a Color object to be used as screen tint effect when your
     // character attacks the heart.
-    @Override
+
     public Color getSlashAttackColor() {
-        return BoardGame.BG_DEFECT_BLUE;
+        return Color.SKY;
     }
 
     // Should return an AttackEffect array of any size greater than 0. These effects
@@ -283,13 +283,14 @@ public class BGDefect extends AbstractBGCharacter {
     // Attack effects are the same as used in DamageAction and the like.
     @Override
     public AbstractGameAction.AttackEffect[] getSpireHeartSlashEffect() {
-        return new AbstractGameAction.AttackEffect[]
-                { AbstractGameAction.AttackEffect.SLASH_HEAVY,
-                AbstractGameAction.AttackEffect.POISON,
+        return new AbstractGameAction.AttackEffect[]{
+                AbstractGameAction.AttackEffect.SLASH_HEAVY,
+                AbstractGameAction.AttackEffect.FIRE,
                 AbstractGameAction.AttackEffect.SLASH_DIAGONAL,
                 AbstractGameAction.AttackEffect.SLASH_HEAVY,
-                AbstractGameAction.AttackEffect.POISON,
-                AbstractGameAction.AttackEffect.SLASH_DIAGONAL };
+                AbstractGameAction.AttackEffect.FIRE,
+                AbstractGameAction.AttackEffect.SLASH_DIAGONAL
+        };
     }
 
     // Should return a string containing what text is shown when your character is
@@ -314,13 +315,13 @@ public class BGDefect extends AbstractBGCharacter {
 
 
     public Texture getCutsceneBg() {
-        return ImageMaster.loadImage("images/scenes/greenBg.jpg");
+        return ImageMaster.loadImage("images/scenes/blueBg.jpg");
     }
     public List<CutscenePanel> getCutscenePanels() {
         List<CutscenePanel> panels = new ArrayList();
-        panels.add(new CutscenePanel("images/scenes/silent1.png", "ATTACK_POISON2"));
-        panels.add(new CutscenePanel("images/scenes/silent2.png"));
-        panels.add(new CutscenePanel("images/scenes/silent3.png"));
+        panels.add(new CutscenePanel("images/scenes/defect1.png", "ATTACK_MAGIC_BEAM_SHORT"));
+        panels.add(new CutscenePanel("images/scenes/defect2.png"));
+        panels.add(new CutscenePanel("images/scenes/defect3.png"));
         return panels;
     }
 

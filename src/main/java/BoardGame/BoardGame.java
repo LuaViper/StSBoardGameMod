@@ -690,6 +690,7 @@ public class BoardGame implements
         CustomIconHelper.addCustomIcon(AOEIcon.get());
         CustomIconHelper.addCustomIcon(WeakIcon.get());
         CustomIconHelper.addCustomIcon(DazedIcon.get());
+        CustomIconHelper.addCustomIcon(FakeDazedIcon.get());
         CustomIconHelper.addCustomIcon(BurnIcon.get());
         CustomIconHelper.addCustomIcon(SlimedIcon.get());
         CustomIconHelper.addCustomIcon(Die1Icon.get());

@@ -76,6 +76,14 @@
                 " #yStrength after your next #yAttack."
         ]
 },
+        "BoardGame:BGAmplifyPower": {
+                "NAME": "Amplify",
+                "DESCRIPTIONS": [
+                        "#yDark Orb #yEvoke effects get #b+",
+                        "#yDark Orb #yEvoke effects get #b-",
+                        "."
+                ]
+        },
         "BoardGame:BGApotheosisPower": {
                 "NAME": "Apotheosis",
                 "DESCRIPTIONS": [
@@ -180,6 +188,32 @@
                 " #yAttacks are played twice this turn."
         ]
 },
+        "BoardGame:BGEchoFormPower": {
+                "NAME": "Echo Form",
+                "DESCRIPTIONS": [
+                        "The first Attack or Skill you play each turn is played twice.",
+                        "The first #b",
+                        " Attacks or Skills you play each turn are played twice.",
+                        "Echo Form is applied at the start of your next turn."
+                ]
+        },
+        "BoardGame:BGElectroPower": {
+                "NAME": "Electro",
+                "DESCRIPTIONS": [
+                        "#yLightning deals damage to any row instead of a single target.",
+                        "",
+                        ""
+                ]
+        },
+        "BoardGame:BGEnergyUpPower": {
+                "NAME": "Fusion",
+                "DESCRIPTIONS": [
+                        "Gain #b",
+                        " additional [B] each turn.",
+                        " additional [B] each turn.",
+                        " - TRANSLATOR NOTE: - The above line is for plural if needed to distinguish from singular."
+                ]
+        },
         "BoardGame:BGEnvenomPower": {
                 "NAME": "Envenom",
                 "DESCRIPTIONS": [
@@ -258,6 +292,14 @@
                 "Zzz... zzz... zzz..."
         ]
 },
+        "BoardGame:BGLoopPower": {
+                "NAME": "Loop",
+                "DESCRIPTIONS": [
+                        "At the end of your turn, trigger 1 Orb's #yEnd #yof #yturn ability.",
+                        "At the end of your turn, trigger 1 Orb's #yEnd #yof #yturn ability #b",
+                        " times."
+                ]
+        },
         "BoardGame:BGMayhemPower": {
                 "NAME": "Mayhem",
                 "DESCRIPTIONS": [
@@ -280,11 +322,19 @@
                         " #yPoison to any row."
                 ]
         },
+        "BoardGame:BGOrbEndOfTurnPower": {
+                "NAME": "Defragment",
+                "DESCRIPTIONS": [
+                        "Orb #yEnd #yof #yturn effects get #b+",
+                        "Orb #yEnd #yof #yturn effects get #b-",
+                        "."
+                ]
+        },
         "BoardGame:BGOrbEvokePower": {
                 "NAME": "Consume",
                 "DESCRIPTIONS": [
-                        "Orb #yEvoke effects get #b",
-                        "Orb #yEvoke effects get -#b",
+                        "Orb #yEvoke effects get #b+",
+                        "Orb #yEvoke effects get #b-",
                         "."
                 ]
         },
@@ -376,6 +426,21 @@
                 "% more damage)"
         ]
 },
+        "BoardGame:BGStaticDischargePower": {
+                "NAME": "Static Discharge",
+                "DESCRIPTIONS": [
+                        "#yLightning Orb #yEnd #yof #yturn effects get #b+",
+                        "#yLightning Orb #yEnd #yof #yturn effects get #b-",
+                        "."
+                ]
+        },
+        "BoardGame:BGStormPower": {
+                "NAME": "Storm",
+                "DESCRIPTIONS": [
+                        "At the start of your turn, #yChannel #b",
+                        " #yLightning."
+                ]
+        },
         "BoardGame:BGTemporaryRetainCardsPower": {
                 "NAME": "Equilibrium",
                 "DESCRIPTIONS": [

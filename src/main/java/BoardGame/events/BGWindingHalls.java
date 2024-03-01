@@ -70,7 +70,6 @@ public class BGWindingHalls
                     case 0:
                         cards = new ArrayList<>();
                         this.imageEventText.updateBodyText(CHOICE_1_TEXT);
-                        AbstractDungeon.player.damage(new DamageInfo(null, this.hpAmt));
                         CardCrawlGame.sound.play("ATTACK_MAGIC_SLOW_1");
                         {
                             AbstractCard card = AbstractDungeon.getCardWithoutRng(AbstractCard.CardRarity.COMMON);

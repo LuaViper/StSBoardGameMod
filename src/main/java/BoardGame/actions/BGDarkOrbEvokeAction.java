@@ -54,7 +54,7 @@ public class BGDarkOrbEvokeAction extends AbstractGameAction {
                         addToTop((AbstractGameAction)new WaitAction(0.1F));
                 }
             };
-            addToBot((AbstractGameAction)new TargetSelectScreenAction(tssAction,"Choose a target for Dark Orb."));
+            addToTop((AbstractGameAction)new TargetSelectScreenAction(tssAction,"Choose a target for Dark Orb."));
         }
 
         tickDuration();

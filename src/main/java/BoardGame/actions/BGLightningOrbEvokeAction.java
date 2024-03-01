@@ -43,7 +43,7 @@ public class BGLightningOrbEvokeAction extends AbstractGameAction {
                     addToTop((AbstractGameAction) new SFXAction("ORB_LIGHTNING_EVOKE"));
                 }
             };
-            addToBot((AbstractGameAction)new TargetSelectScreenAction(tssAction,"Choose a target for Lightning Orb."));
+            addToTop((AbstractGameAction)new TargetSelectScreenAction(tssAction,"Choose a target for Lightning Orb."));
         } else {
             float speedTime = 0.2F / AbstractDungeon.player.orbs.size();
             if (Settings.FAST_MODE)

@@ -5,6 +5,7 @@
 
 package BoardGame.screen;
 
+import BoardGame.orbs.BGDark;
 import basemod.BaseMod;
 import basemod.ReflectionHacks;
 import basemod.abstracts.CustomScreen;
@@ -62,6 +63,7 @@ public class OrbSelectScreen extends CustomScreen {
 
 
     public OrbSelectAction action;
+    public boolean prohibitDarkOrbs;
 
     public String description="Orb Select Screen.  Choose an Orb.";
     public boolean allowCancel=false;       //dummied out
@@ -69,12 +71,14 @@ public class OrbSelectScreen extends CustomScreen {
     public AbstractMonster finaltarget=null;
 
 
-    private void open(OrbSelectAction action, String description) {
+    private void open(OrbSelectAction action, String description, boolean prohibitDarkOrbs) {
         this.description=description;
         this.action=action;
+        this.prohibitDarkOrbs=prohibitDarkOrbs;
         //this.allowCancel=allowCancel;
         //this.cancelAction=cancelAction;
         this.isDone=false;
+
 
         //OrbSelectScreen.PAUSE_ACTION_QUEUE=true;
 
@@ -122,9 +126,15 @@ public class OrbSelectScreen extends CustomScreen {
 
         boolean moreThanOneOrbType=false;
         String lastOrbID=null;
-        for(AbstractOrb o : AbstractDungeon.player.orbs){
+        int firstValidOrbSlot=-1;
+        for(int i=0;i<AbstractDungeon.player.orbs.size();i+=1){
+            AbstractOrb o = AbstractDungeon.player.orbs.get(i);
             if(!(o instanceof EmptyOrbSlot)) {
                 if (!Objects.equals(o.ID, "Empty")) {
+                    if(Objects.equals(o.ID,"BGDark") && this.prohibitDarkOrbs){
+                        continue;
+                    }
+                    if(firstValidOrbSlot==-1) firstValidOrbSlot=i;
                     if (!Objects.equals(o.ID, lastOrbID)) {
                         if (lastOrbID != null) {
                             moreThanOneOrbType = true;
@@ -143,7 +153,7 @@ public class OrbSelectScreen extends CustomScreen {
         }else if(!moreThanOneOrbType){
             if(!isDone) {
                 isDone = true;
-                ((OrbSelectScreen) BaseMod.getCustomScreen(Enum.ORB_SELECT)).action.execute(0);
+                ((OrbSelectScreen) BaseMod.getCustomScreen(Enum.ORB_SELECT)).action.execute(firstValidOrbSlot);
             }
             AbstractDungeon.closeCurrentScreen();
             return;
@@ -233,13 +243,14 @@ public class OrbSelectScreen extends CustomScreen {
                     if(o.hb.hovered && !(o instanceof EmptyOrbSlot)){
                         //execute effect here
                         OrbSelectScreen screen=(OrbSelectScreen)BaseMod.getCustomScreen(OrbSelectScreen.Enum.ORB_SELECT);
-                        if (!screen.isDone) {
-                            screen.isDone=true;
-                            screen.action.execute(i);
+                        if(!(screen.prohibitDarkOrbs && (o instanceof BGDark))) {
+                            if (!screen.isDone) {
+                                screen.isDone = true;
+                                screen.action.execute(i);
+                            }
+                            GameCursor.hidden = false;
+                            AbstractDungeon.closeCurrentScreen();
                         }
-                        GameCursor.hidden = false;
-                        AbstractDungeon.closeCurrentScreen();
-
                     }
                 }
             }

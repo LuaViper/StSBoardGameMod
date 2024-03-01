@@ -69,15 +69,7 @@ public class BGRegalPillow
     }
 
 
-    @SpirePatch2(clz= CampfireSleepEffect.class, method=SpirePatch.CONSTRUCTOR,
-            paramtypez={})
-    public static class CampfireSleepEffectPillowPatch{
-        @SpirePostfixPatch public static void Postfix(@ByRef int[] ___healAmount) {
-            if (AbstractDungeon.player.hasRelic("BGRegal Pillow")) {
-                ___healAmount[0] += 3;
-            }
-        }
-    }
+    //actual +3 healing patch has been moved to RestOptionPatch.java
 
 }
 

@@ -48,11 +48,21 @@ public class BGFrost extends CustomOrb {
     }
 
     public void applyFocus() {
-        AbstractPower power = AbstractDungeon.player.getPower("BGOrbEvokePower");
-        if (power != null) {
-            this.evokeAmount = Math.max(0, this.baseEvokeAmount + power.amount);
-        } else {
-            this.evokeAmount = this.baseEvokeAmount;
+        {
+            AbstractPower power = AbstractDungeon.player.getPower("BGOrbEvokePower");
+            if (power != null) {
+                this.evokeAmount = Math.max(0, this.baseEvokeAmount + power.amount);
+            } else {
+                this.evokeAmount = this.baseEvokeAmount;
+            }
+        }
+        {
+            AbstractPower power = AbstractDungeon.player.getPower("BGOrbEndOfTurnPower");
+            if (power != null) {
+                this.passiveAmount = Math.max(0, this.basePassiveAmount + power.amount);
+            } else {
+                this.passiveAmount = this.basePassiveAmount;
+            }
         }
     }
 

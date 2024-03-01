@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -77,6 +78,21 @@ public class BGTheDieRelic extends CustomRelic implements DieControlledRelic {
         }
         if (card.type == AbstractCard.CardType.POWER) {
             powersPlayedThisCombat+=1;
+            for(AbstractOrb o : AbstractDungeon.player.orbs){
+                o.applyFocus();
+            }
+            for(AbstractCard c : AbstractDungeon.player.hand.group){
+                c.applyPowers();
+            }
+            for(AbstractCard c : AbstractDungeon.player.drawPile.group){
+                c.applyPowers();
+            }
+            for(AbstractCard c : AbstractDungeon.player.discardPile.group){
+                c.applyPowers();
+            }
+            for(AbstractCard c : AbstractDungeon.player.exhaustPile.group){
+                c.applyPowers();
+            }
         }
     }
 

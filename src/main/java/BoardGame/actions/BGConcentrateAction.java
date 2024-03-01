@@ -1,5 +1,7 @@
 package BoardGame.actions;
 
+import BoardGame.patches.DiscardInOrderOfEnergyCostPatch;
+import BoardGame.powers.BGAfterImagePower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
@@ -11,9 +13,10 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 
-    public class BGConcentrateAction extends AbstractGameAction {
+public class BGConcentrateAction extends AbstractGameAction {
         private AbstractPlayer p;
 
         //private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("GamblingChipAction");
@@ -42,10 +45,18 @@ import com.megacrit.cardcrawl.localization.UIStrings;
             if (!AbstractDungeon.handCardSelectScreen.wereCardsRetrieved) {
                 if (true || !AbstractDungeon.handCardSelectScreen.selectedCards.group.isEmpty()) {
                     addToTop((AbstractGameAction) new GainEnergyAction(AbstractDungeon.handCardSelectScreen.selectedCards.group.size()+bonus));
+                    DiscardInOrderOfEnergyCostPatch.sortByCost(AbstractDungeon.handCardSelectScreen.selectedCards,false);
                     for (AbstractCard c : AbstractDungeon.handCardSelectScreen.selectedCards.group) {
                         AbstractDungeon.player.hand.moveToDiscardPile(c);
                         GameActionManager.incrementDiscard(false);
                         c.triggerOnManualDiscard();
+                    }
+                }
+                if (!AbstractDungeon.handCardSelectScreen.selectedCards.group.isEmpty()) {
+                    //That did NOT trigger DiscardAction's AfterImage call, so do that now
+                    AbstractPower pw=AbstractDungeon.player.getPower("BoardGame:BGAfterImagePower");
+                    if(pw!=null){
+                        ((BGAfterImagePower)pw).onDiscardAction();
                     }
                 }
                 AbstractDungeon.handCardSelectScreen.wereCardsRetrieved = true;

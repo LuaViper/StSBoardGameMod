@@ -32,6 +32,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 //TODO: patch clearPostCombatActions so that DAMAGE actions aren't processed after combat ends in AbstractBGDungeon
+//TODO: overhead "intent bug" looks like it's actually related to "Blocked" text instead?
 
 public class BGTheGuardian extends AbstractBGMonster {
     private static final Logger logger = LogManager.getLogger(BGTheGuardian.class.getName());

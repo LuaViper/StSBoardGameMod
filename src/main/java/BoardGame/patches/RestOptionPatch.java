@@ -10,6 +10,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.LocalizedStrings;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.ui.campfire.RestOption;
+import com.megacrit.cardcrawl.vfx.campfire.CampfireSleepEffect;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 
@@ -36,4 +37,19 @@ public class RestOptionPatch {
             }
         }
     }
+
+    //TODO: make sure this patch is applied before Regal Pillow patch
+    @SpirePatch2(clz= CampfireSleepEffect.class, method=SpirePatch.CONSTRUCTOR,
+            paramtypez={})
+    public static class CampfireSleepEffectPillowPatch{
+        @SpirePostfixPatch public static void Postfix(@ByRef int[] ___healAmount) {
+            if (CardCrawlGame.dungeon instanceof AbstractBGDungeon) {
+                ___healAmount[0] = 3;
+            }
+            if (AbstractDungeon.player.hasRelic("BGRegal Pillow")) {
+                ___healAmount[0] += 3;
+            }
+        }
+    }
+
 }

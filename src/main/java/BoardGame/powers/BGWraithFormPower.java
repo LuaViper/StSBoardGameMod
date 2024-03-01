@@ -21,7 +21,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 public class BGWraithFormPower extends AbstractBGPower {
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGWraithFormPower");
-    public static final String POWER_ID = "BoardGame:BGWraithFormPower";
+    public static final String POWER_ID = "BGWraithFormPower";
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
@@ -29,7 +29,7 @@ public class BGWraithFormPower extends AbstractBGPower {
     private AbstractCard originalcard;
     public BGWraithFormPower(AbstractCreature owner, int amount, AbstractCard originalcard) {
         this.name = NAME;
-        this.ID = "BoardGame:BGWraithForm" + wraithIdOffset;
+        this.ID = "BGWraithFormPower" + wraithIdOffset;
         wraithIdOffset++;
         this.owner = owner;
         this.amount = amount;

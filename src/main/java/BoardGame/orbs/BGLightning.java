@@ -54,13 +54,29 @@ public class BGLightning extends CustomOrb {
     }
 
     public void applyFocus() {
-        AbstractPower power = AbstractDungeon.player.getPower("BGOrbEvokePower");
-        if (power != null) {
-            this.evokeAmount = Math.max(0, this.baseEvokeAmount + power.amount);
-        } else {
-            this.evokeAmount = this.baseEvokeAmount;
+        {
+            AbstractPower power = AbstractDungeon.player.getPower("BGOrbEvokePower");
+            if (power != null) {
+                this.evokeAmount = Math.max(0, this.baseEvokeAmount + power.amount);
+            } else {
+                this.evokeAmount = this.baseEvokeAmount;
+            }
+        }
+        this.passiveAmount = this.basePassiveAmount;
+        {
+            AbstractPower power = AbstractDungeon.player.getPower("BGOrbEndOfTurnPower");
+            if (power != null) {
+                this.passiveAmount += power.amount;
+            }
+        }
+        {
+            AbstractPower power = AbstractDungeon.player.getPower("BGStaticDischargePower");
+            if (power != null) {
+                this.passiveAmount += power.amount;
+            }
         }
     }
+
 
     public void updateDescription() {
         applyFocus();
@@ -68,7 +84,7 @@ public class BGLightning extends CustomOrb {
     }
 
     public void onEvoke() {
-        if (AbstractDungeon.player.hasPower("BoardGame:BGElectroPower")) {
+        if (AbstractDungeon.player.hasPower("BGElectroPower")) {
             AbstractDungeon.actionManager.addToTop((AbstractGameAction)new BGLightningOrbEvokeAction(new DamageInfo((AbstractCreature)AbstractDungeon.player, this.evokeAmount, DamageInfo.DamageType.THORNS), true));
         } else {
             AbstractDungeon.actionManager.addToTop((AbstractGameAction)new BGLightningOrbEvokeAction(new DamageInfo((AbstractCreature)AbstractDungeon.player, this.evokeAmount, DamageInfo.DamageType.THORNS), false));
@@ -76,7 +92,7 @@ public class BGLightning extends CustomOrb {
     }
 
     public void onEndOfTurn() {
-        if (AbstractDungeon.player.hasPower("BoardGame:BGElectroPower")) {
+        if (AbstractDungeon.player.hasPower("BGElectroPower")) {
             float speedTime = 0.2F / AbstractDungeon.player.orbs.size();
             if (Settings.FAST_MODE)
                 speedTime = 0.0F;

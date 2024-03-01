@@ -99,10 +99,10 @@ public class BGAfterImagePower extends AbstractBGPower {
                 return;
             }
             if(__instance.isDone) {
-                BoardGame.BoardGame.logger.info("BGAfterImagePower.update.postfix.isDone...");
-                BoardGame.BoardGame.logger.info("...compare "+GameActionManager.totalDiscardedThisTurn+" , "+DiscardTotalField.discardTotal.get(__instance)+" ...");
+                //BoardGame.BoardGame.logger.info("BGAfterImagePower.update.postfix.isDone...");
+                //BoardGame.BoardGame.logger.info("...compare "+GameActionManager.totalDiscardedThisTurn+" , "+DiscardTotalField.discardTotal.get(__instance)+" ...");
                 if(GameActionManager.totalDiscardedThisTurn>DiscardTotalField.discardTotal.get(__instance)){
-                    BoardGame.BoardGame.logger.info("...success!  gain 1 block");
+                    //BoardGame.BoardGame.logger.info("...success!  gain 1 block if we have afterimage");
                     AbstractPower pw=AbstractDungeon.player.getPower("BoardGame:BGAfterImagePower");
                     if(pw!=null){
                         ((BGAfterImagePower)pw).onDiscardAction();

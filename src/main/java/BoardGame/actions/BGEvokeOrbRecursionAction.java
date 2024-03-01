@@ -26,7 +26,7 @@ public class BGEvokeOrbRecursionAction extends AbstractGameAction {
                     addToTop((AbstractGameAction) new BGEvokeSpecificOrbAction(target));
                 }
             };
-            addToTop((AbstractGameAction) new OrbSelectScreenAction(ossAction, "Choose an Orb to Evoke."));
+            addToTop((AbstractGameAction) new OrbSelectScreenAction(ossAction, "Choose an Orb to Evoke.",false));
         }
         this.tickDuration();
     }

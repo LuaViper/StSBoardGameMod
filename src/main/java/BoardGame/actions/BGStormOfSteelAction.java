@@ -1,6 +1,7 @@
 package BoardGame.actions;
 
 
+import BoardGame.patches.DiscardInOrderOfEnergyCostPatch;
 import BoardGame.powers.BGAfterImagePower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
@@ -32,8 +33,7 @@ public class BGStormOfSteelAction extends AbstractGameAction {
 
     public void update() {
         if (this.duration == 0.5F) {
-            //TODO: maybe change text from "replace" to "discard"
-            AbstractDungeon.handCardSelectScreen.open(TEXT[1], 99, true, true);
+            AbstractDungeon.handCardSelectScreen.open("Discard (Storm of Steel)", 99, true, true);
             addToBot((AbstractGameAction)new WaitAction(0.25F));
             tickDuration();
             return;
@@ -42,6 +42,7 @@ public class BGStormOfSteelAction extends AbstractGameAction {
             int total=AbstractDungeon.handCardSelectScreen.selectedCards.group.size()+bonus;
             if(total>0) {
                 addToTop((AbstractGameAction) new BGGainShivAction(total));
+                DiscardInOrderOfEnergyCostPatch.sortByCost(AbstractDungeon.handCardSelectScreen.selectedCards,false);
                 for (AbstractCard c : AbstractDungeon.handCardSelectScreen.selectedCards.group) {
                     AbstractDungeon.player.hand.moveToDiscardPile(c);
                     GameActionManager.incrementDiscard(false);

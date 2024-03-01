@@ -32,7 +32,7 @@ public class BGEvokeOrbTwiceAction extends AbstractGameAction {
                 addToTop((AbstractGameAction)new BGEvokeSpecificOrbAction(target));
                 addToTop((AbstractGameAction)new BGEvokeWithoutRemovingSpecificOrbAction(target));
             };
-            addToTop((AbstractGameAction)new OrbSelectScreenAction(ossAction,description));
+            addToTop((AbstractGameAction)new OrbSelectScreenAction(ossAction,description,false));
         }
         this.tickDuration();
     }

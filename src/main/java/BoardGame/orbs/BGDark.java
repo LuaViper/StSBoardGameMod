@@ -63,11 +63,18 @@ public class BGDark extends CustomOrb {
     }
 
     public void applyFocus() {
-        AbstractPower power = AbstractDungeon.player.getPower("BGOrbEvokePower");
-        if (power != null) {
-            this.evokeAmount = Math.max(0, this.baseEvokeAmount + power.amount);
-        } else {
-            this.evokeAmount = this.baseEvokeAmount;
+        this.evokeAmount = this.baseEvokeAmount;
+        {
+            AbstractPower power = AbstractDungeon.player.getPower("BGOrbEvokePower");
+            if (power != null) {
+                this.evokeAmount += power.amount;
+            }
+        }
+        {
+            AbstractPower power = AbstractDungeon.player.getPower("BGAmplifyPower"); //dark orbs only
+            if (power != null) {
+                this.evokeAmount += power.amount;
+            }
         }
         this.evokeAmount+=BGTheDieRelic.powersPlayedThisCombat;
     }

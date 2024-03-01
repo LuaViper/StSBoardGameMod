@@ -54,7 +54,7 @@ public class BGEvokeOrbAction extends AbstractGameAction {
                 addToTop((AbstractGameAction)new BGEvokeSpecificOrbAction(target));
             };
             //TODO: are we addingToBot any TARGETSelectScreenActions that should be addedToTop instead? (maybe it doesn't matter?? card queue waits until action queue is empty before playing next card)
-            addToTop((AbstractGameAction)new OrbSelectScreenAction(ossAction,description));
+            addToTop((AbstractGameAction)new OrbSelectScreenAction(ossAction,description,false));
         }
         this.tickDuration();
     }

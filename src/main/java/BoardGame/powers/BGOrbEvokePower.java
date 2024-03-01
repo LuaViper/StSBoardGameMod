@@ -1,4 +1,4 @@
-package com.megacrit.cardcrawl.powers;
+package BoardGame.powers;
 
 import BoardGame.powers.AbstractBGPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -6,6 +6,7 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 public class BGOrbEvokePower extends AbstractBGPower {
