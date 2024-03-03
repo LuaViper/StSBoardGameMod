@@ -110,7 +110,7 @@
   },
   "BoardGame:BGBlur": {
     "NAME": "Blur",
-    "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL +1 [BoardGame:BlockIcon] if you discarded a card this turn."
+    "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL +!M! [BoardGame:BlockIcon] if you discarded a card this turn."
   },
   "BoardGame:BGBodySlam": {
     "NAME": "Body Slam",
@@ -195,8 +195,8 @@
   },
   "BoardGame:BGCloakAndDagger": {
     "NAME": "Cloak and Dagger",
-    "DESCRIPTION": "[BoardGame:ShivIcon] NL 1 [BoardGame:BlockIcon]",
-    "UPGRADE_DESCRIPTION": "[BoardGame:ShivIcon] [BoardGame:ShivIcon] NL 1 [BoardGame:BlockIcon]"
+    "DESCRIPTION": "[BoardGame:ShivIcon] NL !B! [BoardGame:BlockIcon]",
+    "UPGRADE_DESCRIPTION": "[BoardGame:ShivIcon] [BoardGame:ShivIcon] NL !B! [BoardGame:BlockIcon]"
   },
   "BoardGame:BGClothesline": {
     "NAME": "Clothesline",
@@ -276,8 +276,8 @@
   },
   "BoardGame:BGDaggerSpray": {
     "NAME": "Dagger Spray",
-    "DESCRIPTION": "[BoardGame:AOEIcon] 1 [BoardGame:HitIcon] 1 [BoardGame:HitIcon]",
-    "UPGRADE_DESCRIPTION": "[BoardGame:AOEIcon] 1 [BoardGame:HitIcon] 1 [BoardGame:HitIcon] 1 [BoardGame:HitIcon]"
+    "DESCRIPTION": "[BoardGame:AOEIcon] !D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon]",
+    "UPGRADE_DESCRIPTION": "[BoardGame:AOEIcon] !D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon]"
   },
   "BoardGame:BGDaggerThrow": {
     "NAME": "Dagger Throw",

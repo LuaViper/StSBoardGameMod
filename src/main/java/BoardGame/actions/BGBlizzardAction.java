@@ -35,6 +35,7 @@ public class BGBlizzardAction
 
     public BGBlizzardAction(AbstractPlayer p, int[] multiDamage) {
         this.multiDamage = multiDamage;
+        this.damageType= DamageInfo.DamageType.NORMAL;
         this.p = p;
         this.duration = Settings.ACTION_DUR_XFAST;
         this.actionType = ActionType.DAMAGE;
