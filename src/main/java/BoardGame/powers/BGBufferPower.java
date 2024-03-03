@@ -55,24 +55,25 @@ public class BGBufferPower extends AbstractBGPower {
 
 
     public int onAttackedToChangeDamage(DamageInfo info, int damageAmount) {
-        if (damageAmount > 0)
-            addToTop((AbstractGameAction)new ReducePowerAction(this.owner, this.owner, this.ID, 1));
+        if (damageAmount > 0) {
+            addToTop((AbstractGameAction) new ReducePowerAction(this.owner, this.owner, this.ID, 1));
 
-        if (this.amount <= 1) {
-            //if amount is currently 1 (before ReducePowerAction is resolved), then it's going to 0 this turn
-            Logger logger = LogManager.getLogger(BGBufferPower.class.getName());
-            //logger.info("Buffer: attempt to exhaust...");
-            AbstractCard card=originalcard.makeStatEquivalentCopy();
-            AbstractDungeon.player.discardPile.addToBottom(card);
-            addToBot(new ExhaustSpecificCardAction(card, AbstractDungeon.player.discardPile,true));
-            //this counts as losing a power card, so Awakened One loses 1 str
-            for(AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters){
-                AbstractPower p=m.getPower("BGCuriosityPower");
-                if(p!=null){
-                    addToBot(new ReducePowerAction((AbstractCreature)m,(AbstractCreature)m,"BGUncappedStrengthPower",1));
+            if (this.amount <= 1) {
+                //if amount is currently 1 (before ReducePowerAction is resolved), then it's going to 0 this turn
+                Logger logger = LogManager.getLogger(BGBufferPower.class.getName());
+                logger.info("Buffer: attempt to exhaust...");
+                AbstractCard card = originalcard.makeStatEquivalentCopy();
+                AbstractDungeon.player.discardPile.addToBottom(card);
+                addToBot(new ExhaustSpecificCardAction(card, AbstractDungeon.player.discardPile, true));
+                //this counts as losing a power card, so Awakened One loses 1 str
+                for (AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
+                    AbstractPower p = m.getPower("BGCuriosityPower");
+                    if (p != null) {
+                        addToBot(new ReducePowerAction((AbstractCreature) m, (AbstractCreature) m, "BGUncappedStrengthPower", 1));
+                    }
                 }
+                BGTheDieRelic.powersPlayedThisCombat -= 1;
             }
-            BGTheDieRelic.powersPlayedThisCombat-=1;
         }
 
         return 0;

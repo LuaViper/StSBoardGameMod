@@ -162,8 +162,8 @@ public class OrbSelectScreen extends CustomScreen {
 
     @Override
     public void render(SpriteBatch sb){
-        FontHelper.renderDeckViewTip(sb, this.description, 96.0F * Settings.scale, Settings.CREAM_COLOR);
-
+        //FontHelper.renderDeckViewTip(sb, this.description, 96.0F * Settings.scale, Settings.CREAM_COLOR);
+        FontHelper.renderFontCentered(sb, FontHelper.buttonLabelFont, this.description, (Settings.WIDTH / 2), Settings.HEIGHT - 180.0F * Settings.scale, Settings.CREAM_COLOR);
     }
 
     @SpirePatch2(clz= AbstractDungeon.class,method="update",paramtypez={})

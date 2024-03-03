@@ -367,6 +367,10 @@
     "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL You may Retain !M! card this turn.",
     "UPGRADE_DESCRIPTION": "!B! [BoardGame:BlockIcon] NL You may Retain up to !M! cards this turn."
   },
+  "BoardGame:BGEruption": {
+    "NAME": "Eruption",
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL Enter boardgame:Wrath."
+  },
   "BoardGame:BGEscapePlan": {
     "NAME": "Escape Plan",
     "DESCRIPTION": "Draw 1 card. NL If you draw a Skill, NL !B! [BoardGame:BlockIcon] .",

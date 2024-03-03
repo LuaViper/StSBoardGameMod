@@ -106,6 +106,20 @@
     "DESCRIPTION": "Orb: When #yEvoked, deals damage based on active Powers."
   },
   {
+    "PROPER_NAME": "Wrath",
+    "NAMES": [
+      "wrath"
+    ],
+    "DESCRIPTION": "+1 to your [BoardGame:HitIcon] . NL #yEnd #yof #yturn: NL Take 1 damage."
+  },
+  {
+    "PROPER_NAME": "Calm",
+    "NAMES": [
+      "calm"
+    ],
+    "DESCRIPTION": "Gain [W] [W] when you leave #yCalm."
+  },
+  {
     "NAMES": [
       "keyword",
       "keywords"
