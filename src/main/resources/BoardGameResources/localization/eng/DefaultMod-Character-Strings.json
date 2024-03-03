@@ -34,7 +34,17 @@
       "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~brother,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~"
     ]
   },
-
+  "BoardGame:BGWatcher": {
+    "NAMES": [
+      "[]The []Watcher (Board Game)",
+      "the Watcher"
+    ],
+    "TEXT": [
+      "A blind ascetic who has come to \"Evaluate\" the Spire. NL Master of the divine Stances.",
+      "NL You prime your staff with divine energy...",
+      "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~sister,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~"
+    ]
+  },
 
   "BoardGame:BGColorless": {
     "NAMES": [
@@ -134,7 +144,8 @@
       "[ Proceed ]",
       "#yDISCLAIMER",
       "This project was hastily thrown together for the purpose of playtesting the board game, specifically in order to judge the relative difficulty of each encounter in a single-player game. The mod remains very much a work in progress. You may notice missing content, rule inaccuracies, bugs, and even softlocks. Ascension Mode is not yet implemented. NL NL Most importantly, #ysave #yfiles #yare #ynot #yready #yyet.  If you try to save the game and reload, everything will break in hilarious and horrifying ways.",
-      "If the game softlocks on a reward screen, try opening and closing the map."
+      "If the game softlocks on a reward screen, try opening and closing the map.",
+      "This is TEXT[72] by the way. In case you lose count, the IDE will also keep track for you, beneath the text editor window."
     ],
     "UNIQUE_REWARDS": [
       "[ #rLose #ryour #rstarting #rRelic #gObtain #ga #grandom #gboss #gRelic ]"

@@ -35,11 +35,13 @@ public class BGWhirlwindAction
 
     public BGWhirlwindAction(AbstractPlayer p, int[] multiDamage, DamageInfo.DamageType damageType, boolean freeToPlayOnce, int energyOnUse, int extrahits) {
         this.p = p;
+        this.multiDamage=multiDamage;
         this.freeToPlayOnce = freeToPlayOnce;
         this.duration = Settings.ACTION_DUR_XFAST;
         this.actionType = ActionType.SPECIAL;
         this.energyOnUse = energyOnUse;
         this.extrahits=extrahits;
+        this.damageType = damageType;
     }
 
 

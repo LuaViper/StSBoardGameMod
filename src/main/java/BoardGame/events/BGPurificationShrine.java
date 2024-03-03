@@ -31,7 +31,7 @@ public class BGPurificationShrine
 
     public BGPurificationShrine() {
         super(NAME, DIALOG_1, "images/events/shrine3.jpg");
-        this.imageEventText.setDialogOption(OPTIONS[0]);
+        this.imageEventText.setDialogOption(OPTIONS[0]);    //TODO: "[Leave]" incorrectly appears on card selects screen
         this.imageEventText.setDialogOption(OPTIONS[1]);    //TODO: lock option if deck has no curses
         this.imageEventText.setDialogOption(OPTIONS[2]);
     }

@@ -9,8 +9,6 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import BoardGame.monsters.AbstractBGMonster;
 
-//TODO: This is not actually a 1-cost card, it's complicated
-
 public class BGSlimed extends AbstractCard implements CardDisappearsOnExhaust {
     public static final String ID = "BGSlimed";
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Slimed");

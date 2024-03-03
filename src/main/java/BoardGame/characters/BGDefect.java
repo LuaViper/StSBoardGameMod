@@ -1,7 +1,6 @@
 package BoardGame.characters;
 
 //TODO: does Recycle interact correctly with card cost changes?
-//TODO: when discarding cards, topmost card in discard pile must be 0 cost if possible
 
 import BoardGame.BoardGame;
 import BoardGame.cards.BGBlue.BGDefend_Blue;
@@ -81,7 +80,7 @@ public class BGDefect extends AbstractBGCharacter {
 
     // =============== STRINGS =================
 
-    private static final String ID = makeID("BGDefect");   //show up after Silent on character select screen
+    private static final String ID = makeID("BGDefect");
     private static final CharacterStrings characterStrings = CardCrawlGame.languagePack.getCharacterString(ID);
     private static final String[] NAMES = characterStrings.NAMES;
     private static final String[] TEXT = characterStrings.TEXT;
@@ -189,7 +188,7 @@ public class BGDefect extends AbstractBGCharacter {
     public ArrayList<String> getStartingRelics() {
         ArrayList<String> retVal = new ArrayList<>();
 
-        logger.info("getStartingRelics: "+BGTheDieRelic.ID+" "+"TODO: BGCrackedCore");
+        logger.info("getStartingRelics: "+BGTheDieRelic.ID+" + BGCrackedCore");
         retVal.add(BGTheDieRelic.ID);
         retVal.add(BGCrackedCore.ID);
 

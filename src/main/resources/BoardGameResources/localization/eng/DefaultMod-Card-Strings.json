@@ -227,7 +227,7 @@
   "BoardGame:BGConclude": {
     "NAME": "Conclude",
     "DESCRIPTION": "[BoardGame:AOEIcon] !D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon] NL You can't play additional cards this turn.",
-    "EXTENDED_DESCRIPTION": "[BoardGame:AOEIcon] !D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon] NL You can't play additional cards this turn."
+    "UPGRADE_DESCRIPTION": "[BoardGame:AOEIcon] !D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon] NL You can't play additional cards this turn."
   },
   "BoardGame:BGConjureBlade": {
     "NAME": "Conjure Blade",
@@ -343,12 +343,12 @@
   },
   "BoardGame:BGDevaForm": {
     "NAME": "Deva Form",
-    "DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: [BoardGame:MiracleIcon]",
-    "UPGRADE_DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: [BoardGame:MiracleIcon] [BoardGame:MiracleIcon]"
+    "DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: NL [BoardGame:MiracleIcon]",
+    "UPGRADE_DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: NL [BoardGame:MiracleIcon] [BoardGame:MiracleIcon]"
   },
   "BoardGame:BGDevotion": {
     "NAME": "Devotion",
-    "DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: Gain [BoardGame:MiracleIcon] and draw 1 card. NL Exhaust this card after !M! turns."
+    "DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: NL Gain [BoardGame:MiracleIcon] and draw 1 card. NL Exhaust this card after !M! turns."
   },
   "BoardGame:BGDieDieDie": {
     "NAME": "Die Die Die",
@@ -744,7 +744,7 @@
   "BoardGame:BGMeditate": {
     "NAME": "Meditate",
     "DESCRIPTION": "Put !M! card from your discard pile into your hand and Retain it. NL Enter boardgame:Calm. NL You can't play additional cards this turn.",
-    "EXTENDED_DESCRIPTION": "Put !M! cards from your discard pile into your hand and Retain them. NL Enter boardgame:Calm. NL You can't play additional cards this turn."
+    "UPGRADE_DESCRIPTION": "Put !M! cards from your discard pile into your hand and Retain them. NL Enter boardgame:Calm. NL You can't play additional cards this turn."
   },
   "BoardGame:BGMelter": {
     "NAME": "Melter",
@@ -961,7 +961,7 @@
   "BoardGame:BGSashWhip": {
     "NAME": "Sash Whip",
     "DESCRIPTION": "!D! [BoardGame:HitIcon] NL If you're in boardgame:Calm, [BoardGame:WeakIcon] .",
-    "EXTENDED_DESCRIPTION": "!D! [BoardGame:HitIcon] NL If you're in boardgame:Calm, NL [BoardGame:WeakIcon] [BoardGame:WeakIcon] ."
+    "UPGRADE_DESCRIPTION": "!D! [BoardGame:HitIcon] NL If you're in boardgame:Calm, NL [BoardGame:WeakIcon] [BoardGame:WeakIcon] ."
   },
   "BoardGame:BGScrape": {
     "NAME": "Scrape",

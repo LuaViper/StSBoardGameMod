@@ -21,7 +21,7 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-//TODO: This is not actually a 1-cost card, it's complicated
+//TODO: does this actually count as "playing a card"?
 public class BGVoidCard extends AbstractBGCard implements CardDisappearsOnExhaust {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGVoidCard");
     static final String ID = "BGVoidCard";

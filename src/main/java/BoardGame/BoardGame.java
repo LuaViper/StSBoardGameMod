@@ -83,6 +83,7 @@ public class BoardGame implements
     public static final Color BG_SILENT_GREEN = CardHelper.getColor(52, 123, 8);
     //TODO: we're just guessing here
     public static final Color BG_DEFECT_BLUE = CardHelper.getColor(8, 52, 123);
+    public static final Color BG_WATCHER_PURPLE = CardHelper.getColor(153, 52, 8);
     public static final Color BG_CURSE_BLACK = CardHelper.getColor(29, 29, 29);
     public static final Color BG_COLORLESS_GRAY = CardHelper.getColor(0.15F, 0.15F, 0.15F);
     // Potion Colors in RGB
@@ -134,6 +135,19 @@ public class BoardGame implements
     private static final String CHAR_SELECT_BUTTON_DEFECT = "images/ui/charSelect/defectButton.png";
     private static final String CHAR_SELECT_PORTRAIT_DEFECT = "images/ui/charSelect/defectPortrait.jpg";
 
+    private static final String BGATTACK_WATCHER = "BoardGameResources/images/512/bg_attack_theWatcher.png";
+    private static final String BGSKILL_WATCHER = "BoardGameResources/images/512/bg_skill_theWatcher.png";
+    private static final String BGPOWER_WATCHER = "BoardGameResources/images/512/bg_power_theWatcher.png";
+    private static final String ENERGY_ORB_WATCHER = "BoardGameResources/images/512/card_orb_theWatcher.png";
+    private static final String SMALL_ORB_WATCHER = "BoardGameResources/images/512/card_small_orb.png";
+    private static final String BGATTACK_P_WATCHER = "BoardGameResources/images/1024/bg_attack_theWatcher.png";
+    private static final String BGSKILL_P_WATCHER = "BoardGameResources/images/1024/bg_skill_theWatcher.png";
+    private static final String BGPOWER_P_WATCHER = "BoardGameResources/images/1024/bg_power_theWatcher.png";
+    private static final String ENERGY_ORB_P_WATCHER = "BoardGameResources/images/1024/card_orb_theWatcher.png";
+    private static final String CHAR_SELECT_BUTTON_WATCHER = "images/ui/charSelect/watcherButton.png";
+    private static final String CHAR_SELECT_PORTRAIT_WATCHER = "images/ui/charSelect/watcherPortrait.jpg";
+    
+    
     private static final String ENERGY_ORB_COLORLESS = "BoardGameResources/images/512/card_orb_Colorless.png";
 
 //    public static final String SHOULDER_1 = "BoardGameResources/images/char/defaultCharacter/shoulder.png";
@@ -154,6 +168,8 @@ public class BoardGame implements
     public static final String BGDEFECT_SKELETON_ATLAS = "images/characters/defect/idle/skeleton.atlas";
     public static final String BGDEFECT_SKELETON_JSON = "images/characters/defect/idle/skeleton.json";
 
+    public static final String BGWATCHER_SKELETON_ATLAS = "images/characters/watcher/idle/skeleton.atlas";
+    public static final String BGWATCHER_SKELETON_JSON = "images/characters/watcher/idle/skeleton.json";
 
     private static final String ATTACK_COLORLESS = "BoardGameResources/images/512/colorless_bg_attack.png";
     private static final String SKILL_COLORLESS = "BoardGameResources/images/512/colorless_bg_skill.png";
@@ -222,6 +238,12 @@ public class BoardGame implements
                 BGATTACK_DEFECT, BGSKILL_DEFECT, BGPOWER_DEFECT, ENERGY_ORB_DEFECT,
                 BGATTACK_P_DEFECT, BGSKILL_P_DEFECT, BGPOWER_P_DEFECT,
                 ENERGY_ORB_P_DEFECT, SMALL_ORB_DEFECT);
+
+//        logger.info("Creating the color " + BGWatcher.Enums.BG_PURPLE.toString());
+//        BaseMod.addColor(BGWatcher.Enums.BG_PURPLE, BG_WATCHER_PURPLE,
+//                BGATTACK_WATCHER, BGSKILL_WATCHER, BGPOWER_WATCHER, ENERGY_ORB_WATCHER,
+//                BGATTACK_P_WATCHER, BGSKILL_P_WATCHER, BGPOWER_P_WATCHER,
+//                ENERGY_ORB_P_WATCHER, SMALL_ORB_WATCHER);
 
         logger.info("Creating the color " + BGCurse.Enums.BG_CURSE.toString());
         BaseMod.addColor(BGCurse.Enums.BG_CURSE, BG_CURSE_BLACK,
@@ -325,6 +347,9 @@ public class BoardGame implements
                 CHAR_SELECT_BUTTON_DEFECT, CHAR_SELECT_PORTRAIT_DEFECT, BGDefect.Enums.BG_DEFECT);
         logger.info("Added " + BGDefect.Enums.BG_DEFECT.toString());
 
+//        BaseMod.addCharacter(new BGWatcher("the Watcher", BGWatcher.Enums.BG_WATCHER),
+//                CHAR_SELECT_BUTTON_WATCHER, CHAR_SELECT_PORTRAIT_WATCHER, BGWatcher.Enums.BG_WATCHER);
+//        logger.info("Added " + BGWatcher.Enums.BG_WATCHER.toString());
 
         receiveEditPotions();
     }

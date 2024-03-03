@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 
+//TODO LATER: this card displays 4dmg outside of combat even if player has enough gold, should we change that?
 //TODO LATER: need 10 gold icon
 public class BGHandOfGreed extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGHandOfGreed");
