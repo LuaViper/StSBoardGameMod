@@ -365,8 +365,8 @@
   },
   "BoardGame:BGDodgeAndRoll": {
     "NAME": "Dodge and Roll",
-    "DESCRIPTION": "[BoardGame:BlockIcon] [BoardGame:BlockIcon] NL Each [BoardGame:BlockIcon] can go to any player.",
-    "UPGRADE_DESCRIPTION": "[BoardGame:BlockIcon] [BoardGame:BlockIcon] [BoardGame:BlockIcon] NL Each [BoardGame:BlockIcon] can go to any player."
+    "DESCRIPTION": "!B! [BoardGame:BlockIcon] !B! [BoardGame:BlockIcon] NL Each [BoardGame:BlockIcon] can go to any player.",
+    "UPGRADE_DESCRIPTION": "!B! [BoardGame:BlockIcon] !B! [BoardGame:BlockIcon] [BoardGame:BlockIcon] NL Each [BoardGame:BlockIcon] can go to any player."
   },
   "BoardGame:BGDoomAndGloom": {
     "NAME": "Doom and Gloom",
