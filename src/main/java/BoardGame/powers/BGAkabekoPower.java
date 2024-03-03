@@ -30,7 +30,7 @@ public class BGAkabekoPower extends AbstractBGPower {
     }
 
     public void onInitialApplication() {
-        //TODO: update gainedStrengthSuccessfully if we weren't strength-capped
+        //TODO: if we were already strength-capped, set gainedStrengthSuccessfully to false
         addToTop((AbstractGameAction) new ApplyPowerAction((AbstractCreature) this.owner, (AbstractCreature) this.owner, (AbstractPower) new StrengthPower((AbstractCreature) AbstractDungeon.player, 1), 1));
     }
 

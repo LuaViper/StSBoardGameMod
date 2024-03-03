@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class BGReinforcedBody extends AbstractBGCard {
     //TODO: there are almost certainly uncaught bugs related to this card; playtest thoroughly
+    //TODO: "I can't play *that* card for 0 Energy", played it anyway
 
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGReinforcedBody");
     public static final String ID = "BGReinforcedBody";

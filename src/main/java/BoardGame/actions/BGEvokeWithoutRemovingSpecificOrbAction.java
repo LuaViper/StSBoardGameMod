@@ -34,11 +34,13 @@ public class BGEvokeWithoutRemovingSpecificOrbAction extends AbstractGameAction 
 
     public void update() {
         if (this.duration == this.startDuration) {
-            AbstractPlayer player = AbstractDungeon.player;
-            if (player != null) {
-                if (!player.orbs.isEmpty() && !(player.orbs.get(orbSlot) instanceof EmptyOrbSlot)) {
-                    AbstractDungeon.player.triggerEvokeAnimation(orbSlot);
-                    ((AbstractOrb) player.orbs.get(orbSlot)).onEvoke();
+            if(orbSlot>=0) {
+                AbstractPlayer player = AbstractDungeon.player;
+                if (player != null) {
+                    if (!player.orbs.isEmpty() && !(player.orbs.get(orbSlot) instanceof EmptyOrbSlot)) {
+                        AbstractDungeon.player.triggerEvokeAnimation(orbSlot);
+                        ((AbstractOrb) player.orbs.get(orbSlot)).onEvoke();
+                    }
                 }
             }
         }

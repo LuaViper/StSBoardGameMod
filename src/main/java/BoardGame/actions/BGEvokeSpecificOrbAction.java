@@ -49,16 +49,18 @@ public class BGEvokeSpecificOrbAction extends AbstractGameAction {
         if (this.duration == this.startDuration) {
             AbstractPlayer player = AbstractDungeon.player;
             if (player != null) {
-                if (player.orbs.size() > orbSlot && !(player.orbs.get(orbSlot) instanceof EmptyOrbSlot)) {
-                    AbstractDungeon.player.triggerEvokeAnimation(orbSlot);
-                    ((AbstractOrb) player.orbs.get(orbSlot)).onEvoke();
-                    EmptyOrbSlot emptyOrbSlot = new EmptyOrbSlot();
-                    int i;
-                    for(i=orbSlot+1; i<player.orbs.size(); i++)
-                        Collections.swap(player.orbs, i, i - 1);
-                    player.orbs.set(player.orbs.size() - 1, emptyOrbSlot);
-                    for (i = 0; i < player.orbs.size(); i++)
-                        ((AbstractOrb)player.orbs.get(i)).setSlot(i, player.maxOrbs);
+                if(orbSlot>=0) {
+                    if (player.orbs.size() > orbSlot && !(player.orbs.get(orbSlot) instanceof EmptyOrbSlot)) {
+                        AbstractDungeon.player.triggerEvokeAnimation(orbSlot);
+                        ((AbstractOrb) player.orbs.get(orbSlot)).onEvoke();
+                        EmptyOrbSlot emptyOrbSlot = new EmptyOrbSlot();
+                        int i;
+                        for (i = orbSlot + 1; i < player.orbs.size(); i++)
+                            Collections.swap(player.orbs, i, i - 1);
+                        player.orbs.set(player.orbs.size() - 1, emptyOrbSlot);
+                        for (i = 0; i < player.orbs.size(); i++)
+                            ((AbstractOrb) player.orbs.get(i)).setSlot(i, player.maxOrbs);
+                    }
                 }
             }
         }
