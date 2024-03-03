@@ -68,6 +68,10 @@
     "DESCRIPTION": "Deal !D! [BoardGame:HitIcon] for each Orb you have.",
     "UPGRADE_DESCRIPTION": "Deal !D! [BoardGame:HitIcon] for each Orb you have +1."
   },
+  "BoardGame:BGBattleHymn": {
+    "NAME": "Battle Hymn",
+    "DESCRIPTION": "[#EFC851]Once [#EFC851]per [#EFC851]turn[]: NL Deal !M! damage, NL +!M! if you're in boardgame:Wrath."
+  },
   "BoardGame:BGBeamCell": {
     "NAME": "Beam Cell",
     "DESCRIPTION": "[BoardGame:Die1Icon] [BoardGame:Die2Icon] [BoardGame:Die3Icon] !D! [BoardGame:HitIcon] [BoardGame:VulnIcon] NL [BoardGame:Die4Icon] [BoardGame:Die5Icon] [BoardGame:Die6Icon] !D! [BoardGame:HitIcon]    ",
@@ -81,6 +85,11 @@
     "NAME": "Blade Dance",
     "DESCRIPTION": "[BoardGame:ShivIcon] [BoardGame:ShivIcon]",
     "UPGRADE_DESCRIPTION": "[BoardGame:ShivIcon] [BoardGame:ShivIcon] [BoardGame:ShivIcon]"
+  },
+  "BoardGame:BGBlasphemy": {
+    "NAME": "Blasphemy",
+    "DESCRIPTION": "Your next Attack this turn is played 3 times. NL Exhaust your draw pile. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Your next Attack this turn is played 3 times. NL Exhaust your draw pile. NL Exhaust."
   },
   "BoardGame:BGBlind": {
     "NAME": "Blind",
@@ -113,6 +122,10 @@
     "DESCRIPTION": "[BoardGame:PoisonIcon] [BoardGame:PoisonIcon] NL Each boardgame:Poison may have a different target.",
     "UPGRADE_DESCRIPTION": "[BoardGame:PoisonIcon] [BoardGame:PoisonIcon] [BoardGame:PoisonIcon] NL Each boardgame:Poison may have a different target."
   },
+  "BoardGame:BGBrilliance": {
+    "NAME": "Brilliance",
+    "DESCRIPTION": "Deal !D! [BoardGame:HitIcon] for each [BoardGame:MiracleIcon] you have."
+  },
   "BoardGame:BGBuffer": {
     "NAME": "Buffer",
     "DESCRIPTION": "The next time you would lose HP, prevent it and Exhaust this card.",
@@ -135,6 +148,10 @@
   "BoardGame:BGCarnage": {
     "NAME": "Carnage",
     "DESCRIPTION": "Ethereal. NL !D! [BoardGame:HitIcon]"
+  },
+  "BoardGame:BGCarveReality": {
+    "NAME": "Carve Reality",
+    "DESCRIPTION": "Deal !M! [BoardGame:HitIcon] to one NL or two enemies."
   },
   "BoardGame:BGCatalyst": {
     "NAME": "Catalyst",
@@ -189,6 +206,11 @@
     "NAME": "Cold Snap",
     "DESCRIPTION": "!D! [BoardGame:HitIcon] NL boardgame:Channel 1 boardgame:Frost."
   },
+  "BoardGame:Collect": {
+    "NAME": "Collect",
+    "DESCRIPTION": "[BoardGame:MiracleIcon] [BoardGame:MiracleIcon] NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "[BoardGame:MiracleIcon] [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] NL Exhaust."
+  },
   "BoardGame:BGCombust": {
     "NAME": "Combust",
     "DESCRIPTION": "[#EFC851]Once [#EFC851]per [#EFC851]turn[]: NL Deal !M! damage to any row."
@@ -201,6 +223,19 @@
     "NAME": "Concentrate",
     "DESCRIPTION": "Discard any number of cards. Gain [G] for each card discarded. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Discard any number of cards. Gain [G] for each card discarded +!M!. NL Exhaust."
+  },
+  "BoardGame:BGConclude": {
+    "NAME": "Conclude",
+    "DESCRIPTION": "[BoardGame:AOEIcon] !D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon] NL You can't play additional cards this turn.",
+    "EXTENDED_DESCRIPTION": "[BoardGame:AOEIcon] !D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon] NL You can't play additional cards this turn."
+  },
+  "BoardGame:BGConjureBlade": {
+    "NAME": "Conjure Blade",
+    "DESCRIPTION": "Your starter Strikes deal X+!M! extra damage."
+  },
+  "BoardGame:BGConsecrate": {
+    "NAME": "Consecrate",
+    "DESCRIPTION": "[BoardGame:AOEIcon] !D! [BoardGame:HitIcon]"
   },
   "BoardGame:BGConsume": {
     "NAME": "Consume",
@@ -221,10 +256,23 @@
     "DESCRIPTION": "[BoardGame:PoisonIcon] [BoardGame:PoisonIcon] NL Attach to the target. When it dies, deal !BoardGame:SecondMagic! damage to its row and discard this card.",
     "UPGRADE_DESCRIPTION": "[BoardGame:PoisonIcon] [BoardGame:PoisonIcon] [BoardGame:PoisonIcon] NL Attach to the target. When it dies, deal !BoardGame:SecondMagic! damage to its row and discard this card."
   },
+  "BoardGame:BGCrescendo": {
+    "NAME": "Crescendo",
+    "DESCRIPTION": "Retain. NL Enter boardgame:Wrath. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Enter boardgame:Wrath. NL Draw 1 card. NL Exhaust."
+  },
   "BoardGame:BGCripplingCloud": {
     "NAME": "Crippling Cloud",
     "DESCRIPTION": "[BoardGame:AOEIcon] [BoardGame:PoisonIcon] [BoardGame:WeakIcon] NL Exhaust.",
     "UPGRADE_DESCRIPTION": "[BoardGame:AOEIcon] [BoardGame:PoisonIcon] [BoardGame:PoisonIcon] [BoardGame:WeakIcon] NL Exhaust."
+  },
+  "BoardGame:BGCrushJoints": {
+    "NAME": "Crush Joints",
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL If you're in boardgame:Wrath, [BoardGame:VulnIcon] ."
+  },
+  "BoardGame:BGCutThroughFate": {
+    "NAME": "Cut Through Fate",
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL Scry !M!. NL Draw 1 card."
   },
   "BoardGame:BGDaggerSpray": {
     "NAME": "Dagger Spray",
@@ -270,6 +318,11 @@
     "DESCRIPTION": "!B! [BoardGame:BlockIcon]",
     "UPGRADE_DESCRIPTION": "!B! [BoardGame:BlockIcon] to any player."
   },
+  "BoardGame:BGDefend_W": {
+    "NAME": "Defend",
+    "DESCRIPTION": "!B! [BoardGame:BlockIcon]",
+    "UPGRADE_DESCRIPTION": "!B! [BoardGame:BlockIcon] to any player."
+  },
   "BoardGame:BGDeflect": {
     "NAME": "Deflect",
     "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL +!M! [BoardGame:BlockIcon] if you have a [BoardGame:ShivIcon] ."
@@ -282,6 +335,20 @@
   "BoardGame:BGDemonForm": {
     "NAME": "Demon Form",
     "DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: NL Gain [BoardGame:StrIcon] ."
+  },
+  "BoardGame:BGDeusExMachina": {
+    "NAME": "Deus Ex Machina",
+    "DESCRIPTION": "[BoardGame:MiracleIcon] [BoardGame:MiracleIcon] NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "[BoardGame:MiracleIcon] [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] NL Exhaust."
+  },
+  "BoardGame:BGDevaForm": {
+    "NAME": "Deva Form",
+    "DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: [BoardGame:MiracleIcon]",
+    "UPGRADE_DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: [BoardGame:MiracleIcon] [BoardGame:MiracleIcon]"
+  },
+  "BoardGame:BGDevotion": {
+    "NAME": "Devotion",
+    "DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: Gain [BoardGame:MiracleIcon] and draw 1 card. NL Exhaust this card after !M! turns."
   },
   "BoardGame:BGDieDieDie": {
     "NAME": "Die Die Die",
@@ -353,6 +420,18 @@
     "NAME": "Electrodynamics",
     "DESCRIPTION": "boardgame:Lightning deals damage to any row instead of a single target. NL When played, NL boardgame:Channel !M! boardgame:Lightning."
   },
+  "BoardGame:BGEmptyBody": {
+    "NAME": "Empty Body",
+    "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL Enter boardgame:Neutral."
+  },
+  "BoardGame:BGEmptyFist": {
+    "NAME": "Empty Fist",
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL Enter boardgame:Neutral."
+  },
+  "BoardGame:BGEmptyMind": {
+    "NAME": "Empty Mind",
+    "DESCRIPTION": "Draw !M! cards. NL Enter boardgame:Neutral."
+  },
   "BoardGame:BGEntrench": {
     "NAME": "Entrench",
     "DESCRIPTION": "Double your [BoardGame:BlockIcon] . NL (Max block is 20 [BoardGame:BlockIcon] .) NL Exhaust.",
@@ -376,6 +455,10 @@
     "DESCRIPTION": "Draw 1 card. NL If you draw a Skill, NL !B! [BoardGame:BlockIcon] .",
     "UPGRADE_DESCRIPTION": "[BoardGame:BlockIcon] NL Draw 1 card."
   },
+  "BoardGame:BGEstablishment": {
+    "NAME": "Establishment",
+    "DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: Cards you Retained last turn cost !M! less [W] this turn."
+  },
   "BoardGame:BGEvolve": {
     "NAME": "Evolve",
     "DESCRIPTION": "Whenever you draw NL [BoardGame:DazedIcon] , [BoardGame:BurnIcon] , or [BoardGame:SlimedIcon] , draw 1 card."
@@ -384,6 +467,10 @@
     "NAME": "Shiv",
     "DESCRIPTION": "Deal !D! damage. NL For debug purposes only. In the Board Game, boardgame:Shivs are tokens, not cards.",
     "UPGRADE_DESCRIPTION": "Deal !D! damage. NL For debug purposes only. You can't upgrade boardgame:Shivs in the Board Game."
+  },
+  "BoardGame:BGFearNoEvil": {
+    "NAME": "Fear No Evil",
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL If you're in boardgame:Wrath, NL enter boardgame:Calm."
   },
   "BoardGame:BGFeed": {
     "NAME": "Feed",
@@ -445,6 +532,16 @@
     "DESCRIPTION": "Gain [BoardGame:StrIcon] . Lose that [BoardGame:StrIcon] at end of turn. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Gain [BoardGame:StrIcon] . Lose that [BoardGame:StrIcon] at end of turn."
   },
+  "BoardGame:BGFlurryOfBlows": {
+    "NAME": "Flurry of Blows",
+    "DESCRIPTION": "!D! [HitIcon] NL Deals an additional NL !D! [HitIcon] if you switched Stances this turn.",
+    "UPGRADE_DESCRIPTION": "!D! [HitIcon] NL Deals an additional NL !D! [HitIcon] !D! [HitIcon] if you switched Stances this turn."
+  },
+  "BoardGame:BGFlyingSleeves": {
+    "NAME": "Flying Sleeves",
+    "DESCRIPTION": "Retain. NL !D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon]",
+    "UPGRADE_DESCRIPTION": "Retain. NL !D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon]"
+  },
   "BoardGame:BGFootwork": {
     "NAME": "Footwork",
     "DESCRIPTION": "Each [BoardGame:BlockIcon] on your Attacks and Skills gets +1 Block.",
@@ -453,6 +550,18 @@
   "BoardGame:BGForceField": {
     "NAME": "Force Field",
     "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL Costs 1 less [B] for each Power you have in play."
+  },
+  "BoardGame:BGForeign Influence": {
+    "NAME": "Foreign Influence",
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL - or - Play a copy of the last Attack played by another player this turn.",
+    "EXTENDED_DESCRIPTION": [
+      " NL (Play",
+      ".)"
+    ]
+  },
+  "BoardGame:BGForesight": {
+    "NAME": "Foresight",
+    "DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[], NL before you draw: NL Scry !M!."
   },
   "BoardGame:BGFTL":{
     "NAME": "FTL",
@@ -501,6 +610,10 @@
     "NAME": "Golden Ticket",
     "DESCRIPTION": "Golden Ticket can't be added to your deck. When you reveal Golden Ticket, reveal a card from your rare deck."
   },
+  "BoardGame:BGHalt": {
+    "NAME": "Halt",
+    "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL +!M! [BoardGame:BlockIcon] if you're in boardgame:Wrath."
+  },
   "BoardGame:BGHandOfGreed": {
     "NAME": "Hand of Greed",
     "DESCRIPTION": "!D! [BoardGame:HitIcon] NL +!M! damage if you have 10 or more Gold."
@@ -540,6 +653,11 @@
     "NAME": "Impervious",
     "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL Exhaust."
   },
+  "BoardGame:BGIndignation": {
+    "NAME": "Indignation",
+    "DESCRIPTION": "If you're in boardgame:Wrath, [BoardGame:VulnIcon] . NL Otherwise, enter boardgame:Wrath.",
+    "UPGRADE_DESCRIPTION": "If you're in boardgame:Wrath, [BoardGame:AOEIcon] [BoardGame:VulnIcon] . NL Otherwise, enter boardgame:Wrath."
+  },
   "BoardGame:BGInfinite Blades": {
     "NAME": "Infinite Blades",
     "DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: NL [BoardGame:ShivIcon]",
@@ -548,6 +666,10 @@
   "BoardGame:BGInflame": {
     "NAME": "Inflame",
     "DESCRIPTION": "When played, gain [BoardGame:StrIcon] ."
+  },
+  "BoardGame:BGInnerPeace": {
+    "NAME": "Inner Peace",
+    "DESCRIPTION": "If you're in boardgame:Calm, NL draw !M! cards. NL Otherwise, enter boardgame:Calm."
   },
   "BoardGame:BGIron Wave": {
     "NAME": "Iron Wave",
@@ -562,9 +684,18 @@
     "NAME": "Shield",
     "DESCRIPTION": "!D! [BoardGame:HitIcon] !B! [BoardGame:BlockIcon]"
   },
+  "BoardGame:BGJudgment": {
+    "NAME": "Judgment",
+    "DESCRIPTION": "Ethereal. NL Choose an enemy. NL If they have 7 HP or less, set their HP to 0.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Choose an enemy. NL If they have 7 HP or less, set their HP to 0."
+  },
   "BoardGame:BGJuggernaut": {
     "NAME": "Juggernaut",
     "DESCRIPTION": "Whenever you gain [BoardGame:BlockIcon] , deal !M! damage."
+  },
+  "BoardGame:BGJustLucky": {
+    "NAME": "Just Lucky",
+    "DESCRIPTION": "[BoardGame:Die1Icon] [BoardGame:Die2Icon] [BoardGame:Die3Icon] !D! [BoardGame:HitIcon] Scry !M!. NL [BoardGame:Die4Icon] [BoardGame:Die5Icon] [BoardGame:Die6Icon] !D! [BoardGame:HitIcon] !B! [BoardGame:BlockIcon]    "
   },
   "BoardGame:BGLeap": {
     "NAME": "Leap",
@@ -573,6 +704,10 @@
   "BoardGame:BGLeg Sweep": {
     "NAME": "Leg Sweep",
     "DESCRIPTION": "[BoardGame:WeakIcon] NL !B! [BoardGame:BlockIcon]"
+  },
+  "BoardGame:BGLikeWater": {
+    "NAME": "Like Water",
+    "DESCRIPTION": "[#EFC851]End [#EFC851]of [#EFC851]turn[]: NL If you're in boardgame:Calm, !B! [BoardGame:BlockIcon] ."
   },
   "BoardGame:BGLimitBreak": {
     "NAME": "Limit Break",
@@ -589,7 +724,8 @@
     "DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: NL Draw a card."
   },
   "BoardGame:BGMadness": {
-    "NAME": "Madness",    "DESCRIPTION": "The next card you play this turn costs 0. NL Exhaust.",
+    "NAME": "Madness",
+    "DESCRIPTION": "The next card you play this turn costs 0. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Retain. NL The next card you play this turn costs 0. NL Exhaust."
   },
   "BoardGame:BGMalaise": {
@@ -605,9 +741,18 @@
     "NAME": "Mayhem",
     "DESCRIPTION": "[#EFC851]Once [#EFC851]per [#EFC851]turn[]: NL Draw a card. NL Immediately play it for 0 Energy."
   },
+  "BoardGame:BGMeditate": {
+    "NAME": "Meditate",
+    "DESCRIPTION": "Put !M! card from your discard pile into your hand and Retain it. NL Enter boardgame:Calm. NL You can't play additional cards this turn.",
+    "EXTENDED_DESCRIPTION": "Put !M! cards from your discard pile into your hand and Retain them. NL Enter boardgame:Calm. NL You can't play additional cards this turn."
+  },
   "BoardGame:BGMelter": {
     "NAME": "Melter",
     "DESCRIPTION": "First remove all [BoardGame:BlockIcon] from the target. NL !D! [BoardGame:HitIcon]"
+  },
+  "BoardGame:BGMentalFortress": {
+    "NAME": "Mental Fortress",
+    "DESCRIPTION": "Whenever you switch Stances, !B! [BoardGame:BlockIcon] ."
   },
   "BoardGame:BGMetallicize": {
     "NAME": "Metallicize",
@@ -641,6 +786,10 @@
       "Once per combat, make #b2 free Attacks for #b1 damage each."
     ]
   },
+  "BoardGame:BGNirvana": {
+    "NAME": "Nirvana",
+    "DESCRIPTION": "Whenever you Scry, NL !M! [BoardGame:BlockIcon]."
+  },
   "BoardGame:BGNoxiousFumes": {
     "NAME": "Noxious Fumes",
     "DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: NL [BoardGame:PoisonIcon]",
@@ -650,6 +799,14 @@
     "NAME": "Offering",
     "DESCRIPTION": "Lose 1 HP. NL Gain [R] [R]. NL Draw !M! cards. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Lose 1 HP. NL Gain [R] [R]. NL Draw !M! cards. NL Exhaust."
+  },
+  "BoardGame:BGOmega": {
+    "NAME": "Omega",
+    "DESCRIPTION": "[#EFC851]End [#EFC851]of [#EFC851]turn[]: NL Deal !M! damage to any row."
+  },
+  "BoardGame:BGOmniscience": {
+    "NAME": "Omniscience",
+    "DESCRIPTION": "Search your draw pile for an Attack or Skill. Play the card twice for 0 Energy and Exhaust it. Shuffle your draw pile. NL Exhaust."
   },
   "BoardGame:BGOutmaneuver": {
     "NAME": "Outmaneuver",
@@ -682,6 +839,10 @@
     "DESCRIPTION": "!D! [BoardGame:HitIcon] NL +!M! damage for each other card in your hand containing \"Strike\".",
     "UPGRADE_DESCRIPTION": "!D! [BoardGame:HitIcon] NL +!M! damage for each other card in your hand containing \"Strike\"."
   },
+  "BoardGame:BGPerseverance": {
+    "NAME": "Perseverance",
+    "DESCRIPTION": "Retain. NL !B! [BoardGame:BlockIcon] NL +!M! [BoardGame:BlockIcon] if this was Retained last turn."
+  },
   "BoardGame:BGPiercingWail": {
     "NAME": "Piercing Wail",
     "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL [BoardGame:AOEIcon] [BoardGame:WeakIcon] NL Exhaust."
@@ -700,13 +861,31 @@
     "NAME": "Power Through",
     "DESCRIPTION": "!B! [BoardGame:BlockIcon] to any player. NL [BoardGame:DazedIcon]"
   },
+  "BoardGame:BGPray": {
+    "NAME": "Pray",
+    "DESCRIPTION": "[BoardGame:MiracleIcon] NL Draw 2 cards. NL You can't draw additional cards this turn.",
+    "UPGRADE_DESCRIPTION": "[BoardGame:MiracleIcon] [BoardGame:MiracleIcon] NL Draw 2 cards. NL You can't draw additional cards this turn."
+  },
   "BoardGame:BGPredator": {
     "NAME": "Predator",
     "DESCRIPTION": "!D! [BoardGame:HitIcon] NL Any player draws !M! cards."
   },
+  "BoardGame:BGProstrate": {
+    "NAME": "Prostrate",
+    "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL [BoardGame:MiracleIcon]"
+  },
+  "BoardGame:BGProtect": {
+    "NAME": "Protect",
+    "DESCRIPTION": "Retain. NL !B! [BoardGame:BlockIcon] to any player."
+  },
   "BoardGame:BGRage": {
     "NAME": "Rage",
     "DESCRIPTION": "!B! [BoardGame:BlockIcon] for each Attack in your hand."
+  },
+  "BoardGame:BGRagnarok": {
+    "NAME": "Ragnarok",
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon] NL Each [BoardGame:HitIcon] can have a different target.",
+    "UPGRADE_DESCRIPTION": "!D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon] NL !D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon] NL Each [BoardGame:HitIcon] can have a different target."
   },
   "BoardGame:BGRainbow": {
     "NAME": "Rainbow",
@@ -721,6 +900,10 @@
       " NL (Deals !D! damage.)",
       " NL (Deals at least !D! damage.)"
     ]
+  },
+  "BoardGame:BGReachHeaven": {
+    "NAME": "Reach Heaven",
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL +!M! damage for each [BoardGame:MiracleIcon] you have."
   },
   "BoardGame:BGRecursion": {
     "NAME": "Recursion",
@@ -763,13 +946,30 @@
     "NAME": "Rupture",
     "DESCRIPTION": "Gain [BoardGame:StrIcon] . NL Lose 1 HP."
   },
+  "BoardGame:BGRushdown": {
+    "NAME": "Rushdown",
+    "DESCRIPTION": "The first time you enter boardgame:Wrath each turn, draw !M! cards."
+  },
   "BoardGame:BGSadisticNature": {
     "NAME": "Sadistic Nature",
     "DESCRIPTION": "Whenever you put a token on an enemy, deal !M! damage to that enemy."
   },
+  "BoardGame:BGSandsOfTime": {
+    "NAME": "Sands of Time",
+    "DESCRIPTION": "Retain. NL !D! [BoardGame:HitIcon] NL +!M! damage for each other card with Retain in your hand."
+  },
+  "BoardGame:BGSashWhip": {
+    "NAME": "Sash Whip",
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL If you're in boardgame:Calm, [BoardGame:WeakIcon] .",
+    "EXTENDED_DESCRIPTION": "!D! [BoardGame:HitIcon] NL If you're in boardgame:Calm, NL [BoardGame:WeakIcon] [BoardGame:WeakIcon] ."
+  },
   "BoardGame:BGScrape": {
     "NAME": "Scrape",
     "DESCRIPTION": "!D! [BoardGame:HitIcon] NL If the topmost card in your discard pile costs 0, return it to your hand."
+  },
+  "BoardGame:BGScrawl": {
+    "NAME": "Scrawl",
+    "DESCRIPTION": "Draw 5 cards. NL Exhaust."
   },
   "BoardGame:BGSecondWind": {
     "NAME": "Second Wind",
@@ -821,6 +1021,14 @@
     "DESCRIPTION": "Deal !D! [BoardGame:HitIcon] NL X+1 times.",
     "UPGRADE_DESCRIPTION": "Deal !D! [BoardGame:HitIcon] X times."
   },
+  "BoardGame:BGSignatureMove": {
+    "NAME": "Signature Move",
+    "DESCRIPTION": "Can only be played if this is the only Attack in your hand. NL !D! [BoardGame:HitIcon]"
+  },
+  "BoardGame:BGSimmeringFury": {
+    "NAME": "Simmering Fury",
+    "DESCRIPTION": "Your [BoardGame:HitIcon] deal +!M! additional damage while in boardgame:Wrath."
+  },
   "BoardGame:BGSlice": {
     "NAME": "Slice",
     "DESCRIPTION": "!D! [BoardGame:HitIcon] NL +!M! damage if you have a [BoardGame:ShivIcon] ."
@@ -863,6 +1071,11 @@
     "NAME": "Skim",
     "DESCRIPTION": "Draw !M! cards."
   },
+  "BoardGame:BGSpiritShield": {
+    "NAME": "Spirit Shield",
+    "DESCRIPTION": "!B! [BoardGame:BlockIcon] for each card in your hand. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "!B! [BoardGame:BlockIcon] for each card in your hand."
+  },
   "BoardGame:BGStack": {
     "NAME": "Stack",
     "DESCRIPTION": "X [BoardGame:BlockIcon] to any player. NL X is how many Orbs you have.",
@@ -892,6 +1105,14 @@
     "NAME": "Strike",
     "DESCRIPTION": "!D! [BoardGame:HitIcon]"
   },
+  "BoardGame:BGStrike_W": {
+    "NAME": "Strike",
+    "DESCRIPTION": "!D! [BoardGame:HitIcon]"
+  },
+  "BoardGame:BGStudy": {
+    "NAME": "Study",
+    "DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: NL If you're in boardgame:Calm, draw 2 cards."
+  },
   "BoardGame:BGSurvivor": {
     "NAME": "Survivor",
     "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL Discard 1 card."
@@ -899,6 +1120,11 @@
   "BoardGame:BGSweepingBeam": {
     "NAME": "Sweeping Beam",
     "DESCRIPTION": "[BoardGame:AOEIcon] !D! [BoardGame:HitIcon] NL Draw a card."
+  },
+  "BoardGame:BGSwivel": {
+    "NAME": "Swivel",
+    "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL The next Attack you play this turn costs 0.",
+    "UPGRADE_DESCRIPTION": "!B! [BoardGame:BlockIcon] to any player. NL The next Attack you play this turn costs 0."
   },
   "BoardGame:BGTactician": {
     "NAME": "Tactician",
@@ -908,15 +1134,28 @@
       "I can't play this card."
     ]
   },
+  "BoardGame:BGTantrum": {
+    "NAME": "Tantrum",
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL Enter boardgame:Wrath. NL Put this card on top of your draw pile.",
+    "UPGRADE_DESCRIPTION": "!D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon] NL Enter boardgame:Wrath. NL Put this card on top of your draw pile."
+  },
   "BoardGame:BGTempest": {
     "NAME": "Tempest",
     "DESCRIPTION": "boardgame:Channel X boardgame:Lightning. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "boardgame:Channel X+1 boardgame:Lightning. NL Exhaust."
   },
+  "BoardGame:BGTalkToTheHand": {
+    "NAME": "Talk to the Hand",
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL !B! [BoardGame:BlockIcon] for each [BoardGame:MiracleIcon] you have."
+  },
   "BoardGame:BGTerror": {
     "NAME": "Terror",
     "DESCRIPTION": "[BoardGame:VulnIcon] NL Exhaust.",
     "UPGRADE_DESCRIPTION": "[BoardGame:VulnIcon]"
+  },
+  "BoardGame:BGTranquility": {
+    "NAME": "Tranquility",
+    "DESCRIPTION": "Retain. NL Enter boardgame:Calm. NL Exhaust."
   },
   "BoardGame:BGThe Bomb": {
     "NAME": "The Bomb",
@@ -925,6 +1164,10 @@
   "BoardGame:BGThinking Ahead": {
     "NAME": "Thinking Ahead",
     "DESCRIPTION": "Draw !M! cards. NL Then put a card from your hand on top of your draw pile. NL Exhaust."
+  },
+  "BoardGame:BGThirdEye": {
+    "NAME": "Third Eye",
+    "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL Scry !M!."
   },
   "BoardGame:BGThunderStrike": {
     "NAME": "Thunder Strike",
@@ -962,14 +1205,30 @@
     "DESCRIPTION": "!D! [BoardGame:HitIcon] [BoardGame:VulnIcon] [BoardGame:WeakIcon]",
     "UPGRADE_DESCRIPTION": "!D! [BoardGame:HitIcon] [BoardGame:VulnIcon] [BoardGame:VulnIcon] [BoardGame:WeakIcon]"
   },
+  "BoardGame:BGVigilance": {
+    "NAME": "Vigilance",
+    "DESCRIPTION": "!B! [BoardGame:BlockIcon] to any player. NL Enter boardgame:Calm."
+  },
   "BoardGame:BGVoidCard": {
     "NAME": "Void",
     "DESCRIPTION": "Exhaust. NL This card automatically plays when drawn."
+  },
+  "BoardGame:BGVault": {
+    "NAME": "Vault",
+    "DESCRIPTION": "Discard all cards without Retain. Draw 5 cards. Gain [W] [W] [W] . NL Exhaust."
+  },
+  "BoardGame:BGWallop": {
+    "NAME": "Wallop",
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL Gain [BoardGame:BlockIcon] equal to the unblocked damage dealt."
   },
   "BoardGame:BGWarcry": {
     "NAME": "Warcry",
     "DESCRIPTION": "Draw !M! cards. NL Then put a card from your hand onto the top of your draw pile. NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Draw !M! cards. NL Then put a card from your hand onto the top of your draw pile. NL Exhaust."
+  },
+  "BoardGame:BGWeave": {
+    "NAME": "Weave",
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL If you would discard this card while boardgame:Scrying, instead play it and it deals +!M! damage."
   },
   "BoardGame:BGWellLaidPlans": {
     "NAME": "Well Laid Plans",
@@ -985,9 +1244,28 @@
     "NAME": "Wild Strike",
     "DESCRIPTION": "!D! [BoardGame:HitIcon] NL [BoardGame:DazedIcon]"
   },
+  "BoardGame:BGWindmillStrike": {
+    "NAME": "Windmill Strike",
+    "DESCRIPTION": "Retain. NL !D! [BoardGame:HitIcon] NL +!M! damage if this was Retained last turn."
+  },
+  "BoardGame:BGWish": {
+    "NAME": "Wish",
+    "DESCRIPTION": "Choose one: NL Gain [BoardGame:StrIcon], !B! [BoardGame:BlockIcon], or NL [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] . NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Choose one: NL Gain [BoardGame:StrIcon] [BoardGame:StrIcon], !B! [BoardGame:BlockIcon], or NL [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] . NL Exhaust."
+  },
+  "BoardGame:BGWorship": {
+    "NAME": "Worship",
+    "DESCRIPTION": "Gain X+1 [BoardGame:MiracleIcon] . NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Gain X+1 [BoardGame:MiracleIcon] . NL Exhaust."
+  },
   "BoardGame:BGWraithForm": {
     "NAME": "Wraith Form",
     "DESCRIPTION": "You can't lose more than 1 HP per round. NL After !M! rounds, Exhaust this card."
+  },
+  "BoardGame:BGWreathOfFlame": {
+    "NAME": "Wreath of Flame",
+    "DESCRIPTION": "Gain X [BoardGame:StrIcon] . Lose X [BoardGame:StrIcon] at end of turn. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Gain X [BoardGame:StrIcon] . Lose X [BoardGame:StrIcon] at end of turn."
   },
   "BoardGame:BGWrithe": {
     "NAME": "Writhe",

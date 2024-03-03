@@ -120,6 +120,21 @@
     "DESCRIPTION": "Gain [W] [W] when you leave #yCalm."
   },
   {
+    "PROPER_NAME": "Neutral",
+    "NAMES": [
+      "neutral"
+    ],
+    "DESCRIPTION": "Exit your #yStance."
+  },
+  {
+    "PROPER_NAME": "Scry",
+    "NAMES": [
+      "scry",
+      "scrying"
+    ],
+    "DESCRIPTION": "Look at the top X cards of your draw pile. You may discard any of them."
+  },
+  {
     "NAMES": [
       "keyword",
       "keywords"
