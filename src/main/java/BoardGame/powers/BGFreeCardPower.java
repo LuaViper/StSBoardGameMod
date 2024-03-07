@@ -13,12 +13,9 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
-//TODO: are you allowed to duplicate Madness in the BG?
-
 public class BGFreeCardPower extends AbstractBGPower {
     public static final String POWER_ID = "BGFreeCardPower";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGFreeCardPower");
-
     public BGFreeCardPower(AbstractCreature owner, int amount) {
         this.name = powerStrings.NAME;
         this.ID = "BGFreeCardPower";
@@ -28,7 +25,12 @@ public class BGFreeCardPower extends AbstractBGPower {
         loadRegion("swivel");
     }
 
-
+    //TODO: are we or are we not allowed to duplicate Madness in the BG?
+    public void stackPower(int stackAmount) {
+        this.fontScale = 8.0F;
+        this.amount += stackAmount;
+        if(this.amount>1)this.amount=1;
+    }
     public void updateDescription() {
         if (this.amount == 1) {
             this.description = powerStrings.DESCRIPTIONS[0];
@@ -52,6 +54,15 @@ public class BGFreeCardPower extends AbstractBGPower {
     public void atEndOfTurn(boolean isPlayer) {
         //TODO: is this supposed to flash here?  some powers flash here
         addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner, this.owner, "BGFreeCardPower"));
+    }
+
+    public static boolean isActive(){
+        if (AbstractDungeon.player != null && AbstractDungeon.currMapNode != null &&
+                (AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT &&
+                AbstractDungeon.player.hasPower("BGFreeCardPower")) {
+            return true;
+        }
+        return false;
     }
 
     @SpirePatch2(clz=AbstractCard.class, method="freeToPlay", paramtypez={})

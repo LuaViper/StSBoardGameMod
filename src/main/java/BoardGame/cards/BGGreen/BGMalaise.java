@@ -6,6 +6,7 @@ import BoardGame.actions.BGMalaiseAction;
 import BoardGame.actions.BGXCostCardAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGSilent;
+import BoardGame.powers.BGFreeCardPower;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
@@ -33,22 +34,9 @@ public class BGMalaise extends AbstractBGCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int minEnergy=0;
-        if(this.isCostModifiedForTurn){
-            minEnergy=this.costForTurn;
-            this.energyOnUse=this.costForTurn;
-        }
-        if(this.freeToPlay()){
-            this.energyOnUse=0;
-        }
-        if(this.ignoreEnergyOnUse){
-            this.energyOnUse=0;
-        }
-        if(this.copiedCardEnergyOnUse!=-99){
-            this.energyOnUse=this.copiedCardEnergyOnUse;
-        }
-        addToTop((AbstractGameAction)new BGXCostCardAction(this, minEnergy, this.energyOnUse,
-                (e)->addToTop((AbstractGameAction)new BGMalaiseAction(p, m, this.freeToPlayOnce, e, this.magicNumber))));
+        BGXCostCardAction.XCostInfo info = BGXCostCardAction.preProcessCard(this);
+        addToTop((AbstractGameAction)new BGXCostCardAction(this, info,
+                (e,d)->addToTop((AbstractGameAction)new BGMalaiseAction(p, m, d, e, this.magicNumber))));
     }
 
     public void upgrade() {

@@ -5,6 +5,7 @@ import BoardGame.actions.BGTempestAction;
 import BoardGame.actions.BGXCostCardAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
+import BoardGame.powers.BGFreeCardPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,6 +13,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 
 public class BGReinforcedBody extends AbstractBGCard {
     //TODO: there are almost certainly uncaught bugs related to this card; playtest thoroughly
@@ -39,13 +41,15 @@ public class BGReinforcedBody extends AbstractBGCard {
                 this.cantUseMessage = cardStrings.EXTENDED_DESCRIPTION[0];
                 return false;
             }
-            if ((this.ignoreEnergyOnUse || this.isInAutoplay) && (this.copiedCardEnergyOnUse == -99 || this.copiedCardEnergyOnUse==0)){
-                //if (AbstractDungeon.player.energy.energy <= 0) {
-                    this.cantUseMessage = cardStrings.EXTENDED_DESCRIPTION[0];
-                    return false;
-                //}
+            if ((this.ignoreEnergyOnUse || this.isInAutoplay) && (this.copiedCardEnergyOnUse<=0)){
+                this.cantUseMessage = cardStrings.EXTENDED_DESCRIPTION[0];
+                return false;
             }
             if (this.freeToPlay()){
+                this.cantUseMessage = cardStrings.EXTENDED_DESCRIPTION[0];
+                return false;
+            }
+            if(EnergyPanel.totalCount<=0){
                 this.cantUseMessage = cardStrings.EXTENDED_DESCRIPTION[0];
                 return false;
             }
@@ -55,26 +59,12 @@ public class BGReinforcedBody extends AbstractBGCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int minEnergy=0;
-        if(this.isCostModifiedForTurn){
-            minEnergy=this.costForTurn;
-            this.energyOnUse=this.costForTurn;
-        }
-        if(!this.upgraded) {
-            if (minEnergy < 1) minEnergy = 1;
-            if(p.energy.energy<1)return;    //TODO: is this safe to use here?
-        }
-        if(this.freeToPlay()){
-            this.energyOnUse=0;
-        }
-        if(this.ignoreEnergyOnUse){
-            this.energyOnUse=0;
-        }
-        if(this.copiedCardEnergyOnUse!=-99){
-            this.energyOnUse=this.copiedCardEnergyOnUse;
+        BGXCostCardAction.XCostInfo info = BGXCostCardAction.preProcessCard(this);
+        if (!upgraded) {
+            info.minEnergy = 1;
         }
 
-        addToBot((AbstractGameAction)new BGReinforcedBodyEnergyCheckAction(p,this,minEnergy,energyOnUse,freeToPlayOnce,upgraded,this.block));
+        addToBot((AbstractGameAction)new BGReinforcedBodyEnergyCheckAction(p,this,info,upgraded,this.block));
     }
 
     public void upgrade() {

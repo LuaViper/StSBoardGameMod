@@ -1,10 +1,8 @@
 package BoardGame.cards.BGGreen;
 
 import BoardGame.cards.AbstractBGCard;
-import BoardGame.cards.BGColorless.BGFakeShiv;
 import BoardGame.characters.BGSilent;
 import BoardGame.powers.BGAccuracyPower;
-import BoardGame.powers.BGDexterityPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -28,7 +26,7 @@ public class BGAccuracy extends AbstractBGCard {
         super("BGAccuracy", cardStrings.NAME, "green/power/accuracy", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.POWER, BGSilent.Enums.BG_GREEN, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.SELF);
         this.baseMagicNumber = 1;
         this.magicNumber = this.baseMagicNumber;
-        //this.cardsToPreview = (AbstractCard)new BGFakeShiv(); //TODO LATER: make this work
+        //this.cardsToPreview = (AbstractCard)new BGShivSurrogate(); //TODO LATER: make this work
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

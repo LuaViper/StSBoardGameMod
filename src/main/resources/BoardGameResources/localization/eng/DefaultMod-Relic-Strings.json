@@ -106,7 +106,7 @@
   },
   "BGCalipers": {
     "NAME": "Calipers",
-    "FLAVOR": "\"Mechanical precision leads to greatness\" - The Architect",
+    "FLAVOR": "\"These would be good here.\"",
     "DESCRIPTIONS": [
       "#yOnce #yper #ycombat: NL Keep your leftover #yBlock [BoardGame:BlockIcon] from last turn. NL (Gain #b",
       " Block.)"
@@ -328,6 +328,13 @@
     "FLAVOR": "An enchanted hourglass that endlessly drips.",
     "DESCRIPTIONS": [
       "[BoardGame:Die1Icon] [BoardGame:Die2Icon] NL Deal 1 damage to any row."
+    ]
+  },
+  "BoardGame:BGMiracles": {
+    "NAME": "Miracles",
+    "FLAVOR": "\"Let me tell you about the time I played Conjure Blade+ for 11 Energy...\"",
+    "DESCRIPTIONS": [
+      "Holds up to five [BoardGame:MiracleIcon] generated during combat. #bRight-Click to use them to gain [W] or save them up to pay for cost #bX cards."
     ]
   },
   "BGMolten Egg 2": {

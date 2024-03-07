@@ -1,16 +1,12 @@
 package BoardGame.actions;
 
 import BoardGame.BoardGame;
-import BoardGame.cards.BGColorless.BGFakeShiv;
-import BoardGame.powers.BGTrigger2DieAbilityPower;
-import BoardGame.powers.BGTriggerAnyDieAbilityPower;
-import BoardGame.powers.NilrysCodexCompatible;
+import BoardGame.cards.AbstractBGCard;
+import BoardGame.cards.BGColorless.BGShivSurrogate;
 import BoardGame.relics.DieControlledRelic;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.HandCheckAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -22,12 +18,12 @@ public class CheckAfterUseCardAction
             extends AbstractGameAction {
     private DamageInfo info;
     private DieControlledRelic relic = null;
-    private BGFakeShiv fakeShiv = new BGFakeShiv();
-    private UseCardAction fakeShivAction = new UseCardAction(fakeShiv, target);
+    private AbstractBGCard fakeCard = new BGShivSurrogate();
+    private UseCardAction fakeCardAction = new UseCardAction(fakeCard, target);
 
-    public CheckAfterUseCardAction(BGFakeShiv fakeShiv, UseCardAction fakeShivAction) {
-        this.fakeShiv = fakeShiv;
-        this.fakeShivAction = fakeShivAction;
+    public CheckAfterUseCardAction(AbstractBGCard fakeCard, UseCardAction fakeCardAction) {
+        this.fakeCard = fakeCard;
+        this.fakeCardAction = fakeCardAction;
     }
 
     public void update() {
@@ -35,13 +31,13 @@ public class CheckAfterUseCardAction
         logger.info("CheckAfterUseCardAction activates");
 
         for (AbstractPower p : AbstractDungeon.player.powers) {
-            if (!fakeShiv.dontTriggerOnUseCard)
-                p.onAfterUseCard(fakeShiv, fakeShivAction);
+            if (!fakeCard.dontTriggerOnUseCard)
+                p.onAfterUseCard(fakeCard, fakeCardAction);
         }
         for (AbstractMonster m : (AbstractDungeon.getMonsters()).monsters) {
             for (AbstractPower p : m.powers) {
-                if (!fakeShiv.dontTriggerOnUseCard)
-                    p.onAfterUseCard(fakeShiv, fakeShivAction);
+                if (!fakeCard.dontTriggerOnUseCard)
+                    p.onAfterUseCard(fakeCard, fakeCardAction);
             }
         }
         addToBot(new HandCheckAction());

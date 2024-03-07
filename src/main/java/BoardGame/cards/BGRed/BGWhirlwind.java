@@ -9,6 +9,7 @@ import BoardGame.actions.BGXCostCardAction;
 import BoardGame.characters.BGIronclad;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.monsters.DieControlledMoves;
+import BoardGame.powers.BGFreeCardPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -35,23 +36,10 @@ public class BGWhirlwind extends AbstractBGCard {
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int minEnergy=0;
-        if(this.isCostModifiedForTurn){
-            minEnergy=this.costForTurn;
-            this.energyOnUse=this.costForTurn;
-        }
-        if(this.freeToPlay()){
-            this.energyOnUse=0;
-        }
-        if(this.ignoreEnergyOnUse){
-            this.energyOnUse=0;
-        }
-        if(this.copiedCardEnergyOnUse!=-99){
-            this.energyOnUse=this.copiedCardEnergyOnUse;
-        }
+        BGXCostCardAction.XCostInfo info = BGXCostCardAction.preProcessCard(this);
 
-        addToTop((AbstractGameAction)new BGXCostCardAction(this, minEnergy, this.energyOnUse,
-                (e)->addToTop((AbstractGameAction)new BGWhirlwindAction(AbstractDungeon.player, this.multiDamage, this.damageTypeForTurn, this.freeToPlayOnce, e,this.magicNumber))));
+        addToTop((AbstractGameAction)new BGXCostCardAction(this, info,
+                (e,d)->addToTop((AbstractGameAction)new BGWhirlwindAction(AbstractDungeon.player, this.multiDamage, this.damageTypeForTurn, d, e, this.magicNumber))));
     }
 
 

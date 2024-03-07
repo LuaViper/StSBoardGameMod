@@ -17,6 +17,8 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
+//TODO: should this card glow, or is it obvious enough?
+
 public class BGDeflect extends AbstractBGCard {
     public static final String ID = "BGDeflect";
 

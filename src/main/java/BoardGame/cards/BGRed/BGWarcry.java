@@ -40,9 +40,6 @@ public class BGWarcry extends AbstractBGCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot((AbstractGameAction)new VFXAction((AbstractCreature)p, (AbstractGameEffect)new ShockWaveEffect(p.hb.cX, p.hb.cY, Settings.RED_TEXT_COLOR, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.5F));
 
-
-
-
         addToBot((AbstractGameAction)new DrawCardAction((AbstractCreature)p, this.magicNumber));
         addToBot((AbstractGameAction)new PutOnDeckAction((AbstractCreature)p, (AbstractCreature)p, 1, false));
     }

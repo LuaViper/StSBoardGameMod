@@ -24,7 +24,7 @@ public class BGWhirlwindAction
 
     private static final Logger logger = LogManager.getLogger(BGWhirlwind.class.getName());
     public int[] multiDamage;
-    private boolean freeToPlayOnce = false;
+    private boolean dontExpendResources = false;
     private int energyOnUse = -1;
     private int extrahits=0;
 
@@ -33,10 +33,10 @@ public class BGWhirlwindAction
     private AbstractPlayer p;
 
 
-    public BGWhirlwindAction(AbstractPlayer p, int[] multiDamage, DamageInfo.DamageType damageType, boolean freeToPlayOnce, int energyOnUse, int extrahits) {
+    public BGWhirlwindAction(AbstractPlayer p, int[] multiDamage, DamageInfo.DamageType damageType, boolean dontExpendResources, int energyOnUse, int extrahits) {
         this.p = p;
         this.multiDamage=multiDamage;
-        this.freeToPlayOnce = freeToPlayOnce;
+        this.dontExpendResources = dontExpendResources;
         this.duration = Settings.ACTION_DUR_XFAST;
         this.actionType = ActionType.SPECIAL;
         this.energyOnUse = energyOnUse;
@@ -70,7 +70,7 @@ public class BGWhirlwindAction
                 }
             }
             //logger.info("BGWhirlwindAction: subtract energy "+this.energyOnUse);
-            if (!this.freeToPlayOnce) {
+            if (!this.dontExpendResources) {
                 this.p.energy.use(this.energyOnUse);
             }
         }else{

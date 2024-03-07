@@ -5,9 +5,15 @@ import BoardGame.cards.BGBlue.BGDefend_Blue;
 import BoardGame.cards.BGBlue.BGDualcast;
 import BoardGame.cards.BGBlue.BGStrike_Blue;
 import BoardGame.cards.BGBlue.BGZap;
+import BoardGame.cards.BGPurple.BGDefend_W;
+import BoardGame.cards.BGPurple.BGEruption;
+import BoardGame.cards.BGPurple.BGStrike_W;
+import BoardGame.cards.BGPurple.BGVigilance;
 import BoardGame.relics.BGCrackedCore;
+import BoardGame.relics.BGMiracles;
 import BoardGame.relics.BGTheDieRelic;
 import basemod.BaseMod;
+import basemod.abstracts.CustomEnergyOrb;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -31,6 +37,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
+import com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbPurple;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,6 +46,7 @@ import java.util.ArrayList;
 import java.util.List;
 
 import static BoardGame.BoardGame.*;
+import static com.megacrit.cardcrawl.helpers.ImageMaster.PURPLE_ORB_FLASH_VFX;
 
 //Wiki-page https://github.com/daviscook477/BaseMod/wiki/Custom-Characters
 //and https://github.com/daviscook477/BaseMod/wiki/Migrating-to-5.0
@@ -85,34 +93,21 @@ public class BGWatcher extends AbstractBGCharacter {
 
     // =============== TEXTURES OF BIG ENERGY ORB ===============
 
-//    public static final String[] orbTextures = {
-//            "BoardGameResources/images/char/theWatcher/orb/layer1.png",
-//            "BoardGameResources/images/char/theWatcher/orb/layer2.png",
-//            "BoardGameResources/images/char/theWatcher/orb/layer3.png",
-//            "BoardGameResources/images/char/theWatcher/orb/layer4.png",
-//            "BoardGameResources/images/char/theWatcher/orb/layer5.png"};
+    public static final String[] orbTextures = {
+            "BoardGameResources/images/char/theWatcher/orb/layer1.png",
+            "BoardGameResources/images/char/theWatcher/orb/layer2.png",
+            "BoardGameResources/images/char/theWatcher/orb/layer3.png",
+            "BoardGameResources/images/char/theWatcher/orb/layer4.png",
+            "BoardGameResources/images/char/theWatcher/orb/layer5.png"};
 
-    public static final String[] orbTextures = {};
-//            "BoardGameResources/images/char/theSilent/orb/layer1.png",
-//            "BoardGameResources/images/char/theSilent/orb/layer2.png",
-//            "BoardGameResources/images/char/theSilent/orb/layer3.png",
-//            "BoardGameResources/images/char/theSilent/orb/layer4.png",
-//            "BoardGameResources/images/char/theSilent/orb/layer5.png",
-//            "BoardGameResources/images/char/theSilent/orb/layer6.png",
-//            "BoardGameResources/images/char/theSilent/orb/layer1d.png",
-//            "BoardGameResources/images/char/theSilent/orb/layer2d.png",
-//            "BoardGameResources/images/char/theSilent/orb/layer3d.png",
-//            "BoardGameResources/images/char/theSilent/orb/layer4d.png",
-//            "BoardGameResources/images/char/theSilent/orb/layer5d.png"};
+
 
     // =============== /TEXTURES OF BIG ENERGY ORB/ ===============
 
     // =============== CHARACTER CLASS START =================
 
     public BGWatcher(String name, PlayerClass setClass) {
-        super(name, setClass, orbTextures,
-                "BoardGameResources/images/char/theWatcher/orb/vfx.png", null,
-                "");
+        super(name, setClass, new EnergyOrbPurple(), null, "");
 
 
 
@@ -157,6 +152,10 @@ public class BGWatcher extends AbstractBGCharacter {
 
     // =============== /CHARACTER CLASS END/ =================
 
+    public Texture getEnergyImage() {
+        return PURPLE_ORB_FLASH_VFX;
+    }
+
     // Starting description and loadout
     @Override
     public CharSelectInfo getLoadout() {
@@ -172,16 +171,16 @@ public class BGWatcher extends AbstractBGCharacter {
 
         logger.info("Begin loading starter Deck Strings");
 
-        retVal.add(BGStrike_Blue.ID);
-        retVal.add(BGStrike_Blue.ID);
-        retVal.add(BGStrike_Blue.ID);
-        retVal.add(BGStrike_Blue.ID);
-        retVal.add(BGDefend_Blue.ID);
-        retVal.add(BGDefend_Blue.ID);
-        retVal.add(BGDefend_Blue.ID);
-        retVal.add(BGDefend_Blue.ID);
-        retVal.add(BGZap.ID);
-        retVal.add(BGDualcast.ID);
+        retVal.add(BGStrike_W.ID);
+        retVal.add(BGStrike_W.ID);
+        retVal.add(BGStrike_W.ID);
+        retVal.add(BGStrike_W.ID);
+        retVal.add(BGDefend_W.ID);
+        retVal.add(BGDefend_W.ID);
+        retVal.add(BGDefend_W.ID);
+        retVal.add(BGDefend_W.ID);
+        retVal.add(BGEruption.ID);
+        retVal.add(BGVigilance.ID);
 
         return retVal;
     }
@@ -192,7 +191,7 @@ public class BGWatcher extends AbstractBGCharacter {
 
         //logger.info("getStartingRelics: "+BGTheDieRelic.ID + " + Miracles");
         retVal.add(BGTheDieRelic.ID);
-        //retVal.add(BGCrackedCore.ID);
+        retVal.add(BGMiracles.ID);
 
         // Mark relics as seen - makes it visible in the compendium immediately
         // If you don't have this it won't be visible in the compendium until you see them in game
@@ -330,6 +329,7 @@ public class BGWatcher extends AbstractBGCharacter {
     public void applyStartOfTurnRelics() {
         super.applyStartOfTurnRelics();
         this.shivsPlayedThisTurn=0;
+        this.stanceChangedThisTurn=false;
     }
 
     //TODO: move addBlock to CustomBoardGameCreature class (which itself will require various sweeping changes to implement)

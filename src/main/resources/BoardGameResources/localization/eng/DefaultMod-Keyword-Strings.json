@@ -1,29 +1,5 @@
 [
   {
-    "PROPER_NAME": "Approximate",
-    "NAMES": [
-      "Approximate",
-      "approximate"
-    ],
-    "DESCRIPTION": "This card or effect behaves slightly differently than it's supposed to."
-  },
-  {
-    "PROPER_NAME": "Naive",
-    "NAMES": [
-      "Naive",
-      "naive"
-    ],
-    "DESCRIPTION": "Damage and block modifiers will not display correctly on this card."
-  },
-  {
-    "PROPER_NAME": "Cooperative (NYI)",
-    "NAMES": [
-      "Cooperative",
-      "cooperative"
-    ],
-    "DESCRIPTION": "This card does something more interesting when you are playing with #bfriends."
-  },
-  {
     "PROPER_NAME": "[BoardGame:VulnIcon] Vulnerable",
     "NAMES": [
       "vulnerable"

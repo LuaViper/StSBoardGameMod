@@ -151,7 +151,7 @@
   },
   "BoardGame:BGCarveReality": {
     "NAME": "Carve Reality",
-    "DESCRIPTION": "Deal !M! [BoardGame:HitIcon] to one NL or two enemies."
+    "DESCRIPTION": "Deal !D! [BoardGame:HitIcon] to one NL or two enemies."
   },
   "BoardGame:BGCatalyst": {
     "NAME": "Catalyst",
@@ -183,7 +183,10 @@
   },
   "BoardGame:BGClash": {
     "NAME": "Clash",
-    "DESCRIPTION": "Can only be played if every card in your hand is an Attack. NL !D! [BoardGame:HitIcon]"
+    "DESCRIPTION": "Can only be played if every card in your hand is an Attack. NL !D! [BoardGame:HitIcon]",
+    "EXTENDED_DESCRIPTION": [
+      "I have non-Attack cards in my hand."
+    ]
   },
   "BoardGame:BGClaw": {
     "NAME": "Claw",
@@ -463,7 +466,7 @@
     "NAME": "Evolve",
     "DESCRIPTION": "Whenever you draw NL [BoardGame:DazedIcon] , [BoardGame:BurnIcon] , or [BoardGame:SlimedIcon] , draw 1 card."
   },
-  "BoardGame:BGFakeShiv": {
+  "BoardGame:BGShivSurrogate": {
     "NAME": "Shiv",
     "DESCRIPTION": "Deal !D! damage. NL For debug purposes only. In the Board Game, boardgame:Shivs are tokens, not cards.",
     "UPGRADE_DESCRIPTION": "Deal !D! damage. NL For debug purposes only. You can't upgrade boardgame:Shivs in the Board Game."
@@ -534,8 +537,8 @@
   },
   "BoardGame:BGFlurryOfBlows": {
     "NAME": "Flurry of Blows",
-    "DESCRIPTION": "!D! [HitIcon] NL Deals an additional NL !D! [HitIcon] if you switched Stances this turn.",
-    "UPGRADE_DESCRIPTION": "!D! [HitIcon] NL Deals an additional NL !D! [HitIcon] !D! [HitIcon] if you switched Stances this turn."
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL Deals an additional NL !D! [BoardGame:HitIcon] if you switched Stances this turn.",
+    "UPGRADE_DESCRIPTION": "!D! [BoardGame:HitIcon] NL Deals an additional NL !D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon] if you switched Stances this turn."
   },
   "BoardGame:BGFlyingSleeves": {
     "NAME": "Flying Sleeves",
@@ -551,9 +554,9 @@
     "NAME": "Force Field",
     "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL Costs 1 less [B] for each Power you have in play."
   },
-  "BoardGame:BGForeign Influence": {
+  "BoardGame:BGForeignInfluence": {
     "NAME": "Foreign Influence",
-    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL - or - Play a copy of the last Attack played by another player this turn.",
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL - or - NL Play a copy of the last Attack played by another player this turn.",
     "EXTENDED_DESCRIPTION": [
       " NL (Play",
       ".)"
@@ -656,7 +659,7 @@
   "BoardGame:BGIndignation": {
     "NAME": "Indignation",
     "DESCRIPTION": "If you're in boardgame:Wrath, [BoardGame:VulnIcon] . NL Otherwise, enter boardgame:Wrath.",
-    "UPGRADE_DESCRIPTION": "If you're in boardgame:Wrath, [BoardGame:AOEIcon] [BoardGame:VulnIcon] . NL Otherwise, enter boardgame:Wrath."
+    "UPGRADE_DESCRIPTION": "If you're in boardgame:Wrath, [BoardGame:AOEIcon] [BoardGame:VulnIcon] NL Otherwise, enter boardgame:Wrath."
   },
   "BoardGame:BGInfinite Blades": {
     "NAME": "Infinite Blades",
@@ -707,7 +710,7 @@
   },
   "BoardGame:BGLikeWater": {
     "NAME": "Like Water",
-    "DESCRIPTION": "[#EFC851]End [#EFC851]of [#EFC851]turn[]: NL If you're in boardgame:Calm, !B! [BoardGame:BlockIcon] ."
+    "DESCRIPTION": "[#EFC851]End [#EFC851]of [#EFC851]turn[]: NL If you're in boardgame:Calm, !M! [BoardGame:BlockIcon] ."
   },
   "BoardGame:BGLimitBreak": {
     "NAME": "Limit Break",
@@ -752,7 +755,7 @@
   },
   "BoardGame:BGMentalFortress": {
     "NAME": "Mental Fortress",
-    "DESCRIPTION": "Whenever you switch Stances, !B! [BoardGame:BlockIcon] ."
+    "DESCRIPTION": "Whenever you switch Stances, !M! [BoardGame:BlockIcon] ."
   },
   "BoardGame:BGMetallicize": {
     "NAME": "Metallicize",
@@ -788,7 +791,7 @@
   },
   "BoardGame:BGNirvana": {
     "NAME": "Nirvana",
-    "DESCRIPTION": "Whenever you Scry, NL !M! [BoardGame:BlockIcon]."
+    "DESCRIPTION": "Whenever you Scry, NL !M! [BoardGame:BlockIcon] ."
   },
   "BoardGame:BGNoxiousFumes": {
     "NAME": "Noxious Fumes",

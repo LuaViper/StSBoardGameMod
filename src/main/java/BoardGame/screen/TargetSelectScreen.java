@@ -64,15 +64,15 @@ public class TargetSelectScreen extends CustomScreen {
     public TargetSelectAction action;
 
     public String description="Target Select Screen.  Choose a target.";
-    public boolean allowCancel=false;       //dummied out
+    public boolean allowCancel=false;
     public TargetSelectAction cancelAction=null;    //dummied out
     public AbstractMonster finaltarget=null;
 
 
-    private void open(TargetSelectAction action, String description) {
+    private void open(TargetSelectAction action, String description, boolean allowCancel) {
         this.description=description;
         this.action=action;
-        //this.allowCancel=allowCancel;
+        this.allowCancel=allowCancel;
         //this.cancelAction=cancelAction;
         this.isDone=false;
 
@@ -282,7 +282,12 @@ public class TargetSelectScreen extends CustomScreen {
                     ___hoveredMonster[0] = null;
                     for (AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
                         m.hb.update();
-                        if (m.hb.hovered && !m.isDying && !m.isEscaping && m.currentHealth > 0) {
+                        //currently, the only card that allowsCancel is Carve Reality, which targets "one or two" enemies
+                        //so we're allowing the cancel by clicking the same monster twice -- even if the first hit kills it
+                        //TODO: this DOES mean that the player can pick a dead enemy as their second target, regardless of whether it was the first target.  fix maybe.
+                        //TODO: maybe pass a 4th arg along with AllowCancel being the originally-targeted enemy?
+                        TargetSelectScreen screen=(TargetSelectScreen)BaseMod.getCustomScreen(Enum.TARGET_SELECT);
+                        if (m.hb.hovered && ((!m.isDying && !m.isEscaping && m.currentHealth > 0) || screen.allowCancel)) {
                             ___hoveredMonster[0] = m;
                             break;
                         }
@@ -333,16 +338,16 @@ public class TargetSelectScreen extends CustomScreen {
 
                     return SpireReturn.Return();
                 }
-                    //Dummied out -- never tested to make sure it works
+
 //                TargetSelectScreen screen=(TargetSelectScreen)BaseMod.getCustomScreen(Enum.TARGET_SELECT);
 //                if(screen.allowCancel) {
 //                    if (InputHelper.justClickedRight || InputActionSet.cancel.isJustPressed()) {
 //                        CardCrawlGame.sound.play("UI_CLICK_1");
 //                        if (!screen.isDone) {
 //                            screen.isDone = true;
-//                            if (screen.cancelAction != null) {
-//                                screen.cancelAction.execute(___hoveredMonster[0]);
-//                            }
+////                            if (screen.cancelAction != null) {
+////                                screen.cancelAction.execute(___hoveredMonster[0]);
+////                            }
 //                        }
 //                        ___isUsingClickDragControl[0] = false;
 //                        __instance.inSingleTargetMode = false;

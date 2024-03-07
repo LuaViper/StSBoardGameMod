@@ -21,7 +21,7 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-//TODO: does this actually count as "playing a card"?
+//TODO: it has been ruled that this card is not actually Played when exhausted
 public class BGVoidCard extends AbstractBGCard implements CardDisappearsOnExhaust {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGVoidCard");
     static final String ID = "BGVoidCard";

@@ -22,10 +22,12 @@ public class BGCopyAndPlayCardAction extends AbstractGameAction {
 
     AbstractCard card;
     int energySpent;
-    public BGCopyAndPlayCardAction(AbstractCard card, int energySpent) {
+    boolean dontExpendResources;
+    public BGCopyAndPlayCardAction(AbstractCard card, int energySpent, boolean dontExpendResources) {
         super();
         this.card=card;
         this.energySpent=energySpent;
+        this.dontExpendResources=dontExpendResources;
     }
 
     public void update() {
@@ -55,6 +57,10 @@ public class BGCopyAndPlayCardAction extends AbstractGameAction {
         }else{
             addToBot((AbstractGameAction) new NewQueueCardAction(tmp, null, true, true));
         }
+        if (!this.dontExpendResources) {
+            AbstractDungeon.player.energy.use(this.energySpent);
+        }
+
         tickDuration();
         this.isDone=true;
 

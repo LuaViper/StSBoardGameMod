@@ -7,6 +7,7 @@ import com.evacipated.cardcrawl.mod.stslib.icons.AbstractCustomIcon;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO: Miracle icon should be scaled up if possible
 public class MiracleIcon extends AbstractCustomIcon {
     public static final String ID = "BoardGame:Miracle";    //reminder: "Icon" is automatically added
     private static MiracleIcon singleton;

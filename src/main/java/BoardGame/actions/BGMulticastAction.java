@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 public class BGMulticastAction extends AbstractGameAction {
     public String description;
     public int[] multiDamage;
-    private boolean freeToPlayOnce = false;
+    private boolean dontExpendResources = false;
     private int energyOnUse = -1;
     private int extrahits=0;
     private AbstractMonster m;
@@ -22,11 +22,11 @@ public class BGMulticastAction extends AbstractGameAction {
     private DamageInfo.DamageType damageTypeForTurn;
 
     private AbstractPlayer p;
-    public BGMulticastAction(AbstractPlayer p, AbstractMonster m, int damage, DamageInfo.DamageType damageTypeForTurn, boolean freeToPlayOnce, int energyOnUse, int extrahits) {
+    public BGMulticastAction(AbstractPlayer p, AbstractMonster m, int damage, DamageInfo.DamageType damageTypeForTurn, boolean dontExpendResources, int energyOnUse, int extrahits) {
         this.p = p;
         this.m=m;
         this.damage = damage;
-        this.freeToPlayOnce = freeToPlayOnce;
+        this.dontExpendResources = dontExpendResources;
         this.duration = Settings.ACTION_DUR_XFAST;
         this.actionType = ActionType.SPECIAL;
         this.damageTypeForTurn = damageTypeForTurn;
@@ -59,7 +59,7 @@ public class BGMulticastAction extends AbstractGameAction {
             };
             //TODO: localization
             addToTop((AbstractGameAction) new OrbSelectScreenAction(ossAction, "Choose an Orb to Multi-Cast.", false));
-            if (!this.freeToPlayOnce) {
+            if (!this.dontExpendResources) {
                 this.p.energy.use(this.energyOnUse);
             }
         }else{

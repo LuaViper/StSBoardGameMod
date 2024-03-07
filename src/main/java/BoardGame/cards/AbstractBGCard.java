@@ -5,10 +5,11 @@ import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
+import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -24,7 +25,7 @@ import java.util.HashMap;
 public abstract class AbstractBGCard extends CustomCard {
 
     private static final Logger logger = LogManager.getLogger(AbstractCard.class.getName());
-    public CardType type;
+    //public CardType type; //AbstractCard already has a type
 
     public static HashMap<String, Texture> imgMap;
     public static HashMap<String, Texture> betaImgMap;
@@ -157,6 +158,19 @@ public abstract class AbstractBGCard extends CustomCard {
 
     }
 
+
+    public void onResetBeforeMoving() {}
+
+    @SpirePatch2(clz = CardGroup.class, method = "resetCardBeforeMoving",   //TODO: consider moving this patch to Outmaneuver
+            paramtypez={AbstractCard.class})
+    public static class resetCardBeforeMovingPatch {
+        @SpirePrefixPatch
+        public static void Prefix(AbstractCard ___c) {
+            if(___c instanceof AbstractBGCard){
+                ((AbstractBGCard)___c).onResetBeforeMoving();
+            }
+        }
+    }
 
 
 

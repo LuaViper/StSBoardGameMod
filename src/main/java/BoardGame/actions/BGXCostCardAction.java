@@ -5,6 +5,8 @@ package BoardGame.actions;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.cards.BGColorless.BGXCostChoice;
 import BoardGame.cards.BGRed.BGWhirlwind;
+import BoardGame.powers.BGFreeAttackPower;
+import BoardGame.powers.BGFreeCardPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,6 +14,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,31 +25,73 @@ public class BGXCostCardAction extends AbstractGameAction {
     protected ArrayList<AbstractCard> choices;
     protected boolean choicesHaveBeenSetup=false;
 
-    protected int minEnergy;
-    protected int maxEnergy;
+
+    public static class XCostInfo{
+        public int minEnergy=0;
+        public int maxEnergy=0;
+        public int exactEnergyCost=-99;
+        public boolean dontExpendResources=false;
+    }
+
+    public static XCostInfo preProcessCard(AbstractBGCard c){
+        XCostInfo info=new XCostInfo();
+        info.maxEnergy=c.energyOnUse;
+        if(c.isCostModifiedForTurn){
+            info.minEnergy=c.costForTurn;
+            c.energyOnUse=c.costForTurn;
+            info.exactEnergyCost=info.minEnergy;
+        }
+        //if(this.freeToPlay()){    //can't do this because of built-in mod shenanigans (freeToPlayOnce is true when player has 0 energy)
+        if(c.isInAutoplay || BGFreeCardPower.isActive()
+        || (BGFreeAttackPower.isActive() && c.type== AbstractCard.CardType.ATTACK)){
+            c.energyOnUse=0;
+            info.exactEnergyCost=0;
+            info.dontExpendResources=true;
+        }
+        if(c.ignoreEnergyOnUse){
+            c.energyOnUse=0;
+            info.exactEnergyCost=0;
+            info.dontExpendResources=true;
+        }
+        if(c.copiedCardEnergyOnUse!=-99){
+            c.energyOnUse=c.copiedCardEnergyOnUse;
+            info.exactEnergyCost=c.copiedCardEnergyOnUse;
+            info.dontExpendResources=true;
+        }
+        return info;
+    }
+
+    XCostInfo info;
+
     public interface XCostAction{
-        void execute(int energySpent);
+        void execute(int energySpent, boolean dontExpendResources);
     }
 
     protected XCostAction action;
 
-    public BGXCostCardAction(AbstractCard card, int minEnergy, int maxEnergy, XCostAction action){
-        this.minEnergy=minEnergy;
+    public BGXCostCardAction(AbstractCard card, XCostInfo info, XCostAction action){
+        this.info=info;
         //we have to check for confusion now -- by the time we get to action.update, it wears off
         //TODO: is confusion check still necessary after changes to costForTurn and minEnergy?
         AbstractPower p=AbstractDungeon.player.getPower("BGConfusion");
         if(p!=null && p.amount>-1){
-            this.minEnergy=maxEnergy;
+            //exactEnergyCost=maxEnergy;
+            info.exactEnergyCost=p.amount;
+            info.minEnergy=info.exactEnergyCost;
+            info.dontExpendResources=false;
         }
         if(card instanceof AbstractBGCard){
             //TODO: there might be an edge case we haven't thought of where we're forced to play a copied card for free
-            if(((AbstractBGCard)card).copiedCardEnergyOnUse!=-99)
-                this.minEnergy=((AbstractBGCard)card).copiedCardEnergyOnUse;
+            if(((AbstractBGCard)card).copiedCardEnergyOnUse!=-99) {
+                info.exactEnergyCost=((AbstractBGCard) card).copiedCardEnergyOnUse;
+                info.minEnergy = info.exactEnergyCost;
+                info.maxEnergy=info.exactEnergyCost;
+                info.dontExpendResources=true;
+            }
         }
         this.duration = Settings.ACTION_DUR_XFAST;
         this.card=card;
 
-        this.maxEnergy=maxEnergy;
         this.action=action;
     }
 
@@ -54,8 +99,19 @@ public class BGXCostCardAction extends AbstractGameAction {
         if(!choicesHaveBeenSetup){
             this.choices=new ArrayList<>();
 
-            for(int i=minEnergy;i<=maxEnergy;i+=1){
-                BGXCostChoice c=new BGXCostChoice(this.card,i,this.action);
+            int effectiveMaxEnergy=info.maxEnergy;
+            if(info.exactEnergyCost<0){
+                AbstractRelic relic=AbstractDungeon.player.getRelic("BoardGame:BGMiracles");
+                if(relic!=null){
+                    effectiveMaxEnergy+=relic.counter;
+                }
+            }else{
+                info.minEnergy=info.exactEnergyCost;
+                info.maxEnergy=info.exactEnergyCost;
+                effectiveMaxEnergy=info.exactEnergyCost;
+            }
+            for(int i=info.minEnergy;i<=effectiveMaxEnergy;i+=1){
+                BGXCostChoice c=new BGXCostChoice(this.card,i,info.dontExpendResources,this.action);
                 choices.add(c);
                 if(card instanceof AbstractBGCard){
                     Logger logger = LogManager.getLogger("TEMP");
@@ -79,7 +135,7 @@ public class BGXCostCardAction extends AbstractGameAction {
 //                    ((AbstractBGCard)card).copiedCard.copiedCardEnergy=minEnergy;
 //                }
 //            }
-            action.execute(minEnergy);
+            action.execute(info.minEnergy, info.dontExpendResources);
         }
         tickDuration();
         this.isDone=true;

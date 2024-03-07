@@ -1,20 +1,14 @@
 package BoardGame.powers;
 
-import BoardGame.BoardGame;
-import BoardGame.cards.BGColorless.BGFakeShiv;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import BoardGame.cards.BGColorless.BGShivSurrogate;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-
+//TODO: does this cooperate with Cunning Potion?
 public class BGTimeWarpPower extends AbstractBGPower {
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGTimeWarpPower");
     public static final String POWER_ID = "BGTimeWarpPower";
@@ -64,7 +58,7 @@ public class BGTimeWarpPower extends AbstractBGPower {
 
 
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
-        if(!(card instanceof BGFakeShiv)){
+        if(!(card instanceof BGShivSurrogate)){
             flashWithoutSound();
             this.amount--;
             updateDescription();

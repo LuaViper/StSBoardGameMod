@@ -16,6 +16,9 @@ public class StrengthCap {
         if(__instance.amount>8){
             __instance.amount=8;
         }
+        if(__instance.amount<0){    //this is theoretically possible with Wreath of Flame + Flex effects
+            __instance.amount=0;
+        }
 
     }
 }

@@ -9,6 +9,9 @@ import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
+//TODO: during end turn phase, if player's Block falls to 0 for any reason, check if we can activate Orichalcum again
+//TODO: do something similar for Frozen Core
+    //all end-turn effects appear to deal 1 damage at a time EXCEPT beat of death
 public class BGOrichalcum extends AbstractBGRelic {
     public static final String ID = "BGOrichalcum";
 

@@ -17,15 +17,17 @@ public class BGXCostChoice extends AbstractBGAttackCardChoice {
     public BGXCostCardAction.XCostAction action;
     private AbstractCard doppelgangerCard;
 
+    public boolean dontExpendResources;
+
     public BGXCostChoice(){
-        this(new BGWhirlwind(), -1, null);
+        this(new BGWhirlwind(), -1, true, null);
     }
 
-    public BGXCostChoice(AbstractCard card, int energyOnUse, BGXCostCardAction.XCostAction action) {
-        this(card,energyOnUse,action,null);
+    public BGXCostChoice(AbstractCard card, int energyOnUse, boolean dontExpendResources, BGXCostCardAction.XCostAction action) {
+        this(card,energyOnUse,dontExpendResources,action,null);
     }
 
-    public BGXCostChoice(AbstractCard card, int energyOnUse, BGXCostCardAction.XCostAction action, AbstractCard doppelgangerCard) {
+    public BGXCostChoice(AbstractCard card, int energyOnUse, boolean dontExpendResources, BGXCostCardAction.XCostAction action, AbstractCard doppelgangerCard) {
         super("BGXCostChoice", cardStrings.NAME, card.assetUrl, energyOnUse, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, AbstractCard.CardColor.COLORLESS, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE);
 
         //Important: original card class must check for energy/freeplay restrictions (see BGWhirlwind.java for example)
@@ -37,6 +39,7 @@ public class BGXCostChoice extends AbstractBGAttackCardChoice {
         }
         this.baseMagicNumber=cost;
         this.magicNumber=cost;
+        this.dontExpendResources=dontExpendResources;
         this.action=action;
         this.doppelgangerCard=doppelgangerCard;
         if (cost==-1) {
@@ -62,7 +65,7 @@ public class BGXCostChoice extends AbstractBGAttackCardChoice {
             if(this.copiedCard!=null){
                 this.copiedCard.copiedCardEnergyOnUse=this.cost;
             }
-            action.execute(this.cost);
+            action.execute(this.cost,this.dontExpendResources);
         }
     }
 

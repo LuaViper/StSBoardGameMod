@@ -6,6 +6,7 @@ import BoardGame.actions.BGWhirlwindAction;
 import BoardGame.actions.BGXCostCardAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGSilent;
+import BoardGame.powers.BGFreeCardPower;
 import BoardGame.ui.BGGameTips;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
@@ -44,22 +45,9 @@ public class BGDoppelganger extends AbstractBGCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        int minEnergy=0;
-        if(this.isCostModifiedForTurn){
-            minEnergy=this.costForTurn;
-            this.energyOnUse=this.costForTurn;
-        }
-        if(this.freeToPlay()){
-            this.energyOnUse=0;
-        }
-        if(this.ignoreEnergyOnUse){
-            this.energyOnUse=0;
-        }
-        if(this.copiedCardEnergyOnUse!=-99){
-            this.energyOnUse=this.copiedCardEnergyOnUse;
-        }
+        BGXCostCardAction.XCostInfo info = BGXCostCardAction.preProcessCard(this);
         //BoardGame.logger.info("Doppelganger energyOnUse: "+this.energyOnUse);
-        addToTop((AbstractGameAction)new BGDoppelgangerAction(this, minEnergy, this.energyOnUse, (e)-> {}));
+        addToTop((AbstractGameAction)new BGDoppelgangerAction(this, info, (e,d)-> {}));
     }
 
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
@@ -112,7 +100,7 @@ public class BGDoppelganger extends AbstractBGCard {
     @SpirePatch2(clz = UseCardAction.class,method= SpirePatch.CONSTRUCTOR,paramtypez={AbstractCard.class, AbstractCreature.class})
     public static class UseCardActionPatch {
         @SpirePrefixPatch public static void Prefix(AbstractCard card, AbstractCreature target) {
-            //TODO: most uncopyable cards haven't been flagged cannotBeCopied yet (only BGFakeShiv atm)
+            //TODO: most uncopyable cards haven't been flagged cannotBeCopied yet (only BGShivSurrogate atm)
             if(card instanceof AbstractBGCard)
                 if(((AbstractBGCard)card).cannotBeCopied)
                     return;

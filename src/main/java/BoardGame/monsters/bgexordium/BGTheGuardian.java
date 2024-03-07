@@ -32,7 +32,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 //TODO: patch clearPostCombatActions so that DAMAGE actions aren't processed after combat ends in AbstractBGDungeon
-//TODO: overhead "intent bug" looks like it's actually related to "Blocked" text instead?
 
 public class BGTheGuardian extends AbstractBGMonster {
     private static final Logger logger = LogManager.getLogger(BGTheGuardian.class.getName());
@@ -300,7 +299,9 @@ public class BGTheGuardian extends AbstractBGMonster {
                 damageAmount = 0;
                 loseBlock();
                 brokeBlock();
-                AbstractDungeon.effectList.add(new BlockedWordEffect(this, this.hb.cX, this.hb.cY, TEXT[1]));
+                //The "intent bug" has been solved.  Apparently "Blocked" appears *twice* if you break an enemy's block exactly and Settings.SHOW_DMG_BLOCK is enabled.
+                //TODO: localization
+                AbstractDungeon.effectList.add(new BlockedWordEffect(this, this.hb.cX, this.hb.cY, "Blocked"));
             }
             else {
 

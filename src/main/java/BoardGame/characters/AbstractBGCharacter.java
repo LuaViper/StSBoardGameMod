@@ -6,6 +6,9 @@ import BoardGame.cards.BGRed.BGStrike_Red;
 import BoardGame.relics.BGBurningBlood;
 import BoardGame.relics.BGTheDieRelic;
 import basemod.abstracts.CustomPlayer;
+import basemod.animations.G3DJAnimation;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbInterface;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import java.util.ArrayList;
@@ -27,13 +30,16 @@ public abstract class AbstractBGCharacter extends CustomPlayer {
 
     //TODO: maybe move PlayedThisTurn to TheDie relic
     public int shivsPlayedThisTurn=0;
+    public boolean stanceChangedThisTurn=false;
     public boolean mayhemActive=false;
     public AbstractBGCharacter(String name, PlayerClass setClass, String[] orbTextures, String orbVfxPath, String model, String animation) {
         super(name, setClass, orbTextures,
                 orbVfxPath, model,
                 animation);
     }
-
+    public AbstractBGCharacter(String name, AbstractPlayer.PlayerClass playerClass, EnergyOrbInterface energyOrbInterface, String model, String animation) {
+        super(name, playerClass, energyOrbInterface, model, animation);
+    }
 
 //
 //    @Override

@@ -98,6 +98,15 @@
                         " damage to any row."
                 ]
         },
+        "BoardGame:BGBattleHymnPower": {
+                "NAME": "Battle Hymn",
+                "DESCRIPTIONS": [
+                        "Once per turn,",
+                        " deal #b",
+                        " damage, #b+",
+                        " if you're in #yWrath."
+                ]
+        },
 "BoardGame:BGBeatOfDeathPower": {
         "NAME": "Beat Of Death",
         "DESCRIPTIONS": [
@@ -134,6 +143,17 @@
                 " damage to ALL enemies."
         ]
 },
+        "BoardGame:BGConclusionPower": {
+                "NAME": "Conclude",
+                "DESCRIPTIONS": [
+                        "You can only play #b",
+                        " more cards this turn.",
+                        " more card this turn.",
+                        "You can't play any more cards this turn.",
+                        "I can only play up to NL #r",
+                        " cards this turn."
+                ]
+        },
 "BoardGame:BGConfusion": {
         "NAME": "Confusion",
         "DESCRIPTIONS": [
@@ -234,6 +254,14 @@
                 "NAME": "Flight",
                 "DESCRIPTIONS": [
                         "Reduce all damage from #yAttacks to 1."
+                ]
+        },
+        "BoardGame:BGFreeAttackPower": {
+                "NAME": "Swivel",
+                "DESCRIPTIONS": [
+                        "The next #yAttack you play this turn costs 0.",
+                        "The next #b",
+                        " #yAttacks you play this turn cost 0."
                 ]
         },
         "BoardGame:BGFreeCardPower": {
@@ -380,6 +408,14 @@
                         "At the start of its turn, loses #b"
                 ]
         },
+        "BoardGame:BGRushdownPower": {
+                "NAME": "Rushdown",
+                "DESCRIPTIONS": [
+                        "The first time you enter #yWrath each turn, draw #b",
+                        " card.",
+                        " cards."
+                ]
+        },
         "BoardGame:BGSpiker": {
                 "NAME": "Sharp Hide",
                 "DESCRIPTIONS": [
@@ -439,6 +475,13 @@
                 "DESCRIPTIONS": [
                         "At the start of your turn, #yChannel #b",
                         " #yLightning."
+                ]
+        },
+        "BoardGame:BGStudyPower": {
+                "NAME": "Study",
+                "DESCRIPTIONS": [
+                        "If you are in #yCalm at the start of your turn, draw #b",
+                        " #cards."
                 ]
         },
         "BoardGame:BGTemporaryRetainCardsPower": {

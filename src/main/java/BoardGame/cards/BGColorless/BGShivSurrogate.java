@@ -8,22 +8,21 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-public class BGFakeShiv extends AbstractBGCard {
-    public static final String ID = "BGFakeShiv";
+public class BGShivSurrogate extends AbstractBGCard {
+    public static final String ID = "BGShivSurrogate";
 
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGFakeShiv");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGShivSurrogate");
 
     public static final int ATTACK_DMG = 4;
 
     public static final int UPG_ATTACK_DMG = 2;
 
     public boolean isARealShiv;
-    public BGFakeShiv() {
-        super("BGFakeShiv", cardStrings.NAME, "colorless/attack/shiv", 0, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, AbstractCard.CardColor.COLORLESS, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.ENEMY);
+    public BGShivSurrogate() {
+        super("BGShivSurrogate", cardStrings.NAME, "colorless/attack/shiv", 0, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, AbstractCard.CardColor.COLORLESS, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.ENEMY);
         this.baseDamage = 1;
         this.exhaust = true;
         this.cannotBeCopied=true;
@@ -34,7 +33,7 @@ public class BGFakeShiv extends AbstractBGCard {
     }
 
     public AbstractCard makeCopy() {
-        return new BGFakeShiv();
+        return new BGShivSurrogate();
     }
 
     public void upgrade() {

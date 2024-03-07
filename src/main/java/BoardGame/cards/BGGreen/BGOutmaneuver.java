@@ -22,6 +22,8 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 
+//TODO: activated status does not work with Play Twice effects. should it?
+
 public class BGOutmaneuver extends AbstractBGCard {
     public static final String ID = "BGOutmaneuver";
 
@@ -43,23 +45,18 @@ public class BGOutmaneuver extends AbstractBGCard {
         this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
         if (this.activated)
             this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
-
     }
     public void use(AbstractPlayer p, AbstractMonster m) {
-        //TODO: does this work correctly with Burst etc?
         if(this.activated){
             addToBot((AbstractGameAction)new GainEnergyAction(this.magicNumber));
             this.activated=false;
         }
     }
-    public void onMoveToDiscard() {
+    public void onResetBeforeMoving() {
         //BoardGame.BoardGame.logger.info("Outmaneuver.onMoveToDiscard");
         this.activated=false;
     }
-    public void triggerOnExhaust() {
-        //BoardGame.BoardGame.logger.info("Outmaneuver.triggerOnExhaust");
-        this.activated=false;
-    }
+
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();

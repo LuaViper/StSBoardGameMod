@@ -3,13 +3,10 @@ package BoardGame.actions;
 
 import BoardGame.cards.BGRed.BGWhirlwind;
 import BoardGame.orbs.BGLightning;
-import BoardGame.powers.WeakVulnCancel;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
@@ -22,7 +19,7 @@ public class BGTempestAction
 
     private static final Logger logger = LogManager.getLogger(BGWhirlwind.class.getName());
     public int[] multiDamage;
-    private boolean freeToPlayOnce = false;
+    private boolean dontExpendResources = false;
     private int energyOnUse = -1;
     private int extrahits=0;
 
@@ -34,13 +31,13 @@ public class BGTempestAction
     private DamageInfo.DamageType damageTypeForTurn;
 
 
-    public BGTempestAction(AbstractPlayer p, AbstractMonster m, int damage, DamageInfo.DamageType damageTypeForTurn, boolean freeToPlayOnce, int energyOnUse, int extrahits) {
+    public BGTempestAction(AbstractPlayer p, AbstractMonster m, int damage, DamageInfo.DamageType damageTypeForTurn, boolean dontExpendResources, int energyOnUse, int extrahits) {
         this.multiDamage = multiDamage;
         this.damageType = damageType;
         this.p = p;
         this.m=m;
         this.damage = damage;
-        this.freeToPlayOnce = freeToPlayOnce;
+        this.dontExpendResources = dontExpendResources;
         this.duration = Settings.ACTION_DUR_XFAST;
         this.actionType = ActionType.SPECIAL;
         this.damageTypeForTurn = damageTypeForTurn;
@@ -66,7 +63,7 @@ public class BGTempestAction
                 BGLightning lightning = new BGLightning();
                 addToTop((AbstractGameAction)new ChannelAction((AbstractOrb)lightning));
             }
-            if (!this.freeToPlayOnce) {
+            if (!this.dontExpendResources) {
                 this.p.energy.use(this.energyOnUse);
             }
         }else{

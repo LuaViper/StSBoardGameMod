@@ -1,5 +1,7 @@
 //TODO: see if we can reuse BGXCostCardAction without cloning it outright
 
+//TODO: BGDoppelgangerAction does not yet support Miracles
+
 package BoardGame.actions;
 
 import BoardGame.cards.AbstractBGCard;
@@ -10,6 +12,7 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -17,15 +20,27 @@ import java.util.ArrayList;
 
 public class BGDoppelgangerAction extends BGXCostCardAction {
 
-    public BGDoppelgangerAction(AbstractCard card, int minEnergy, int maxEnergy, BGXCostCardAction.XCostAction action) {
-        super(card, minEnergy, maxEnergy, action);
+    XCostInfo info;
+    public BGDoppelgangerAction(AbstractCard card, XCostInfo info, BGXCostCardAction.XCostAction action) {
+        super(card, info, action);
+        this.info=info;
     }
 
     public void update() {
         if(!choicesHaveBeenSetup) {
             this.choices = new ArrayList<>();
 
-            for (int i = minEnergy; i <= maxEnergy; i += 1) {
+            int effectiveMaxEnergy=info.maxEnergy;
+            if(info.exactEnergyCost<0){
+                AbstractRelic relic=AbstractDungeon.player.getRelic("BoardGame:BGMiracles");
+                if(relic!=null){
+                    effectiveMaxEnergy+=relic.counter;
+                }
+            }else{
+                info.minEnergy=info.exactEnergyCost;
+                effectiveMaxEnergy=info.exactEnergyCost;
+            }
+            for (int i = info.minEnergy; i <= effectiveMaxEnergy; i += 1) {
                 for (int j = BGDoppelganger.cardsPlayedThisTurn.size() - 1; j >= 0; j -= 1) {
                     AbstractCard d = BGDoppelganger.cardsPlayedThisTurn.get(j);
                     //TODO: "are we allowed to copy this card" check
@@ -33,10 +48,10 @@ public class BGDoppelgangerAction extends BGXCostCardAction {
                         if (d.cost >= 0) {
                             //TODO: this line almost certainly misses some edge cases
                             if (d.cost == i) {
-                                XCostAction action=(e)->{
-                                    addToTop((AbstractGameAction)new BGCopyAndPlayCardAction(d, d.cost));
+                                XCostAction action=(e,dont)->{
+                                    addToTop((AbstractGameAction)new BGCopyAndPlayCardAction(d, d.cost, dont));
                                 };
-                                BGXCostChoice c = new BGXCostChoice(d, i, action, d);
+                                BGXCostChoice c = new BGXCostChoice(d, d.cost, info.dontExpendResources, action);
                                 choices.add(c);
                                 if (card instanceof AbstractBGCard) {
                                     //Logger logger = LogManager.getLogger("TEMP");
@@ -60,10 +75,10 @@ public class BGDoppelgangerAction extends BGXCostCardAction {
             return;
         }else if(this.choices.size()==1) {
             AbstractCard d=this.choices.get(0);
-            ((BGXCostChoice)d).action.execute(d.cost);
+            ((BGXCostChoice)d).action.execute(d.cost, info.dontExpendResources);
         }else{
             //we probably got here via force-played Doppelganger uncopyable card.
-            //TODO: discard Doppelganger instead of exhausting it
+            //TODO: Doppelganger was Unplayable, so discard it instead of exhausting it!  (unless Havoc is involved)
             this.isDone=true;
         }
         tickDuration();

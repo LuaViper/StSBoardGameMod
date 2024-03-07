@@ -328,6 +328,7 @@ public class BGDefect extends AbstractBGCharacter {
     public void applyStartOfTurnRelics() {
         super.applyStartOfTurnRelics();
         this.shivsPlayedThisTurn=0;
+        this.stanceChangedThisTurn=false;
     }
 
     //TODO: move addBlock to CustomBoardGameCreature class (which itself will require various sweeping changes to implement)
