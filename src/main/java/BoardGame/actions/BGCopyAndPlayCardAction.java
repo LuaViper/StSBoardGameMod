@@ -3,9 +3,7 @@
 package BoardGame.actions;
 
 import BoardGame.cards.AbstractBGCard;
-import BoardGame.cards.BGColorless.BGXCostChoice;
-import BoardGame.cards.BGGreen.BGDoppelganger;
-import BoardGame.powers.BGDoubleTapPower;
+import BoardGame.powers.BGDoubleTapPower_DEPRECATED;
 import BoardGame.screen.TargetSelectScreen;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
@@ -15,8 +13,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import java.util.ArrayList;
 
 public class BGCopyAndPlayCardAction extends AbstractGameAction {
 
@@ -41,7 +37,7 @@ public class BGCopyAndPlayCardAction extends AbstractGameAction {
 
         tmp.purgeOnUse = true;
 
-        Logger logger = LogManager.getLogger(BGDoubleTapPower.class.getName());
+        Logger logger = LogManager.getLogger(BGDoubleTapPower_DEPRECATED.class.getName());
         if(card instanceof AbstractBGCard){
             ((AbstractBGCard)card).copiedCard=(AbstractBGCard)tmp;
         }

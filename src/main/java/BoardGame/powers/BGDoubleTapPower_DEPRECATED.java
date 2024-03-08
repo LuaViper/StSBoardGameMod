@@ -1,37 +1,30 @@
 package BoardGame.powers;
 
 
-import BoardGame.BoardGame;
 import BoardGame.actions.TargetSelectScreenAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.screen.TargetSelectScreen;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardQueueItem;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import BoardGame.monsters.AbstractBGMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BGDoubleTapPower extends AbstractBGPower {
+public class BGDoubleTapPower_DEPRECATED extends AbstractBGPower {
     public static final String POWER_ID = "BGDouble Tap";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("Double Tap");
     public static final String NAME = powerStrings.NAME;
     public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
 
     //TODOLATER: somehow allow 2nd attack to be targeted (then remove Approximate label from Double Tap)
-    public BGDoubleTapPower(AbstractCreature owner, int amount) {
+    public BGDoubleTapPower_DEPRECATED(AbstractCreature owner, int amount) {
         this.name = NAME;
         this.ID = "BGDouble Tap";
         this.owner = owner;
@@ -53,7 +46,7 @@ public class BGDoubleTapPower extends AbstractBGPower {
     }
 
     public void onUseCard(AbstractCard card, UseCardAction action) {
-        Logger logger = LogManager.getLogger(BGDoubleTapPower.class.getName());
+        Logger logger = LogManager.getLogger(BGDoubleTapPower_DEPRECATED.class.getName());
         logger.info("BGDOUBLETAPPOWER.ONUSECARD");
         //TODO: copied card needs to get played FIRST, somehow
         //TODO: check card.cannotBeCopied flag

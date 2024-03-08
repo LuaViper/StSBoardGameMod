@@ -5,6 +5,7 @@ import BoardGame.cards.BGColorless.BGShivsUseExtraShiv;
 import BoardGame.relics.BGMiracles;
 import BoardGame.relics.BGShivs;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -33,7 +34,18 @@ public class BGGainMiracleAction extends AbstractGameAction {
         if(relic.counter>5)relic.counter=5;
         //TODO: also check global token cap (5*number_of_Watchers) (only relevant if prismatic shard)
 
-
+        for(AbstractCard c : AbstractDungeon.player.hand.group){
+            c.applyPowers();
+        }
+        for(AbstractCard c : AbstractDungeon.player.drawPile.group){
+            c.applyPowers();
+        }
+        for(AbstractCard c : AbstractDungeon.player.discardPile.group){
+            c.applyPowers();
+        }
+        for(AbstractCard c : AbstractDungeon.player.exhaustPile.group){
+            c.applyPowers();
+        }
 
 
         this.isDone = true;

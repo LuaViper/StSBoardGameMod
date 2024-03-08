@@ -4,7 +4,6 @@
 package BoardGame.cards.BGRed;
 
 import BoardGame.powers.BGDoubleAttackPower;
-import BoardGame.powers.BGDoubleTapPower;
 import BoardGame.characters.BGIronclad;
 import BoardGame.cards.AbstractBGCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;

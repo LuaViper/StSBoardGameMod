@@ -51,7 +51,7 @@ public class BGDoppelgangerAction extends BGXCostCardAction {
                                 XCostAction action=(e,dont)->{
                                     addToTop((AbstractGameAction)new BGCopyAndPlayCardAction(d, d.cost, dont));
                                 };
-                                BGXCostChoice c = new BGXCostChoice(d, d.cost, info.dontExpendResources, action);
+                                BGXCostChoice c = new BGXCostChoice(d, d.cost, info.dontExpendResources, action,d);
                                 choices.add(c);
                                 if (card instanceof AbstractBGCard) {
                                     //Logger logger = LogManager.getLogger("TEMP");

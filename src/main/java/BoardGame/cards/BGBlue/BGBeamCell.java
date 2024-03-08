@@ -17,6 +17,8 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
+//TODO: ALL cards which depend on dice rolls should double-check action queue to make sure act3spaghetti doesn't interfere with the displayed roll
+
 public class BGBeamCell extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGBeamCell");
     public static final String ID = "BGBeamCell";

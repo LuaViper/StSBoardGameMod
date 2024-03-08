@@ -4,10 +4,8 @@
 package BoardGame.cards.BGGreen;
 
 import BoardGame.cards.AbstractBGCard;
-import BoardGame.characters.BGIronclad;
 import BoardGame.characters.BGSilent;
 import BoardGame.powers.BGBurstPower;
-import BoardGame.powers.BGDoubleTapPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;

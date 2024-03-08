@@ -23,21 +23,9 @@ public class BGMeteorStrike extends AbstractBGCard {
     public BGMeteorStrike() {
         super("BGMeteorStrike", cardStrings.NAME, "blue/attack/meteor_strike", 5, cardStrings.DESCRIPTION, CardType.ATTACK, BGDefect.Enums.BG_BLUE, CardRarity.RARE, CardTarget.ENEMY);
         this.baseDamage = 10;
+        receivesPowerDiscount=true;
     }
 
-    public void applyPowers(){
-        super.applyPowers();
-        int discount=Math.min(BGTheDieRelic.powersPlayedThisCombat,5);
-        this.modifyCostForCombat(-this.cost+5-discount);
-        BoardGame.BoardGame.logger.info("BGMeteorStrike: modifyCostForCombat "+(-discount));
-    }
-    public void calculateCardDamage(AbstractMonster mo) {
-        super.calculateCardDamage(mo);
-        int discount=Math.min(BGTheDieRelic.powersPlayedThisCombat,5);
-        this.modifyCostForCombat(-this.cost+5-discount);
-        BoardGame.BoardGame.logger.info("BGMeteorStrike: modifyCostForCombat "+(-discount));
-
-    }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         if (m != null)

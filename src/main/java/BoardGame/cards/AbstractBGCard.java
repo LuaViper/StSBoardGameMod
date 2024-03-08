@@ -1,6 +1,7 @@
 
 package BoardGame.cards;
 import BoardGame.dungeons.AbstractBGDungeon;
+import BoardGame.relics.BGTheDieRelic;
 import basemod.abstracts.CustomCard;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -14,6 +15,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
@@ -34,6 +36,8 @@ public abstract class AbstractBGCard extends CustomCard {
     private static TextureAtlas cardAtlas;
     private static TextureAtlas oldCardAtlas;
 
+    public AbstractBGCard originalCard=null;    //currently used only for Blasphemy, but that might change later
+    public boolean copyOriginalCardAgain=false; //currently used only for Blasphemy. purgeOnUse must also be true for this to be processed.
     public AbstractBGCard copiedCard=null;
     public int copiedCardEnergyOnUse=-99;
 
@@ -44,6 +48,9 @@ public abstract class AbstractBGCard extends CustomCard {
     public int defaultBaseSecondMagicNumber;    // And our base stat - the number in it's base state. It will reset to that by default.
     public boolean upgradedDefaultSecondMagicNumber; // A boolean to check whether the number has been upgraded or not.
     public boolean isDefaultSecondMagicNumberModified; // A boolean to check whether the number has been modified or not, for coloring purposes. (red/green)
+
+
+
 
     public AbstractBGCard(final String id,
                           final String name,
@@ -60,7 +67,10 @@ public abstract class AbstractBGCard extends CustomCard {
         //CustomCard tries to override this, so override it right back
         this.assetUrl=img;
 
+        this.actualBaseCost=cost;
+
         isDefaultSecondMagicNumberModified = false;
+        costModifiers=new HashMap<>();
     }
 
     static {
@@ -158,8 +168,56 @@ public abstract class AbstractBGCard extends CustomCard {
 
     }
 
+    public HashMap<String, CostModifier> costModifiers;
+    public class CostModifier{
+        int x;
 
-    public void onResetBeforeMoving() {}
+    }
+
+    public int actualBaseCost;
+    public boolean receivesPowerDiscount=false;
+    public boolean wasRetainedLastTurn=false;
+    public void onRetained(){
+        super.onRetained();
+        wasRetainedLastTurn=true;
+        //applyRetainDiscount();
+    }
+    public void resetAttributes(){
+        super.resetAttributes();
+        wasRetainedLastTurn=false;
+    }
+    public void onResetBeforeMoving() {
+        wasRetainedLastTurn=false;
+    }
+
+    @Override
+    public void applyPowers() {
+        super.applyPowers();
+        if(receivesPowerDiscount){
+            //TODO: surely there is SOME way to do this without resetting costForTurn hereA
+            cost=actualBaseCost;
+            costForTurn=actualBaseCost;
+            int discount=BGTheDieRelic.powersPlayedThisCombat;
+            this.modifyCostForCombat(-cost+actualBaseCost-discount);
+            applyRetainDiscount();
+        }
+    }
+    public void applyRetainDiscount(){
+        if(wasRetainedLastTurn){
+            AbstractPower p = AbstractDungeon.player.getPower("BGEstablishmentPower");
+            if(p!=null) {
+                costForTurn -= p.amount;
+                if(costForTurn<0)costForTurn=0;
+                if(costForTurn!=actualBaseCost)isCostModifiedForTurn = true;
+            }
+        }
+    }
+
+//    @Override
+//    public void calculateCardDamage(AbstractMonster mo) {
+//        super.calculateCardDamage(mo);
+//
+//    }
 
     @SpirePatch2(clz = CardGroup.class, method = "resetCardBeforeMoving",   //TODO: consider moving this patch to Outmaneuver
             paramtypez={AbstractCard.class})
@@ -188,6 +246,9 @@ public abstract class AbstractBGCard extends CustomCard {
         defaultSecondMagicNumber = defaultBaseSecondMagicNumber; // Set the number to be equal to the base value.
         upgradedDefaultSecondMagicNumber = true; // Upgraded = true - which does what the above method does.
     }
+
+
+
 
 
 }

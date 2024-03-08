@@ -77,6 +77,11 @@
     "DESCRIPTION": "[BoardGame:Die1Icon] [BoardGame:Die2Icon] [BoardGame:Die3Icon] !D! [BoardGame:HitIcon] [BoardGame:VulnIcon] NL [BoardGame:Die4Icon] [BoardGame:Die5Icon] [BoardGame:Die6Icon] !D! [BoardGame:HitIcon]    ",
     "UPGRADE_DESCRIPTION": "!D! [BoardGame:HitIcon] [BoardGame:VulnIcon]"
   },
+  "BoardGame:BGBecomeAlmighty": {
+    "NAME": "Become Almighty",
+    "DESCRIPTION": "Gain [BoardGame:StrIcon] .",
+    "UPGRADE_DESCRIPTION": "Gain [BoardGame:StrIcon] [BoardGame:StrIcon] ."
+  },
   "BoardGame:BGBerserk": {
     "NAME": "Berserk",
     "DESCRIPTION": "Whenever you Exhaust a card, NL deal !M! damage to any row."
@@ -209,7 +214,7 @@
     "NAME": "Cold Snap",
     "DESCRIPTION": "!D! [BoardGame:HitIcon] NL boardgame:Channel 1 boardgame:Frost."
   },
-  "BoardGame:Collect": {
+  "BoardGame:BGCollect": {
     "NAME": "Collect",
     "DESCRIPTION": "[BoardGame:MiracleIcon] [BoardGame:MiracleIcon] NL Exhaust.",
     "UPGRADE_DESCRIPTION": "[BoardGame:MiracleIcon] [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] NL Exhaust."
@@ -248,6 +253,10 @@
     "NAME": "Coolheaded",
     "DESCRIPTION": "boardgame:Channel 1 boardgame:Frost.",
     "UPGRADE_DESCRIPTION": "boardgame:Channel 1 boardgame:Frost. NL Draw a card."
+  },
+  "BoardGame:BGCopiedCard": {
+    "NAME": "Copied Card",
+    "DESCRIPTION": "Placeholder."
   },
   "BoardGame:BGCoreSurge": {
     "NAME": "Core Surge",
@@ -471,6 +480,11 @@
     "DESCRIPTION": "Deal !D! damage. NL For debug purposes only. In the Board Game, boardgame:Shivs are tokens, not cards.",
     "UPGRADE_DESCRIPTION": "Deal !D! damage. NL For debug purposes only. You can't upgrade boardgame:Shivs in the Board Game."
   },
+  "BoardGame:BGFameAndFortune": {
+    "NAME": "Fame and Fortune",
+    "DESCRIPTION": "[BoardGame:MiracleIcon] [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] [BoardGame:MiracleIcon]",
+    "UPGRADE_DESCRIPTION": "[BoardGame:MiracleIcon] [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] [BoardGame:MiracleIcon]"
+  },
   "BoardGame:BGFearNoEvil": {
     "NAME": "Fear No Evil",
     "DESCRIPTION": "!D! [BoardGame:HitIcon] NL If you're in boardgame:Wrath, NL enter boardgame:Calm."
@@ -689,8 +703,8 @@
   },
   "BoardGame:BGJudgment": {
     "NAME": "Judgment",
-    "DESCRIPTION": "Ethereal. NL Choose an enemy. NL If they have 7 HP or less, set their HP to 0.",
-    "UPGRADE_DESCRIPTION": "Retain. NL Choose an enemy. NL If they have 7 HP or less, set their HP to 0."
+    "DESCRIPTION": "Ethereal. NL Choose an enemy. NL If they have !M! HP or less, set their HP to 0.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Choose an enemy. NL If they have !M! HP or less, set their HP to 0."
   },
   "BoardGame:BGJuggernaut": {
     "NAME": "Juggernaut",
@@ -716,6 +730,11 @@
     "NAME": "Limit Break",
     "DESCRIPTION": "Double your [BoardGame:StrIcon] . NL (Max [BoardGame:StrIcon] is 8.) NL Exhaust.",
     "UPGRADE_DESCRIPTION": "Double your [BoardGame:StrIcon] . NL (Max [BoardGame:StrIcon] is 8.)"
+  },
+  "BoardGame:BGLiveForever": {
+    "NAME": "Live Forever",
+    "DESCRIPTION": "!B! [BoardGame:BlockIcon]",
+    "UPGRADE_DESCRIPTION": "!B! [BoardGame:BlockIcon]"
   },
   "BoardGame:BGLoop": {
     "NAME": "Loop",
@@ -1077,7 +1096,10 @@
   "BoardGame:BGSpiritShield": {
     "NAME": "Spirit Shield",
     "DESCRIPTION": "!B! [BoardGame:BlockIcon] for each card in your hand. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "!B! [BoardGame:BlockIcon] for each card in your hand."
+    "UPGRADE_DESCRIPTION": "!B! [BoardGame:BlockIcon] for each card in your hand.",
+    "EXTENDED_DESCRIPTION": [
+      " NL (Gain !M! Block.)"
+    ]
   },
   "BoardGame:BGStack": {
     "NAME": "Stack",
@@ -1253,8 +1275,8 @@
   },
   "BoardGame:BGWish": {
     "NAME": "Wish",
-    "DESCRIPTION": "Choose one: NL Gain [BoardGame:StrIcon], !B! [BoardGame:BlockIcon], or NL [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] . NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Choose one: NL Gain [BoardGame:StrIcon] [BoardGame:StrIcon], !B! [BoardGame:BlockIcon], or NL [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] . NL Exhaust."
+    "DESCRIPTION": "Choose one: NL Gain [BoardGame:StrIcon] , !B! [BoardGame:BlockIcon] , or NL [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] . NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Choose one: NL Gain [BoardGame:StrIcon] [BoardGame:StrIcon] , !B! [BoardGame:BlockIcon] , or NL [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] [BoardGame:MiracleIcon] . NL Exhaust."
   },
   "BoardGame:BGWorship": {
     "NAME": "Worship",

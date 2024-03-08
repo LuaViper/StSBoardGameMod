@@ -64,7 +64,8 @@ public class BGBufferPower extends AbstractBGPower {
                 logger.info("Buffer: attempt to exhaust...");
                 AbstractCard card = originalcard.makeStatEquivalentCopy();
                 AbstractDungeon.player.discardPile.addToBottom(card);
-                addToBot(new ExhaustSpecificCardAction(card, AbstractDungeon.player.discardPile, true));
+                addToBot(new ExhaustSpecificCardAction(card, AbstractDungeon.player.discardPile,true));
+
                 //this counts as losing a power card, so Awakened One loses 1 str
                 for (AbstractMonster m : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
                     AbstractPower p = m.getPower("BGCuriosityPower");

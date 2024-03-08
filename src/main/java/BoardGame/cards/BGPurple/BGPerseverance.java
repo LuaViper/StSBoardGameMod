@@ -36,7 +36,7 @@ public class BGPerseverance extends AbstractBGCard {
     }
 
     private boolean shouldGlow() {
-        if(activated)
+        if(wasRetainedLastTurn)
                 return true;
 
         return false;
@@ -44,10 +44,10 @@ public class BGPerseverance extends AbstractBGCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot((AbstractGameAction)new GainBlockAction((AbstractCreature)p, (AbstractCreature)p, this.block));
-        if(this.activated){
+        if(this.wasRetainedLastTurn){
             addToBot((AbstractGameAction)new GainBlockAction((AbstractCreature)p, (AbstractCreature)p, this.magicNumber));
         }
-        this.activated=false;
+
     }
 
     protected void applyPowersToBlock() {
@@ -65,15 +65,7 @@ public class BGPerseverance extends AbstractBGCard {
     }
 
 
-    public boolean activated;
-    public void onRetained(){
-        this.activated=true;
-    }
 
-    public void onResetBeforeMoving() {
-        //BoardGame.BoardGame.logger.info("Outmaneuver.onMoveToDiscard");
-        this.activated=false;
-    }
 
     public void upgrade() {
         if (!this.upgraded) {

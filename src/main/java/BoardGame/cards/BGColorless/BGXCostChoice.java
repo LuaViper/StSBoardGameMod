@@ -3,6 +3,7 @@ package BoardGame.cards.BGColorless;
 import BoardGame.actions.BGXCostCardAction;
 import BoardGame.cards.AbstractBGAttackCardChoice;
 import BoardGame.cards.BGRed.BGWhirlwind;
+import basemod.helpers.ModalChoice;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -15,6 +16,7 @@ public class BGXCostChoice extends AbstractBGAttackCardChoice {
 
     //TODO LATER: action could be private if our DoppelgangerAction was better structured.  Alternately, public card.executeAction()
     public BGXCostCardAction.XCostAction action;
+    //TODO: we don't appear to be using doppelgangerCard anymore, could be replaced by either message arg or a boolean flag
     private AbstractCard doppelgangerCard;
 
     public boolean dontExpendResources;
@@ -56,7 +58,10 @@ public class BGXCostChoice extends AbstractBGAttackCardChoice {
 
 
 
-    public void use(AbstractPlayer p, AbstractMonster m) {}
+    public void use(AbstractPlayer p, AbstractMonster m) {
+//        //TODO: complain very loudly if we're not in the middle of a ModalChoice screen
+//        onChoseThisOption();
+    }
 
 
 
@@ -69,6 +74,10 @@ public class BGXCostChoice extends AbstractBGAttackCardChoice {
         }
     }
 
+//    @Override
+//    public void optionSelected(AbstractPlayer p, AbstractMonster m, int i) {
+//        //TODO: complain loudly
+//    }
 
 
     public void upgrade() {}

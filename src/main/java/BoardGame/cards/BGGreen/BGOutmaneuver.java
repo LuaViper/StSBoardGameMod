@@ -29,33 +29,25 @@ public class BGOutmaneuver extends AbstractBGCard {
 
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGOutmaneuver");
 
-    public boolean activated;
     public BGOutmaneuver() {
         super("BGOutmaneuver", cardStrings.NAME, "green/skill/outmaneuver", 0, cardStrings.DESCRIPTION, CardType.SKILL, BGSilent.Enums.BG_GREEN, CardRarity.UNCOMMON, CardTarget.SELF);
         this.baseMagicNumber = 2;
         this.magicNumber = this.baseMagicNumber;
         this.selfRetain=true;
-        this.activated=false;
     }
 
-    public void onRetained(){
-        this.activated=true;
-    }
+
     public void triggerOnGlowCheck() {
         this.glowColor = AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
-        if (this.activated)
+        if (this.wasRetainedLastTurn)
             this.glowColor = AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy();
     }
     public void use(AbstractPlayer p, AbstractMonster m) {
-        if(this.activated){
+        if(this.wasRetainedLastTurn){
             addToBot((AbstractGameAction)new GainEnergyAction(this.magicNumber));
-            this.activated=false;
         }
     }
-    public void onResetBeforeMoving() {
-        //BoardGame.BoardGame.logger.info("Outmaneuver.onMoveToDiscard");
-        this.activated=false;
-    }
+
 
     public void upgrade() {
         if (!this.upgraded) {

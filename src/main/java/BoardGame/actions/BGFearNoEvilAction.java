@@ -18,6 +18,7 @@ public class BGFearNoEvilAction extends AbstractGameAction {
     public BGFearNoEvilAction(AbstractMonster m, DamageInfo info) {
         this.m = m;
         this.info = info;
+
     }
 
     public void update() {

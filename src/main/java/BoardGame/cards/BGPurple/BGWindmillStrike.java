@@ -32,12 +32,11 @@ public class BGWindmillStrike extends AbstractBGCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-        this.activated=false;
     }
 
     public void applyPowers() {
         int realBaseDamage = this.baseDamage;
-        if(activated) this.baseDamage += this.magicNumber;
+        if(wasRetainedLastTurn) this.baseDamage += this.magicNumber;
         super.applyPowers();
         this.baseDamage = realBaseDamage;
         this.isDamageModified = (this.damage != this.baseDamage);
@@ -45,22 +44,13 @@ public class BGWindmillStrike extends AbstractBGCard {
 
     public void calculateCardDamage(AbstractMonster mo) {
         int realBaseDamage = this.baseDamage;
-        if(activated) this.baseDamage += this.magicNumber;
+        if(wasRetainedLastTurn) this.baseDamage += this.magicNumber;
         super.calculateCardDamage(mo);
         this.baseDamage = realBaseDamage;
         this.isDamageModified = (this.damage != this.baseDamage);
     }
 
 
-    public boolean activated;
-    public void onRetained(){
-        this.activated=true;
-    }
-
-    public void onResetBeforeMoving() {
-        //BoardGame.BoardGame.logger.info("Outmaneuver.onMoveToDiscard");
-        this.activated=false;
-    }
 
     public void upgrade() {
         if (!this.upgraded) {

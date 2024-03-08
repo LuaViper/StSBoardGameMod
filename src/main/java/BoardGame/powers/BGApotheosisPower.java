@@ -8,6 +8,8 @@ import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
+
+//TODO: if possible, change to atDamageGive / modifyBlock so it doesn't break vanilla cards
 public class BGApotheosisPower
         extends AbstractBGPower {
     public static final String POWER_ID = "BGApotheosisPower";

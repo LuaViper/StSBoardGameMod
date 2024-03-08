@@ -37,6 +37,7 @@ public class BGTheBombPower extends AbstractBGPower {
         this.originalcard=originalcard;
         updateDescription();
         loadRegion("the_bomb");
+        //TODO: should this be isTimeBased?
     }
 
 
@@ -49,7 +50,6 @@ public class BGTheBombPower extends AbstractBGPower {
                         DamageInfo.createDamageMatrix(this.damage, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE));
 
                 AbstractCard card=originalcard.makeStatEquivalentCopy();
-
                 AbstractDungeon.player.discardPile.addToBottom(card);
                 addToBot(new ExhaustSpecificCardAction(card, AbstractDungeon.player.discardPile,true));
 

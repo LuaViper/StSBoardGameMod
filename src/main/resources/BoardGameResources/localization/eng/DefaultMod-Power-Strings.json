@@ -118,7 +118,7 @@
         "NAME": "Berserk",
         "DESCRIPTIONS": [
                 "Whenever a card is #yExhausted, deal #b",
-                " damage to ALL enemies."
+                " damage to any row."
         ]
 },
         "BoardGame:BGBurstPower": {
@@ -140,7 +140,7 @@
         "DESCRIPTIONS": [
                 "Once per turn,",
                 " deal #b",
-                " damage to ALL enemies."
+                " damage to any row."
         ]
 },
         "BoardGame:BGConclusionPower": {
@@ -162,11 +162,18 @@
                 " ."
         ]
 },
+        "BoardGame:BGConjureBladePower": {
+                "NAME": "Conjure Blade",
+                "DESCRIPTIONS": [
+                        "Your starter Strikes deal #b",
+                        " additional damage."
+                ]
+        },
         "BoardGame:BGCorpseExplosionPower": {
                 "NAME": "Corpse Explosion",
                 "DESCRIPTIONS":
                 [
-                        "(Unused) On death, deal damage equal to its Max HP to ALL enemies.",
+                        "(Unused) On death, deal damage equal to its Max HP to its row.",
                         "On death, deal #b",
                         " damage to its row."
                 ]
@@ -185,6 +192,20 @@
                 " #yBlock. (Once per combat)"
         ]
 },
+        "BoardGame:BGDevaFormPower": {
+                "NAME": "Deva Form",
+                "DESCRIPTIONS": [
+                        "#yStart #yof #yturn: gain #b",
+                        " [BoardGame:MiracleIcon] ."
+                ]
+        },
+        "BoardGame:BGDevotionPower": {
+                "NAME": "Devotion",
+                "DESCRIPTIONS": [ "Gain [BoardGame:MiracleIcon] and draw 1 card at the start of your next turn.",
+                                "Gain [BoardGame:MiracleIcon] and draw 1 card at the start of your next #b",
+                                " turns."
+                        ]
+        },
         "BoardGame:BGDexterity": {
                 "NAME": "Dexterity",
                 "DESCRIPTIONS": [
@@ -203,8 +224,8 @@
 "BoardGame:BGDouble Attack": {
         "NAME": "Double Attack",
         "DESCRIPTIONS": [
-                "Your first #yAttack is played twice this turn.",
-                "Your first ",
+                "Your next #yAttack is played twice this turn.",
+                "Your next #b",
                 " #yAttacks are played twice this turn."
         ]
 },
@@ -239,6 +260,14 @@
                 "DESCRIPTIONS": [
                         "Your Attacks also apply #b1 Poison.",
                         "Your Attacks also apply #b1 Poison."
+                ]
+        },
+        "BoardGame:BGEstablishmentPower": {
+                "NAME": "Establishment",
+                "DESCRIPTIONS": [
+                        "Cards you #yRetained last turn cost #b",
+                        " less [W] this turn.",
+                        "Establishment is applied at the start of your next turn."
                 ]
         },
         "BoardGame:BGExplosive": {
@@ -394,6 +423,13 @@
                 " #yStrength."
         ]
 },
+        "BoardGame:BGOmegaPower": {
+                "NAME": "",
+                "DESCRIPTIONS": [
+                        "At the end of your turn, deal #b",
+                        " damage to any row."
+                ]
+        },
 "BoardGame:BGPainful Stabs": {
         "NAME": "Painful Stabs",
         "DESCRIPTIONS": [
@@ -414,6 +450,13 @@
                         "The first time you enter #yWrath each turn, draw #b",
                         " card.",
                         " cards."
+                ]
+        },
+        "BoardGame:BGSimmeringFuryPower": {
+                "NAME": "Simmering Fury",
+                "DESCRIPTIONS": [
+                        "Additional #b+",
+                        " to [BoardGame:HitIcon] during #yWrath."
                 ]
         },
         "BoardGame:BGSpiker": {
@@ -517,6 +560,15 @@
 
         ]
 },
+        "BoardGame:BGTripleAttackPower": {
+                "NAME": "Blasphemy",
+                "DESCRIPTIONS": [
+                        "Your next #yAttack is played 3 times this turn.",
+                        "Your next #b",
+                        " #yAttacks are played 3 times this turn.",
+                        " NL NL You are already dead."
+                ]
+        },
         "BoardGame:BGWraithFormPower": {
                 "NAME": "Wraith Form",
                 "DESCRIPTIONS": [

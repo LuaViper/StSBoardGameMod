@@ -7,8 +7,11 @@ import BoardGame.cards.BGColorless.BGXCostChoice;
 import BoardGame.cards.BGRed.BGWhirlwind;
 import BoardGame.powers.BGFreeAttackPower;
 import BoardGame.powers.BGFreeCardPower;
+import basemod.helpers.ModalChoice;
+import basemod.helpers.ModalChoiceBuilder;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -126,15 +129,18 @@ public class BGXCostCardAction extends AbstractGameAction {
         if(this.choices.size()>1) {
             //TODO: if energy is high enough, player has to scroll to the right for more options.  does one of the BaseMod classes solve this?
             AbstractDungeon.cardRewardScreen.chooseOneOpen(this.choices);
+//            ModalChoiceBuilder mcb = new ModalChoiceBuilder();
+//            for(AbstractCard c : choices) {
+//                    //mcb.addOption((BGXCostChoice)c);
+//                mcb.addOption(c);
+//            }
+//            ModalChoice modal=mcb.create();
+//            modal.open();
+
+
             this.isDone=true;
             return;
         }else{
-            //minenergy == card[0].cost == maxenergy
-//            if(card instanceof AbstractBGCard){
-//                if(((AbstractBGCard)card).copiedCard != null){
-//                    ((AbstractBGCard)card).copiedCard.copiedCardEnergy=minEnergy;
-//                }
-//            }
             action.execute(info.minEnergy, info.dontExpendResources);
         }
         tickDuration();

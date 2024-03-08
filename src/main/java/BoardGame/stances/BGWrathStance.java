@@ -19,6 +19,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.KeywordStrings;
 import com.megacrit.cardcrawl.localization.StanceStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.stances.AbstractStance;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
 import com.megacrit.cardcrawl.vfx.stance.StanceAuraEffect;
@@ -37,9 +38,12 @@ public class BGWrathStance extends AbstractStance {
     }
 
     public float atDamageGive(float damage, DamageInfo.DamageType type) {
-        if (type == DamageInfo.DamageType.NORMAL)
-            return damage + 1.0F;
-        return damage;
+        if (type != DamageInfo.DamageType.NORMAL) return damage;
+
+        float bonus=1.0F;
+        AbstractPower p = AbstractDungeon.player.getPower("BGSimmeringFuryPower");
+        if(p!=null) bonus+=p.amount;
+        return damage + bonus;
     }
 
     public void onEndOfTurn() {

@@ -51,6 +51,13 @@ public class DiscardInOrderOfEnergyCostPatch {
             cards.group.sort(new CustomCostComparatorDescending());
     }
 
+    public static void sortByCost(ArrayList<AbstractCard> group, boolean ascending){
+        if(ascending)
+            group.sort(new CustomCostComparatorAscending());
+        else
+            group.sort(new CustomCostComparatorDescending());
+    }
+
     @SpirePatch2(clz= DiscardAction.class,method="update",paramtypez={})
     public static class DiscardActionUpdatePatch {
         @SpireInsertPatch(

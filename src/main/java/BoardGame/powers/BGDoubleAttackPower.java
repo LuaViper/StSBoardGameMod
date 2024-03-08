@@ -9,15 +9,12 @@ import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardQueueItem;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import BoardGame.monsters.AbstractBGMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -37,9 +34,8 @@ public class BGDoubleAttackPower extends AbstractBGPower {
     }
 
     public void stackPower(int stackAmount) {
-        //TODO: Necronomicon is now supposed to stack with Attack Potion as expected
-        if(stackAmount>0) this.amount=1;
-        //this.fontScale = 8.0F;
+        this.fontScale = 8.0F;
+        this.amount += stackAmount;
     }
 
     public void updateDescription() {
@@ -57,6 +53,11 @@ public class BGDoubleAttackPower extends AbstractBGPower {
             //neither Double Tap nor Double Attack stack in the BG
             //it's slightly more likely that Double Tap will be available twice, so use it up first
             return;
+
+        }
+        if(this.owner.getPower("BGTripleAttackPower")!=null){
+            //same check for Blasphemy tripleattack
+            return;
         }
         if (!card.purgeOnUse && card.type == AbstractCard.CardType.ATTACK && this.amount > 0) {
             flash();
@@ -72,7 +73,7 @@ public class BGDoubleAttackPower extends AbstractBGPower {
 
             tmp.purgeOnUse = true;
 
-            Logger logger = LogManager.getLogger(BGDoubleTapPower.class.getName());
+            Logger logger = LogManager.getLogger(BGDoubleTapPower_DEPRECATED.class.getName());
             //logger.info("DoubleAttackPower instanceof check");
             if(card instanceof AbstractBGCard){
                 //logger.info("set old card's copy reference: "+tmp);
