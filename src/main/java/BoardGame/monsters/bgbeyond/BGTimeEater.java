@@ -1,6 +1,8 @@
 //use NoSkillsPower+VelvetChoker as a base for BGTimeWarpPower
 
+
 package BoardGame.monsters.bgbeyond; 
+ import BoardGame.characters.BGWatcher;
  import BoardGame.monsters.BGDamageIcons;
 import BoardGame.cards.BGStatus.BGSlimed;
 import BoardGame.monsters.DieControlledMoves;
@@ -120,7 +122,7 @@ public class BGTimeEater extends AbstractBGMonster implements BGDamageIcons {
     public void takeTurn() {
         int i;
         if (this.firstTurn) {
-            if (AbstractDungeon.player.chosenClass == AbstractPlayer.PlayerClass.WATCHER) {
+            if (AbstractDungeon.player.chosenClass == AbstractPlayer.PlayerClass.WATCHER || AbstractDungeon.player instanceof BGWatcher) {
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new TalkAction((AbstractCreature)this, DIALOG[2], 0.5F, 2.0F));
             } else {
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new TalkAction((AbstractCreature)this, DIALOG[0], 0.5F, 2.0F));
