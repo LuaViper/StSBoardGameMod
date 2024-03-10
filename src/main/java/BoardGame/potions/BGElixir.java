@@ -1,11 +1,13 @@
 package BoardGame.potions;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ExhaustAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.GameDictionary;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.helpers.TipHelper;
@@ -19,8 +21,14 @@ public class BGElixir extends AbstractPotion {
     //TODO: "Purity Potion" has different name AND different appearance
 
     public BGElixir() {
-        super(potionStrings.NAME, "BGElixirPotion", AbstractPotion.PotionRarity.UNCOMMON, AbstractPotion.PotionSize.T, AbstractPotion.PotionColor.WHITE);
+        super(potionStrings.NAME, "BGElixirPotion", AbstractPotion.PotionRarity.UNCOMMON, AbstractPotion.PotionSize.S, AbstractPotion.PotionColor.GREEN);
         this.labOutlineColor = Settings.RED_RELIC_COLOR;
+        this.liquidColor= CardHelper.getColor(145,204,100);
+        this.hybridColor = new Color(0,0,0,0);
+        this.spotsColor = new Color(0,0,0,0);
+
+
+
         this.isThrown = false;
     }
 

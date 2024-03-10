@@ -20,7 +20,7 @@ public class BGTranquility extends AbstractBGCard {
     public static final String ID = "BGTranquility";
 
     public BGTranquility() {
-        super("BGTranquility", cardStrings.NAME, "purple/skill/empty_body", 1, cardStrings.DESCRIPTION, CardType.SKILL, BGWatcher.Enums.BG_PURPLE, CardRarity.COMMON, CardTarget.SELF);
+        super("BGTranquility", cardStrings.NAME, "purple/skill/tranquility", 1, cardStrings.DESCRIPTION, CardType.SKILL, BGWatcher.Enums.BG_PURPLE, CardRarity.COMMON, CardTarget.SELF);
 
         this.exhaust = true;
         this.selfRetain = true;

@@ -38,9 +38,9 @@ public abstract class PotionHelperPatch {
                 potionDeck.add("BoardGame:BGBloodPotion");
                 potionDeck.add("BoardGame:BGGhostInAJar");
                 //when uncommenting these, remember to also update the getPotion function below
-                //potionDeck.add("BoardGame:BGDistilledChaos");
-                //potionDeck.add("BoardGame:BGEntropicBrew");
-                potionDeck.add("BoardGame:BGFairyPotion");
+                //potionDeck.add("BoardGame:BGDistilledChaos"); //requires "play 3 cards in which order?" interface
+                //potionDeck.add("BoardGame:BGEntropicBrew");   //requires "use existing potion / use new potion / discard / give to player?" interface
+                potionDeck.add("BoardGame:BGFairyPotion");                              //TODO: can we use the new potion right away, or existing pots only?
                 potionDeck.add("BoardGame:BGAttackPotion");
                 potionDeck.add("BoardGame:BGSkillPotion");
                 potionDeck.add("BoardGame:BGAncientPotion");
@@ -52,7 +52,8 @@ public abstract class PotionHelperPatch {
                 potionDeck.add("BoardGame:BGWeak Potion");
                 potionDeck.add("BoardGame:BGFearPotion");
                 potionDeck.add("BoardGame:BGSteroidPotion");
-                potionDeck.add("BoardGame:BGLiquidMemories");
+                //TODO NEXT: make Liquid Memories compatible with the new energy cost reduction system
+                //potionDeck.add("BoardGame:BGLiquidMemories");
                 potionDeck.add("BoardGame:BGSneckoOil");
                 potionDeck.add("BoardGame:BGElixirPotion");
                 potionDeck.add("BoardGame:BGCunningPotion");

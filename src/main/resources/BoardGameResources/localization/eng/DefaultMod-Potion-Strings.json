@@ -36,7 +36,7 @@
                 ]
         },
 "BoardGame:BGElixirPotion": {
-        "NAME": "Elixir",
+        "NAME": "Purity Potion",
         "DESCRIPTIONS": [
                 "#yExhaust up to #b3 cards in your hand."
         ]

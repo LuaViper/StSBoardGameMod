@@ -47,7 +47,7 @@ public class BGIndignation extends AbstractBGCard {
             upgradeBlock(1);
             this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
             initializeDescription();
-            this.onChangeStance(AbstractDungeon.player.stance);
+            //this.onChangeStance(AbstractDungeon.player.stance);   //TODO: why was this here in vanilla? it breaks on the compendium screen of course
         }
     }
 

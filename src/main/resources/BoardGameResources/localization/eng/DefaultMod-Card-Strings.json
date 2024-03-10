@@ -337,7 +337,7 @@
   },
   "BoardGame:BGDeflect": {
     "NAME": "Deflect",
-    "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL +!M! [BoardGame:BlockIcon] if you have a [BoardGame:ShivIcon] ."
+    "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL +!M! [BoardGame:BlockIcon] if you NL have a [BoardGame:ShivIcon] ."
   },
   "BoardGame:BGDefragment": {
     "NAME": "Defragment",
@@ -378,7 +378,7 @@
   "BoardGame:BGDodgeAndRoll": {
     "NAME": "Dodge and Roll",
     "DESCRIPTION": "!B! [BoardGame:BlockIcon] !B! [BoardGame:BlockIcon] NL Each [BoardGame:BlockIcon] can go to any player.",
-    "UPGRADE_DESCRIPTION": "!B! [BoardGame:BlockIcon] !B! [BoardGame:BlockIcon] [BoardGame:BlockIcon] NL Each [BoardGame:BlockIcon] can go to any player."
+    "UPGRADE_DESCRIPTION": "!B! [BoardGame:BlockIcon] !B! [BoardGame:BlockIcon] !B! [BoardGame:BlockIcon] NL Each [BoardGame:BlockIcon] can go to any player."
   },
   "BoardGame:BGDoomAndGloom": {
     "NAME": "Doom and Gloom",
@@ -465,7 +465,7 @@
   "BoardGame:BGEscapePlan": {
     "NAME": "Escape Plan",
     "DESCRIPTION": "Draw 1 card. NL If you draw a Skill, NL !B! [BoardGame:BlockIcon] .",
-    "UPGRADE_DESCRIPTION": "[BoardGame:BlockIcon] NL Draw 1 card."
+    "UPGRADE_DESCRIPTION": "!B! [BoardGame:BlockIcon] NL Draw 1 card."
   },
   "BoardGame:BGEstablishment": {
     "NAME": "Establishment",

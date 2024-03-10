@@ -36,6 +36,7 @@ public class BGMasterfulStab extends AbstractBGCard {
         //TODO: multiplayer doppelganger implementation will be Not Fun
         //TODO: we haven't actually tested to make sure this stops at cost 2
         if(this.cost<this.magicNumber) updateCost(this.magicNumber);
+        nonvolatileBaseCost=this.magicNumber;
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {

@@ -19,7 +19,7 @@ public class BGSashWhip extends AbstractBGCard {
     public static final String ID = "BGSashWhip";
 
     public BGSashWhip() {
-        super("BGSashWhip", cardStrings.NAME, "purple/attack/crush_joints", 1, cardStrings.DESCRIPTION, CardType.ATTACK, BGWatcher.Enums.BG_PURPLE, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super("BGSashWhip", cardStrings.NAME, "purple/attack/sash_whip", 1, cardStrings.DESCRIPTION, CardType.ATTACK, BGWatcher.Enums.BG_PURPLE, CardRarity.UNCOMMON, CardTarget.ENEMY);
 
         this.baseDamage=2;
         this.baseMagicNumber=1;

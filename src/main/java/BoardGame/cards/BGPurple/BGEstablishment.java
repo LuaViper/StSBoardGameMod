@@ -35,8 +35,8 @@ public class BGEstablishment extends AbstractBGCard {
         if (!this.upgraded) {
             upgradeName();
             upgradeMagicNumber(1);
-            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
-            initializeDescription();
+            //this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+            //initializeDescription();
         }
     }
 

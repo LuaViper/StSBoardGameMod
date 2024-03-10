@@ -2,12 +2,14 @@
 
 package BoardGame.potions;
 
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.HealAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
@@ -19,7 +21,11 @@ public class BGBloodPotion
     private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString("BoardGame:BGBloodPotion");
 
     public BGBloodPotion() {
-        super(potionStrings.NAME, "BGBloodPotion", AbstractPotion.PotionRarity.COMMON, AbstractPotion.PotionSize.H, AbstractPotion.PotionColor.WHITE);
+        super(potionStrings.NAME, "BGBloodPotion", AbstractPotion.PotionRarity.COMMON, AbstractPotion.PotionSize.HEART, PotionColor.ATTACK);
+        this.liquidColor= CardHelper.getColor(236f, 56f, 55f);
+        this.hybridColor= CardHelper.getColor(206f, 0f, 137f);
+        //this.spotsColor = CardHelper.getColor(236f, 163f, 128f);
+        this.spotsColor = new Color(0,0,0,0);
         this.labOutlineColor = Settings.RED_RELIC_COLOR;
         this.isThrown = false;
     }

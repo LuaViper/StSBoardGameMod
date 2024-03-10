@@ -9,13 +9,10 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
@@ -67,7 +64,7 @@ public abstract class AbstractBGCard extends CustomCard {
         //CustomCard tries to override this, so override it right back
         this.assetUrl=img;
 
-        this.actualBaseCost=cost;
+        this.nonvolatileBaseCost =cost;
 
         isDefaultSecondMagicNumberModified = false;
         costModifiers=new HashMap<>();
@@ -122,6 +119,7 @@ public abstract class AbstractBGCard extends CustomCard {
 
 
     public void setCostForTurn(int amt) {
+        //TODO: complain extraordinarily loudly if amt!=0 -- new cost reduction system is incompatible
         if (this.costForTurn >= -1) {       //X-cost cards can be modified too.
             this.costForTurn = amt;
             if (this.costForTurn < 0) {
@@ -174,9 +172,10 @@ public abstract class AbstractBGCard extends CustomCard {
 
     }
 
-    public int actualBaseCost;
+    public int nonvolatileBaseCost;
     public boolean receivesPowerDiscount=false;
     public boolean wasRetainedLastTurn=false;
+    public boolean hasLiquidMemoriesEffect=false;
     public void onRetained(){
         super.onRetained();
         wasRetainedLastTurn=true;
@@ -185,33 +184,45 @@ public abstract class AbstractBGCard extends CustomCard {
     public void resetAttributes(){
         super.resetAttributes();
         wasRetainedLastTurn=false;
+        hasLiquidMemoriesEffect=false;
     }
     public void onResetBeforeMoving() {
         wasRetainedLastTurn=false;
+        hasLiquidMemoriesEffect=false;
     }
 
     @Override
     public void applyPowers() {
         super.applyPowers();
+        cost=nonvolatileBaseCost;
+        costForTurn=nonvolatileBaseCost;
         if(receivesPowerDiscount){
-            //TODO: surely there is SOME way to do this without resetting costForTurn hereA
-            cost=actualBaseCost;
-            costForTurn=actualBaseCost;
+            //TODO: surely there is SOME way to do this without resetting costForTurn here
             int discount=BGTheDieRelic.powersPlayedThisCombat;
-            this.modifyCostForCombat(-cost+actualBaseCost-discount);
-            applyRetainDiscount();
+            this.updateCost(-cost+ nonvolatileBaseCost -discount);
         }
+        applyVolatileDiscounts();
     }
-    public void applyRetainDiscount(){
+    public void applyVolatileDiscounts(){
         if(wasRetainedLastTurn){
             AbstractPower p = AbstractDungeon.player.getPower("BGEstablishmentPower");
             if(p!=null) {
                 costForTurn -= p.amount;
                 if(costForTurn<0)costForTurn=0;
-                if(costForTurn!=actualBaseCost)isCostModifiedForTurn = true;
+                if(costForTurn!= nonvolatileBaseCost)isCostModifiedForTurn = true;
             }
         }
+        //TODO NEXT: also apply Liquid Memories discount (and set hasLiquidMemoriesEffect==true in that potion)
     }
+
+    protected void upgradeBaseCost(int newBaseCost) {
+        super.upgradeBaseCost(newBaseCost);
+        nonvolatileBaseCost=newBaseCost;
+    }
+
+
+
+
 
 //    @Override
 //    public void calculateCardDamage(AbstractMonster mo) {

@@ -17,6 +17,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 //TODO: if first target is killed, player is unable to choose first enemy again to cancel!
+//TODO: if first target is killed AND only one target remains, targetscreen autoselects!
 
 public class BGCarveReality extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGCarveReality");

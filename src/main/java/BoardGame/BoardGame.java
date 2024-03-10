@@ -27,6 +27,7 @@ import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
+import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -39,7 +40,10 @@ import BoardGame.variables.DefaultSecondMagicNumber;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
+import java.lang.reflect.Constructor;
 import java.nio.charset.StandardCharsets;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.Properties;
 
 import static basemod.BaseMod.addMonster;
@@ -90,8 +94,6 @@ public class BoardGame implements
     public static final Color PLACEHOLDER_POTION_LIQUID = CardHelper.getColor(209.0f, 53.0f, 18.0f); // Orange-ish Red
     public static final Color PLACEHOLDER_POTION_HYBRID = CardHelper.getColor(255.0f, 230.0f, 230.0f); // Near White
     public static final Color PLACEHOLDER_POTION_SPOTS = CardHelper.getColor(100.0f, 25.0f, 10.0f); // Super Dark Red/Brown
-
-
 
     // Card backgrounds - The actual rectangular card.
     private static final String BGATTACK_IRONCLAD = "BoardGameResources/images/512/bg_attack_default_gray.png";
@@ -648,11 +650,30 @@ public class BoardGame implements
         // Class Specific Potion. If you want your potion to not be class-specific,
         // just remove the player class at the end (in this case the "TheDefaultEnum.THE_DEFAULT".
         // Remember, you can press ctrl+P inside parentheses like addPotions)
-        BaseMod.addPotion(PlaceholderPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, PlaceholderPotion.POTION_ID, BGIronclad.Enums.BG_IRONCLAD);
+        //BaseMod.addPotion(PlaceholderPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, PlaceholderPotion.POTION_ID, BGIronclad.Enums.BG_IRONCLAD);
 
-//        BaseMod.addPotion(BGFearPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, BGFearPotion.POTION_ID, BGSilent.Enums.BG_SILENT);
-//        BaseMod.addPotion(BGWeakenPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, BGWeakenPotion.POTION_ID, BGSilent.Enums.BG_SILENT);
-//        BaseMod.addPotion(BGAncientPotion.class, PLACEHOLDER_POTION_LIQUID, PLACEHOLDER_POTION_HYBRID, PLACEHOLDER_POTION_SPOTS, BGAncientPotion.POTION_ID, BGSilent.Enums.BG_SILENT);
+        PotionRegistryHelperFunction();
+
+//        final Color x = CardHelper.getColor(0, 0, 0);
+//
+//        BaseMod.addPotion(BGAncientPotion.class, x, x, x, BGAncientPotion.POTION_ID, BGIronclad.Enums.BG_IRONCLAD);
+//        BaseMod.addPotion(BGAttackPotion.class, x, x, x, BGAttackPotion.POTION_ID, BGIronclad.Enums.BG_IRONCLAD);
+//        BaseMod.addPotion(BGBlockPotion.class, x, x, x, BGBlockPotion.POTION_ID, BGIronclad.Enums.BG_IRONCLAD);
+//        BaseMod.addPotion(BGBloodPotion.class, x, x, x, BGBloodPotion.POTION_ID, BGIronclad.Enums.BG_IRONCLAD);
+//        BaseMod.addPotion(BGCunningPotion.class, x, x, x, BGCunningPotion.POTION_ID, BGIronclad.Enums.BG_IRONCLAD);
+//        BaseMod.addPotion(BGElixir.class, x, x, x, BGElixir.POTION_ID, BGIronclad.Enums.BG_IRONCLAD);
+//        BaseMod.addPotion(BGEnergyPotion.class, x, x, x, BGEnergyPotion.POTION_ID, BGIronclad.Enums.BG_IRONCLAD);
+//        BaseMod.addPotion(BGExplosivePotion.class, x, x, x, BGExplosivePotion.POTION_ID, BGIronclad.Enums.BG_IRONCLAD);
+//        BaseMod.addPotion(BGFairyPotion.class, x, x, x, BGFairyPotion.POTION_ID, BGIronclad.Enums.BG_IRONCLAD);
+//        BaseMod.addPotion(BGFearPotion.class, x, x, x, BGFearPotion.POTION_ID, BGIronclad.Enums.BG_IRONCLAD);
+//        BaseMod.addPotion(BGFirePotion.class, x, x, x, BGFirePotion.POTION_ID, BGIronclad.Enums.BG_IRONCLAD);
+//        BaseMod.addPotion(BGGhostInAJar.class, x, x, x, BGGhostInAJar.POTION_ID, BGIronclad.Enums.BG_IRONCLAD);
+//        BaseMod.addPotion(BGLiquidMemories.class, x, x, x, BGLiquidMemories.POTION_ID, BGIronclad.Enums.BG_IRONCLAD);
+//        BaseMod.addPotion(BGSkillPotion.class, x, x, x, BGSkillPotion.POTION_ID, BGIronclad.Enums.BG_IRONCLAD);
+//        BaseMod.addPotion(BGSneckoOil.class, x, x, x, BGSneckoOil.POTION_ID, BGIronclad.Enums.BG_IRONCLAD);
+//        BaseMod.addPotion(BGSteroidPotion.class, x, x, x, BGSteroidPotion.POTION_ID, BGIronclad.Enums.BG_IRONCLAD);
+//        BaseMod.addPotion(BGSwiftPotion.class, x, x, x, BGSwiftPotion.POTION_ID, BGIronclad.Enums.BG_IRONCLAD);
+//        BaseMod.addPotion(BGWeakenPotion.class, x, x, x, BGWeakenPotion.POTION_ID, BGIronclad.Enums.BG_IRONCLAD);
 
 
 
@@ -661,6 +682,32 @@ public class BoardGame implements
     }
 
     // ================ /ADD POTIONS/ ===================
+
+    private void PotionRegistryHelperFunction(){
+        ArrayList<AbstractPotion> potions = new ArrayList<>();
+        potions.add(new BGAncientPotion());
+        potions.add(new BGAttackPotion());
+        potions.add(new BGBlockPotion());
+        potions.add(new BGBloodPotion());
+        potions.add(new BGCunningPotion());
+        potions.add(new BGElixir());
+        potions.add(new BGEnergyPotion());
+        potions.add(new BGExplosivePotion());
+        potions.add(new BGFairyPotion());
+        potions.add(new BGFearPotion());
+        potions.add(new BGFirePotion());
+        potions.add(new BGGhostInAJar());
+        potions.add(new BGLiquidMemories());
+        potions.add(new BGSkillPotion());
+        potions.add(new BGSneckoOil());
+        potions.add(new BGSteroidPotion());
+        potions.add(new BGSwiftPotion());
+        potions.add(new BGWeakenPotion());
+        for(AbstractPotion p : potions){
+            BaseMod.addPotion(p.getClass(), p.liquidColor, p.hybridColor, p.spotsColor, p.ID, BGIronclad.Enums.BG_IRONCLAD);
+        }
+    }
+
 
 
     // ================ ADD RELICS ===================

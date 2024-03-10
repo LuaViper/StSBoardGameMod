@@ -35,6 +35,7 @@ public class BGBloodForBlood extends AbstractBGCard {
         final Logger logger = LogManager.getLogger(BoardGame.class.getName());
         logger.info("BGBloodForBlood tookDamage: "+this.magicNumber);
         updateCost(-this.cost+this.magicNumber);
+        nonvolatileBaseCost=this.magicNumber;
     }
 
 
@@ -49,6 +50,7 @@ public class BGBloodForBlood extends AbstractBGCard {
             upgradeMagicNumber(-1);
             if (this.cost < 3) {
                 updateCost(-this.cost+this.magicNumber);
+                nonvolatileBaseCost=this.magicNumber;
             }
         }
     }
@@ -59,6 +61,7 @@ public class BGBloodForBlood extends AbstractBGCard {
         if (AbstractDungeon.player != null) {
             if(AbstractDungeon.player.damagedThisCombat>0){
                 updateCost(-this.cost+this.magicNumber);
+                nonvolatileBaseCost=this.magicNumber;
             }
         }
         return tmp;

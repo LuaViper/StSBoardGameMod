@@ -33,6 +33,7 @@ import com.megacrit.cardcrawl.powers.WeakPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+//TODO: when hit with Skewer, Writhing Mass *repeatedly* switched to vulnerable and made several overlapping Ominous Noises
 public class BGWrithingMass extends AbstractBGMonster implements DieControlledMoves, BGDamageIcons {
     public static final String ID = "BGWrithingMass";
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("WrithingMass");

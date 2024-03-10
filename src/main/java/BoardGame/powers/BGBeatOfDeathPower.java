@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
+//TODO: BGBeatOfDeathPower currently applies before BGPoison; both are "end of turn" so poison can go first
 public class BGBeatOfDeathPower extends AbstractBGPower {
     public static final String POWER_ID = "BGBeatOfDeathPower";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGBeatOfDeathPower");

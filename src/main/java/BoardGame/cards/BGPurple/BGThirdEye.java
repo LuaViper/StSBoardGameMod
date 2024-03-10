@@ -22,7 +22,7 @@ public class BGThirdEye extends AbstractBGCard {
     public static final String ID = "BGThirdEye";
 
     public BGThirdEye() {
-        super("BGThirdEye", cardStrings.NAME, "purple/skill/third_eye", 0, cardStrings.DESCRIPTION, CardType.SKILL, BGWatcher.Enums.BG_PURPLE, CardRarity.COMMON, CardTarget.SELF);
+        super("BGThirdEye", cardStrings.NAME, "purple/skill/third_eye", 1, cardStrings.DESCRIPTION, CardType.SKILL, BGWatcher.Enums.BG_PURPLE, CardRarity.COMMON, CardTarget.SELF);
 
         this.baseBlock=2;
         this.baseMagicNumber=3;
