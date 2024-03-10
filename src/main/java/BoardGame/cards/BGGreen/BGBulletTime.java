@@ -2,6 +2,7 @@ package BoardGame.cards.BGGreen;
 
 //TODO: what happens if you Exhume or Hologram a card? and how does the VG handle it?
 
+import BoardGame.actions.BGApplyBulletTimeAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGSilent;
 import BoardGame.powers.BGBurstPower;
@@ -29,7 +30,8 @@ public class BGBulletTime extends AbstractBGCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new NoDrawPower((AbstractCreature)p), 1));
-        addToBot((AbstractGameAction)new ApplyBulletTimeAction());
+        //addToBot((AbstractGameAction)new ApplyBulletTimeAction());
+        addToBot((AbstractGameAction)new BGApplyBulletTimeAction());
     }
 
     public void upgrade() {

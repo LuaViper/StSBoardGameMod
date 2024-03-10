@@ -37,6 +37,24 @@
       "[Locked] Requires: Upgradeable Cards"
     ]
   },
+  "BoardGame:BGANoteForYourself": {
+    "NAME": "A Note For Yourself",
+    "DESCRIPTIONS": [
+      "An old beggar cloaked in fur reaches his hands out towards you as you pass. \"Spare some coin, child?\"",
+      "The beggar looks to the floor as you pass. NL \"You will never make a difference... You never do.\"",
+      "The beggar takes off its cloak to reveal that he is #bCleric! NL @\"You@ @are@ @a@ @kind@ @soul.@ @Receive@ @my@ @purification!\"@ he screams. NL You are unsure if he is grateful or mad.",
+      "@\"I@ @hope@ @you@ @do@ @better@ @this@ @time,@ @friend!\"@ he shouts. NL Wondering what was implied by this, you push forward."
+    ],
+    "OPTIONS": [
+      "[Offer Gold] #y",
+      " #yGold: #gRemove #ga #gcard #gfrom #gyour #gdeck.",
+      "[Locked] Requires: ",
+      " Gold.",
+      "[Continue]",
+      "[Leave]",
+      "Select a Card to Remove."
+    ]
+  },
   "BoardGame:BGBack to Basics": {
     "NAME": "Ancient Writing",
     "DESCRIPTIONS": [

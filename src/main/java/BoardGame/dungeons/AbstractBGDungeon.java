@@ -3,9 +3,7 @@ package BoardGame.dungeons;
 import BoardGame.BoardGame;
 import BoardGame.cards.BGGoldenTicket;
 import BoardGame.cards.BGCurse.*;
-import BoardGame.characters.AbstractBGCharacter;
-import BoardGame.characters.BGColorless;
-import BoardGame.characters.BGIronclad;
+import BoardGame.characters.*;
 import BoardGame.monsters.MonsterGroupRewardsList;
 import BoardGame.monsters.bgbeyond.*;
 import BoardGame.monsters.bgcity.*;
@@ -29,6 +27,7 @@ import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import jdk.internal.jimage.ImageReader;
 
 import java.util.ArrayList;
 
@@ -38,6 +37,10 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
     public static CardGroup rareRewardDeck = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
     public static CardGroup cursesRewardDeck = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
     public static CardGroup colorlessRewardDeck = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+
+
+    public static ArrayList<CardGroup> physicalRewardDecks=new ArrayList<>();
+    public static ArrayList<CardGroup> physicalRareRewardDecks=new ArrayList<>();
 
     public static boolean forceRareRewards=false;
 
@@ -123,6 +126,41 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
             if (CardCrawlGame.dungeon instanceof BGExordium || !initializedCardPools) {
                 logger.info("BoardGame mod is resetting ALL reward decks");
                 initializedCardPools=true;
+
+
+                //TODO: we're setting up all 4 players' reward decks here, but then we set up player1's reward deck a second time below that.  reference the same deck instead
+                for(int i=0;i<4;i+=1){
+                    CardGroup rewards=new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+                    CardGroup rares=new CardGroup(CardGroup.CardGroupType.CARD_POOL);
+                    AbstractCard gt=new BGGoldenTicket();
+                    rewardDeck.addToTop(gt.makeCopy());
+                    rewardDeck.addToTop(gt.makeCopy());
+                    ArrayList<AbstractCard> tmpPool = new ArrayList<>();
+                    if(i==0) new BGIronclad("Ironclad physical card pool", BGIronclad.Enums.BG_IRONCLAD).getCardPool(tmpPool);
+                    else if(i==1) new BGSilent("Silent physical card pool", BGSilent.Enums.BG_SILENT).getCardPool(tmpPool);
+                    else if(i==2) new BGDefect("Defect physical card pool", BGDefect.Enums.BG_DEFECT).getCardPool(tmpPool);
+                    else if(i==3) new BGWatcher("Watcher physical card pool", BGWatcher.Enums.BG_WATCHER).getCardPool(tmpPool);
+                    for (AbstractCard c : tmpPool) {
+                        switch (c.rarity) {
+                            case COMMON:
+                                rewards.addToTop(c.makeCopy());
+                                rewards.addToTop(c.makeCopy());
+                                break;
+                            case UNCOMMON:
+                                rewards.addToTop(c.makeCopy());
+                                break;
+                            case RARE:
+                                rares.addToTop(c.makeCopy());
+                                break;
+                        }
+                    }
+                    rewards.shuffle(cardRng);
+                    rares.shuffle(cardRng);
+                    physicalRewardDecks.add(rewards);
+                    physicalRareRewardDecks.add(rares);
+                }
+
+
                 AbstractBGDungeon.rewardDeck = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
                 AbstractBGDungeon.rareRewardDeck = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
                 AbstractBGDungeon.cursesRewardDeck = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
@@ -149,6 +187,13 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                 }
                 rewardDeck.shuffle(cardRng);
                 rareRewardDeck.shuffle(cardRng);
+
+
+
+
+
+
+
 
                 cursesRewardDeck.addToTop(new BGInjury());
                 cursesRewardDeck.addToTop(new BGInjury());
