@@ -110,6 +110,8 @@ public class BGNeowReward
                 return new NeowRewardDrawbackDef(NeowRewardDrawback.NONE, "");
             case 'D':
                 return new NeowRewardDrawbackDef(NeowRewardDrawback.LOSE_HP, TEXT[21] + 2 + TEXT[29] + " ");
+            case '3':
+                return new NeowRewardDrawbackDef(NeowRewardDrawback.LOSE_3_HP, TEXT[21] + 3 + TEXT[29] + " ");
             case 'G':
                 return new NeowRewardDrawbackDef(NeowRewardDrawback.LOSE_GOLD, TEXT[19]);
             case 'C':
@@ -159,6 +161,8 @@ public class BGNeowReward
                 return new NeowRewardDef(NeowRewardType.GET_TWO_RANDOM_COLORLESS_CARDS, TEXT[36]);
             case 'V':
                 return new NeowRewardDef(NeowRewardType.CHOOSE_TWO_CARDS, " #gChoose #g2 #gCards #gto #gobtain ]"); //TODO: localization
+            case 'W':
+                return new NeowRewardDef(NeowRewardType.CARD_GOLD_COMBO, " #gChoose #ga #gCard #gto #gobtain. #gObtain #g5 #gGold ]"); //TODO: localization and punctuation
             case ')':
                 return new NeowRewardDef(NeowRewardType.CHOOSE_TWO_COLORLESS_CARDS, " #gChoose #g2 #gcolorless #gCards #gto #gobtain ]"); //TODO: localization
             default:
@@ -277,7 +281,9 @@ public class BGNeowReward
                 case LOSE_HP:
                     AbstractDungeon.player.damage(new DamageInfo(null, 2, DamageInfo.DamageType.HP_LOSS));
                     break;
-
+                case LOSE_3_HP:
+                    AbstractDungeon.player.damage(new DamageInfo(null, 3, DamageInfo.DamageType.HP_LOSS));
+                    break;
                 default:
                     logger.info("[ERROR] Missing Neow Reward Drawback: " + this.drawback.name());
                     break;
@@ -433,6 +439,18 @@ public class BGNeowReward
                     AbstractDungeon.getCurrRoom().event.noCardsInRewards=false;
                     break;
 
+                case CARD_GOLD_COMBO:
+                    AbstractDungeon.getCurrRoom().event.noCardsInRewards=true;  //prevent extra regular card from appearing when reward screen is opened
+                    (AbstractDungeon.getCurrRoom()).rewards.clear();
+                    for (i = 0; i < 1; i++) {
+                        AbstractDungeon.getCurrRoom().addCardReward(new RewardItem());
+                    }
+                    AbstractDungeon.combatRewardScreen.open();
+                    CardCrawlGame.sound.play("GOLD_JINGLE");
+                    AbstractDungeon.player.gainGold(5);
+                    AbstractDungeon.getCurrRoom().event.noCardsInRewards=false;
+                    break;
+
                 case CHOOSE_TWO_CARDS:
                     AbstractDungeon.getCurrRoom().event.noCardsInRewards=true;
                     (AbstractDungeon.getCurrRoom()).rewards.clear();
@@ -492,11 +510,11 @@ public class BGNeowReward
     {   FOUR_GOLD, FIVE_GOLD, EIGHT_GOLD, TEN_GOLD, REMOVE_CARD, REMOVE_TWO, TRANSFORM_CARD, TRANSFORM_TWO_CARDS,
     UPGRADE_CARD, UPGRADE_TWO_RANDOM, CHOOSE_A_CARD, GET_TWO_RANDOM_CARDS, THREE_POTIONS,
         RANDOM_RARE_CARD, CHOOSE_RARE_CARD, RELIC, CHOOSE_COLORLESS_CARD, GET_TWO_RANDOM_COLORLESS_CARDS,
-        CHOOSE_TWO_CARDS, CHOOSE_TWO_COLORLESS_CARDS}
+        CHOOSE_TWO_CARDS, CARD_GOLD_COMBO, CHOOSE_TWO_COLORLESS_CARDS}
 
 
     public enum NeowRewardDrawback {
-        NONE, LOSE_HP, LOSE_GOLD, CURSE;
+        NONE, LOSE_HP, LOSE_3_HP, LOSE_GOLD, CURSE;
     }
 
 

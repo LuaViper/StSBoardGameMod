@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.EvolvePower;
 
+//TODO: technically Void cards are actually Slimed cards; need to change wording on one of these cards
 //TODO: many cards disagree whether it's "draw a card" or "draw 1 card", check physical copies when available
 
 public class BGEvolve extends AbstractBGCard {

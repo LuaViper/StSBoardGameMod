@@ -212,7 +212,10 @@ public abstract class AbstractBGCard extends CustomCard {
                 if(costForTurn!= nonvolatileBaseCost)isCostModifiedForTurn = true;
             }
         }
-        //TODO NEXT: also apply Liquid Memories discount (and set hasLiquidMemoriesEffect==true in that potion)
+        if(hasLiquidMemoriesEffect){
+            costForTurn=0;
+            if(costForTurn!= nonvolatileBaseCost)isCostModifiedForTurn = true;
+        }
     }
 
     protected void upgradeBaseCost(int newBaseCost) {

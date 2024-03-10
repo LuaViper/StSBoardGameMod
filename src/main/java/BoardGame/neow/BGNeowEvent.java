@@ -841,6 +841,7 @@ public class BGNeowEvent
         //-: no tradeoff
         //C: gain a curse
         //D: lose 2 HP
+        //3: lose 3 HP
         //G: lose 3 gold
 
         //4: gain 4 gold
@@ -856,6 +857,7 @@ public class BGNeowEvent
         //c: choose a card
         //C: get 2 RANDOM cards
         //V: choose 2 cards
+        //W: choose a card and gain 5 gold
         //P: get 3 potions
         //?: get 1 RANDOM rare card
         //!: choose a rare card
@@ -864,15 +866,14 @@ public class BGNeowEvent
         //+: get 2 RANDOM colorless cards
         //): choose 2 colorless cards
 
-        //TODO: match flavor text on card to speech bubble message
-        //TODO: cards have been changed! also implement "lose 3 HP" and "choose card + get 5 gold"
+        //TODO LATER: match flavor text on card to speech bubble message
         ArrayList<String> rewardoptions=new ArrayList<String>(Arrays.asList(
                 "-= -t DX", //colorless unlock
                 "-u -r DX",
                 "-u -? CX",
                 "-= -r D!", //colorless unlock
                 "-u -P C!",
-                "-5 -? G!", //colorless unlock
+                "-5 -? G!", //colorless unlock, apparently
                 "-= -? G%", //colorless unlock
                 "-u -5 C%",
                 "-P -c G%",
@@ -884,9 +885,9 @@ public class BGNeowEvent
                 "-r -5 GU",
                 "-u -P DU",
                 "-= -P CT", //colorless unlock
-                "-r -t DT",
+                "-r -t 3T",
                 "-t -5 C)", //colorless unlock
-                "-r -P CV"
+                "-r -P CW"
         ));
 
 
@@ -915,7 +916,8 @@ public class BGNeowEvent
 
         Collections.shuffle(rewardoptions, new java.util.Random(NeowEvent.rng.randomLong()));
         String card=rewardoptions.get(0);
-        //card="-r -5 GU"; //for debugging only
+        card="-r -t 3T"; //for debugging only
+        //card="-r -P CW"; //for debugging only
         //logger.info("Card: "+card);
         String[] rewards=card.split(" ");
         logger.info("Neow card: "+rewards[0]+" "+rewards[1]+" "+rewards[2]);
