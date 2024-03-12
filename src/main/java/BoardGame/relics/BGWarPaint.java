@@ -41,6 +41,8 @@ public class BGWarPaint
         }
     }
 
+    public boolean usableAsPayment(){return this.counter>-2;}
+
 //    public void onEquip() {
 //        ArrayList<AbstractCard> upgradableCards = new ArrayList<>();
 //        for (AbstractCard c : AbstractDungeon.player.masterDeck.group) {

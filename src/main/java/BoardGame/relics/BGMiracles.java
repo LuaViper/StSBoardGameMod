@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.actions.defect.AnimateOrbAction;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
@@ -25,14 +26,16 @@ import static BoardGame.BoardGame.makeRelicPath;
 
 //TODO: if another character obtains this relic, it won't be clickable on the turn it's obtained
 
-public class BGMiracles extends CustomRelic implements ClickableRelic {
+public class BGMiracles extends AbstractBGRelic implements ClickableRelic {
     public static final String ID = "BoardGame:BGMiracles";
     private static final String IMGPATH="BGMiracles.png";
     private static final Texture IMG = TextureLoader.getTexture(makeRelicPath(IMGPATH));
     private static final Texture OUTLINE = TextureLoader.getTexture(makeRelicOutlinePath(IMGPATH));
 
     public BGMiracles() {
-        super(ID, IMG, RelicTier.STARTER, LandingSound.MAGICAL);
+        super(ID, "null image (will be fixed in relic constructor)", RelicTier.STARTER, LandingSound.MAGICAL);
+        this.img = IMG;
+        this.outlineImg=OUTLINE;
         setCounter(0);
     }
 

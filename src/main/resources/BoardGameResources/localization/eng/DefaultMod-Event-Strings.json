@@ -38,21 +38,20 @@
     ]
   },
   "BoardGame:BGANoteForYourself": {
-    "NAME": "A Note For Yourself",
+    "NAME": "A Note for Yourself",
     "DESCRIPTIONS": [
-      "An old beggar cloaked in fur reaches his hands out towards you as you pass. \"Spare some coin, child?\"",
-      "The beggar looks to the floor as you pass. NL \"You will never make a difference... You never do.\"",
-      "The beggar takes off its cloak to reveal that he is #bCleric! NL @\"You@ @are@ @a@ @kind@ @soul.@ @Receive@ @my@ @purification!\"@ he screams. NL You are unsure if he is grateful or mad.",
-      "@\"I@ @hope@ @you@ @do@ @better@ @this@ @time,@ @friend!\"@ he shouts. NL Wondering what was implied by this, you push forward."
+      "You spot a loose brick within a pillar that catches your eye.",
+      "You find a folded note and a #ycard inside. It reads, NL \"The Heart awaits.\" NL NL This is your handwriting.",
+      "Choose a Card.",
+      "What is going on?"
     ],
     "OPTIONS": [
-      "[Offer Gold] #y",
-      " #yGold: #gRemove #ga #gcard #gfrom #gyour #gdeck.",
-      "[Locked] Requires: ",
-      " Gold.",
       "[Continue]",
-      "[Leave]",
-      "Select a Card to Remove."
+      "[Take] #yChoose #ya #rRed #yCard #yto #yadd #yto #yyour #ydeck.",
+      "[Take] #yChoose #ya #gGreen #yCard #yto #yadd #yto #yyour #ydeck.",
+      "[Take] #yChoose #ya #bBlue #yCard #yto #yadd #yto #yyour #ydeck.",
+      "[Take] #yChoose #ya #pPurple #yCard #yto #yadd #yto #yyour #ydeck.",
+      "[Leave]"
     ]
   },
   "BoardGame:BGBack to Basics": {
@@ -127,6 +126,22 @@
       "[Offer] Receive a reward based on the offer.",
       "Select a Card to Offer.",
       "[Prize?] #rLose #r1 #rHP."
+    ]
+  },
+  "BoardGame:BGColosseum": {
+    "NAME": "The Colosseum",
+    "DESCRIPTIONS": [
+      "@Thwack!!!@ NL .. NL ...... NL ... NL ~You~ ~were~ ~knocked~ ~unconscious...~",
+      "~Groggy~ and with a @throbbing@ head, you awaken to find yourself thrown in the center of a massive stadium with an overflowing audience of #bSlavers, #pCultists, and other denizens of the City! NL ",
+      " NL (Placeholder text: the card just says \"Do you want to warm up the crowd or be the main event?\" but surely @THE@ @CHAMP@ @HAS@ @SOMETHING@ @TO@ @SAY@ @ABOUT@ @THAT.)@",
+      "TH@ @COMBAT!!!!\"@ NL A gate on the opposite side opens...",
+      "@\"WELL@ @DONE,@ @WEAKLING!\"@ NL The giant mock claps whilst he riles up the crowd with exaggerated gestures. NL #y~Gold~ ~and~ #y~confetti~ ~shower~ ~you!~ NL @\"TIME@ @FOR@ @THE@ @REAL@ @CHALLENGE!!\"@ NL NL The last battle left a small opening in the Colosseum's wall, you can easily escape through there while everyone is distracted. NL Do you stay and fight?"
+    ],
+    "OPTIONS": [
+      "[Continue]",
+      "[Warm Up] Fight a standard encounter.",
+      "[Main Event] Fight an Elite.",
+      "[VICTORY] A powerful fight with many rewards."
     ]
   },
   "BoardGame:BGCursed Tome": {
@@ -321,6 +336,23 @@
       "[Leave]"
     ]
   },
+  "BoardGame:BGNloth": {
+    "NAME": "N'loth",
+    "DESCRIPTIONS": [
+      "An odd creature with a hunched back sprouting several tentacles is scrounging through a pile of trash and debris in front of you. As you approach, he shuffles towards you in a non-threatening manner. NL \"N'loth hungry. Feed N'loth.\"",
+      "Holding the #yfood @(?)@ out towards him, N’loth snatches it out of your hand with his tentacles, dislocates his jaw, and slurps down your offer in one quick gulp. NL He gives you a large, toothy grin as more tentacles appear from behind his cloak, these ones brandishing an impossibly clean looking trinket. He pushes it towards you until you take it.",
+      "You shake your head. N'loth hunches even further and sighs, then scuttles away."
+    ],
+    "OPTIONS": [
+      "[Offer] #rGive #ra #prandom #rrelic. #gChoose #ga #grare #gcard #gto #gadd #gto #gyour #gdeck.",
+      "[Offer] #rGive #ra #rpotion. #gAdd #ga #grandom #grare #gcard #gto #gyour #gdeck.",
+      "[Leave]",
+      "[Locked] Requires: Undiscarded normal Relic.",
+      "[Locked] Requires: Potion.",
+      "[Give ",
+      "]"
+    ]
+  },
   "BoardGame:BGPurificationShrine": {
     "NAME": "Purifier",
     "DESCRIPTIONS": [
@@ -405,7 +437,7 @@
       "Select a Card to Upgrade."
     ]
   },
-  "BoardGame:BGThe Joust": {
+  "BoardGame:BGTheJoust": {
     "NAME": "The Joust",
     "DESCRIPTIONS": [
       "As you make your way through the large buildings you come across a long narrow bridge and spot knights on either side, facing one another. You approach... NL @\"Halt!\"@ NL NL A knight forcefully gestures you to stop with its giant lance.",
@@ -425,7 +457,12 @@
       "[Bet a Relic] #g50%: #gwin #g6 #gGold.",
       "[Bet a Potion] #g50%: #gwin #g6 #gGold.",
       "[Watch]",
-      "[Leave]"
+      "[Leave]",
+      "[Bet ",
+      "]",
+      "[Locked] Requires: 4 Gold.",
+      "[Locked] Requires: Undiscarded normal Relic.",
+      "[Locked] Requires: Potion."
     ]
   },
   "BoardGame:BGThe Library": {
@@ -508,6 +545,30 @@
       "Select a Card to Upgrade.",
       "[Locked] Requires: Upgradeable Cards",
       "[Leave]"
+    ]
+  },
+  "BoardGame:BGWeMeetAgain": {
+    "NAME": "We Meet Again!",
+    "DESCRIPTIONS": [
+      "\"We meet again!\" NL A cheery disheveled fellow approaches you gleefully. You do not know this man. NL NL \"It's me, #yRanwid! Have any goods for me today? The usual? A fella like me can't make it alone, you know?\" NL You eye him suspiciously and consider your options...",
+      "\"Magnificent! This will be quite handy if I run into those #rmask #rwearing #rhoodlums again.\"",
+      "\"Exquisite!\" NL NL He looks very pleased.  Though, you can't help but wonder if he really wanted something to ~drink~ ...",
+      "\"Exemplary! I shall study this further in my chambers.\"",
+      "\" @Aaaaagghh!!@ That wasn't even an option on the event card!\" NL He runs away.",
+      "  NL NL He rummages around his various pockets... NL \"Here, look what I've got for you today! Take it take it!\"",
+      "Relic trading interface activated. ~#yRight-click~ one of your highlighted relics to continue."
+    ],
+    "OPTIONS": [
+      "[Give Potion] #rPay #r4 #rGold. ",
+      "[Locked] Requires: 4 Gold.",
+      "[Exchange] #rGive #ra #rRelic.",
+      "[Locked] Requires: Undiscarded normal Relic.",
+      "[Give Card] #rRemove #ra #rrare #ror #runcommon #rcard. ",
+      "[Locked] Requires: Rare or uncommon card.",
+      ". #gObtain #ga #gRelic.",
+      "[Softlocked?] Punch him.",
+      "[Leave]",
+      " #rGold"
     ]
   },
   "BoardGame:BGWheel of Change": {

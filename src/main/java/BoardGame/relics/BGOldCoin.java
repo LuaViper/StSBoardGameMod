@@ -16,6 +16,7 @@ public class BGOldCoin
 {
     public static final String ID = "BGOld Coin";
     private static final int GOLD_AMT = 10;
+    public boolean usableAsPayment(){return this.counter>0;}
 
     public BGOldCoin() {
         super("BGOld Coin", "oldCoin.png", AbstractRelic.RelicTier.RARE, AbstractRelic.LandingSound.CLINK);

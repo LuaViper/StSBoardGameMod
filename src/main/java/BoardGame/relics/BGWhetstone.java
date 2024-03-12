@@ -33,6 +33,7 @@ public class BGWhetstone
         super("BGWhetstone", "whetstone.png", AbstractRelic.RelicTier.COMMON, AbstractRelic.LandingSound.SOLID);
     }
     public int getPrice() {return 7;}
+    public boolean usableAsPayment(){return this.counter>-2;}
 
     public void setCounter(int setCounter) {
         this.counter = setCounter;

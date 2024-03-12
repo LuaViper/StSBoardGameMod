@@ -18,14 +18,16 @@ import static BoardGame.BoardGame.makeRelicPath;
 
 //TODO: if another character obtains this relic, it won't be clickable on the turn it's obtained
 
-public class BGShivs extends CustomRelic implements ClickableRelic {
+public class BGShivs extends AbstractBGRelic implements ClickableRelic {
     public static final String ID = "BoardGame:BGShivs";
     private static final String IMGPATH="BGshivs.png";
     private static final Texture IMG = TextureLoader.getTexture(makeRelicPath(IMGPATH));
     private static final Texture OUTLINE = TextureLoader.getTexture(makeRelicOutlinePath(IMGPATH));
     public int accuracy;
     public BGShivs() {
-        super(ID, IMG, AbstractRelic.RelicTier.STARTER, AbstractRelic.LandingSound.CLINK);
+        super(ID, "null image (will be fixed in relic constructor)", AbstractRelic.RelicTier.STARTER, AbstractRelic.LandingSound.CLINK);
+        this.img = IMG;
+        this.outlineImg=OUTLINE;
         setCounter(0);
         accuracy=0;
         updateDescription(accuracy);

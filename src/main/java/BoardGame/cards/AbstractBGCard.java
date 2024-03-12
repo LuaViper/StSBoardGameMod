@@ -175,7 +175,7 @@ public abstract class AbstractBGCard extends CustomCard {
     public int nonvolatileBaseCost;
     public boolean receivesPowerDiscount=false;
     public boolean wasRetainedLastTurn=false;
-    public boolean hasLiquidMemoriesEffect=false;
+    public boolean temporarilyCostsZero =false;
     public void onRetained(){
         super.onRetained();
         wasRetainedLastTurn=true;
@@ -184,11 +184,11 @@ public abstract class AbstractBGCard extends CustomCard {
     public void resetAttributes(){
         super.resetAttributes();
         wasRetainedLastTurn=false;
-        hasLiquidMemoriesEffect=false;
+        temporarilyCostsZero =false;
     }
     public void onResetBeforeMoving() {
         wasRetainedLastTurn=false;
-        hasLiquidMemoriesEffect=false;
+        temporarilyCostsZero =false;
     }
 
     @Override
@@ -212,7 +212,7 @@ public abstract class AbstractBGCard extends CustomCard {
                 if(costForTurn!= nonvolatileBaseCost)isCostModifiedForTurn = true;
             }
         }
-        if(hasLiquidMemoriesEffect){
+        if(temporarilyCostsZero){
             costForTurn=0;
             if(costForTurn!= nonvolatileBaseCost)isCostModifiedForTurn = true;
         }

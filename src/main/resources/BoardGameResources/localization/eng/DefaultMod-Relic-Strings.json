@@ -450,6 +450,13 @@
       "[BoardGame:Die5Icon] NL [BoardGame:VulnIcon]"
     ]
   },
+  "BGPrismaticShard": {
+    "NAME": "Prismatic Shard",
+    "FLAVOR": "Looking through the shard, you are able to see entirely new perspectives.",
+    "DESCRIPTIONS": [
+      "Grants #b2 Orb slots."
+    ]
+  },
   "BGPocketwatch": {
     "NAME": "Pocketwatch",
     "FLAVOR": "The hands seem stuck on the 3 o'clock position.",

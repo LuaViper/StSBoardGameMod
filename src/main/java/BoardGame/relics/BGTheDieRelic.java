@@ -27,7 +27,7 @@ import static BoardGame.BoardGame.makeRelicOutlinePath;
 import static BoardGame.BoardGame.makeRelicPath;
 
 //TODO: if we roll a 6, don't allow Incense Burner to be triggered a second time
-public class BGTheDieRelic extends CustomRelic implements DieControlledRelic {
+public class BGTheDieRelic extends AbstractBGRelic implements DieControlledRelic {
     public static final String ID = BoardGame.makeID("BGTheDieRelic");
     private static final Texture IMG = TextureLoader.getTexture(makeRelicPath("BGloadedDie.png"));
     private static final Texture OUTLINE = TextureLoader.getTexture(makeRelicOutlinePath("BGloadedDie.png"));
@@ -41,8 +41,9 @@ public class BGTheDieRelic extends CustomRelic implements DieControlledRelic {
 
     public BGTheDieRelic() {
         //super(ID, IMG, OUTLINE, RelicTier.SPECIAL, LandingSound.SOLID);
-        super(ID, IMG, OUTLINE, RelicTier.STARTER, LandingSound.MAGICAL);
-
+        super(ID, "null image (will be fixed in relic constructor)", RelicTier.STARTER, LandingSound.MAGICAL);
+        this.img = IMG;
+        this.outlineImg=OUTLINE;
     }
 
     public String getUpdatedDescription() {

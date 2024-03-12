@@ -9,11 +9,12 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import BoardGame.BoardGame;
 import BoardGame.util.TextureLoader;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import static BoardGame.BoardGame.makeRelicOutlinePath;
 import static BoardGame.BoardGame.makeRelicPath;
 
-public class BGBurningBlood extends CustomRelic {
+public class BGBurningBlood extends AbstractBGRelic {
 
 
 
@@ -26,10 +27,15 @@ public class BGBurningBlood extends CustomRelic {
     private static final Texture OUTLINE = TextureLoader.getTexture(makeRelicOutlinePath("BGburningBlood.png"));
 
     public BGBurningBlood() {
-        super(ID, IMG, OUTLINE, RelicTier.STARTER, LandingSound.MAGICAL);
+        super(ID,
+                "burningBlood.png",
+                RelicTier.STARTER, LandingSound.MAGICAL);
     }
     private static final int HEALTH_AMT = 1;
 
+    public AbstractRelic makeCopy() {
+        return new BGBurningBlood();
+    }
 
 
     @Override

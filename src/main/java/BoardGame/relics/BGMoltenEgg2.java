@@ -27,6 +27,9 @@ public class BGMoltenEgg2 extends AbstractBGRelic  {
     }
     public int getPrice() {return 8;}
 
+    public boolean usableAsPayment(){
+        return this.counter>0;
+    }
 
     public void setCounter(int setCounter) {
         this.counter = setCounter;

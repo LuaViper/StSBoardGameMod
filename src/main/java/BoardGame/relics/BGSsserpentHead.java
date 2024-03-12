@@ -1,5 +1,8 @@
 package BoardGame.relics;
 
+import BoardGame.dungeons.BGTheEnding;
+import BoardGame.events.FakeMonsterRoomEvent;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
@@ -21,7 +24,8 @@ public class BGSsserpentHead
 
 
     public void onEnterRoom(AbstractRoom room) {
-        if (room instanceof com.megacrit.cardcrawl.rooms.EventRoom) {
+        if (room instanceof com.megacrit.cardcrawl.rooms.EventRoom
+                && !(CardCrawlGame.dungeon instanceof BGTheEnding)) {
             flash();
             AbstractDungeon.player.gainGold(GOLD_AMT);
         }

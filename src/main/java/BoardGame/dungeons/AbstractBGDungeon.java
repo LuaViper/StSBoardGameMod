@@ -4,6 +4,7 @@ import BoardGame.BoardGame;
 import BoardGame.cards.BGGoldenTicket;
 import BoardGame.cards.BGCurse.*;
 import BoardGame.characters.*;
+import BoardGame.events.BGColosseum;
 import BoardGame.monsters.MonsterGroupRewardsList;
 import BoardGame.monsters.bgbeyond.*;
 import BoardGame.monsters.bgcity.*;
@@ -31,6 +32,8 @@ import jdk.internal.jimage.ImageReader;
 
 import java.util.ArrayList;
 
+//TODO: decks are not getting shuffled upon starting a new game (initializedCardPools never gets set back to true) (can we just change it to non-static??)
+
 public abstract class AbstractBGDungeon extends AbstractDungeon {
     public static boolean initializedCardPools=false;
     public static CardGroup rewardDeck = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
@@ -42,11 +45,15 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
     public static ArrayList<CardGroup> physicalRewardDecks=new ArrayList<>();
     public static ArrayList<CardGroup> physicalRareRewardDecks=new ArrayList<>();
 
+
     public static boolean forceRareRewards=false;
+    public static int forceSpecificColor=-999;
 
     public AbstractBGDungeon(String name, String levelId, AbstractPlayer p, ArrayList<String> newSpecialOneTimeEventList) {
         super(name, levelId, p, newSpecialOneTimeEventList);
 
+        forceRareRewards=false;
+        forceSpecificColor=-999;
         //Settings.isFinalActAvailable=false;
     }
 
@@ -123,18 +130,19 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
         @SpirePrefixPatch
         public static void initializeCardPools() {
             //TODO: the correct solution here is to load the card pools when loading a savefile, which unfortunately involves saving the card pools first
-            if (CardCrawlGame.dungeon instanceof BGExordium || !initializedCardPools) {
-                logger.info("BoardGame mod is resetting ALL reward decks");
+            if (!initializedCardPools) {
+                logger.info("----------BoardGame mod is resetting ALL reward decks----------");
+                //TODO: there is an extraordinary amount of Logger spam between here and Results.  should we be concerned about things loading out of order?
                 initializedCardPools=true;
+                physicalRewardDecks.clear();
+                physicalRareRewardDecks.clear();
 
-
-                //TODO: we're setting up all 4 players' reward decks here, but then we set up player1's reward deck a second time below that.  reference the same deck instead
                 for(int i=0;i<4;i+=1){
                     CardGroup rewards=new CardGroup(CardGroup.CardGroupType.CARD_POOL);
                     CardGroup rares=new CardGroup(CardGroup.CardGroupType.CARD_POOL);
                     AbstractCard gt=new BGGoldenTicket();
-                    rewardDeck.addToTop(gt.makeCopy());
-                    rewardDeck.addToTop(gt.makeCopy());
+                    rewards.addToTop(gt.makeCopy());
+                    rewards.addToTop(gt.makeCopy());
                     ArrayList<AbstractCard> tmpPool = new ArrayList<>();
                     if(i==0) new BGIronclad("Ironclad physical card pool", BGIronclad.Enums.BG_IRONCLAD).getCardPool(tmpPool);
                     else if(i==1) new BGSilent("Silent physical card pool", BGSilent.Enums.BG_SILENT).getCardPool(tmpPool);
@@ -161,39 +169,16 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                 }
 
 
-                AbstractBGDungeon.rewardDeck = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
-                AbstractBGDungeon.rareRewardDeck = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
                 AbstractBGDungeon.cursesRewardDeck = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
                 AbstractBGDungeon.colorlessRewardDeck = new CardGroup(CardGroup.CardGroupType.CARD_POOL);
 
-                AbstractCard goldenTicket=new BGGoldenTicket();
-                rewardDeck.addToTop(goldenTicket.makeCopy());
-                rewardDeck.addToTop(goldenTicket.makeCopy());
-                ArrayList<AbstractCard> tmpPool = new ArrayList<>();
-                player.getCardPool(tmpPool);
-                for (AbstractCard c : tmpPool) {
-                    switch (c.rarity) {
-                        case COMMON:
-                            rewardDeck.addToTop(c.makeCopy());
-                            rewardDeck.addToTop(c.makeCopy());
-                            break;
-                        case UNCOMMON:
-                            rewardDeck.addToTop(c.makeCopy());
-                            break;
-                        case RARE:
-                            rareRewardDeck.addToTop(c.makeCopy());
-                            break;
-                    }
-                }
-                rewardDeck.shuffle(cardRng);
-                rareRewardDeck.shuffle(cardRng);
-
-
-
-
-
-
-
+                int whoAmI=0;
+                if(AbstractDungeon.player instanceof BGIronclad) whoAmI=0;
+                else if(AbstractDungeon.player instanceof BGSilent) whoAmI=1;
+                else if(AbstractDungeon.player instanceof BGDefect) whoAmI=2;
+                else if(AbstractDungeon.player instanceof BGWatcher) whoAmI=3;
+                AbstractBGDungeon.rewardDeck = physicalRewardDecks.get(whoAmI);
+                AbstractBGDungeon.rareRewardDeck = physicalRareRewardDecks.get(whoAmI);
 
                 cursesRewardDeck.addToTop(new BGInjury());
                 cursesRewardDeck.addToTop(new BGInjury());
@@ -211,7 +196,7 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                 cursesRewardDeck.shuffle(cardRng);
 
 
-                tmpPool = new ArrayList<>();
+                ArrayList<AbstractCard> tmpPool = new ArrayList<>();
                 new BGColorless().getCardPool(tmpPool);
                 //logger.info("Adding colorless cards to reward deck?:");
                 for (AbstractCard c : tmpPool) {
@@ -221,21 +206,41 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                     }
                 }
                 colorlessRewardDeck.shuffle(cardRng);
+
+
+                logger.info("Results:");
+                logger.info("Ironclad physical deck contains "+physicalRewardDecks.get(0).size()+" cards");
+                logger.info("Silent physical deck contains "+physicalRewardDecks.get(1).size()+" cards");
+                logger.info("Defect physical deck contains "+physicalRewardDecks.get(2).size()+" cards");
+                logger.info("Watcher physical deck contains "+physicalRewardDecks.get(3).size()+" cards");
+                logger.info("Colorless deck contains "+colorlessRewardDeck.size()+" cards");
+                logger.info("Curses deck contains "+cursesRewardDeck.size()+" cards");
+                logger.info("Current reward deck "+whoAmI+" is "+physicalRewardDecks.get(whoAmI).size()+" cards");
             }
         }
     }
 
-    public static AbstractCard DrawFromRewardDeck(){
+    public static AbstractCard DrawFromRewardDeck() {
+        if(forceSpecificColor<0)
+            return DrawFromRewardDeck(rewardDeck,rareRewardDeck);
+        else
+            return DrawFromRewardDeck(physicalRewardDecks.get(forceSpecificColor),physicalRareRewardDecks.get(forceSpecificColor));
+    }
+    public static AbstractCard DrawFromRewardDeck(CardGroup deck) {
+        return DrawFromRewardDeck(deck,null);
+    }
+    public static AbstractCard DrawFromRewardDeck(CardGroup deck, CardGroup raredeck){
         AbstractCard card = null;
-        int tempsize=rewardDeck.size();
-        if(rewardDeck.size()>0) {
-            card = rewardDeck.getTopCard();
-            rewardDeck.removeTopCard();
-            rewardDeck.addToBottom(card.makeCopy());  //card gets copied here because we may have upgraded card after drawing it.
+        int tempsize=deck.size();
+        if(deck.size()>0) {
+            card = deck.getTopCard();
+            deck.removeTopCard();
+            deck.addToBottom(card.makeCopy());  //card gets copied here because we may have upgraded card after drawing it.
         }
         AbstractCard tempcard=card;
         if(card instanceof BGGoldenTicket){
-            card = DrawFromRareRewardDeck();
+            //card = DrawFromRareRewardDeck();
+            if(raredeck!=null)card=DrawFromRewardDeck(raredeck);
         }
         logger.info("AbstractBGDungeon: drew reward card "+card);
         if(card==null){
@@ -259,7 +264,7 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
         if(colorlessRewardDeck.size()>0) {
             card = colorlessRewardDeck.getTopCard();
             colorlessRewardDeck.removeTopCard();
-            colorlessRewardDeck.addToBottom(card);
+            colorlessRewardDeck.addToBottom(card.makeCopy());
         }
         return card;
     }
@@ -303,8 +308,8 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
 
                     if(card!=null) {
                         if(CardCrawlGame.dungeon instanceof AbstractBGDungeon
-                                && !(CardCrawlGame.dungeon instanceof BGExordium)
-                                && getCurrRoom() instanceof MonsterRoomElite){
+                                && (!(CardCrawlGame.dungeon instanceof BGExordium) && getCurrRoom() instanceof MonsterRoomElite)
+                                || (getCurrRoom() instanceof EventRoom && getCurrRoom().event instanceof BGColosseum)){
                             card.upgrade();
                         }
                         for (AbstractRelic r : player.relics) {
@@ -435,6 +440,7 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
     }
 
     public static void removeCardFromRewardDeck(AbstractCard card){
+        //TODO: check if card came from a different color deck too!
         removeOneCardFromOneDeck(card.cardID, AbstractBGDungeon.rewardDeck);
         removeOneCardFromOneDeck(card.cardID, AbstractBGDungeon.rareRewardDeck);
         removeOneCardFromOneDeck(card.cardID, AbstractBGDungeon.colorlessRewardDeck);
@@ -456,6 +462,8 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                 }
                 // don't remove card from reward deck yet.
                 // it will be removed during the subsequent call to getTransformedCard.
+                //TODO: DO place the old card on the bottom of the deck
+                // (and make sure Basic / Rare cards go to the correct deck!)
                 return SpireReturn.Return();
             }
             return SpireReturn.Continue();
@@ -511,6 +519,8 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                     encounter = AbstractDungeon.monsterList.get(0);
                 }else if(__instance instanceof TreasureRoom){
                     gold=0;
+                }else if(__instance instanceof EventRoom && __instance.event instanceof BGColosseum){
+                    encounter = ((BGColosseum)__instance.event).encounterID;
                 }
                 if(MonsterGroupRewardsList.rewards.containsKey(encounter)){
                     gold=MonsterGroupRewardsList.rewards.get(encounter).gold;
@@ -545,6 +555,8 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                 encounter = AbstractDungeon.eliteMonsterList.get(0);
             }else if(__instance instanceof MonsterRoom) {
                 encounter = AbstractDungeon.monsterList.get(0);
+            }else if(__instance instanceof EventRoom && __instance.event instanceof BGColosseum){
+                encounter = ((BGColosseum)__instance.event).encounterID;
             }
             if(MonsterGroupRewardsList.rewards.containsKey(encounter)){
                 potion=MonsterGroupRewardsList.rewards.get(encounter).potion;

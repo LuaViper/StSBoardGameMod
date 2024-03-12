@@ -1,22 +1,32 @@
 package BoardGame.relics;
 
+import BoardGame.cards.BGPurple.BGWeave;
 import BoardGame.dungeons.AbstractBGDungeon;
+import BoardGame.events.BGWeMeetAgain;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
+import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
+import com.megacrit.cardcrawl.actions.utility.ScryAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
+import javassist.CannotCompileException;
+import javassist.CtBehavior;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Random;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.relicRng;
+import static com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier.BOSS;
+import static com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier.STARTER;
+
+//TODO: Charon's Ashes can be handled by making it right-clickable on 1 or 2
 
 public abstract class AbstractBGRelic extends AbstractRelic {
     public AbstractBGRelic(String setId, String imgName, RelicTier tier, LandingSound sfx) {
@@ -27,6 +37,23 @@ public abstract class AbstractBGRelic extends AbstractRelic {
     public static ArrayList<AbstractRelic> relicDeck = new ArrayList<>();
     public static ArrayList<AbstractRelic> bossRelicDeck = new ArrayList<>();
 
+    public boolean usableAsPayment(){
+        return !(tier == BOSS || tier == STARTER);
+    }
+
+    public static ArrayList<AbstractRelic> getAllPayableRelics(){
+        ArrayList<AbstractRelic> relics = new ArrayList<>();
+        for(AbstractRelic r : AbstractDungeon.player.relics) {
+            if(!(r instanceof AbstractBGRelic)){
+                relics.add(r);
+            }
+            AbstractBGRelic bgr=(AbstractBGRelic)r;
+            if(bgr.usableAsPayment()){
+                relics.add(r);
+            }
+        }
+        return relics;
+    }
 
 
     //    @SpirePatch(clz = RelicLibrary.class, method = "initialize",
@@ -155,7 +182,7 @@ public abstract class AbstractBGRelic extends AbstractRelic {
         @SpirePrefixPatch
         public static SpireReturn<AbstractRelic> returnRandomRelic(AbstractRelic.RelicTier tier) {
             if(CardCrawlGame.dungeon instanceof AbstractBGDungeon) {
-                if(tier!=AbstractRelic.RelicTier.BOSS)
+                if(tier!= BOSS)
                     return SpireReturn.Return(drawFromRelicDeck());
                 else
                     return SpireReturn.Return(drawFromBossRelicDeck());
@@ -170,7 +197,7 @@ public abstract class AbstractBGRelic extends AbstractRelic {
         @SpirePrefixPatch
         public static SpireReturn<AbstractRelic> returnRandomScreenlessRelic(AbstractRelic.RelicTier tier) {
             if(CardCrawlGame.dungeon instanceof AbstractBGDungeon) {
-                if(tier!=AbstractRelic.RelicTier.BOSS)
+                if(tier!= BOSS)
                     return SpireReturn.Return(drawFromRelicDeck());
                 else
                     return SpireReturn.Return(drawFromBossRelicDeck());
@@ -185,7 +212,7 @@ public abstract class AbstractBGRelic extends AbstractRelic {
         @SpirePrefixPatch
         public static SpireReturn<AbstractRelic> returnRandomNonCampfireRelic(AbstractRelic.RelicTier tier) {
             if(CardCrawlGame.dungeon instanceof AbstractBGDungeon) {
-                if(tier!=AbstractRelic.RelicTier.BOSS)
+                if(tier!= BOSS)
                     return SpireReturn.Return(drawFromRelicDeck());
                 else
                     return SpireReturn.Return(drawFromBossRelicDeck());
@@ -200,7 +227,7 @@ public abstract class AbstractBGRelic extends AbstractRelic {
         @SpirePrefixPatch
         public static SpireReturn<AbstractRelic> returnRandomRelicEnd(AbstractRelic.RelicTier tier) {
             if(CardCrawlGame.dungeon instanceof AbstractBGDungeon) {
-                if(tier!=AbstractRelic.RelicTier.BOSS) {
+                if(tier!= BOSS) {
                     AbstractRelic r = drawFromRelicDeck();
                     if(r instanceof BGOldCoin && AbstractDungeon.getCurrRoom() instanceof ShopRoom){
                         r = new BGDiscardedOldCoin();
@@ -216,5 +243,18 @@ public abstract class AbstractBGRelic extends AbstractRelic {
             return SpireReturn.Continue();
         }
     }
+
+
+
+    public AbstractRelic makeCopy() {
+        try {
+            return (AbstractRelic)this.getClass().newInstance();
+        } catch (IllegalAccessException | InstantiationException var2) {
+            throw new RuntimeException("BaseMod (well, ok, actually AbstractBGRelic copying BaseMod's code) failed to auto-generate makeCopy for relic: " + this.relicId);
+        }
+    }
+
+
+
 
 }

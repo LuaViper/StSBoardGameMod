@@ -17,7 +17,7 @@ public class BGFrozenCore extends AbstractBGRelic {
     public static final String ID = "BGFrozenCore";
 
     public BGFrozenCore() {
-        super("BGFrozenCore", "frozenOrb.png", AbstractRelic.RelicTier.COMMON, AbstractRelic.LandingSound.CLINK);
+        super("BGFrozenCore", "frozenOrb.png", AbstractRelic.RelicTier.BOSS, AbstractRelic.LandingSound.CLINK);
     }
     private static final int BLOCK_AMT = 1; public boolean trigger = false;
 

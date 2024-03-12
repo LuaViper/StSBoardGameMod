@@ -12,6 +12,9 @@ import com.megacrit.cardcrawl.rooms.MonsterRoomElite;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import static com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier.BOSS;
+import static com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier.STARTER;
+
 public class BGToxicEgg2 extends AbstractBGRelic  {
     public static final String ID = "BGToxic Egg 2";
 
@@ -20,6 +23,10 @@ public class BGToxicEgg2 extends AbstractBGRelic  {
         this.counter = 3;
     }
     public int getPrice() {return 8;}
+
+    public boolean usableAsPayment(){
+        return this.counter>0;
+    }
 
     public void setCounter(int setCounter) {
         this.counter = setCounter;

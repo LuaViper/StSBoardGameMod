@@ -32,6 +32,8 @@ public class BGWingBoots extends AbstractBGRelic {
     }
     public int getPrice() {return 7;}
 
+    public boolean usableAsPayment(){return this.counter>0;}
+
     public String getUpdatedDescription() {
         return this.DESCRIPTIONS[0];
     }

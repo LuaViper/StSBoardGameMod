@@ -26,6 +26,7 @@ public class BGAstrolabe
     }
 
 
+
     public String getUpdatedDescription() {
         return this.DESCRIPTIONS[0];
     }
