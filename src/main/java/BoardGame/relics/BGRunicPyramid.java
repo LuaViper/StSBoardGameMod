@@ -22,7 +22,7 @@ public class BGRunicPyramid extends AbstractBGRelic implements ClickableRelic {
     public static final String ID = "BGRunic Pyramid";
 
     public BGRunicPyramid() {
-        super("BGRunic Pyramid", "runicPyramid.png", AbstractRelic.RelicTier.BOSS, AbstractRelic.LandingSound.FLAT);
+        super("BGRunic Pyramid", "runicPyramid.png", AbstractRelic.RelicTier.COMMON, AbstractRelic.LandingSound.FLAT);
     }
 
     public int getPrice() {return 6;}

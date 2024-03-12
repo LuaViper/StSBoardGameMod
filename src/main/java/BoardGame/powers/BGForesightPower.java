@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
+//TODO: Foresight should fully resolve before The Die is rolled at start of turn
 public class BGForesightPower extends AbstractBGPower {
     public static final String POWER_ID = "BGForesightPower";
 
@@ -22,6 +23,7 @@ public class BGForesightPower extends AbstractBGPower {
         this.ID = "BGForesightPower";
         this.owner = owner;
         this.amount = scryAmt;
+        this.priority=1;
         updateDescription();
         loadRegion("wireheading");
     }
@@ -34,6 +36,6 @@ public class BGForesightPower extends AbstractBGPower {
         //if (AbstractDungeon.player.drawPile.size() <= 0)
             //addToTop((AbstractGameAction)new EmptyDeckShuffleAction());
         flash();
-        addToBot((AbstractGameAction)new ScryAction(this.amount));
+        addToTop((AbstractGameAction)new ScryAction(this.amount));
     }
 }

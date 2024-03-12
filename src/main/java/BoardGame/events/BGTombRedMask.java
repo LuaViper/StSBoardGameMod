@@ -32,11 +32,11 @@ public class BGTombRedMask
     public BGTombRedMask() {
         super(NAME, DIALOG_1, "images/events/redMaskTomb.jpg");
 
-        if (AbstractDungeon.player.hasRelic("BGRed Mask")) {
+        this.imageEventText.setDialogOption(OPTIONS[2] + OPTIONS[3]);
+        if (AbstractDungeon.player.hasRelic("BGRedMask")) {
             this.imageEventText.setDialogOption(OPTIONS[0]);
         } else {
             this.imageEventText.setDialogOption(OPTIONS[1], true);
-            this.imageEventText.setDialogOption(OPTIONS[2] + AbstractDungeon.player.gold + OPTIONS[3]);
         }
         this.imageEventText.setDialogOption(OPTIONS[4]);
     }
@@ -46,12 +46,12 @@ public class BGTombRedMask
     protected void buttonEffect(int buttonPressed) {
         switch (this.screen) {
             case INTRO:
-                if (buttonPressed == 0) {
+                if (buttonPressed == 1) {
                     AbstractDungeon.effectList.add(new RainingGoldEffect(6*20));
                     AbstractDungeon.player.gainGold(6);
                     this.imageEventText.updateBodyText(MASK_RESULT);
-                    logMetricGainGold("Tomb of Lord Red Mask", "Wore Mask", 222);
-                } else if (buttonPressed == 1 && !AbstractDungeon.player.hasRelic("BGRed Mask")) {
+                    logMetricGainGold("Tomb of Lord Red Mask", "Wore Mask", 6);
+                } else if (buttonPressed == 0) {
                     AbstractRelic relic= AbstractBGDungeon.returnRandomRelic(AbstractRelic.RelicTier.COMMON);
                     logMetricObtainRelicAtCost("Tomb of Lord Red Mask", "Paid", (AbstractRelic)relic, AbstractDungeon.player.gold);
                     AbstractDungeon.player.loseGold(AbstractDungeon.player.gold);

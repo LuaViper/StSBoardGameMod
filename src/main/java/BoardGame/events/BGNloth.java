@@ -31,7 +31,12 @@ import java.util.Collections;
 import java.util.Random;
 
 public class BGNloth
-        extends AbstractImageEvent {
+        extends AbstractImageEvent implements LockRelicsEvent {
+    public boolean reliclock=false;
+    public boolean relicsLocked(){
+        return reliclock;
+    }
+
     public static final String ID = "BGNloth";
     private static final EventStrings eventStrings = CardCrawlGame.languagePack.getEventString("BoardGame:BGNloth");
     public static final String NAME = eventStrings.NAME;
@@ -55,6 +60,7 @@ public class BGNloth
 
     public BGNloth() {
         super(NAME, DIALOG_1, "images/events/nloth.jpg");
+        reliclock=true;
         ArrayList<AbstractRelic> relics = new ArrayList<>();
         relics.addAll(AbstractDungeon.player.relics);
         Collections.shuffle(relics, new Random(AbstractDungeon.miscRng.randomLong()));
@@ -124,6 +130,7 @@ public class BGNloth
                 this.imageEventText.clearRemainingOptions();
                 return;
             case 1:
+                reliclock=false;
                 openMap();
                 return;
             case 999:

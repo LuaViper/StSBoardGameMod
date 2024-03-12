@@ -15,7 +15,7 @@ public class BGDiscardedOldCoin
         extends AbstractBGRelic
 {
     public static final String ID = "BGDiscardedOld Coin";
-    public boolean usableAsPayment(){return this.counter>0;}
+    public boolean usableAsPayment(){return false;}
     public BGDiscardedOldCoin() {
         super("BGDiscardedOld Coin", "oldCoin.png", AbstractRelic.RelicTier.SPECIAL, AbstractRelic.LandingSound.CLINK);
         this.grayscale=true;

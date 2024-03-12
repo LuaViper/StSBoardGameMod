@@ -240,6 +240,25 @@
       " #rLose "
     ]
   },
+  "BoardGame:BGFaceTrader": {
+    "NAME": "Face Trader",
+    "DESCRIPTIONS": [
+      "You walk by an eerie statue holding several masks... NL Something behind you softly whispers, NL ~\"Stop.\"~",
+      "You swerve around to face the statue which is now facing you! NL On closer inspection, it's not a statue but a statuesque, gaunt man. Is he even breathing? NL NL ~\"Face.~ ~Let~ ~me~ ~touch?~ ~Maybe~ ~trade?\"~",
+      "~\"Compensation?~ ~Compensation.\"~ NL Mechanically, he cranes out a neat stack of #ygold and places it into your pouch. NL NL ~\"What~ ~a~ ~nice~ ~face.~ ~Nice~ ~face.\"~ NL While he touches your face, you begin to feel your life drain out of it! NL During this, his mask falls off and shatters. Screaming, he quickly covers his face with all six arms dropping even more masks! Amidst all the screaming and shattering, you escape. NL NL His face was completely blank.",
+      "~\"For~ ~me?~ @FOR@ @ME?@ ~Oh~ ~yes..~ ~Yes.~ ~Yes..~ ~mmm...\"~ NL NL You see one of his arms flicker, and your face is in its hand! Your face has been swapped. NL NL ~\"Nice~ ~face.~ ~Nice~ ~face.\"~",
+      "~\"Stop.~ ~Stop.~ ~Stop.~ ~Stop.~ ~Stop.\"~ NL NL This was probably the right call.",
+      "~\"I~ ~see~ ~what~ ~you~ ~did~ ~there..~ ~mmm...\"~"
+    ],
+    "OPTIONS": [
+      "[Take and Give] #gGain #ga #gRelic, #rthen #rlose #ra #rRelic.",
+      " #gGold.",
+      "[Exchange] #rGive #rone #rof #ryour #rRelics #rto #ranother #rplayer. #gThen #gthey #ggive #ga #gRelic #gto #gyou.",
+      "[Leave]",
+      "[Continue]",
+      " #rHP, #ggain #g"
+    ]
+  },
   "BoardGame:BGGolden Idol": {
     "NAME": "Ancient Temple",
     "DESCRIPTIONS": [
@@ -483,6 +502,22 @@
       " #g(Peace #gPipe) #gYou #gmay #gremove #ga #gcard."
     ]
   },
+  "BoardGame:BGTheMoaiHead": {
+    "NAME": "The Moai Head",
+    "DESCRIPTIONS": [
+      "You stumble across something that feels *very* out of place. Before you, an enormous stony head emerges from a large wall segment that does not shift and change like the rest of this area. NL The head's mouth is wide open, and it reveals large intimidating teeth stained red with blood. The surface of the statue is riddled with pictographs that seem to indicate people throwing themselves into the mouth of this head and being devoured. Why would anyone do that?",
+      "At first when you step up into the mouth of the statue, nothing happens. As you start to feel more than a little foolish, the huge molars slam down from above, crushing you whole. NL @Darkness.@ NL Sometime later from within the dark, you see a sliver of light, and hear what you now realize is the sound of stony teeth slowly rising upwards. NL NL NL You leave confused.",
+      "You jump back a little as the gigantic molars smash down on the relic, smashing it into dust. As the teeth start to rise up again, #ygold pours forth in a torrent from the opening, flooding you with riches.",
+      "You leave, wondering what could have been."
+    ],
+    "OPTIONS": [
+      "[Jump Inside] #gHeal #gto #gfull #gHP. #rThen #rlose #r2 #rHP.",
+      " #rMax #rHP.",
+      "[Offer] #rLose #ra #rRelic. #gGain #ggold #gequal #gto #gits #gcost.",
+      "[Locked] Requires: Undiscarded normal Relic.",
+      "[Leave]"
+    ]
+  },
   "BoardGame:BGThe Woman in Blue": {
     "NAME": "The Woman in Blue",
     "DESCRIPTIONS": [
@@ -508,10 +543,10 @@
       "An opening appears in the tomb and out slides a small trinket with a note attached. \"Take from others as I have taken from you!\""
     ],
     "OPTIONS": [
-      "[Don the Red Mask] #gGain #g6 #gGold.",
+      "[Don the Mask] #gGain #g6 #gGold.",
       "[Locked] Requires: Red Mask.",
-      "[Offer: ",
-      " Gold] #rLose #rall #rGold. #gObtain #ga #gRelic.",
+      "[Offer Gold] #rLose #rall #rGold. #gObtain #ga #gRelic.",
+      "",
       "[Leave]"
     ]
   },

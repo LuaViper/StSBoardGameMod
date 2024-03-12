@@ -57,11 +57,12 @@ public class RelicTradingScreen extends CustomScreen {
         relics=new ArrayList<>();
         float step=0;
 
-        int total=AbstractBGRelic.getAllPayableRelics().size();
+        ArrayList<AbstractRelic> realrelics=AbstractBGRelic.getAllPayableRelics();
+        int total=realrelics.size();
         int radius=0;
         if(total>1)radius=250;
         if(total==3)step+=.25;
-        for(AbstractRelic r : AbstractBGRelic.getAllPayableRelics()){
+        for(AbstractRelic r : realrelics){
             float t = (float) (step/total*Math.PI*2);
             int x= (int) (radius*Math.cos(t));
             int y= (int) (radius*2/3F*Math.sin(t));

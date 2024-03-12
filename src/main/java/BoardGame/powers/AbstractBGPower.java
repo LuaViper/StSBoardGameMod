@@ -125,6 +125,7 @@ public class AbstractBGPower extends AbstractPower {
      }
 
     public void update(int slot) {
+         //TODO: can we add a tooltip like with FakeTradingRelic to make it clear when the hitbox is mousedover?
          super.update(slot);
 
         hb.update();
