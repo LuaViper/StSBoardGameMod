@@ -52,8 +52,7 @@ public abstract class PotionHelperPatch {
                 potionDeck.add("BoardGame:BGWeak Potion");
                 potionDeck.add("BoardGame:BGFearPotion");
                 potionDeck.add("BoardGame:BGSteroidPotion");
-                //TODO NEXT: make Liquid Memories compatible with the new energy cost reduction system
-                //potionDeck.add("BoardGame:BGLiquidMemories");
+                potionDeck.add("BoardGame:BGLiquidMemories");
                 potionDeck.add("BoardGame:BGSneckoOil");
                 potionDeck.add("BoardGame:BGElixirPotion");
                 potionDeck.add("BoardGame:BGCunningPotion");

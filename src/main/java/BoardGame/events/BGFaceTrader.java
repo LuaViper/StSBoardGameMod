@@ -1,6 +1,7 @@
 package BoardGame.events;
 
 import BoardGame.relics.AbstractBGRelic;
+import BoardGame.relics.BGOldCoin;
 import BoardGame.screen.RelicTradingScreen;
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -75,20 +76,30 @@ public class BGFaceTrader
                 switch (buttonPressed) {
                     case 0:
                         relicReward();
-                        //TODO: different logmetric
-                        RelicTradingScreen.RelicTradingAction action = (relic) -> {
-                            if(relic.relicId!=givenRelic.relicId) {
-                                this.imageEventText.updateBodyText(DESCRIPTIONS[3]);
-                            }else {
-                                this.imageEventText.updateBodyText(DESCRIPTIONS[5]);
+                        boolean softlockCheck=false;
+                        if(givenRelic.relicId.equals("BGOld Coin")){
+                            if(AbstractBGRelic.getAllPayableRelics().isEmpty()){
+                                softlockCheck=true;
                             }
-                            AbstractDungeon.player.loseRelic(relic.relicId);
-                            //TODO: there's a different logmetric for specifying which relic was given away
-                            logMetricObtainRelic("FaceTrader", "Trade", givenRelic);
-                            reliclock=false;
-                        };
-                        //TODO: localization
-                        BaseMod.openCustomScreen(RelicTradingScreen.Enum.RELIC_TRADING, action, "Choose a Relic to exhange.", false);
+                        }
+                        if(!softlockCheck) {
+                            //TODO: different logmetric
+                            RelicTradingScreen.RelicTradingAction action = (relic) -> {
+                                if (relic.relicId != givenRelic.relicId) {
+                                    this.imageEventText.updateBodyText(DESCRIPTIONS[3]);
+                                } else {
+                                    this.imageEventText.updateBodyText(DESCRIPTIONS[5]);
+                                }
+                                AbstractDungeon.player.loseRelic(relic.relicId);
+                                //TODO: there's a different logmetric for specifying which relic was given away
+                                logMetricObtainRelic("FaceTrader", "Trade", givenRelic);
+                                reliclock = false;
+                            };
+                            //TODO: localization
+                            BaseMod.openCustomScreen(RelicTradingScreen.Enum.RELIC_TRADING, action, "Choose a Relic to exhange.", false);
+                        }else{
+                            this.imageEventText.updateBodyText(DESCRIPTIONS[6]);
+                        }
 
                         break;
                     case 1:
@@ -120,7 +131,8 @@ public class BGFaceTrader
     }
 
     private void relicReward() {
-        this.givenRelic = AbstractDungeon.returnRandomScreenlessRelic(AbstractDungeon.returnRandomRelicTier());
+        //this.givenRelic = AbstractDungeon.returnRandomScreenlessRelic(AbstractDungeon.returnRandomRelicTier());
+        this.givenRelic=new BGOldCoin();
         AbstractDungeon.getCurrRoom().spawnRelicAndObtain(Settings.WIDTH * 0.28F, Settings.HEIGHT / 2.0F, this.givenRelic);
     }
 }

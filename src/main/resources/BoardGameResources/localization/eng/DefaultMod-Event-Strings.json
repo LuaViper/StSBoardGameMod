@@ -248,7 +248,8 @@
       "~\"Compensation?~ ~Compensation.\"~ NL Mechanically, he cranes out a neat stack of #ygold and places it into your pouch. NL NL ~\"What~ ~a~ ~nice~ ~face.~ ~Nice~ ~face.\"~ NL While he touches your face, you begin to feel your life drain out of it! NL During this, his mask falls off and shatters. Screaming, he quickly covers his face with all six arms dropping even more masks! Amidst all the screaming and shattering, you escape. NL NL His face was completely blank.",
       "~\"For~ ~me?~ @FOR@ @ME?@ ~Oh~ ~yes..~ ~Yes.~ ~Yes..~ ~mmm...\"~ NL NL You see one of his arms flicker, and your face is in its hand! Your face has been swapped. NL NL ~\"Nice~ ~face.~ ~Nice~ ~face.\"~",
       "~\"Stop.~ ~Stop.~ ~Stop.~ ~Stop.~ ~Stop.\"~ NL NL This was probably the right call.",
-      "~\"I~ ~see~ ~what~ ~you~ ~did~ ~there..~ ~mmm...\"~"
+      "~\"I~ ~see~ ~what~ ~you~ ~did~ ~there..~ ~mmm...\"~",
+      "You have received an Old Coin. NL The rules state that you now gain 10 gold and discard the relic. NL NL You have nothing to give in return. NL NL NL Well, this is awkward."
     ],
     "OPTIONS": [
       "[Take and Give] #gGain #ga #gRelic, #rthen #rlose #ra #rRelic.",

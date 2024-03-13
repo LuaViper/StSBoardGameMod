@@ -23,7 +23,7 @@ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
 
-//TODO NEXT: does Ragnarok decrease its damage correctly if it was initially targeted on a Vulnerable enemy before switching targets?
+//TODO: does Ragnarok decrease its damage correctly if it was initially targeted on a Vulnerable enemy before switching targets?
 public class BGRagnarok extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGRagnarok");
     public static final String ID = "BGRagnarok";
