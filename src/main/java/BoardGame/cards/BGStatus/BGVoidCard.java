@@ -27,7 +27,7 @@ public class BGVoidCard extends AbstractBGCard implements CardDisappearsOnExhaus
     static final String ID = "BGVoidCard";
 
     public BGVoidCard() {
-        super("BGVoidCard", cardStrings.NAME, "status/void", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, AbstractCard.CardColor.COLORLESS, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE);
+        super("BGVoidCard", cardStrings.NAME, "status/void", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, BGColorless.Enums.CARD_COLOR, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE);
 
         //this.isEthereal = true;
         this.exhaust=true;

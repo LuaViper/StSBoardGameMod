@@ -2,6 +2,7 @@ package BoardGame.cards.BGColorless;
 
 import BoardGame.actions.TargetSelectScreenAction;
 import BoardGame.cards.AbstractBGAttackCardChoice;
+import BoardGame.characters.BGColorless;
 import BoardGame.screen.TargetSelectScreen;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -18,7 +19,7 @@ public class BGDuality2Damage extends AbstractBGAttackCardChoice {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGDuality2Damage");
 
     public BGDuality2Damage() {
-        super("BGDuality2Damage", cardStrings.NAME, "purple/attack/strike", -2, cardStrings.DESCRIPTION, CardType.STATUS, CardColor.COLORLESS, CardRarity.SPECIAL, CardTarget.NONE);
+        super("BGDuality2Damage", cardStrings.NAME, "purple/attack/strike", -2, cardStrings.DESCRIPTION, CardType.STATUS, BGColorless.Enums.CARD_COLOR, CardRarity.SPECIAL, CardTarget.NONE);
         this.baseDamage=2;
     }
 

@@ -1,6 +1,7 @@
 package BoardGame.cards.BGRed;
 
 import BoardGame.cards.AbstractBGAttackCardChoice;
+import BoardGame.characters.BGColorless;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -21,7 +22,7 @@ public class BGIronWaveSpear extends AbstractBGAttackCardChoice {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGIronWaveSpear");
 
     public BGIronWaveSpear() {
-        super("BGIronWaveSpear", cardStrings.NAME, "colorless/skill/wrath", -2, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, AbstractCard.CardColor.COLORLESS, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE);
+        super("BGIronWaveSpear", cardStrings.NAME, "colorless/skill/wrath", -2, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, BGColorless.Enums.CARD_COLOR, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE);
         this.baseDamage = 2;
         this.baseBlock = 1;
     }

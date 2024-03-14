@@ -1,6 +1,7 @@
 package BoardGame.cards.BGColorless;
 
 import BoardGame.cards.AbstractBGAttackCardChoice;
+import BoardGame.characters.BGColorless;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -15,7 +16,7 @@ public class BGDuality2Block extends AbstractBGAttackCardChoice {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGDuality2Block");
 
     public BGDuality2Block() {
-        super("BGDuality2Block", cardStrings.NAME, "purple/skill/defend", -2, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, AbstractCard.CardColor.COLORLESS, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.NONE);
+        super("BGDuality2Block", cardStrings.NAME, "purple/skill/defend", -2, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, BGColorless.Enums.CARD_COLOR, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.NONE);
         this.baseBlock=2;
     }
 

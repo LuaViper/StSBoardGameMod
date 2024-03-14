@@ -1,6 +1,7 @@
 package BoardGame.cards.BGColorless;
 
 import BoardGame.cards.AbstractBGAttackCardChoice;
+import BoardGame.characters.BGColorless;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -14,7 +15,7 @@ public class BGGremlinHornGainEnergy extends AbstractBGAttackCardChoice {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGGremlinHornGainEnergy");
 
     public BGGremlinHornGainEnergy() {
-        super("BGGremlinHornGainEnergy", cardStrings.NAME, "blue/skill/double_energy", -2, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, AbstractCard.CardColor.COLORLESS, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.NONE);
+        super("BGGremlinHornGainEnergy", cardStrings.NAME, "blue/skill/double_energy", -2, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, BGColorless.Enums.CARD_COLOR, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.NONE);
     }
 
 

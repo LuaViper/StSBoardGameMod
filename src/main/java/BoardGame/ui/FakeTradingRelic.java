@@ -28,7 +28,7 @@ public class FakeTradingRelic extends Button {
     AbstractRelic realRelic;
 
     public FakeTradingRelic(RelicTradingScreen screen, AbstractRelic realRelic,int xoffset,int yoffset) {
-        super((Settings.WIDTH / 2)+xoffset, (Settings.HEIGHT / 2)+yoffset, realRelic.img);
+        super((Settings.WIDTH / 2)+xoffset*Settings.scale, (Settings.HEIGHT / 2)+yoffset*Settings.scale, realRelic.img);
         this.screen=screen;
         this.realRelic=realRelic;
         this.hb=new Hitbox(96,96);
@@ -49,9 +49,7 @@ public class FakeTradingRelic extends Button {
             }
         }
         if (this.pressed) {
-            //TODO: do thing
             screen.onRelicChosen(this.realRelic);
-
         }
         if(this.pressed){this.pressed=false;}
     }

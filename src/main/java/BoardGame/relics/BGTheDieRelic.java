@@ -1,12 +1,14 @@
 package BoardGame.relics;
 import BoardGame.BoardGame;
 import BoardGame.actions.BGActivateDieAbilityAction;
+import BoardGame.cards.BGColorless.BGShivSurrogate;
 import BoardGame.characters.AbstractBGCharacter;
 import BoardGame.monsters.DieControlledMoves;
 import BoardGame.powers.BGMayhemPower;
 import BoardGame.powers.BGTheDiePower;
 import BoardGame.powers.BGTriggerAnyDieAbilityPower;
 import BoardGame.thedie.TheDie;
+import BoardGame.ui.EntropicBrewPotionButton;
 import BoardGame.util.TextureLoader;
 import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.graphics.Texture;
@@ -22,6 +24,8 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.ArrayList;
 
 import static BoardGame.BoardGame.makeRelicOutlinePath;
 import static BoardGame.BoardGame.makeRelicPath;
@@ -74,7 +78,11 @@ public class BGTheDieRelic extends AbstractBGRelic implements DieControlledRelic
             //TODO: mayhem fix is still wrong -- player should have the chance to lock the roll + activate relics before playing mayhem (some cards change depending on roll)
             if(!card.isInAutoplay){
                 TheDie.forceLockInRoll = true;
-                lockRollAndActivateDieRelics();
+                boolean isACunningPotion=false;
+                if(card instanceof BGShivSurrogate){
+                    isACunningPotion=!((BGShivSurrogate) card).isARealShiv;
+                }
+                lockRollAndActivateDieRelics(isACunningPotion);
             }
         }
         if (card.type == AbstractCard.CardType.POWER) {
@@ -100,7 +108,7 @@ public class BGTheDieRelic extends AbstractBGRelic implements DieControlledRelic
     public void onUsePotion(){
         if ((AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT) {
             TheDie.forceLockInRoll = true;
-            lockRollAndActivateDieRelics();
+            lockRollAndActivateDieRelics(true);
         }
     }
 
@@ -112,8 +120,15 @@ public class BGTheDieRelic extends AbstractBGRelic implements DieControlledRelic
     }
 
 
+    public void lockRollAndActivateDieRelics() {
+        lockRollAndActivateDieRelics(false);
+    }
 
-    public void lockRollAndActivateDieRelics(){
+    public void lockRollAndActivateDieRelics(boolean potionWasJustUsed){
+        if(!potionWasJustUsed){
+            EntropicBrewPotionButton.TopPanelEntropicInterface.entropicBrewPotionButtons.set(AbstractDungeon.topPanel, new ArrayList<>());
+        }
+
         //TODO: all "start of turn" powers and relics are supposed to activate AFTER the roll is locked in
         if(TheDie.finalRelicRoll<=0) {
             TheDie.finalRelicRoll = TheDie.monsterRoll;

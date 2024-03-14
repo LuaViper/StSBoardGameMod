@@ -17,6 +17,7 @@ import java.util.Collections;
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.cardRng;
 
 
+//TODO: change potion rarity to either COMMON or UNCOMMON depending on whether there are 1 or 2 of them in the potion deck
 public abstract class PotionHelperPatch {
 
     public static ArrayList<String> potionDeck =new ArrayList<String>();
@@ -27,6 +28,7 @@ public abstract class PotionHelperPatch {
         public static SpireReturn<ArrayList<String>> getPotions() {
             if(CardCrawlGame.dungeon instanceof AbstractBGDungeon) {
                 potionDeck = new ArrayList<>();
+                //...these are listed in the order they appear in Tabletop Simulator's deck search
                 potionDeck.add("BoardGame:BGBlock Potion");
                 potionDeck.add("BoardGame:BGEnergy Potion");
                 potionDeck.add("BoardGame:BGExplosive Potion");
@@ -37,10 +39,9 @@ public abstract class PotionHelperPatch {
                 potionDeck.add("BoardGame:BGSteroidPotion");
                 potionDeck.add("BoardGame:BGBloodPotion");
                 potionDeck.add("BoardGame:BGGhostInAJar");
-                //when uncommenting these, remember to also update the getPotion function below
-                //potionDeck.add("BoardGame:BGDistilledChaos"); //requires "play 3 cards in which order?" interface
-                //potionDeck.add("BoardGame:BGEntropicBrew");   //requires "use existing potion / use new potion / discard / give to player?" interface
-                potionDeck.add("BoardGame:BGFairyPotion");                              //TODO: can we use the new potion right away, or existing pots only?
+                potionDeck.add("BoardGame:BGDistilledChaos"); //requires "play 3 cards in which order?" interface
+                potionDeck.add("BoardGame:BGEntropicBrew");
+                potionDeck.add("BoardGame:BGFairyPotion");
                 potionDeck.add("BoardGame:BGAttackPotion");
                 potionDeck.add("BoardGame:BGSkillPotion");
                 potionDeck.add("BoardGame:BGAncientPotion");
@@ -135,6 +136,10 @@ public abstract class PotionHelperPatch {
                         return SpireReturn.Return((AbstractPotion) new BGBloodPotion());
                     case "BoardGame:BGGhostInAJar":
                         return SpireReturn.Return((AbstractPotion) new BGGhostInAJar());
+                    case "BoardGame:BGDistilledChaos":
+                        return SpireReturn.Return((AbstractPotion) new BGDistilledChaos());
+                    case "BoardGame:BGEntropicBrew":
+                        return SpireReturn.Return((AbstractPotion) new BGEntropicBrew());
                     case "BoardGame:BGAttackPotion":
                         return SpireReturn.Return((AbstractPotion) new BGAttackPotion());
                     case "BoardGame:BGSkillPotion":

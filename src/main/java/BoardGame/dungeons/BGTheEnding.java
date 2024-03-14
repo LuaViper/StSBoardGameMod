@@ -43,7 +43,7 @@ import java.util.ArrayList;
 
 public class BGTheEnding extends AbstractBGDungeon {
 
-    //TODO: Victory screen lacks character-specific heartkill animations -- probably because we're only on floor 40
+    //TODO: End of act 3 cutscene persists (heart visible) behind the act 4 map when it first loads in
     private static final Logger logger = LogManager.getLogger(BGTheEnding.class.getName());
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("TheEnding");
     public static final String[] TEXT = uiStrings.TEXT;

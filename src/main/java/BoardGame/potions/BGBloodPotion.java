@@ -58,6 +58,7 @@ public class BGBloodPotion
                 (AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT) {
             return false;
         }
+        //TODO: did we remember to null check event in other classes too?
         if ((AbstractDungeon.getCurrRoom()).event != null &&
                 (AbstractDungeon.getCurrRoom()).event instanceof com.megacrit.cardcrawl.events.shrines.WeMeetAgain) {
             return false;

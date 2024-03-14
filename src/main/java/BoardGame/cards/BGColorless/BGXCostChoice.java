@@ -3,6 +3,7 @@ package BoardGame.cards.BGColorless;
 import BoardGame.actions.BGXCostCardAction;
 import BoardGame.cards.AbstractBGAttackCardChoice;
 import BoardGame.cards.BGRed.BGWhirlwind;
+import BoardGame.characters.BGColorless;
 import basemod.helpers.ModalChoice;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -30,7 +31,7 @@ public class BGXCostChoice extends AbstractBGAttackCardChoice {
     }
 
     public BGXCostChoice(AbstractCard card, int energyOnUse, boolean dontExpendResources, BGXCostCardAction.XCostAction action, AbstractCard doppelgangerCard) {
-        super("BGXCostChoice", cardStrings.NAME, card.assetUrl, energyOnUse, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, AbstractCard.CardColor.COLORLESS, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE);
+        super("BGXCostChoice", cardStrings.NAME, card.assetUrl, energyOnUse, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, BGColorless.Enums.CARD_COLOR, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE);
 
         //Important: original card class must check for energy/freeplay restrictions (see BGWhirlwind.java for example)
         if(cost==-1) {

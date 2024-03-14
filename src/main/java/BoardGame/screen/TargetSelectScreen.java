@@ -63,7 +63,7 @@ public class TargetSelectScreen extends CustomScreen {
 
     public TargetSelectAction action;
 
-    public String description="Target Select Screen.  Choose a target.";
+    public String description="(DNT) Target Select Screen.  Choose a target.";
     public boolean allowCancel=false;
     public TargetSelectAction cancelAction=null;    //dummied out
     public AbstractMonster finaltarget=null;

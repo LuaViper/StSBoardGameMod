@@ -2,6 +2,7 @@ package BoardGame.cards.BGColorless;
 
 import BoardGame.actions.BGUseShivAction;
 import BoardGame.cards.AbstractBGAttackCardChoice;
+import BoardGame.characters.BGColorless;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -15,7 +16,7 @@ public class BGShivsUseExtraShiv extends AbstractBGAttackCardChoice {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGShivsUseExtraShiv");
 
     public BGShivsUseExtraShiv() {
-        super("BGShivsUseExtraShiv", cardStrings.NAME, "colorless/attack/shiv", -2, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, AbstractCard.CardColor.COLORLESS, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.NONE);
+        super("BGShivsUseExtraShiv", cardStrings.NAME, "colorless/attack/shiv", -2, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, BGColorless.Enums.CARD_COLOR, AbstractCard.CardRarity.SPECIAL, AbstractCard.CardTarget.NONE);
         this.baseDamage=1;
         if(AbstractDungeon.player!=null) {
             AbstractPower accuracy = AbstractDungeon.player.getPower("BGAccuracy");

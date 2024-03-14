@@ -371,6 +371,16 @@
     "DESCRIPTION": "[BoardGame:WeakIcon] [BoardGame:WeakIcon] NL Exhaust.",
     "UPGRADE_DESCRIPTION": "[BoardGame:WeakIcon] [BoardGame:WeakIcon] [BoardGame:WeakIcon] NL Exhaust."
   },
+  "BoardGame:BGDistilledChaosChoice": {
+    "NAME": "Distilled Chaos",
+    "DESCRIPTION": "For debug purposes only. NL In the Board Game, you can play Distilled Chaos cards in any order.",
+    "UPGRADE_DESCRIPTION": "For debug purposes only. NL In the Board Game, you can play Distilled Chaos cards in any order.",
+    "EXTENDED_DESCRIPTION": [
+      "Play []",
+      "[], NL then []",
+      "[]."
+    ]
+  },
   "BoardGame:BGDistraction": {
     "NAME": "Distraction",
     "DESCRIPTION": "[#EFC851]Once [#EFC851]per [#EFC851]turn[]: NL When you put a token on an enemy, !M! [BoardGame:BlockIcon] ."

@@ -47,6 +47,7 @@ public class BGUseShivAction extends AbstractGameAction {
                         relic.counter = relic.counter - 1;  //don't decrement Shivs if we throw a Cunning Potion!
                     }
                     BGShivSurrogate fakeShiv=new BGShivSurrogate();
+                    fakeShiv.isARealShiv=isARealShiv;
                     if(isARealShiv) {
                         //similarly don't apply Accuracy to Cunning Potions
                         AbstractPower accuracy = AbstractDungeon.player.getPower("BGAccuracy");

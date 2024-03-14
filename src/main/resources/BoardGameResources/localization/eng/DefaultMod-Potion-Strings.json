@@ -35,12 +35,24 @@
                         "Make #b3 #yAttacks for #b1 damage each."
                 ]
         },
+        "BoardGame:BGDistilledChaos": {
+                "NAME": "Distilled Chaos",
+                "DESCRIPTIONS": [
+                        "Draw #b3 cards. NL Immediately play them in any order for 0 Energy."
+                ]
+        },
 "BoardGame:BGElixirPotion": {
         "NAME": "Purity Potion",
         "DESCRIPTIONS": [
                 "#yExhaust up to #b3 cards in your hand."
         ]
 },
+        "BoardGame:BGEntropicBrew": {
+                "NAME": "Entropic Brew",
+                "DESCRIPTIONS": [
+                        "Gain [BoardGame:PotionIcon] [BoardGame:PotionIcon] ."
+                ]
+        },
 "BoardGame:BGExplosive Potion": {
         "NAME": "Explosive Potion",
         "DESCRIPTIONS": [

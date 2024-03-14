@@ -121,7 +121,8 @@ public class BGCorruptHeart extends AbstractMonster implements BGDamageIcons {
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new ApplyPowerAction((AbstractCreature) AbstractDungeon.player, (AbstractCreature) this, (AbstractPower) new BGVulnerablePower((AbstractCreature) AbstractDungeon.player, 1, true), 1));
                 //AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new MakeTempCardInDiscardAction((AbstractCard) new BGSlimed(), 5));
                 //TODO: also shuffle the deck properly for the BG
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new MakeTempCardInDrawPileAction((AbstractCard) new BGSlimed(), 5,true,false ));
+                //AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new MakeTempCardInDrawPileAction((AbstractCard) new BGSlimed(), 5,true,false ));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new MakeTempCardInDrawPileAction((AbstractCard) new BGSlimed(), 5,true,true ));
                 break;
 
             case 1:

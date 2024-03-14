@@ -42,7 +42,7 @@ public class RelicTradingScreen extends CustomScreen {
 
     public RelicTradingScreen.RelicTradingAction action;
 
-    public String description;
+    public String description="(DNT) Relic Select Screen.  Choose a Relic.";
     public boolean displayRelicPrice=false;
 
     public ArrayList<FakeTradingRelic>relics;

@@ -131,8 +131,8 @@ public class BGFaceTrader
     }
 
     private void relicReward() {
-        //this.givenRelic = AbstractDungeon.returnRandomScreenlessRelic(AbstractDungeon.returnRandomRelicTier());
-        this.givenRelic=new BGOldCoin();
+        this.givenRelic = AbstractDungeon.returnRandomScreenlessRelic(AbstractDungeon.returnRandomRelicTier());
+        //this.givenRelic=new BGOldCoin();
         AbstractDungeon.getCurrRoom().spawnRelicAndObtain(Settings.WIDTH * 0.28F, Settings.HEIGHT / 2.0F, this.givenRelic);
     }
 }

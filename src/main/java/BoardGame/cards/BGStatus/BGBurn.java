@@ -1,6 +1,8 @@
 package BoardGame.cards.BGStatus;
 
+import BoardGame.cards.AbstractBGCard;
 import BoardGame.cards.CardDisappearsOnExhaust;
+import BoardGame.characters.BGColorless;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -14,12 +16,12 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import BoardGame.monsters.AbstractBGMonster;
 
-public class BGBurn extends AbstractCard implements CardDisappearsOnExhaust {
+public class BGBurn extends AbstractBGCard implements CardDisappearsOnExhaust {
     public static final String ID = "BGBurn";
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGBurn");
 
     public BGBurn() {
-        super("BGBurn", cardStrings.NAME, "status/burn", -2, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, AbstractCard.CardColor.COLORLESS, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE);
+        super("BGBurn", cardStrings.NAME, "status/burn", -2, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, BGColorless.Enums.CARD_COLOR, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE);
 
 
 

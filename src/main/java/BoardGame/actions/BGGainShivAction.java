@@ -13,6 +13,7 @@ import java.util.ArrayList;
 
 
 //TODO: if Infinite Blades procs a 6th shiv at beginning of turn, and the player rolls a 6 etc, it will immediately override the Wildcard proc
+//TODO: it is suspected that Cunning Potion will close BGEntropicBrew menu
 public class BGGainShivAction extends AbstractGameAction {
     private int amount;
     private AbstractPlayer player;

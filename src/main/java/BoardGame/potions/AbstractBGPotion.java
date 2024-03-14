@@ -17,10 +17,10 @@ public abstract class AbstractBGPotion {
     public AbstractBGPotion(){
         super();
     }
-    public int getPrice() {return 9999;}
+    //public int getPrice() {return 9999;}  //not actually used.  potions currently extend AbstractPotion, not AbstractBGPotion
+                                                                //(getPrice is a vanilla method)
 
-
-    //TODO: also disable clickable relics somehow (good luck, we need clickable relics for some events)
+    //TODO: the player should be allowed to use Entropic Brew during the Nloth introduction, up until the player clicks "give a potion" and the buttons change to potion selection
     @SpirePatch2(clz = PotionPopUp.class, method = "open",
             paramtypez = {int.class, AbstractPotion.class})
     public static class LockPotionsDuringEventsPatch {

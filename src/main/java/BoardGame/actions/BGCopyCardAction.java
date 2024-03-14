@@ -1,38 +1,28 @@
 package BoardGame.actions;
 
-import BoardGame.BoardGame;
 import BoardGame.cards.AbstractBGCard;
-import BoardGame.cards.BGColorless.BGShivSurrogate;
-import BoardGame.dungeons.BGExordium;
 import BoardGame.powers.BGTripleAttackPower;
-import BoardGame.relics.DieControlledRelic;
 import BoardGame.screen.TargetSelectScreen;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.utility.HandCheckAction;
 import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.actions.utility.ShowCardAndPoofAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.map.DungeonMap;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class CopyCardAction
+public class BGCopyCardAction
         extends AbstractGameAction {
 
     private AbstractCard card;
     private boolean tripleAttack;
 
 
-    public CopyCardAction(AbstractCard originalCard, boolean tripleAttack) {
+    public BGCopyCardAction(AbstractCard originalCard, boolean tripleAttack) {
         this.card=originalCard;
         this.tripleAttack=tripleAttack;
     }
@@ -88,7 +78,7 @@ public class CopyCardAction
             if(__instance.isDone) {
                 if (___card instanceof AbstractBGCard) {
                     if (((AbstractBGCard) ___card).copyOriginalCardAgain) {
-                        AbstractDungeon.actionManager.addToBottom(new CopyCardAction(((AbstractBGCard) ___card).originalCard, false));
+                        AbstractDungeon.actionManager.addToBottom(new BGCopyCardAction(((AbstractBGCard) ___card).originalCard, false));
                     }
                 }
             }

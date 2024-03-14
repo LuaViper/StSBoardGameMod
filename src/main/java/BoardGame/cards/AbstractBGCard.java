@@ -1,23 +1,45 @@
 
 package BoardGame.cards;
+import BoardGame.actions.BGCopyCardAction;
+import BoardGame.actions.TargetSelectScreenAction;
+import BoardGame.characters.BGColorless;
 import BoardGame.dungeons.AbstractBGDungeon;
+import BoardGame.dungeons.BGExordium;
 import BoardGame.relics.BGTheDieRelic;
+import BoardGame.screen.TargetSelectScreen;
+import basemod.BaseMod;
+import basemod.ReflectionHacks;
 import basemod.abstracts.CustomCard;
+import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.RenderFixSwitches;
 import com.badlogic.gdx.Gdx;
+import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
+import com.megacrit.cardcrawl.actions.utility.ShowCardAndPoofAction;
+import com.megacrit.cardcrawl.actions.utility.WaitAction;
+import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import javassist.CannotCompileException;
+import javassist.CtBehavior;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 
 //class for cards which use artwork from the original game but custom colors.
@@ -40,11 +62,14 @@ public abstract class AbstractBGCard extends CustomCard {
 
     public boolean cannotBeCopied=false;
 
+    public ArrayList<AbstractCard> followUpCardChain=null; //TODO: we can probably use this instead of BGCopyCardAction's tripleAttack flag
+
     //TODO: actually read and understand the SecondMagicNumber tutorial, we're currently just blindly copypasting here
     public int defaultSecondMagicNumber;        // Just like magic number, or any number for that matter, we want our regular, modifiable stat
     public int defaultBaseSecondMagicNumber;    // And our base stat - the number in it's base state. It will reset to that by default.
     public boolean upgradedDefaultSecondMagicNumber; // A boolean to check whether the number has been upgraded or not.
     public boolean isDefaultSecondMagicNumberModified; // A boolean to check whether the number has been modified or not, for coloring purposes. (red/green)
+
 
 
 
@@ -77,11 +102,18 @@ public abstract class AbstractBGCard extends CustomCard {
         oldCardAtlas = new TextureAtlas(Gdx.files.internal("oldCards/cards.atlas"));
     }
 
+    public void passthroughLoadCardImage(String img) {
+        super.loadCardImage(img);
+    }
+
     public void loadCardImage(String img) {
         this.portrait = cardAtlas.findRegion(img);
         this.jokePortrait=oldCardAtlas.findRegion(img);
     }
 
+    protected Texture passthroughGetPortraitImage() {
+        return super.getPortraitImage();
+    }
 
     protected Texture getPortraitImage() {
         if (Settings.PLAYTESTER_ART_MODE || UnlockTracker.betaCardPref.getBoolean(this.cardID, false)) {
@@ -264,5 +296,75 @@ public abstract class AbstractBGCard extends CustomCard {
 
 
 
+
+    @SpirePatch2(clz = AbstractPlayer.class, method = "useCard",
+            paramtypez={AbstractCard.class, AbstractMonster.class, int.class})
+    public static class FollowUpCardChainPatch {
+        @SpirePostfixPatch
+        public static void Postfix(AbstractCard ___c) {
+            if(___c instanceof AbstractBGCard){
+                AbstractBGCard oldCard = (AbstractBGCard)___c;
+                if(oldCard.followUpCardChain!=null && !oldCard.followUpCardChain.isEmpty()){
+                    AbstractCard card=oldCard.followUpCardChain.get(0);
+                    if(card instanceof AbstractBGCard){
+                        ((AbstractBGCard)card).followUpCardChain=oldCard.followUpCardChain;
+                        ((AbstractBGCard)card).followUpCardChain.remove(0);
+                        if (card.target == AbstractCard.CardTarget.ENEMY || card.target == AbstractCard.CardTarget.SELF_AND_ENEMY) {
+                            TargetSelectScreen.TargetSelectAction tssAction = (target) -> {
+                                if (target != null) {
+                                    card.calculateCardDamage(target);
+                                }
+                                AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new NewQueueCardAction(card, target, true, true));
+                            };
+                            AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new TargetSelectScreenAction(tssAction, "Choose a target for " + card.name + ".")); //TODO: localization
+                        } else {
+                            AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new NewQueueCardAction(card, null, true, true));
+                        }
+                    }
+                }
+            }
+        }
+    }
+//
+//    //private static final String FILENAME="BoardGameResources/images/512/colorless_bg_skill.png";
+//    private static final Texture SKILL_COLORLESS = ((ReflectionHacks.RMethod)ReflectionHacks.privateStaticMethod(CustomCard.class,"getTextureFromString",String.class))
+//            .invoke(null, "BoardGameResources/images/512/colorless_bg_skill.png");
+//
+//    @Override
+//    public Texture getCardBg() {
+//        BoardGame.BoardGame.logger.info("getCardBg"+(String)((this.type==CardType.STATUS) ? " !!!!!!" : ""));
+//        return(this.type==CardType.STATUS) ? SKILL_COLORLESS : super.getCardBg();
+//    }
+//
+////    @Override         //CustomCard doesn't actually use this
+////    public TextureAtlas.AtlasRegion getCardBgAtlas() {
+////        return(this.type==CardType.STATUS) ? ImageMaster.CARD_SKILL_BG_SILHOUETTE : super.getCardBgAtlas();
+////    }
+
+    @SpirePatch2(clz= RenderFixSwitches.RenderBgSwitch.class, method="Prefix",
+            paramtypez={AbstractCard.class, SpriteBatch.class, float.class, float.class, Color.class})
+    public static class StatusCardColorPatch {
+        @SpireInsertPatch(
+                locator = AbstractBGCard.StatusCardColorPatch.Locator.class,
+                localvars = {"texture"}
+        )
+        public static SpireReturn<?> Insert(AbstractCard _____instance, @ByRef Texture[] ___texture) {
+            if (_____instance instanceof AbstractBGCard && _____instance.type==CardType.STATUS) {
+                if (BaseMod.getSkillBgTexture(BGColorless.Enums.CARD_COLOR) == null) {
+                    BaseMod.saveSkillBgTexture(BGColorless.Enums.CARD_COLOR, ImageMaster.loadImage(BaseMod.getSkillBg(BGColorless.Enums.CARD_COLOR)));
+                }
+                ___texture[0] = BaseMod.getSkillBgTexture(BGColorless.Enums.CARD_COLOR);
+                return SpireReturn.Continue();
+                //Note: region will still be set to ImageMaster.CARD_SKILL_BG_BLACK at first, but it will quickly be overwritten since texture!=null
+            }
+            return SpireReturn.Continue();
+        }
+        private static class Locator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new Matcher.FieldAccessMatcher(ImageMaster.class, "CARD_SKILL_BG_BLACK");
+                return LineFinder.findInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher);
+            }
+        }
+    }
 
 }

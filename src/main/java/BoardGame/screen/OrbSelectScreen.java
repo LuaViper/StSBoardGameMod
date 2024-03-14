@@ -65,7 +65,7 @@ public class OrbSelectScreen extends CustomScreen {
     public OrbSelectAction action;
     public boolean prohibitDarkOrbs;
 
-    public String description="Orb Select Screen.  Choose an Orb.";
+    public String description="(DNT) Orb Select Screen.  Choose an Orb.";
     public boolean allowCancel=false;       //dummied out
     public OrbSelectAction cancelAction=null;    //dummied out
     public AbstractMonster finaltarget=null;

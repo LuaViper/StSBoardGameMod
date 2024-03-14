@@ -1,7 +1,7 @@
 package BoardGame.dungeons;
 
 import BoardGame.BoardGame;
-import BoardGame.cards.BGGoldenTicket;
+import BoardGame.cards.*;
 import BoardGame.cards.BGCurse.*;
 import BoardGame.characters.*;
 import BoardGame.events.BGColosseum;
@@ -10,6 +10,7 @@ import BoardGame.monsters.bgbeyond.*;
 import BoardGame.monsters.bgcity.*;
 import BoardGame.monsters.bgending.BGCorruptHeart;
 import BoardGame.monsters.bgexordium.*;
+import BoardGame.ui.EntropicBrewPotionButton;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -140,7 +141,11 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                 for(int i=0;i<4;i+=1){
                     CardGroup rewards=new CardGroup(CardGroup.CardGroupType.CARD_POOL);
                     CardGroup rares=new CardGroup(CardGroup.CardGroupType.CARD_POOL);
-                    AbstractCard gt=new BGGoldenTicket();
+                    AbstractCard gt;
+                    if(i==0)gt=new BGGoldenTicket_R();
+                    else if(i==1)gt=new BGGoldenTicket_G();
+                    else if(i==2)gt=new BGGoldenTicket_B();
+                    else gt=new BGGoldenTicket_W();
                     rewards.addToTop(gt.makeCopy());
                     rewards.addToTop(gt.makeCopy());
                     ArrayList<AbstractCard> tmpPool = new ArrayList<>();
@@ -158,7 +163,7 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                                 rewards.addToTop(c.makeCopy());
                                 break;
                             case RARE:
-                                rares.addToTop(c.makeCopy());
+                                if(!(c instanceof BGGoldenTicket)) rares.addToTop(c.makeCopy());
                                 break;
                         }
                     }
@@ -615,6 +620,12 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
             }
             return SpireReturn.Continue();
         }
+    }
+
+
+    public void nextRoomTransition(SaveFile saveFile){
+        super.nextRoomTransition(saveFile);
+        EntropicBrewPotionButton.TopPanelEntropicInterface.entropicBrewPotionButtons.set(AbstractDungeon.topPanel, new ArrayList<>());
     }
 
 

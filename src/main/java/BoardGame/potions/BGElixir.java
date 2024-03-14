@@ -18,7 +18,6 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 public class BGElixir extends AbstractPotion {
     private static final PotionStrings potionStrings = CardCrawlGame.languagePack.getPotionString("BoardGame:BGElixirPotion");
     public static final String POTION_ID = "BGElixirPotion";
-    //TODO: "Purity Potion" has different name AND different appearance
 
     public BGElixir() {
         super(potionStrings.NAME, "BGElixirPotion", AbstractPotion.PotionRarity.UNCOMMON, AbstractPotion.PotionSize.S, AbstractPotion.PotionColor.GREEN);

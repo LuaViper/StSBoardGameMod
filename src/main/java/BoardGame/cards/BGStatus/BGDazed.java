@@ -1,6 +1,8 @@
 package BoardGame.cards.BGStatus;
 
+import BoardGame.cards.AbstractBGCard;
 import BoardGame.cards.CardDisappearsOnExhaust;
+import BoardGame.characters.BGColorless;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -8,12 +10,12 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import BoardGame.monsters.AbstractBGMonster;
 
-public class BGDazed extends AbstractCard implements CardDisappearsOnExhaust {
+public class BGDazed extends AbstractBGCard implements CardDisappearsOnExhaust {
     public static final String ID = "BGDazed";
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Dazed");
 
     public BGDazed() {
-        super("BGDazed", cardStrings.NAME, "status/dazed", -2, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, AbstractCard.CardColor.COLORLESS, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE);
+        super("BGDazed", cardStrings.NAME, "status/dazed", -2, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, BGColorless.Enums.CARD_COLOR, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE);
 
 
 
