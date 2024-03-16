@@ -1,6 +1,7 @@
 package BoardGame.events;
 
 import BoardGame.dungeons.AbstractBGDungeon;
+import BoardGame.potions.BGGamblersBrew;
 import BoardGame.relics.AbstractBGRelic;
 import BoardGame.screen.RelicTradingScreen;
 import basemod.BaseMod;
@@ -68,7 +69,7 @@ public class BGTheJoust
     private int clangCount = 0;
 
     private enum CUR_SCREEN {
-        HALT, EXPLANATION, CHOOSE_POTION, PRE_JOUST, JOUST, COMPLETE;
+        HALT, EXPLANATION, CHOOSE_POTION, PRE_JOUST, JOUST, COMPLETE, GAMBLEBREW;
     }
 
     public int knightMessageIndex;
@@ -190,18 +191,32 @@ public class BGTheJoust
                 playerWins=false;
                 int random = AbstractDungeon.miscRng.random(1, 6);
                 if(random>=4) {
+                    playerWins = true;
+                }else if(random==3 && AbstractDungeon.player.hasRelic("BGTheAbacus")){
+                    AbstractDungeon.player.getRelic("BGTheAbacus").flash();
                     playerWins=true;
-                }else{
-                    //TODO: if player wagers gambling chip, does it still (incorrectly) take effect here?
+                }else if(random==1 && AbstractDungeon.player.hasRelic("BGToolbox")){
+                    AbstractDungeon.player.getRelic("BGToolbox").flash();
+                    playerWins=true;
+                }
+                if(!playerWins){
+                    //TODO: if player wagers a die relic, does it still (incorrectly) take effect here?
                     AbstractRelic r=AbstractDungeon.player.getRelic("BGGambling Chip");
                     if(r!=null){
                         r.flash();
                         random = AbstractDungeon.miscRng.random(1, 6);
                         if(random>=4) {
+                            playerWins = true;
+                        }else if(random==3 && AbstractDungeon.player.hasRelic("BGTheAbacus")){
+                            AbstractDungeon.player.getRelic("BGTheAbacus").flash();
+                            playerWins=true;
+                        }else if(random==1 && AbstractDungeon.player.hasRelic("BGToolbox")){
+                            AbstractDungeon.player.getRelic("BGToolbox").flash();
                             playerWins=true;
                         }
                     }
                 }
+
 
                 this.screen = CUR_SCREEN.JOUST;
                 this.joustTimer = 0.01F;
@@ -216,13 +231,21 @@ public class BGTheJoust
                     //TODO: log item wagered
                     logMetricGainGold("The Joust", "Won Bet", 6);
                     tmp = tmp + BET_WON_MSG;
+                    this.imageEventText.updateBodyText(tmp);
                 } else {
                     tmp = DESCRIPTIONS[loseMessageIndex];
+                    tmp = tmp + BET_LOSE_MSG;
+                    this.imageEventText.updateBodyText(tmp);
+                    if(BGGamblersBrew.doesPlayerHaveGamblersBrew()>-1) {
+                        this.screen = CUR_SCREEN.GAMBLEBREW;
+                        this.imageEventText.clearAllDialogs();
+                        this.imageEventText.setDialogOption(OPTIONS[5]);
+                        this.imageEventText.setDialogOption(OPTIONS[11]);
+                        break;
+                    }
                     //TODO: log item wagered
                     logMetricLoseGold("The Joust", "Lost Bet", 2);
-                    tmp = tmp + BET_LOSE_MSG;
                 }
-                this.imageEventText.updateBodyText(tmp);
                 this.screen = CUR_SCREEN.COMPLETE;
                 reliclock=false;
                 break;
@@ -250,6 +273,23 @@ public class BGTheJoust
                 this.imageEventText.updateDialogOption(0, OPTIONS[4]);
                 this.imageEventText.clearRemainingOptions();
                 this.screen = CUR_SCREEN.PRE_JOUST;
+                break;
+            case GAMBLEBREW:
+
+                int slot=BGGamblersBrew.doesPlayerHaveGamblersBrew();
+                if(slot>-1 && buttonPressed==1) {
+                    AbstractDungeon.topPanel.destroyPotion(slot);
+                    AbstractDungeon.player.gainGold(6);
+                    CardCrawlGame.sound.play("GOLD_GAIN");
+                    //TODO: log item wagered
+                    logMetricGainGold("The Joust", "Won Bet", 6);
+                }else{
+                    //TODO: log item wagered
+                    logMetricLoseGold("The Joust", "Lost Bet", 2);
+                }
+                this.screen = CUR_SCREEN.COMPLETE;
+                reliclock=false;
+                openMap();
                 break;
         }
     }

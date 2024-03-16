@@ -91,11 +91,11 @@ public class BGOmamori extends AbstractBGRelic  {
             paramtypez = {})
     public static class ShowCardAndObtainEffectPatch2 {
         @SpirePrefixPatch public static SpireReturn<Void> update(ShowCardAndObtainEffect __instance){
-            //TODO: if this really is a bug with vanilla, give the player a choice whether to fix it
+            //TODO: if this really is a bug with vanilla, make it optional to fix
             if (__instance.isDone) {
                 return SpireReturn.Return();
             }
-            logger.info("ShowCardAndObtainEffect duration "+__instance.duration);
+            //logger.info("ShowCardAndObtainEffect duration "+__instance.duration);
             return SpireReturn.Continue();
         }
     }

@@ -20,6 +20,7 @@ import com.megacrit.cardcrawl.potions.PotionSlot;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.vfx.ObtainPotionEffect;
 
+//TODO: if Distilled Chaos tries to play an Unplayable card, the entire chain breaks! need to patch whatever is in charge of discarding unplayable cards
 //TODO LATER: strictly speaking we should ask for the order of cards one at a time, in case the first card draws additional cards and that informs the decision of the remaining 2 cards
 
 public class BGDistilledChaos extends AbstractPotion {

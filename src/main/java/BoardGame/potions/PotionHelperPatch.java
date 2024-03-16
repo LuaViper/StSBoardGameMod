@@ -37,9 +37,10 @@ public abstract class PotionHelperPatch {
                 potionDeck.add("BoardGame:BGWeak Potion");
                 potionDeck.add("BoardGame:BGFearPotion");
                 potionDeck.add("BoardGame:BGSteroidPotion");
+                potionDeck.add("BoardGame:BGGamblersBrew");
                 potionDeck.add("BoardGame:BGBloodPotion");
                 potionDeck.add("BoardGame:BGGhostInAJar");
-                potionDeck.add("BoardGame:BGDistilledChaos"); //requires "play 3 cards in which order?" interface
+                potionDeck.add("BoardGame:BGDistilledChaos");
                 potionDeck.add("BoardGame:BGEntropicBrew");
                 potionDeck.add("BoardGame:BGFairyPotion");
                 potionDeck.add("BoardGame:BGAttackPotion");
@@ -132,6 +133,8 @@ public abstract class PotionHelperPatch {
                         return SpireReturn.Return((AbstractPotion) new BGFearPotion());
                     case "BoardGame:BGSteroidPotion":
                         return SpireReturn.Return((AbstractPotion) new BGSteroidPotion());
+                    case "BoardGame:BGGamblersBrew":
+                        return SpireReturn.Return((AbstractPotion) new BGGamblersBrew());
                     case "BoardGame:BGBloodPotion":
                         return SpireReturn.Return((AbstractPotion) new BGBloodPotion());
                     case "BoardGame:BGGhostInAJar":

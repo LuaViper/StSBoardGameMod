@@ -1,6 +1,8 @@
 package BoardGame.powers;
 
 import BoardGame.actions.BGGainMiracleAction;
+import basemod.ReflectionHacks;
+import com.esotericsoftware.spine.AnimationState;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -29,6 +31,8 @@ public class BGDevaFormPower extends AbstractBGPower {
     public void atStartOfTurn() {
         flash();
         addToBot(new BGGainMiracleAction(amount));
+
+
     }
 
     public void updateDescription() {

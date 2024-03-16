@@ -4,6 +4,7 @@ import BoardGame.actions.BGActivateDieAbilityAction;
 import BoardGame.cards.BGColorless.BGShivSurrogate;
 import BoardGame.characters.AbstractBGCharacter;
 import BoardGame.monsters.DieControlledMoves;
+import BoardGame.potions.BGGamblersBrew;
 import BoardGame.powers.BGMayhemPower;
 import BoardGame.powers.BGTheDiePower;
 import BoardGame.powers.BGTriggerAnyDieAbilityPower;
@@ -132,9 +133,32 @@ public class BGTheDieRelic extends AbstractBGRelic implements DieControlledRelic
         //TODO: all "start of turn" powers and relics are supposed to activate AFTER the roll is locked in
         if(TheDie.finalRelicRoll<=0) {
             TheDie.finalRelicRoll = TheDie.monsterRoll;
+            boolean relicWasUsed=false;
             for (AbstractRelic relic : AbstractDungeon.player.relics) {
                 if (relic instanceof DieControlledRelic) {
                     ((DieControlledRelic) relic).checkDieAbility();
+                }
+                int abacus=TheDie.initialRoll+1;if(abacus>6)abacus=1;
+                int toolbox=TheDie.initialRoll-1;if(toolbox<1)toolbox=6;
+                if(relic instanceof BGTheAbacus){
+                    if(TheDie.finalRelicRoll==abacus) {
+                        ((BGTheAbacus) relic).available = false;
+                        ((BGTheAbacus) relic).setUsedUp();
+                        relicWasUsed=true;
+                    }
+                }
+                if(relic instanceof BGToolbox){
+                    if(TheDie.finalRelicRoll==toolbox) {
+                        ((BGToolbox) relic).available = false;
+                        ((BGToolbox) relic).setUsedUp();
+                        relicWasUsed=true;
+                    }
+                }
+            }
+            if(TheDie.finalRelicRoll!=TheDie.initialRoll && !relicWasUsed){
+                int slot= BGGamblersBrew.doesPlayerHaveGamblersBrew();
+                if(slot>-1){
+                    AbstractDungeon.topPanel.destroyPotion(slot);
                 }
             }
             description = getUpdatedDescription();

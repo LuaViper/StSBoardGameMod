@@ -12,7 +12,9 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
+import com.sun.jmx.remote.internal.ClientCommunicatorAdmin;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 import org.apache.logging.log4j.LogManager;
@@ -26,7 +28,7 @@ import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.relicRng;
 import static com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier.BOSS;
 import static com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier.STARTER;
 
-//TODO: Charon's Ashes can be handled by making it right-clickable on 1 or 2
+//TODO: player needs to be able to see the boss relic options at the same time as the rare card
 
 public abstract class AbstractBGRelic extends AbstractRelic {
     public AbstractBGRelic(String setId, String imgName, RelicTier tier, LandingSound sfx) {
@@ -73,8 +75,11 @@ public abstract class AbstractBGRelic extends AbstractRelic {
             relicDeck.add(new BGBlueCandle());
             relicDeck.add(new BGCalipers());
             relicDeck.add(new BGCaptainsWheel());
+            relicDeck.add(new BGCentennialPuzzle());
+            relicDeck.add(new BGCharonsAshes());
             relicDeck.add(new BGDeadBranch());
             relicDeck.add(new BGDollysMirror());
+            relicDeck.add(new BGDuality());
             relicDeck.add(new BGDuVuDoll());
             relicDeck.add(new BGGamblingChip());
             relicDeck.add(new BGGoldenEye());
@@ -93,26 +98,34 @@ public abstract class AbstractBGRelic extends AbstractRelic {
             relicDeck.add(new BGMutagenicStrength());
             relicDeck.add(new BGNecronomicon());
             relicDeck.add(new BGNilrysCodex());
+            relicDeck.add(new BGNinjaScroll());
             relicDeck.add(new BGOddlySmoothStone());
             relicDeck.add(new BGOldCoin());
             relicDeck.add(new BGOmamori());
             relicDeck.add(new BGOrichalcum());
             relicDeck.add(new BGPeacePipe());
+            relicDeck.add(new BGPenNib());
             relicDeck.add(new BGPocketwatch());
+            relicDeck.add(new BGRedMask());
             relicDeck.add(new BGRedSkull());
             relicDeck.add(new BGRegalPillow());
             relicDeck.add(new BGRunicPyramid());
             relicDeck.add(new BGSelfFormingClay());
+            relicDeck.add(new BGStoneCalendar());
             relicDeck.add(new BGStrikeDummy());
             relicDeck.add(new BGSsserpentHead());
             relicDeck.add(new BGSundial());
             relicDeck.add(new BGTheBoot());
+            relicDeck.add(new BGTheAbacus());
+            relicDeck.add(new BGTheCourier());
+            relicDeck.add(new BGToolbox());
             relicDeck.add(new BGToxicEgg2());
             relicDeck.add(new BGTungstenRod());
             relicDeck.add(new BGVajra());
             relicDeck.add(new BGWarPaint());
             relicDeck.add(new BGWhetstone());
             relicDeck.add(new BGWingBoots());
+            // = 58 relics
             Collections.shuffle(relicDeck, new java.util.Random(relicRng.randomLong()));
         }
         public static void initializeBoss(){
@@ -124,7 +137,7 @@ public abstract class AbstractBGRelic extends AbstractRelic {
             bossRelicDeck.add(new BGCallingBell());
             bossRelicDeck.add(new BGEnchiridion());
             bossRelicDeck.add(new BGBlackBlood());
-            bossRelicDeck.add(new BGEternalFeather());
+            //bossRelicDeck.add(new BGEternalFeather());    //this one was removed
             bossRelicDeck.add(new BGHolyWater());
             bossRelicDeck.add(new BGSneckoEye());
             bossRelicDeck.add(new BGCoffeeDripper());
@@ -135,9 +148,10 @@ public abstract class AbstractBGRelic extends AbstractRelic {
             bossRelicDeck.add(new BGCursedKey());
             bossRelicDeck.add(new BGSozu());
             bossRelicDeck.add(new BGMarkOfPain());
-//            bossRelicDeck.add(new BGTinyHouse()); //TODO: this one is still broken
+            bossRelicDeck.add(new BGTinyHouse()); //TODO: this one is still broken
             bossRelicDeck.add(new BGWhiteBeast());
             bossRelicDeck.add(new BGFrozenCore());
+            // = 20 boss relics
 
 
             Collections.shuffle(bossRelicDeck, new java.util.Random(relicRng.randomLong()));
@@ -254,6 +268,19 @@ public abstract class AbstractBGRelic extends AbstractRelic {
         }
     }
 
+
+    public void setupObtainedDuringCombat(){
+        //for use with clickable relics that can spawn mid-combat, either Courier or Shiv-style
+        if(this instanceof ClickableRelic) {
+            //must check that relic is clickable as others have side effects during e.g. onVictory
+            if ((AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT) {
+                this.onVictory();
+                this.atPreBattle();
+                //TODO: any other events we're missing?
+                this.atTurnStart();
+            }
+        }
+    }
 
 
 

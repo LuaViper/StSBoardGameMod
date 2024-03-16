@@ -34,7 +34,8 @@
       "[Rummage] #gObtain #ga #gRelic. #r50%: #rGain #ra #rCurse.",
       "[Leave]",
       "Choose a Card to Upgrade",
-      "[Locked] Requires: Upgradeable Cards"
+      "[Locked] Requires: Upgradeable Cards",
+      "[Gambler's Brew] Don't gain a Curse."
     ]
   },
   "BoardGame:BGANoteForYourself": {
@@ -341,6 +342,17 @@
       "[Leave]"
     ]
   },
+  "Lab": {
+    "NAME": "Lab",
+    "DESCRIPTIONS": [
+      "You find yourself in a room filled with racks of test tubes, beakers, flasks, forceps, pinch clamps, stirring rods, tongs, goggles, funnels, pipets, cylinders, condensers, and even a rare spiral tube of glass. NL NL Why do you know the name of all these tools? It doesn't matter, you take a look around."
+    ],
+    "OPTIONS": [
+      "[Search] #gFind #gsome #gPotions!",
+      "[Continue] Each player gains a Potion.",
+      "[Gambler's Brew] One player gains a second Potion."
+    ]
+  },
   "BoardGame:BGMindBloom": {
     "NAME": "Mind Bloom",
     "DESCRIPTIONS": [
@@ -482,7 +494,8 @@
       "]",
       "[Locked] Requires: 4 Gold.",
       "[Locked] Requires: Undiscarded normal Relic.",
-      "[Locked] Requires: Potion."
+      "[Locked] Requires: Potion.",
+      "[Gambler's Brew] Gain 6 Gold anyway."
     ]
   },
   "BoardGame:BGThe Library": {
@@ -595,7 +608,7 @@
       "Relic trading interface activated. ~#yRight-click~ one of your highlighted relics to continue."
     ],
     "OPTIONS": [
-      "[Give Potion] #rPay #r4 #rGold. ",
+      "[Give Gold] #rPay #r4 #rGold. ",
       "[Locked] Requires: 4 Gold.",
       "[Exchange] #rGive #ra #rRelic.",
       "[Locked] Requires: Undiscarded normal Relic.",
@@ -626,10 +639,17 @@
       "[Prize!] #gHeal #gto #gfull #ghealth.",
       "[Prize?] #rObtain #ra #rCurse.",
       "[Prize!] #gRemove #ga #gcard #gfrom #gyour #gdeck.",
-      "[Prize?] #rLose #r",
+      "[Prize?] #rLose #r2 #rHP.",
       " #rHP.",
       "[Leave]",
-      "Select a Card to Remove."
+      "Select a Card to Remove.",
+      "Gain 4 gold instead.",
+      "Obtain a Relic instead.",
+      "Heal to full HP instead.",
+      "Gain a Curse instead.",
+      "Remove a card instead.",
+      "Lose 2 HP instead.",
+      "[Gambler's Brew] Choose a prize."
     ]
   },
   "BoardGame:BGWindingHalls": {

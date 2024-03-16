@@ -2,6 +2,7 @@ package BoardGame.actions;
 import BoardGame.cards.AbstractBGAttackCardChoice;
 import BoardGame.cards.BGColorless.BGShivsDiscardExtraShiv;
 import BoardGame.cards.BGColorless.BGShivsUseExtraShiv;
+import BoardGame.relics.AbstractBGRelic;
 import BoardGame.relics.BGMiracles;
 import BoardGame.relics.BGShivs;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -25,8 +26,12 @@ public class BGGainMiracleAction extends AbstractGameAction {
 
 
     public void update() {
-        if(!AbstractDungeon.player.hasRelic("BoardGame:BGMiracles"))
-            AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), new BGMiracles());
+        if(!AbstractDungeon.player.hasRelic("BoardGame:BGMiracles")) {
+            AbstractRelic miracles = new BGMiracles();
+            AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), miracles);
+            ((AbstractBGRelic) miracles).setupObtainedDuringCombat();
+        }
+
         AbstractRelic relic = AbstractDungeon.player.getRelic("BoardGame:BGMiracles");
         for(int i=0;i<this.amount;i+=1){
             relic.counter=relic.counter+1;

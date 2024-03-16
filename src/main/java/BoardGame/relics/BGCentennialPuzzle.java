@@ -1,52 +1,61 @@
-
-// copy RetainCardPower (99 stacks)
-//but don't actually use RetainCardPower itself, since it doesn't wear off at end of turn
-
 package BoardGame.relics;
 
-import BoardGame.actions.BGUseShivAction;
-import BoardGame.powers.BGOneTurnRetainCardPower;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
+//TODO: Centennial Puzzle and Self-Forming Clay don't track HP lost before relic was gained (breaks Courier functionality)
 
-public class BGNinjaScroll extends AbstractBGRelic implements ClickableRelic {
-    public static final String ID = "BGNinjaScroll";
+public class BGCentennialPuzzle extends AbstractBGRelic implements ClickableRelic {
+    public static final String ID = "BGCentennialPuzzle";
 
-    public BGNinjaScroll() {
-        super("BGNinjaScroll", "ninjaScroll.png", RelicTier.BOSS, LandingSound.FLAT);
+    public BGCentennialPuzzle() {
+        super("BGCentennialPuzzle", "centennialPuzzle.png", AbstractRelic.RelicTier.COMMON, AbstractRelic.LandingSound.HEAVY);
     }
+    public int getPrice() {return 8;}
+    private static final int DRAW_AMT = 3;
 
-    public int getPrice() {return 6;}
+
+
+
+
+
+
 
 
 
     public AbstractRelic makeCopy() {
-        return new BGNinjaScroll();
+        return new BGCentennialPuzzle();
     }
-
 
     private boolean usedThisTurn = false; // You can also have a relic be only usable once per combat. Check out Hubris for more examples, including other StSlib things.
     private boolean isPlayerTurn = false; // We should make sure the relic is only activateable during our turn, not the enemies'.
 
+    private boolean lostHPThisCombat=false;
 
     public String getUpdatedDescription() {
-        String desc=this.DESCRIPTIONS[0];
+        String desc=this.DESCRIPTIONS[0] + DRAW_AMT + this.DESCRIPTIONS[1];
         if(this.usedUp)desc+=DieControlledRelic.USED_THIS_COMBAT; else desc+=DieControlledRelic.RIGHT_CLICK_TO_ACTIVATE;
         return desc;
     }
 
+    public void wasHPLost(int damageAmount) {
+        if ((AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT &&
+                damageAmount > 0) {
+            lostHPThisCombat=true;
+            if(!usedThisTurn && lostHPThisCombat)beginLongPulse();     // Pulse while the player can click on it.
+        }
+    }
 
     @Override
     public void onRightClick() {// On right click
-        if (!isObtained || usedThisTurn || !isPlayerTurn ) {
+        if (!isObtained || usedThisTurn || !isPlayerTurn || !lostHPThisCombat) {
             // If it has been used this turn, or the player doesn't actually have the relic (i.e. it's on display in the shop room), or it's the enemy's turn
             return; // Don't do anything.
         }
@@ -56,9 +65,7 @@ public class BGNinjaScroll extends AbstractBGRelic implements ClickableRelic {
             flash(); // Flash
             stopPulse(); // And stop the pulsing animation (which is started in atPreBattle() below)
 
-            //TODO: this needs to interrupt BGEntropicBrew menu
-            addToBot((AbstractGameAction) new BGUseShivAction(false, false, 0,"Choose a target for Ninja Scroll."));
-            addToBot((AbstractGameAction) new BGUseShivAction(false, false, 0,"Choose a target for Ninja Scroll."));
+            addToTop((AbstractGameAction)new DrawCardAction((AbstractCreature)AbstractDungeon.player, DRAW_AMT));
 
             /* Used Up (Combat) */ {this.grayscale = true; this.usedUp=true; this.description = getUpdatedDescription();this.tips.clear();this.tips.add(new PowerTip(this.name, this.description));initializeTips();}
         }
@@ -71,7 +78,7 @@ public class BGNinjaScroll extends AbstractBGRelic implements ClickableRelic {
 
     public void atTurnStart() {
         isPlayerTurn = true; // It's our turn!
-        if(!usedThisTurn)beginLongPulse();     // Pulse while the player can click on it.
+        if(!usedThisTurn && lostHPThisCombat)beginLongPulse();     // Pulse while the player can click on it.
     }
 
     @Override
@@ -84,9 +91,11 @@ public class BGNinjaScroll extends AbstractBGRelic implements ClickableRelic {
     @Override
     public void onVictory() {
         stopPulse(); // Don't keep pulsing past the victory screen/outside of combat.
+        lostHPThisCombat=false;
         /* Unused Up */ { this.grayscale = false; this.usedUp=false; this.description = getUpdatedDescription();this.tips.clear();this.tips.add(new PowerTip(this.name, this.description));initializeTips();}
     }
 
 }
+
 
 

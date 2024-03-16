@@ -26,6 +26,7 @@ import java.util.ArrayList;
 // (DiscardSpecificCardAction does not apply to the board game)
 // however, DiscardAtEndOfTurnAction calls DiscardAction, so check the endTurn flag
 //note that even in vanilla, Scrying does not count as discarding
+//TODO: remove number from power icon after it activates each turn
 //TODO: in vanilla, does DistilledChaosing an unplayable card count as discarding it?
 //TODO: DiscardAction can be passed canPickZero -- does this proc AfterImage if a card is then discarded?
 //TODO: decide whether CorpseExplosion procs AfterImage

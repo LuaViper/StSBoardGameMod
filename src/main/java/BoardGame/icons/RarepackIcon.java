@@ -25,7 +25,7 @@ public class RarepackIcon extends AbstractCustomIcon {
 
     public List<TooltipInfo> getCustomTooltips() {
         List<TooltipInfo>list=new ArrayList<>();
-        list.add(new TooltipInfo("[BoardGame:Rarepack] Rare Reward","Reveal 3 rare rewards. Add 1 to your deck or skip."));
+        list.add(new TooltipInfo("[BoardGame:RarepackIcon] Rare Reward","Reveal 3 rare rewards. Add 1 to your deck or skip."));
         return list;
     }
 }

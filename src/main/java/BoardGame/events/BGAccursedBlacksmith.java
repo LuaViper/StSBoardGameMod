@@ -1,6 +1,7 @@
 package BoardGame.events;
 
 import BoardGame.dungeons.AbstractBGDungeon;
+import BoardGame.potions.BGGamblersBrew;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.curses.Pain;
@@ -17,6 +18,8 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+//TODO: die relics currently work automatically; maybe give player option to take curse instead
 
 public class BGAccursedBlacksmith extends AbstractImageEvent {
     public static final String ID = "BGAccursed Blacksmith";
@@ -38,6 +41,8 @@ public class BGAccursedBlacksmith extends AbstractImageEvent {
     private int pendingReward=0;
     private boolean usedGamblingChip=false;
     private boolean gamblingChipButtonWasActive=false;
+
+    private AbstractRelic reward=null;
 
     public BGAccursedBlacksmith() {
         super(NAME, DIALOG_1, "images/events/blacksmith.jpg");
@@ -94,33 +99,23 @@ public class BGAccursedBlacksmith extends AbstractImageEvent {
                 boolean mustTakeResult = true;
                 int random;
                 boolean gamblingChipButtonActive = false;
-                AbstractRelic r = AbstractDungeon.player.getRelic("BGGambling Chip");
-                if (r != null) {
-                    if (!usedGamblingChip) {
-                        mustTakeResult = false;
-                        gamblingChipButtonActive = true;
-                    }
-                }
+//                AbstractRelic r = AbstractDungeon.player.getRelic("BGGambling Chip");
+//                if (r != null) {
+//                    if (!usedGamblingChip) {
+//                        mustTakeResult = false;
+//                        gamblingChipButtonActive = true;
+//                    }
+//                }
                 int rerollbutton=-1;
                 int upgradebutton=0;
                 int relicbutton=1;
                 int leavebutton=2;
-                if(gamblingChipButtonWasActive){
-                    gamblingChipButtonWasActive = false;
-                    rerollbutton++;
-                    upgradebutton++;relicbutton++;leavebutton++;
-                }
-                if(buttonPressed==rerollbutton) {
-                    //logger.info("reroll?");
-                    usedGamblingChip = true;
-                    r = AbstractDungeon.player.getRelic("BGGambling Chip");
-                    if (r != null) r.flash();
-                    pendingReward = AbstractDungeon.miscRng.random(1, 6);
-                    this.imageEventText.clearAllDialogs();
-                    if (AbstractDungeon.player.masterDeck.hasUpgradableCards().booleanValue()) { this.imageEventText.setDialogOption(OPTIONS[0],true);    } else {   this.imageEventText.setDialogOption(OPTIONS[4], true);     }
-                    this.imageEventText.setDialogOption(getRewardDescription());
-                    this.imageEventText.setDialogOption(OPTIONS[3], true);
-                }else if(buttonPressed==upgradebutton) {
+//                if(gamblingChipButtonWasActive){
+//                    gamblingChipButtonWasActive = false;
+//                    rerollbutton++;
+//                    upgradebutton++;relicbutton++;leavebutton++;
+//                }
+                if(buttonPressed==upgradebutton) {
                     //logger.info("upgrade?");
                     int damageAmount = (int) (2);
                     CardCrawlGame.sound.play("ATTACK_POISON");
@@ -136,24 +131,24 @@ public class BGAccursedBlacksmith extends AbstractImageEvent {
                     this.imageEventText.setDialogOption(OPTIONS[2]);
                 }else if(buttonPressed==relicbutton) {
                     //logger.info("relic?");
-                    if(pendingReward==0){
-                        pendingReward=AbstractDungeon.miscRng.random(1, 6);
-                        if(mustTakeResult){
-                            getReward();
-                        }else{
-                            this.imageEventText.clearAllDialogs();
-                            if(gamblingChipButtonActive) {
-                                gamblingChipButtonWasActive = true;
-                                this.imageEventText.setDialogOption("[Gambling Chip] Reroll.");
-                            }
-                            if (AbstractDungeon.player.masterDeck.hasUpgradableCards().booleanValue()) { this.imageEventText.setDialogOption(OPTIONS[0],true);    } else {   this.imageEventText.setDialogOption(OPTIONS[4], true);     }
-                            this.imageEventText.setDialogOption(getRewardDescription());
-                            this.imageEventText.setDialogOption(OPTIONS[2], true);
-
-                        }
-                    }else {
+//                    if(pendingReward==0){
+//                        pendingReward=AbstractDungeon.miscRng.random(1, 6);
+//                        if(mustTakeResult){
+//                            getReward();
+//                        }else{
+//                            this.imageEventText.clearAllDialogs();
+//                            if(gamblingChipButtonActive) {
+//                                gamblingChipButtonWasActive = true;
+//                                this.imageEventText.setDialogOption("[Gambling Chip] Reroll.");
+//                            }
+//                            if (AbstractDungeon.player.masterDeck.hasUpgradableCards().booleanValue()) { this.imageEventText.setDialogOption(OPTIONS[0],true);    } else {   this.imageEventText.setDialogOption(OPTIONS[4], true);     }
+//                            this.imageEventText.setDialogOption(getRewardDescription());
+//                            this.imageEventText.setDialogOption(OPTIONS[2], true);
+//
+//                        }
+//                    }else {
                         getReward();
-                    }
+//                    }
 
                 }else if(buttonPressed==leavebutton){
 
@@ -166,6 +161,16 @@ public class BGAccursedBlacksmith extends AbstractImageEvent {
                 }
 
                 return;
+            case 999:
+                screenNum=2;
+                int slot=BGGamblersBrew.doesPlayerHaveGamblersBrew();
+                if(slot>-1 && buttonPressed==1) {
+                    AbstractDungeon.topPanel.destroyPotion(slot);
+                    getReward(false, true);
+                }else{
+                    getReward(false,false);
+                }
+                break;
         }
         openMap();
     }
@@ -180,19 +185,67 @@ public class BGAccursedBlacksmith extends AbstractImageEvent {
         return "Error: Didn't roll 1-6.";
     }
 
-    public void getReward(){
-        AbstractRelic r = AbstractDungeon.returnRandomScreenlessRelic(
-                AbstractDungeon.returnRandomRelicTier());
-        AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), r);
-        if (pendingReward <= 3) {
-            AbstractCard pain = AbstractDungeon.getCard(AbstractCard.CardRarity.CURSE);
-            AbstractDungeon.effectList.add(new ShowCardAndObtainEffect((AbstractCard) pain, (Settings.WIDTH / 2), (Settings.HEIGHT / 2)));
-            AbstractBGDungeon.removeCardFromRewardDeck(pain);
-            logMetricObtainCardAndRelic("Accursed Blacksmith", "Rummage", (AbstractCard) pain, r);
-            this.imageEventText.updateBodyText(RUMMAGE_RESULT + CURSE_RESULT2);
+    public void getReward() {
+        getReward(true,false);
+    }
+    public void getReward(boolean doWeRoll,boolean didPlayerForceWin){
+        if (reward == null) {
+            reward = AbstractDungeon.returnRandomScreenlessRelic(
+                    AbstractDungeon.returnRandomRelicTier());
+            AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), reward);
+        }
+
+        boolean playerWins=false;
+        if(doWeRoll) {
+            int random = AbstractDungeon.miscRng.random(1, 6);
+            logger.info("Rolled a "+random);
+            if (random >= 4) {
+                playerWins = true;
+            } else if (random == 3 && AbstractDungeon.player.hasRelic("BGTheAbacus")) {
+                AbstractDungeon.player.getRelic("BGTheAbacus").flash();
+                playerWins = true;
+            } else if (random == 1 && AbstractDungeon.player.hasRelic("BGToolbox")) {
+                AbstractDungeon.player.getRelic("BGToolbox").flash();
+                playerWins = true;
+            }
+            if (!playerWins) {
+                //TODO: if player wagers a die relic, does it still (incorrectly) take effect here?
+                AbstractRelic r = AbstractDungeon.player.getRelic("BGGambling Chip");
+                if (r != null) {
+                    r.flash();
+                    random = AbstractDungeon.miscRng.random(1, 6);
+                    if (random >= 4) {
+                        playerWins = true;
+                    } else if (random == 3 && AbstractDungeon.player.hasRelic("BGTheAbacus")) {
+                        AbstractDungeon.player.getRelic("BGTheAbacus").flash();
+                        playerWins = true;
+                    } else if (random == 1 && AbstractDungeon.player.hasRelic("BGToolbox")) {
+                        AbstractDungeon.player.getRelic("BGToolbox").flash();
+                        playerWins = true;
+                    }
+                }
+            }
+        }else{
+            playerWins=didPlayerForceWin;
+        }
+        if (!playerWins) {
+            if(doWeRoll && BGGamblersBrew.doesPlayerHaveGamblersBrew()>-1) {
+                screenNum = 999;
+                this.imageEventText.clearAllDialogs();
+                this.imageEventText.setDialogOption(OPTIONS[2]);
+                this.imageEventText.setDialogOption(OPTIONS[5]);
+                this.imageEventText.updateBodyText(RUMMAGE_RESULT + CURSE_RESULT2);
+                return;
+            }else {
+                AbstractCard pain = AbstractDungeon.getCard(AbstractCard.CardRarity.CURSE);
+                AbstractDungeon.effectList.add(new ShowCardAndObtainEffect((AbstractCard) pain, (Settings.WIDTH / 2), (Settings.HEIGHT / 2)));
+                AbstractBGDungeon.removeCardFromRewardDeck(pain);
+                logMetricObtainCardAndRelic("Accursed Blacksmith", "Rummage", (AbstractCard) pain, reward);
+                if(doWeRoll)this.imageEventText.updateBodyText(RUMMAGE_RESULT + CURSE_RESULT2);
+            }
         } else {
-            logMetricObtainRelic("Accursed Blacksmith", "Rummage", r);
-            this.imageEventText.updateBodyText(RUMMAGE_RESULT);
+            logMetricObtainRelic("Accursed Blacksmith", "Rummage", reward);
+            if(doWeRoll)this.imageEventText.updateBodyText(RUMMAGE_RESULT);
         }
         this.screenNum = 2;
         this.imageEventText.clearAllDialogs();

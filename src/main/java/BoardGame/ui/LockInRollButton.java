@@ -1,5 +1,6 @@
 package BoardGame.ui;
 
+import BoardGame.potions.BGGamblersBrew;
 import BoardGame.relics.AbstractBGRelic;
 import BoardGame.relics.BGTheDieRelic;
 import BoardGame.thedie.TheDie;
@@ -18,6 +19,8 @@ import com.megacrit.cardcrawl.ui.buttons.Button;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.tools.Tool;
+
 import static BoardGame.BoardGame.makeRelicPath;
 
 public class LockInRollButton extends Button {
@@ -29,13 +32,13 @@ public class LockInRollButton extends Button {
     public boolean visible=false;
     public boolean isDisabled=true;
     public LockInRollButton() {
-        super((Settings.WIDTH / 2)-200, (Settings.HEIGHT / 2),TextureLoader.getTexture("BoardGameResources/images/ui/dice/LockIn.png"));
+        super((Settings.WIDTH / 2)-350*Settings.scale, (Settings.HEIGHT / 2),TextureLoader.getTexture("BoardGameResources/images/ui/dice/LockIn.png"));
     }
 
     public void update() {
         super.update();
         if (this.visible) {
-            if(AbstractDungeon.player.hasRelic("BGGambling Chip")) {
+            if(LockInRollButton.playerHasAnyDieChangingAbilities()) {
                 this.isDisabled = false;
                 if (AbstractDungeon.isScreenUp || AbstractDungeon.player.isDraggingCard || AbstractDungeon.player.inSingleTargetMode) {
                     this.isDisabled = true;
@@ -86,6 +89,10 @@ public class LockInRollButton extends Button {
 
     }
 
+    public static boolean playerHasAnyDieChangingAbilities(){
+        return AbstractDungeon.player.hasRelic("BGGambling Chip") || AbstractDungeon.player.hasRelic("BGTheAbacus") || AbstractDungeon.player.hasRelic("BGToolbox") || BGGamblersBrew.doesPlayerHaveGamblersBrew()>-1;
+    }
+
 
     private static Logger logger = LogManager.getLogger(AbstractBGRelic.class.getName());
     @SpirePatch(clz= OverlayMenu.class, method=SpirePatch.CLASS)
@@ -93,6 +100,9 @@ public class LockInRollButton extends Button {
     {
         public static SpireField<LockInRollButton> lockinrollbutton = new SpireField<>(() -> new LockInRollButton());
         public static SpireField<RerollButton> rerollbutton = new SpireField<>(() -> new RerollButton());
+        public static SpireField<TheAbacusButton> theabacusbutton = new SpireField<>(() -> new TheAbacusButton());
+        public static SpireField<ToolboxButton> toolboxbutton = new SpireField<>(() -> new ToolboxButton());
+        public static SpireField<PotionButton> potionbutton = new SpireField<>(() -> new PotionButton());
     }
 
     @SpirePatch2(clz= OverlayMenu.class, method="update",
@@ -104,6 +114,9 @@ public class LockInRollButton extends Button {
             //logger.info("OverlayMenuDiceInterfaceUpdatePatch postfix");
             OverlayMenuDiceInterface.lockinrollbutton.get(__instance).update();
             OverlayMenuDiceInterface.rerollbutton.get(__instance).update();
+            OverlayMenuDiceInterface.theabacusbutton.get(__instance).update();
+            OverlayMenuDiceInterface.toolboxbutton.get(__instance).update();
+            OverlayMenuDiceInterface.potionbutton.get(__instance).update();
 
         }
     }
@@ -116,6 +129,9 @@ public class LockInRollButton extends Button {
         public static void Postfix(OverlayMenu __instance, SpriteBatch sb){
             OverlayMenuDiceInterface.lockinrollbutton.get(__instance).render(sb);
             OverlayMenuDiceInterface.rerollbutton.get(__instance).render(sb);
+            OverlayMenuDiceInterface.theabacusbutton.get(__instance).render(sb);
+            OverlayMenuDiceInterface.toolboxbutton.get(__instance).render(sb);
+            OverlayMenuDiceInterface.potionbutton.get(__instance).render(sb);
         }
     }
 
@@ -127,6 +143,9 @@ public class LockInRollButton extends Button {
         public static void Postfix(OverlayMenu __instance){
             OverlayMenuDiceInterface.lockinrollbutton.get(__instance).visible=true;
             OverlayMenuDiceInterface.rerollbutton.get(__instance).visible=true;
+            OverlayMenuDiceInterface.theabacusbutton.get(__instance).visible=true;
+            OverlayMenuDiceInterface.toolboxbutton.get(__instance).visible=true;
+            OverlayMenuDiceInterface.potionbutton.get(__instance).visible=true;
         }
     }
 
@@ -138,6 +157,9 @@ public class LockInRollButton extends Button {
         public static void Postfix(OverlayMenu __instance){
             OverlayMenuDiceInterface.lockinrollbutton.get(__instance).visible=false;
             OverlayMenuDiceInterface.rerollbutton.get(__instance).visible=false;
+            OverlayMenuDiceInterface.theabacusbutton.get(__instance).visible=false;
+            OverlayMenuDiceInterface.toolboxbutton.get(__instance).visible=false;
+            OverlayMenuDiceInterface.potionbutton.get(__instance).visible=false;
         }
     }
 

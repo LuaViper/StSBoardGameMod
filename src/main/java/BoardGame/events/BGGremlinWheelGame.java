@@ -1,6 +1,7 @@
 package BoardGame.events;
 
 import BoardGame.dungeons.AbstractBGDungeon;
+import BoardGame.potions.BGGamblersBrew;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -33,7 +34,7 @@ import org.apache.logging.log4j.Logger;
 
 
 
-
+//TODO LATER: the options on the event card aren't in the same order as the options on the wheel, so TheAbacus/Toolbox kinda change to the wrong options
 
 
 public class BGGremlinWheelGame
@@ -74,6 +75,7 @@ public class BGGremlinWheelGame
     private static final float A_2_HP_LOSS = 0.15F;
 
     private boolean alreadyUsedGamblingChip=false;
+    private int takePrizeIndex,gamblingChipIndex, theAbacusIndex,toolboxIndex,potionIndex;
 
     public BGGremlinWheelGame() {
         super(NAME, INTRO_DIALOG, "images/events/spinTheWheel.jpg");
@@ -103,7 +105,7 @@ public class BGGremlinWheelGame
 
     private enum CUR_SCREEN
     {
-        INTRO, LEAVE, SPIN, COMPLETE;
+        INTRO, LEAVE, SPIN, COMPLETE, POTION;
     }
 
 
@@ -190,40 +192,37 @@ public class BGGremlinWheelGame
 
 
     private void preApplyResult() {
+        potionIndex=theAbacusIndex=toolboxIndex=gamblingChipIndex=-1;
+        takePrizeIndex=0;
+        int i=0;
         this.imageEventText.clearAllDialogs();
-        AbstractRelic r=AbstractDungeon.player.getRelic("BGGambling Chip");
-        if(r!=null) {
+        if(AbstractDungeon.player.hasRelic("BGGambling Chip")){
             if(!alreadyUsedGamblingChip){
                 this.imageEventText.setDialogOption("[Gambling Chip] Reroll.");
-                //r.flash();
+                gamblingChipIndex=i; i+=1;
             }
         }
-        switch (this.result) {
-            case 0:
-                this.imageEventText.updateBodyText(DESCRIPTIONS[1]);
-                this.imageEventText.setDialogOption(OPTIONS[1]);
-                return;
-            case 1:
-                this.imageEventText.updateBodyText(DESCRIPTIONS[2]);
-                this.imageEventText.setDialogOption(OPTIONS[2]);
-                return;
-            case 2:
-                this.imageEventText.updateBodyText(DESCRIPTIONS[3]);
-                this.imageEventText.setDialogOption(OPTIONS[3]);
-                return;
-            case 3:
-                this.imageEventText.updateBodyText(DESCRIPTIONS[4]);
-                this.imageEventText.setDialogOption(OPTIONS[4]);
-                return;
-            case 4:
-                this.imageEventText.updateBodyText(DESCRIPTIONS[5]);
-                this.imageEventText.setDialogOption(OPTIONS[5]);
-                return;
-        }
-        this.imageEventText.updateBodyText(DESCRIPTIONS[6]);
-        this.imageEventText.setDialogOption(OPTIONS[6] + 2 + OPTIONS[7]);
 
-        this.color = new Color(0.5F, 0.5F, 0.5F, 1.0F);
+        this.imageEventText.updateBodyText(DESCRIPTIONS[this.result+1]);
+        this.imageEventText.setDialogOption(OPTIONS[this.result+1]);
+        if(this.result==5)this.color = new Color(0.5F, 0.5F, 0.5F, 1.0F);
+        takePrizeIndex=i;i+=1;
+
+        if(AbstractDungeon.player.hasRelic("BGTheAbacus")) {
+            int r2=result+1;if(r2>5)r2=0;
+            this.imageEventText.setDialogOption("[The Abacus] "+OPTIONS[r2+10]);
+            theAbacusIndex=i;i+=1;
+        }
+        if(AbstractDungeon.player.hasRelic("BGToolbox")) {
+            int r2=result-1;if(r2<0)r2=5;
+            this.imageEventText.setDialogOption("[Toolbox] "+OPTIONS[r2+10]);
+            toolboxIndex=i;i+=1;
+        }
+        if(BGGamblersBrew.doesPlayerHaveGamblersBrew()>-1){
+            this.imageEventText.setDialogOption(OPTIONS[16]);
+            potionIndex=i;i+=1;
+        }
+
     }
 
 
@@ -250,25 +249,65 @@ public class BGGremlinWheelGame
                 return;
             case COMPLETE:
                 boolean tryReroll=false;
-                AbstractRelic r=AbstractDungeon.player.getRelic("BGGambling Chip");
-                if(r!=null) {
-                    if (!alreadyUsedGamblingChip) {
-                        if(buttonPressed==0){
-                            alreadyUsedGamblingChip=true;
-                            r.flash();
-                            GenericEventDialog.hide();
-                            this.result = AbstractDungeon.miscRng.random(0, 5);
-                            this.resultAngle = this.result * 60.0F + MathUtils.random(-10.0F, 10.0F);
-                            this.wheelAngle = 0.0F;
-                            this.startSpin = true;
-                            this.bounceTimer = 2.0F;
-                            this.animTimer = 2.0F;
-                            this.spinVelocity = 1500.0F;
-                            finishSpin = false; doneSpinning = false; bounceIn = true; this.buttonPressed=false;
-                            break;
+                {
+                    AbstractRelic r = AbstractDungeon.player.getRelic("BGGambling Chip");
+                    if (r != null) {
+                        if (!alreadyUsedGamblingChip) {
+                            if (buttonPressed == gamblingChipIndex) {
+                                alreadyUsedGamblingChip = true;
+                                r.flash();
+                                GenericEventDialog.hide();
+                                this.result = AbstractDungeon.miscRng.random(0, 5);
+                                this.resultAngle = this.result * 60.0F + MathUtils.random(-10.0F, 10.0F);
+                                this.wheelAngle = 0.0F;
+                                this.startSpin = true;
+                                this.bounceTimer = 2.0F;
+                                this.animTimer = 2.0F;
+                                this.spinVelocity = 1500.0F;
+                                finishSpin = false;
+                                doneSpinning = false;
+                                bounceIn = true;
+                                this.buttonPressed = false;
+                                break;
+                            }
                         }
                     }
                 }
+                {
+                    AbstractRelic r = AbstractDungeon.player.getRelic("BGTheAbacus");
+                    if (r != null) {
+                        if (buttonPressed == theAbacusIndex) {
+                            r.flash();
+                            result+=1;if(result>5)result=0;
+                        }
+                    }
+                }
+                {
+                    AbstractRelic r = AbstractDungeon.player.getRelic("BGToolbox");
+                    if (r != null) {
+                        if (buttonPressed == toolboxIndex) {
+                            r.flash();
+                            result-=1;if(result<0)result=5;
+                        }
+                    }
+                }
+            {
+                int slot = BGGamblersBrew.doesPlayerHaveGamblersBrew();
+                if (slot>-1) {
+                    if (buttonPressed == potionIndex) {
+                        AbstractDungeon.topPanel.destroyPotion(slot);
+                        this.imageEventText.clearAllDialogs();
+                        this.imageEventText.setDialogOption(OPTIONS[10]);
+                        this.imageEventText.setDialogOption(OPTIONS[11]);
+                        this.imageEventText.setDialogOption(OPTIONS[12]);
+                        this.imageEventText.setDialogOption(OPTIONS[13]);
+                        this.imageEventText.setDialogOption(OPTIONS[14]);
+                        this.imageEventText.setDialogOption(OPTIONS[15]);
+                        this.screen = CUR_SCREEN.POTION;
+                        return;
+                    }
+                }
+            }
                 applyResult();
                 this.imageEventText.clearAllDialogs();
                 this.imageEventText.setDialogOption(OPTIONS[8]);
@@ -276,6 +315,13 @@ public class BGGremlinWheelGame
                 return;
             case LEAVE:
                 openMap();
+                return;
+            case POTION:
+                result=buttonPressed;
+                applyResult();
+                this.imageEventText.clearAllDialogs();
+                this.imageEventText.setDialogOption(OPTIONS[8]);
+                this.screen = CUR_SCREEN.LEAVE;
                 return;
         }
         logger.info("UNHANDLED CASE");
@@ -323,11 +369,6 @@ public class BGGremlinWheelGame
                     AbstractDungeon.gridSelectScreen.open(
                             CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck.getPurgeableCards()), 1, OPTIONS[9], false, false, false, true);
 
-
-
-
-
-
                     this.roomEventText.hide();
                     this.purgeResult = true;
                 }
@@ -362,35 +403,7 @@ public class BGGremlinWheelGame
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         sb.draw(this.arrowImg, this.imgX - 256.0F + ARROW_OFFSET_X + 180.0F * Settings.scale, this.imgY - 256.0F, 256.0F, 256.0F, 512.0F, 512.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 512, 512, false, false);
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -399,35 +412,11 @@ public class BGGremlinWheelGame
 
 
 
-
-
-
-
         }
         else {
 
-
-
-
-
-
-
-
             sb.draw(this.buttonImg, this.buttonHb.cX - 256.0F, this.buttonHb.cY - 256.0F, 256.0F, 256.0F, 512.0F, 512.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 512, 512, false, false);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -442,57 +431,18 @@ public class BGGremlinWheelGame
             sb.draw(this.buttonImg, this.buttonHb.cX - 256.0F, this.buttonHb.cY - 256.0F, 256.0F, 256.0F, 512.0F, 512.0F, Settings.scale * 1.05F, Settings.scale * 1.05F, 0.0F, 0, 0, 512, 512, false, false);
 
 
-
-
-
-
-
         }
         else {
-
-
-
-
-
-
 
 
             sb.draw(this.buttonImg, this.buttonHb.cX - 256.0F, this.buttonHb.cY - 256.0F, 256.0F, 256.0F, 512.0F, 512.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 512, 512, false, false);
         }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         if (Settings.isControllerMode) {
             sb.draw(CInputActionSet.proceed
                     .getKeyImg(), this.buttonHb.cX - 32.0F - 160.0F * Settings.scale, this.buttonHb.cY - 32.0F - 70.0F * Settings.scale, 32.0F, 32.0F, 64.0F, 64.0F, Settings.scale, Settings.scale, 0.0F, 0, 0, 64, 64, false, false);
         }
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 

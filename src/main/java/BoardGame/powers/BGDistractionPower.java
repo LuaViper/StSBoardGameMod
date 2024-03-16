@@ -39,6 +39,7 @@ public class BGDistractionPower
     }
 
     public void onApplyPower(AbstractPower power, AbstractCreature target, AbstractCreature source) {
+        //TODO: check debuff caps
         //TODO: make sure all debuffs are correctly labeled as source==player
         if(this.amount>0) {
             if (source == this.owner && target != this.owner &&

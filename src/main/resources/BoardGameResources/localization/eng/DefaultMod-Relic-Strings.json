@@ -129,6 +129,21 @@
       "[BoardGame:Die3Icon] NL 3 [BoardGame:BlockIcon]"
     ]
   },
+  "BGCentennialPuzzle": {
+    "NAME": "Centennial Puzzle",
+    "FLAVOR": "Upon solving the puzzle, you feel a powerful warmth in your chest.",
+    "DESCRIPTIONS": [
+      "#yOnce #yper #ycombat: NL Draw #b",
+      " cards if you lost HP this combat."
+    ]
+  },
+  "BGCharonsAshes": {
+    "NAME": "Charon's Ashes",
+    "FLAVOR": "Charon was said to be the god of rebirth, eternally dying and reviving in a burst of flame.",
+    "DESCRIPTIONS": [
+      "[BoardGame:Die1Icon] [BoardGame:Die2Icon] NL You may #yExhaust a card to deal 2 damage."
+    ]
+  },
   "BGCrackedCore": {
     "NAME": "CrackedCore",
     "FLAVOR": "The mysterious life force which powers the Automatons within the Spire. It appears to be cracked.",
@@ -593,6 +608,13 @@
       "[BoardGame:Die4Icon] [BoardGame:Die5Icon] [BoardGame:Die6Icon] NL Deal 1 damage."
     ]
   },
+  "BGTheCourier": {
+    "NAME": "The Courier",
+    "FLAVOR": "The Merchant's personal pet!",
+    "DESCRIPTIONS": [
+      "#yOnce #yper #ycombat: NL Look at the top card of the [BoardGame:PotionIcon] or [BoardGame:RelicIcon] deck. NL Buy it or discard it."
+    ]
+  },
   "BGUpgrade1Card": {
     "NAME": "Upgrade 1 card",
     "FLAVOR": "This is not a real relic. You're not supposed to be reading this.",
@@ -601,6 +623,20 @@
       "",
       "",
       "Tiny House!"
+    ]
+  },
+  "BGTheAbacus": {
+    "NAME": "The Abacus",
+    "FLAVOR": "\"One...Two...Three...\"",
+    "DESCRIPTIONS": [
+      "#yOnce #yper #ycombat: NL +1 to the die result. NL ( [BoardGame:Die6Icon] becomes [BoardGame:Die1Icon] )"
+    ]
+  },
+  "BGToolbox": {
+    "NAME": "Toolbox",
+    "FLAVOR": "A tool for every job.",
+    "DESCRIPTIONS": [
+      "#yOnce #yper #ycombat: NL +1 to the die result. NL ( [BoardGame:Die1Icon] becomes [BoardGame:Die6Icon] )"
     ]
   },
   "BGToxic Egg 2": {

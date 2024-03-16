@@ -22,12 +22,12 @@
                 " [BoardGame:BlockIcon] to any player."
         ]
 },
-"BoardGame:BGBloodPotion": {
-        "NAME": "Blood Potion",
-        "DESCRIPTIONS": [
-                "Heal #b2 HP."
-        ]
-},
+        "BoardGame:BGBloodPotion": {
+                "NAME": "Blood Potion",
+                "DESCRIPTIONS": [
+                        "Heal #b2 HP."
+                ]
+        },
         "BoardGame:BGCunningPotion": {
                 "NAME": "Cunning Potion",
                 "DESCRIPTIONS": [
@@ -79,6 +79,12 @@
                 "NAME": "Flex Potion",
                 "DESCRIPTIONS": [
                         "Gain [BoardGame:StrIcon] . Lose [BoardGame:StrIcon] at end of turn."
+                ]
+        },
+        "BoardGame:BGGamblersBrew": {
+                "NAME": "Gambler's Brew",
+                "DESCRIPTIONS": [
+                        "Change the die to any number (before accepting the roll)."
                 ]
         },
         "BoardGame:BGGhostInAJar": {

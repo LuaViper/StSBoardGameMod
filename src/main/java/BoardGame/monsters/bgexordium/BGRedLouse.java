@@ -55,7 +55,6 @@ public class BGRedLouse extends AbstractBGMonster implements BGDamageIcons, DieC
         loadAnimation("images/monsters/theBottom/louseRed/skeleton.atlas", "images/monsters/theBottom/louseRed/skeleton.json", 1.0F);
 
 
-
         AnimationState.TrackEntry e = this.state.setAnimation(0, "idle", true);
         e.setTime(e.getEndTime() * MathUtils.random());
 

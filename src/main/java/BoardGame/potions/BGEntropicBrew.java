@@ -65,7 +65,7 @@ public class BGEntropicBrew extends AbstractPotion {
             }
 
             for(int i=0;i<2;i+=1) {
-                EntropicBrewPotionButton.SetupButton(AbstractDungeon.returnRandomPotion());
+                EntropicBrewPotionButton.SetupButton(AbstractDungeon.returnRandomPotion(),false);
             }
 
         }

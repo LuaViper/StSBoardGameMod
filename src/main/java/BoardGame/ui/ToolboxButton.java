@@ -1,28 +1,20 @@
 package BoardGame.ui;
 
 import BoardGame.relics.AbstractBGRelic;
-import BoardGame.relics.BGGamblingChip;
-import BoardGame.relics.BGTheDieRelic;
+import BoardGame.relics.BGToolbox;
 import BoardGame.thedie.TheDie;
 import BoardGame.util.TextureLoader;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.OverlayMenu;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.helpers.TipHelper;
-import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.ui.buttons.Button;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static BoardGame.BoardGame.makeRelicPath;
-
-public class RerollButton extends Button {
+public class ToolboxButton extends Button {
 
     //public boolean visible=false;
 
@@ -30,22 +22,22 @@ public class RerollButton extends Button {
 
     public boolean visible=false;
     public boolean isDisabled=true;
-    public RerollButton() {
-        super((Settings.WIDTH / 2)-150*Settings.scale, (Settings.HEIGHT / 2),TextureLoader.getTexture("BoardGameResources/images/ui/dice/Reroll.png"));
+    public ToolboxButton() {
+        super((Settings.WIDTH / 2)-150*Settings.scale, (Settings.HEIGHT / 2)-200*Settings.scale,TextureLoader.getTexture("BoardGameResources/images/ui/dice/Toolbox.png"));
     }
     private static Logger logger = LogManager.getLogger(AbstractBGRelic.class.getName());
     public void update() {
         super.update();
         if(this.visible) {
-            if (AbstractDungeon.player.hasRelic("BGGambling Chip")) {
-                AbstractRelic r = AbstractDungeon.player.getRelic("BGGambling Chip");
+            if (AbstractDungeon.player.hasRelic("BGToolbox")) {
+                AbstractRelic r = AbstractDungeon.player.getRelic("BGToolbox");
                 if (this.visible) {
                     this.isDisabled = false;
                     if (AbstractDungeon.isScreenUp || AbstractDungeon.player.isDraggingCard || AbstractDungeon.player.inSingleTargetMode) {
                         //TODO: what is "inSingleTargetMode"?
                         this.isDisabled = true;
                     }
-                    if (!((BGGamblingChip) r).isUsable()) {
+                    if (!((BGToolbox) r).isUsable()) {
                         this.isDisabled = true;
                         //this.visible = false;
                     }
@@ -61,9 +53,8 @@ public class RerollButton extends Button {
                     }
                     if (this.pressed && !this.isDisabled) {
                         if (AbstractDungeon.player.hasRelic("BoardGame:BGTheDieRelic")) {
-                            if (AbstractDungeon.player.hasRelic("BGGambling Chip")) {
-
-                                ((BGGamblingChip) r).activate();
+                            if (AbstractDungeon.player.hasRelic("BGToolbox")) {
+                                ((BGToolbox) r).activate();
                             }
                         }
                     }
@@ -76,20 +67,25 @@ public class RerollButton extends Button {
     }
 
 
+
     public void render(SpriteBatch sb){
         AbstractRelic r;
-        if (AbstractDungeon.player.hasRelic("BGGambling Chip")) {
-           r = AbstractDungeon.player.getRelic("BGGambling Chip");
+        if (AbstractDungeon.player.hasRelic("BGToolbox")) {
+           r = AbstractDungeon.player.getRelic("BGToolbox");
         }else return;
 
-        if(!visible || !((BGGamblingChip) r).isUsable())return;
+        if(!visible || !((BGToolbox) r).isUsable())return;
         super.render(sb);
-        String desc="Use #yGambling #yChip to reroll the die. NL No takebacks.";
+        String desc="Activate #yToolbox. NL You can undo this before locking in the roll.";
+        String desc2="Deactivate #yToolbox.";
+
+        int abacus= TheDie.initialRoll+1;if(abacus>6)abacus=1;
+        int toolbox=TheDie.initialRoll-1;if(toolbox<1)toolbox=6;
 
         if (this.hb.hovered && !AbstractDungeon.isScreenUp && !Settings.isTouchScreen) {
             TipHelper.renderGenericTip(this.x - 90.0F * Settings.scale, this.y + 300.0F * Settings.scale,
-                    "Reroll",
-                    desc
+                    "-1",
+                    (TheDie.monsterRoll==toolbox) ? desc2 : desc
             );
         }
     }

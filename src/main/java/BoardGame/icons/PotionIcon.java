@@ -25,7 +25,7 @@ public class PotionIcon extends AbstractCustomIcon {
 
     public List<TooltipInfo> getCustomTooltips() {
         List<TooltipInfo>list=new ArrayList<>();
-        list.add(new TooltipInfo("[BoardGame:Potion] Potion","Draw a card from the potion deck. You may gain that potion or skip it."));
+        list.add(new TooltipInfo("[BoardGame:PotionIcon] Potion","Draw a card from the potion deck. You may gain that potion or skip it."));
         return list;
     }
 }

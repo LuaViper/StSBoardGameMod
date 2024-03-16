@@ -35,29 +35,36 @@ import java.util.ArrayList;
 import java.util.Iterator;
 
 public class EntropicBrewPotionButton extends Button {
-    AbstractPotion realPotion;
-    boolean dying=false;
+    public AbstractPotion realPotion;
+    boolean thisIsACourierPreview=false;
 
     //TODO: localization
     public String[] descriptions = {"You're carrying too many potions! ",
             "You can use or discard existing potions to make room for others,",
             "but this must be done before taking any other actions."};
 
-    public static EntropicBrewPotionButton SetupButton(AbstractPotion realPotion){
-        ArrayList<EntropicBrewPotionButton> buttons = TopPanelEntropicInterface.entropicBrewPotionButtons.get(AbstractDungeon.topPanel);
-        //TODO LATER: there's a chance that an Entropic Brew can draw Entropic Brew and cause two potions to be assigned to the same location, but this shouldn't happen once the physical potion deck is properly implemented
-        int xoffset=-64+(64*2*buttons.size());
-        EntropicBrewPotionButton button=new EntropicBrewPotionButton(xoffset,0, realPotion);
+    public static EntropicBrewPotionButton SetupButton(AbstractPotion realPotion, boolean thisIsACourierPreview){
+        ArrayList<Button> buttons = TopPanelEntropicInterface.entropicBrewPotionButtons.get(AbstractDungeon.topPanel);
+        //TODO LATER: button placement will break if Courier and Entropic Brew are activated at the same time
+        //TODO: button placement isn't all that great anyway
+        int xoffset=0;
+        int yoffset=0;
+        if(!thisIsACourierPreview){
+            xoffset=-64+(64*2*buttons.size());
+            yoffset=0;
+        }
+        EntropicBrewPotionButton button=new EntropicBrewPotionButton(xoffset,yoffset, realPotion, thisIsACourierPreview);
         buttons.add(button);
         return button;
     }
 
-    public EntropicBrewPotionButton(int xoffset, int yoffset, AbstractPotion realPotion) {
+    public EntropicBrewPotionButton(int xoffset, int yoffset, AbstractPotion realPotion, boolean thisIsACourierPreview) {
         //img isn't actually used but we need something to pass to Button constructor
-        super((Settings.WIDTH / 2)+xoffset*Settings.scale, Settings.HEIGHT/2+(130+yoffset)* Settings.scale, TextureLoader.getTexture("BoardGameResources/images/icons/pot.png"));
+        super((Settings.WIDTH / 2)+xoffset*Settings.scale, Settings.HEIGHT/2+yoffset*Settings.scale, TextureLoader.getTexture("BoardGameResources/images/icons/pot.png"));
         this.realPotion=realPotion;
         this.hb=new Hitbox(64,64);
         hb.x=x-64/2;hb.y=y-64/2;
+        this.thisIsACourierPreview=thisIsACourierPreview;
     }
 
     public void update() {
@@ -75,16 +82,18 @@ public class EntropicBrewPotionButton extends Button {
             }
         }
         if (this.pressed) {
-            if (BGEntropicBrew.countOpenPotionSlots() >= 1) {
-                if ((AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT) {
-                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new ObtainPotionAction(realPotion));
-                }else{
-                    AbstractDungeon.effectsQueue.add(new ObtainPotionEffect(realPotion));
+            if(!thisIsACourierPreview) {
+                if (BGEntropicBrew.countOpenPotionSlots() >= 1) {
+                    if ((AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT) {
+                        AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new ObtainPotionAction(realPotion));
+                    } else {
+                        AbstractDungeon.effectsQueue.add(new ObtainPotionEffect(realPotion));
+                    }
+                    this.die();
+                } else {
+                    BoardGame.BoardGame.logger.info("EntropicBrewPotionButton: NOT ENOUGH POTION SLOTS");
+                    AbstractDungeon.topPanel.flashRed();
                 }
-                this.die();
-            }else{
-                BoardGame.BoardGame.logger.info("EntropicBrewPotionButton: NOT ENOUGH POTION SLOTS");
-                AbstractDungeon.topPanel.flashRed();
             }
         }
         if(this.pressed){this.pressed=false;}
@@ -119,21 +128,29 @@ public class EntropicBrewPotionButton extends Button {
             sb.draw(containerImg, this.x - 32.0F, this.y - 32.0F, 32.0F, 32.0F, 64.0F, 64.0F, scale, scale, angle, 0, 0, 64, 64, false, false);
         }
 
-        if (this.hb.hovered && !AbstractDungeon.isScreenUp && !Settings.isTouchScreen) {
-            TipHelper.renderGenericTip(this.x - 90.0F * Settings.scale, this.y - 90.0F * Settings.scale,
-                    realPotion.name,
+        if (this.hb.hovered && !Settings.isTouchScreen) {
+            if(!AbstractDungeon.isScreenUp || thisIsACourierPreview ) {
+                String description = realPotion.description;
+                if (!thisIsACourierPreview) {
                     //TODO: localization
-                    realPotion.description +
-                    " NL NL Click to add to inventory. NL NL You can't use this without adding it to your inventory first.");
+                    description += " NL NL Click to add to inventory. NL NL You can't use this without adding it to your inventory first.";
+                }
+
+                TipHelper.renderGenericTip(this.x - 90.0F * Settings.scale, this.y - 90.0F * Settings.scale,
+                        realPotion.name,
+                        description);
+            }
         }
 
-        //TODO: this is rendering the notice once for each button on screen
-        FontHelper.renderFontCentered(sb, FontHelper.buttonLabelFont, this.descriptions[0], (Settings.WIDTH / 2),
-                Settings.HEIGHT - (1*180.0F+30) * Settings.scale, Settings.CREAM_COLOR);
-        FontHelper.renderFontCentered(sb, FontHelper.buttonLabelFont, this.descriptions[1], (Settings.WIDTH / 2),
-                Settings.HEIGHT - (1*180.0F+90) * Settings.scale, Settings.CREAM_COLOR);
-        FontHelper.renderFontCentered(sb, FontHelper.buttonLabelFont, this.descriptions[2], (Settings.WIDTH / 2),
-                Settings.HEIGHT - (1*180.0F+125) * Settings.scale, Settings.CREAM_COLOR);
+        if(!thisIsACourierPreview) {
+            //TODO: this is rendering the notice once for each button on screen
+            FontHelper.renderFontCentered(sb, FontHelper.buttonLabelFont, this.descriptions[0], (Settings.WIDTH / 2),
+                    Settings.HEIGHT - (1 * 180.0F + 30) * Settings.scale, Settings.CREAM_COLOR);
+            FontHelper.renderFontCentered(sb, FontHelper.buttonLabelFont, this.descriptions[1], (Settings.WIDTH / 2),
+                    Settings.HEIGHT - (1 * 180.0F + 90) * Settings.scale, Settings.CREAM_COLOR);
+            FontHelper.renderFontCentered(sb, FontHelper.buttonLabelFont, this.descriptions[2], (Settings.WIDTH / 2),
+                    Settings.HEIGHT - (1 * 180.0F + 125) * Settings.scale, Settings.CREAM_COLOR);
+        }
     }
 
 
@@ -141,7 +158,7 @@ public class EntropicBrewPotionButton extends Button {
     @SpirePatch(clz= TopPanel.class, method=SpirePatch.CLASS)
     public static class TopPanelEntropicInterface
     {
-        public static SpireField<ArrayList<EntropicBrewPotionButton>> entropicBrewPotionButtons = new SpireField<>(() -> new ArrayList<>());
+        public static SpireField<ArrayList<Button>> entropicBrewPotionButtons = new SpireField<>(() -> new ArrayList<>());
     }
 
     @SpirePatch2(clz= TopPanel.class, method="update",
@@ -150,11 +167,11 @@ public class EntropicBrewPotionButton extends Button {
     {
         @SpirePostfixPatch
         public static void Postfix(TopPanel __instance){
-            ArrayList<EntropicBrewPotionButton> buttons = TopPanelEntropicInterface.entropicBrewPotionButtons.get(__instance);
-            for(EntropicBrewPotionButton button : buttons){
+            ArrayList<Button> buttons = TopPanelEntropicInterface.entropicBrewPotionButtons.get(__instance);
+            for(Button button : buttons){
                 button.update();
             }
-            buttons.removeIf(b -> b.dying);
+            buttons.removeIf(b -> b.x<=-9999);
         }
     }
 
@@ -164,15 +181,16 @@ public class EntropicBrewPotionButton extends Button {
     {
         @SpirePostfixPatch
         public static void Postfix(TopPanel __instance, SpriteBatch sb){
-            ArrayList<EntropicBrewPotionButton> buttons = TopPanelEntropicInterface.entropicBrewPotionButtons.get(__instance);
-            for(EntropicBrewPotionButton button : buttons){
+            ArrayList<Button> buttons = TopPanelEntropicInterface.entropicBrewPotionButtons.get(__instance);
+            for(Button button : buttons){
                 button.render(sb);
             }
         }
     }
 
     public void die(){
-        this.dying=true;
+        //this.dying=true;      //TODO LATER: patch "dying" into base Button class
+        this.x=-9999;
     }
 
 

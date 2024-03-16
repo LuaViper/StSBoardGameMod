@@ -11,6 +11,7 @@ import BoardGame.monsters.bgcity.*;
 import BoardGame.monsters.bgending.BGCorruptHeart;
 import BoardGame.monsters.bgexordium.*;
 import BoardGame.ui.EntropicBrewPotionButton;
+import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
@@ -28,6 +29,7 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
+import com.megacrit.cardcrawl.screens.CombatRewardScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import jdk.internal.jimage.ImageReader;
 
@@ -206,7 +208,7 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                 //logger.info("Adding colorless cards to reward deck?:");
                 for (AbstractCard c : tmpPool) {
                     //logger.info("Add "+c);
-                    if(c.type!=AbstractCard.CardType.STATUS) {
+                    if(c.type!=AbstractCard.CardType.STATUS && c.rarity != AbstractCard.CardRarity.SPECIAL) {
                         colorlessRewardDeck.addToTop(c.makeCopy());
                     }
                 }
@@ -572,6 +574,12 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
             }
             if(AbstractDungeon.player.hasRelic("BGWhite Beast Statue")){
                 //BoardGame.logger.info("...BGWhite Beast Statue...");
+
+                CardCrawlGame.metricData.potions_floor_spawned.add(Integer.valueOf(AbstractDungeon.floorNum));
+                __instance.rewards.add(new RewardItem(AbstractDungeon.returnRandomPotion()));
+
+            }else if(ReflectionHacks.getPrivate(AbstractDungeon.combatRewardScreen, CombatRewardScreen.class,"labelOverride")
+                    ==CardCrawlGame.languagePack.getRelicStrings("BGTiny House").DESCRIPTIONS[3]){
                 CardCrawlGame.metricData.potions_floor_spawned.add(Integer.valueOf(AbstractDungeon.floorNum));
                 __instance.rewards.add(new RewardItem(AbstractDungeon.returnRandomPotion()));
             }

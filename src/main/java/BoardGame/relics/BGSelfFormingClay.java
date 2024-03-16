@@ -8,6 +8,8 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
+//TODO: Centennial Puzzle and Self-Forming Clay don't track HP lost before relic was gained (breaks Courier functionality)
+
 public class BGSelfFormingClay extends AbstractBGRelic implements ClickableRelic {
     public static final String ID = "BGSelf Forming Clay";
 

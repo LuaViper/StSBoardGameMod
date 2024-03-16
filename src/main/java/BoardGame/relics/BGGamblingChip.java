@@ -49,11 +49,16 @@ public class BGGamblingChip extends AbstractBGRelic {
     public void activate(){
         if(available && isPlayerTurn){
             available=false;
+
+
+
             TheDie.roll();
             /* Used Up (Combat) */ {this.grayscale = true; this.usedUp=true; this.description = getUpdatedDescription();this.tips.clear();this.tips.add(new PowerTip(this.name, this.description));initializeTips();}
-            LockInRollButton.OverlayMenuDiceInterface.rerollbutton.get(AbstractDungeon.overlayMenu).visible = false;
+            //LockInRollButton.OverlayMenuDiceInterface.rerollbutton.get(AbstractDungeon.overlayMenu).visible = false;
         }
     }
+
+
 
     public void atPreBattle() {
         available = true;

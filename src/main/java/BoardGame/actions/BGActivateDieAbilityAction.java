@@ -3,6 +3,7 @@ package BoardGame.actions;
 import BoardGame.powers.BGTrigger2DieAbilityPower;
 import BoardGame.powers.BGTriggerAnyDieAbilityPower;
 import BoardGame.powers.NilrysCodexCompatible;
+import BoardGame.relics.BGCharonsAshes;
 import BoardGame.relics.DieControlledRelic;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;

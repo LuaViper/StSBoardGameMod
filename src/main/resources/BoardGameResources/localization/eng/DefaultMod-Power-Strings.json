@@ -589,6 +589,12 @@
                 "At the start of this turn, #bRight-Click a relic with a #b2 die ability to trigger it an extra time. NL If unused, will automatically trigger Nilry's Codex's draw #b1 card ability."
         ]
 },
+"BGTriggerCharonsAshesPower": {
+        "NAME": "Charon's Ashes",
+        "DESCRIPTIONS": [
+                "At the start of this turn, #bRight-Click the Charon's Ashes relic to #yExhaust a card and deal #b2 damage."
+        ]
+},
 "BoardGame:CommonPower": {
         "NAME": "Placeholder Power",
         "DESCRIPTIONS": ["You applied #b", " keyword.", " keywords."]

@@ -24,8 +24,6 @@ import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import static BoardGame.BoardGame.makeRelicOutlinePath;
 import static BoardGame.BoardGame.makeRelicPath;
 
-//TODO: if another character obtains this relic, it won't be clickable on the turn it's obtained
-
 public class BGMiracles extends AbstractBGRelic implements ClickableRelic {
     public static final String ID = "BoardGame:BGMiracles";
     private static final String IMGPATH="BGMiracles.png";
@@ -56,9 +54,9 @@ public class BGMiracles extends AbstractBGRelic implements ClickableRelic {
 
 
     public void atBattleStart() {
-        this.flash();
         if(AbstractDungeon.player instanceof BGWatcher) {
             //Prismatic Shard relic does not gain miracle at start of combat
+            this.flash();
             this.counter = 1;
         }
     }

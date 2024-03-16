@@ -25,7 +25,7 @@ public class RelicIcon extends AbstractCustomIcon {
 
     public List<TooltipInfo> getCustomTooltips() {
         List<TooltipInfo>list=new ArrayList<>();
-        list.add(new TooltipInfo("[BoardGame:Relic] Relic","Draw a card from the relic deck. You may gain that relic or skip it."));
+        list.add(new TooltipInfo("[BoardGame:RelicIcon] Relic","Draw a card from the relic deck. You may gain that relic or skip it."));
         return list;
     }
 }

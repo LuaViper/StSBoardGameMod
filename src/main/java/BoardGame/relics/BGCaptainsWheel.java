@@ -19,6 +19,9 @@ public class BGCaptainsWheel
         super("BGCaptainsWheel", "captain_wheel.png", AbstractRelic.RelicTier.COMMON, AbstractRelic.LandingSound.SOLID);
     }
     public int getPrice() {return 8;}
+
+    //TODO: add Abacus/Toolbox support to getQuickSummary (i.e. without clicking on the button and mousing over Accept Roll) (requires passing a value in to the function instead of using monsterRoll)
+
     public String getQuickSummary(){if(TheDie.monsterRoll==3)return "3 #yBlock";
         else return "";}
     private static final int AMT = 3;

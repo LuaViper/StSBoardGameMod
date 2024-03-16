@@ -2,6 +2,7 @@ package BoardGame.actions;
 import BoardGame.cards.AbstractBGAttackCardChoice;
 import BoardGame.cards.BGColorless.BGShivsDiscardExtraShiv;
 import BoardGame.cards.BGColorless.BGShivsUseExtraShiv;
+import BoardGame.relics.AbstractBGRelic;
 import BoardGame.relics.BGShivs;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -26,8 +27,11 @@ public class BGGainShivAction extends AbstractGameAction {
 
 
     public void update() {
-        if(!AbstractDungeon.player.hasRelic("BoardGame:BGShivs"))
-            AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), new BGShivs());
+        if(!AbstractDungeon.player.hasRelic("BoardGame:BGShivs")) {
+            AbstractRelic shivs = new BGShivs();
+            AbstractDungeon.getCurrRoom().spawnRelicAndObtain((Settings.WIDTH / 2), (Settings.HEIGHT / 2), shivs);
+            ((AbstractBGRelic)shivs).setupObtainedDuringCombat();
+        }
         AbstractRelic relic = AbstractDungeon.player.getRelic("BoardGame:BGShivs");
         for(int i=0;i<this.amount;i+=1){
             relic.counter=relic.counter+1;

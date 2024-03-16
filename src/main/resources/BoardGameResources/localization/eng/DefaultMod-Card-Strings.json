@@ -1196,6 +1196,33 @@
     "NAME": "The Bomb",
     "DESCRIPTION": "At the end of 3 turns, deal !M! damage to ALL enemies, then Exhaust this card."
   },
+  "BoardGame:BGTheCourierPotion": {
+    "NAME": "Potion",
+    "DESCRIPTION": "Look at the top card of the [BoardGame:PotionIcon] deck. NL Buy it or discard it."
+  },
+  "BoardGame:BGTheCourierRelic": {
+    "NAME": "Relic",
+    "DESCRIPTION": "Look at the top card of the [BoardGame:RelicIcon] deck. NL Buy it or discard it."
+  },
+  "BoardGame:BGTheCourierConfirmPurchase": {
+    "NAME": "Buy It",
+    "DESCRIPTION": "Buy the Courier's item.",
+    "EXTENDED_DESCRIPTION": [
+      "Buy ",
+      " NL for ",
+      " gold.",
+      "",
+      " NL costs ",
+      " gold. NL You can't afford it."
+    ]
+  },
+  "BoardGame:BGTheCourierDiscardPurchase": {
+    "NAME": "Discard It",
+    "DESCRIPTION": "Discard the Courier's item.",
+    "EXTENDED_DESCRIPTION": [
+      "Discard it."
+    ]
+  },
   "BoardGame:BGThinking Ahead": {
     "NAME": "Thinking Ahead",
     "DESCRIPTION": "Draw !M! cards. NL Then put a card from your hand on top of your draw pile. NL Exhaust."

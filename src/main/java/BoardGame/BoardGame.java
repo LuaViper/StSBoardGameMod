@@ -9,6 +9,8 @@ import BoardGame.monsters.bgending.*;
 import BoardGame.dungeons.*;
 import BoardGame.potions.*;
 import BoardGame.relics.*;
+import BoardGame.rewards.TinyHouseUpgrade1Card;
+import BoardGame.rewards.TinyHouseUpgrade1CardTypePatch;
 import BoardGame.screen.OrbSelectScreen;
 import BoardGame.screen.RelicTradingScreen;
 import BoardGame.screen.TargetSelectScreen;
@@ -29,6 +31,7 @@ import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -41,10 +44,8 @@ import BoardGame.variables.DefaultSecondMagicNumber;
 
 import java.io.InputStream;
 import java.io.InputStreamReader;
-import java.lang.reflect.Constructor;
 import java.nio.charset.StandardCharsets;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.Properties;
 
 import static basemod.BaseMod.addMonster;
@@ -403,6 +404,16 @@ public class BoardGame implements
         BaseMod.addCustomScreen(new RelicTradingScreen());
 
 
+        BaseMod.registerCustomReward(
+                TinyHouseUpgrade1CardTypePatch.BOARDGAME_UPGRADEREWARD,
+                (rewardSave) -> { // this handles what to do when this quest type is loaded.
+                    return new TinyHouseUpgrade1Card(1);
+                },
+                (customReward) -> { // this handles what to do when this quest type is saved.
+                    return new RewardSave(customReward.type.toString(), null, 1, 0);
+                });
+
+
 
         //TODO: non-repeating "monster deck" -- it's still possible to get the same encounter twice, especially with elites
 
@@ -700,6 +711,7 @@ public class BoardGame implements
         potions.add(new BGAncientPotion());
         potions.add(new BGAttackPotion());
         potions.add(new BGBlockPotion());
+        potions.add(new BGGamblersBrew());
         potions.add(new BGBloodPotion());
         potions.add(new BGCunningPotion());
         potions.add(new BGElixir());
@@ -739,11 +751,11 @@ public class BoardGame implements
                     }
                 });
 
-        BaseMod.addRelicToCustomPool(new BGBurningBlood(), BGIronclad.Enums.BG_RED);
-        BaseMod.addRelicToCustomPool(new BGTheDieRelic(),BGIronclad.Enums.BG_RED);
-        BaseMod.addRelicToCustomPool(new BGShivs(),BGIronclad.Enums.BG_RED);
-        BaseMod.addRelicToCustomPool(new BGCrackedCore(),BGIronclad.Enums.BG_RED);
-        BaseMod.addRelicToCustomPool(new BGMiracles(),BGIronclad.Enums.BG_RED);
+//        BaseMod.addRelicToCustomPool(new BGBurningBlood(), BGIronclad.Enums.BG_RED);
+//        BaseMod.addRelicToCustomPool(new BGTheDieRelic(),BGIronclad.Enums.BG_RED);
+//        BaseMod.addRelicToCustomPool(new BGShivs(),BGIronclad.Enums.BG_RED);
+//        BaseMod.addRelicToCustomPool(new BGCrackedCore(),BGIronclad.Enums.BG_RED);
+//        BaseMod.addRelicToCustomPool(new BGMiracles(),BGIronclad.Enums.BG_RED);
 
 
 

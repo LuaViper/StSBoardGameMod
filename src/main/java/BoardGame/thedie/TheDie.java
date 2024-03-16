@@ -3,10 +3,9 @@ package BoardGame.thedie;
 import BoardGame.BoardGame;
 import BoardGame.actions.DieMoveAction;
 import BoardGame.monsters.DieControlledMoves;
+import BoardGame.potions.BGGamblersBrew;
 import BoardGame.powers.BGTheDiePower;
-import BoardGame.relics.BGGamblingChip;
-import BoardGame.relics.BGTheDieRelic;
-import BoardGame.relics.DieControlledRelic;
+import BoardGame.relics.*;
 import BoardGame.ui.LockInRollButton;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
@@ -64,8 +63,45 @@ public class TheDie {
             if(((BGGamblingChip)relic).available)gambleok=true;
         }
         if(gambleok) {
+            LockInRollButton.OverlayMenuDiceInterface.rerollbutton.get(AbstractDungeon.overlayMenu).visible = true;
+        }else{
+            LockInRollButton.OverlayMenuDiceInterface.rerollbutton.get(AbstractDungeon.overlayMenu).visible = false;
+        }
+
+        boolean abacusok=false;
+        if(AbstractDungeon.player.hasRelic("BGTheAbacus")) {
+            AbstractRelic relic=AbstractDungeon.player.getRelic("BGTheAbacus");
+            if(((BGTheAbacus)relic).available)abacusok=true;
+        }
+        if(abacusok) {
+            LockInRollButton.OverlayMenuDiceInterface.theabacusbutton.get(AbstractDungeon.overlayMenu).visible = true;
+        }else{
+            LockInRollButton.OverlayMenuDiceInterface.theabacusbutton.get(AbstractDungeon.overlayMenu).visible = false;
+        }
+
+        boolean toolboxok=false;
+        if(AbstractDungeon.player.hasRelic("BGToolbox")) {
+            AbstractRelic relic=AbstractDungeon.player.getRelic("BGToolbox");
+            if(((BGToolbox)relic).available)toolboxok=true;
+        }
+        if(toolboxok) {
+            LockInRollButton.OverlayMenuDiceInterface.toolboxbutton.get(AbstractDungeon.overlayMenu).visible = true;
+        }else{
+            LockInRollButton.OverlayMenuDiceInterface.toolboxbutton.get(AbstractDungeon.overlayMenu).visible = false;
+        }
+
+        boolean potionok=false;
+        if(BGGamblersBrew.doesPlayerHaveGamblersBrew()>-1){
+            potionok=true;
+        }
+        if(potionok){
+            LockInRollButton.OverlayMenuDiceInterface.potionbutton.get(AbstractDungeon.overlayMenu).visible = true;
+        }else{
+            LockInRollButton.OverlayMenuDiceInterface.potionbutton.get(AbstractDungeon.overlayMenu).visible = false;
+        }
+
+        if(gambleok || abacusok || toolboxok || potionok) {
             //AbstractDungeon.overlayMenu.endTurnButton.disable(false); //DO NOT DO THIS. many sideeffects.
-            //TODO: check for +1/-1 relics too
             LockInRollButton.OverlayMenuDiceInterface.lockinrollbutton.get(AbstractDungeon.overlayMenu).visible = true;
         }else{
             LockInRollButton.OverlayMenuDiceInterface.lockinrollbutton.get(AbstractDungeon.overlayMenu).visible = false;
@@ -74,13 +110,24 @@ public class TheDie {
                 ((BGTheDieRelic) relic).lockRollAndActivateDieRelics();
             }
         }
-        if(gambleok) {
-            LockInRollButton.OverlayMenuDiceInterface.rerollbutton.get(AbstractDungeon.overlayMenu).visible = true;
-        }else{
-            LockInRollButton.OverlayMenuDiceInterface.rerollbutton.get(AbstractDungeon.overlayMenu).visible = false;
-        }
-
     }
+
+    public static void tentativeRoll(int r){
+        TheDie.monsterRoll = r;
+        TheDie.setMonsterMoves(TheDie.monsterRoll);
+        AbstractDungeon.player.hand.refreshHandLayout();
+        LockInRollButton.relicList="";
+        for(AbstractRelic relic : AbstractDungeon.player.relics) {
+            if(relic instanceof DieControlledRelic) {
+                String relictext = ((DieControlledRelic) relic).getQuickSummary();
+                if(relictext!=""){
+                    LockInRollButton.relicList+=" NL "+relictext+" ("+relic.name+")";
+                }
+            }
+        }
+        AbstractDungeon.actionManager.addToTop((AbstractGameAction)new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)AbstractDungeon.player, (AbstractPower)new BGTheDiePower((AbstractCreature)AbstractDungeon.player, TheDie.monsterRoll), TheDie.monsterRoll));
+    }
+
     public static void setMonsterMoves(int roll){
         for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters){
             if(m instanceof DieControlledMoves){

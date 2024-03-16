@@ -16,7 +16,6 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import static BoardGame.BoardGame.makeRelicOutlinePath;
 import static BoardGame.BoardGame.makeRelicPath;
 
-//TODO: if another character obtains this relic, it won't be clickable on the turn it's obtained
 
 public class BGShivs extends AbstractBGRelic implements ClickableRelic {
     public static final String ID = "BoardGame:BGShivs";

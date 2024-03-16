@@ -21,6 +21,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 
 import java.util.ArrayList;
 
+//TODO: player should be able to see cost of relics *before* deciding to exchange one
 //Point of interest: Leftover Block at the end of combat will persist into an event cheated in with console commands.
 
 public class BGTheMoaiHead

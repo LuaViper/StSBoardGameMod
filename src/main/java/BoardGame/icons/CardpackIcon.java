@@ -25,7 +25,7 @@ public class CardpackIcon extends AbstractCustomIcon {
 
     public List<TooltipInfo> getCustomTooltips() {
         List<TooltipInfo>list=new ArrayList<>();
-        list.add(new TooltipInfo("[BoardGame:Cardpack] Card Reward","Reveal 3 card rewards. Add 1 to your deck or skip."));
+        list.add(new TooltipInfo("[BoardGame:CardpackIcon] Card Reward","Reveal 3 card rewards. Add 1 to your deck or skip."));
         return list;
     }
 }

@@ -1,6 +1,7 @@
 package BoardGame.events;
 
 import BoardGame.BoardGame;
+import BoardGame.potions.BGGamblersBrew;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -28,7 +29,7 @@ public class BGLab
     private CUR_SCREEN screen = CUR_SCREEN.INTRO;
 
     private enum CUR_SCREEN {
-        INTRO, COMPLETE;
+        INTRO, COMPLETE, POTION;
     }
 
     public BGLab() {
@@ -50,26 +51,49 @@ public class BGLab
         switch (this.screen) {
 
             case INTRO:
-                GenericEventDialog.hide();
 
                 (AbstractDungeon.getCurrRoom()).rewards.clear();
                 (AbstractDungeon.getCurrRoom()).rewards.add(new RewardItem(PotionHelper.getRandomPotion()));
                 int random = AbstractDungeon.miscRng.random(1, 6);
+                boolean playerWins=false;
                 if(random>=4) {
-                    (AbstractDungeon.getCurrRoom()).rewards.add(new RewardItem(PotionHelper.getRandomPotion()));
-                }else{
+                    playerWins = true;
+                }else if(random==3 && AbstractDungeon.player.hasRelic("BGTheAbacus")){
+                    AbstractDungeon.player.getRelic("BGTheAbacus").flash();
+                    playerWins=true;
+                }else if(random==1 && AbstractDungeon.player.hasRelic("BGToolbox")){
+                    AbstractDungeon.player.getRelic("BGToolbox").flash();
+                    playerWins=true;
+                }
+                if(!playerWins){
+                    //TODO: if player wagers a die relic, does it still (incorrectly) take effect here?
                     AbstractRelic r=AbstractDungeon.player.getRelic("BGGambling Chip");
                     if(r!=null){
                         r.flash();
                         random = AbstractDungeon.miscRng.random(1, 6);
-//                        Logger logger = LogManager.getLogger("temp");
-//                        logger.info("Rerolled: "+random);
                         if(random>=4) {
-                            (AbstractDungeon.getCurrRoom()).rewards.add(new RewardItem(PotionHelper.getRandomPotion()));
+                            playerWins = true;
+                        }else if(random==3 && AbstractDungeon.player.hasRelic("BGTheAbacus")){
+                            AbstractDungeon.player.getRelic("BGTheAbacus").flash();
+                            playerWins=true;
+                        }else if(random==1 && AbstractDungeon.player.hasRelic("BGToolbox")){
+                            AbstractDungeon.player.getRelic("BGToolbox").flash();
+                            playerWins=true;
                         }
                     }
                 }
-
+                if(playerWins) {
+                    (AbstractDungeon.getCurrRoom()).rewards.add(new RewardItem(PotionHelper.getRandomPotion()));
+                }else{
+                    if(BGGamblersBrew.doesPlayerHaveGamblersBrew()>-1) {
+                        this.screen = CUR_SCREEN.POTION;
+                        this.imageEventText.clearAllDialogs();
+                        this.imageEventText.setDialogOption(OPTIONS[1]);
+                        this.imageEventText.setDialogOption(OPTIONS[2]);
+                        break;
+                    }
+                }
+                GenericEventDialog.hide();
                 this.screen = CUR_SCREEN.COMPLETE;
                 (AbstractDungeon.getCurrRoom()).phase = AbstractRoom.RoomPhase.COMPLETE;
                 AbstractDungeon.combatRewardScreen.open();
@@ -77,6 +101,19 @@ public class BGLab
                 break;
             case COMPLETE:
                 openMap();
+                break;
+            case POTION:
+                if(buttonPressed==1){
+                    int slot=BGGamblersBrew.doesPlayerHaveGamblersBrew();
+                    if(slot>-1) {
+                        AbstractDungeon.topPanel.destroyPotion(slot);
+                        (AbstractDungeon.getCurrRoom()).rewards.add(new RewardItem(PotionHelper.getRandomPotion()));
+                    }
+                }
+                this.screen = CUR_SCREEN.COMPLETE;
+                (AbstractDungeon.getCurrRoom()).phase = AbstractRoom.RoomPhase.COMPLETE;
+                AbstractDungeon.combatRewardScreen.open();
+                logMetric("Lab", "Got Potions");
                 break;
         }
     }

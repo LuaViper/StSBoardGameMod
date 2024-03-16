@@ -1,6 +1,7 @@
 package BoardGame.actions;
 
 import BoardGame.powers.NilrysCodexCompatible;
+import BoardGame.relics.BGCharonsAshes;
 import BoardGame.relics.DieControlledRelic;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -40,6 +41,7 @@ public class BGUpdateDieRelicPulseAction extends AbstractGameAction {
                     relic.stopPulse();
                 }
             }
+
         }
         this.isDone = true;
 
