@@ -25,7 +25,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BGBookOfStabbing extends AbstractBGMonster implements DieControlledMoves, BGDamageIcons {
+public class BGBookOfStabbing extends AbstractBGMonster implements BGDamageIcons {
     public static final String ID = "BGBookOfStabbing";
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("BookOfStabbing");
     public static final String NAME = monsterStrings.NAME;
@@ -58,8 +58,11 @@ public class BGBookOfStabbing extends AbstractBGMonster implements DieControlled
         this.dialogX = -70.0F * Settings.scale;
         this.dialogY = 50.0F * Settings.scale;
 
-
-        setHp(30);
+        if (AbstractDungeon.ascensionLevel >= 1) {
+            setHp(35);
+        }else{
+            setHp(30);
+        }
 
         this.stabDmg = 1;
         this.bigStabDmg = 3;
@@ -67,6 +70,13 @@ public class BGBookOfStabbing extends AbstractBGMonster implements DieControlled
 
         this.damage.add(new DamageInfo((AbstractCreature)this, this.stabDmg));
         this.damage.add(new DamageInfo((AbstractCreature)this, this.bigStabDmg));
+
+
+        if(AbstractDungeon.ascensionLevel>=1){
+            setMove((byte) 2, AbstractMonster.Intent.ATTACK_BUFF, ((DamageInfo) this.damage.get(1)).base,1, false);
+        }else{
+            setMove((byte) 1, AbstractMonster.Intent.ATTACK_BUFF, ((DamageInfo) this.damage.get(0)).base,2, true);
+        }
     }
 
 
@@ -96,8 +106,10 @@ public class BGBookOfStabbing extends AbstractBGMonster implements DieControlled
                         .get(0), AbstractGameAction.AttackEffect.SLASH_VERTICAL, false, true));
 
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new ApplyPowerAction((AbstractCreature) this, (AbstractCreature) this, (AbstractPower) new StrengthPower((AbstractCreature) this, 1), 1));
-                break;
 
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this,  (byte)2, AbstractMonster.Intent.ATTACK_BUFF,this.damage.get(1).base,1,false));
+
+                break;
 
 
             case 2:
@@ -105,8 +117,11 @@ public class BGBookOfStabbing extends AbstractBGMonster implements DieControlled
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new WaitAction(0.5F));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                         .get(1), AbstractGameAction.AttackEffect.SLASH_VERTICAL));
-
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new ApplyPowerAction((AbstractCreature) this, (AbstractCreature) this, (AbstractPower) new StrengthPower((AbstractCreature) this, 1), 1));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this,  (byte)1, AbstractMonster.Intent.ATTACK_BUFF,this.damage.get(0).base,2,true));
+
+
+
                 break;
         }
 
@@ -139,26 +154,28 @@ public class BGBookOfStabbing extends AbstractBGMonster implements DieControlled
 
 
     protected void getMove(int num) {
-        setMove((byte) 0, AbstractMonster.Intent.NONE);
-    }
-    public void dieMove(int roll){
-        final Logger logger = LogManager.getLogger(DieControlledMoves.class.getName());
-        char move = '-';
-        if (TheDie.monsterRoll == 1 || TheDie.monsterRoll == 2)
-            move = this.behavior.charAt(0);
-        else if (TheDie.monsterRoll == 3 || TheDie.monsterRoll == 4)
-            move = this.behavior.charAt(1);
-        else if (TheDie.monsterRoll == 5 || TheDie.monsterRoll == 6)
-            move = this.behavior.charAt(2);
+        //Moves are set in constructor and thereafter in takeTurn
+        //setMove((byte) 0, AbstractMonster.Intent.NONE);
 
-        if (move == '1') {
-            setMove((byte) 1, AbstractMonster.Intent.ATTACK_BUFF, ((DamageInfo) this.damage.get(0)).base,2, true);
-        } else if (move == '3') {
-            setMove((byte) 2, AbstractMonster.Intent.ATTACK_BUFF, ((DamageInfo) this.damage.get(1)).base);
-        } else if (move == '1') {
-            setMove((byte) 3, AbstractMonster.Intent.ATTACK_BUFF, ((DamageInfo) this.damage.get(0)).base, 2, true);
-        }
     }
+//    public void dieMove(int roll){
+//        final Logger logger = LogManager.getLogger(DieControlledMoves.class.getName());
+//        char move = '-';
+//        if (TheDie.monsterRoll == 1 || TheDie.monsterRoll == 2)
+//            move = this.behavior.charAt(0);
+//        else if (TheDie.monsterRoll == 3 || TheDie.monsterRoll == 4)
+//            move = this.behavior.charAt(1);
+//        else if (TheDie.monsterRoll == 5 || TheDie.monsterRoll == 6)
+//            move = this.behavior.charAt(2);
+//
+//        if (move == '1') {
+//            setMove((byte) 1, AbstractMonster.Intent.ATTACK_BUFF, ((DamageInfo) this.damage.get(0)).base,2, true);
+//        } else if (move == '3') {
+//            setMove((byte) 2, AbstractMonster.Intent.ATTACK_BUFF, ((DamageInfo) this.damage.get(1)).base);
+//        } else if (move == '1') {
+//            setMove((byte) 3, AbstractMonster.Intent.ATTACK_BUFF, ((DamageInfo) this.damage.get(0)).base, 2, true);
+//        }
+//    }
 
 
 

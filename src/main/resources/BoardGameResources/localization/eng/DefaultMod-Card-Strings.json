@@ -39,6 +39,10 @@
     "NAME": "Apotheosis",
     "DESCRIPTION": "Your starter Strikes deal +1 damage. NL NL Your starter Defends gain +1 Block."
   },
+  "BoardGame:BGAscendersBane": {
+    "NAME": "Ascender's Bane",
+    "DESCRIPTION": "Unplayable. NL Ethereal. NL Can't be removed from your deck."
+  },
   "BoardGame:BGAThousandCuts": {
     "NAME": "A Thousand Cuts",
     "DESCRIPTION": "Whenever you shuffle your draw pile, deal !M! damage to any row."

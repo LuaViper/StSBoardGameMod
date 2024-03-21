@@ -76,7 +76,7 @@ public class LockInRollButton extends Button {
         super.render(sb);
 
         String relicListText=relicList;
-        if(relicListText==""){
+        if(relicListText.equals("")){
             relicListText=" NL (No relics activate on a "+TheDie.monsterRoll+".)";
         }
         if (this.hb.hovered && !AbstractDungeon.isScreenUp && !Settings.isTouchScreen) {

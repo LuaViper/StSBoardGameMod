@@ -20,6 +20,7 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import BoardGame.monsters.AbstractBGMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 public class BGGremlinNob extends AbstractBGMonster implements BGDamageIcons {
@@ -55,8 +56,10 @@ public class BGGremlinNob extends AbstractBGMonster implements BGDamageIcons {
         this.dialogY = 50.0F * Settings.scale;
         this.canVuln = setVuln;
 
-        //setHp(17);
-        setHp(15);
+        if(AbstractDungeon.ascensionLevel==0)
+            setHp(14);
+        else
+            setHp(17);
 
         this.rushDmg = 3;
         this.bashDmg = 3;
@@ -82,13 +85,9 @@ public class BGGremlinNob extends AbstractBGMonster implements BGDamageIcons {
 
     public void takeTurn() {
         switch (this.nextMove) {
-            case 3:
+            case 3: //initial buff
                 playSfx();
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new TalkAction((AbstractCreature)this, DIALOG[0], 1.0F, 3.0F));
-                if (AbstractDungeon.ascensionLevel >= 18) {
-                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new BGAngerPower((AbstractCreature)this, 1), 1));
-                    break;
-                }
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new BGAngerPower((AbstractCreature)this, 1), 1));
                 break;
 
@@ -97,20 +96,13 @@ public class BGGremlinNob extends AbstractBGMonster implements BGDamageIcons {
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new AnimateSlowAttackAction((AbstractCreature)this));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                         .get(1), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-                if (this.canVuln) {
-                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)this, (AbstractPower)new VulnerablePower((AbstractCreature)AbstractDungeon.player, 2, true), 2));
-                }
+                if(AbstractDungeon.ascensionLevel>=1)
+                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new StrengthPower(this, 1), 1));
                 break;
 
 
 
 
-
-            case 1:
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new AnimateSlowAttackAction((AbstractCreature)this));
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
-                        .get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-                break;
         }
 
 
@@ -138,45 +130,14 @@ public class BGGremlinNob extends AbstractBGMonster implements BGDamageIcons {
 
             return;
         }
-        if (AbstractDungeon.ascensionLevel >= 18) {
-            if (!lastMove((byte)2) && !lastMoveBefore((byte)2)) {
-                if (this.canVuln) {
-                    setMove(MOVES[0], (byte)2, AbstractMonster.Intent.ATTACK_DEBUFF, ((DamageInfo)this.damage.get(1)).base);
-                } else {
-                    setMove((byte)2, AbstractMonster.Intent.ATTACK, ((DamageInfo)this.damage.get(1)).base);
-                }
-                return;
-            }
-            if (lastTwoMoves((byte)1)) {
-                if (this.canVuln) {
-                    setMove(MOVES[0], (byte)2, AbstractMonster.Intent.ATTACK_DEBUFF, ((DamageInfo)this.damage.get(1)).base);
-                } else {
-                    setMove((byte)2, AbstractMonster.Intent.ATTACK, ((DamageInfo)this.damage.get(1)).base);
-                }
-            } else {
-                setMove((byte)1, AbstractMonster.Intent.ATTACK, ((DamageInfo)this.damage.get(0)).base);
-            }
+        if (AbstractDungeon.ascensionLevel >= 1) {
+
+                    setMove((byte)2, AbstractMonster.Intent.ATTACK_BUFF, ((DamageInfo)this.damage.get(1)).base);
+
         } else {
 
-            if (num < 33) {
-                if (this.canVuln) {
-                    setMove(MOVES[0], (byte)2, AbstractMonster.Intent.ATTACK_DEBUFF, ((DamageInfo)this.damage.get(1)).base);
-                } else {
                     setMove((byte)2, AbstractMonster.Intent.ATTACK, ((DamageInfo)this.damage.get(1)).base);
-                }
 
-                return;
-            }
-
-            if (lastTwoMoves((byte)1)) {
-                if (this.canVuln) {
-                    setMove(MOVES[0], (byte)2, AbstractMonster.Intent.ATTACK_DEBUFF, ((DamageInfo)this.damage.get(1)).base);
-                } else {
-                    setMove((byte)2, AbstractMonster.Intent.ATTACK, ((DamageInfo)this.damage.get(1)).base);
-                }
-            } else {
-                setMove((byte)1, AbstractMonster.Intent.ATTACK, ((DamageInfo)this.damage.get(0)).base);
-            }
         }
     }
 }

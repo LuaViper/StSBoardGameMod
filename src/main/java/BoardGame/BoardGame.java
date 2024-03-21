@@ -50,6 +50,8 @@ import java.util.Properties;
 
 import static basemod.BaseMod.addMonster;
 
+//TODO: implement PostCreditsNeow easter egg -- need to put these back in the box -- does anyone have opposable thumbs
+
 
 /*
 
@@ -872,6 +874,10 @@ public class BoardGame implements
         // OrbStrings
         BaseMod.loadCustomStringsFile(OrbStrings.class,
                 getModID() + "Resources/localization/eng/DefaultMod-Orb-Strings.json");
+
+        // New stuff
+        BaseMod.loadCustomStringsFile(UIStrings.class,
+                getModID() + "Resources/localization/eng/DefaultMod-UI-Strings.json");
 
         logger.info("Done editing strings");
     }

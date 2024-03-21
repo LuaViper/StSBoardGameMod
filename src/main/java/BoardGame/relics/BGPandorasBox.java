@@ -1,5 +1,6 @@
 package BoardGame.relics;
 
+import BoardGame.patches.TransformPatch;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.LocalizedStrings;
@@ -42,7 +43,7 @@ public class BGPandorasBox
     public void onEquip() {
         this.cardsSelected = false;
         CardGroup tmp = new CardGroup(CardGroup.CardGroupType.UNSPECIFIED);
-        for (AbstractCard card : (AbstractDungeon.player.masterDeck.getPurgeableCards()).group) {
+        for (AbstractCard card : (TransformPatch.getTransformableCards()).group) {
             tmp.addToTop(card);
         }
 

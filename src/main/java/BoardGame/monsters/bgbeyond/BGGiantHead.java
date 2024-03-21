@@ -67,10 +67,15 @@ public class BGGiantHead extends AbstractBGMonster implements BGDamageIcons {
 //            this.startingDeathDmg = 30;
 //        }
 
-        setHp(80);
+        if(AbstractDungeon.ascensionLevel<1) {
+            setHp(80);
+            this.startingDeathDmg = 7;
+        }else {
+            setHp(85);
+            this.startingDeathDmg = 8;
+        }
 
-        this.startingDeathDmg=7;
-        this.damage.add(new DamageInfo((AbstractCreature)this, 13));
+        this.damage.add(new DamageInfo((AbstractCreature)this, 5));
         this.damage.add(new DamageInfo((AbstractCreature)this, this.startingDeathDmg));
         this.damage.add(new DamageInfo((AbstractCreature)this, this.startingDeathDmg + 0));
         this.damage.add(new DamageInfo((AbstractCreature)this, this.startingDeathDmg + 0));
@@ -124,6 +129,15 @@ public class BGGiantHead extends AbstractBGMonster implements BGDamageIcons {
                         .get(index), AbstractGameAction.AttackEffect.SMASH));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new StrengthPower(this, 1), 1));
                 break;
+            case 4:
+                playSfx();
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ShoutAction((AbstractCreature)this, "#r~" +
+                        Integer.toString(this.count) + "...~", 1.7F, 1.7F));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new DamageAction((AbstractCreature) AbstractDungeon.player, this.damage
+                        .get(0), AbstractGameAction.AttackEffect.FIRE));
+                break;
+
+
         }
         AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new RollMoveAction(this));
     }
@@ -177,21 +191,11 @@ public class BGGiantHead extends AbstractBGMonster implements BGDamageIcons {
         }
         this.count--;
 
-
-//        if (num < 50) {
-//            if (!lastTwoMoves((byte) 1)) {
-//                setMove((byte) 1, AbstractMonster.Intent.DEBUFF);
-//            } else {
-//                setMove((byte) 3, AbstractMonster.Intent.ATTACK, 13);
-//
-//            }
-//        }
-//        else if (!lastTwoMoves((byte)3)) {
-//            setMove((byte)3, AbstractMonster.Intent.ATTACK, 13);
-//        } else {
-//            setMove((byte)1, AbstractMonster.Intent.DEBUFF);
-//        }
-        setMove((byte)0, AbstractMonster.Intent.UNKNOWN);
+        if(AbstractDungeon.ascensionLevel>=1 && this.count==2) {
+            setMove((byte) 4, AbstractMonster.Intent.ATTACK, this.damage.get(0).base);
+        }else{
+            setMove((byte) 0, AbstractMonster.Intent.UNKNOWN);
+        }
     }
 }
 

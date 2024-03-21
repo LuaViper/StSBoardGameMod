@@ -2,6 +2,7 @@ package BoardGame.events;
 
 import BoardGame.dungeons.AbstractBGDungeon;
 import BoardGame.neow.BGNeowReward;
+import BoardGame.patches.TransformPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -101,8 +102,7 @@ public class BGTransmogrifier extends AbstractImageEvent {
                         this.screen = CUR_SCREEN.COMPLETE;
                         this.imageEventText.updateBodyText(DIALOG_2);
                         AbstractDungeon.gridSelectScreen.open(
-                                CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck
-                                        .getPurgeableCards()), 1, OPTIONS[2], false, true, false, false);
+                                TransformPatch.getTransformableCards(), 1, OPTIONS[2], false, true, false, false);
                         this.imageEventText.updateDialogOption(0, OPTIONS[4]);
                         this.imageEventText.clearRemainingOptions();
                         break;
@@ -112,8 +112,7 @@ public class BGTransmogrifier extends AbstractImageEvent {
                         this.screen = CUR_SCREEN.COMPLETE;
                         this.imageEventText.updateBodyText(DIALOG_2_DOUBLE);
                         AbstractDungeon.gridSelectScreen.open(
-                                CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck
-                                        .getPurgeableCards()), this.cardcount, OPTIONS[3], false, false, false, false);
+                                TransformPatch.getTransformableCards(), this.cardcount, OPTIONS[3], false, false, false, false);
                         this.imageEventText.updateDialogOption(0, OPTIONS[4]);
                         this.imageEventText.clearRemainingOptions();
 

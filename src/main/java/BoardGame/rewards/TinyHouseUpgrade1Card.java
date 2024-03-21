@@ -25,8 +25,9 @@ public class TinyHouseUpgrade1Card extends CustomReward {
 
     @Override
     public boolean claimReward() {
+        //TODO: localization
         AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck
-                .getUpgradableCards(), 1, TEXT[0], true, false, false, false);
+                .getUpgradableCards(), 1, "Select a Card to Upgrade.", true, false, false, false);
 
         GridCardSelectScreenCallback.CallbackField.callback.set(AbstractDungeon.gridSelectScreen,
                 ()-> {
@@ -35,6 +36,7 @@ public class TinyHouseUpgrade1Card extends CustomReward {
                         c.upgrade();
                         AbstractDungeon.player.bottledCardUpgradeCheck(c);
                         AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy()));
+                        AbstractDungeon.gridSelectScreen.selectedCards.clear();
                     }
                 });
 

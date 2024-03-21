@@ -48,28 +48,7 @@ public class BGPeacePipe
 
     public static boolean menuActive=false;
 
-    // public boolean canSpawn() {
-    // if (AbstractDungeon.floorNum >= 48 && !Settings.isEndless) {
-    // return false;
-    // }
-    // int campfireRelicCount = 0;
 
-    // for (AbstractRelic r : AbstractDungeon.player.relics) {
-    // if (r instanceof PeacePipe || r instanceof Shovel || r instanceof Girya) {
-    // campfireRelicCount++;
-    // }
-    // }
-
-    // return (campfireRelicCount < 2);
-    // }
-
-
-    // public void addCampfireOption(ArrayList<AbstractCampfireOption> options) {
-    // options.add(new TokeOption(
-
-
-    // !CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck.getPurgeableCards()).isEmpty()));
-    // }
 
 
     public AbstractRelic makeCopy() {

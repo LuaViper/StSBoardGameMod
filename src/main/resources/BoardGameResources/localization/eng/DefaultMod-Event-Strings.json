@@ -404,8 +404,8 @@
     "NAME": "Scrap Ooze",
     "DESCRIPTIONS": [
       "As you walk into the room you hear a ~gurgling~ and the @grinding@ of metals. Before you is a slime-like creature that ate too much scrap for its own good. From the center of the creature you see glints of strange light, perhaps something magical? It looks like you can get some #ytreasure if you just reach inside its... opening. However, the acid and sharp objects may #rhurt.",
-      "#r@Ouch!@ NL All you find is corroded metal and a bit of #r@burning@ #r@pain.@ NL However, you're still convinced there's a #yrelic...",
-      "#gSuccess? NL After rummaging through the metal and burning acid, you grab hold of some #ygold and yank it out. NL You pull your way out of the ooze #rdamaged but rewarded.",
+      "#r@Ouch!@ NL All you find is corroded metal and a bit of #r@burning@ #r@pain.@ NL However, you're still convinced there's some #ytreasure...",
+      "#gSuccess? NL After rummaging through the metal and burning acid, you grab hold of some #ygold and yank it out. NL You pull your way out of the ooze #rdamaged but compensated.",
       "#gSuccess! NL After rummaging through the metal and burning acid, you finally grab hold of a #yrelic and yank it out. NL You pull your way out of the ooze #rdamaged but rewarded.",
       "You decide to leave the area. NL The slime pays no attention, content with its meal."
     ],
@@ -414,7 +414,15 @@
       " #rHP. #g",
       "%: #gFind #g2 #gGold #gor #ga #gRelic.",
       "[Leave]",
-      "[Deeper] #rLose #r"
+      "[Deeper] #rLose #r",
+      "[Leave] #gGain #g2 #gGold.",
+      "[Leave] #gGain #ga #gRelic.",
+      "[Gambling Chip] Reroll.",
+      "[The Abacus] ",
+      "[Toolbox] ",
+      "[Gambler's Brew] Choose a prize.",
+      "Gain 2 Gold instead.",
+      "Gain a Relic instead."
     ]
   },
   "BoardGame:BGSecretPortal": {

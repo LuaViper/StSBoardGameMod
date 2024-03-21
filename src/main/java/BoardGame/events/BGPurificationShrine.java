@@ -83,7 +83,8 @@ public class BGPurificationShrine
                                     !((AbstractCard)AbstractDungeon.player.masterDeck.group.get(i)).inBottleLightning && ((AbstractCard)AbstractDungeon.player.masterDeck.group
                                     .get(i)).cardID != "AscendersBane" && ((AbstractCard)AbstractDungeon.player.masterDeck.group
                                     .get(i)).cardID != "CurseOfTheBell" && ((AbstractCard)AbstractDungeon.player.masterDeck.group
-                                    .get(i)).cardID != "Necronomicurse") {
+                                    .get(i)).cardID != "Necronomicurse" && ((AbstractCard)AbstractDungeon.player.masterDeck.group
+                                    .get(i)).cardID != "BGAscendersBane") {
 
                                 AbstractDungeon.effectList.add(new PurgeCardEffect(AbstractDungeon.player.masterDeck.group
                                         .get(i)));

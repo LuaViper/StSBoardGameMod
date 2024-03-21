@@ -1,12 +1,14 @@
 //TODO: there is an unhandled edge case where right dagger kills itself via Thorns after Reptomancer has already checked if daggers are dead
 
 package BoardGame.monsters.bgbeyond; 
+ import BoardGame.cards.BGStatus.BGDazed;
  import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.DieControlledMoves;
 import BoardGame.powers.BGWeakPower;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.utility.HideHealthBarAction;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+ import com.megacrit.cardcrawl.cards.AbstractCard;
+ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import BoardGame.monsters.AbstractBGMonster;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
@@ -24,7 +26,8 @@ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.MinionPower;
-import com.megacrit.cardcrawl.powers.WeakPower;
+ import com.megacrit.cardcrawl.powers.StrengthPower;
+ import com.megacrit.cardcrawl.powers.WeakPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 
@@ -58,22 +61,17 @@ public class BGReptomancer extends AbstractBGMonster implements BGDamageIcons {
         this.daggersPerSpawn = 2;
 
 
-//        if (AbstractDungeon.ascensionLevel >= 8) {
-//            setHp(190, 200);
-//        } else {
-//            setHp(180, 190);
-//        }
-//        if (AbstractDungeon.ascensionLevel >= 3) {
-//            this.damage.add(new DamageInfo((AbstractCreature)this, 16));
-//            this.damage.add(new DamageInfo((AbstractCreature)this, 34));
-//        } else {
-//            this.damage.add(new DamageInfo((AbstractCreature)this, 13));
-//            this.damage.add(new DamageInfo((AbstractCreature)this, 30));
-//        }
 
-        setHp(35);
+
+        if(AbstractDungeon.ascensionLevel<1) {
+            setHp(35);
+        }else {
+            setHp(40);
+        }
         this.damage.add(new DamageInfo((AbstractCreature)this, 3));
         this.damage.add(new DamageInfo((AbstractCreature)this, 7));
+        this.damage.add(new DamageInfo((AbstractCreature)this, 7));
+        this.damage.add(new DamageInfo((AbstractCreature)this, 4));
 
         AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
         this.stateData.setMix("Idle", "Sumon", 0.1F);
@@ -118,7 +116,11 @@ public class BGReptomancer extends AbstractBGMonster implements BGDamageIcons {
                         daggersSpawned++;
                     }
                 }
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this, (byte)1, AbstractMonster.Intent.ATTACK, 3,2,true));
+                if(AbstractDungeon.ascensionLevel<1) {
+                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new SetMoveAction(this, (byte) 1, AbstractMonster.Intent.ATTACK, 3, 2, true));
+                }else {
+                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new SetMoveAction(this, (byte) 3, AbstractMonster.Intent.ATTACK_DEBUFF, 7, 1, false));
+                }
                 break;
             case 1:
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ChangeStateAction(this, "ATTACK"));
@@ -141,21 +143,20 @@ public class BGReptomancer extends AbstractBGMonster implements BGDamageIcons {
 
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                         .get(0), AbstractGameAction.AttackEffect.NONE));
-
-                boolean daggerStillAlive=false;
-                for (i = 0; i < this.daggers.length; i++) {
-                    if (!(this.daggers[i] == null || this.daggers[i].isDeadOrEscaped())) {
-                        daggerStillAlive=true;
+                {
+                    boolean daggerStillAlive = false;
+                    for (i = 0; i < this.daggers.length; i++) {
+                        if (!(this.daggers[i] == null || this.daggers[i].isDeadOrEscaped())) {
+                            daggerStillAlive = true;
+                        }
+                    }
+                    if (daggerStillAlive) {
+                        AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new SetMoveAction(this, (byte) 2, AbstractMonster.Intent.ATTACK, 7));
+                    } else {
+                        AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new SetMoveAction(this, (byte) 0, AbstractMonster.Intent.UNKNOWN));
                     }
                 }
-                if(daggerStillAlive){
-                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this, (byte)2, AbstractMonster.Intent.ATTACK_DEBUFF, 7));
-                }else{
-                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this, (byte)0, AbstractMonster.Intent.UNKNOWN));
-                }
                 break;
-
-
 
             case 2:
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new AnimateFastAttackAction((AbstractCreature)this));
@@ -168,8 +169,58 @@ public class BGReptomancer extends AbstractBGMonster implements BGDamageIcons {
 
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                         .get(1), AbstractGameAction.AttackEffect.NONE));
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)this, (AbstractPower)new BGWeakPower((AbstractCreature)AbstractDungeon.player, 1, true), 1));
+                //AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)this, (AbstractPower)new BGWeakPower((AbstractCreature)AbstractDungeon.player, 1, true), 1));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this, (byte)0, AbstractMonster.Intent.UNKNOWN));
+                break;
+
+
+            case 3:
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new AnimateFastAttackAction((AbstractCreature)this));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractGameEffect)new BiteEffect(AbstractDungeon.player.hb.cX +
+
+
+                        MathUtils.random(-50.0F, 50.0F) * Settings.scale, AbstractDungeon.player.hb.cY +
+                        MathUtils.random(-50.0F, 50.0F) * Settings.scale, Color.CHARTREUSE
+                        .cpy()), 0.1F));
+
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
+                        .get(2), AbstractGameAction.AttackEffect.NONE));
+                //AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)this, (AbstractPower)new BGWeakPower((AbstractCreature)AbstractDungeon.player, 1, true), 1));
+                addToBot((AbstractGameAction)new MakeTempCardInDrawPileAction((AbstractCard)new BGDazed(), 1, false, true));
+                {
+                    boolean daggerStillAlive = false;
+                    for (i = 0; i < this.daggers.length; i++) {
+                        if (!(this.daggers[i] == null || this.daggers[i].isDeadOrEscaped())) {
+                            daggerStillAlive = true;
+                        }
+                    }
+                    if (daggerStillAlive) {
+                        AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new SetMoveAction(this, (byte) 4, AbstractMonster.Intent.ATTACK_BUFF, 4,2,true));
+                    } else {
+                        AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new SetMoveAction(this, (byte) 0, AbstractMonster.Intent.UNKNOWN));
+                    }
+                }
+                break;
+
+            case 4:
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ChangeStateAction(this, "ATTACK"));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new WaitAction(0.3F));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractGameEffect)new BiteEffect(AbstractDungeon.player.hb.cX +
+                        MathUtils.random(-50.0F, 50.0F) * Settings.scale, AbstractDungeon.player.hb.cY +
+                        MathUtils.random(-50.0F, 50.0F) * Settings.scale, Color.ORANGE
+                        .cpy()), 0.1F));
+
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
+                        .get(3), AbstractGameAction.AttackEffect.NONE));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractGameEffect)new BiteEffect(AbstractDungeon.player.hb.cX +
+                        MathUtils.random(-50.0F, 50.0F) * Settings.scale, AbstractDungeon.player.hb.cY +
+                        MathUtils.random(-50.0F, 50.0F) * Settings.scale, Color.ORANGE
+                        .cpy()), 0.1F));
+
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new StrengthPower(this, 1), 1));
+
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this, (byte)0, AbstractMonster.Intent.UNKNOWN));
+
                 break;
         }
         //AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new RollMoveAction(this));

@@ -65,7 +65,11 @@ public class BGLagavulin extends AbstractBGMonster implements BGDamageIcons {
         }
 
         this.damage.add(new DamageInfo((AbstractCreature)this, this.attackDmg));
-        this.asleep = true;
+        if(AbstractDungeon.ascensionLevel==0) {
+            this.asleep = true;
+        }else{
+            this.asleep = false;
+        }
 
         loadAnimation("images/monsters/theBottom/lagavulin/skeleton.atlas", "images/monsters/theBottom/lagavulin/skeleton.json", 1.0F);
 
@@ -89,7 +93,7 @@ public class BGLagavulin extends AbstractBGMonster implements BGDamageIcons {
 
 
     public void usePreBattleAction() {
-        if (this.asleep) {
+        if(AbstractDungeon.ascensionLevel==0) {
             CardCrawlGame.music.precacheTempBgm("ELITE");
             //AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new GainBlockAction((AbstractCreature)this, (AbstractCreature)this, 8));
             //AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new MetallicizePower((AbstractCreature)this, 8), 8));
@@ -99,8 +103,8 @@ public class BGLagavulin extends AbstractBGMonster implements BGDamageIcons {
             CardCrawlGame.music.unsilenceBGM();
             AbstractDungeon.scene.fadeOutAmbiance();
             CardCrawlGame.music.playTempBgmInstantly("ELITE");
-            logger.info("DEBUFF_NAME is "+DEBUFF_NAME);
-            setMove(DEBUFF_NAME, (byte)1, AbstractMonster.Intent.STRONG_DEBUFF);
+            //logger.info("DEBUFF_NAME is "+DEBUFF_NAME);
+            setMove(DEBUFF_NAME, (byte)7, AbstractMonster.Intent.STRONG_DEBUFF);
         }
     }
 
@@ -151,8 +155,6 @@ public class BGLagavulin extends AbstractBGMonster implements BGDamageIcons {
 //                        AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new RollMoveAction(this));
 //                        break;
 //                }
-
-
                 break;
 
             case 4:
@@ -165,6 +167,32 @@ public class BGLagavulin extends AbstractBGMonster implements BGDamageIcons {
                 createIntent();
                 this.isOutTriggered = true;
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new RollMoveAction(this));
+                break;
+
+            case 7:
+                this.debuffTurnCount = 0;
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ChangeStateAction(this, "DEBUFF"));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new WaitAction(0.3F));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)this, (AbstractPower)new BGWeakPower((AbstractCreature)AbstractDungeon.player, 2, true), 2));
+                setMove((byte)8, Intent.ATTACK, ((DamageInfo)this.damage.get(0)).base);
+                break;
+            case 8:
+                this.debuffTurnCount++;
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ChangeStateAction(this, "ATTACK"));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new WaitAction(0.3F));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
+                        .get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+                setMove((byte)9, Intent.ATTACK_BUFF, ((DamageInfo)this.damage.get(0)).base);
+                break;
+            case 9:
+                this.debuffTurnCount++;
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ChangeStateAction(this, "ATTACK"));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new WaitAction(0.3F));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
+                        .get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new StrengthPower(this, 1), 1));
+
+                setMove(DEBUFF_NAME, (byte)7, AbstractMonster.Intent.STRONG_DEBUFF);
                 break;
         }
     }
@@ -216,6 +244,7 @@ public class BGLagavulin extends AbstractBGMonster implements BGDamageIcons {
 
 
     protected void getMove(int num) {
+
         if (this.isOut) {
             if (this.debuffTurnCount < 2) {
                 if (lastTwoMoves((byte)3)) {

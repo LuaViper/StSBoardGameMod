@@ -74,7 +74,10 @@ public class BGGremlinLeader extends AbstractBGMonster implements BGDamageIcons 
         e.setTimeScale(0.8F);
 
 
-        setHp(30);
+        if(AbstractDungeon.ascensionLevel<1)
+            setHp(30);
+        else
+            setHp(35);
 
 
         this.blockAmt = 1;
@@ -83,7 +86,10 @@ public class BGGremlinLeader extends AbstractBGMonster implements BGDamageIcons 
 
         this.dialogX = -80.0F * Settings.scale;
         this.dialogY = 50.0F * Settings.scale;
-        this.damage.add(new DamageInfo((AbstractCreature) this, 2));
+        if(AbstractDungeon.ascensionLevel<1)
+            this.damage.add(new DamageInfo((AbstractCreature) this, 2));
+        else
+            this.damage.add(new DamageInfo((AbstractCreature) this, 3));
         this.damage.add(new DamageInfo((AbstractCreature) this, 5));
     }
 

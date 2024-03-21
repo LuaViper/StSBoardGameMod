@@ -208,7 +208,8 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                 //logger.info("Adding colorless cards to reward deck?:");
                 for (AbstractCard c : tmpPool) {
                     //logger.info("Add "+c);
-                    if(c.type!=AbstractCard.CardType.STATUS && c.rarity != AbstractCard.CardRarity.SPECIAL) {
+                    if(c.type!=AbstractCard.CardType.STATUS && c.rarity != AbstractCard.CardRarity.SPECIAL
+                    ) {
                         colorlessRewardDeck.addToTop(c.makeCopy());
                     }
                 }
@@ -469,8 +470,7 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                 }
                 // don't remove card from reward deck yet.
                 // it will be removed during the subsequent call to getTransformedCard.
-                //TODO: DO place the old card on the bottom of the deck
-                // (and make sure Basic / Rare cards go to the correct deck!)
+                // reminder: transformed / removed cards do not return to the reward deck -- they're gone forever
                 return SpireReturn.Return();
             }
             return SpireReturn.Continue();

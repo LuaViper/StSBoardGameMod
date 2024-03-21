@@ -85,7 +85,7 @@ public class BGSnakeDagger extends AbstractBGMonster implements BGDamageIcons {
     protected void getMove(int num) {
         if (this.firstMove) {
             this.firstMove = false;
-            setMove((byte)1, AbstractMonster.Intent.ATTACK_DEBUFF, 2);
+            setMove((byte)1, AbstractMonster.Intent.ATTACK, 2);
 
             return;
         }

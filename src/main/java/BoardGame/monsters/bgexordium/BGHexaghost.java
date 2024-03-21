@@ -35,6 +35,7 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+//TODO: multiflame attack cards should be autopositioned
 public class BGHexaghost extends AbstractBGMonster implements BGDamageIcons {
     private static final Logger logger = LogManager.getLogger(BGHexaghost.class.getName());
     public static final String ID = "BGHexaghost";

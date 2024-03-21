@@ -95,7 +95,7 @@ public class BGDarkling extends AbstractBGMonster implements DieControlledMoves,
     public void usePreBattleAction() {
         (AbstractDungeon.getCurrRoom()).cannotLose = true;
         AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new BGRegrowPower((AbstractCreature)this)));
-//        if(this.behavior=="CUBE") {
+//        if(this.behavior.equals("CUBE")) {
 //            AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this,  (byte)1, AbstractMonster.Intent.DEFEND_BUFF));
 //        }
     }
@@ -152,7 +152,7 @@ public class BGDarkling extends AbstractBGMonster implements DieControlledMoves,
 //            setMove((byte) 6, AbstractMonster.Intent.BUFF);
 //            return;
 //        }
-        if(this.behavior=="CUBE") {
+        if(this.behavior.equals("CUBE")) {
             if(turnCount%2==0) {
                 setMove((byte) 1, AbstractMonster.Intent.DEFEND_BUFF);
             }else{
@@ -169,7 +169,7 @@ public class BGDarkling extends AbstractBGMonster implements DieControlledMoves,
 //            setMove((byte)6, AbstractMonster.Intent.BUFF);
 //            return;
 //        }
-        if(this.behavior=="CUBE") return;
+        if(this.behavior.equals("CUBE")) return;
         final Logger logger = LogManager.getLogger(DieControlledMoves.class.getName());
         char move = '-';
         if (TheDie.monsterRoll == 1 || TheDie.monsterRoll == 2)

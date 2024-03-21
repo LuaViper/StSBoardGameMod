@@ -1,17 +1,15 @@
-//TODO: use GenericStrengthUpPower
+//TODO: on A1+, should Taskmaster's 2nd action be ATTACK_DEBUFF or ATTACK_BUFF?
 
 package BoardGame.monsters.bgcity; 
+ import BoardGame.cards.BGStatus.BGDazed;
  import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.AbstractBGMonster;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.MakeTempCardInDiscardAction;
-import com.megacrit.cardcrawl.actions.common.RollMoveAction;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
+ import com.megacrit.cardcrawl.actions.common.*;
+ import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.status.Wound;
@@ -42,14 +40,24 @@ public class BGTaskmaster extends AbstractBGMonster implements BGDamageIcons {
         super(NAME, "BGSlaverBoss", AbstractDungeon.monsterHpRng.random(54, 60), -10.0F, -8.0F, 200.0F, 280.0F, null, x, y);
         this.type = AbstractMonster.EnemyType.ELITE;
 
-        setHp(13);
+        if(AbstractDungeon.ascensionLevel>=1) {
+            setHp(15);
+        }else{
+            setHp(13);
+        }
 
 
         this.damage.add(new DamageInfo((AbstractCreature)this, 1));
+        this.damage.add(new DamageInfo((AbstractCreature)this, 1));
+        this.damage.add(new DamageInfo((AbstractCreature)this, 2));
 
         loadAnimation("images/monsters/theCity/slaverMaster/skeleton.atlas", "images/monsters/theCity/slaverMaster/skeleton.json", 1.0F);
 
-
+        if(AbstractDungeon.ascensionLevel>=1){
+            setMove((byte) 1, AbstractMonster.Intent.ATTACK, ((DamageInfo) this.damage.get(1)).base,1, false);
+        }else{
+            setMove((byte) 0, AbstractMonster.Intent.ATTACK_BUFF, ((DamageInfo) this.damage.get(0)).base,1, false);
+        }
 
         AnimationState.TrackEntry e = this.state.setAnimation(0, "idle", true);
         e.setTime(e.getEndTime() * MathUtils.random());
@@ -58,14 +66,31 @@ public class BGTaskmaster extends AbstractBGMonster implements BGDamageIcons {
 
     public void takeTurn() {
         switch (this.nextMove) {
-            case 2:
+            case 0:
                 playSfx();
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new AnimateSlowAttackAction((AbstractCreature)this));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                         .get(0), AbstractGameAction.AttackEffect.SLASH_HEAVY));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new StrengthPower((AbstractCreature)this, 1), 1));
-
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this,  (byte)0, AbstractMonster.Intent.ATTACK_BUFF,this.damage.get(0).base,1,false));
                 break;
+            case 1:
+                playSfx();
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new AnimateSlowAttackAction((AbstractCreature)this));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
+                        .get(0), AbstractGameAction.AttackEffect.SLASH_HEAVY));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this,  (byte)2, AbstractMonster.Intent.ATTACK_DEBUFF,this.damage.get(2).base,1,false));
+                break;
+            case 2:
+                playSfx();
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new AnimateSlowAttackAction((AbstractCreature)this));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
+                        .get(0), AbstractGameAction.AttackEffect.SLASH_HEAVY));
+                addToBot((AbstractGameAction)new MakeTempCardInDrawPileAction((AbstractCard)new BGDazed(), 1, false, true));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new StrengthPower((AbstractCreature)this, 1), 1));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this,  (byte)2, AbstractMonster.Intent.ATTACK_DEBUFF,this.damage.get(2).base,1,false));
+                break;
+
         }
 
 
@@ -75,7 +100,9 @@ public class BGTaskmaster extends AbstractBGMonster implements BGDamageIcons {
 
 
     protected void getMove(int num) {
-        setMove((byte)2, AbstractMonster.Intent.ATTACK_BUFF, 1);
+        //setMove((byte)2, AbstractMonster.Intent.ATTACK_BUFF, 1);
+        //Moves are set in constructor and thereafter in takeTurn
+
     }
 
     private void playSfx() {

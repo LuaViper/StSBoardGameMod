@@ -51,7 +51,7 @@ public class BGSentry extends AbstractBGMonster implements BGDamageIcons, DieCon
 
         this.type = AbstractMonster.EnemyType.ELITE;
 
-        if(behavior=="D3" || behavior=="2D")
+        if(behavior.equals("D3") || (behavior.equals("2D") && AbstractDungeon.ascensionLevel==0))
             setHp(7);
         else
             setHp(8);
@@ -92,6 +92,7 @@ public class BGSentry extends AbstractBGMonster implements BGDamageIcons, DieCon
                     AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new FastShakeAction((AbstractCreature)AbstractDungeon.player, 0.6F, 0.15F));
                 }
                 addToBot((AbstractGameAction)new MakeTempCardInDrawPileAction((AbstractCard)new BGDazed(), 1, false, true));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new RollMoveAction(this));
                 break;
             case 4:     //2 dmg
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ChangeStateAction(this, "ATTACK"));
@@ -105,6 +106,7 @@ public class BGSentry extends AbstractBGMonster implements BGDamageIcons, DieCon
                 }
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                         .get(0), AbstractGameAction.AttackEffect.NONE, Settings.FAST_MODE));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new RollMoveAction(this));
                 break;
             case 5:     //3 dmg
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ChangeStateAction(this, "ATTACK"));
@@ -118,11 +120,51 @@ public class BGSentry extends AbstractBGMonster implements BGDamageIcons, DieCon
                 }
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                         .get(1), AbstractGameAction.AttackEffect.NONE, Settings.FAST_MODE));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new RollMoveAction(this));
+                break;
+
+            case 6:     //A1 daze
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SFXAction("THUNDERCLAP"));
+                if (!Settings.FAST_MODE) {
+                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractCreature)this, (AbstractGameEffect)new ShockWaveEffect(this.hb.cX, this.hb.cY, Color.ROYAL, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.5F));
+                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new FastShakeAction((AbstractCreature)AbstractDungeon.player, 0.6F, 0.2F));
+                } else {
+                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractCreature)this, (AbstractGameEffect)new ShockWaveEffect(this.hb.cX, this.hb.cY, Color.ROYAL, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.1F));
+                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new FastShakeAction((AbstractCreature)AbstractDungeon.player, 0.6F, 0.15F));
+                }
+                addToBot((AbstractGameAction)new MakeTempCardInDrawPileAction((AbstractCard)new BGDazed(), 1, false, true));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this, (byte)7, AbstractMonster.Intent.ATTACK, ((DamageInfo)this.damage
+                        .get(0)).base));
+                break;
+            case 7:     //A0 2 dmg
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ChangeStateAction(this, "ATTACK"));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SFXAction("ATTACK_MAGIC_BEAM_SHORT", 0.5F));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractGameEffect)new BorderFlashEffect(Color.SKY)));
+                if (Settings.FAST_MODE) {
+                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractGameEffect)new SmallLaserEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, this.hb.cX, this.hb.cY), 0.1F));
+                }
+                else {
+                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractGameEffect)new SmallLaserEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, this.hb.cX, this.hb.cY), 0.3F));
+                }
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this, (byte)8, AbstractMonster.Intent.DEBUFF));
+                break;
+            case 8:     //A1 double daze
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SFXAction("THUNDERCLAP"));
+                if (!Settings.FAST_MODE) {
+                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractCreature)this, (AbstractGameEffect)new ShockWaveEffect(this.hb.cX, this.hb.cY, Color.ROYAL, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.5F));
+                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new FastShakeAction((AbstractCreature)AbstractDungeon.player, 0.6F, 0.2F));
+                } else {
+                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractCreature)this, (AbstractGameEffect)new ShockWaveEffect(this.hb.cX, this.hb.cY, Color.ROYAL, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.1F));
+                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new FastShakeAction((AbstractCreature)AbstractDungeon.player, 0.6F, 0.15F));
+                }
+                addToBot((AbstractGameAction)new MakeTempCardInDrawPileAction((AbstractCard)new BGDazed(), 2, false, true));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this, (byte)7, AbstractMonster.Intent.ATTACK, ((DamageInfo)this.damage
+                        .get(0)).base));
                 break;
         }
 
 
-        AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new RollMoveAction(this));
+
     }
 
 
@@ -145,6 +187,8 @@ public class BGSentry extends AbstractBGMonster implements BGDamageIcons, DieCon
     }
 
     public void dieMove(int roll){
+        if(behavior.equals("2D")&&AbstractDungeon.ascensionLevel>=1)
+            return;
         final Logger logger = LogManager.getLogger(BoardGame.class.getName());
         //logger.info("BGJawWorm: TheDie "+TheDie.monsterRoll);
         char move='-';
@@ -165,7 +209,11 @@ public class BGSentry extends AbstractBGMonster implements BGDamageIcons, DieCon
 
 
     protected void getMove(int num) {
-        setMove((byte) 0, AbstractMonster.Intent.NONE);
+        if (behavior.equals("2D") && AbstractDungeon.ascensionLevel >= 1){
+            setMove((byte) 6, AbstractMonster.Intent.DEBUFF);
+        }else {
+            setMove((byte) 0, AbstractMonster.Intent.NONE);
+        }
     }
 
 //    protected void getMove(int num) {

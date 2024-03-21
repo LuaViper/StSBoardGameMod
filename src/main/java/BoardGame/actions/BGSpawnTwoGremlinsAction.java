@@ -23,13 +23,13 @@ public class BGSpawnTwoGremlinsAction extends AbstractGameAction {
         this.gremlins= BGExordium.pickTwoGremlins();
         for (int i=0;i<=1;i++) {
             AbstractMonster gremlin;
-            if(this.gremlins[i]=="BGGremlinAngry"){
+            if(this.gremlins[i].equals("BGGremlinAngry")){
                 gremlin=new BGGremlinAngry(POSX[i+1], POSY[i+1],false);
-            }else if(this.gremlins[i]=="BGGremlinSneaky"){
+            }else if(this.gremlins[i].equals("BGGremlinSneaky")){
                 gremlin=new BGGremlinSneaky(POSX[i+1], POSY[i+1],false);
-            }else if(this.gremlins[i]=="BGGremlinFat"){
+            }else if(this.gremlins[i].equals("BGGremlinFat")){
                 gremlin=new BGGremlinFat(POSX[i+1], POSY[i+1]);
-            }else if(this.gremlins[i]=="BGGremlinWizard"){
+            }else if(this.gremlins[i].equals("BGGremlinWizard")){
                 gremlin=new BGGremlinWizard(POSX[i+1], POSY[i+1]);
             }else{
                 gremlin=new BGGremlinSneaky(POSX[i+1], POSY[i+1],false);

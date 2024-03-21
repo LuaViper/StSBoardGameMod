@@ -1,5 +1,6 @@
 package BoardGame.events;
 
+import BoardGame.patches.TransformPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -120,11 +121,10 @@ public class BGLivingWall
 
                     case 1:
                         this.choice = Choice.CHANGE;
-                        if (CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck.getPurgeableCards())
+                        if (TransformPatch.getTransformableCards()
                                 .size() > 0) {
                             AbstractDungeon.gridSelectScreen.open(
-                                    CardGroup.getGroupWithoutBottledCards(AbstractDungeon.player.masterDeck
-                                            .getPurgeableCards()), 1, OPTIONS[4], false, true, false, false);
+                                    TransformPatch.getTransformableCards(), 1, OPTIONS[4], false, true, false, false);
                         }
                         break;
 

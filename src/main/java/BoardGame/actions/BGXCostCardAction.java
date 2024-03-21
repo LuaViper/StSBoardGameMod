@@ -5,6 +5,7 @@ package BoardGame.actions;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.cards.BGColorless.BGXCostChoice;
 import BoardGame.cards.BGRed.BGWhirlwind;
+import BoardGame.powers.BGCorruptionPower;
 import BoardGame.powers.BGFreeAttackPower;
 import BoardGame.powers.BGFreeCardPower;
 import basemod.helpers.ModalChoice;
@@ -46,7 +47,8 @@ public class BGXCostCardAction extends AbstractGameAction {
         }
         //if(this.freeToPlay()){    //can't do this because of built-in mod shenanigans (freeToPlayOnce is true when player has 0 energy)
         if(c.isInAutoplay || BGFreeCardPower.isActive()
-        || (BGFreeAttackPower.isActive() && c.type== AbstractCard.CardType.ATTACK)){
+        || (BGFreeAttackPower.isActive() && c.type==AbstractCard.CardType.ATTACK)
+        || (BGCorruptionPower.isActive() && c.type==AbstractCard.CardType.SKILL)){
             c.energyOnUse=0;
             info.exactEnergyCost=0;
             info.dontExpendResources=true;

@@ -1,6 +1,7 @@
 package BoardGame.cards.BGRed;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGIronclad;
+import BoardGame.powers.BGCorruptionPower;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -47,7 +48,7 @@ public class BGCorruption extends AbstractBGCard {
             }
         }
         if (!powerExists) {
-            addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new CorruptionPower((AbstractCreature)p)));
+            addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new BGCorruptionPower((AbstractCreature)p)));
         }
     }
 

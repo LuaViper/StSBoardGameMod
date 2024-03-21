@@ -1,5 +1,6 @@
 package BoardGame.events;
 
+import BoardGame.patches.TransformPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.cards.colorless.JAX;
@@ -141,8 +142,7 @@ public class BGDrugDealer
 
     private void transform() {
         if (!AbstractDungeon.isScreenUp) {
-            AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck
-                    .getPurgeableCards(), 2, OPTIONS[5], false, false, false, false);
+            AbstractDungeon.gridSelectScreen.open(TransformPatch.getTransformableCards(), 2, OPTIONS[5], false, false, false, false);
 
 
         }
@@ -152,8 +152,7 @@ public class BGDrugDealer
 
             AbstractDungeon.dynamicBanner.hide();
             AbstractDungeon.previousScreen = AbstractDungeon.screen;
-            AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck
-                    .getPurgeableCards(), 2, OPTIONS[5], false, false, false, false);
+            AbstractDungeon.gridSelectScreen.open(TransformPatch.getTransformableCards(), 2, OPTIONS[5], false, false, false, false);
         }
     }
 }

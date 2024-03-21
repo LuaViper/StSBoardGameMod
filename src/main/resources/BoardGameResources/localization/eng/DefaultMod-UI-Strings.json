@@ -1,0 +1,26 @@
+{
+  "BoardGame:AscensionModeDescriptions": {
+    "TEXT": [
+      "1. Elites are deadlier.",
+      "2. Lower Max HP.",
+      "3. Unfavorable Events.",
+      "4. Fewer Potion Slots.",
+      "5. Start each run cursed.",
+      "6. Heal less after Boss battles.",
+      "7. Normal enemies are deadlier.",
+      "8. Card removal is more costly.",
+      "9. Start each run damaged.",
+      "10. Bosses are deadlier.",
+      "11. ???",
+      "12. Elites are even deadlier.",
+      "13. (Max Level) Double Boss.",
+      "14.",
+      "15.",
+      "16.",
+      "17.",
+      "18.",
+      "19.",
+      "20."
+    ]
+  }
+}

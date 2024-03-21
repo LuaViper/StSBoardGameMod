@@ -143,7 +143,7 @@
       "Select Cards to Upgrade",
       "[ Proceed ]",
       "#yDISCLAIMER",
-      "This project was hastily thrown together for the purpose of playtesting the board game, specifically in order to judge the relative difficulty of each encounter in a single-player game. The mod remains very much a work in progress. You may notice missing content, rule inaccuracies, bugs, and even softlocks. Ascension Mode is not yet implemented. NL NL Most importantly, #ysave #yfiles #yare #ynot #yready #yyet.  If you try to save the game and reload, everything will break in hilarious and horrifying ways.",
+      "This mod remains very much a work in progress. You may notice rule inaccuracies, bugs, and even softlocks. Ascension Mode is not fully implemented. NL NL Most importantly, #ysave #yfiles #yare #ynot #yready #yyet.  If you try to save the game and reload, everything will break in hilarious and horrifying ways.",
       "If the game softlocks on a reward screen, try opening and closing the map.",
       "This is TEXT[72] by the way. In case you lose count, the IDE will also keep track for you, beneath the text editor window."
     ],
@@ -194,8 +194,9 @@
       "The Die determines the behavior of certain relics and enemies.",
       "Many relics will not take effect until you right-click them. Don't forget them!",
       "When you roll a 6, you can trigger ANY die ability, but you must do so before playing a card.",
-      "Relics which let you reroll the die can also be used in events.",
+      "Items which let you reroll the die can also be used in events.",
       "Some enemies can deal more damage than you have maximum health.",
+      "Max Weak is 3 and max Vulnerable is 3.",
       "Max Energy is 6 and max Block is 20.",
       "Max Strength is 8 and max Poison is 30.",
       "You can only add a single copy of each Uncommon or Rare card to your deck.",
@@ -206,7 +207,7 @@
       "When you Exhaust a Status card, it disappears instead of going into your Exhaust pile.",
       "You will never see the same rare card twice in one run.",
       "There is no maximum hand size.",
-      "Curses cannot be transformed. (Editor's note: for now, use the honor system.)",
+      "Transformed cards revert to your character's color. Curses cannot be transformed.",
       "Unknown rooms contain only events until Ascension 3.",
       "The card removal service does not increase in price each time you use it. Ignore that tooltip.",
       "Some cards, relics, and events gain additional effects in multiplayer games."
