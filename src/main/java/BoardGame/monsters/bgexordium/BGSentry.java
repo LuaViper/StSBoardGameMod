@@ -146,6 +146,8 @@ public class BGSentry extends AbstractBGMonster implements BGDamageIcons, DieCon
                 else {
                     AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractGameEffect)new SmallLaserEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY, this.hb.cX, this.hb.cY), 0.3F));
                 }
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
+                        .get(0), AbstractGameAction.AttackEffect.NONE, Settings.FAST_MODE));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this, (byte)8, AbstractMonster.Intent.DEBUFF));
                 break;
             case 8:     //A1 double daze
