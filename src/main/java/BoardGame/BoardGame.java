@@ -7,6 +7,8 @@ import BoardGame.monsters.bgcity.*;
 import BoardGame.monsters.bgbeyond.*;
 import BoardGame.monsters.bgending.*;
 import BoardGame.dungeons.*;
+import BoardGame.multicharacter.BGMultiCharacter;
+import BoardGame.multicharacter.MultiCharacterSelectScreen;
 import BoardGame.potions.*;
 import BoardGame.relics.*;
 import BoardGame.rewards.TinyHouseUpgrade1Card;
@@ -115,7 +117,11 @@ public class BoardGame implements
     private static final String ENERGY_ORB_P_IRONCLAD = "BoardGameResources/images/1024/card_default_gray_orb.png";
 
     // Character assets
-    private static final String CHAR_SELECT_BUTTON_IRONCLAD = "images/ui/charSelect/ironcladButton.png";
+
+    public static final String CHAR_SELECT_BUTTON_MULTICHARACTER = "images/ui/charSelect/ironcladButton.png";
+    private static final String CHAR_SELECT_PORTRAIT_MULTICHARACTER = "BoardGameResources/images/charSelect/MultiCharacterPortrait.png";
+
+    public static final String CHAR_SELECT_BUTTON_IRONCLAD = "images/ui/charSelect/ironcladButton.png";
     private static final String CHAR_SELECT_PORTRAIT_IRONCLAD = "images/ui/charSelect/ironcladPortrait.jpg";
 
     private static final String BGATTACK_SILENT = "BoardGameResources/images/512/bg_attack_theSilent.png";
@@ -127,7 +133,7 @@ public class BoardGame implements
     private static final String BGSKILL_P_SILENT = "BoardGameResources/images/1024/bg_skill_theSilent.png";
     private static final String BGPOWER_P_SILENT = "BoardGameResources/images/1024/bg_power_theSilent.png";
     private static final String ENERGY_ORB_P_SILENT = "BoardGameResources/images/1024/card_orb_theSilent.png";
-    private static final String CHAR_SELECT_BUTTON_SILENT = "images/ui/charSelect/silentButton.png";
+    public static final String CHAR_SELECT_BUTTON_SILENT = "images/ui/charSelect/silentButton.png";
     private static final String CHAR_SELECT_PORTRAIT_SILENT = "images/ui/charSelect/silentPortrait.jpg";
 
     private static final String BGATTACK_DEFECT = "BoardGameResources/images/512/bg_attack_theDefect.png";
@@ -139,7 +145,7 @@ public class BoardGame implements
     private static final String BGSKILL_P_DEFECT = "BoardGameResources/images/1024/bg_skill_theDefect.png";
     private static final String BGPOWER_P_DEFECT = "BoardGameResources/images/1024/bg_power_theDefect.png";
     private static final String ENERGY_ORB_P_DEFECT = "BoardGameResources/images/1024/card_orb_theDefect.png";
-    private static final String CHAR_SELECT_BUTTON_DEFECT = "images/ui/charSelect/defectButton.png";
+    public static final String CHAR_SELECT_BUTTON_DEFECT = "images/ui/charSelect/defectButton.png";
     private static final String CHAR_SELECT_PORTRAIT_DEFECT = "images/ui/charSelect/defectPortrait.jpg";
 
     private static final String BGATTACK_WATCHER = "BoardGameResources/images/512/bg_attack_theWatcher.png";
@@ -151,7 +157,7 @@ public class BoardGame implements
     private static final String BGSKILL_P_WATCHER = "BoardGameResources/images/1024/bg_skill_theWatcher.png";
     private static final String BGPOWER_P_WATCHER = "BoardGameResources/images/1024/bg_power_theWatcher.png";
     private static final String ENERGY_ORB_P_WATCHER = "BoardGameResources/images/1024/card_orb_theWatcher.png";
-    private static final String CHAR_SELECT_BUTTON_WATCHER = "images/ui/charSelect/watcherButton.png";
+    public static final String CHAR_SELECT_BUTTON_WATCHER = "images/ui/charSelect/watcherButton.png";
     private static final String CHAR_SELECT_PORTRAIT_WATCHER = "images/ui/charSelect/watcherPortrait.jpg";
     
     
@@ -341,7 +347,11 @@ public class BoardGame implements
 
     @Override
     public void receiveEditCharacters() {
-        logger.info("Beginning to edit characters. " + "Add " + BGIronclad.Enums.BG_IRONCLAD.toString());
+        logger.info("Beginning to edit characters.");
+
+        BaseMod.addCharacter(new BGMultiCharacter("the Board Game", BGMultiCharacter.Enums.BG_MULTICHARACTER),
+                CHAR_SELECT_BUTTON_MULTICHARACTER, CHAR_SELECT_PORTRAIT_MULTICHARACTER, BGMultiCharacter.Enums.BG_MULTICHARACTER);
+        logger.info("Added " + BGMultiCharacter.Enums.BG_MULTICHARACTER.toString());
 
         BaseMod.addCharacter(new BGIronclad("the Ironclad", BGIronclad.Enums.BG_IRONCLAD),
                 CHAR_SELECT_BUTTON_IRONCLAD, CHAR_SELECT_PORTRAIT_IRONCLAD, BGIronclad.Enums.BG_IRONCLAD);
@@ -401,6 +411,7 @@ public class BoardGame implements
 
 //        BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
+        BaseMod.addCustomScreen(new MultiCharacterSelectScreen());
         BaseMod.addCustomScreen(new TargetSelectScreen());
         BaseMod.addCustomScreen(new OrbSelectScreen());
         BaseMod.addCustomScreen(new RelicTradingScreen());

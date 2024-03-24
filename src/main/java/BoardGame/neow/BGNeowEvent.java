@@ -4,7 +4,10 @@ package BoardGame.neow;
 //TODO: several rewards can softlock if player doesn't have enough cards (not just limited to Quick Start)
 
 import BoardGame.dungeons.AbstractBGDungeon;
+import BoardGame.multicharacter.BGMultiCharacter;
+import BoardGame.multicharacter.MultiCharacterSelectScreen;
 import BoardGame.thedie.TheDie;
+import basemod.BaseMod;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
@@ -128,9 +131,17 @@ public class BGNeowEvent
 //            talk(TEXT[MathUtils.random(1, 3)]);
 //            this.roomEventText.addDialogOption(OPTIONS[1]);
 
-            this.screenNum=-1;          //disclaimer intro
+             if (AbstractDungeon.player instanceof BGMultiCharacter) {
+                BaseMod.openCustomScreen(MultiCharacterSelectScreen.Enum.MULTI_CHARACTER_SELECT);
+            }
+
+            this.screenNum = -1;    //disclaimer intro
             this.roomEventText.addDialogOption(EXTRA[68]);
-            this.body=EXTRA[69]+" NL NL "+EXTRA[70];
+            if (AbstractDungeon.player instanceof BGMultiCharacter) {
+                this.body = EXTRA[69] + " NL NL " + EXTRA[73];
+            } else {
+                this.body = EXTRA[69] + " NL NL " + EXTRA[70];
+            }
 
             AbstractDungeon.topLevelEffects.add(new LevelTransitionTextOverlayEffect(AbstractDungeon.name, AbstractDungeon.levelNum, true));
         } else {

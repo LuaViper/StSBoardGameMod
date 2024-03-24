@@ -13,6 +13,8 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 import java.util.ArrayList;
 
+import static BoardGame.BoardGame.CHAR_SELECT_BUTTON_IRONCLAD;
+
 public abstract class AbstractBGCharacter extends CustomPlayer {
 
 //    public static final String[] orbTextures = {
@@ -32,6 +34,8 @@ public abstract class AbstractBGCharacter extends CustomPlayer {
     public int shivsPlayedThisTurn=0;
     public boolean stanceChangedThisTurn=false;
     public boolean mayhemActive=false;
+    public int currentRow=0;
+    public String getMultiSwapButtonUrl(){return "";}
     public AbstractBGCharacter(String name, PlayerClass setClass, String[] orbTextures, String orbVfxPath, String model, String animation) {
         super(name, setClass, orbTextures,
                 orbVfxPath, model,

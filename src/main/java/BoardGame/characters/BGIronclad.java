@@ -56,6 +56,7 @@ public class BGIronclad extends AbstractBGCharacter {
 
     // =============== CHARACTER ENUMERATORS  =================
 
+    public String getMultiSwapButtonUrl(){return CHAR_SELECT_BUTTON_IRONCLAD;}
 
     // =============== BASE STATS =================
 

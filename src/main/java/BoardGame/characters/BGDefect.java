@@ -65,6 +65,7 @@ public class BGDefect extends AbstractBGCharacter {
 
     // =============== CHARACTER ENUMERATORS  =================
 
+    public String getMultiSwapButtonUrl(){return CHAR_SELECT_BUTTON_DEFECT;}
 
     // =============== BASE STATS =================
 

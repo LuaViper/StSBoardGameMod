@@ -7,6 +7,7 @@ import BoardGame.potions.BGGamblersBrew;
 import BoardGame.powers.BGTheDiePower;
 import BoardGame.relics.*;
 import BoardGame.ui.LockInRollButton;
+import BoardGame.ui.OverlayMenuPatches;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -63,9 +64,9 @@ public class TheDie {
             if(((BGGamblingChip)relic).available)gambleok=true;
         }
         if(gambleok) {
-            LockInRollButton.OverlayMenuDiceInterface.rerollbutton.get(AbstractDungeon.overlayMenu).visible = true;
+            OverlayMenuPatches.OverlayMenuExtraInterface.rerollbutton.get(AbstractDungeon.overlayMenu).visible = true;
         }else{
-            LockInRollButton.OverlayMenuDiceInterface.rerollbutton.get(AbstractDungeon.overlayMenu).visible = false;
+            OverlayMenuPatches.OverlayMenuExtraInterface.rerollbutton.get(AbstractDungeon.overlayMenu).visible = false;
         }
 
         boolean abacusok=false;
@@ -74,9 +75,9 @@ public class TheDie {
             if(((BGTheAbacus)relic).available)abacusok=true;
         }
         if(abacusok) {
-            LockInRollButton.OverlayMenuDiceInterface.theabacusbutton.get(AbstractDungeon.overlayMenu).visible = true;
+            OverlayMenuPatches.OverlayMenuExtraInterface.theabacusbutton.get(AbstractDungeon.overlayMenu).visible = true;
         }else{
-            LockInRollButton.OverlayMenuDiceInterface.theabacusbutton.get(AbstractDungeon.overlayMenu).visible = false;
+            OverlayMenuPatches.OverlayMenuExtraInterface.theabacusbutton.get(AbstractDungeon.overlayMenu).visible = false;
         }
 
         boolean toolboxok=false;
@@ -85,9 +86,9 @@ public class TheDie {
             if(((BGToolbox)relic).available)toolboxok=true;
         }
         if(toolboxok) {
-            LockInRollButton.OverlayMenuDiceInterface.toolboxbutton.get(AbstractDungeon.overlayMenu).visible = true;
+            OverlayMenuPatches.OverlayMenuExtraInterface.toolboxbutton.get(AbstractDungeon.overlayMenu).visible = true;
         }else{
-            LockInRollButton.OverlayMenuDiceInterface.toolboxbutton.get(AbstractDungeon.overlayMenu).visible = false;
+            OverlayMenuPatches.OverlayMenuExtraInterface.toolboxbutton.get(AbstractDungeon.overlayMenu).visible = false;
         }
 
         boolean potionok=false;
@@ -95,16 +96,16 @@ public class TheDie {
             potionok=true;
         }
         if(potionok){
-            LockInRollButton.OverlayMenuDiceInterface.potionbutton.get(AbstractDungeon.overlayMenu).visible = true;
+            OverlayMenuPatches.OverlayMenuExtraInterface.potionbutton.get(AbstractDungeon.overlayMenu).visible = true;
         }else{
-            LockInRollButton.OverlayMenuDiceInterface.potionbutton.get(AbstractDungeon.overlayMenu).visible = false;
+            OverlayMenuPatches.OverlayMenuExtraInterface.potionbutton.get(AbstractDungeon.overlayMenu).visible = false;
         }
 
         if(gambleok || abacusok || toolboxok || potionok) {
             //AbstractDungeon.overlayMenu.endTurnButton.disable(false); //DO NOT DO THIS. many sideeffects.
-            LockInRollButton.OverlayMenuDiceInterface.lockinrollbutton.get(AbstractDungeon.overlayMenu).visible = true;
+            OverlayMenuPatches.OverlayMenuExtraInterface.lockinrollbutton.get(AbstractDungeon.overlayMenu).visible = true;
         }else{
-            LockInRollButton.OverlayMenuDiceInterface.lockinrollbutton.get(AbstractDungeon.overlayMenu).visible = false;
+            OverlayMenuPatches.OverlayMenuExtraInterface.lockinrollbutton.get(AbstractDungeon.overlayMenu).visible = false;
             if(AbstractDungeon.player.hasRelic("BoardGame:BGTheDieRelic")) {
                 AbstractRelic relic = AbstractDungeon.player.getRelic("BoardGame:BGTheDieRelic");
                 ((BGTheDieRelic) relic).lockRollAndActivateDieRelics();
