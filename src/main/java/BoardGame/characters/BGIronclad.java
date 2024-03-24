@@ -56,7 +56,7 @@ public class BGIronclad extends AbstractBGCharacter {
 
     // =============== CHARACTER ENUMERATORS  =================
 
-    public String getMultiSwapButtonUrl(){return CHAR_SELECT_BUTTON_IRONCLAD;}
+    public String getMultiSwapButtonUrl(){return "BoardGameResources/images/icons/ironclad.png";}
 
     // =============== BASE STATS =================
 

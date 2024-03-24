@@ -67,7 +67,7 @@ public class BGWatcher extends AbstractBGCharacter {
     }
 
     // =============== CHARACTER ENUMERATORS  =================
-    public String getMultiSwapButtonUrl(){return CHAR_SELECT_BUTTON_WATCHER;}
+    public String getMultiSwapButtonUrl(){return "BoardGameResources/images/icons/watcher.png";}
 
     // =============== BASE STATS =================
 

@@ -61,7 +61,7 @@ public class BGSilent extends AbstractBGCharacter {
     }
 
     // =============== CHARACTER ENUMERATORS  =================
-    public String getMultiSwapButtonUrl(){return "BoardGameResources/images/icons/";}
+    public String getMultiSwapButtonUrl(){return "BoardGameResources/images/icons/silent.png";}
 
     // =============== BASE STATS =================
 

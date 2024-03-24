@@ -1,6 +1,7 @@
 package BoardGame.neow;
 
 import BoardGame.dungeons.AbstractBGDungeon;
+import BoardGame.multicharacter.MultiCharacterSelectScreen;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -14,6 +15,7 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
 import com.megacrit.cardcrawl.screens.CombatRewardScreen;
+import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import com.megacrit.cardcrawl.ui.buttons.CancelButton;
 import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
 import javassist.CannotCompileException;
@@ -225,6 +227,36 @@ public class BGNeowQuickStart {
 //            return SpireReturn.Continue();
 //        }
 //    }
+
+    @SpirePatch(
+            clz = ProceedButton.class,
+            method = "update",
+            paramtypez = {}
+    )
+    public static class ProceedButtonUpdatePatch4 {
+        @SpireInsertPatch(
+                locator = Locator.class,
+                localvars = {}
+        )
+        public static SpireReturn<Void> update(ProceedButton __instance) {
+            BGNeowQuickStart.logger.info("BGNeowQuickStart: ProceedButtonUpdatePatch4");
+            if (AbstractDungeon.screen == MultiCharacterSelectScreen.Enum.MULTI_CHARACTER_SELECT) {
+                AbstractDungeon.closeCurrentScreen();
+                AbstractDungeon.overlayMenu.hideBlackScreen();
+                AbstractDungeon.overlayMenu.proceedButton.hide();
+                return SpireReturn.Return();
+            } else {
+                return SpireReturn.Continue();
+            }
+        }
+
+        private static class Locator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(DungeonMapScreen.class, "open");
+                return new int[]{LineFinder.findAllInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher)[2]};
+            }
+        }
+    }
 
 
 }

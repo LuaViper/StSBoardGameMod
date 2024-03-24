@@ -65,7 +65,7 @@ public class BGDefect extends AbstractBGCharacter {
 
     // =============== CHARACTER ENUMERATORS  =================
 
-    public String getMultiSwapButtonUrl(){return CHAR_SELECT_BUTTON_DEFECT;}
+    public String getMultiSwapButtonUrl(){return "BoardGameResources/images/icons/defect.png";}
 
     // =============== BASE STATS =================
 
