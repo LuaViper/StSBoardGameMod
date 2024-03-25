@@ -93,7 +93,7 @@ public class MultiCharacterSelectScreen extends CustomScreen {
       this.isDone = true;
       AbstractDungeon.closeCurrentScreen();
       return;
-    } 
+    }
     BGMultiCharacter c = (BGMultiCharacter)AbstractDungeon.player;
     if (c.subcharacters.isEmpty()) {
       AbstractDungeon.overlayMenu.proceedButton.hide();

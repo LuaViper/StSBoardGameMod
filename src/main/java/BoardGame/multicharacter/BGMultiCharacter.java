@@ -4,6 +4,7 @@ import BoardGame.BoardGame;
 import BoardGame.cards.BGRed.BGStrike_Red;
 import BoardGame.characters.AbstractBGCharacter;
 import BoardGame.characters.BGIronclad;
+import BoardGame.multicharacter.patches.ContextPatches;
 import BoardGame.relics.BGBurningBlood;
 import BoardGame.relics.BGTheDieRelic;
 import basemod.BaseMod;
@@ -35,8 +36,10 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+//TODO: players act from bottom lane to top lane, but monsters act from top lane to bottom lane
+
 public class BGMultiCharacter extends AbstractBGCharacter {
-  public static final Logger logger = LogManager.getLogger(BoardGame.class.getName());
+  public static final Logger logger = LogManager.getLogger(BGMultiCharacter.class.getName());
   
   public static class Enums {
     @SpireEnum
@@ -48,9 +51,14 @@ public class BGMultiCharacter extends AbstractBGCharacter {
     @SpireEnum(name = "BG_BOARDGAME_COLOR")
     public static CardLibrary.LibraryType LIBRARY_COLOR;
   }
-  
+
   public ArrayList<AbstractBGCharacter> subcharacters = new ArrayList<>();
-  
+  public static ArrayList<AbstractBGCharacter> getSubcharacters(){
+    if(ContextPatches.originalBGMultiCharacter!=null)
+      return ((BGMultiCharacter) ContextPatches.originalBGMultiCharacter).subcharacters;
+    logger.warn("tried to BGMultiCharacter.getSubcharacters, but ContextPatches.originalBGMultiCharacter==null, time to panic!");
+    return new ArrayList<>();
+  }
   public static final int ENERGY_PER_TURN = 0;
   
   public static final int STARTING_HP = 9;
@@ -221,26 +229,24 @@ public class BGMultiCharacter extends AbstractBGCharacter {
   
   public void preBattlePrep() {
     super.preBattlePrep();
-    for (int i = this.subcharacters.size() - 1; i >= 0; ) {
-      ((AbstractBGCharacter)this.subcharacters.get(i)).preBattlePrep();
-      i--;
+    for (int i = this.subcharacters.size() - 1; i >= 0; i-=1) {
+      (this.subcharacters.get(i)).preBattlePrep();
+
     } 
   }
   
   public void render(SpriteBatch sb) {
-    for (int i = this.subcharacters.size() - 1; i >= 0; ) {
-      ((AbstractBGCharacter)this.subcharacters.get(i)).render(sb);
-      i--;
-    } 
+    for (int i = this.subcharacters.size() - 1; i >= 0; i-=1) {
+      (this.subcharacters.get(i)).render(sb);
+    }
   }
-  
+
   public void renderHand(SpriteBatch sb) {
-    for (int i = this.subcharacters.size() - 1; i >= 0; ) {
-      ((AbstractBGCharacter)this.subcharacters.get(i)).renderHand(sb);
-      i--;
-    } 
+    for (int i = this.subcharacters.size() - 1; i >= 0; i-=1) {
+      (this.subcharacters.get(i)).renderHand(sb);
+    }
   }
-  
+
   public void addBlock(int blockAmount) {
     float tmp = blockAmount;
     if (this.isPlayer) {
@@ -270,10 +276,7 @@ public class BGMultiCharacter extends AbstractBGCharacter {
       this.blockScale = 5.0F;
     } 
   }
+
+
+
 }
-
-
-/* Location:              C:\Spire dev\BoardGame.jar!\BoardGame\multicharacter\BGMultiCharacter.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       1.1.3
- */

@@ -54,7 +54,6 @@ import static basemod.BaseMod.addMonster;
 
 //TODO: implement PostCreditsNeow easter egg -- need to put these back in the box -- does anyone have opposable thumbs
 
-
 /*
 
  * https://github.com/daviscook477/BaseMod/wiki
@@ -349,13 +348,14 @@ public class BoardGame implements
     public void receiveEditCharacters() {
         logger.info("Beginning to edit characters.");
 
-        BaseMod.addCharacter(new BGMultiCharacter("the Board Game", BGMultiCharacter.Enums.BG_MULTICHARACTER),
-                CHAR_SELECT_BUTTON_MULTICHARACTER, CHAR_SELECT_PORTRAIT_MULTICHARACTER, BGMultiCharacter.Enums.BG_MULTICHARACTER);
-        logger.info("Added " + BGMultiCharacter.Enums.BG_MULTICHARACTER.toString());
-
+        //create BGIronclad before BGMultiCharacter so that red cards are labeled correctly in the compendium
         BaseMod.addCharacter(new BGIronclad("the Ironclad", BGIronclad.Enums.BG_IRONCLAD),
                 CHAR_SELECT_BUTTON_IRONCLAD, CHAR_SELECT_PORTRAIT_IRONCLAD, BGIronclad.Enums.BG_IRONCLAD);
         logger.info("Added " + BGIronclad.Enums.BG_IRONCLAD.toString());
+
+        BaseMod.addCharacter(new BGMultiCharacter("the Board Game", BGMultiCharacter.Enums.BG_MULTICHARACTER),
+                CHAR_SELECT_BUTTON_MULTICHARACTER, CHAR_SELECT_PORTRAIT_MULTICHARACTER, BGMultiCharacter.Enums.BG_MULTICHARACTER);
+        logger.info("Added " + BGMultiCharacter.Enums.BG_MULTICHARACTER.toString());
 
         BaseMod.addCharacter(new BGSilent("the Silent", BGSilent.Enums.BG_SILENT),
                 CHAR_SELECT_BUTTON_SILENT, CHAR_SELECT_PORTRAIT_SILENT, BGSilent.Enums.BG_SILENT);

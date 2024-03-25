@@ -129,7 +129,7 @@ public class BGWeave extends AbstractBGCard {
                         return SpireReturn.Return();
                     }
                 }
-                BoardGame.BoardGame.logger.info("WARNING! Just called moveToDiscardPile(null), and ScryAction was NOT in the stack trace. NullPointerException incoming!");
+                BoardGame.BoardGame.logger.warn("Just called moveToDiscardPile(null), and ScryAction was NOT in the stack trace. NullPointerException incoming!");
             }
             return SpireReturn.Continue();
         }

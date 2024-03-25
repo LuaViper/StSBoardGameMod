@@ -29,7 +29,7 @@ public class BGRegrowPower extends AbstractBGPower {
     public BGRegrowPower(AbstractCreature owner) {
         Logger logger = LogManager.getLogger(BGRegrowPower.class.getName());
         if(!(owner instanceof BGDarkling)){
-            logger.info("WARNING: tried to apply BGRegrowPower to something other than a Darkling; things will probably break");
+            logger.warn("tried to apply BGRegrowPower to something other than a Darkling; things will probably break");
         }
         this.name = NAME;
         this.ID = "BGRegrowPower";

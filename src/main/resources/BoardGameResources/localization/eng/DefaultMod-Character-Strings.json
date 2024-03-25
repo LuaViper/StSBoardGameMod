@@ -1,5 +1,5 @@
 {
-  "BoardGame:BGMultiCharacter": {
+  "${modID}:BGMultiCharacter": {
     "NAMES": [
       "The Board Game",
       "the Board Game"
