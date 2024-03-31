@@ -8,6 +8,7 @@ import BoardGame.relics.BGTheDieRelic;
 import basemod.ReflectionHacks;
 import basemod.abstracts.CustomPlayer;
 import basemod.animations.G3DJAnimation;
+import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.GameCursor;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
@@ -39,8 +40,10 @@ public abstract class AbstractBGCharacter extends CustomPlayer {
     //TODO: maybe move PlayedThisTurn to TheDie relic
     public int shivsPlayedThisTurn=0;
     public boolean stanceChangedThisTurn=false;
-    public boolean mayhemActive=false;
     public int currentRow=0;
+    public int savedCurrentEnergy=0;
+
+
     public String getMultiSwapButtonUrl(){return "";}
     public AbstractBGCharacter(String name, PlayerClass setClass, String[] orbTextures, String orbVfxPath, String model, String animation) {
         super(name, setClass, orbTextures,

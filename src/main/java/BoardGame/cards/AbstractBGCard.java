@@ -2,6 +2,7 @@
 package BoardGame.cards;
 import BoardGame.actions.BGCopyCardAction;
 import BoardGame.actions.TargetSelectScreenAction;
+import BoardGame.characters.AbstractBGCharacter;
 import BoardGame.characters.BGColorless;
 import BoardGame.dungeons.AbstractBGDungeon;
 import BoardGame.dungeons.BGExordium;
@@ -10,6 +11,7 @@ import BoardGame.screen.TargetSelectScreen;
 import basemod.BaseMod;
 import basemod.ReflectionHacks;
 import basemod.abstracts.CustomCard;
+import basemod.interfaces.AlternateCardCostModifier;
 import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.RenderFixSwitches;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -43,7 +45,9 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 //class for cards which use artwork from the original game but custom colors.
-public abstract class AbstractBGCard extends CustomCard {
+public abstract class AbstractBGCard extends CustomCard
+        //implements AlternateCardCostModifier
+    {
 
     private static final Logger logger = LogManager.getLogger(AbstractCard.class.getName());
     //public CardType type; //AbstractCard already has a type
@@ -369,5 +373,37 @@ public abstract class AbstractBGCard extends CustomCard {
             }
         }
     }
+
+
+//    @Override
+//    public int getAlternateResource(AbstractCard card) {
+//        if(AbstractDungeon.player instanceof AbstractBGCharacter) {
+//            return (((AbstractBGCharacter)AbstractDungeon.player).currentMultiEnergy);
+//        }
+//        return -1;
+//    }
+//    @Override
+//    public boolean prioritizeAlternateCost(AbstractCard card) {
+//        return true;
+//    }
+//    @Override
+//    public boolean canSplitCost(AbstractCard card) {
+//        return false;
+//    }
+//    @Override
+//    public int spendAlternateCost(AbstractCard card, int costToSpend) {
+//        int resource = -1;
+//        if(AbstractDungeon.player instanceof AbstractBGCharacter) {
+//            resource = (((AbstractBGCharacter)AbstractDungeon.player).currentMultiEnergy);
+//        }
+//        if (resource > costToSpend) {
+//            ((AbstractBGCharacter)AbstractDungeon.player).currentMultiEnergy-=costToSpend;
+//            costToSpend = 0;
+//        } else if (resource > 0) {
+//            ((AbstractBGCharacter)AbstractDungeon.player).currentMultiEnergy-=resource;
+//            costToSpend -= resource;
+//        }
+//        return costToSpend;
+//    }
 
 }

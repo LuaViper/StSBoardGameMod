@@ -17,7 +17,8 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 
 public class HandLayoutHelper {
 
-    public final float BASE_SPACING = 35.0f;
+    //public final float BASE_SPACING = 35.0f;  //this works, provided no cards are playable
+    public final float BASE_SPACING = 40.0f;    //this allows extra space for card glow
     public float SPACING;
     public int currentHand=-1;
     public float[] hand_offset_y = {0f,0f,0f,0f};
@@ -56,7 +57,6 @@ public class HandLayoutHelper {
     }
 
     public void changeHand(int index,int change){
-        SPACING = BASE_SPACING * Settings.scale;
         if(change==1){
             hand_offset_y[currentHand]=0+SPACING*BGMultiCharacter.getSubcharacters().size();
         }
@@ -67,6 +67,7 @@ public class HandLayoutHelper {
     }
 
     public void changeHand(int index){
+        SPACING = BASE_SPACING * Settings.scale;
         if(currentHand>=0)BGMultiCharacter.getSubcharacters().get(currentHand).releaseCard();
         currentHand=index;
         int i = index;
@@ -82,7 +83,6 @@ public class HandLayoutHelper {
         @SpirePrefixPatch
         public static void Prefix(AbstractCard __instance, SpriteBatch sb, boolean hovered, boolean selected) {
             if(CardCrawlGame.chosenCharacter!=BGMultiCharacter.Enums.BG_MULTICHARACTER)return;
-            ContextPatches.originalBGMultiCharacter= AbstractDungeon.player;
             if(CardPatches.Field.owner.get(__instance)==null)return;
             //if (AbstractDungeon.player != null && AbstractDungeon.player.isDraggingCard && __instance == AbstractDungeon.player.hoveredCard) {}
             int whichRow=CardPatches.Field.owner.get(__instance).currentRow;
@@ -95,7 +95,6 @@ public class HandLayoutHelper {
         @SpirePostfixPatch
         public static void Postfix(AbstractCard __instance, SpriteBatch sb, boolean hovered, boolean selected) {
             if(CardCrawlGame.chosenCharacter != BGMultiCharacter.Enums.BG_MULTICHARACTER) return;
-            ContextPatches.originalBGMultiCharacter= AbstractDungeon.player;
             if(CardPatches.Field.owner.get(__instance)==null)return;
             //if (AbstractDungeon.player != null && AbstractDungeon.player.isDraggingCard && __instance == AbstractDungeon.player.hoveredCard) {}
             int whichRow=CardPatches.Field.owner.get(__instance).currentRow;

@@ -37,6 +37,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
+import com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbBlue;
+import com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbInterface;
 import com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbPurple;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
@@ -148,6 +150,7 @@ public class BGWatcher extends AbstractBGCharacter {
 
 
         BaseMod.MAX_HAND_SIZE=999;
+        energyOrb = (EnergyOrbInterface)new EnergyOrbPurple();
     }
 
     // =============== /CHARACTER CLASS END/ =================

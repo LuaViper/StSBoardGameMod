@@ -32,6 +32,9 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
+import com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbGreen;
+import com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbInterface;
+import com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbRed;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -150,6 +153,11 @@ public class BGSilent extends AbstractBGCharacter {
 
 
         BaseMod.MAX_HAND_SIZE=999;
+        energyOrb = (EnergyOrbInterface)new EnergyOrbGreen();
+    }
+
+    public Texture getEnergyImage() {
+        return ImageMaster.GREEN_ORB_FLASH_VFX;
     }
 
     // =============== /CHARACTER CLASS END/ =================

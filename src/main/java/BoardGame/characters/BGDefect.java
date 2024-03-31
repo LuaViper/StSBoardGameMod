@@ -1,5 +1,6 @@
 package BoardGame.characters;
 
+//TODO: updateOrb incorrectly sets orb's angle1 spin rate very high (appears to be based on Ironclad animation; vanilla Defect orb angle1 does not change)
 //TODO: does Recycle interact correctly with card cost changes?
 
 import BoardGame.BoardGame;
@@ -13,6 +14,7 @@ import BoardGame.cards.BGGreen.BGStrike_Green;
 import BoardGame.cards.BGGreen.BGSurvivor;
 import BoardGame.relics.*;
 import basemod.BaseMod;
+import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -36,6 +38,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
+import com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbBlue;
+import com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbInterface;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -103,8 +107,9 @@ public class BGDefect extends AbstractBGCharacter {
             "BoardGameResources/images/char/theDefect/orb/layer3d.png",
             "BoardGameResources/images/char/theDefect/orb/layer4d.png",
             "BoardGameResources/images/char/theDefect/orb/layer5d.png",};
-
     // =============== /TEXTURES OF BIG ENERGY ORB/ ===============
+
+
 
     // =============== CHARACTER CLASS START =================
 
@@ -152,6 +157,11 @@ public class BGDefect extends AbstractBGCharacter {
 
 
         BaseMod.MAX_HAND_SIZE=999;
+        energyOrb = (EnergyOrbInterface)new EnergyOrbBlue();
+    }
+
+    public Texture getEnergyImage() {
+        return ImageMaster.BLUE_ORB_FLASH_VFX;
     }
 
     // =============== /CHARACTER CLASS END/ =================

@@ -48,8 +48,11 @@ import java.util.Iterator;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.naming.Context;
+
 //REMINDER: players act from bottom lane to top lane, but monsters act from top lane to bottom lane
-//TODO: UX - display BGMultiCharacter's hand as a combination of all subcharacters' hands??
+//TODO: each player has their own EnergyManager, but it checks OverlayMenu.EnergyPanel.totalCount, currently a singleton
+// EnergyManager is currently short enough that we might be able to patch it completely
 
 public class BGMultiCharacter extends AbstractBGCharacter {
     public static final Logger logger = LogManager.getLogger(BGMultiCharacter.class.getName());
@@ -69,6 +72,11 @@ public class BGMultiCharacter extends AbstractBGCharacter {
     public static HandLayoutHelper handLayoutHelper = new HandLayoutHelper();
 
     public static ArrayList<AbstractBGCharacter> getSubcharacters() {
+        if (ContextPatches.originalBGMultiCharacter == null){
+            if(AbstractDungeon.player instanceof BGMultiCharacter){
+                ContextPatches.originalBGMultiCharacter=AbstractDungeon.player;
+            }
+        }
         if (ContextPatches.originalBGMultiCharacter != null)
             return ((BGMultiCharacter) ContextPatches.originalBGMultiCharacter).subcharacters;
         if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
@@ -109,13 +117,15 @@ public class BGMultiCharacter extends AbstractBGCharacter {
         super(name, setClass, orbTextures, "BoardGameResources/images/char/defaultCharacter/orb/vfx.png", null, "");
         this.blockTextColor = new Color(0.9F, 0.9F, 0.9F, 0.0F);
         this.blockScale = 1.0F;
-        initializeClass((String) null, "images/characters/ironclad/shoulder2.png", "images/characters/ironclad/shoulder.png", "images/characters/ironclad/corpse.png", getLoadout(), 20.0F, -10.0F, 220.0F, 290.0F, new EnergyManager(0));
+        initializeClass((String) null, "images/characters/ironclad/shoulder2.png", "images/characters/ironclad/shoulder.png", "images/characters/ironclad/corpse.png",
+                getLoadout(), 20.0F, -10.0F, 220.0F, 290.0F, new EnergyManager(ENERGY_PER_TURN));
         loadAnimation("images/characters/ironclad/idle/skeleton.atlas", "images/characters/ironclad/idle/skeleton.json", 1.0F);
         AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
         e.setTimeScale(0.6F);
         this.dialogX = this.drawX + 0.0F * Settings.scale;
         this.dialogY = this.drawY + 220.0F * Settings.scale;
         BaseMod.MAX_HAND_SIZE = 999;
+
     }
 
     public CharSelectInfo getLoadout() {
@@ -311,7 +321,9 @@ public class BGMultiCharacter extends AbstractBGCharacter {
 
     public void render(SpriteBatch sb) {
         for (int i = subcharacters.size() - 1; i >= 0; i -= 1) {
+            ContextPatches.pushContext(subcharacters.get(i));
             subcharacters.get(i).render(sb);
+            ContextPatches.popContext();
         }
     }
 
@@ -320,9 +332,20 @@ public class BGMultiCharacter extends AbstractBGCharacter {
             for (int i = handLayoutHelper.currentHand + subcharacters.size() - 1; i >= handLayoutHelper.currentHand; i -= 1) {
                 //BoardGame.logger.info("???   " + i + "   " + i % subcharacters.size());
                 AbstractPlayer c = subcharacters.get(i % subcharacters.size());
+                ContextPatches.pushContext(c);
                 c.renderHand(sb);
+                ContextPatches.popContext();
             }
         }
+    }
+
+    public void updateOrb(int orbCount){
+        for(AbstractPlayer c : BGMultiCharacter.getSubcharacters()){
+            c.updateOrb(orbCount);
+        }
+    }
+    public void renderOrb(SpriteBatch sb, boolean enabled, float current_x, float current_y) {
+        //do nothing
     }
 
     @SpirePatch2(clz = AbstractPlayer.class, method = "renderCardHotKeyText", paramtypez = {SpriteBatch.class})
