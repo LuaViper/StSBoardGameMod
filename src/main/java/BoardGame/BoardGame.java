@@ -18,6 +18,7 @@ import BoardGame.screen.RelicTradingScreen;
 import BoardGame.screen.TargetSelectScreen;
 import basemod.*;
 import basemod.eventUtil.AddEventParams;
+import basemod.eventUtil.util.Condition;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -28,6 +29,7 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -619,6 +621,11 @@ public class BoardGame implements
         // deffo take a look at that basemod wiki link as well, as it explains things very in-depth
         // btw if you don't provide event type, normal is assumed by default
 
+        class Ascension3Condition implements Condition{
+            public boolean test(){
+                return (AbstractBGDungeon.ascensionLevel>=3);
+            }
+        }
 
         BaseMod.addEvent(new AddEventParams.Builder(BGLivingWall.ID, BGLivingWall.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGTheLibrary.ID, BGTheLibrary.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
@@ -632,8 +639,9 @@ public class BoardGame implements
         BaseMod.addEvent(new AddEventParams.Builder(BGAccursedBlacksmith.ID, BGAccursedBlacksmith.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGLab.ID, BGLab.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGBigFish.ID, BGBigFish.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
-        //Scrap Ooze was moved to Ascension 3
-        //BaseMod.addEvent(new AddEventParams.Builder(BGScrapOoze.ID, BGScrapOoze.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
+        //Ascension 3
+        BaseMod.addEvent(new AddEventParams.Builder(BGScrapOoze.ID, BGScrapOoze.class).spawnCondition(new Ascension3Condition()).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
+        //BaseMod.addEvent(new AddEventParams.Builder(BGDeadAdventurer.ID, BGDeadAdventurer.class).spawnCondition(new Ascension3Condition()).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
 
         BaseMod.addEvent(new AddEventParams.Builder(BGGremlinWheelGame.ID, BGGremlinWheelGame.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGGoldShrine.ID, BGGoldShrine.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());

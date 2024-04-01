@@ -414,13 +414,14 @@
       " #rHP. #g",
       "%: #gFind #g2 #gGold #gor #ga #gRelic.",
       "[Leave]",
-      "[Deeper] #rLose #r",
+      "[Deeper] #rLose #r1 #rHP. #g66%: #gFind #g2 #gGold #gor #ga #gRelic.",
       "[Leave] #gGain #g2 #gGold.",
       "[Leave] #gGain #ga #gRelic.",
       "[Gambling Chip] Reroll.",
       "[The Abacus] ",
       "[Toolbox] ",
-      "[Gambler's Brew] Choose a prize.",
+      "[Gambler's Brew] Choose a reward.",
+      "Lose 1 HP and try again for a different reward.",
       "Gain 2 Gold instead.",
       "Gain a Relic instead."
     ]

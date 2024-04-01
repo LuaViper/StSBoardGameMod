@@ -47,7 +47,6 @@ public class TargetSelectScreen extends CustomScreen {
     public interface TargetSelectAction{
         void execute(AbstractMonster target);
     }
-
     final Logger logger = LogManager.getLogger(TargetSelectScreen.class.getName());
     public static class Enum
     {
@@ -59,43 +58,32 @@ public class TargetSelectScreen extends CustomScreen {
     {
         return Enum.TARGET_SELECT;
     }
-
-
     public TargetSelectAction action;
-
     public String description="(DNT) Target Select Screen.  Choose a target.";
     public boolean allowCancel=false;
     public TargetSelectAction cancelAction=null;    //dummied out
     public AbstractMonster finaltarget=null;
-
-
     private void open(TargetSelectAction action, String description, boolean allowCancel) {
         this.description=description;
         this.action=action;
         this.allowCancel=allowCancel;
-        //this.cancelAction=cancelAction;
         this.isDone=false;
-
         if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.NONE)
             AbstractDungeon.previousScreen = AbstractDungeon.screen;
         reopen();
     }
-
-
     @Override
     public void reopen()
     {
         AbstractDungeon.screen = curScreen();
         AbstractDungeon.isScreenUp = true;
     }
-
     @Override
     public void openingSettings()
     {
         // Required if you want to reopen your screen when the settings screen closes
         AbstractDungeon.previousScreen = curScreen();
     }
-
     @Override public void close()
     {
         //logger.info("CLOSE TARGETSELECTSCREEN "+AbstractDungeon.screen+" "+AbstractDungeon.previousScreen);
@@ -105,8 +93,6 @@ public class TargetSelectScreen extends CustomScreen {
         GameCursor.hidden = false;
         //___hoveredMonster[0] = null;
     }
-
-
     @Override
     public void update() {
         //logger.info("TSS: update");
