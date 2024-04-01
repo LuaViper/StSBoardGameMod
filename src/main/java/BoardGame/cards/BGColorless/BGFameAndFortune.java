@@ -36,7 +36,7 @@ public class BGFameAndFortune extends AbstractBGAttackCardChoice {
         onChoseThisOption();
     }
     public void onChoseThisOption() {
-        AbstractDungeon.effectList.add(new RainingGoldEffect(this.magicNumber * 2, true));
+        AbstractDungeon.effectList.add(new RainingGoldEffect(this.magicNumber * 20, true));
         AbstractDungeon.effectsQueue.add(new SpotlightPlayerEffect());
         addToBot((AbstractGameAction)new BGGainMiracleAction(this.magicNumber));
     }

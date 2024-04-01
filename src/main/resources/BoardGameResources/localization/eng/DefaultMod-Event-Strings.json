@@ -681,6 +681,24 @@
       " #rHP."
     ]
   },
+  "BoardGame:BGWorldOfGoop": {
+    "NAME": "World of Goop",
+    "DESCRIPTIONS": [
+      "You fall into a puddle. NL @IT'S@ @MADE@ @OF@ #g@SLIME@ #g@GOOP!!@ NL Frantically, you claw yourself out over several minutes as you feel the goop starting to burn. NL You can feel goop in your ears, goop in your nose, goop everywhere. NL NL Climbing out, you notice that some of your #ygold is missing. Looking back to the puddle you see your missing coins combined with #ygold from unfortunate adventurers mixed together in the puddle.",
+      "Feeling the sting of the goop as the prolonged exposure starts to melt away at your skin, you manage to fish out the #ygold.",
+      "You decide that mess is not worth it.",
+      "Feeling the #p@sting@ of the goop as the prolonged exposure starts to melt away at your skin, you manage to fish out a #yrelic."
+    ],
+    "OPTIONS": [
+      "[Gather Gold] #gGain #g",
+      " #gGold. #rLose #r",
+      " #rHP.",
+      "[Leave It] #rLose #r",
+      " #rGold.",
+      "[Leave]",
+      "[Reach Deeper] #gGain #ga #gRelic #rand #ra #rCurse."
+    ]
+  },
   "BoardGame:FakeMonsterRoomEvent": {
     "NAME": "Empty Room",
     "DESCRIPTIONS": [
