@@ -41,7 +41,7 @@ public class BGScrapOoze
         this.imageEventText.setDialogOption(OPTIONS[3]);
     }
 
-    private boolean alreadyUsedGamblingChip,alreadyUsedTheAbacus,alreadyUsedToolbox;
+    public boolean alreadyUsedGamblingChip,alreadyUsedTheAbacus,alreadyUsedToolbox;
     private int leaveIndex,takePrizeIndex,gamblingChipIndex, theAbacusIndex,toolboxIndex,potionIndex;
     public void onEnterRoom() {
         pendingReward=0;

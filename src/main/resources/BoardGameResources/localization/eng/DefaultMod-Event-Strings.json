@@ -169,6 +169,38 @@
       "Add a card to your deck."
     ]
   },
+  "BoardGame:BGDeadAdventurer": {
+    "NAME": "Dead Adventurer",
+    "DESCRIPTIONS": [
+      "While searching the adventurer you are caught off guard!",
+      "You exit without a sound.",
+      "You come across a #rdead #radventurer on the floor. NL His #bpants have been stolen! Also, ",
+      "he's carrying a note that says #y\"if #ythis #yis #ythe #yfirst #y? #yRoom, #ydiscard #yit #yand #ydraw #yagain.\" NL NL Moving on...",
+      "an #r@elite@ #r@encounter@ #r@card@ has been neatly embedded in his skull. ",
+      "",
+      "NL Though his #ypossessions #yare #ystill #yintact, you're in no mind to find out what happened here...",
+      "You found some #ygold! NL ",
+      "",
+      "You found a #yrelic! NL ",
+      "Looks like you searched all his belongings without a hitch!",
+      "While searching the adventurer you are caught off guard! NL (We're not allowed to show you the monster(s) because you still have items available.)"
+    ],
+    "OPTIONS": [
+      "[Search] 33% each: #gFind #g2 #gGold, #gfind #ga #gRelic, #ror #rfight #ran #rElite.",
+      "[Leave]",
+      "[Fight]",
+      "[Continue] #gFind #gLoot. #r",
+      "%: #rmonster #rreturns.",
+      "[Move On]",
+      "[Gambling Chip] Reroll.",
+      "[The Abacus] ",
+      "[Toolbox] ",
+      "[Gambler's Brew] Choose an outcome.",
+      "Fight an Elite instead.",
+      "Everyone gains 2 Gold instead.",
+      "One player gains a Relic instead."
+    ]
+  },
   "BoardGame:BGDesigner": {
     "NAME": "Designer In-Spire",
     "DESCRIPTIONS": [

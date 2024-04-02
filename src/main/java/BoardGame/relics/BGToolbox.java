@@ -1,5 +1,6 @@
 package BoardGame.relics;
 
+import BoardGame.events.BGDeadAdventurer;
 import BoardGame.thedie.TheDie;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
@@ -56,6 +57,11 @@ public class BGToolbox extends AbstractBGRelic {
 
     public void atPreBattle() {
         available = true;pendingUse=false;
+        if(AbstractDungeon.getCurrRoom().event instanceof BGDeadAdventurer){
+            if(((BGDeadAdventurer)AbstractDungeon.getCurrRoom().event).alreadyUsedToolbox)
+            {setUsedUp();}
+            //TODO: also call setUsedUp during events
+        }
     }
 
     public void atTurnStart(){
@@ -77,6 +83,8 @@ public class BGToolbox extends AbstractBGRelic {
     public AbstractRelic makeCopy() {
         return new BGToolbox();
     }
+
+
 }
 
 

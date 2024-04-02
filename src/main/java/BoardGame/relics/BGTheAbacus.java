@@ -1,5 +1,6 @@
 package BoardGame.relics;
 
+import BoardGame.events.BGDeadAdventurer;
 import BoardGame.powers.BGTheDiePower;
 import BoardGame.thedie.TheDie;
 import BoardGame.ui.LockInRollButton;
@@ -66,6 +67,11 @@ public class BGTheAbacus extends AbstractBGRelic {
 
     public void atPreBattle() {
         available = true;pendingUse=false;
+        if(AbstractDungeon.getCurrRoom().event instanceof BGDeadAdventurer){
+            if(((BGDeadAdventurer)AbstractDungeon.getCurrRoom().event).alreadyUsedTheAbacus)
+            {setUsedUp();}
+            //TODO: also call setUsedUp during events
+        }
     }
 
     public void atTurnStart(){

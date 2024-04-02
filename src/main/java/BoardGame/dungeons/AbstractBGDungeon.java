@@ -5,6 +5,7 @@ import BoardGame.cards.*;
 import BoardGame.cards.BGCurse.*;
 import BoardGame.characters.*;
 import BoardGame.events.BGColosseum;
+import BoardGame.events.BGDeadAdventurer;
 import BoardGame.monsters.MonsterGroupRewardsList;
 import BoardGame.monsters.bgbeyond.*;
 import BoardGame.monsters.bgcity.*;
@@ -529,6 +530,8 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                     gold=0;
                 }else if(__instance instanceof EventRoom && __instance.event instanceof BGColosseum){
                     encounter = ((BGColosseum)__instance.event).encounterID;
+                }else if(__instance instanceof EventRoom && __instance.event instanceof BGDeadAdventurer){
+                    encounter = ((BGDeadAdventurer)__instance.event).encounterID;
                 }
                 if(MonsterGroupRewardsList.rewards.containsKey(encounter)){
                     gold=MonsterGroupRewardsList.rewards.get(encounter).gold;

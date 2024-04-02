@@ -1,5 +1,6 @@
 package BoardGame.relics;
 
+import BoardGame.events.BGDeadAdventurer;
 import BoardGame.thedie.TheDie;
 import BoardGame.ui.LockInRollButton;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
@@ -53,7 +54,7 @@ public class BGGamblingChip extends AbstractBGRelic {
 
 
             TheDie.roll();
-            /* Used Up (Combat) */ {this.grayscale = true; this.usedUp=true; this.description = getUpdatedDescription();this.tips.clear();this.tips.add(new PowerTip(this.name, this.description));initializeTips();}
+            /* Used Up (Combat) */ setUsedUp();
             //LockInRollButton.OverlayMenuDiceInterface.rerollbutton.get(AbstractDungeon.overlayMenu).visible = false;
         }
     }
@@ -62,6 +63,11 @@ public class BGGamblingChip extends AbstractBGRelic {
 
     public void atPreBattle() {
         available = true;
+        if(AbstractDungeon.getCurrRoom().event instanceof BGDeadAdventurer){
+            if(((BGDeadAdventurer)AbstractDungeon.getCurrRoom().event).alreadyUsedGamblingChip)
+            {setUsedUp();}
+            //TODO: also call setUsedUp during events
+        }
     }
 
     public void atTurnStart(){
@@ -77,6 +83,10 @@ public class BGGamblingChip extends AbstractBGRelic {
         /* Unused Up */ { this.grayscale = false; this.usedUp=false; this.description = getUpdatedDescription();this.tips.clear();this.tips.add(new PowerTip(this.name, this.description));initializeTips();}
     }
 
+
+    public void setUsedUp(){
+        {this.grayscale = true; this.usedUp=true; this.description = getUpdatedDescription();this.tips.clear();this.tips.add(new PowerTip(this.name, this.description));initializeTips();}
+    }
 }
 
 
