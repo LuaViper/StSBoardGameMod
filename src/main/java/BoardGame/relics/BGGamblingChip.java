@@ -85,7 +85,7 @@ public class BGGamblingChip extends AbstractBGRelic {
 
 
     public void setUsedUp(){
-        {this.grayscale = true; this.usedUp=true; this.description = getUpdatedDescription();this.tips.clear();this.tips.add(new PowerTip(this.name, this.description));initializeTips();}
+        { available=false; this.grayscale = true; this.usedUp=true; this.description = getUpdatedDescription();this.tips.clear();this.tips.add(new PowerTip(this.name, this.description));initializeTips();}
     }
 }
 

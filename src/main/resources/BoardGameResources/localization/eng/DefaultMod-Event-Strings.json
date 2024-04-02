@@ -183,7 +183,7 @@
       "",
       "You found a #yrelic! NL ",
       "Looks like you searched all his belongings without a hitch!",
-      "While searching the adventurer you are caught off guard! NL (We're not allowed to show you the monster(s) because you still have items available.)"
+      "While searching the adventurer you are caught off guard! NL (We're not allowed to reveal the encounter yet because you still have items available.)"
     ],
     "OPTIONS": [
       "[Search] 33% each: #gFind #g2 #gGold, #gfind #ga #gRelic, #ror #rfight #ran #rElite.",

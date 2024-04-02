@@ -116,14 +116,12 @@ public class BGScrapOoze
                 }else if(buttonPressed == potionIndex) {
                     int slot = BGGamblersBrew.doesPlayerHaveGamblersBrew();
                     if (slot>-1) {
-                        if (buttonPressed == potionIndex) {
-                            AbstractDungeon.topPanel.destroyPotion(slot);
-                            this.imageEventText.clearAllDialogs();
-                            this.imageEventText.setDialogOption(OPTIONS[12]);
-                            this.imageEventText.setDialogOption(OPTIONS[13]);
-                            this.screenNum = 200;
-                            return;
-                        }
+                        AbstractDungeon.topPanel.destroyPotion(slot);
+                        this.imageEventText.clearAllDialogs();
+                        this.imageEventText.setDialogOption(OPTIONS[12]);
+                        this.imageEventText.setDialogOption(OPTIONS[13]);
+                        this.screenNum = 200;
+                        return;
                     }
                 }
 
@@ -161,7 +159,7 @@ public class BGScrapOoze
                 if(!alreadyUsedTheAbacus) {
                     int r2 = pendingReward + 1;
                     if (r2 > 6) r2 = 1;
-                    if (r2 == 1 || r2 == 3 || r2 == 5) {  //only show option if new reward is (A) successful, and (B) different
+                    if (r2 == 1 || r2 == 3 || r2 == 5) {  //only show option if new reward is different
                         this.imageEventText.setDialogOption("[The Abacus] " + OPTIONS[(r2 + 1) / 2 + 10]);
                         theAbacusIndex = i;
                         i += 1;
