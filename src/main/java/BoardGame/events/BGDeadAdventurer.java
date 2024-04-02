@@ -1,6 +1,7 @@
 package BoardGame.events;
 
 import BoardGame.potions.BGGamblersBrew;
+import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.events.exordium.DeadAdventurer;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -108,6 +109,7 @@ public class BGDeadAdventurer
         if(AbstractDungeon.floorNum==2){
             AbstractDungeon.nextRoom=AbstractDungeon.getCurrMapNode();
             AbstractDungeon.nextRoom.room=AbstractDungeon.getCurrRoom();
+            ReflectionHacks.setPrivateStatic(AbstractDungeon.class,"fadeTimer",0F);
             AbstractDungeon.nextRoomTransitionStart();
             //TODO LATER: this will probably break something if the player S&Qs immediately
             AbstractDungeon.floorNum-=1;

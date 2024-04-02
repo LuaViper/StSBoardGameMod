@@ -24,7 +24,7 @@ public class BGColosseum extends Colosseum {    //game is hardcoded to check for
     public static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
 
     public static final String[] OPTIONS = eventStrings.OPTIONS;
-
+    public boolean isElite=false;
     public String encounterID="";
 
     private CurScreen screen = CurScreen.INTRO;
@@ -63,6 +63,7 @@ public class BGColosseum extends Colosseum {    //game is hardcoded to check for
                         AbstractDungeon.lastCombatMetricKey = "Standard Encounter";
                         break;
                     case 1:
+                        isElite=true;
                         (AbstractDungeon.getCurrRoom()).monsters = CardCrawlGame.dungeon.getEliteMonsterForRoomCreation();
                         encounterID=AbstractDungeon.eliteMonsterList.get(0);
                         AbstractDungeon.eliteMonsterList.remove(0);

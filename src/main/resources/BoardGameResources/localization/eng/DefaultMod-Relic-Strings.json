@@ -412,9 +412,23 @@
   },
   "BGDiscardedOld Coin": {
     "NAME": "Old Coin (Discarded)",
-    "FLAVOR": "Unique coins are highly valued by merchants for their historical value and rare metallic composition.",
+    "FLAVOR": "",
     "DESCRIPTIONS": [
       "Old Coin was drawn at The Merchant or The Courier and subsequently discarded."
+    ]
+  },
+  "BGDiscardedHallwayEvent": {
+    "NAME": "Monster Event (Discarded)",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "A hallway encounter was drawn on floor 2 and subsequently discarded."
+    ]
+  },
+  "BGDiscardedMerchantEvent": {
+    "NAME": "Merchant Event (Discarded)",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "A Merchant was drawn on floor 2 and subsequently discarded."
     ]
   },
   "BGOmamori": {

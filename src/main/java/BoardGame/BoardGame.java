@@ -29,7 +29,6 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.google.gson.Gson;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -643,6 +642,11 @@ public class BoardGame implements
         BaseMod.addEvent(new AddEventParams.Builder(BGScrapOoze.ID, BGScrapOoze.class).spawnCondition(new Ascension3Condition()).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGWorldOfGoop.ID, BGWorldOfGoop.class).spawnCondition(new Ascension3Condition()).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGDeadAdventurer.ID, BGDeadAdventurer.class).spawnCondition(new Ascension3Condition()).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
+        //!!!
+        for(int i=0;i<99;i+=1)BaseMod.addEvent(new AddEventParams.Builder(BGMerchantEncounter.ID, BGMerchantEncounter.class).spawnCondition(new Ascension3Condition()).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGHallwayEncounter.ID, BGHallwayEncounter.class).spawnCondition(new Ascension3Condition()).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGHallwayEncounter.ID, BGHallwayEncounter.class).spawnCondition(new Ascension3Condition()).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGMerchantEncounter.ID, BGMerchantEncounter.class).spawnCondition(new Ascension3Condition()).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
 
         BaseMod.addEvent(new AddEventParams.Builder(BGGremlinWheelGame.ID, BGGremlinWheelGame.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
         BaseMod.addEvent(new AddEventParams.Builder(BGGoldShrine.ID, BGGoldShrine.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());

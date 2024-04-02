@@ -6,6 +6,7 @@ import BoardGame.cards.BGCurse.*;
 import BoardGame.characters.*;
 import BoardGame.events.BGColosseum;
 import BoardGame.events.BGDeadAdventurer;
+import BoardGame.events.BGHallwayEncounter;
 import BoardGame.monsters.MonsterGroupRewardsList;
 import BoardGame.monsters.bgbeyond.*;
 import BoardGame.monsters.bgcity.*;
@@ -319,7 +320,8 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                     if(card!=null) {
                         if(CardCrawlGame.dungeon instanceof AbstractBGDungeon
                                 && (!(CardCrawlGame.dungeon instanceof BGExordium) && getCurrRoom() instanceof MonsterRoomElite)
-                                || (getCurrRoom() instanceof EventRoom && getCurrRoom().event instanceof BGColosseum)){
+                                || (getCurrRoom() instanceof EventRoom && getCurrRoom().event instanceof BGColosseum && ((BGColosseum)getCurrRoom().event).isElite)){
+                            //TODO NEXT: Normal Colosseum doesn't upgrade card!
                             card.upgrade();
                         }
                         for (AbstractRelic r : player.relics) {
@@ -501,8 +503,14 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
         @SpirePrefixPatch
         public static SpireReturn<EventHelper.RoomResult> roll (Random eventRng){
             if(CardCrawlGame.dungeon instanceof AbstractBGDungeon){
-                return SpireReturn.Return(EventHelper.RoomResult.EVENT);
-
+                //TODO: on ascension 3+, check the top event card + AbstractDungeon.floorNum first
+                if(true) {
+                    return SpireReturn.Return(EventHelper.RoomResult.EVENT);
+                }else if(false) {
+                    return SpireReturn.Return(EventHelper.RoomResult.MONSTER);
+                }else if(false){
+                    return SpireReturn.Return(EventHelper.RoomResult.SHOP);
+                }
             }
             return SpireReturn.Continue();
 
@@ -532,6 +540,9 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                     encounter = ((BGColosseum)__instance.event).encounterID;
                 }else if(__instance instanceof EventRoom && __instance.event instanceof BGDeadAdventurer){
                     encounter = ((BGDeadAdventurer)__instance.event).encounterID;
+                }else if(__instance instanceof EventRoom && __instance.event instanceof BGHallwayEncounter){
+                    //note: BGHallwayEncounter currently swaps itself out for a MonsterRoom, so this line shouldn't be reachable
+                    encounter = ((BGHallwayEncounter)__instance.event).encounterID;
                 }
                 if(MonsterGroupRewardsList.rewards.containsKey(encounter)){
                     gold=MonsterGroupRewardsList.rewards.get(encounter).gold;
@@ -568,6 +579,11 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                 encounter = AbstractDungeon.monsterList.get(0);
             }else if(__instance instanceof EventRoom && __instance.event instanceof BGColosseum){
                 encounter = ((BGColosseum)__instance.event).encounterID;
+            }else if(__instance instanceof EventRoom && __instance.event instanceof BGDeadAdventurer){
+                encounter = ((BGDeadAdventurer)__instance.event).encounterID;
+            }else if(__instance instanceof EventRoom && __instance.event instanceof BGHallwayEncounter){
+                //note: BGHallwayEncounter currently swaps itself out for a MonsterRoom, so this line shouldn't be reachable
+                encounter = ((BGHallwayEncounter)__instance.event).encounterID;
             }
             if(MonsterGroupRewardsList.rewards.containsKey(encounter)){
                 potion=MonsterGroupRewardsList.rewards.get(encounter).potion;
