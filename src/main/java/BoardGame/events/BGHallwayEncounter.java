@@ -1,7 +1,9 @@
 package BoardGame.events;
 
+import BoardGame.dungeons.BGExordium;
 import BoardGame.relics.BGDiscardedHallwayEvent;
 import BoardGame.relics.BGDiscardedOldCoin;
+import BoardGame.relics.BGSsserpentHead;
 import basemod.BaseMod;
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -46,7 +48,11 @@ public class BGHallwayEncounter extends AbstractImageEvent {
         super.update();
         if(!isDone){
             isDone=true;
-            if(AbstractDungeon.floorNum==2){
+            if(AbstractDungeon.floorNum==2 && CardCrawlGame.dungeon instanceof BGExordium){
+                //make sure ssserpenthead happens only ONCE
+                if(AbstractDungeon.player.hasRelic("BGSsserpentHead")){
+                    AbstractDungeon.player.loseGold(BGSsserpentHead.GOLD_AMT);
+                }
                 AbstractRelic r = new BGDiscardedHallwayEvent();
                 r.instantObtain(AbstractDungeon.player, AbstractDungeon.player.relics.size(), true);
                 r.flash();
@@ -74,27 +80,12 @@ public class BGHallwayEncounter extends AbstractImageEvent {
                 ReflectionHacks.setPrivateStatic(AbstractDungeon.class,"fadeTimer",0F);
                 AbstractDungeon.nextRoomTransitionStart();
                 node.taken=true;
-//                AbstractDungeon.topLevelEffects.add(new MapCircleEffect(node.x *
-//                        (float)ReflectionHacks.getPrivateStatic(MapRoomNode.class,"SPACING_X") +
-//                        MapRoomNode.OFFSET_X + node.offsetX, node.y * Settings.MAP_DST_Y +
-//                        (float)ReflectionHacks.getPrivateStatic(MapRoomNode.class,"OFFSET_Y") +
-//                        DungeonMapScreen.offsetY + node.offsetY,
-//                        (float)ReflectionHacks.getPrivate(node,MapRoomNode.class,"angle")));
             }
         }
     }
     protected void buttonEffect(int buttonPressed){}
 
 
-    public void enterCombat() {
-        //this.roomEventText.clear();
-        //AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMBAT;
-        //AbstractDungeon.getCurrRoom().monsters.init();
-        //AbstractRoom.waitTimer = 0.1F;
-        //AbstractDungeon.player.preBattlePrep();
-        //this.hasFocus = false;
-        //this.roomEventText.hide();
-    }
 }
 
 

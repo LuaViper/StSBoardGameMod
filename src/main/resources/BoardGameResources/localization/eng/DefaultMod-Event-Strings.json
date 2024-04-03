@@ -293,6 +293,23 @@
       " #rHP, #ggain #g"
     ]
   },
+  "BoardGame:BGForgottenAltar": {
+    "NAME": "Forgotten Altar",
+    "DESCRIPTIONS": [
+      "In front of you sits an altar to a forgotten god. NL Atop the altar sits an ornate female statue with arms outstretched. NL She calls out to you, demanding sacrifice.",
+      "As you gently set the relic onto the altar a #bcold wind swirls throughout the room. NL The arms of the statue begin to discolor and crumble. NL NL Its head begins to dull in color and begins bleeding from its eyes. NL The bleeding never ceases.",
+      "You stand on the altar and cut your wrists. NL As the #rblood spills out in sacrifice, the arms of the statue reach out and close around your eyes. NL Everything goes dark. NL You wake up a short time later feeling ~empty~ ~inside.~",
+      "You lash out and smash the statue in front of you, breaking the magical hold the room had placed upon you. NL A dark wail echoes all around you, and you can feel the #p~cursed~ #p~magic~ seep into your bones."
+    ],
+    "OPTIONS": [
+      "[Offer] #rLose ",
+      ". #gObtain #ga #gRelic.",
+      "[Locked] Requires: Undiscarded normal Relic.",
+      "[Sacrifice] #rLose #r2 #rHP.",
+      "[Locked] Requires: Rune Arc.",
+      "[Desecrate] #rGain #ra #rCurse."
+    ]
+  },
   "BoardGame:BGGolden Idol": {
     "NAME": "Ancient Temple",
     "DESCRIPTIONS": [
@@ -564,6 +581,21 @@
       "[Leave]",
       "Add a card to your deck.",
       " #g(Peace #gPipe) #gYou #gmay #gremove #ga #gcard."
+    ]
+  },
+  "BoardGame:BGTheMausoleum": {
+    "NAME": "The Mausoleum",
+    "DESCRIPTIONS": [
+      "Venturing through a series of tombs, you are faced with a large sarcophagus ~studded~ ~with~ ~gems~ in the center of a circular room. NL You cannot make out the writing on the coffin, however, you do notice #p~black~ #p~fog~ seeping out from the sides.",
+      "You push open the coffin. As you do, #p~black~ #p~fog~ spews forth and covers the entire room! Inside, you find no body, only a #y~relic.~ You take it and move onwards, #r@coughing@ #r@violently.@",
+      "You push open the coffin. The fog dissipates harmlessly. Inside, you find the mortal remains of a decorated soldier grasping an old #yrelic. You pilfer it and move on.",
+      "You continue along your way, leaving the forgotten dead undisturbed."
+    ],
+    "OPTIONS": [
+      "[Open Coffin] #gObtain #ga #gRelic. #r50%: #rGain #ra #rCurse.",
+      "",
+      "[Leave]",
+      "[Gambler's Brew] Don't gain a Curse."
     ]
   },
   "BoardGame:BGTheMoaiHead": {

@@ -1,6 +1,8 @@
 package BoardGame.events;
 
+import BoardGame.dungeons.BGExordium;
 import BoardGame.potions.BGGamblersBrew;
+import BoardGame.relics.BGSsserpentHead;
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.events.exordium.DeadAdventurer;
 import com.badlogic.gdx.graphics.Color;
@@ -80,7 +82,7 @@ public class BGDeadAdventurer
         this.adventurerImg = ImageMaster.loadImage("images/npcs/nopants.png");
         this.body = DESCRIPTIONS[2];
         this.roomEventText.clear();
-        if(AbstractDungeon.floorNum==2) {
+        if(AbstractDungeon.floorNum==2 && CardCrawlGame.dungeon instanceof BGExordium){
             this.body += DESCRIPTIONS[3];
             this.roomEventText.addDialogOption(OPTIONS[5]);
         }else {
@@ -106,7 +108,11 @@ public class BGDeadAdventurer
     }
 //TODO: if die relics are used here, they shouldn't be available for the elite fight
     protected void buttonEffect(int buttonPressed) {
-        if(AbstractDungeon.floorNum==2){
+        if(AbstractDungeon.floorNum==2 && CardCrawlGame.dungeon instanceof BGExordium){
+            //make sure ssserpenthead happens only ONCE
+            if(AbstractDungeon.player.hasRelic("BGSsserpentHead")){
+                AbstractDungeon.player.loseGold(BGSsserpentHead.GOLD_AMT);
+            }
             AbstractDungeon.nextRoom=AbstractDungeon.getCurrMapNode();
             AbstractDungeon.nextRoom.room=AbstractDungeon.getCurrRoom();
             ReflectionHacks.setPrivateStatic(AbstractDungeon.class,"fadeTimer",0F);

@@ -10,7 +10,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 public class BGSsserpentHead
         extends AbstractBGRelic {
     public static final String ID = "BGSsserpentHead";
-    private static final int GOLD_AMT = 2;
+    public static final int GOLD_AMT = 2;
 
     public BGSsserpentHead() {
         super("BGSsserpentHead", "serpentHead.png", AbstractRelic.RelicTier.SPECIAL, AbstractRelic.LandingSound.CLINK);
