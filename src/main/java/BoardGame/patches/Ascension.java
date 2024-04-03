@@ -17,7 +17,7 @@ import com.megacrit.cardcrawl.ui.panels.TopPanel;
 public class Ascension {
     static String[] A_TEXT = CardCrawlGame.languagePack.getUIString("BoardGame:AscensionModeDescriptions").TEXT;
 
-    static final int CURRENT_MAX_ASCENSION=3;
+    static final int CURRENT_MAX_ASCENSION=6;
 
     @SpirePatch2(clz= CharacterSelectScreen.class,method="updateAscensionToggle",paramtypez={})
     public static class DisableAscensionPatch{

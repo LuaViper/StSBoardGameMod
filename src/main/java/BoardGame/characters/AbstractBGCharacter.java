@@ -11,9 +11,11 @@ import basemod.animations.G3DJAnimation;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.GameCursor;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.potions.PotionSlot;
 import com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbInterface;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
@@ -49,6 +51,14 @@ public abstract class AbstractBGCharacter extends CustomPlayer {
         super(name, setClass, orbTextures,
                 orbVfxPath, model,
                 animation);
+
+        //AbstractPlayer expects potion slots to decrease at A11; override that here
+        if (AbstractDungeon.ascensionLevel >= 4)
+            this.potionSlots--;
+        this.potions.clear();
+        int i;
+        for (i = 0; i < this.potionSlots; i++)
+            this.potions.add(new PotionSlot(i));
     }
     public AbstractBGCharacter(String name, AbstractPlayer.PlayerClass playerClass, EnergyOrbInterface energyOrbInterface, String model, String animation) {
         super(name, playerClass, energyOrbInterface, model, animation);
