@@ -201,6 +201,10 @@
     "NAME": "Claw",
     "DESCRIPTION": "!D! [BoardGame:HitIcon] NL +!M! damage if the topmost card in your discard pile costs 0."
   },
+  "BoardGame:BGClaw2": {
+    "NAME": "Claw",
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL Increase the damage of ALL Claw cards by !M! this combat."
+  },
   "BoardGame:BGCleave": {
     "NAME": "Cleave",
     "DESCRIPTION": "[BoardGame:AOEIcon] !D! [BoardGame:HitIcon]"

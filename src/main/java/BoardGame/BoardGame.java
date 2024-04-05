@@ -1,5 +1,6 @@
 package BoardGame;
 
+import BoardGame.cards.BGBlue.BGClaw2;
 import BoardGame.characters.*;
 import BoardGame.icons.*;
 import BoardGame.monsters.bgexordium.*;
@@ -29,7 +30,9 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
@@ -76,9 +79,9 @@ public class BoardGame implements
     private static String modID;
 
     // Mod-settings settings. This is if you want an on/off savable button
-    public static Properties theDefaultDefaultSettings = new Properties();
-    public static final String ENABLE_PLACEHOLDER_SETTINGS = "enablePlaceholder";
-    public static boolean enablePlaceholder = true; // The boolean we'll be setting on/off (true/false)
+    public static Properties BoardGameSettings = new Properties();
+    public static final String CLAW_PACK_COUNT = "enablePlaceholder";
+    public static float clawPackCount = 0;
 
     //This is for the in-game mod settings panel.
     private static final String MODNAME = "Board Game";
@@ -277,12 +280,12 @@ public class BoardGame implements
         logger.info("Adding mod settings");
         // This loads the mod settings.
         // The actual mod Button is added below in receivePostInitialize()
-        theDefaultDefaultSettings.setProperty(ENABLE_PLACEHOLDER_SETTINGS, "FALSE"); // This is the default setting. It's actually set...
+        BoardGameSettings.setProperty(CLAW_PACK_COUNT, "0"); // This is the default setting. It's actually set...
         try {
-            SpireConfig config = new SpireConfig("defaultMod", "theDefaultConfig", theDefaultDefaultSettings); // ...right here
+            SpireConfig config = new SpireConfig("BoardGame", "BoardGameConfig", BoardGameSettings); // ...right here
             // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
             config.load(); // Load the setting and set the boolean to equal it
-            enablePlaceholder = config.getBool(ENABLE_PLACEHOLDER_SETTINGS);
+            clawPackCount = config.getFloat(CLAW_PACK_COUNT);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -386,31 +389,29 @@ public class BoardGame implements
         Texture badgeTexture = TextureLoader.getTexture(BADGE_IMAGE);
 
         // Create the Mod Menu
-//        ModPanel settingsPanel = new ModPanel();
+        ModPanel settingsPanel = new ModPanel();
+        ModLabel clawLabel = new ModLabel("Claw Pack: OFF",500f,720f,settingsPanel,(label)->{});
+        settingsPanel.addUIElement(clawLabel);
+        setClawLabel(clawLabel);
+        ModMinMaxSlider clawSlider = new ModMinMaxSlider(" ",
+                500.0f, 700.0f, 0, 8,
+                clawPackCount,
+                " ",
+                settingsPanel,
+                (button) -> {
+                    clawPackCount = button.getValue();
+                    setClawLabel(clawLabel);
+                    try {
+                        SpireConfig config = new SpireConfig("BoardGame", "BoardGameConfig", BoardGameSettings);
+                        config.setFloat(CLAW_PACK_COUNT, clawPackCount);
+                        config.save();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+        settingsPanel.addUIElement(clawSlider); // Add the button to the settings panel. Button is a go.
+        BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
-//        // Create the on/off button:
-//        ModLabeledToggleButton enableNormalsButton = new ModLabeledToggleButton("This is the text which goes next to the checkbox.",
-//                350.0f, 700.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
-//                enablePlaceholder, // Boolean it uses
-//                settingsPanel, // The mod panel in which this button will be in
-//                (label) -> {
-//                }, // thing??????? idk
-//                (button) -> { // The actual button:
-//
-//                    enablePlaceholder = button.enabled; // The boolean true/false will be whether the button is enabled or not
-//                    try {
-//                        // And based on that boolean, set the settings and save them
-//                        SpireConfig config = new SpireConfig("defaultMod", "theDefaultConfig", theDefaultDefaultSettings);
-//                        config.setBool(ENABLE_PLACEHOLDER_SETTINGS, enablePlaceholder);
-//                        config.save();
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                });
-//
-//        settingsPanel.addUIElement(enableNormalsButton); // Add the button to the settings panel. Button is a go.
-
-//        BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
         BaseMod.addCustomScreen(new MultiCharacterSelectScreen());
         BaseMod.addCustomScreen(new TargetSelectScreen());
@@ -470,6 +471,14 @@ public class BoardGame implements
         addMonster("BoardGame:Red Slaver", ()->new BGRedSlaver(0.0F, 0.0F,"DV3"));
         addMonster("BoardGame:Looter", ()->new BGLooter(0.0F, 0.0F, false));
         addMonster("BoardGame:Jaw Worm (Medium)", ()->new BGJawWorm(0,0, 1, ""));
+        addMonster("BoardGame:A7 Jaw Worm and Spike Slime", ()->new MonsterGroup(new AbstractMonster[]{
+                new BGJawWorm(-200,0, 3, ""),
+                new BGSpikeSlime_M(80.0F,0.0F)
+        }));
+        addMonster("BoardGame:A7 Looter and Acid Slime", ()->new MonsterGroup(new AbstractMonster[]{
+                new BGLooter(-200,0, false),
+                new BGAcidSlime_M(80.0F,0.0F)
+        }));
         addMonster("BoardGame:Lagavulin", ()->new BGLagavulin());
         addMonster("BoardGame:Gremlin Nob", ()->new BGGremlinNob(0,0));
         addMonster("BoardGame:3 Sentries",()->new MonsterGroup(new AbstractMonster[]
@@ -961,7 +970,23 @@ public class BoardGame implements
     }
 
 
-
+    private static void setClawLabel(ModLabel clawLabel){
+        int intClawPackCount= BGClaw2.getClawPackCount();
+        if(intClawPackCount==0){
+            clawLabel.text="Claw Pack: OFF";
+        }else{
+            clawLabel.text="Claw Pack: " + intClawPackCount + " Claws";
+        }
+        if(intClawPackCount==2){
+            clawLabel.text+=" - The minimum.";
+        }else if(intClawPackCount>=3 && intClawPackCount<=4){
+            clawLabel.text+=" - Recommended.";
+        }else if(intClawPackCount>=5 && intClawPackCount<=6){
+            clawLabel.text+=" - A bit overpowered.";
+        }else if(intClawPackCount>=7 && intClawPackCount<=8) {
+            clawLabel.text+=" - Overpowered, but fun.";
+        }
+    }
 
 
 

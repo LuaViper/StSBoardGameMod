@@ -13,6 +13,7 @@ import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
+//TODO: if player has a die-altering relic, Necronomicon won't activate right away until roll is locked in. then, if player plays a card before roll is locked in, Necronomicon will activate after the card resolves, causing Double Attack to apply to the NEXT card.
 public class BGNecronomicon extends AbstractBGRelic implements DieControlledRelic {
     public static final String ID = "BGNecronomicon";
 

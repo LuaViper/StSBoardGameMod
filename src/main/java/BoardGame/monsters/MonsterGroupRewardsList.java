@@ -44,6 +44,8 @@ public class MonsterGroupRewardsList {
         rewards.put("BoardGame:Red Slaver",new MonsterGroupRewards(1));
         rewards.put("BoardGame:Looter",new MonsterGroupRewards(0,true));
         rewards.put("BoardGame:Jaw Worm (Medium)",new MonsterGroupRewards(1));
+        rewards.put("BoardGame:A7 Looter and Acid Slime",new MonsterGroupRewards(0,true));
+        rewards.put("BoardGame:A7 Jaw Worm and Spike Slime",new MonsterGroupRewards(1));
 
         rewards.put("BoardGame:Lagavulin",new MonsterGroupRewards(2,false,true));
         rewards.put("BoardGame:Gremlin Nob",new MonsterGroupRewards(2,false,true));

@@ -76,7 +76,7 @@ public class BGSnecko extends AbstractBGMonster implements DieControlledMoves, B
 
 
         this.damage.add(new DamageInfo((AbstractCreature)this, 3));
-        this.damage.add(new DamageInfo((AbstractCreature)this, 4));
+        this.damage.add(new DamageInfo((AbstractCreature)this, 5));
         this.damage.add(new DamageInfo((AbstractCreature)this, 2));
     }
 

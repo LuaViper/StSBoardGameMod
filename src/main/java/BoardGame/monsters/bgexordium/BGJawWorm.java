@@ -77,6 +77,8 @@ public class BGJawWorm extends AbstractBGMonster implements BGDamageIcons, DieCo
 
         if(this.difficulty==0)
             setHp(8);
+        else if(this.difficulty==3)
+            setHp(7);
         else
             setHp(10);
 
@@ -101,7 +103,13 @@ public class BGJawWorm extends AbstractBGMonster implements BGDamageIcons, DieCo
             this.chompDmg = 4;
             this.thrashDmg = 3;
             this.thrashBlock = 1;
-
+        }else if(this.difficulty==3){
+            this.bellowStr = 1;
+            this.bellowBlock = 2;
+            this.chompDmg = 3;
+            this.thrashDmg = 2;
+            this.thrashBlock = 1;
+            this.behavior="DSA";
         }
 
         this.damage.add(new DamageInfo((AbstractCreature)this, this.chompDmg));

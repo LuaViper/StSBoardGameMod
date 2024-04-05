@@ -15,6 +15,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+//TODO: Echo Form doesn't play with DoubleAttack/DoubleSkill -- currently expends both at once!
+// Use DoubleSkill/Attack first, then Echo Form
+
 public class BGEchoFormPower extends AbstractBGPower {
     public static final String POWER_ID = "BoardGame:BGEchoFormPower";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGEchoFormPower");

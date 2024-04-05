@@ -2,6 +2,8 @@ package BoardGame.dungeons;
 
 import BoardGame.BoardGame;
 import BoardGame.cards.*;
+import BoardGame.cards.BGBlue.BGClaw;
+import BoardGame.cards.BGBlue.BGClaw2;
 import BoardGame.cards.BGCurse.*;
 import BoardGame.characters.*;
 import BoardGame.events.BGColosseum;
@@ -161,6 +163,8 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                     for (AbstractCard c : tmpPool) {
                         switch (c.rarity) {
                             case COMMON:
+                                if(c instanceof BGClaw2)break; //these get added in later
+                                if(c instanceof BGClaw && BGClaw2.getClawPackCount()>0)break;   //if we ARE using claw pack, don't add regular Claws
                                 rewards.addToTop(c.makeCopy());
                                 rewards.addToTop(c.makeCopy());
                                 break;
@@ -170,6 +174,11 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                             case RARE:
                                 if(!(c instanceof BGGoldenTicket)) rares.addToTop(c.makeCopy());
                                 break;
+                        }
+                    }
+                    if(i==2){
+                        for(int j=0;j<BGClaw2.getClawPackCount();j+=1){
+                            rewards.addToTop(new BGClaw2());
                         }
                     }
                     rewards.shuffle(cardRng);
@@ -321,7 +330,6 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                         if(CardCrawlGame.dungeon instanceof AbstractBGDungeon
                                 && (!(CardCrawlGame.dungeon instanceof BGExordium) && getCurrRoom() instanceof MonsterRoomElite)
                                 || (getCurrRoom() instanceof EventRoom && getCurrRoom().event instanceof BGColosseum && ((BGColosseum)getCurrRoom().event).isElite)){
-                            //TODO NEXT: Normal Colosseum doesn't upgrade card!
                             card.upgrade();
                         }
                         for (AbstractRelic r : player.relics) {

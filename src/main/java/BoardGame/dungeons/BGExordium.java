@@ -281,8 +281,13 @@ public class BGExordium
         monsters.add(new MonsterInfo("BoardGame:Angry Gremlin Team",2.0F));
         monsters.add(new MonsterInfo("BoardGame:Blue Slaver",2.0F));
         monsters.add(new MonsterInfo("BoardGame:Red Slaver",2.0F));
-        monsters.add(new MonsterInfo("BoardGame:Looter",2.0F));
-        monsters.add(new MonsterInfo("BoardGame:Jaw Worm (Medium)", 2.0F));
+        if(ascensionLevel<7) {
+            monsters.add(new MonsterInfo("BoardGame:Jaw Worm (Medium)", 2.0F));
+            monsters.add(new MonsterInfo("BoardGame:Looter",2.0F));
+        }else{
+            monsters.add(new MonsterInfo("BoardGame:A7 Jaw Worm and Spike Slime", 2.0F));
+            monsters.add(new MonsterInfo("BoardGame:A7 Looter and Acid Slime",2.0F));
+        }
         MonsterInfo.normalizeWeights(monsters);
         populateFirstStrongEnemy(monsters, generateExclusions());
         populateMonsterList(monsters, count, false);
