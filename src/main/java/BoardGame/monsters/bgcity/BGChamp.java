@@ -61,6 +61,7 @@ public class BGChamp
     private int numTurns = 0;
     private static final int BLOCK_AMT = 3;
     private int strAmt=1; private int forgeAmt=3;
+    private int executeStrAmt=1;
     private int forgeTimes = 0; private int forgeThreshold = 2;
     private boolean thresholdReached = false, firstTurn = true;
 
@@ -81,13 +82,14 @@ public class BGChamp
         e.setTimeScale(0.8F);
 
 
-        setHp(40);
+        setHp((AbstractDungeon.ascensionLevel<10) ? 40 : 45);
 
-
+        executeStrAmt=(AbstractDungeon.ascensionLevel<10) ? 1 : 2;
 
         this.damage.add(new DamageInfo((AbstractCreature)this, 4));
-        this.damage.add(new DamageInfo((AbstractCreature)this, 5));
+        this.damage.add(new DamageInfo((AbstractCreature)this, (AbstractDungeon.ascensionLevel<10) ? 5 : 6));
         this.damage.add(new DamageInfo((AbstractCreature)this, 4));
+
     }
 
 
@@ -167,7 +169,7 @@ public class BGChamp
                 setMove((byte)6, AbstractMonster.Intent.BUFF);
                 break;
             case 6:
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new StrengthPower((AbstractCreature)this, this.strAmt), this.strAmt));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new StrengthPower((AbstractCreature)this, this.executeStrAmt), this.executeStrAmt));
                 setMove(EXECUTE_NAME, (byte)5, AbstractMonster.Intent.ATTACK, ((DamageInfo)this.damage.get(2)).base, 2, true);
                 break;
 

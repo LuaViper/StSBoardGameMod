@@ -47,15 +47,21 @@ public class BGFungiBeast extends AbstractBGMonster implements BGDamageIcons, Di
     private static final byte BITE = 1;
     private static final byte GROW = 2;
     private static final int VULN_AMT = 2;
-
+    private int strAmount;
     private String behavior;
 
-    public BGFungiBeast(float x, float y, String behavior) {
+    public BGFungiBeast(float x, float y, String behavior, boolean a7summon) {
         super(NAME, "BGFungiBeast", 28, 0.0F, -16.0F, 260.0F, 170.0F, null, x, y);
 
         this.behavior=behavior;
 
-        setHp(5);
+        if(a7summon){
+            setHp(6);
+            strAmount=1;
+        }else {
+            setHp(5);
+            strAmount=2;
+        }
 
         loadAnimation("images/monsters/theBottom/fungi/skeleton.atlas", "images/monsters/theBottom/fungi/skeleton.json", 1.0F);
 
@@ -65,8 +71,10 @@ public class BGFungiBeast extends AbstractBGMonster implements BGDamageIcons, Di
         e.setTime(e.getEndTime() * MathUtils.random());
         e.setTimeScale(MathUtils.random(0.7F, 1.0F));
 
-        this.damage.add(new DamageInfo((AbstractCreature)this, 2));
+        this.damage.add(new DamageInfo((AbstractCreature) this, 2));
         this.damage.add(new DamageInfo((AbstractCreature)this, 1));
+
+
     }
 
 
@@ -93,7 +101,7 @@ public class BGFungiBeast extends AbstractBGMonster implements BGDamageIcons, Di
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new StrengthPower((AbstractCreature)this, 1), 1));
                 break;
             case 3:
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new StrengthPower((AbstractCreature)this, 2), 2));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new StrengthPower((AbstractCreature)this, strAmount), strAmount));
                 break;
         }
 
@@ -123,6 +131,9 @@ public class BGFungiBeast extends AbstractBGMonster implements BGDamageIcons, Di
             } else if (move=='S'){
                 setMove(MOVES[0], (byte) 3, AbstractMonster.Intent.BUFF);
             } else if (move=='1'){
+                setMove("Power Up", (byte) 2, AbstractMonster.Intent.ATTACK_BUFF, ((DamageInfo) this.damage.get(1)).base);
+            } else if (move=='!'){
+                //TODO: unlike '1', this is not an AOE attack -- need to create new (byte)4 move
                 setMove("Power Up", (byte) 2, AbstractMonster.Intent.ATTACK_BUFF, ((DamageInfo) this.damage.get(1)).base);
             }
         }

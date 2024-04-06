@@ -5,6 +5,7 @@
     //intent dmg is determined during AbstractMonster.calculateDamage(int damage)
     //attacking should be easy enough, just have a 3 dmg action then a delay action then a 2 dmg action
 
+    //TODO: ascension 7+ attacks with 3 + AOE2 instead of 3 + 2.  no other changes though
 
  package BoardGame.monsters.bgcity; 
  import BoardGame.monsters.BGDamageIcons;

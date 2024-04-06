@@ -55,6 +55,9 @@ public class FakeMonsterRoomEvent extends AbstractEvent {
     public void update() {
         super.update();
 
+        AbstractDungeon.getCurrRoom().setMapSymbol("E");
+        AbstractDungeon.getCurrRoom().setMapImg(ImageMaster.MAP_NODE_ELITE,ImageMaster.MAP_NODE_ELITE_OUTLINE);
+
 //        Logger logger = LogManager.getLogger(FakeMonsterRoomEvent.class.getName());
 //        logger.info("FMRE: "+this.hasDialog+" "+" "+this.phase+" "+this.waitTimer);
 

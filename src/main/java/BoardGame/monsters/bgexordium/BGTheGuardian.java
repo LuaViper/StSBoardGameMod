@@ -78,11 +78,11 @@ public class BGTheGuardian extends AbstractBGMonster {
         setHp(40);
         this.whirlwindDamage=2;
         this.whirlwindCount=1;
-        this.fierceBashDamage=6;
-        this.rollDamage=2;
+        this.fierceBashDamage=(AbstractDungeon.ascensionLevel<10) ? 6 : 7;
+        this.rollDamage=(AbstractDungeon.ascensionLevel<10) ? 2 : 3;
         this.twinSlamDamage=4;
         this.DEFENSIVE_BLOCK=5;
-        this.blockAmount=5;
+        this.blockAmount=(AbstractDungeon.ascensionLevel<10) ? 5 : 6;
         this.thornsDamage=1;
 
         this.damage.add(new DamageInfo((AbstractCreature)this, this.whirlwindDamage));

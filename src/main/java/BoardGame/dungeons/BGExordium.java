@@ -34,6 +34,7 @@ import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
 
+
 public class BGExordium
         extends AbstractBGDungeon
 {
@@ -289,7 +290,7 @@ public class BGExordium
             monsters.add(new MonsterInfo("BoardGame:A7 Looter and Acid Slime",2.0F));
         }
         MonsterInfo.normalizeWeights(monsters);
-        populateFirstStrongEnemy(monsters, generateExclusions());
+        //populateFirstStrongEnemy(monsters, generateExclusions());
         populateMonsterList(monsters, count, false);
     }
 

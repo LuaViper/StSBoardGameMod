@@ -451,8 +451,8 @@ public class BoardGame implements
                 new BGGreenLouse(80.0F, 30.0F)
         }));
         addMonster("BoardGame:Fungi Beasts",()->new MonsterGroup(new AbstractMonster[]{
-                new BGFungiBeast(-200.0F, 10.0F, "21S"),
-                new BGFungiBeast(80.0F, 30.0F,"2S1")
+                new BGFungiBeast(-200.0F, 10.0F, "21S",false),
+                new BGFungiBeast(80.0F, 30.0F,"2S1",false)
         }));
         addMonster("BoardGame:Slime Trio",()->new MonsterGroup(new AbstractMonster[]{
                 new BGSpikeSlime_S(-350.0F,0.0F),
@@ -518,6 +518,11 @@ public class BoardGame implements
         addMonster("BoardGame:Shelled Parasite",()->new MonsterGroup(new AbstractMonster[]{
                 new BGShelledParasite()
         }));
+        addMonster("BoardGame:A7 Shelled Parasite and Fungi Beast",()->new MonsterGroup(new AbstractMonster[]{
+                new BGShelledParasite(-260.0F, 15.0F),
+                new BGFungiBeast(120.0F, 0.0F,"S2!",true)
+        }));
+
         addMonster("BoardGame:3 Cultists",()->new MonsterGroup(new AbstractMonster[]{
                 new BGCultist(-465.0F, -20.0F, false),
                 new BGCultist(-130.0F, 15.0F, false),
@@ -530,6 +535,10 @@ public class BoardGame implements
         }));
         addMonster("BoardGame:SphericGuardian",()->new MonsterGroup(new AbstractMonster[]{
                 new BGSphericGuardian()
+        }));
+        addMonster("BoardGame:A7 Spheric Guardian and Sentry A",()->new MonsterGroup(new AbstractMonster[]{
+                new BGSphericGuardian(-305.0F, 30.0F),
+                new BGSentry(0F,0F,"D3")
         }));
         addMonster("BoardGame:SnakePlant",()->new MonsterGroup(new AbstractMonster[]{
                 new BGSnakePlant(-30.0F, -30.0F)
@@ -572,6 +581,17 @@ public class BoardGame implements
                 (AbstractMonster)new BGRepulsor(-480.0F, 6.0F, "D3"),
                 (AbstractMonster)new BGExploder(-240.0F, -6.0F),
                 (AbstractMonster)new BGSpiker(0.0F, -12.0F)
+        }));
+        addMonster("BoardGame:A7 Exploder and Friends", ()->new MonsterGroup(new AbstractMonster[] {
+                (AbstractMonster)new BGExploder(-480.0F, 6.0F),
+                (AbstractMonster)new BGRepulsor(-240.0F, -6.0F, "3D"),
+                (AbstractMonster)new BGSpiker(0.0F, -12.0F),
+                (AbstractMonster)new BGSpiker(240.0F, 12.0F)
+        }));
+        addMonster("BoardGame:A7 Repulsor and Friends", ()->new MonsterGroup(new AbstractMonster[] {
+                (AbstractMonster)new BGRepulsor(-435.0F, 10.0F, "D3"),
+                (AbstractMonster)new BGExploder(-210.0F, 0.0F),
+                (AbstractMonster)new BGSphericGuardian(110.0F, 10.0F)
         }));
         addMonster("BoardGame:Orb Walker v2.3", ()->new MonsterGroup(new AbstractMonster[] {
                 (AbstractMonster)new BGOrbWalker(-30.0F, 20.0F, "23")

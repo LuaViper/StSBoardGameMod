@@ -1,9 +1,12 @@
 package BoardGame.monsters.bgcity; 
+ import BoardGame.actions.BGForcedWaitAction;
  import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.AbstractBGMonster;
 import BoardGame.monsters.DieControlledMoves;
-import BoardGame.powers.BGVulnerablePower;
-import com.badlogic.gdx.graphics.Color;
+ import BoardGame.monsters.bgexordium.BGFungiBeast;
+ import BoardGame.powers.BGVulnerablePower;
+ import BoardGame.powers.BGVulnerableWatchPlayerPower;
+ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -27,6 +30,7 @@ import com.megacrit.cardcrawl.powers.PlatedArmorPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.SpeechBubble;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
+
 
 public class BGShelledParasite extends AbstractBGMonster implements DieControlledMoves, BGDamageIcons {
     public static final String ID = "BGShelled Parasite";
@@ -63,7 +67,10 @@ public class BGShelledParasite extends AbstractBGMonster implements DieControlle
 
         this.dialogX = -50.0F * Settings.scale;
 
-        setHp(18);
+        if(AbstractDungeon.ascensionLevel<7)
+            setHp(18);
+        else
+            setHp(16);
 
 
 
@@ -91,13 +98,21 @@ public class BGShelledParasite extends AbstractBGMonster implements DieControlle
                 setMove((byte)2, AbstractMonster.Intent.ATTACK_DEBUFF, ((DamageInfo)this.damage.get(1)).base);
                 break;
             case 2:
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new AnimateHopAction((AbstractCreature)this));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new WaitAction(0.2F));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
+                        .get(1), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)this, (AbstractPower)new BGVulnerablePower((AbstractCreature)AbstractDungeon.player, 1, true), 1));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new GainBlockAction((AbstractCreature)this, 2));
 
-                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new AnimateHopAction((AbstractCreature)this));
-                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new WaitAction(0.2F));
-                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
-                            .get(1), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)this, (AbstractPower)new BGVulnerablePower((AbstractCreature)AbstractDungeon.player, 1, true), 1));
-                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new GainBlockAction((AbstractCreature)this, 2));
+                AbstractMonster mo = AbstractDungeon.getCurrRoom().monsters.getMonster(BGFungiBeast.ID);
+                if(mo!=null && !mo.isDead && !mo.halfDead && !mo.isDying && !mo.isEscaping) {
+                    if(mo.getIntentBaseDmg()>0) {
+                        addToBot(new ApplyPowerAction((AbstractCreature) mo, (AbstractCreature) mo, (AbstractPower) new BGVulnerableWatchPlayerPower((AbstractCreature) mo, 1, false), 1));
+                        addToBot(new BGForcedWaitAction(1.0F));
+                    }
+                }
+
                 setMove((byte)3, AbstractMonster.Intent.ATTACK_DEFEND, ((DamageInfo)this.damage.get(2)).base);
                 break;
             case 3:

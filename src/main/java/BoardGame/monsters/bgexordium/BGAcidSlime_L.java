@@ -26,6 +26,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.SlimeAnimListener;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import org.apache.logging.log4j.LogManager;
@@ -68,6 +69,9 @@ public class BGAcidSlime_L
         if(hard){
             this.behavior= BGExordium.getSummonLargeSlime();
             setHp(12);
+            if(AbstractDungeon.ascensionLevel>=10){
+                addToBot(new ApplyPowerAction(this,this,new StrengthPower(this,1),1));
+            }
         }else{
             //this.behavior="4XD";
             this.behavior="CUBE";

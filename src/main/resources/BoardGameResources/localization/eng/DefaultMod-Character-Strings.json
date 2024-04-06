@@ -222,7 +222,6 @@
       "There is no maximum hand size.",
       "Transformed cards always revert to your character's color. Curses cannot be transformed.",
       "Unknown rooms contain only events until Ascension 3.",
-      "The card removal service does not increase in price each time you use it. Ignore that tooltip.",
       "Some cards, relics, and events gain additional effects in multiplayer games."
     ],
     "OPTIONS": [

@@ -2,9 +2,7 @@ package BoardGame.monsters.bgbeyond;
  import BoardGame.monsters.BGDamageIcons;
 import BoardGame.cards.BGStatus.BGDazed;
 import BoardGame.cards.BGStatus.BGSlimed;
-import BoardGame.cards.BGStatus.BGVoidCard;
-import BoardGame.monsters.DieControlledMoves;
-import com.megacrit.cardcrawl.actions.common.*;
+ import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import BoardGame.monsters.AbstractBGMonster;
 import com.badlogic.gdx.math.MathUtils;
@@ -13,17 +11,12 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.status.Dazed;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
+ import com.megacrit.cardcrawl.core.AbstractCreature;
+ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
-import com.megacrit.cardcrawl.powers.PlatedArmorPower;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
+ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 public class BGDeca extends AbstractBGMonster implements BGDamageIcons {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Deca");
@@ -47,6 +40,7 @@ public class BGDeca extends AbstractBGMonster implements BGDamageIcons {
     private static final int BEAM_DAZE_AMT = 2;
     private static final int PROTECT_BLOCK = 16;
     private boolean isAttacking;
+    private int slimeAmt;
 
     public BGDeca() {
         super(NAME, "BGDeca", 250, 0.0F, -26.0F, 390.0F, 390.0F, null, -350.0F, 30.0F);
@@ -75,7 +69,8 @@ public class BGDeca extends AbstractBGMonster implements BGDamageIcons {
 //            this.beamDmg = 10;
 //        }
 
-        setHp(50);
+        setHp((AbstractDungeon.ascensionLevel<10) ? 50 : 55);
+        slimeAmt =(AbstractDungeon.ascensionLevel<10) ? 1 : 2;
         this.beamDmg=3;
 
         this.damage.add(new DamageInfo((AbstractCreature)this, this.beamDmg));
@@ -140,7 +135,7 @@ public class BGDeca extends AbstractBGMonster implements BGDamageIcons {
 //                    }
 //                }
                 addToBot((AbstractGameAction)new MakeTempCardInDrawPileAction((AbstractCard)new BGDazed(), 1, false, true));
-                addToBot((AbstractGameAction)new MakeTempCardInDiscardAction((AbstractCard)new BGSlimed(), 1));
+                addToBot((AbstractGameAction)new MakeTempCardInDiscardAction((AbstractCard)new BGSlimed(), slimeAmt));
                 this.isAttacking = true;
                 break;
         }

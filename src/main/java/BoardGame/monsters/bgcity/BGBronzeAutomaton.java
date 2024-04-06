@@ -61,10 +61,10 @@ public class BGBronzeAutomaton extends AbstractBGMonster implements BGDamageIcon
         this.dialogX = -100.0F * Settings.scale;
         this.dialogY = 10.0F * Settings.scale;
 
-        setHp(55);
+        setHp((AbstractDungeon.ascensionLevel<10) ? 55 : 60);
         this.blockAmt = 0;
         this.flailDmg = 1;
-        this.beamDmg = 8;
+        this.beamDmg = (AbstractDungeon.ascensionLevel<10) ? 7 : 9;
         this.strAmt = 1;
 
         this.damage.add(new DamageInfo((AbstractCreature)this, this.flailDmg));
@@ -94,7 +94,11 @@ public class BGBronzeAutomaton extends AbstractBGMonster implements BGDamageIcon
         switch (this.nextMove) {
             case 1:
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new StrengthPower((AbstractCreature)this, this.strAmt), this.strAmt));
-                setMove((byte)2, AbstractMonster.Intent.ATTACK, 1, 2, true);
+                if(AbstractDungeon.ascensionLevel>=10){
+                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new RemoveSpecificPowerAction((AbstractCreature)this, (AbstractCreature)this,"BGWeakened"));
+                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new RemoveSpecificPowerAction((AbstractCreature)this, (AbstractCreature)this,"BGVulnerable"));
+                }
+                setMove((byte)2, AbstractMonster.Intent.ATTACK, damage.get(0).base, 2, true);
                 break;
             case 2:
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new AnimateFastAttackAction((AbstractCreature)this));
@@ -105,11 +109,10 @@ public class BGBronzeAutomaton extends AbstractBGMonster implements BGDamageIcon
                 setMove((byte)3, AbstractMonster.Intent.BUFF);
                 break;
             case 3:
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new GainBlockAction((AbstractCreature)this, (AbstractCreature)this, this.blockAmt));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new StrengthPower((AbstractCreature)this, this.strAmt), this.strAmt));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new RemoveSpecificPowerAction((AbstractCreature)this, (AbstractCreature)this,"BGWeakened"));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new RemoveSpecificPowerAction((AbstractCreature)this, (AbstractCreature)this,"BGVulnerable"));
-                setMove(BEAM_NAME, (byte)4, AbstractMonster.Intent.ATTACK, 8);
+                setMove(BEAM_NAME, (byte)4, AbstractMonster.Intent.ATTACK, damage.get(1).base);
                 break;
 
             case 4:

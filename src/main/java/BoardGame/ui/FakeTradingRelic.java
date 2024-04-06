@@ -67,7 +67,7 @@ public class FakeTradingRelic extends Button {
         if (this.hb.hovered && !Settings.isTouchScreen) {
             TipHelper.renderGenericTip(this.x - 90.0F * Settings.scale, this.y - 90.0F * Settings.scale,
                     realRelic.name,
-                    "Shop price "+realRelic.getPrice()+" gold"
+                    realRelic.description + " NL Shop price "+realRelic.getPrice()+" gold"
             );
         }
 

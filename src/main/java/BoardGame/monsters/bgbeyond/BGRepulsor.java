@@ -1,4 +1,5 @@
 package BoardGame.monsters.bgbeyond; 
+ import BoardGame.cards.BGStatus.BGDazed;
  import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.DieControlledMoves;
 import BoardGame.thedie.TheDie;
@@ -75,7 +76,7 @@ public class BGRepulsor extends AbstractBGMonster implements DieControlledMoves,
             case 1: //1 dmg+daze
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                         .get(0), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new MakeTempCardInDrawPileAction((AbstractCard)new Dazed(), this.dazeAmt, false, true));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new MakeTempCardInDrawPileAction((AbstractCard)new BGDazed(), this.dazeAmt, false, true));
                 break;
             case 2: //3 dmg
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new AnimateSlowAttackAction((AbstractCreature)this));

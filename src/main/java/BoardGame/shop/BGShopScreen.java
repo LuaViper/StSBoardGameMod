@@ -11,6 +11,8 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.TipHelper;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.shop.OnSaleTag;
 import com.megacrit.cardcrawl.shop.ShopScreen;
@@ -123,7 +125,10 @@ public class BGShopScreen {
         @SpirePostfixPatch
         private static void init(ShopScreen __instance, ArrayList<AbstractCard> coloredCards, ArrayList<AbstractCard> colorlessCards){
             if(CardCrawlGame.dungeon instanceof AbstractBGDungeon) {
-                __instance.actualPurgeCost = 3;
+                if(AbstractBGDungeon.ascensionLevel<8)
+                    __instance.actualPurgeCost = 3;
+                else
+                    __instance.actualPurgeCost = 4;
             }
         }
     }
@@ -149,9 +154,31 @@ public class BGShopScreen {
             }
 
         }
-
     }
 
+
+    @SpirePatch2(clz = ShopScreen.class, method = "updatePurgeCard")
+    public static class CardRemovalTooltipPatch {
+        @SpireInsertPatch(
+                locator= Locator.class,
+                localvars={}
+        )
+        public static SpireReturn<Void> Insert(){
+            if(CardCrawlGame.dungeon instanceof AbstractBGDungeon){
+                //TODO: localization
+                TipHelper.renderGenericTip(InputHelper.mX - 360.0F * Settings.scale, InputHelper.mY - 70.0F * Settings.scale, ShopScreen.LABEL[0], "Remove a card from your deck.");
+                return SpireReturn.Return();
+            }
+            return SpireReturn.Continue();
+        }
+        private static class Locator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(TipHelper.class,"renderGenericTip");
+                return LineFinder.findInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher);
+            }
+
+        }
+    }
 
 
 

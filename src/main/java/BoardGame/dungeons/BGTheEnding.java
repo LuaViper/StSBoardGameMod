@@ -108,7 +108,7 @@ public class BGTheEnding extends AbstractBGDungeon {
         MapRoomNode shopNode = new MapRoomNode(3, 1);
         shopNode.room = (AbstractRoom)new ShopRoom();
         MapRoomNode enemyNode = new MapRoomNode(3, 2);
-        if(false) {
+        if(ascensionLevel>=11) {
             enemyNode.room = (AbstractRoom) new MonsterRoomElite();
         }else{
             enemyNode.room = (AbstractRoom) new EventRoom();

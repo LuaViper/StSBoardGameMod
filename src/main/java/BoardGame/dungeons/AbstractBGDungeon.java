@@ -28,6 +28,7 @@ import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
+import com.megacrit.cardcrawl.monsters.MonsterInfo;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
@@ -39,6 +40,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import jdk.internal.jimage.ImageReader;
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 //TODO: decks are not getting shuffled upon starting a new game (initializedCardPools never gets set back to true) (can we just change it to non-static??)
 
@@ -535,9 +537,14 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                 //logger.info("Encounter: "+AbstractDungeon.monsterList.get(0));  // <-- works as expected
                 String encounter="";
 
+                int goldModifier = 0;
                 if(__instance instanceof MonsterRoomBoss) {
                     encounter = AbstractDungeon.bossKey;
                     logger.info("Boss key: "+AbstractDungeon.bossKey);
+                    if(AbstractDungeon.ascensionLevel>=10) {
+                        //TODO: doublecheck this isn't affecting Tiny House
+                        goldModifier = -1;
+                    }
                 }else if(__instance instanceof MonsterRoomElite){
                     encounter = AbstractDungeon.eliteMonsterList.get(0);
                 }else if(__instance instanceof MonsterRoom){
@@ -556,6 +563,7 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                     gold=MonsterGroupRewardsList.rewards.get(encounter).gold;
                 }
                 if(gold>0) {
+                    gold+=goldModifier;
                     for (RewardItem i : __instance.rewards) {
                         if (i.type == RewardItem.RewardType.GOLD) {
                             i.incrementGold(gold);
@@ -665,7 +673,22 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
     }
 
 
-
+    public void populateMonsterList(ArrayList<MonsterInfo> monsters, int numMonsters, boolean elites) {
+        //TODO: monsters go to the bottom of the monster deck after they're selected
+        // (rather than reshuffling the entire deck when it's depleted)
+        // (but First Encounter monsters don't go back into the deck)
+        numMonsters=Math.min(numMonsters,monsters.size());
+        Collections.shuffle(monsters, new java.util.Random(monsterRng.randomLong()));
+        if(!elites) {
+            for (int i = 0; i < numMonsters; ++i) {
+                monsterList.add(monsters.get(i).name);
+            }
+        }else{
+            for (int i = 0; i < numMonsters; ++i) {
+                eliteMonsterList.add(monsters.get(i).name);
+            }
+        }
+    }
 
 }
 

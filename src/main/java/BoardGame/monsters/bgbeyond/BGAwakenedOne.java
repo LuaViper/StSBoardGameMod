@@ -4,7 +4,8 @@ import BoardGame.cards.BGStatus.BGSlimed;
 import BoardGame.cards.BGStatus.BGVoidCard;
 import BoardGame.monsters.DieControlledMoves;
 import BoardGame.powers.BGCuriosityPower;
-import com.megacrit.cardcrawl.actions.common.*;
+ import BoardGame.relics.BGTheDieRelic;
+ import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import BoardGame.monsters.AbstractBGMonster;
 
@@ -130,9 +131,9 @@ public class BGAwakenedOne
 
         setHp(50);
         this.damage.add(new DamageInfo((AbstractCreature)this, 3));
-        this.damage.add(new DamageInfo((AbstractCreature)this, 5));
+        this.damage.add(new DamageInfo((AbstractCreature)this, (AbstractDungeon.ascensionLevel<10) ? 5 : 6));
         this.damage.add(new DamageInfo((AbstractCreature)this, 2));
-        this.damage.add(new DamageInfo((AbstractCreature)this, 7));
+        this.damage.add(new DamageInfo((AbstractCreature)this, (AbstractDungeon.ascensionLevel<10) ? 7 : 6));   //decreases 7->6 in A10+
         this.damage.add(new DamageInfo((AbstractCreature)this, 4));
         this.damage.add(new DamageInfo((AbstractCreature)this, 3));
 
@@ -179,7 +180,7 @@ public class BGAwakenedOne
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new WaitAction(0.3F));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                         .get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                setMove((byte)1, AbstractMonster.Intent.ATTACK, 5);
+                setMove((byte)1, AbstractMonster.Intent.ATTACK, damage.get(1).base);
                 break;
             case 1:
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SFXAction("MONSTER_AWAKENED_POUNCE"));
@@ -187,21 +188,27 @@ public class BGAwakenedOne
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new WaitAction(0.3F));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                         .get(1), AbstractGameAction.AttackEffect.SLASH_HEAVY));
-                setMove((byte)2, AbstractMonster.Intent.ATTACK, 2,2,true);
+                setMove((byte)2, AbstractMonster.Intent.ATTACK, damage.get(2).base,2,true);
                 break;
             case 2:
                 for (i = 0; i < 2; i++) {
                     AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                             .get(2), AbstractGameAction.AttackEffect.FIRE));
                 }
-                setMove((byte)0, AbstractMonster.Intent.ATTACK, 3);
+                setMove((byte)0, AbstractMonster.Intent.ATTACK, damage.get(0).base);
                 break;
 
             case 3:
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SFXAction("VO_AWAKENEDONE_1"));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractCreature)this, (AbstractGameEffect)new IntenseZoomEffect(this.hb.cX, this.hb.cY, true), 0.05F, true));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ChangeStateAction(this, "REBIRTH"));
-                setMove((byte)4, AbstractMonster.Intent.ATTACK, 7);
+                if (AbstractDungeon.ascensionLevel >= 10) {
+                    if(BGTheDieRelic.powersPlayedThisCombat>0){
+                        addToBot((AbstractGameAction)new ApplyPowerAction(this, this,
+                                new StrengthPower(this, BGTheDieRelic.powersPlayedThisCombat), BGTheDieRelic.powersPlayedThisCombat));
+                    }
+                }
+                setMove((byte)4, AbstractMonster.Intent.ATTACK, damage.get(3).base);
                 break;
 
             case 4:
@@ -213,7 +220,7 @@ public class BGAwakenedOne
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractCreature)this, (AbstractGameEffect)new ShockWaveEffect(this.hb.cX, this.hb.cY, new Color(0.3F, 0.2F, 0.4F, 1.0F), ShockWaveEffect.ShockWaveType.CHAOTIC), 1.0F));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                         .get(3), AbstractGameAction.AttackEffect.SMASH));
-                setMove((byte)5, AbstractMonster.Intent.ATTACK_DEBUFF, 4);
+                setMove((byte)5, AbstractMonster.Intent.ATTACK_DEBUFF, damage.get(4).base);
                 break;
             case 5:
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ChangeStateAction(this, "ATTACK_2"));
@@ -221,7 +228,7 @@ public class BGAwakenedOne
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                         .get(4), AbstractGameAction.AttackEffect.POISON));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new MakeTempCardInDiscardAction((AbstractCard)new BGVoidCard(), 2));
-                setMove((byte)6, AbstractMonster.Intent.ATTACK_BUFF, 3,2,true);
+                setMove((byte)6, AbstractMonster.Intent.ATTACK_BUFF, damage.get(5).base,2,true);
                 break;
 
             case 6:
@@ -233,7 +240,7 @@ public class BGAwakenedOne
                             .get(5), AbstractGameAction.AttackEffect.FIRE, true));
                 }
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new StrengthPower((AbstractCreature)this, 1), 1));
-                setMove((byte)4, AbstractMonster.Intent.ATTACK, 7);
+                setMove((byte)4, AbstractMonster.Intent.ATTACK, damage.get(3).base);
                 break;
         }
         AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new RollMoveAction(this));
