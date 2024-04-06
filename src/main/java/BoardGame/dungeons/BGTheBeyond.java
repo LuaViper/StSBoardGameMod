@@ -185,7 +185,7 @@ public class BGTheBeyond
         }
 
         MonsterInfo.normalizeWeights(monsters);
-        populateFirstStrongEnemy(monsters, generateExclusions());
+        //populateFirstStrongEnemy(monsters, generateExclusions());
         populateMonsterList(monsters, count, false);
     }
 

@@ -291,7 +291,7 @@ public class BGAwakenedOne
     protected void getMove(int num) {
         if (this.form1) {
             if (this.firstTurn) {
-                setMove((byte)0, AbstractMonster.Intent.ATTACK, 3);
+                setMove((byte)0, AbstractMonster.Intent.ATTACK, damage.get(0).base);
                 this.firstTurn = false;
 
                 return;
@@ -301,7 +301,7 @@ public class BGAwakenedOne
         }
         else {
             if (this.firstTurn) {
-                setMove(DARK_ECHO_NAME, (byte)4, AbstractMonster.Intent.ATTACK, 7);
+                setMove(DARK_ECHO_NAME, (byte)4, AbstractMonster.Intent.ATTACK, damage.get(3).base);
 
                 return;
             }
