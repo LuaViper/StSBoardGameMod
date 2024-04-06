@@ -84,7 +84,13 @@ public class BGVulnerablePower extends AbstractBGPower {
         }
         this.fontScale = 8.0F;
         this.amount += stackAmount;
-        if(this.amount>3)this.amount=3;
+        if(!this.owner.hasPower("VulnerableProcced")) {
+            //ordinarily cap at 3
+            if (this.amount > 3) this.amount = 3;
+        }else{
+            //if target has procced vulnerable, then they're about to drop to 2, so we can add one more than usual
+            if (this.amount > 4) this.amount = 4;
+        }
     }
 
     public float atDamageReceive(float damage, DamageInfo.DamageType type) {
