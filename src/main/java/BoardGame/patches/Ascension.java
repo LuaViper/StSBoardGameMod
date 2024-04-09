@@ -1,7 +1,6 @@
 package BoardGame.patches;
 
-import BoardGame.characters.AbstractBGCharacter;
-import BoardGame.characters.BGIronclad;
+import BoardGame.characters.AbstractBGPlayer;
 import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.ByRef;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
@@ -17,7 +16,7 @@ import com.megacrit.cardcrawl.ui.panels.TopPanel;
 public class Ascension {
     static String[] A_TEXT = CardCrawlGame.languagePack.getUIString("BoardGame:AscensionModeDescriptions").TEXT;
 
-    static final int CURRENT_MAX_ASCENSION=10;
+    static final int CURRENT_MAX_ASCENSION=11;
 
     @SpirePatch2(clz= CharacterSelectScreen.class,method="updateAscensionToggle",paramtypez={})
     public static class DisableAscensionPatch{
@@ -27,7 +26,7 @@ public class Ascension {
                 for (CharacterOption o : __instance.options) {
                     //o.update();
                     if (o.selected) {
-                        if (o.c instanceof AbstractBGCharacter) {
+                        if (o.c instanceof AbstractBGPlayer) {
                             //___isAscensionModeUnlocked[0] = false;
                             //__instance.isAscensionMode=false;
                             if((int)ReflectionHacks.getPrivate(o,CharacterOption.class,"maxAscensionLevel")>CURRENT_MAX_ASCENSION)
@@ -67,7 +66,7 @@ public class Ascension {
             boolean isABGCharacter=false;
             for(CharacterOption o : __instance.options){
                 if(o.selected){
-                    if(o.c instanceof AbstractBGCharacter){
+                    if(o.c instanceof AbstractBGPlayer){
                         isABGCharacter=true;
                     }
                 }
@@ -89,7 +88,7 @@ public class Ascension {
     public static class AscensionTextPatch2{
         @SpirePostfixPatch
         public static void Postfix(@ByRef String[] ___ascensionString){
-            if(AbstractDungeon.player instanceof AbstractBGCharacter) {
+            if(AbstractDungeon.player instanceof AbstractBGPlayer) {
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < AbstractDungeon.ascensionLevel; i++) {
                     sb.append(A_TEXT[i]);

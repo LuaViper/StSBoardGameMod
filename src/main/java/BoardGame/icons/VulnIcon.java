@@ -6,7 +6,6 @@ import com.evacipated.cardcrawl.mod.stslib.icons.AbstractCustomIcon;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Arrays;
 
 public class VulnIcon extends AbstractCustomIcon {
     public static final String ID = "BoardGame:Vuln";    //reminder: "Icon" is automatically added

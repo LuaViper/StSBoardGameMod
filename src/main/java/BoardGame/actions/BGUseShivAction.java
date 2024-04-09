@@ -1,5 +1,7 @@
 package BoardGame.actions;
-import BoardGame.characters.AbstractBGCharacter;
+
+import BoardGame.cards.BGColorless.BGShivSurrogate;
+import BoardGame.characters.AbstractBGPlayer;
 import BoardGame.screen.TargetSelectScreen;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -10,7 +12,6 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import BoardGame.cards.BGColorless.BGShivSurrogate;
 
 public class BGUseShivAction extends AbstractGameAction {
     private boolean isARealShiv;        //false if we play Cunning Potion or Ninja Scroll
@@ -41,8 +42,8 @@ public class BGUseShivAction extends AbstractGameAction {
             TargetSelectScreen.TargetSelectAction tssAction = (target) -> {
                 //double-check that we actually have a Shiv to spend (but Cunning Potion doesn't count)
                 if(finalReliccounter>0 || !isARealShiv) {
-                    if(AbstractDungeon.player instanceof AbstractBGCharacter)
-                        ((AbstractBGCharacter)AbstractDungeon.player).shivsPlayedThisTurn+=1;
+                    if(AbstractDungeon.player instanceof AbstractBGPlayer)
+                        ((AbstractBGPlayer)AbstractDungeon.player).shivsPlayedThisTurn+=1;
                     if(isARealShiv && relic!=null) {
                         relic.counter = relic.counter - 1;  //don't decrement Shivs if we throw a Cunning Potion!
                     }

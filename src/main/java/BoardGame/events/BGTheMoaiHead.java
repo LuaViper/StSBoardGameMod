@@ -3,23 +3,15 @@ package BoardGame.events;
 import BoardGame.relics.AbstractBGRelic;
 import BoardGame.screen.RelicTradingScreen;
 import basemod.BaseMod;
-import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.EventStrings;
-import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.relics.GoldenIdol;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
-import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
-
-import java.util.ArrayList;
 
 //TODO: player should be able to see cost of relics *before* deciding to exchange one
 //Point of interest: Leftover Block at the end of combat will persist into an event cheated in with console commands.

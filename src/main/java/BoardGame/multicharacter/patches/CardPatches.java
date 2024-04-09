@@ -1,24 +1,16 @@
 package BoardGame.multicharacter.patches;
 
-import BoardGame.cards.BGGoldenTicket;
-import BoardGame.characters.AbstractBGCharacter;
-import BoardGame.dungeons.AbstractBGDungeon;
+import BoardGame.characters.AbstractBGPlayer;
 import BoardGame.multicharacter.BGMultiCharacter;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DiscardAtEndOfTurnAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
-import com.megacrit.cardcrawl.screens.select.HandCardSelectScreen;
 import com.megacrit.cardcrawl.ui.buttons.EndTurnButton;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 
-import javax.naming.Context;
 import java.util.ArrayList;
 
 public class CardPatches {
@@ -28,7 +20,7 @@ public class CardPatches {
     )
     public static class Field
     {
-        public static SpireField<AbstractBGCharacter> owner = new SpireField<>(() -> null);
+        public static SpireField<AbstractBGPlayer> owner = new SpireField<>(() -> null);
     }
 
 
@@ -40,9 +32,9 @@ public class CardPatches {
         )
         private static void Insert(AbstractPlayer __instance) {
             //called immediately after drawPile.initializeDeck
-            if (__instance instanceof AbstractBGCharacter) {
+            if (__instance instanceof AbstractBGPlayer) {
                 for(AbstractCard c : __instance.drawPile.group) {
-                    CardPatches.Field.owner.set(c,(AbstractBGCharacter)__instance);
+                    CardPatches.Field.owner.set(c,(AbstractBGPlayer)__instance);
                 }
             }
         }

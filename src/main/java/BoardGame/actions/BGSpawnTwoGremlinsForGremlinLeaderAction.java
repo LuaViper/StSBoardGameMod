@@ -1,9 +1,11 @@
 package BoardGame.actions;
 
 
-
 import BoardGame.monsters.bgcity.BGGremlinLeader;
-import BoardGame.monsters.bgexordium.*;
+import BoardGame.monsters.bgexordium.BGGremlinAngry;
+import BoardGame.monsters.bgexordium.BGGremlinFat;
+import BoardGame.monsters.bgexordium.BGGremlinSneaky;
+import BoardGame.monsters.bgexordium.BGGremlinWizard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;

@@ -1,11 +1,7 @@
 package BoardGame.icons;
 
 import BoardGame.util.TextureLoader;
-import basemod.helpers.TooltipInfo;
 import com.evacipated.cardcrawl.mod.stslib.icons.AbstractCustomIcon;
-
-import java.util.ArrayList;
-import java.util.List;
 
 public class FakeDazedIcon extends AbstractCustomIcon {
     //Exactly the same as normal Dazed but without the "put on top of your draw pile" tooltip.

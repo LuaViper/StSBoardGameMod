@@ -6,10 +6,8 @@ package BoardGame.cards.BGRed;
 
 import BoardGame.actions.BGWhirlwindAction;
 import BoardGame.actions.BGXCostCardAction;
-import BoardGame.characters.BGIronclad;
 import BoardGame.cards.AbstractBGCard;
-import BoardGame.monsters.DieControlledMoves;
-import BoardGame.powers.BGFreeCardPower;
+import BoardGame.characters.BGIronclad;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -17,8 +15,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class BGWhirlwind extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGWhirlwind");
@@ -38,7 +34,9 @@ public class BGWhirlwind extends AbstractBGCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         BGXCostCardAction.XCostInfo info = BGXCostCardAction.preProcessCard(this);
 
-        addToTop((AbstractGameAction)new BGXCostCardAction(this, info,
+        //TODO: we recently changed this from Top to Bot, make sure nothing broke
+        //addToTop((AbstractGameAction)new BGXCostCardAction(this, info,
+        addToBot((AbstractGameAction)new BGXCostCardAction(this, info,
                 (e,d)->addToTop((AbstractGameAction)new BGWhirlwindAction(AbstractDungeon.player, this.multiDamage, this.damageTypeForTurn, d, e, this.magicNumber))));
     }
 

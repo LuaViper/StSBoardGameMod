@@ -16,7 +16,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import static BoardGame.powers.WeakVulnCancel.*;
+import static BoardGame.powers.WeakVulnCancel.WEAKVULN_ZEROHITS;
 
 public class BGVulnerablePower extends AbstractBGPower {
     public static final String POWER_ID = BoardGame.makeID("Vulnerable (BG)");

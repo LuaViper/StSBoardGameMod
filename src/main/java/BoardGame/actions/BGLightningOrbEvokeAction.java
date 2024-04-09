@@ -48,7 +48,7 @@ public class BGLightningOrbEvokeAction extends AbstractGameAction {
             float speedTime = 0.2F / AbstractDungeon.player.orbs.size();
             if (Settings.FAST_MODE)
                 speedTime = 0.0F;
-            addToTop((AbstractGameAction)new DamageAllEnemiesAction((AbstractCreature)AbstractDungeon.player,
+            addToTop((AbstractGameAction)new DamageAllEnemiesAction( (AbstractCreature)AbstractDungeon.player,
                     DamageInfo.createDamageMatrix(this.info.base, true, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE));
             for (AbstractMonster m3 : (AbstractDungeon.getMonsters()).monsters) {
                 if (!m3.isDeadOrEscaped() && !m3.halfDead)

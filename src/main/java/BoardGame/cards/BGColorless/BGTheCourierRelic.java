@@ -2,11 +2,9 @@ package BoardGame.cards.BGColorless;
 
 import BoardGame.cards.AbstractBGAttackCardChoice;
 import BoardGame.characters.BGColorless;
-import BoardGame.relics.BGCalipers;
 import BoardGame.relics.BGDiscardedOldCoin;
 import BoardGame.relics.BGOldCoin;
 import BoardGame.ui.EntropicBrewCourierRelicButton;
-import BoardGame.ui.EntropicBrewPotionButton;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.watcher.ChooseOneAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -15,7 +13,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import java.util.ArrayList;

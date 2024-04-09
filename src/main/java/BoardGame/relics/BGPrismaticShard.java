@@ -1,7 +1,6 @@
 package BoardGame.relics;
 
 import BoardGame.characters.BGDefect;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 

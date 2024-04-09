@@ -1,8 +1,7 @@
 package BoardGame.neow;
 
 import BoardGame.dungeons.AbstractBGDungeon;
-import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
+import BoardGame.patches.TransformPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,24 +11,19 @@ import com.megacrit.cardcrawl.helpers.PotionHelper;
 import com.megacrit.cardcrawl.helpers.SaveHelper;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.neow.NeowEvent;
-import com.megacrit.cardcrawl.neow.NeowRoom;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
-import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-
-import javassist.CannotCompileException;
-import javassist.CtBehavior;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 
 
@@ -324,13 +318,12 @@ public class BGNeowReward
 
 
                 case TRANSFORM_CARD:
-                    AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck
-                            .getPurgeableCards(), 1, TEXT[25], false, true, false, false);
+                    AbstractDungeon.gridSelectScreen.open(TransformPatch.getTransformableCards(), 1, TEXT[25], false, true, false, false);
                     break;
 
                 case TRANSFORM_TWO_CARDS:
                     //(forTransform=false apparently disables the slot machine animation so it works with 2 cards)
-                    AbstractDungeon.gridSelectScreen.open(AbstractDungeon.player.masterDeck
+                    AbstractDungeon.gridSelectScreen.open(TransformPatch.getTransformableCards()
                             .getPurgeableCards(), 2, TEXT[26], false, false, false, false);
                     break;
 

@@ -10,6 +10,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -155,4 +156,7 @@ public class AbstractBGPower extends AbstractPower {
         super.renderIcons(sb,x,y,c);
          hb.move(x - this.region48.packedWidth / 2.0F, y - this.region48.packedHeight / 2.0F);
      }
+
+
+     public void onAboutToUseCard(AbstractCard c){}
 }

@@ -1,29 +1,18 @@
 package BoardGame.events;
 
-import BoardGame.dungeons.AbstractBGDungeon;
 import BoardGame.potions.BGGamblersBrew;
 import BoardGame.relics.AbstractBGRelic;
 import BoardGame.screen.RelicTradingScreen;
 import basemod.BaseMod;
 import com.badlogic.gdx.Gdx;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
-import com.megacrit.cardcrawl.helpers.PotionHelper;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.EventStrings;
-import com.megacrit.cardcrawl.neow.NeowEvent;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.potions.PotionSlot;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.rewards.RewardItem;
-import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
-
-import java.util.ArrayList;
 
 public class BGTheJoust
         extends AbstractImageEvent implements LockRelicsEvent {

@@ -1,23 +1,19 @@
 package BoardGame.cards.BGPurple;
+
 import BoardGame.actions.BGPlayCardFromDiscardPileAction;
-import BoardGame.actions.CheckAfterUseCardAction;
-import BoardGame.actions.TargetSelectScreenAction;
 import BoardGame.cards.AbstractBGCard;
-import BoardGame.cards.BGCurse.BGParasite;
 import BoardGame.characters.BGWatcher;
-import BoardGame.screen.TargetSelectScreen;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.utility.*;
+import com.megacrit.cardcrawl.actions.utility.ScryAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;

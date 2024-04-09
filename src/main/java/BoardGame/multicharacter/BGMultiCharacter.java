@@ -2,15 +2,13 @@ package BoardGame.multicharacter;
 
 import BoardGame.BoardGame;
 import BoardGame.cards.BGRed.BGStrike_Red;
-import BoardGame.characters.AbstractBGCharacter;
+import BoardGame.characters.AbstractBGPlayer;
 import BoardGame.characters.BGIronclad;
 import BoardGame.multicharacter.patches.ContextPatches;
 import BoardGame.multicharacter.patches.HandLayoutHelper;
 import BoardGame.relics.BGBurningBlood;
 import BoardGame.relics.BGTheDieRelic;
 import basemod.BaseMod;
-import basemod.ReflectionHacks;
-import basemod.devcommands.hand.Hand;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -25,7 +23,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
-import com.megacrit.cardcrawl.core.GameCursor;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
@@ -33,28 +30,20 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
-import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import java.util.ArrayList;
-import java.util.Iterator;
 
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-
-import javax.naming.Context;
 
 //REMINDER: players act from bottom lane to top lane, but monsters act from top lane to bottom lane
 //TODO: each player has their own EnergyManager, but it checks OverlayMenu.EnergyPanel.totalCount, currently a singleton
 // EnergyManager is currently short enough that we might be able to patch it completely
 
-public class BGMultiCharacter extends AbstractBGCharacter {
+public class BGMultiCharacter extends AbstractBGPlayer {
     public static final Logger logger = LogManager.getLogger(BGMultiCharacter.class.getName());
 
     public static class Enums {
@@ -68,10 +57,10 @@ public class BGMultiCharacter extends AbstractBGCharacter {
         public static CardLibrary.LibraryType LIBRARY_COLOR;
     }
 
-    public ArrayList<AbstractBGCharacter> subcharacters = new ArrayList<>();
+    public ArrayList<AbstractBGPlayer> subcharacters = new ArrayList<>();
     public static HandLayoutHelper handLayoutHelper = new HandLayoutHelper();
 
-    public static ArrayList<AbstractBGCharacter> getSubcharacters() {
+    public static ArrayList<AbstractBGPlayer> getSubcharacters() {
         if (ContextPatches.originalBGMultiCharacter == null){
             if(AbstractDungeon.player instanceof BGMultiCharacter){
                 ContextPatches.originalBGMultiCharacter=AbstractDungeon.player;
@@ -267,7 +256,7 @@ public class BGMultiCharacter extends AbstractBGCharacter {
     public void updateInput(){
         super.updateInput();
         for (AbstractPlayer c : this.subcharacters) {
-            if(((AbstractBGCharacter)c).currentRow==handLayoutHelper.currentHand){
+            if(((AbstractBGPlayer)c).currentRow==handLayoutHelper.currentHand){
                 c.updateInput();
             }else{
                // ((AbstractBGCharacter)c).nonInputReleaseCard();

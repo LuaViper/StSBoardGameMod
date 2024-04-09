@@ -1,17 +1,13 @@
 
 package BoardGame.cards;
-import BoardGame.actions.BGCopyCardAction;
+
 import BoardGame.actions.TargetSelectScreenAction;
-import BoardGame.characters.AbstractBGCharacter;
 import BoardGame.characters.BGColorless;
 import BoardGame.dungeons.AbstractBGDungeon;
-import BoardGame.dungeons.BGExordium;
 import BoardGame.relics.BGTheDieRelic;
 import BoardGame.screen.TargetSelectScreen;
 import basemod.BaseMod;
-import basemod.ReflectionHacks;
 import basemod.abstracts.CustomCard;
-import basemod.interfaces.AlternateCardCostModifier;
 import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.RenderFixSwitches;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
@@ -22,19 +18,16 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
-import com.megacrit.cardcrawl.actions.utility.ShowCardAndPoofAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
-import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
@@ -405,5 +398,15 @@ public abstract class AbstractBGCard extends CustomCard
 //        }
 //        return costToSpend;
 //    }
+
+    @SpirePatch(
+            clz=AbstractCard.class,
+            method=SpirePatch.CLASS
+    )
+    public static class Field
+    {
+        public static SpireField<AbstractCreature> rowTargetCreature = new SpireField<>(()->null);
+    }
+
 
 }

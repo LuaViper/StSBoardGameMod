@@ -1,9 +1,6 @@
 package BoardGame.ui;
 
 import BoardGame.potions.BGEntropicBrew;
-import BoardGame.relics.AbstractBGRelic;
-import BoardGame.relics.BGTheDieRelic;
-import BoardGame.thedie.TheDie;
 import BoardGame.util.TextureLoader;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
@@ -23,7 +20,6 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.ui.buttons.Button;
 import com.megacrit.cardcrawl.ui.panels.TopPanel;
@@ -32,7 +28,6 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class EntropicBrewPotionButton extends Button {
     public AbstractPotion realPotion;

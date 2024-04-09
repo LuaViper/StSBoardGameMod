@@ -1,6 +1,6 @@
 package BoardGame.multicharacter;
 
-import BoardGame.characters.AbstractBGCharacter;
+import BoardGame.characters.AbstractBGPlayer;
 import basemod.abstracts.CustomPlayer;
 import com.evacipated.cardcrawl.modthespire.lib.ByRef;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
@@ -19,7 +19,7 @@ public class PerspectiveSkewPatches {
       int maxRows = ((BGMultiCharacter)AbstractDungeon.player).subcharacters.size();
       if (maxRows <= 1)
         return; 
-      int whichRow = ((AbstractBGCharacter)__instance).currentRow;
+      int whichRow = ((AbstractBGPlayer)__instance).currentRow;
       float multiplier = whichRow - (maxRows - 1) / 2.0F;
       float maxmultiplier = (maxRows - 1) / 2.0F;
       multiplier /= maxmultiplier;

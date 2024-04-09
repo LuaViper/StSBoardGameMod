@@ -1,12 +1,8 @@
 package BoardGame.actions;
 
-import BoardGame.powers.BGPoisonPower;
 import BoardGame.relics.BGShivs;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 
 public class BGUnloadAction extends AbstractGameAction {
     private int bonusDamage;

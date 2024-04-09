@@ -1,16 +1,11 @@
 package BoardGame.events;
 
-import BoardGame.potions.PlaceholderPotion;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
-import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.events.city.Colosseum;
-import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.Circlet;
 
 //TODO: Colosseum encounters need to draw from the physical decks
 // additionally, since vanilla Colosseum isn't random, this event doesn't even cycle through the monster list

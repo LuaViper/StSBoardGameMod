@@ -46,7 +46,7 @@ public class BGTheBombPower extends AbstractBGPower {
         if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
             addToBot((AbstractGameAction)new ReducePowerAction(this.owner, this.owner, this, 1));
             if (this.amount == 1) {
-                addToBot((AbstractGameAction)new DamageAllEnemiesAction(null,
+                addToBot((AbstractGameAction)new DamageAllEnemiesAction(AbstractDungeon.player,
                         DamageInfo.createDamageMatrix(this.damage, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE));
 
                 AbstractCard card=originalcard.makeStatEquivalentCopy();

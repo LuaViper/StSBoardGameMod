@@ -1,6 +1,5 @@
 package BoardGame.cards.BGGreen;
 
-import BoardGame.actions.BGGainShivAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGSilent;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;

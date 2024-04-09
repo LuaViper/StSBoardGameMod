@@ -2,8 +2,8 @@ package BoardGame.cards.BGRed;
 
 import BoardGame.actions.BGRageAction;
 import BoardGame.cards.AbstractBGCard;
-import com.badlogic.gdx.graphics.Color;
 import BoardGame.characters.BGIronclad;
+import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;

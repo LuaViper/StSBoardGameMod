@@ -1,6 +1,7 @@
 package BoardGame.thedie;
 
 import BoardGame.BoardGame;
+import BoardGame.actions.BGLockInRollAction;
 import BoardGame.actions.DieMoveAction;
 import BoardGame.monsters.DieControlledMoves;
 import BoardGame.potions.BGGamblersBrew;
@@ -106,10 +107,11 @@ public class TheDie {
             OverlayMenuPatches.OverlayMenuExtraInterface.lockinrollbutton.get(AbstractDungeon.overlayMenu).visible = true;
         }else{
             OverlayMenuPatches.OverlayMenuExtraInterface.lockinrollbutton.get(AbstractDungeon.overlayMenu).visible = false;
-            if(AbstractDungeon.player.hasRelic("BoardGame:BGTheDieRelic")) {
-                AbstractRelic relic = AbstractDungeon.player.getRelic("BoardGame:BGTheDieRelic");
-                ((BGTheDieRelic) relic).lockRollAndActivateDieRelics();
-            }
+//            if(AbstractDungeon.player.hasRelic("BoardGame:BGTheDieRelic")) {
+//                AbstractRelic relic = AbstractDungeon.player.getRelic("BoardGame:BGTheDieRelic");
+//                ((BGTheDieRelic) relic).lockRollAndActivateDieRelics();
+//            }
+            AbstractDungeon.actionManager.addToBottom(new BGLockInRollAction());
         }
     }
 

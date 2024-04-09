@@ -1,6 +1,5 @@
 package BoardGame.dungeons;
 
-import BoardGame.BoardGame;
 import BoardGame.cards.*;
 import BoardGame.cards.BGBlue.BGClaw;
 import BoardGame.cards.BGBlue.BGClaw2;
@@ -22,7 +21,6 @@ import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.helpers.EventHelper;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.helpers.MonsterHelper;
@@ -37,7 +35,6 @@ import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.screens.CombatRewardScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
-import jdk.internal.jimage.ImageReader;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -78,7 +75,7 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
     public static class getDungeonPatch {
         @SpirePrefixPatch
         public static SpireReturn<AbstractDungeon> Prefix(@ByRef String[] key, AbstractPlayer p) {
-            if(p instanceof AbstractBGCharacter) {
+            if(p instanceof AbstractBGPlayer) {
                 if (key[0].equals("BoardGameSetupDungeon")){
 //                    //logger.info("BOARDGAME SETUPDUNGEON DETECTED");
 //                    ArrayList<String>emptyList = new ArrayList<>();
@@ -111,7 +108,7 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
         @SpirePrefixPatch
         public static SpireReturn<AbstractDungeon> Prefix(@ByRef String[] key, AbstractPlayer p, SaveFile saveFile) {
             //logger.info("SAVEFILE CHECK GOES HERE "+key[0]+" "+p);
-            if(p instanceof AbstractBGCharacter) {
+            if(p instanceof AbstractBGPlayer) {
                 if (key[0].equals("BoardGameSetupDungeon")) {
 //                    return SpireReturn.Return((AbstractDungeon)new BGSetupDungeon(p, saveFile));
                 }else if (key[0].equals("Exordium")) {

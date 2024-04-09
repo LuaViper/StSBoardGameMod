@@ -1,8 +1,8 @@
 package BoardGame.cards.BGRed;
 
 import BoardGame.cards.AbstractBGCard;
-import BoardGame.powers.BGBerserkPower;
 import BoardGame.characters.BGIronclad;
+import BoardGame.powers.BGBerserkPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;

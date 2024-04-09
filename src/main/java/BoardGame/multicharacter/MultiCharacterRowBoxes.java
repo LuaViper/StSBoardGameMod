@@ -1,6 +1,6 @@
 package BoardGame.multicharacter;
 
-import BoardGame.characters.AbstractBGCharacter;
+import BoardGame.characters.AbstractBGPlayer;
 import BoardGame.util.TextureLoader;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
@@ -62,7 +62,7 @@ public class MultiCharacterRowBoxes {
     BGMultiCharacter c = (BGMultiCharacter)AbstractDungeon.player;
     int i;
     for (i = 0; i < c.subcharacters.size(); i++) {
-      AbstractBGCharacter s = c.subcharacters.get(i);
+      AbstractBGPlayer s = c.subcharacters.get(i);
       s.currentRow = i;
       MultiCharacterSwapButton b = new MultiCharacterSwapButton(s.name, (AbstractPlayer)s, s.getMultiSwapButtonUrl());
       Hitbox hb = b.hb;
@@ -70,7 +70,7 @@ public class MultiCharacterRowBoxes {
       this.swapButtons.add(b);
     } 
     for (i = 0; i < c.subcharacters.size(); i++) {
-      AbstractBGCharacter s = c.subcharacters.get(i);
+      AbstractBGPlayer s = c.subcharacters.get(i);
       s.movePosition(Settings.WIDTH * 0.25F, AbstractDungeon.floorY);
     } 
   }

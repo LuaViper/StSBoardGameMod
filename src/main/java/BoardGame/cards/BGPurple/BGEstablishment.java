@@ -1,11 +1,8 @@
 package BoardGame.cards.BGPurple;
-import BoardGame.actions.BGConjureBladeAction;
-import BoardGame.actions.BGXCostCardAction;
+
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGWatcher;
-import BoardGame.powers.BGConjureBladePower;
 import BoardGame.powers.BGEstablishmentPower;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;

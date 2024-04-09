@@ -1056,10 +1056,22 @@
     "NAME": "Shrug It Off",
     "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL Draw 1 card."
   },
-  "BoardGame:BGSkewer": {
-    "NAME": "Skewer",
-    "DESCRIPTION": "Deal !D! [BoardGame:HitIcon] NL X+1 times.",
-    "UPGRADE_DESCRIPTION": "Deal !D! [BoardGame:HitIcon] X times."
+  "BoardGame:BGShieldSpear_Shield": {
+    "NAME": "???",
+    "DESCRIPTION": "Nothing to see here.",
+    "EXTENDED_DESCRIPTION": [
+      "Lose 1 Energy.",
+      "You can't draw cards this turn.",
+      "Damage you deal this turn is reduced to 0.",
+      "Don't stand in the fire."
+    ]
+  },
+  "BoardGame:BGShieldSpear_Spear": {
+    "NAME": "???",
+    "DESCRIPTION": "Even in the Board Game, there is no escape.",
+    "EXTENDED_DESCRIPTION": [
+      "[BoardGame:BurnIcon] [BoardGame:BurnIcon]"
+    ]
   },
   "BoardGame:BGSignatureMove": {
     "NAME": "Signature Move",
@@ -1068,6 +1080,11 @@
   "BoardGame:BGSimmeringFury": {
     "NAME": "Simmering Fury",
     "DESCRIPTION": "Your [BoardGame:HitIcon] deal +!M! additional damage while in boardgame:Wrath."
+  },
+  "BoardGame:BGSkewer": {
+    "NAME": "Skewer",
+    "DESCRIPTION": "Deal !D! [BoardGame:HitIcon] NL X+1 times.",
+    "UPGRADE_DESCRIPTION": "Deal !D! [BoardGame:HitIcon] X times."
   },
   "BoardGame:BGSlice": {
     "NAME": "Slice",

@@ -1,14 +1,13 @@
 package BoardGame.relics;
 
-import basemod.abstracts.CustomRelic;
+import BoardGame.BoardGame;
+import BoardGame.util.TextureLoader;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import BoardGame.BoardGame;
-import BoardGame.util.TextureLoader;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import static BoardGame.BoardGame.makeRelicOutlinePath;

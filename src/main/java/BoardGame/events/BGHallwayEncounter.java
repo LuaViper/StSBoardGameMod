@@ -2,25 +2,16 @@ package BoardGame.events;
 
 import BoardGame.dungeons.BGExordium;
 import BoardGame.relics.BGDiscardedHallwayEvent;
-import BoardGame.relics.BGDiscardedOldCoin;
 import BoardGame.relics.BGSsserpentHead;
-import basemod.BaseMod;
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
-import com.megacrit.cardcrawl.events.city.Colosseum;
-import com.megacrit.cardcrawl.events.exordium.DeadAdventurer;
-import com.megacrit.cardcrawl.events.exordium.Mushrooms;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
-import com.megacrit.cardcrawl.screens.DungeonMapScreen;
-import com.megacrit.cardcrawl.vfx.MapCircleEffect;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

@@ -1,7 +1,8 @@
 package BoardGame.cards.BGRed;
+
 import BoardGame.cards.AbstractBGCard;
-import BoardGame.powers.BGVulnerablePower;
 import BoardGame.characters.BGIronclad;
+import BoardGame.powers.BGVulnerablePower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;

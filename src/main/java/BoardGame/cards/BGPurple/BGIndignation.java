@@ -1,25 +1,19 @@
 package BoardGame.cards.BGPurple;
 import BoardGame.actions.BGIndignationAction;
 import BoardGame.cards.AbstractBGCard;
-import BoardGame.characters.AbstractBGCharacter;
+import BoardGame.characters.AbstractBGPlayer;
 import BoardGame.characters.BGWatcher;
-import BoardGame.relics.BGRegalPillow;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
-import com.megacrit.cardcrawl.localization.LocalizedStrings;
-import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.stances.AbstractStance;
-import com.megacrit.cardcrawl.ui.campfire.RestOption;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 
@@ -79,7 +73,7 @@ public class BGIndignation extends AbstractBGCard {
         )
         public static void Insert(AbstractStance ___newStance){
             if(!___newStance.ID.equals(AbstractDungeon.player.stance.ID)){
-                ((AbstractBGCharacter)AbstractDungeon.player).stanceChangedThisTurn=true;
+                ((AbstractBGPlayer)AbstractDungeon.player).stanceChangedThisTurn=true;
             }
             for (AbstractCard c : AbstractDungeon.player.hand.group) {
                 if (c instanceof BGIndignation)

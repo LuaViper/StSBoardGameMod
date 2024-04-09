@@ -1,10 +1,7 @@
 package BoardGame.characters;
 
 import BoardGame.BoardGame;
-import BoardGame.cards.BGBlue.BGDefend_Blue;
-import BoardGame.cards.BGBlue.BGDualcast;
 import BoardGame.cards.BGBlue.BGStrike_Blue;
-import BoardGame.cards.BGBlue.BGZap;
 import BoardGame.cards.BGPurple.BGDefend_W;
 import BoardGame.cards.BGPurple.BGEruption;
 import BoardGame.cards.BGPurple.BGStrike_W;
@@ -13,7 +10,6 @@ import BoardGame.relics.BGCrackedCore;
 import BoardGame.relics.BGMiracles;
 import BoardGame.relics.BGTheDieRelic;
 import basemod.BaseMod;
-import basemod.abstracts.CustomEnergyOrb;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -37,7 +33,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
-import com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbBlue;
 import com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbInterface;
 import com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbPurple;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -54,7 +49,7 @@ import static com.megacrit.cardcrawl.helpers.ImageMaster.PURPLE_ORB_FLASH_VFX;
 //and https://github.com/daviscook477/BaseMod/wiki/Migrating-to-5.0
 //All text (starting description and loadout, anything labeled TEXT[]) can be found in DefaultMod-character-Strings.json in the resources
 
-public class BGWatcher extends AbstractBGCharacter {
+public class BGWatcher extends AbstractBGPlayer {
     public static final Logger logger = LogManager.getLogger(BoardGame.class.getName());
 
     // =============== CHARACTER ENUMERATORS =================

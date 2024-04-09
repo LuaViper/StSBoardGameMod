@@ -1,6 +1,6 @@
 package BoardGame.multicharacter;
 
-import BoardGame.characters.AbstractBGCharacter;
+import BoardGame.characters.AbstractBGPlayer;
 import BoardGame.characters.BGDefect;
 import BoardGame.characters.BGIronclad;
 import BoardGame.characters.BGSilent;
@@ -72,7 +72,7 @@ public class MultiCharacterSelectScreen extends CustomScreen {
     ((MultiCharacterRowBoxes)OverlayMenuPatches.OverlayMenuExtraInterface.multiCharacterRowBoxes.get(AbstractDungeon.overlayMenu)).show();
     for (MultiCharacterSelectButton b : this.buttons) {
       b.selected = false;
-      for (AbstractBGCharacter c : ((BGMultiCharacter)AbstractDungeon.player).subcharacters) {
+      for (AbstractBGPlayer c : ((BGMultiCharacter)AbstractDungeon.player).subcharacters) {
         if (c.name.equals(b.c.name))
           b.selected = true; 
       } 

@@ -54,7 +54,7 @@ public class BGOmegaPower extends AbstractBGPower {
                     addToBot((AbstractGameAction)new VFXAction((AbstractGameEffect)new OmegaFlashEffect(m.hb.cX, m.hb.cY), 0.2F));
                 }
             }
-            addToBot((AbstractGameAction)new DamageAllEnemiesAction(null,
+            addToBot((AbstractGameAction)new DamageAllEnemiesAction(AbstractDungeon.player,
 
                     DamageInfo.createDamageMatrix(this.amount, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE, true));
         }

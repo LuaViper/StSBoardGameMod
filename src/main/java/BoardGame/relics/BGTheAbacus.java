@@ -1,15 +1,9 @@
 package BoardGame.relics;
 
 import BoardGame.events.BGDeadAdventurer;
-import BoardGame.powers.BGTheDiePower;
 import BoardGame.thedie.TheDie;
-import BoardGame.ui.LockInRollButton;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 public class BGTheAbacus extends AbstractBGRelic {

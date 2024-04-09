@@ -1,7 +1,6 @@
 package BoardGame.relics;
 
 import BoardGame.dungeons.BGTheEnding;
-import BoardGame.events.FakeMonsterRoomEvent;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;

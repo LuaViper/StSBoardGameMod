@@ -3,11 +3,11 @@
 
 package BoardGame.relics;
 
-import BoardGame.cards.BGColorless.*;
+import BoardGame.cards.BGColorless.BGTheCourierPotion;
+import BoardGame.cards.BGColorless.BGTheCourierRelic;
 import BoardGame.thedie.TheDie;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.utility.ScryAction;
 import com.megacrit.cardcrawl.actions.watcher.ChooseOneAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;

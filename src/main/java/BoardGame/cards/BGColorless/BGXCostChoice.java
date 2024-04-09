@@ -4,7 +4,6 @@ import BoardGame.actions.BGXCostCardAction;
 import BoardGame.cards.AbstractBGAttackCardChoice;
 import BoardGame.cards.BGRed.BGWhirlwind;
 import BoardGame.characters.BGColorless;
-import basemod.helpers.ModalChoice;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;

@@ -1,8 +1,8 @@
 package BoardGame.cards.BGBlue;
+
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
 import BoardGame.orbs.BGLightning;
-import BoardGame.powers.BGAmplifyPower;
 import BoardGame.powers.BGElectroPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -15,7 +15,6 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.ElectroPower;
 
 public class BGElectrodynamics extends AbstractBGCard {
     public static final String ID = "BGElectrodynamics";

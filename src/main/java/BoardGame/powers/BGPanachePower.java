@@ -45,7 +45,7 @@ public class BGPanachePower
 
     public void atEndOfTurn(boolean isPlayer){
         if (AbstractDungeon.player.hand.isEmpty()) {
-            addToBot((AbstractGameAction) new DamageAllEnemiesAction(null,
+            addToBot((AbstractGameAction) new DamageAllEnemiesAction(AbstractDungeon.player,
                     DamageInfo.createDamageMatrix(this.damage, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
         }
     }

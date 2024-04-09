@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import javassist.CannotCompileException;
@@ -22,6 +21,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
+//TODO: in a solo game, Calipers changes to "keep your leftover Block at the END of THIS turn." (vanilla Blur power)
 
 public class BGCalipers
         extends AbstractBGRelic implements ClickableRelic {

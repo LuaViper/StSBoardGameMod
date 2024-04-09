@@ -1,14 +1,15 @@
 package BoardGame.actions;
 
 
-
 import BoardGame.dungeons.BGExordium;
-import BoardGame.monsters.bgexordium.*;
+import BoardGame.monsters.bgexordium.BGGremlinAngry;
+import BoardGame.monsters.bgexordium.BGGremlinFat;
+import BoardGame.monsters.bgexordium.BGGremlinSneaky;
+import BoardGame.monsters.bgexordium.BGGremlinWizard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import BoardGame.monsters.AbstractBGMonster;
 
 public class BGSpawnTwoGremlinsAction extends AbstractGameAction {
     private String[] gremlins=new String[2];

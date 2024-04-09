@@ -3,8 +3,6 @@ package BoardGame.cards.BGGreen;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGSilent;
 import BoardGame.powers.BGInfiniteBladesPower;
-import BoardGame.powers.BGNoxiousFumesAOEPower;
-import BoardGame.powers.BGNoxiousFumesPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;

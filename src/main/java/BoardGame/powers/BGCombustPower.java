@@ -37,7 +37,7 @@ public class BGCombustPower extends AbstractBGPower {
             if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
                 flash();
                 //addToBot((AbstractGameAction)new LoseHPAction(this.owner, this.owner, this.hpLoss, AbstractGameAction.AttackEffect.FIRE));
-                addToBot((AbstractGameAction) new DamageAllEnemiesAction(null,
+                addToBot((AbstractGameAction) new DamageAllEnemiesAction(AbstractDungeon.player,
                         DamageInfo.createDamageMatrix(this.amount, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE));
             }
         }

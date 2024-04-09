@@ -1,18 +1,13 @@
 package BoardGame.actions;
-import BoardGame.cards.AbstractBGAttackCardChoice;
-import BoardGame.cards.BGColorless.BGShivsDiscardExtraShiv;
-import BoardGame.cards.BGColorless.BGShivsUseExtraShiv;
+
 import BoardGame.relics.AbstractBGRelic;
 import BoardGame.relics.BGMiracles;
-import BoardGame.relics.BGShivs;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-
-import java.util.ArrayList;
 
 public class BGGainMiracleAction extends AbstractGameAction {
     private int amount;

@@ -1,7 +1,7 @@
 package BoardGame.cards.BGGreen;
-import BoardGame.actions.BGPainAction;
-import BoardGame.characters.BGSilent;
+
 import BoardGame.cards.AbstractBGCard;
+import BoardGame.characters.BGSilent;
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;

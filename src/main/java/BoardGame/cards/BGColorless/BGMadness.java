@@ -2,12 +2,9 @@ package BoardGame.cards.BGColorless;
 
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGColorless;
-
 import BoardGame.powers.BGFreeCardPower;
-import BoardGame.powers.BGSadisticPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.unique.MadnessAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;

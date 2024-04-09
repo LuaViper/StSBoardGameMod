@@ -1,5 +1,5 @@
 package BoardGame.cards.BGPurple;
-import BoardGame.actions.BGWorshipAction;
+
 import BoardGame.actions.BGWreathOfFlameAction;
 import BoardGame.actions.BGXCostCardAction;
 import BoardGame.cards.AbstractBGCard;
@@ -26,7 +26,7 @@ public class BGWreathOfFlame extends AbstractBGCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         BGXCostCardAction.XCostInfo info = BGXCostCardAction.preProcessCard(this);
-        addToTop((AbstractGameAction)new BGXCostCardAction(this, info,
+        addToBot((AbstractGameAction)new BGXCostCardAction(this, info,
                 (e,d)->addToTop((AbstractGameAction)new BGWreathOfFlameAction(AbstractDungeon.player, d, e))));
     }
 

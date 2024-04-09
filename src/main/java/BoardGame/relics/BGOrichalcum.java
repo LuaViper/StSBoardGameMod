@@ -1,6 +1,4 @@
 package BoardGame.relics;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-
 
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -8,6 +6,7 @@ import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 //TODO: during end turn phase, if player's Block falls to 0 for any reason, check if we can activate Orichalcum again
 //TODO: do something similar for Frozen Core

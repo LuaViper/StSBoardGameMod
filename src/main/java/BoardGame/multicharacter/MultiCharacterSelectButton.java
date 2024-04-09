@@ -1,6 +1,6 @@
 package BoardGame.multicharacter;
 
-import BoardGame.characters.AbstractBGCharacter;
+import BoardGame.characters.AbstractBGPlayer;
 import BoardGame.ui.OverlayMenuPatches;
 import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
@@ -66,14 +66,14 @@ public class MultiCharacterSelectButton {
         this.c.doCharSelectScreenSelectEffect();
         MultiCharacterSelectScreen screen = (MultiCharacterSelectScreen)BaseMod.getCustomScreen(MultiCharacterSelectScreen.Enum.MULTI_CHARACTER_SELECT);
         BGMultiCharacter p = (BGMultiCharacter)AbstractDungeon.player;
-        AbstractBGCharacter newChar = (AbstractBGCharacter)this.c.newInstance();
+        AbstractBGPlayer newChar = (AbstractBGPlayer)this.c.newInstance();
         p.subcharacters.add(newChar);
         newChar.initializeStarterDeck();
       } else {
         this.selected = false;
         BGMultiCharacter p = (BGMultiCharacter)AbstractDungeon.player;
-        for (Iterator<AbstractBGCharacter> i = p.subcharacters.iterator(); i.hasNext(); ) {
-          AbstractBGCharacter s = i.next();
+        for (Iterator<AbstractBGPlayer> i = p.subcharacters.iterator(); i.hasNext(); ) {
+          AbstractBGPlayer s = i.next();
           if (s.getClass() == this.c.getClass())
             i.remove(); 
         } 

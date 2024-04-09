@@ -6,7 +6,6 @@ import BoardGame.characters.BGSilent;
 import BoardGame.characters.BGWatcher;
 import BoardGame.dungeons.AbstractBGDungeon;
 import BoardGame.relics.BGPrismaticShard;
-import BoardGame.relics.BGShivs;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;

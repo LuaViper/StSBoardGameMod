@@ -1,13 +1,10 @@
 package BoardGame.cards.BGGreen;
 
 import BoardGame.actions.BGDoublePoisonAction;
-import BoardGame.actions.BGGainShivAction;
 import BoardGame.actions.BGTriplePoisonAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGSilent;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.unique.DoublePoisonAction;
-import com.megacrit.cardcrawl.actions.unique.TriplePoisonAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;

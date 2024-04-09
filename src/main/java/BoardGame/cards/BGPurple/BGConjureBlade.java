@@ -1,6 +1,6 @@
 package BoardGame.cards.BGPurple;
+
 import BoardGame.actions.BGConjureBladeAction;
-import BoardGame.actions.BGWorshipAction;
 import BoardGame.actions.BGXCostCardAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGWatcher;
@@ -26,7 +26,7 @@ public class BGConjureBlade extends AbstractBGCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         BGXCostCardAction.XCostInfo info = BGXCostCardAction.preProcessCard(this);
-        addToTop((AbstractGameAction)new BGXCostCardAction(this, info,
+        addToBot((AbstractGameAction)new BGXCostCardAction(this, info,
                 (e,d)->addToTop((AbstractGameAction)new BGConjureBladeAction(AbstractDungeon.player, d, e, magicNumber))));
     }
 

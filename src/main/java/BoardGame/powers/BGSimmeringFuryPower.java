@@ -1,17 +1,9 @@
 package BoardGame.powers;
 
 import BoardGame.BoardGame;
-import BoardGame.actions.SpikerReflectAction;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import static BoardGame.powers.WeakVulnCancel.WEAKVULN_ZEROHITS;
 
 public class BGSimmeringFuryPower extends AbstractBGPower {
     public static final String POWER_ID = BoardGame.makeID("BGSimmeringFuryPower");

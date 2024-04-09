@@ -1,5 +1,6 @@
 package BoardGame.powers;
 
+import BoardGame.actions.BGCheckEndPlayerStartTurnPhaseAction;
 import BoardGame.actions.BGUpdateDieRelicPulseAction;
 import BoardGame.relics.BGDollysMirror;
 import BoardGame.relics.BGTheDieRelic;
@@ -9,8 +10,7 @@ import BoardGame.util.TextureLoader;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.*;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -22,7 +22,7 @@ import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-public class BGTriggerAnyDieAbilityPower extends AbstractBGPower {
+public class BGTriggerAnyDieAbilityPower extends AbstractBGPower implements ManualStartTurnPhasePower{
     public static final String POWER_ID = "BGTriggerAnyDieAbilityPower";
 
     final Logger logger = LogManager.getLogger(BGTriggerAnyDieAbilityPower.class.getName());
@@ -52,11 +52,12 @@ public class BGTriggerAnyDieAbilityPower extends AbstractBGPower {
         this.description = DESCRIPTIONS[0];
     }
 
-    public void onUseCard(AbstractCard card, UseCardAction action) {
+    public void onAboutToUseCard(AbstractCard card) {
         //mayhem fix
         //TODO: mayhem fix is still wrong -- player should have the chance to lock the roll + activate relics before playing mayhem (some cards change depending on roll)
         if(!card.isInAutoplay) {
-            addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, "BGTriggerAnyDieAbilityPower"));
+            //addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, "BGTriggerAnyDieAbilityPower"));
+            addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, "BGTriggerAnyDieAbilityPower"));
         }
         //TODO: also trigger on use potion and on rightclick power
     }
@@ -84,6 +85,7 @@ public class BGTriggerAnyDieAbilityPower extends AbstractBGPower {
             }
         }
         addToBot((AbstractGameAction)new BGUpdateDieRelicPulseAction());
+        addToBot(new BGCheckEndPlayerStartTurnPhaseAction());
     }
 
 

@@ -1,28 +1,22 @@
 package BoardGame.relics;
 
-import BoardGame.cards.BGPurple.BGWeave;
 import BoardGame.dungeons.AbstractBGDungeon;
-import BoardGame.events.BGWeMeetAgain;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
-import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
-import com.megacrit.cardcrawl.actions.utility.ScryAction;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
-import com.sun.jmx.remote.internal.ClientCommunicatorAdmin;
-import javassist.CannotCompileException;
-import javassist.CtBehavior;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Collections;
-import java.util.Random;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.relicRng;
 import static com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier.BOSS;
@@ -156,6 +150,9 @@ public abstract class AbstractBGRelic extends AbstractRelic {
 
             Collections.shuffle(bossRelicDeck, new java.util.Random(relicRng.randomLong()));
         }
+
+    public void onAboutToUseCard(AbstractCard card) {
+    }
 //    }
 
     @SpirePatch(clz = AbstractDungeon.class, method = "initializeRelicList",

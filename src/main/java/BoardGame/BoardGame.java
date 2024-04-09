@@ -30,9 +30,7 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.google.gson.Gson;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.helpers.CardHelper;
-import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
@@ -632,6 +630,11 @@ public class BoardGame implements
         }));
         addMonster("BoardGame:Donu and Deca", ()->new MonsterGroup(new AbstractMonster[] {
                 (AbstractMonster)new BGDeca(), (AbstractMonster)new BGDonu()
+        }));
+
+        addMonster("BoardGame:Shield and Spear", ()->new MonsterGroup(new AbstractMonster[] {
+            new BGSpireSpear(-200,25),
+            new BGSpireShield(0,-75)
         }));
         addMonster("BoardGame:The Heart", ()->new MonsterGroup(new AbstractMonster[] {
                 (AbstractMonster)new BGCorruptHeart()

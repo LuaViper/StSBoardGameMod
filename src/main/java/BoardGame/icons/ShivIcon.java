@@ -4,7 +4,6 @@ import BoardGame.util.TextureLoader;
 import basemod.BaseMod;
 import basemod.helpers.TooltipInfo;
 import com.evacipated.cardcrawl.mod.stslib.icons.AbstractCustomIcon;
-import com.megacrit.cardcrawl.helpers.PowerTip;
 
 import java.util.ArrayList;
 import java.util.List;

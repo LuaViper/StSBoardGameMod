@@ -1,10 +1,9 @@
 package BoardGame.cards.BGBlue;
+
 import BoardGame.actions.BGMulticastAction;
-import BoardGame.actions.BGTempestAction;
 import BoardGame.actions.BGXCostCardAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
-import BoardGame.powers.BGFreeCardPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -27,7 +26,7 @@ public class BGMultiCast extends AbstractBGCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         BGXCostCardAction.XCostInfo info = BGXCostCardAction.preProcessCard(this);
 
-        addToTop((AbstractGameAction)new BGXCostCardAction(this, info,
+        addToBot((AbstractGameAction)new BGXCostCardAction(this, info,
                 (e,d)->addToTop((AbstractGameAction)new BGMulticastAction(AbstractDungeon.player, m, this.damage, this.damageTypeForTurn, d, e, this.magicNumber))));
     }
 

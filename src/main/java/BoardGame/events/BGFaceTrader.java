@@ -1,7 +1,6 @@
 package BoardGame.events;
 
 import BoardGame.relics.AbstractBGRelic;
-import BoardGame.relics.BGOldCoin;
 import BoardGame.screen.RelicTradingScreen;
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -10,14 +9,9 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
-import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.GoldenIdol;
 import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
-
-import java.util.ArrayList;
-import java.util.Collections;
 
 public class BGFaceTrader
         extends AbstractImageEvent implements LockRelicsEvent {

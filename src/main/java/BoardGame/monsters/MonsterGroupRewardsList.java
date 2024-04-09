@@ -94,7 +94,7 @@ public class MonsterGroupRewardsList {
         rewards.put("BoardGame:A7 Exploder and Friends",new MonsterGroupRewards(1));
         rewards.put("BoardGame:A7 Repulsor and Friends",new MonsterGroupRewards(0,true));
 
-        rewards.put("BoardGame:Spear and Shield",new MonsterGroupRewards(0,false, true));
+        rewards.put("BoardGame:Shield and Spear",new MonsterGroupRewards(0,false, true));
 
         rewards.put("Time Eater",new MonsterGroupRewards(0));
         rewards.put("Awakened One",new MonsterGroupRewards(0));

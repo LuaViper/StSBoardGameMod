@@ -1,8 +1,9 @@
 package BoardGame.cards.BGRed;
+
+import BoardGame.cards.AbstractBGCard;
+import BoardGame.characters.BGIronclad;
 import BoardGame.powers.BGInstantReboundPower;
 import com.badlogic.gdx.graphics.Color;
-import BoardGame.characters.BGIronclad;
-import BoardGame.cards.AbstractBGCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;

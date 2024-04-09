@@ -1,10 +1,7 @@
 package BoardGame.relics;
 
-import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-
-
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 public class BGStrikeDummy extends AbstractBGRelic  {
     public static final String ID = "BGStrikeDummy";

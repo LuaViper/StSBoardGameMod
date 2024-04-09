@@ -1,5 +1,5 @@
 package BoardGame.cards.BGBlue;
-import BoardGame.actions.BGBlizzardAction;
+
 import BoardGame.actions.BGThunderStrikeAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
