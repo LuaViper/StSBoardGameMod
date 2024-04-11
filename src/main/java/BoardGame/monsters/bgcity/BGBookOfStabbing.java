@@ -48,7 +48,6 @@ public class BGBookOfStabbing extends AbstractBGMonster implements BGDamageIcons
         loadAnimation("images/monsters/theCity/stabBook/skeleton.atlas", "images/monsters/theCity/stabBook/skeleton.json", 1.0F);
 
 
-
         AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
         e.setTime(e.getEndTime() * MathUtils.random());
         this.stateData.setMix("Hit", "Idle", 0.2F);
@@ -58,14 +57,16 @@ public class BGBookOfStabbing extends AbstractBGMonster implements BGDamageIcons
         this.dialogX = -70.0F * Settings.scale;
         this.dialogY = 50.0F * Settings.scale;
 
-        if (AbstractDungeon.ascensionLevel >= 1) {
+        if (AbstractDungeon.ascensionLevel >= 12) {
+            setHp(36);
+        }else if (AbstractDungeon.ascensionLevel >= 1) {
             setHp(35);
         }else{
             setHp(30);
         }
 
         this.stabDmg = 1;
-        this.bigStabDmg = 3;
+        this.bigStabDmg = (AbstractDungeon.ascensionLevel<12 ? 3 : 4);
 
 
         this.damage.add(new DamageInfo((AbstractCreature)this, this.stabDmg));

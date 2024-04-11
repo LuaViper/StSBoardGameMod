@@ -24,7 +24,7 @@
 //import java.util.ArrayList;
 //import java.util.Iterator;
 //
-////TODO NEXT: if we're fighting shieldspear, check whichRow
+////TODO: if we're fighting shieldspear, check whichRow
 //public class DamageOneRowAction extends AbstractGameAction {
 //    public int[] damage;
 //    private String attackName="this attack";

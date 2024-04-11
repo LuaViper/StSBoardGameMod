@@ -4,6 +4,7 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
+//TODO LATER: we didn't actually expect this to work with Carve Reality etc.  make sure nothing weird is going on
 public class BGDifferentRowsPower extends AbstractBGPower {
     public static final String POWER_ID = "BGDifferentRowsPower";
 

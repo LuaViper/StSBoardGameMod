@@ -129,7 +129,11 @@
   "BoardGame:BGBouncingFlask": {
     "NAME": "Bouncing Flask",
     "DESCRIPTION": "[BoardGame:PoisonIcon] [BoardGame:PoisonIcon] NL Each boardgame:Poison may have a different target.",
-    "UPGRADE_DESCRIPTION": "[BoardGame:PoisonIcon] [BoardGame:PoisonIcon] [BoardGame:PoisonIcon] NL Each boardgame:Poison may have a different target."
+    "UPGRADE_DESCRIPTION": "[BoardGame:PoisonIcon] [BoardGame:PoisonIcon] [BoardGame:PoisonIcon] NL Each boardgame:Poison may have a different target.",
+    "EXTENDED_DESCRIPTION": [
+      "Choose the first target for Bouncing Flask.",
+      "Choose the next target for Bouncing Flask."
+    ]
   },
   "BoardGame:BGBrilliance": {
     "NAME": "Brilliance",

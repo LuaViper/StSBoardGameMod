@@ -21,10 +21,6 @@ import java.util.Arrays;
 
 public class AbstractDungeonMonsterPatches {
 
-    //TODO NEXT: Noxious Fumes still hits both enemies!
-
-    //TODO: make sure Corpse Explosion still functions as expected
-    // (both against shieldspear and against anything else)
     //TODO: decent chance this breaks when we try to summon a monster and it ends up in the current group instead of the original group
     @SpirePatch(
             clz=AbstractRoom.class,

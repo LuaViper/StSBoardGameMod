@@ -73,7 +73,6 @@ public class BGPoisonPower extends AbstractBGPower {
     }
 
     public void capPoisonOnEnemy(AbstractMonster m){
-        //TODO NEXT: if AbstractDungeon.getCurrRoom().originalMonsters exists, use it instead
         int total=0;
         MonsterGroup oM = AbstractDungeonMonsterPatches.Field.originalMonsters.get(AbstractDungeon.getCurrRoom());
         ArrayList<AbstractMonster> monsters;

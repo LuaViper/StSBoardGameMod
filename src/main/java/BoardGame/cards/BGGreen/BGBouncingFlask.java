@@ -33,7 +33,7 @@ public class BGBouncingFlask extends AbstractBGCard {
                 addToBot((AbstractGameAction) new BGBouncingFlaskAction((AbstractCreature) target, 1, this.magicNumber));
             }
         };
-        addToTop((AbstractGameAction) new TargetSelectScreenAction(tssAction, "Choose the first target for Bouncing Flask."));
+        addToTop((AbstractGameAction) new TargetSelectScreenAction(tssAction, cardStrings.EXTENDED_DESCRIPTION[0]));
 
     }
 

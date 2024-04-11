@@ -60,9 +60,9 @@ public class BGSpawnTwoGremlinsForGremlinLeaderAction extends AbstractGameAction
                 logger.info("Not dead, don't resummon");
             }
             logger.info("Gremlin type: "+type);
-            logger.info("Gremlin: "+gremlin+null);
+            logger.info("Gremlin: "+gremlin);
             if (gremlin != null)
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new SpawnMonsterAction(gremlin, false));
+                AbstractDungeon.actionManager.addToTop((AbstractGameAction) new SpawnMonsterAction(gremlin, false));
 
         }
         AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new ApplyAngerToGremlinsAction());

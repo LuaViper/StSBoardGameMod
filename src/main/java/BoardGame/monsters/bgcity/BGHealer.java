@@ -91,6 +91,7 @@ public class BGHealer extends AbstractBGMonster implements DieControlledMoves, B
                 playSfx();
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ChangeStateAction(this, "STAFF_RAISE"));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new WaitAction(0.25F));
+                //TODO: are there any act 2 monsters that summon?  use BuffAllEnemiesAction instead
                 for (AbstractMonster m : (AbstractDungeon.getMonsters()).monsters) {
                     if (!m.isDying && !m.isEscaping) {
                         AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)m, (AbstractCreature)this, (AbstractPower)new StrengthPower((AbstractCreature)m, this.strAmt), this.strAmt));
