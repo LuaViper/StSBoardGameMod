@@ -52,6 +52,8 @@ public class BGNemesis extends AbstractBGMonster implements BGDamageIcons {
     private Bone eye3;
     private boolean firstMove = true;
     private int burnCount=4;
+    private int multiAmt=2;
+    private int secondaryBurnCount=1;
 
     public BGNemesis() {
         super(NAME, "BGNemesis", 185, 5.0F, -10.0F, 350.0F, 440.0F, null, 0.0F, 0.0F);
@@ -82,14 +84,20 @@ public class BGNemesis extends AbstractBGMonster implements BGDamageIcons {
 
         if(ascensionLevel<1) {
             setHp(30);
-            burnCount=4;
+            burnCount=4;secondaryBurnCount=1;multiAmt=2;
             this.damage.add(new DamageInfo((AbstractCreature) this, 4));
             this.damage.add(new DamageInfo((AbstractCreature) this, 2));
             this.damage.add(new DamageInfo((AbstractCreature) this, 7));
-        } else {
+        } else if(ascensionLevel<12) {
             setHp(35);
-            burnCount=5;
+            burnCount=5;secondaryBurnCount=1;multiAmt=2;
             this.damage.add(new DamageInfo((AbstractCreature) this, 5));
+            this.damage.add(new DamageInfo((AbstractCreature) this, 2));
+            this.damage.add(new DamageInfo((AbstractCreature) this, 8));
+        } else {
+            setHp(36);
+            burnCount=5;secondaryBurnCount=2;multiAmt=3;
+            this.damage.add(new DamageInfo((AbstractCreature) this, 6));
             this.damage.add(new DamageInfo((AbstractCreature) this, 2));
             this.damage.add(new DamageInfo((AbstractCreature) this, 8));
         }
@@ -115,15 +123,15 @@ public class BGNemesis extends AbstractBGMonster implements BGDamageIcons {
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new WaitAction(0.4F));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                         .get(0), AbstractGameAction.AttackEffect.SLASH_DIAGONAL));
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this, (byte)2, AbstractMonster.Intent.ATTACK_DEBUFF, this.damage.get(1).base,2,true));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this, (byte)2, AbstractMonster.Intent.ATTACK_DEBUFF, this.damage.get(1).base,multiAmt,true));
                 break;
 
             case 2:
-                for (i = 0; i < 2; i++) {
+                for (i = 0; i < multiAmt; i++) {
                     AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                             .get(1), AbstractGameAction.AttackEffect.FIRE));
                 }
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new MakeTempCardInDiscardAction((AbstractCard)new BGBurn(), 1));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new MakeTempCardInDiscardAction((AbstractCard)new BGBurn(), secondaryBurnCount));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this, (byte)3, AbstractMonster.Intent.ATTACK, this.damage.get(2).base));
                 break;
 
@@ -133,7 +141,7 @@ public class BGNemesis extends AbstractBGMonster implements BGDamageIcons {
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new WaitAction(0.4F));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                         .get(2), AbstractGameAction.AttackEffect.SLASH_HEAVY));
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this, (byte)2, AbstractMonster.Intent.ATTACK_DEBUFF, this.damage.get(1).base,2,true));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this, (byte)2, AbstractMonster.Intent.ATTACK_DEBUFF, this.damage.get(1).base,multiAmt,true));
                 break;
 
         }

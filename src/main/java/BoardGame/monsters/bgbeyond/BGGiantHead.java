@@ -23,7 +23,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.powers.WeakPower;
 import java.util.ArrayList;
 
-//TODO: BGSlowPower was redesigned -- BGGiantHead now takes +1 damage from all Attacks
+//TODO: maybe use STUN intent instead of UNKNOWN?
 public class BGGiantHead extends AbstractBGMonster implements BGDamageIcons {
     public static final String ID = "BGGiantHead";
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("GiantHead");
@@ -40,7 +40,7 @@ public class BGGiantHead extends AbstractBGMonster implements BGDamageIcons {
     private static final float HB_H = 300.0F;
     private static final int COUNT_DMG = 13;
     private int count = 5; private static final int DEATH_DMG = 30; private static final int GLARE_WEAK = 1; private static final int INCREMENT_DMG = 5; private static final int A_2_DEATH_DMG = 40; private int startingDeathDmg; private static final byte GLARE = 1; private static final byte IT_IS_TIME = 2; private static final byte COUNT = 3;
-
+    private int secondaryDmg=0;
     public BGGiantHead() {
         super(NAME, "GiantHead", 500, 0.0F, -40.0F, 460.0F, 300.0F, null, -70.0F, 40.0F);
         this.type = AbstractMonster.EnemyType.ELITE;
@@ -70,12 +70,17 @@ public class BGGiantHead extends AbstractBGMonster implements BGDamageIcons {
         if(AbstractDungeon.ascensionLevel<1) {
             setHp(80);
             this.startingDeathDmg = 7;
-        }else {
+        }else if(AbstractDungeon.ascensionLevel<12){
             setHp(85);
+            secondaryDmg=5;
             this.startingDeathDmg = 8;
+        }else{
+            setHp(90);
+            secondaryDmg=6;
+            this.startingDeathDmg = 9;
         }
 
-        this.damage.add(new DamageInfo((AbstractCreature)this, 5));
+        this.damage.add(new DamageInfo((AbstractCreature)this, secondaryDmg));
         this.damage.add(new DamageInfo((AbstractCreature)this, this.startingDeathDmg));
         this.damage.add(new DamageInfo((AbstractCreature)this, this.startingDeathDmg + 0));
         this.damage.add(new DamageInfo((AbstractCreature)this, this.startingDeathDmg + 0));
