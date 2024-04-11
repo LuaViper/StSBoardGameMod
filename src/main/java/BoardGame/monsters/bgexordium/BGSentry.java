@@ -54,7 +54,7 @@ public class BGSentry extends AbstractBGMonster implements BGDamageIcons, DieCon
         if(behavior.equals("D3") || (behavior.equals("2D") && AbstractDungeon.ascensionLevel==0))
             setHp(7);
         else
-            setHp(8);
+            setHp(AbstractDungeon.ascensionLevel<12 ? 8 : 9);
 
         this.dazedAmt = 1;
 
@@ -91,6 +91,7 @@ public class BGSentry extends AbstractBGMonster implements BGDamageIcons, DieCon
                     AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractCreature)this, (AbstractGameEffect)new ShockWaveEffect(this.hb.cX, this.hb.cY, Color.ROYAL, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.1F));
                     AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new FastShakeAction((AbstractCreature)AbstractDungeon.player, 0.6F, 0.15F));
                 }
+                //TODO: on ascension 12,
                 addToBot((AbstractGameAction)new MakeTempCardInDrawPileAction((AbstractCard)new BGDazed(), 1, false, true));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new RollMoveAction(this));
                 break;

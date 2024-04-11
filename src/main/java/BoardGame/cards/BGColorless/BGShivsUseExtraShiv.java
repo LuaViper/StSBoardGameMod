@@ -26,6 +26,7 @@ public class BGShivsUseExtraShiv extends AbstractBGAttackCardChoice {
         }
         this.isDamageModified=(this.baseDamage!=this.damage);
 
+        this.isInAutoplay=true; //bandage fix for extra shivs triggering dice lock
     }
 
 

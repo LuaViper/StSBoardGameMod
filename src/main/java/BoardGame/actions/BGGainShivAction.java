@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import java.util.ArrayList;
 
-
+//TODO: apparently the game stops prompting for extra shivs if you kill Awakened One Phase 1 with one of them
 //TODO: if Infinite Blades procs a 6th shiv at beginning of turn, and the player rolls a 6 etc, it will immediately override the Wildcard proc
 //TODO: it is suspected that Cunning Potion will close BGEntropicBrew menu
 public class BGGainShivAction extends AbstractGameAction {
