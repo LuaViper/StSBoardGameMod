@@ -1,22 +1,38 @@
 package BoardGame.patches;
 
 import BoardGame.characters.AbstractBGPlayer;
+import BoardGame.dungeons.AbstractBGDungeon;
+import BoardGame.multicharacter.patches.UseCardPatch;
+import BoardGame.relics.BGRegalPillow;
 import basemod.ReflectionHacks;
-import com.evacipated.cardcrawl.modthespire.lib.ByRef;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.localization.LocalizedStrings;
+import com.megacrit.cardcrawl.localization.UIStrings;
+import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
+import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
+import com.megacrit.cardcrawl.ui.campfire.RestOption;
 import com.megacrit.cardcrawl.ui.panels.SeedPanel;
 import com.megacrit.cardcrawl.ui.panels.TopPanel;
+import javassist.CannotCompileException;
+import javassist.CtBehavior;
+import javassist.expr.ExprEditor;
+import javassist.expr.MethodCall;
+
+import java.util.ArrayList;
 
 public class Ascension {
     static String[] A_TEXT = CardCrawlGame.languagePack.getUIString("BoardGame:AscensionModeDescriptions").TEXT;
 
-    static final int CURRENT_MAX_ASCENSION=12;
+    static final int CURRENT_MAX_ASCENSION=13;
 
     @SpirePatch2(clz= CharacterSelectScreen.class,method="updateAscensionToggle",paramtypez={})
     public static class DisableAscensionPatch{
@@ -100,5 +116,49 @@ public class Ascension {
         }
     }
 
+
+    @SpirePatch2(clz= TopPanel.class, method="renderDungeonInfo",
+            paramtypez={SpriteBatch.class})
+    public static class AscensionColorPatch{
+        @SpireInsertPatch(
+                locator=Locator.class,
+                localvars={}
+        )
+        public static SpireReturn<Void> Insert(TopPanel __instance,SpriteBatch sb) {
+            if(CardCrawlGame.dungeon instanceof AbstractBGDungeon && AbstractDungeon.ascensionLevel==13) {
+                FontHelper.renderFontLeftTopAligned(sb, FontHelper.topPanelInfoFont,
+                        Integer.toString(AbstractDungeon.ascensionLevel),
+                        (float)ReflectionHacks.getPrivate(__instance,TopPanel.class,"floorX") + 166.0F * Settings.scale,
+                        ReflectionHacks.getPrivateStatic(TopPanel.class,"INFO_TEXT_Y"), Settings.GOLD_COLOR);
+                if (__instance.ascensionHb != null)
+                    __instance.ascensionHb.render(sb);
+                return SpireReturn.Return();
+            }
+            return SpireReturn.Continue();
+        }
+        private static class Locator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new Matcher.FieldAccessMatcher(Settings.class,"RED_TEXT_COLOR");
+                return LineFinder.findInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher);
+            }
+        }
+    }
+
+
+    @SpirePatch2(clz = ProceedButton.class, method = "update")
+    public static class DoubleBossPatch {
+        @SpireInstrumentPatch
+        public static ExprEditor Bar() {
+            return new ExprEditor() {
+                public void edit(MethodCall m) throws CannotCompileException {
+                    if (m.getClassName().equals(ProceedButton.class.getName()) && m.getMethodName().equals("goToVictoryRoomOrTheDoor")) {
+                        m.replace("{ if("+CardCrawlGame.class.getName()+".dungeon instanceof "+AbstractBGDungeon.class.getName()+
+                                " && "+AbstractBGDungeon.class.getName()+".ascensionLevel>=13 "+
+                                " && "+AbstractBGDungeon.class.getName()+".bossList.size() == 2) goToDoubleBoss(); else $_ = $proceed($$); }");
+                    }
+                }
+            };
+        }
+    }
 
 }

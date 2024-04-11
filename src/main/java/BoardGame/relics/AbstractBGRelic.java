@@ -122,7 +122,7 @@ public abstract class AbstractBGRelic extends AbstractRelic {
             // = 58 relics
             Collections.shuffle(relicDeck, new java.util.Random(relicRng.randomLong()));
         }
-        public static void initializeBoss(){
+        public static void initializeBossRelics(){
             bossRelicDeck = new ArrayList<>();
             bossRelicDeck.add(new BGAstrolabe());
             bossRelicDeck.add(new BGPandorasBox());
@@ -161,7 +161,7 @@ public abstract class AbstractBGRelic extends AbstractRelic {
             @SpirePostfixPatch
         protected static void initializeRelicList(){
                 initialize();
-                initializeBoss();
+                initializeBossRelics();
             }
     }
 
@@ -179,7 +179,7 @@ public abstract class AbstractBGRelic extends AbstractRelic {
     public static AbstractRelic drawFromBossRelicDeck(){
 
         if(bossRelicDeck.size()==0){
-            initializeBoss();   //TODO: if this is the second time we would have called initialize, return a circlet instead
+            initializeBossRelics();   //TODO: if this is the second time we would have called initialize, return a circlet instead
         }
         AbstractRelic relic=bossRelicDeck.remove(0);
         //TODO: remove relic from deck if player obtains it

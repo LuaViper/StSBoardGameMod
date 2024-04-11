@@ -22,6 +22,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
+//TODO: Molten/Toxic Egg do not wear off correctly if we are in the middle of a set of card rewards
 public class BGNeowQuickStart {
     private static final Logger logger = LogManager.getLogger(BGNeowQuickStart.class.getName());
     public static int actNumber=2;

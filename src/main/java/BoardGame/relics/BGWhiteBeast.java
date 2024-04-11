@@ -1,5 +1,6 @@
 package BoardGame.relics;
 
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 public class BGWhiteBeast extends AbstractBGRelic {
@@ -16,6 +17,9 @@ public class BGWhiteBeast extends AbstractBGRelic {
         return this.DESCRIPTIONS[0];
     }
 
+    public void setupObtainedDuringCombat(){
+        AbstractDungeon.getCurrRoom().rewardAllowed=true;
+    }
     public AbstractRelic makeCopy() {
         return new BGWhiteBeast();
     }
