@@ -29,6 +29,8 @@ import com.megacrit.cardcrawl.vfx.combat.SmallLaserEffect;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.swing.*;
+
 public class BGSentry extends AbstractBGMonster implements BGDamageIcons, DieControlledMoves {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Sentry"); public static final String ID = "Sentry";
     public static final String NAME = monsterStrings.NAME;
@@ -53,8 +55,11 @@ public class BGSentry extends AbstractBGMonster implements BGDamageIcons, DieCon
 
         if(behavior.equals("D3") || (behavior.equals("2D") && AbstractDungeon.ascensionLevel==0))
             setHp(7);
+        else if(behavior.equals("2D") && AbstractDungeon.ascensionLevel>=12)
+            setHp(9);
         else
-            setHp(AbstractDungeon.ascensionLevel<12 ? 8 : 9);
+            setHp(8);
+
 
         this.dazedAmt = 1;
 
