@@ -4,6 +4,7 @@ import BoardGame.actions.BGUseMiracleAction;
 import BoardGame.characters.BGWatcher;
 import BoardGame.dungeons.AbstractBGDungeon;
 import BoardGame.util.TextureLoader;
+import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
@@ -31,6 +32,10 @@ public class BGMiracles extends AbstractBGRelic implements ClickableRelic {
         this.img = IMG;
         this.outlineImg=OUTLINE;
         setCounter(0);
+    }
+
+    public void onEquip() {
+        BaseMod.MAX_HAND_SIZE=999;
     }
 
     public void setCounter(int setCounter) {

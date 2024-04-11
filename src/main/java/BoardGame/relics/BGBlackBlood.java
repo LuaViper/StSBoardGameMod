@@ -1,5 +1,6 @@
 package BoardGame.relics;
 
+import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -17,6 +18,8 @@ public class BGBlackBlood extends AbstractBGRelic  {
         return this.DESCRIPTIONS[0] + 2 + this.DESCRIPTIONS[1];
     }
     public static final String ID = "BGBlack Blood";
+
+
 
     public void onVictory() {
         flash();

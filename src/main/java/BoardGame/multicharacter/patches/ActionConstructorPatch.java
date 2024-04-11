@@ -13,8 +13,9 @@ public class ActionConstructorPatch {
     public static class Patch1 {
         @SpirePrefixPatch
         public static void Prefix(AbstractGameAction __instance) {
+            ActionPatches.Field.rowTarget.set(__instance,ContextPatches.currentTargetContext);
             if(CardCrawlGame.chosenCharacter!=BGMultiCharacter.Enums.BG_MULTICHARACTER)return;
-            if(ContextPatches.contextHistory.isEmpty())return;
+            if(ContextPatches.playerContextHistory.isEmpty())return;
             ActionPatches.Field.owner.set(__instance, AbstractDungeon.player);
         }
     }

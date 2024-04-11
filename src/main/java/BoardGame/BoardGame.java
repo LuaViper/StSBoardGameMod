@@ -634,7 +634,7 @@ public class BoardGame implements
 
         addMonster("BoardGame:Shield and Spear", ()->new MonsterGroup(new AbstractMonster[] {
             new BGSpireSpear(-200,25),
-            new BGSpireShield(0,-75)
+            new BGSpireShield(0,-100)
         }));
         addMonster("BoardGame:The Heart", ()->new MonsterGroup(new AbstractMonster[] {
                 (AbstractMonster)new BGCorruptHeart()

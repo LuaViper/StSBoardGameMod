@@ -10,11 +10,15 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import javax.swing.*;
 
 public class BGNoxiousFumes extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGNoxiousFumes");
@@ -34,7 +38,12 @@ public class BGNoxiousFumes extends AbstractBGCard {
         if(!this.upgraded)
             addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new BGNoxiousFumesPower((AbstractCreature)p, this.magicNumber), this.magicNumber));
         else
-            addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new BGNoxiousFumesAOEPower((AbstractCreature)p, this.magicNumber), this.magicNumber));
+            if (!(AbstractDungeon.getCurrRoom() instanceof MonsterRoom && AbstractDungeon.lastCombatMetricKey.equals("BoardGame:Shield and Spear")))
+                addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new BGNoxiousFumesAOEPower((AbstractCreature)p, this.magicNumber), this.magicNumber));
+            else
+                //if this is Shield and Spear, they're in different rows, so just apply regular non-AOE power
+                //TODO: eventually we will need to prompt AOE power for which row to hit, at which point we can remove this check
+                addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new BGNoxiousFumesPower((AbstractCreature)p, this.magicNumber), this.magicNumber));
     }
 
     public void upgrade() {

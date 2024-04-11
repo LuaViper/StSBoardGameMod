@@ -48,6 +48,7 @@ public class BGSpireShield extends AbstractBGMonster implements BGDamageIcons {
     public static final String[] MOVES = monsterStrings.MOVES;
     public static final String[] DIALOG = monsterStrings.DIALOG;
     private int moveCount = 0;
+    private int strAmt=2;
     private static final byte BASH = 1;
     private static final byte FORTIFY = 2;
     private static final byte SMASH = 3;
@@ -78,16 +79,27 @@ public class BGSpireShield extends AbstractBGMonster implements BGDamageIcons {
     public void takeTurn(){
         switch (this.nextMove) {
             case 0:
+                AbstractDungeon.actionManager.addToBottom(new ChangeStateAction(this, "OLD_ATTACK"));
+                AbstractDungeon.actionManager.addToBottom(new WaitAction(0.5F));
+                AbstractDungeon.actionManager.addToBottom(new GainBlockAction(this, this, 20));
                 AbstractDungeon.actionManager.addToBottom(new SetMoveAction(
                         this,  (byte)1, AbstractMonster.Intent.ATTACK, 8));
                 break;
             case 1:
+                AbstractDungeon.actionManager.addToBottom(new ChangeStateAction(this, "ATTACK"));
+                AbstractDungeon.actionManager.addToBottom(new WaitAction(0.35F));
+                AbstractDungeon.actionManager.addToBottom(new DamageAction(AbstractDungeon.player, this.damage.get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
                 AbstractDungeon.actionManager.addToBottom(new SetMoveAction(
                         this,  (byte)2, AbstractMonster.Intent.BUFF));
                 break;
             case 2:
+                for (AbstractMonster m : (AbstractDungeon.getMonsters()).monsters) {
+                    if (!m.isDying && !m.isEscaping) {
+                        AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)m, (AbstractCreature)this, (AbstractPower)new StrengthPower((AbstractCreature)m, this.strAmt), this.strAmt));
+                    }
+                }
                 AbstractDungeon.actionManager.addToBottom(new SetMoveAction(
-                        this,  (byte)0, AbstractMonster.Intent.DEFEND));
+                        this, (byte) 0, AbstractMonster.Intent.DEFEND));
 
                 break;
         }
@@ -115,6 +127,28 @@ public class BGSpireShield extends AbstractBGMonster implements BGDamageIcons {
             addToTop(new LoseEnergyAction(1));
         }
     }
+
+//    public void changeState(String key) {
+//        switch (key) {
+//            case "OLD_ATTACK":
+//                this.state.setAnimation(0, "old_attack", false);
+//                this.state.addAnimation(0, "Idle", true, 0.0F);
+//                break;
+//            case "ATTACK":
+//                this.state.setAnimation(0, "Attack", false);
+//                this.state.addAnimation(0, "Idle", true, 0.0F);
+//        }
+//
+//    }
+
+//    public void damage(DamageInfo info) {
+//        super.damage(info);
+//        if (info.owner != null && info.type != DamageInfo.DamageType.THORNS && info.output > 0) {
+//            this.state.setAnimation(0, "Hit", false);
+//            this.state.addAnimation(0, "Idle", true, 0.0F);
+//        }
+//    }
+
 
     @SpirePatch(clz = MonsterGroup.class, method = "update")
     public static class HitboxOrderPatch1 {

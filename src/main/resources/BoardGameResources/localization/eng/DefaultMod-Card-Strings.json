@@ -1060,9 +1060,9 @@
     "NAME": "???",
     "DESCRIPTION": "Nothing to see here.",
     "EXTENDED_DESCRIPTION": [
-      "Lose 1 Energy.",
-      "You can't draw cards this turn.",
-      "Damage you deal this turn is reduced to 0.",
+      "The Shield bashes you. NL Lose 1 Energy.",
+      "The Shield snares you. NL You can't draw cards this turn.",
+      "The Shield []blocks you. NL Damage you deal this turn is reduced to 0.",
       "Don't stand in the fire."
     ]
   },
@@ -1070,7 +1070,7 @@
     "NAME": "???",
     "DESCRIPTION": "Even in the Board Game, there is no escape.",
     "EXTENDED_DESCRIPTION": [
-      "[BoardGame:BurnIcon] [BoardGame:BurnIcon]"
+      "The Spear []burns you. NL [BoardGame:BurnIcon] [BoardGame:BurnIcon]"
     ]
   },
   "BoardGame:BGSignatureMove": {

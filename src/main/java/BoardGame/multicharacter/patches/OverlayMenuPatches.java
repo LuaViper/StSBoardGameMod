@@ -1,16 +1,13 @@
 package BoardGame.multicharacter.patches;
 
-import BoardGame.cards.AbstractBGCard;
 import BoardGame.multicharacter.BGMultiCharacter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.OverlayMenu;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.screens.select.HandCardSelectScreen;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
@@ -46,9 +43,9 @@ public class OverlayMenuPatches {
                 }
                 for (int i = BGMultiCharacter.getSubcharacters().size() - 1; i >= 0; i -= 1) {
                     __instance.energyPanel.current_y -= ENERGY_ORB_SPACING * Settings.scale;
-                    ContextPatches.pushContext(BGMultiCharacter.getSubcharacters().get(i));
+                    ContextPatches.pushPlayerContext(BGMultiCharacter.getSubcharacters().get(i));
                     __instance.energyPanel.render(sb);
-                    ContextPatches.popContext();
+                    ContextPatches.popPlayerContext();
                 }
             }
         }

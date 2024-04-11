@@ -1,5 +1,6 @@
 package BoardGame.relics;
 
+import basemod.BaseMod;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
@@ -14,6 +15,10 @@ public class BGSnakeRing extends AbstractBGRelic  {
         super("BGRing of the Snake", "snake_ring.png", AbstractRelic.RelicTier.STARTER, AbstractRelic.LandingSound.FLAT);
     }
     private static final int NUM_CARDS = 2;
+
+    public void onEquip() {
+        BaseMod.MAX_HAND_SIZE=999;
+    }
 
     public String getUpdatedDescription() {
         return this.DESCRIPTIONS[0] + 2 + this.DESCRIPTIONS[1];

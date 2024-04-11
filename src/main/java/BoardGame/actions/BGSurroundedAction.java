@@ -11,6 +11,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
 
+//TODO: consider shield/spear animations for Facing abilities (might have to be different for multicharacter games)
+
 public class BGSurroundedAction extends AbstractGameAction {
 
     private static final CardStrings SPEAR = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGShieldSpear_Spear");

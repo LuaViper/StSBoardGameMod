@@ -144,7 +144,6 @@ public class BGWatcher extends AbstractBGPlayer {
         // =============== /TEXT BUBBLE LOCATION/ =================
 
 
-        BaseMod.MAX_HAND_SIZE=999;
         energyOrb = (EnergyOrbInterface)new EnergyOrbPurple();
     }
 

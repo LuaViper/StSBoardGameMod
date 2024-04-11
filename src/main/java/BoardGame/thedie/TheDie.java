@@ -132,7 +132,7 @@ public class TheDie {
     }
 
     public static void setMonsterMoves(int roll){
-        for (AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters){
+        for (AbstractMonster m : AbstractDungeon.getMonsters().monsters){
             if(m instanceof DieControlledMoves){
                 //((DieControlledMoves) m).dieMove(roll);
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DieMoveAction((DieControlledMoves) m));

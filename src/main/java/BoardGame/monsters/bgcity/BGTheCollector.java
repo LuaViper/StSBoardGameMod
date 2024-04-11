@@ -106,7 +106,7 @@ public class BGTheCollector extends AbstractBGMonster implements BGDamageIcons {
         AbstractDungeon.getCurrRoom().playBgmInstantly("BOSS_CITY");
         UnlockTracker.markBossAsSeen("COLLECTOR");
 
-        ArrayList<AbstractMonster> monsters = AbstractDungeon.getCurrRoom().monsters.monsters;
+        ArrayList<AbstractMonster> monsters = AbstractDungeon.getMonsters().monsters;
         //logger.info("checking gremlin slot "+slot);
 
 

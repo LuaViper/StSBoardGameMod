@@ -113,7 +113,7 @@ public class BGMultiCharacter extends AbstractBGPlayer {
         e.setTimeScale(0.6F);
         this.dialogX = this.drawX + 0.0F * Settings.scale;
         this.dialogY = this.drawY + 220.0F * Settings.scale;
-        BaseMod.MAX_HAND_SIZE = 999;
+        //BaseMod.MAX_HAND_SIZE = 999; //TODO: move to a starting relic
 
     }
 
@@ -310,9 +310,9 @@ public class BGMultiCharacter extends AbstractBGPlayer {
 
     public void render(SpriteBatch sb) {
         for (int i = subcharacters.size() - 1; i >= 0; i -= 1) {
-            ContextPatches.pushContext(subcharacters.get(i));
+            ContextPatches.pushPlayerContext(subcharacters.get(i));
             subcharacters.get(i).render(sb);
-            ContextPatches.popContext();
+            ContextPatches.popPlayerContext();
         }
     }
 
@@ -321,9 +321,9 @@ public class BGMultiCharacter extends AbstractBGPlayer {
             for (int i = handLayoutHelper.currentHand + subcharacters.size() - 1; i >= handLayoutHelper.currentHand; i -= 1) {
                 //BoardGame.logger.info("???   " + i + "   " + i % subcharacters.size());
                 AbstractPlayer c = subcharacters.get(i % subcharacters.size());
-                ContextPatches.pushContext(c);
+                ContextPatches.pushPlayerContext(c);
                 c.renderHand(sb);
-                ContextPatches.popContext();
+                ContextPatches.popPlayerContext();
             }
         }
     }

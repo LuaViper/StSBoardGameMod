@@ -6,6 +6,7 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.ui.buttons.EndTurnButton;
 import javassist.CannotCompileException;
@@ -54,7 +55,7 @@ public class CardPatches {
         public static void Prefix(AbstractCard __instance) {
             if (CardCrawlGame.chosenCharacter == BGMultiCharacter.Enums.BG_MULTICHARACTER) {
                 if (CardPatches.Field.owner.get(__instance) != null) {
-                    ContextPatches.pushContext(CardPatches.Field.owner.get(__instance));
+                    ContextPatches.pushPlayerContext(CardPatches.Field.owner.get(__instance));
                 }
             }
         }
@@ -65,7 +66,7 @@ public class CardPatches {
         public static void Postfix(AbstractCard __instance) {
             if (CardCrawlGame.chosenCharacter == BGMultiCharacter.Enums.BG_MULTICHARACTER) {
                 if (CardPatches.Field.owner.get(__instance) != null) {
-                    ContextPatches.popContext();
+                    ContextPatches.popPlayerContext();
                 }
             }
         }

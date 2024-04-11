@@ -12,7 +12,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.MathHelper;
-import com.megacrit.cardcrawl.helpers.controller.CInputHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 
 public class HandLayoutHelper {
@@ -113,9 +112,9 @@ public class HandLayoutHelper {
                     //TODO: complain very loudly
                     continue;
                 }
-                ContextPatches.pushContext(p);
+                ContextPatches.pushPlayerContext(p);
                 p.hand.refreshHandLayout();
-                ContextPatches.popContext();
+                ContextPatches.popPlayerContext();
             }
 
         }

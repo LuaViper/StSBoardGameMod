@@ -145,8 +145,6 @@ public class BGIronclad extends AbstractBGPlayer {
 
         // =============== /TEXT BUBBLE LOCATION/ =================
 
-
-        BaseMod.MAX_HAND_SIZE=999;
         energyOrb = (EnergyOrbInterface)new EnergyOrbRed();
     }
 

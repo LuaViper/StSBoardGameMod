@@ -103,7 +103,7 @@ public class TargetSelectScreen extends CustomScreen {
         }
         AbstractMonster firstmonster=null;
         int monstercount=0;
-        for(AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters){
+        for(AbstractMonster m : AbstractDungeon.getMonsters().monsters){
             if(!m.isDeadOrEscaped()){
                 monstercount+=1;
                 if(monstercount==1) firstmonster=m;

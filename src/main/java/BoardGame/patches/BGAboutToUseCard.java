@@ -24,7 +24,6 @@ import javassist.CtBehavior;
 
 import java.util.ArrayList;
 
-//TODO NEXT: timing is STILL wrong -- if player has a pending start-of-turn relic, shieldspear facing needs to wait until after it triggers
 
 public class BGAboutToUseCard {
     private AbstractCard targetCard;

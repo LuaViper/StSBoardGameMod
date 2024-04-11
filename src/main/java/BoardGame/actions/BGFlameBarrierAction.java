@@ -35,7 +35,7 @@ public class BGFlameBarrierAction extends AbstractGameAction {
             if (!mo.isDying && !mo.isDead) {
                 if (mo.getIntentBaseDmg() >= 0) {
                     //p.triggerMarks(this.card);
-                    EnemyMoveInfo move = AbstractBGMonster.PublicMoveField.publicmove.get(mo);
+                    EnemyMoveInfo move = AbstractBGMonster.Field.publicMove.get(mo);
                     if (move != null) {
                         if (move.isMultiDamage && move.multiplier > 1) {
                             for (int i = 1; i <= move.multiplier; i += 1) {

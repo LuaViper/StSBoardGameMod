@@ -1,6 +1,9 @@
 package BoardGame.powers;
 
 import BoardGame.cards.BGRed.BGWhirlwind;
+import BoardGame.multicharacter.ALLEnemiesMonster;
+import BoardGame.multicharacter.patches.ActionPatches;
+import BoardGame.multicharacter.patches.CardTargetingPatches;
 import BoardGame.relics.BGTheDieRelic;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
@@ -17,6 +20,8 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import javax.swing.*;
 
 public class BGTheBombPower extends AbstractBGPower {
     public static final String POWER_ID = "BGTheBomb";
@@ -46,8 +51,10 @@ public class BGTheBombPower extends AbstractBGPower {
         if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
             addToBot((AbstractGameAction)new ReducePowerAction(this.owner, this.owner, this, 1));
             if (this.amount == 1) {
-                addToBot((AbstractGameAction)new DamageAllEnemiesAction(AbstractDungeon.player,
-                        DamageInfo.createDamageMatrix(this.damage, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE));
+                AbstractGameAction action=new DamageAllEnemiesAction(AbstractDungeon.player,
+                        DamageInfo.createDamageMatrix(this.damage, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE);
+                ActionPatches.Field.rowTarget.set(action,new ALLEnemiesMonster());
+                addToBot(action);
 
                 AbstractCard card=originalcard.makeStatEquivalentCopy();
                 AbstractDungeon.player.discardPile.addToBottom(card);

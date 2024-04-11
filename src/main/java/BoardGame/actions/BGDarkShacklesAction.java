@@ -32,7 +32,7 @@ public class BGDarkShacklesAction extends AbstractGameAction {
             //avoid attacking dead monsters (and corresponding visual fx)
             if (!mo.isDying && !mo.isDead && !mo.halfDead ) {
                 if (mo.getIntentBaseDmg() >= 0) {
-                    EnemyMoveInfo move = AbstractBGMonster.PublicMoveField.publicmove.get(mo);
+                    EnemyMoveInfo move = AbstractBGMonster.Field.publicMove.get(mo);
                     if (move != null) {
                         addToBot((AbstractGameAction) new GainBlockAction((AbstractCreature) player, this.blockAmount));
                     }

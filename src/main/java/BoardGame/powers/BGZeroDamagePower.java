@@ -7,10 +7,10 @@ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 
-//TODO NEXT: softlock if End Turn button is clicked after die rolls a 6 but before activating relics or playing a card
-//TODO NEXT: SurroundedPower still activates twice if die rolls a 6 (eg with gamblers brew)
-//TODO NEXT: spear and shield are in separate rows, so all AOE attacks except Bomb will miss the other one!
-//TODO: also yeah they do stuff on their turn
+//TODO: if End Turn button is clicked while die abilities are pending, No Draw will be applied after player's turn ends and will persist through next turn
+//TODO: also, damage potions can be used before this is applied
+//TODO: End Turn can also be used to sneak in The Bomb damage
+
 public class BGZeroDamagePower extends AbstractBGPower {
     public static final String POWER_ID = BoardGame.makeID("BGZeroDamagePower");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);

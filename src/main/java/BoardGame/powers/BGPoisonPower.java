@@ -4,6 +4,7 @@ package BoardGame.powers;
 //TODO: why are some power counters green and others white?  is that what IsTurnBased is for?
 
 import BoardGame.monsters.bgexordium.BGGremlinAngry;
+import BoardGame.multicharacter.patches.AbstractDungeonMonsterPatches;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.unique.PoisonLoseHpAction;
@@ -13,9 +14,13 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+
+import javax.swing.*;
+import java.util.ArrayList;
 
 public class BGPoisonPower extends AbstractBGPower {
     public static final String POWER_ID = "BGPoison";
@@ -68,8 +73,16 @@ public class BGPoisonPower extends AbstractBGPower {
     }
 
     public void capPoisonOnEnemy(AbstractMonster m){
+        //TODO NEXT: if AbstractDungeon.getCurrRoom().originalMonsters exists, use it instead
         int total=0;
-        for (AbstractMonster m2 : (AbstractDungeon.getMonsters()).monsters) {
+        MonsterGroup oM = AbstractDungeonMonsterPatches.Field.originalMonsters.get(AbstractDungeon.getCurrRoom());
+        ArrayList<AbstractMonster> monsters;
+        if(oM!=null && !oM.monsters.isEmpty())
+            monsters=oM.monsters;
+        else
+            monsters=AbstractDungeon.getMonsters().monsters;
+
+        for (AbstractMonster m2 : monsters) {
             if(m2!=m) {
                 AbstractPower p = m2.getPower("BGPoison");
                 if (p != null) {

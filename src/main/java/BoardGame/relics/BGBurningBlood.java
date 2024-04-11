@@ -2,6 +2,7 @@ package BoardGame.relics;
 
 import BoardGame.BoardGame;
 import BoardGame.util.TextureLoader;
+import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
@@ -36,6 +37,9 @@ public class BGBurningBlood extends AbstractBGRelic {
         return new BGBurningBlood();
     }
 
+    public void onEquip() {
+        BaseMod.MAX_HAND_SIZE=999;
+    }
 
     @Override
     public void onVictory() {

@@ -28,7 +28,7 @@ public class BGSpawnTwoGremlinsForGremlinLeaderAction extends AbstractGameAction
 
 
     private String getGremlinInSlot(int slot) {
-        ArrayList<AbstractMonster> monsters = AbstractDungeon.getCurrRoom().monsters.monsters;
+        ArrayList<AbstractMonster> monsters = AbstractDungeon.getMonsters().monsters;
         logger.info("checking gremlin slot "+slot);
         if (slot>=monsters.size() || monsters.get(slot) == null || (monsters.get(slot)).isDying) {
             logger.info("return "+this.leader.gremlintypes[slot]);

@@ -1,12 +1,13 @@
 package BoardGame.multicharacter.patches;
 
 import BoardGame.multicharacter.BGMultiCharacter;
+import BoardGame.multicharacter.NullMonster;
+import BoardGame.multicharacter.NullPlayer;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardQueueItem;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import javassist.CannotCompileException;
@@ -16,20 +17,22 @@ import java.util.ArrayList;
 
 public class GetNextActionPatch {
     public static void before(AbstractCard c){
+        if(c!=null) {
+            ContextPatches.pushTargetContext(CardTargetingPatches.CardField.lastHoveredTarget.get(c));
+        }else{
+            ContextPatches.pushTargetContext(null);
+        }
         //REMINDER: copied cards (from Foreign Influence and Doppelganger) must manually set owner before playing
         if(CardCrawlGame.chosenCharacter!=BGMultiCharacter.Enums.BG_MULTICHARACTER)return;
         if(ContextPatches.originalBGMultiCharacter==null)ContextPatches.originalBGMultiCharacter=AbstractDungeon.player;
-        //this patch takes place before the null check, so check again here
-        if(c!=null) {
-            ContextPatches.pushContext(CardPatches.Field.owner.get(c));
-        }else{
-            ContextPatches.pushContext(null);
-        }
+
+        ContextPatches.pushPlayerContext(CardPatches.Field.owner.get(c));
 
     }
     public static void after(){
+        ContextPatches.popTargetContext();
         if(CardCrawlGame.chosenCharacter!=BGMultiCharacter.Enums.BG_MULTICHARACTER)return;
-        ContextPatches.popContext();
+        ContextPatches.popPlayerContext();
     }
 
     @SpirePatch2(clz=GameActionManager.class,method="getNextAction",paramtypez={})
