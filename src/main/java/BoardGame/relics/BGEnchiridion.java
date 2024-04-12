@@ -1,5 +1,6 @@
 package BoardGame.relics;
 
+//TODO: if you Save and Exit while Enchiridion card select screen is up, then immediately reload, the relic stays in "obtained" state on the reward screen so you can only examine it instead of actually obtain it again
 //TODO: sometimes card fails to be added to deck during Quick Start process :(
 
 import BoardGame.dungeons.AbstractBGDungeon;
