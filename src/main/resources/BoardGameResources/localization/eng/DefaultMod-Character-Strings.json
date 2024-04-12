@@ -155,7 +155,7 @@
       "Select Cards to Upgrade",
       "[ Proceed ]",
       "#yDISCLAIMER",
-      "This mod remains very much a work in progress. You may notice rule inaccuracies, bugs, and even softlocks. NL NL Most importantly, #ysave #yfiles #yare #ynot #yready #yyet.  If you try to save the game and reload, everything will break in hilarious and horrifying ways.",
+      "This mod remains very much a work in progress. You may notice rule inaccuracies, bugs, and even softlocks. #ySave #yfiles have been freshly implemented and may still be a bit glitchy. NL NL Please report any issues you discover in the #yBoard #yGame #ythread #yof #ythe #y#modding-forum #ychannel #yon #yDiscord.",
       "If the game softlocks on a reward screen, try opening and closing the map.",
       "This is TEXT[72] by the way. In case you lose count, the IDE will also keep track for you, beneath the text editor window.",
       "If you are reading this message, you have somehow managed to select The Board Game from the character select screen. The Board Game is not yet ready for public playtesting. Don't even think about trying to recover your save #rwhen the game crashes. NL NL For a more stable experience, please exit and choose one of the solo characters from the previous menu."

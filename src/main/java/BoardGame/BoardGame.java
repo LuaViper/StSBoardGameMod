@@ -14,6 +14,7 @@ import BoardGame.potions.*;
 import BoardGame.relics.*;
 import BoardGame.rewards.TinyHouseUpgrade1Card;
 import BoardGame.rewards.TinyHouseUpgrade1CardTypePatch;
+import BoardGame.savables.DeckInfo;
 import BoardGame.screen.OrbSelectScreen;
 import BoardGame.screen.RelicTradingScreen;
 import BoardGame.screen.TargetSelectScreen;
@@ -225,10 +226,14 @@ public class BoardGame implements
 
     // =============== SUBSCRIBE, CREATE THE COLOR_GRAY, INITIALIZE =================
 
+    public static DeckInfo deckInfo = new DeckInfo();
+
     public BoardGame() {
         logger.info("Subscribe to BaseMod hooks");
 
         BaseMod.subscribe(this);
+
+        BaseMod.addSaveField("Deck Info", deckInfo);
 
         setModID("BoardGame");
 

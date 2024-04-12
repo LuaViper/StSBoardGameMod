@@ -136,6 +136,7 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
     public static class initializeCardPoolsPatch {
         @SpirePrefixPatch
         public static void initializeCardPools() {
+            if(!(CardCrawlGame.dungeon instanceof AbstractBGDungeon))return;
             //TODO: the correct solution here is to load the card pools when loading a savefile, which unfortunately involves saving the card pools first
             if (!initializedCardPools) {
                 logger.info("----------BoardGame mod is resetting ALL reward decks----------");

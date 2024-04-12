@@ -158,7 +158,10 @@ public class BGSlimeBoss
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SpawnMonsterAction(new BGSpikeSlime_M(120.0F, -8.0F), false));
 
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new CanLoseAction());
-                setMove(SPLIT_NAME, (byte)4, AbstractMonster.Intent.UNKNOWN);
+                setMove(SPLIT_NAME, (byte)5, AbstractMonster.Intent.UNKNOWN);
+                break;
+            case 5:
+                //do nothing; we're dead
                 break;
         }
     }
@@ -178,11 +181,14 @@ public class BGSlimeBoss
 
         //if (!this.isDying && this.currentHealth <= this.maxHealth / 2.0F && this.nextMove != 3) {
         if(this.currentHealth<=0 && this.nextMove!=4){
-            logger.info("SPLIT");
-            setMove(SPLIT_NAME, (byte)4, AbstractMonster.Intent.UNKNOWN);
-            createIntent();
-            AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new TextAboveCreatureAction((AbstractCreature)this, TextAboveCreatureAction.TextType.INTERRUPTED));
-            AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this, SPLIT_NAME, (byte)4, AbstractMonster.Intent.UNKNOWN));
+            if(!halfDead) {
+                halfDead=true;
+                logger.info("SPLIT");
+                setMove(SPLIT_NAME, (byte) 4, AbstractMonster.Intent.UNKNOWN);
+                createIntent();
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new TextAboveCreatureAction((AbstractCreature) this, TextAboveCreatureAction.TextType.INTERRUPTED));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new SetMoveAction(this, SPLIT_NAME, (byte) 4, AbstractMonster.Intent.UNKNOWN));
+            }
         }
     }
 
