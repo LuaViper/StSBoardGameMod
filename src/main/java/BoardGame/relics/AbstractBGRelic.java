@@ -42,10 +42,11 @@ public abstract class AbstractBGRelic extends AbstractRelic {
         for(AbstractRelic r : AbstractDungeon.player.relics) {
             if(!(r instanceof AbstractBGRelic)){
                 relics.add(r);
-            }
-            AbstractBGRelic bgr=(AbstractBGRelic)r;
-            if(bgr.usableAsPayment()){
-                relics.add(r);
+            }else {
+                AbstractBGRelic bgr = (AbstractBGRelic) r;
+                if (bgr.usableAsPayment()) {
+                    relics.add(r);
+                }
             }
         }
         return relics;
