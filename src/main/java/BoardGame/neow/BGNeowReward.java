@@ -253,7 +253,7 @@ public class BGNeowReward
                 AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(
                         card, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
 
-                AbstractBGDungeon.removeCardFromRewardDeck(card);
+                //AbstractBGDungeon.removeCardFromRewardDeck(card);  //TODO: why was this here? we already removed the card earlier
             }
         }
     }

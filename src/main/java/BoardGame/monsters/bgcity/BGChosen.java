@@ -65,8 +65,10 @@ public class BGChosen extends AbstractBGMonster implements BGDamageIcons {
 
         setHp(hp);
 
+
         this.damage.add(new DamageInfo((AbstractCreature)this, 3));
         this.damage.add(new DamageInfo((AbstractCreature)this, 5));
+        this.damage.add(new DamageInfo((AbstractCreature)this, 1));
 
         loadAnimation("images/monsters/theCity/chosen/skeleton.atlas", "images/monsters/theCity/chosen/skeleton.json", 1.0F);
 
@@ -86,6 +88,9 @@ public class BGChosen extends AbstractBGMonster implements BGDamageIcons {
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new TalkAction((AbstractCreature)this, DIALOG[0]));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ChangeStateAction(this, "ATTACK"));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new WaitAction(0.2F));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new FastShakeAction((AbstractCreature)this, 0.3F, 0.5F));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
+                        .get(2), AbstractGameAction.AttackEffect.FIRE));
                 addToBot((AbstractGameAction)new MakeTempCardInDrawPileAction((AbstractCard)new BGDazed(), 1, false, true));
                 setMove((byte)2, AbstractMonster.Intent.ATTACK_DEBUFF, this.damage.get(0).base);
                 break;
@@ -104,7 +109,7 @@ public class BGChosen extends AbstractBGMonster implements BGDamageIcons {
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                         .get(1), AbstractGameAction.AttackEffect.SLASH_HEAVY));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new StrengthPower((AbstractCreature)this, 1), 1));
-                setMove((byte)1, AbstractMonster.Intent.DEBUFF);
+                setMove((byte)2, AbstractMonster.Intent.ATTACK_DEBUFF, this.damage.get(0).base);
                 break;
 
 
@@ -126,7 +131,7 @@ public class BGChosen extends AbstractBGMonster implements BGDamageIcons {
 
 
     protected void getMove(int num) {
-                setMove((byte)1, AbstractMonster.Intent.DEBUFF);
+                setMove((byte)1, AbstractMonster.Intent.ATTACK_DEBUFF,this.damage.get(2).base);
     }
 
 

@@ -55,7 +55,7 @@ public class BGAccursedBlacksmith extends AbstractImageEvent {
         gamblingChipButtonWasActive=false;
 
         this.imageEventText.setDialogOption(OPTIONS[1]);
-        this.imageEventText.setDialogOption(OPTIONS[2]);
+        //this.imageEventText.setDialogOption(OPTIONS[2]);
     }
 
 

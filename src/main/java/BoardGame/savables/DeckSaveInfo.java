@@ -1,49 +1,32 @@
 package BoardGame.savables;
 
-//TODO NEXT: when a card reward is generated at end of combat, the top three cards of reward deck are moved to bottom of deck,
-// then the game is saved.  when the game is loaded, those three cards remain on the bottom of the deck, and a new (different) card reward
-// is generated from the new top three cards, this time without saving.
-// find in files CardRewardScreen.rewardMetrics ("SKIP")
-// also note that events that do not use CardReward DO preserve card order correctly
-
 
 import BoardGame.BoardGame;
-import BoardGame.actions.BGCopyCardAction;
-import BoardGame.cards.AbstractBGCard;
-import BoardGame.cards.BGGoldenTicket;
 import BoardGame.characters.*;
 import BoardGame.dungeons.AbstractBGDungeon;
 import BoardGame.potions.PotionHelperPatch;
 import BoardGame.relics.AbstractBGRelic;
-import basemod.AutoAdd;
 import basemod.abstracts.CustomSavable;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
-import com.megacrit.cardcrawl.actions.utility.ShowCardAndPoofAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
-import com.megacrit.cardcrawl.helpers.PotionHelper;
 import com.megacrit.cardcrawl.helpers.RelicLibrary;
-import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
-import org.clapper.util.classutil.ClassInfo;
 
-import java.sql.Array;
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.HashMap;
-import java.util.Iterator;
 
-import static BoardGame.savables.DeckInfo.DeckType.*;
+import static BoardGame.savables.DeckSaveInfo.DeckType.*;
 
-public class DeckInfo implements CustomSavable<HashMap<DeckInfo.DeckType,ArrayList<String>>> {
-    public DeckInfo(){}
+public class DeckSaveInfo implements CustomSavable<HashMap<DeckSaveInfo.DeckType,ArrayList<String>>> {
+    public DeckSaveInfo(){}
 
     public static HashMap<DeckType,ArrayList<String>> deckInfoBeforeCardReward=null;
     public static boolean cardAbbreviationsAreInitialized=false;
@@ -103,8 +86,19 @@ public class DeckInfo implements CustomSavable<HashMap<DeckInfo.DeckType,ArrayLi
             BoardGame.logger.info("Save previously stored deck info before drawing card reward.");
         }
         ArrayList<String>red=decks.get(RED_REWARDS);
-        BoardGame.logger.info("Top cards: "+red.get(red.size()-1)+" "+red.get(red.size()-2)+" "+red.get(red.size()-3));
-        BoardGame.logger.info("Bottom cards: "+red.get(0)+" "+red.get(1)+" "+red.get(2));
+//        BoardGame.logger.info("Top cards: "+red.get(red.size()-1)+" "+red.get(red.size()-2)+" "+red.get(red.size()-3));
+//        BoardGame.logger.info("Bottom cards: "+red.get(0)+" "+red.get(1)+" "+red.get(2)
+//                +" "+red.get(3)+" "+red.get(4)+" "+red.get(5)
+//                +" "+red.get(6)+" "+red.get(7)+" "+red.get(8)
+        BoardGame.logger.info("ALL cards: ");
+        StringBuilder s = new StringBuilder();
+        int i=0;
+        for( String c : red ){
+            i+=1;
+            s.append(i).append("-").append(c).append(" ");
+        }
+        BoardGame.logger.info(s.toString());
+
 
         return decks;
     }
@@ -130,6 +124,7 @@ public class DeckInfo implements CustomSavable<HashMap<DeckInfo.DeckType,ArrayLi
 
     @Override
     public void onLoad(HashMap<DeckType,ArrayList<String>> decks) {
+        BoardGame.logger.info("LOADING BG REWARD DECKS");
         if(decks==null){
             BoardGame.logger.info("Saved decks is null (not a BG save?)");
             return;
@@ -166,6 +161,17 @@ public class DeckInfo implements CustomSavable<HashMap<DeckInfo.DeckType,ArrayLi
         AbstractBGDungeon.rareRewardDeck = AbstractBGDungeon.physicalRareRewardDecks.get(whoAmI);
 
         AbstractBGDungeon.initializedCardPools=true;
+
+        BoardGame.logger.info("ALL cards: ");
+        StringBuilder s = new StringBuilder();
+        ArrayList<String>red=decks.get(RED_REWARDS);
+        int i=0;
+        for( String c : red ){
+            i+=1;
+            s.append(i).append("-").append(c).append(" ");
+        }
+        BoardGame.logger.info(s.toString());
+
     }
 
 

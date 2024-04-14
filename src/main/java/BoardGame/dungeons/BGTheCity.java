@@ -173,9 +173,7 @@ public class BGTheCity
 
         populatePathTaken(saveFile);
 
-        //TODO: is this correct?  or are we reshuffling an already shuffled saved deck?
-        logger.info("Shuffling reward deck...");
-        rewardDeck.shuffle(cardRng);
+        //Saved deck is already shuffled -- don't reshuffle! (especially not after the 1st floor!)
     }
 
 

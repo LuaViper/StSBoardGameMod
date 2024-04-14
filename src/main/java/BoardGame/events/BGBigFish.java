@@ -39,7 +39,7 @@ public class BGBigFish
 
     public BGBigFish() {
         super(NAME, DIALOG_1, "images/events/fishing.jpg");
-        this.healAmt = AbstractDungeon.player.maxHealth / 3;
+        this.healAmt = 2;
         this.imageEventText.setDialogOption(OPTIONS[0] + this.healAmt + OPTIONS[1]);
         this.imageEventText.setDialogOption(OPTIONS[2]);
         this.imageEventText.setDialogOption(OPTIONS[4]);

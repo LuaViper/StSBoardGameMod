@@ -443,16 +443,7 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
     }
 
     private static void removeOneCardFromOneDeck(String cardname, CardGroup deck){
-//        AbstractCard target=null;
-//        for(AbstractCard c : deck.group){
-//            if(c.cardID==cardname){
-//                target=c;
-//                break;
-//            }
-//        }
-//        if(target!=null){
-//
-//        }
+
         if(deck.removeCard(cardname)){
            logger.info("Successfully removed "+cardname+" from a reward deck");
         }
@@ -465,6 +456,7 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
         removeOneCardFromOneDeck(card.cardID, AbstractBGDungeon.rareRewardDeck);
         removeOneCardFromOneDeck(card.cardID, AbstractBGDungeon.colorlessRewardDeck);
         removeOneCardFromOneDeck(card.cardID, AbstractBGDungeon.cursesRewardDeck);
+        //TODO: if remove was unsuccessful, complain loudly
     }
 
 

@@ -14,7 +14,7 @@ import BoardGame.potions.*;
 import BoardGame.relics.*;
 import BoardGame.rewards.TinyHouseUpgrade1Card;
 import BoardGame.rewards.TinyHouseUpgrade1CardTypePatch;
-import BoardGame.savables.DeckInfo;
+import BoardGame.savables.DeckSaveInfo;
 import BoardGame.screen.OrbSelectScreen;
 import BoardGame.screen.RelicTradingScreen;
 import BoardGame.screen.TargetSelectScreen;
@@ -120,7 +120,7 @@ public class BoardGame implements
 
     // Character assets
 
-    public static final String CHAR_SELECT_BUTTON_MULTICHARACTER = "images/ui/charSelect/ironcladButton.png";
+    public static final String CHAR_SELECT_BUTTON_MULTICHARACTER = "BoardGameResources/images/charSelect/BGMultiCharacterButton.png";
     private static final String CHAR_SELECT_PORTRAIT_MULTICHARACTER = "BoardGameResources/images/charSelect/MultiCharacterPortrait.png";
 
     public static final String CHAR_SELECT_BUTTON_IRONCLAD = "images/ui/charSelect/ironcladButton.png";
@@ -226,14 +226,14 @@ public class BoardGame implements
 
     // =============== SUBSCRIBE, CREATE THE COLOR_GRAY, INITIALIZE =================
 
-    public static DeckInfo deckInfo = new DeckInfo();
+    public static DeckSaveInfo deckSaveInfo = new DeckSaveInfo();
 
     public BoardGame() {
         logger.info("Subscribe to BaseMod hooks");
 
         BaseMod.subscribe(this);
 
-        BaseMod.addSaveField("Deck Info", deckInfo);
+        BaseMod.addSaveField("Deck Info", deckSaveInfo);
 
         setModID("BoardGame");
 

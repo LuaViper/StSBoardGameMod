@@ -650,7 +650,7 @@
     "NAME": "Toolbox",
     "FLAVOR": "A tool for every job.",
     "DESCRIPTIONS": [
-      "#yOnce #yper #ycombat: NL +1 to the die result. NL ( [BoardGame:Die1Icon] becomes [BoardGame:Die6Icon] )"
+      "#yOnce #yper #ycombat: NL -1 to the die result. NL ( [BoardGame:Die1Icon] becomes [BoardGame:Die6Icon] )"
     ]
   },
   "BGToxic Egg 2": {
