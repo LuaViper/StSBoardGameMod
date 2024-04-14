@@ -1,6 +1,7 @@
 package BoardGame.characters;
 
 import BoardGame.cards.BGGreen.*;
+import BoardGame.multicharacter.UnselectablePlayer;
 import BoardGame.relics.BGShivs;
 import BoardGame.relics.BGSnakeRing;
 import BoardGame.relics.BGTheDieRelic;
@@ -45,7 +46,7 @@ import static BoardGame.BoardGame.*;
 //and https://github.com/daviscook477/BaseMod/wiki/Migrating-to-5.0
 //All text (starting description and loadout, anything labeled TEXT[]) can be found in DefaultMod-character-Strings.json in the resources
 
-public class BGSilent extends AbstractBGPlayer {
+public class BGSilent extends AbstractBGPlayer implements UnselectablePlayer {
     public static final Logger logger = LogManager.getLogger(BoardGame.class.getName());
 
     // =============== CHARACTER ENUMERATORS =================

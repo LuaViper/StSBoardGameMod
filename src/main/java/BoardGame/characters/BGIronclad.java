@@ -1,6 +1,7 @@
 package BoardGame.characters;
 
 import BoardGame.cards.BGRed.*;
+import BoardGame.multicharacter.UnselectablePlayer;
 import BoardGame.relics.BGTheDieRelic;
 import BoardGame.relics.BGBurningBlood;
 import basemod.BaseMod;
@@ -42,7 +43,7 @@ import static BoardGame.characters.BGIronclad.Enums.BG_RED;
 //and https://github.com/daviscook477/BaseMod/wiki/Migrating-to-5.0
 //All text (starting description and loadout, anything labeled TEXT[]) can be found in DefaultMod-character-Strings.json in the resources
 
-public class BGIronclad extends AbstractBGPlayer {
+public class BGIronclad extends AbstractBGPlayer implements UnselectablePlayer {
     public static final Logger logger = LogManager.getLogger(BoardGame.class.getName());
 
     // =============== CHARACTER ENUMERATORS =================

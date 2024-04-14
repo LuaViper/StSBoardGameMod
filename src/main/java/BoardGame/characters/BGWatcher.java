@@ -6,6 +6,7 @@ import BoardGame.cards.BGPurple.BGDefend_W;
 import BoardGame.cards.BGPurple.BGEruption;
 import BoardGame.cards.BGPurple.BGStrike_W;
 import BoardGame.cards.BGPurple.BGVigilance;
+import BoardGame.multicharacter.UnselectablePlayer;
 import BoardGame.relics.BGCrackedCore;
 import BoardGame.relics.BGMiracles;
 import BoardGame.relics.BGTheDieRelic;
@@ -49,7 +50,7 @@ import static com.megacrit.cardcrawl.helpers.ImageMaster.PURPLE_ORB_FLASH_VFX;
 //and https://github.com/daviscook477/BaseMod/wiki/Migrating-to-5.0
 //All text (starting description and loadout, anything labeled TEXT[]) can be found in DefaultMod-character-Strings.json in the resources
 
-public class BGWatcher extends AbstractBGPlayer {
+public class BGWatcher extends AbstractBGPlayer implements UnselectablePlayer {
     public static final Logger logger = LogManager.getLogger(BoardGame.class.getName());
 
     // =============== CHARACTER ENUMERATORS =================

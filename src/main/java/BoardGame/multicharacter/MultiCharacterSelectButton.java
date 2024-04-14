@@ -21,8 +21,8 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import java.util.Iterator;
 
 public class MultiCharacterSelectButton {
+  public static final boolean SOLO_MODE_ONLY=true;
   public boolean selected = false;
-  
   public boolean locked = false;
   
   private Color glowColor = new Color(1.0F, 0.8F, 0.2F, 0.0F);
@@ -62,10 +62,21 @@ public class MultiCharacterSelectButton {
     if (this.hb.clicked) {
       this.hb.clicked = false;
       if (!this.selected) {
-        this.selected = true;
-        this.c.doCharSelectScreenSelectEffect();
+
         MultiCharacterSelectScreen screen = (MultiCharacterSelectScreen)BaseMod.getCustomScreen(MultiCharacterSelectScreen.Enum.MULTI_CHARACTER_SELECT);
+        for(MultiCharacterSelectButton b : screen.buttons){
+          b.selected=false;
+        }
+
+        this.selected = true;
+
         BGMultiCharacter p = (BGMultiCharacter)AbstractDungeon.player;
+        if(SOLO_MODE_ONLY) {
+          p.subcharacters.clear();
+        }
+
+        this.c.doCharSelectScreenSelectEffect();
+
         AbstractBGPlayer newChar = (AbstractBGPlayer)this.c.newInstance();
         p.subcharacters.add(newChar);
         newChar.initializeStarterDeck();

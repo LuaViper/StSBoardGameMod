@@ -40,15 +40,21 @@ public class MultiCharacterSelectScreen extends CustomScreen {
     return Enum.MULTI_CHARACTER_SELECT;
   }
   
-  public String description = "Choose up to 4 characters.";
+  //public String description = "Choose up to 4 characters.";
+  public String description = "Choose 1 character.";
   
   public ArrayList<MultiCharacterSelectButton> buttons = new ArrayList<>();
   
   public MultiCharacterSelectScreen() {
-    this.buttons.add(new MultiCharacterSelectButton("The Ironclad", BaseMod.findCharacter(BGIronclad.Enums.BG_IRONCLAD), "images/ui/charSelect/ironcladButton.png"));
-    this.buttons.add(new MultiCharacterSelectButton("The Silent", BaseMod.findCharacter(BGSilent.Enums.BG_SILENT), "images/ui/charSelect/silentButton.png"));
-    this.buttons.add(new MultiCharacterSelectButton("The Defect", BaseMod.findCharacter(BGDefect.Enums.BG_DEFECT), "images/ui/charSelect/defectButton.png"));
-    this.buttons.add(new MultiCharacterSelectButton("The Watcher", BaseMod.findCharacter(BGWatcher.Enums.BG_WATCHER), "images/ui/charSelect/watcherButton.png"));
+    this.buttons.add(new MultiCharacterSelectButton("The Ironclad", new BGIronclad("The Ironclad",BGIronclad.Enums.BG_IRONCLAD), "images/ui/charSelect/ironcladButton.png"));
+    this.buttons.add(new MultiCharacterSelectButton("The Silent", new BGSilent("The Silent",BGSilent.Enums.BG_SILENT), "images/ui/charSelect/silentButton.png"));
+    this.buttons.add(new MultiCharacterSelectButton("The Defect",  new BGDefect("The Defect",BGDefect.Enums.BG_DEFECT), "images/ui/charSelect/defectButton.png"));
+    this.buttons.add(new MultiCharacterSelectButton("The Watcher",  new BGWatcher("The Watcher",BGWatcher.Enums.BG_WATCHER), "images/ui/charSelect/watcherButton.png"));
+
+//    this.buttons.add(new MultiCharacterSelectButton("The Ironclad", BaseMod.findCharacter(BGIronclad.Enums.BG_IRONCLAD), "images/ui/charSelect/ironcladButton.png"));
+//    this.buttons.add(new MultiCharacterSelectButton("The Silent", BaseMod.findCharacter(BGSilent.Enums.BG_SILENT), "images/ui/charSelect/silentButton.png"));
+//    this.buttons.add(new MultiCharacterSelectButton("The Defect", BaseMod.findCharacter(BGDefect.Enums.BG_DEFECT), "images/ui/charSelect/defectButton.png"));
+//    this.buttons.add(new MultiCharacterSelectButton("The Watcher", BaseMod.findCharacter(BGWatcher.Enums.BG_WATCHER), "images/ui/charSelect/watcherButton.png"));
     for (int i = 0; i < this.buttons.size(); i++) {
       Hitbox hb = ((MultiCharacterSelectButton)this.buttons.get(i)).hb;
       hb.x = Settings.WIDTH / 2.0F + (i - 1.5F) * 232.0F * Settings.scale;
@@ -105,7 +111,7 @@ public class MultiCharacterSelectScreen extends CustomScreen {
   }
   
   public void render(SpriteBatch sb) {
-    FontHelper.renderFontCentered(sb, FontHelper.buttonLabelFont, this.description, (Settings.WIDTH / 2), Settings.HEIGHT - 180.0F * Settings.scale, Settings.CREAM_COLOR);
+    FontHelper.renderFontCentered(sb, FontHelper.buttonLabelFont, this.description, (Settings.WIDTH / 2), Settings.HEIGHT/2f - 120.0F * Settings.scale, Settings.CREAM_COLOR);
     for (MultiCharacterSelectButton b : this.buttons)
       b.render(sb); 
   }

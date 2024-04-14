@@ -8,6 +8,7 @@ import BoardGame.cards.BGBlue.BGDefend_Blue;
 import BoardGame.cards.BGBlue.BGDualcast;
 import BoardGame.cards.BGBlue.BGStrike_Blue;
 import BoardGame.cards.BGBlue.BGZap;
+import BoardGame.multicharacter.UnselectablePlayer;
 import BoardGame.relics.*;
 import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
@@ -48,7 +49,7 @@ import static BoardGame.BoardGame.*;
 //and https://github.com/daviscook477/BaseMod/wiki/Migrating-to-5.0
 //All text (starting description and loadout, anything labeled TEXT[]) can be found in DefaultMod-character-Strings.json in the resources
 
-public class BGDefect extends AbstractBGPlayer {
+public class BGDefect extends AbstractBGPlayer implements UnselectablePlayer {
     public static final Logger logger = LogManager.getLogger(BoardGame.class.getName());
 
     // =============== CHARACTER ENUMERATORS =================

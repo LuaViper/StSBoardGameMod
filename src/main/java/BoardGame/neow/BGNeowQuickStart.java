@@ -1,6 +1,7 @@
 package BoardGame.neow;
 
 import BoardGame.dungeons.AbstractBGDungeon;
+import BoardGame.multicharacter.BGMultiCharacter;
 import BoardGame.multicharacter.MultiCharacterSelectScreen;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
@@ -239,6 +240,12 @@ public class BGNeowQuickStart {
         public static SpireReturn<Void> update(ProceedButton __instance) {
             BGNeowQuickStart.logger.info("BGNeowQuickStart: ProceedButtonUpdatePatch4");
             if (AbstractDungeon.screen == MultiCharacterSelectScreen.Enum.MULTI_CHARACTER_SELECT) {
+                if(AbstractDungeon.player instanceof BGMultiCharacter) {
+                    if(((BGMultiCharacter)AbstractDungeon.player).subcharacters.size()==1){
+                        AbstractDungeon.player = ((BGMultiCharacter)AbstractDungeon.player).subcharacters.get(0);
+                        CardCrawlGame.chosenCharacter = AbstractDungeon.player.chosenClass;
+                    }
+                }
                 AbstractDungeon.closeCurrentScreen();
                 AbstractDungeon.overlayMenu.hideBlackScreen();
                 AbstractDungeon.overlayMenu.proceedButton.hide();

@@ -360,9 +360,9 @@ public class BoardGame implements
                 CHAR_SELECT_BUTTON_IRONCLAD, CHAR_SELECT_PORTRAIT_IRONCLAD, BGIronclad.Enums.BG_IRONCLAD);
         logger.info("Added " + BGIronclad.Enums.BG_IRONCLAD.toString());
 
-//        BaseMod.addCharacter(new BGMultiCharacter("the Board Game", BGMultiCharacter.Enums.BG_MULTICHARACTER),
-//                CHAR_SELECT_BUTTON_MULTICHARACTER, CHAR_SELECT_PORTRAIT_MULTICHARACTER, BGMultiCharacter.Enums.BG_MULTICHARACTER);
-//        logger.info("Added " + BGMultiCharacter.Enums.BG_MULTICHARACTER.toString());
+        BaseMod.addCharacter(new BGMultiCharacter("the Board Game", BGMultiCharacter.Enums.BG_MULTICHARACTER),
+                CHAR_SELECT_BUTTON_MULTICHARACTER, CHAR_SELECT_PORTRAIT_MULTICHARACTER, BGMultiCharacter.Enums.BG_MULTICHARACTER);
+        logger.info("Added " + BGMultiCharacter.Enums.BG_MULTICHARACTER.toString());
 
         BaseMod.addCharacter(new BGSilent("the Silent", BGSilent.Enums.BG_SILENT),
                 CHAR_SELECT_BUTTON_SILENT, CHAR_SELECT_PORTRAIT_SILENT, BGSilent.Enums.BG_SILENT);
