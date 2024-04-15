@@ -32,7 +32,7 @@ import java.util.Collections;
 public class Ascension {
     static String[] A_TEXT = CardCrawlGame.languagePack.getUIString("BoardGame:AscensionModeDescriptions").TEXT;
 
-    static final int CURRENT_MAX_ASCENSION=13;
+    public static final int CURRENT_MAX_ASCENSION=13;
 
     public static void combineUnlockedAscensions(){
         //BGMultiCharacter's prefs are recalculated from solo characters every time the game is reset.

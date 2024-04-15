@@ -12,7 +12,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-//TODO: activated status does not work with Play Twice effects. should it?
+//TODO: activated status (wasRetainedLastTurn) does not work with Play Twice effects. should it?
 public class BGWindmillStrike extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGWindmillStrike");
     public static final String ID = "BGWindmillStrike";

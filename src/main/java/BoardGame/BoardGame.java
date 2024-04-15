@@ -32,12 +32,17 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.CardHelper;
+import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rewards.RewardSave;
+import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
+import com.megacrit.cardcrawl.screens.mainMenu.MainMenuScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -55,6 +60,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import static basemod.BaseMod.addMonster;
+import static basemod.BaseMod.addUnlockBundle;
 
 //TODO: Game softlocks if boardgame character is started on a completely new profile (tries to skip Neow screen)
 //TODO: implement PostCreditsNeow easter egg -- need to put these back in the box -- does anyone have opposable thumbs
@@ -386,6 +392,7 @@ public class BoardGame implements
 
     // =============== POST-INITIALIZE =================
 
+
     @Override
     public void receivePostInitialize() {
 
@@ -417,7 +424,45 @@ public class BoardGame implements
                 });
         settingsPanel.addUIElement(clawSlider); // Add the button to the settings panel. Button is a go.
 
-        //TODO: add "unlock ascension 13" button
+        ModLabeledButton unlockButton=new ModLabeledButton("Click here to unlock max Ascension",500f,500f,settingsPanel,
+                (button)->{
+                    {Prefs prefs = new BGIronclad("Prefs Lookup", BGIronclad.Enums.BG_IRONCLAD).getPrefs();
+                        prefs.putInteger("ASCENSION_LEVEL",13);
+                        if(prefs.getInteger("WIN_COUNT")<1) prefs.putInteger("WIN_COUNT",1);
+                        prefs.flush();}
+                    {Prefs prefs = new BGSilent("Prefs Lookup", BGSilent.Enums.BG_SILENT).getPrefs();
+                        prefs.putInteger("ASCENSION_LEVEL",13);
+                        if(prefs.getInteger("WIN_COUNT")<1) prefs.putInteger("WIN_COUNT",1);
+                        prefs.flush();}
+                    {Prefs prefs = new BGDefect("Prefs Lookup", BGDefect.Enums.BG_DEFECT).getPrefs();
+                        prefs.putInteger("ASCENSION_LEVEL",13);
+                        if(prefs.getInteger("WIN_COUNT")<1) prefs.putInteger("WIN_COUNT",1);
+                        prefs.flush();}
+                    {Prefs prefs = new BGWatcher("Prefs Lookup", BGWatcher.Enums.BG_WATCHER).getPrefs();
+                        prefs.putInteger("ASCENSION_LEVEL",13);
+                        if(prefs.getInteger("WIN_COUNT")<1) prefs.putInteger("WIN_COUNT",1);
+                        prefs.flush();}
+                    for (CharacterOption o : CardCrawlGame.mainMenuScreen.charSelectScreen.options) {
+                        if (o.c instanceof BGMultiCharacter) {
+                            if(o.c.getCharStat().getVictoryCount()<1) {
+                                o.c.getCharStat().incrementVictory();
+                            }
+                            Prefs prefs=o.c.getPrefs();
+                            if(prefs.getInteger("WIN_COUNT")<1){
+                                prefs.putInteger("WIN_COUNT",1);
+                                prefs.data.put("WIN_COUNT","1");
+                            }
+                            prefs.putInteger("ASCENSION_LEVEL",13);
+                            prefs.data.put("ASCENSION_LEVEL","13");
+                            prefs.flush();
+
+                            //set unlocked ascension to 13
+                            ReflectionHacks.setPrivate(o, CharacterOption.class, "maxAscensionLevel", Ascension.CURRENT_MAX_ASCENSION);
+                        }
+                    }
+                    button.label="Ascension 13 has been unlocked! Sorry for the inconvenience.";
+                });
+        settingsPanel.addUIElement(unlockButton);
 
 
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);

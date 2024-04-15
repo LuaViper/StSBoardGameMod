@@ -9,6 +9,7 @@ import javassist.expr.MethodCall;
 
 import java.util.ArrayList;
 
+//TODO: when a player profile is erased, unselectableplayer pref files are improperly staying behind
 public interface UnselectablePlayer {
     @SpirePatch2(clz = BaseMod.class, method = "generateCharacterOptions")
     public static class CharacterOptionsPatch {

@@ -63,9 +63,11 @@ public class MultiCharacterSelectButton {
       this.hb.clicked = false;
       if (!this.selected) {
 
-        MultiCharacterSelectScreen screen = (MultiCharacterSelectScreen)BaseMod.getCustomScreen(MultiCharacterSelectScreen.Enum.MULTI_CHARACTER_SELECT);
-        for(MultiCharacterSelectButton b : screen.buttons){
-          b.selected=false;
+        if(SOLO_MODE_ONLY) {
+          MultiCharacterSelectScreen screen = (MultiCharacterSelectScreen) BaseMod.getCustomScreen(MultiCharacterSelectScreen.Enum.MULTI_CHARACTER_SELECT);
+          for (MultiCharacterSelectButton b : screen.buttons) {
+            b.selected = false;
+          }
         }
 
         this.selected = true;
