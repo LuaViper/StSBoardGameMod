@@ -7,7 +7,7 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 
 //TODO: github.com/daviscook477/BaseMod/wiki/Custom-Rewards
-//TODO: BGTinyHouse needs to upgrade a NON-random card
+//TODO: TinyHouse rewards are not properly cleared upon entering next act? (read: get offered 2 potions if we skipped the one from tinyhouse)
 //TODO: BGTinyHouse breaks Neow's quickstart reward screen (rewards are autopicked) (maybe not an issue since potion stays on the menu if slots are full?)
 
 public class BGTinyHouse extends AbstractBGRelic  {

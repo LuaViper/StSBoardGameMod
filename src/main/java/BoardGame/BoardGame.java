@@ -416,8 +416,11 @@ public class BoardGame implements
                     }
                 });
         settingsPanel.addUIElement(clawSlider); // Add the button to the settings panel. Button is a go.
-        BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
+        //TODO: add "unlock ascension 13" button
+
+
+        BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
         BaseMod.addCustomScreen(new MultiCharacterSelectScreen());
         BaseMod.addCustomScreen(new TargetSelectScreen());

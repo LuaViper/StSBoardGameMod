@@ -295,7 +295,7 @@ public abstract class AbstractBGCard extends CustomCard
 
 
 
-
+    //TODO: consider moving this to either DistilledChaos or one of the DoubleCardPlayPowers
 
     @SpirePatch2(clz = AbstractPlayer.class, method = "useCard",
             paramtypez={AbstractCard.class, AbstractMonster.class, int.class})
