@@ -292,13 +292,13 @@ public class BGTheGuardian extends AbstractBGMonster {
                             Integer.toString(this.currentBlock)));
                 }
                 loseBlock();
-                brokeBlock();
+                publicBrokeBlock();
 
             }
             else if (damageAmount == this.currentBlock) {
                 damageAmount = 0;
                 loseBlock();
-                brokeBlock();
+                publicBrokeBlock();
                 //The "intent bug" has been solved.  Apparently "Blocked" appears *twice* if you break an enemy's block exactly and Settings.SHOW_DMG_BLOCK is enabled.
                 //TODO: localization
                 AbstractDungeon.effectList.add(new BlockedWordEffect(this, this.hb.cX, this.hb.cY, "Blocked"));
@@ -320,7 +320,7 @@ public class BGTheGuardian extends AbstractBGMonster {
         return damageAmount;
     }
 
-    private void brokeBlock() {
+    public void publicBrokeBlock() {
         if (this instanceof AbstractMonster) {
             for (AbstractRelic r : AbstractDungeon.player.relics) {
                 r.onBlockBroken(this);

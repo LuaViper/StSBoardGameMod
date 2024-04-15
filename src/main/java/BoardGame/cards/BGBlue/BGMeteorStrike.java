@@ -24,6 +24,7 @@ public class BGMeteorStrike extends AbstractBGCard {
         super("BGMeteorStrike", cardStrings.NAME, "blue/attack/meteor_strike", 5, cardStrings.DESCRIPTION, CardType.ATTACK, BGDefect.Enums.BG_BLUE, CardRarity.RARE, CardTarget.ENEMY);
         this.baseDamage = 10;
         receivesPowerDiscount=true;
+        this.tags.add(AbstractCard.CardTags.STRIKE);
     }
 
 

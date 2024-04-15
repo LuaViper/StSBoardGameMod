@@ -23,13 +23,6 @@ public class BGWildStrike extends AbstractBGCard {
 
 
 
-
-
-
-
-
-
-
         this.baseDamage = 3;
         this.cardsToPreview = (AbstractCard)new BGDazed();
         this.tags.add(AbstractCard.CardTags.STRIKE);

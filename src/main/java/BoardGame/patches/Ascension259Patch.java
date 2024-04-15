@@ -1,8 +1,10 @@
 package BoardGame.patches;
 
 import BoardGame.cards.BGCurse.BGAscendersBane;
+import BoardGame.characters.AbstractBGPlayer;
 import BoardGame.dungeons.AbstractBGDungeon;
 import BoardGame.dungeons.BGExordium;
+import BoardGame.multicharacter.BGMultiCharacter;
 import BoardGame.multicharacter.patches.UpdateActionPatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.*;
@@ -21,6 +23,22 @@ import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 
 public class Ascension259Patch {
 
+    public static void applyAscension259ToSubCharacters(){
+        if(AbstractDungeon.player instanceof BGMultiCharacter) {
+            for(AbstractBGPlayer player : BGMultiCharacter.getSubcharacters()) {
+                if (CardCrawlGame.dungeon instanceof BGExordium) {
+                    if (AbstractDungeon.ascensionLevel >= 2)
+                        player.decreaseMaxHealth(player.getAscensionMaxHPLoss());
+                    if (AbstractDungeon.ascensionLevel >= 5) {
+                        player.masterDeck.addToTop(new BGAscendersBane());
+                        UnlockTracker.markCardAsSeen("BGAscendersBane");
+                    }
+                    if (AbstractDungeon.ascensionLevel >= 9)
+                        player.currentHealth = MathUtils.round(player.maxHealth - 1);
+                }
+            }
+        }
+    }
 
     @SpirePatch2(clz=AbstractDungeon.class, method="dungeonTransitionSetup")
     public static class MaxHPPatch{
@@ -35,16 +53,20 @@ public class Ascension259Patch {
                 }
             }
 
-            //we do NOT have to override Exordium-specific checks (technically we're reimplementing them instead)
-            if(CardCrawlGame.dungeon instanceof BGExordium) {
-                if (AbstractDungeon.ascensionLevel >= 2)
-                    player.decreaseMaxHealth(player.getAscensionMaxHPLoss());
-                if (AbstractDungeon.ascensionLevel >= 5) {
-                    player.masterDeck.addToTop(new BGAscendersBane());
-                    UnlockTracker.markCardAsSeen("BGAscendersBane");
+            {
+                //NOTE: this is currently redundant; anything in this block will only affect BGMultiCharacter
+                // and not any of the subcharacters.
+                //we do NOT have to override Exordium-specific checks (technically we're reimplementing them instead)
+                if (CardCrawlGame.dungeon instanceof BGExordium) {
+                    if (AbstractDungeon.ascensionLevel >= 2)
+                        player.decreaseMaxHealth(player.getAscensionMaxHPLoss());
+                    if (AbstractDungeon.ascensionLevel >= 5) {
+                        player.masterDeck.addToTop(new BGAscendersBane());
+                        UnlockTracker.markCardAsSeen("BGAscendersBane");
+                    }
+                    if (AbstractDungeon.ascensionLevel >= 9)
+                        player.currentHealth = MathUtils.round(player.maxHealth - 1);
                 }
-                if (AbstractDungeon.ascensionLevel >= 9)
-                    player.currentHealth = MathUtils.round(player.maxHealth - 1);
             }
         }
     }

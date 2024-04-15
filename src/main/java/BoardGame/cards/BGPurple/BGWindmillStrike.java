@@ -24,6 +24,8 @@ public class BGWindmillStrike extends AbstractBGCard {
         this.baseDamage=2;
         this.baseMagicNumber=3;
         this.magicNumber=this.baseMagicNumber;
+
+        this.tags.add(AbstractCard.CardTags.STRIKE);
     }
 
 

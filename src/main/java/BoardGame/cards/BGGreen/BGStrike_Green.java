@@ -24,14 +24,6 @@ public class BGStrike_Green extends AbstractBGCard {
         super("BGStrike_G", cardStrings.NAME, "green/attack/strike", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, BGSilent.Enums.BG_GREEN, AbstractCard.CardRarity.BASIC, AbstractCard.CardTarget.ENEMY);
 
 
-
-
-
-
-
-
-
-
         this.baseDamage = 1;
         this.tags.add(AbstractCard.CardTags.STRIKE);
         this.tags.add(AbstractCard.CardTags.STARTER_STRIKE);

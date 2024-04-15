@@ -10,6 +10,7 @@ import BoardGame.monsters.bgending.*;
 import BoardGame.dungeons.*;
 import BoardGame.multicharacter.BGMultiCharacter;
 import BoardGame.multicharacter.MultiCharacterSelectScreen;
+import BoardGame.patches.Ascension;
 import BoardGame.potions.*;
 import BoardGame.relics.*;
 import BoardGame.rewards.TinyHouseUpgrade1Card;
@@ -55,6 +56,7 @@ import java.util.Properties;
 
 import static basemod.BaseMod.addMonster;
 
+//TODO: Game softlocks if boardgame character is started on a completely new profile (tries to skip Neow screen)
 //TODO: implement PostCreditsNeow easter egg -- need to put these back in the box -- does anyone have opposable thumbs
 
 /*
@@ -94,7 +96,7 @@ public class BoardGame implements
     //public static final Color BG_IRONCLAD_RED = CardHelper.getColor(128.0f, 25.6f, 25.6f);
     public static final Color BG_IRONCLAD_RED = CardHelper.getColor(121, 12, 28);
     public static final Color BG_SILENT_GREEN = CardHelper.getColor(52, 123, 8);
-    //TODO: we're just guessing here
+    //TODO: we're just guessing at RGB values here
     public static final Color BG_DEFECT_BLUE = CardHelper.getColor(8, 52, 123);
     public static final Color BG_WATCHER_PURPLE = CardHelper.getColor(153, 52, 8);
     public static final Color BG_CURSE_BLACK = CardHelper.getColor(29, 29, 29);
@@ -386,6 +388,7 @@ public class BoardGame implements
 
     @Override
     public void receivePostInitialize() {
+
         logger.info("Loading badge image and mod options");
 
         // Load the Mod Badge
@@ -906,6 +909,10 @@ public class BoardGame implements
         // for people who like to look at the card list before playing your mod
 
         logger.info("Done adding cards!");
+
+        logger.info("Updating ascension save files...");
+        Ascension.combineUnlockedAscensions();
+        logger.info("Done");
     }
 
     // ================ /ADD CARDS/ ===================

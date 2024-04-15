@@ -7,6 +7,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
@@ -31,10 +32,13 @@ public abstract class AbstractBGMonster extends AbstractMonster implements BGMul
         BGMultiCreature.Field.currentRow.set(this,0);
     }
 
+
 //    public int currentRow=0;
 //    public int getCurrentRow(){
 //        return currentRow;
 //    }
+
+    public void publicBrokeBlock(){}
 
 
     //PublicMoveField is used by BGFlameBarrierAction

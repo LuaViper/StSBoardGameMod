@@ -1,6 +1,7 @@
 package BoardGame.multicharacter.patches;
 
 import BoardGame.multicharacter.NullMonster;
+import BoardGame.patches.Ascension;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -24,6 +25,7 @@ public class OnGameResetPatch {
             ContextPatches.playerContextHistory = new ArrayDeque<>();
             ContextPatches.targetContextHistory = new ArrayDeque<>();
             ContextPatches.currentTargetContext = new NullMonster();
+            Ascension.combineUnlockedAscensions();
         }
         private static class Locator extends SpireInsertLocator {
             public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {

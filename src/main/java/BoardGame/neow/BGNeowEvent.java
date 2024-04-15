@@ -125,11 +125,7 @@ public class BGNeowEvent
 
             this.screenNum = -1;    //disclaimer intro
             this.roomEventText.addDialogOption(EXTRA[68]);
-            if (AbstractDungeon.player instanceof BGMultiCharacter) {
-                this.body = EXTRA[69] + " NL NL " + EXTRA[73];
-            } else {
-                this.body = EXTRA[69] + " NL NL " + EXTRA[70];
-            }
+            //character screen is still open, we can't set disclaimer text until the player clicks proceed
 
             AbstractDungeon.topLevelEffects.add(new LevelTransitionTextOverlayEffect(AbstractDungeon.name, AbstractDungeon.levelNum, true));
         } else {

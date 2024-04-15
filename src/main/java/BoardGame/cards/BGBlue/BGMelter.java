@@ -1,5 +1,7 @@
 package BoardGame.cards.BGBlue;
 
+import BoardGame.actions.BGBreakBlockAction;
+import BoardGame.actions.BGMelterAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -23,7 +25,7 @@ public class BGMelter extends AbstractBGCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot((AbstractGameAction)new RemoveAllBlockAction((AbstractCreature)m, (AbstractCreature)p));
+        addToBot(new BGMelterAction(m,p));
         addToBot((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.FIRE));
     }
 

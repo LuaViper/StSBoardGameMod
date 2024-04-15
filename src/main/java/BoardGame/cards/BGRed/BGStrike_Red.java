@@ -25,13 +25,6 @@ public class BGStrike_Red extends AbstractBGCard {
 
 
 
-
-
-
-
-
-
-
         this.baseDamage = 1;
         this.tags.add(AbstractCard.CardTags.STRIKE);
         this.tags.add(AbstractCard.CardTags.STARTER_STRIKE);

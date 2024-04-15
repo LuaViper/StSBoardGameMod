@@ -39,6 +39,8 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+//TODO: clear debuffs when combat ends so Weak doesn't affect card reward numbers displayed? not sure how this happened?
+
 //REMINDER: players act from bottom lane to top lane, but monsters act from top lane to bottom lane
 //TODO: each player has their own EnergyManager, but it checks OverlayMenu.EnergyPanel.totalCount, currently a singleton
 // EnergyManager is currently short enough that we might be able to patch it completely

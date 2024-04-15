@@ -21,13 +21,6 @@ public class BGSwiftStrike extends AbstractBGCard {
 
 
 
-
-
-
-
-
-
-
         this.baseDamage = 1;
         this.tags.add(AbstractCard.CardTags.STRIKE);
     }

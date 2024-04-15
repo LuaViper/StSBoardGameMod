@@ -1,29 +1,43 @@
 package BoardGame.neow;
 
+import BoardGame.characters.BGDefect;
+import BoardGame.characters.BGIronclad;
+import BoardGame.characters.BGSilent;
+import BoardGame.characters.BGWatcher;
 import BoardGame.dungeons.AbstractBGDungeon;
 import BoardGame.multicharacter.BGMultiCharacter;
 import BoardGame.multicharacter.MultiCharacterSelectScreen;
+import BoardGame.patches.Ascension259Patch;
+import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.OverlayMenu;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.neow.NeowRoom;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoomBoss;
+import com.megacrit.cardcrawl.saveAndContinue.SaveAndContinue;
 import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
+import jdk.internal.reflect.Reflection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
+import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
+
 //TODO: Molten/Toxic Egg do not wear off correctly if we are in the middle of a set of card rewards
+//TODO: maybe set act number to 2/3/4 as appropriate so next ascension can be unlocked properly
+
 public class BGNeowQuickStart {
     private static final Logger logger = LogManager.getLogger(BGNeowQuickStart.class.getName());
     public static int actNumber=2;
@@ -242,8 +256,33 @@ public class BGNeowQuickStart {
             if (AbstractDungeon.screen == MultiCharacterSelectScreen.Enum.MULTI_CHARACTER_SELECT) {
                 if(AbstractDungeon.player instanceof BGMultiCharacter) {
                     if(((BGMultiCharacter)AbstractDungeon.player).subcharacters.size()==1){
+                        //TODO: static BGMultiCharacter.switchToSoloMode function
+                        SaveAndContinue.deleteSave(AbstractDungeon.player);
+                        Ascension259Patch.applyAscension259ToSubCharacters();
                         AbstractDungeon.player = ((BGMultiCharacter)AbstractDungeon.player).subcharacters.get(0);
                         CardCrawlGame.chosenCharacter = AbstractDungeon.player.chosenClass;
+                        //TODO: this is reused code from AbstractBGDungeon; move to static event
+                        int whoAmI=0;
+                        if(AbstractDungeon.player instanceof BGIronclad) whoAmI=0;
+                        else if(AbstractDungeon.player instanceof BGSilent) whoAmI=1;
+                        else if(AbstractDungeon.player instanceof BGDefect) whoAmI=2;
+                        else if(AbstractDungeon.player instanceof BGWatcher) whoAmI=3;
+                        AbstractBGDungeon.rewardDeck = AbstractBGDungeon.physicalRewardDecks.get(whoAmI);
+                        AbstractBGDungeon.rareRewardDeck = AbstractBGDungeon.physicalRareRewardDecks.get(whoAmI);
+
+                        ReflectionHacks.setPrivate(AbstractDungeon.overlayMenu, OverlayMenu.class,"player",AbstractDungeon.player);
+                        for (AbstractRelic r : AbstractDungeon.player.relics) {
+                            r.updateDescription(AbstractDungeon.player.chosenClass);
+                            r.onEquip();
+                        }
+                    }
+                    AbstractEvent event=AbstractDungeon.getCurrRoom().event;
+                    if (AbstractDungeon.player instanceof BGMultiCharacter
+                            && ((BGMultiCharacter) player).subcharacters.size()!=1
+                    ) {
+                        ReflectionHacks.setPrivate(event,AbstractEvent.class,"body", EXTRA[69] + " NL NL " + EXTRA[73]);
+                    } else {
+                        ReflectionHacks.setPrivate(event,AbstractEvent.class,"body", EXTRA[69] + " NL NL " + EXTRA[70]);
                     }
                 }
                 AbstractDungeon.closeCurrentScreen();

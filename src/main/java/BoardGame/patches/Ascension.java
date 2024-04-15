@@ -1,25 +1,22 @@
 package BoardGame.patches;
 
-import BoardGame.characters.AbstractBGPlayer;
+import BoardGame.characters.*;
 import BoardGame.dungeons.AbstractBGDungeon;
-import BoardGame.multicharacter.patches.UseCardPatch;
-import BoardGame.relics.BGRegalPillow;
+import BoardGame.multicharacter.BGMultiCharacter;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
-import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
-import com.megacrit.cardcrawl.localization.LocalizedStrings;
-import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
+import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
+import com.megacrit.cardcrawl.screens.stats.StatsScreen;
 import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
-import com.megacrit.cardcrawl.ui.campfire.RestOption;
 import com.megacrit.cardcrawl.ui.panels.SeedPanel;
 import com.megacrit.cardcrawl.ui.panels.TopPanel;
 import javassist.CannotCompileException;
@@ -28,11 +25,62 @@ import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
 
 import java.util.ArrayList;
+import java.util.Collections;
+
+//TODO: disable "ascension 14 unlocked!" message, if it exists
 
 public class Ascension {
     static String[] A_TEXT = CardCrawlGame.languagePack.getUIString("BoardGame:AscensionModeDescriptions").TEXT;
 
     static final int CURRENT_MAX_ASCENSION=13;
+
+    public static void combineUnlockedAscensions(){
+        //BGMultiCharacter's prefs are recalculated from solo characters every time the game is reset.
+
+
+        //TODO: combine death counts too
+
+        int totalVictories=0;
+        int totalDeaths=0;
+        ArrayList<Integer> maxLevels = new ArrayList<>();
+        AbstractPlayer p,i,s,d,w;
+        p=new BGMultiCharacter("Prefs Lookup", BGMultiCharacter.Enums.BG_MULTICHARACTER);
+        Prefs multipref = p.getPrefs();
+        i=new BGIronclad("Prefs Lookup", BGIronclad.Enums.BG_IRONCLAD);
+        totalVictories+= i.getCharStat().getVictoryCount();
+        totalDeaths+= i.getCharStat().getDeathCount();
+        Prefs pref = i.getPrefs();
+        maxLevels.add(pref.getInteger("ASCENSION_LEVEL", 0));
+        s=new BGSilent("Prefs Lookup", BGSilent.Enums.BG_SILENT);
+        totalVictories+= s.getCharStat().getVictoryCount();
+        totalDeaths+= s.getCharStat().getDeathCount();
+        pref = s.getPrefs();
+        maxLevels.add(pref.getInteger("ASCENSION_LEVEL", 0));
+        d = new BGDefect("Prefs Lookup", BGDefect.Enums.BG_DEFECT);
+        totalVictories+= d.getCharStat().getVictoryCount();
+        totalDeaths+= d.getCharStat().getDeathCount();
+        pref = d.getPrefs();
+        maxLevels.add(pref.getInteger("ASCENSION_LEVEL", 0));
+        w = new BGWatcher("Prefs Lookup", BGWatcher.Enums.BG_WATCHER);
+        totalVictories+= w.getCharStat().getVictoryCount();
+        totalDeaths+= w.getCharStat().getDeathCount();
+        pref = w.getPrefs();
+        maxLevels.add(pref.getInteger("ASCENSION_LEVEL", 0));
+
+        int maxLevel = Collections.max(maxLevels);
+        multipref.putInteger("ASCENSION_LEVEL", maxLevel);
+        i.getPrefs().putInteger("ASCENSION_LEVEL",maxLevel);
+        s.getPrefs().putInteger("ASCENSION_LEVEL",maxLevel);
+        d.getPrefs().putInteger("ASCENSION_LEVEL",maxLevel);
+        w.getPrefs().putInteger("ASCENSION_LEVEL",maxLevel);
+        multipref.putInteger("WIN_COUNT", totalVictories);
+        multipref.putInteger("LOSE_COUNT", totalDeaths);
+        multipref.flush();
+        i.getPrefs().flush();
+        s.getPrefs().flush();
+        d.getPrefs().flush();
+        w.getPrefs().flush();
+    }
 
     @SpirePatch2(clz= CharacterSelectScreen.class,method="updateAscensionToggle",paramtypez={})
     public static class DisableAscensionPatch{
@@ -42,7 +90,8 @@ public class Ascension {
                 for (CharacterOption o : __instance.options) {
                     //o.update();
                     if (o.selected) {
-                        if (o.c instanceof AbstractBGPlayer) {
+                        //if (o.c instanceof AbstractBGPlayer) {
+                        if (o.c instanceof BGMultiCharacter) {
                             //___isAscensionModeUnlocked[0] = false;
                             //__instance.isAscensionMode=false;
                             if((int)ReflectionHacks.getPrivate(o,CharacterOption.class,"maxAscensionLevel")>CURRENT_MAX_ASCENSION)

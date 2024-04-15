@@ -4,7 +4,6 @@ import BoardGame.cards.BGRed.*;
 import BoardGame.multicharacter.UnselectablePlayer;
 import BoardGame.relics.BGTheDieRelic;
 import BoardGame.relics.BGBurningBlood;
-import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;

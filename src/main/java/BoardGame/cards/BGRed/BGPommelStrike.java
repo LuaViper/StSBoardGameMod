@@ -22,13 +22,6 @@ public class BGPommelStrike extends AbstractBGCard {
 
 
 
-
-
-
-
-
-
-
         this.baseDamage = 2;
         this.baseMagicNumber = 1;
         this.magicNumber = this.baseMagicNumber;
