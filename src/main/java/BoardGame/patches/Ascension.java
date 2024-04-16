@@ -1,5 +1,6 @@
 package BoardGame.patches;
 
+import BoardGame.cards.BGRed.BGSeverSoul;
 import BoardGame.characters.*;
 import BoardGame.dungeons.AbstractBGDungeon;
 import BoardGame.multicharacter.BGMultiCharacter;
@@ -13,18 +14,23 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Prefs;
+import com.megacrit.cardcrawl.screens.DeathScreen;
+import com.megacrit.cardcrawl.screens.VictoryScreen;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
+import com.megacrit.cardcrawl.screens.stats.CharStat;
 import com.megacrit.cardcrawl.screens.stats.StatsScreen;
 import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
 import com.megacrit.cardcrawl.ui.panels.SeedPanel;
 import com.megacrit.cardcrawl.ui.panels.TopPanel;
+import com.megacrit.cardcrawl.vfx.AscensionLevelUpTextEffect;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Collections;
 
 //TODO: disable "ascension 14 unlocked!" message, if it exists
@@ -68,6 +74,7 @@ public class Ascension {
         maxLevels.add(pref.getInteger("ASCENSION_LEVEL", 0));
 
         int maxLevel = Collections.max(maxLevels);
+        if(maxLevel>CURRENT_MAX_ASCENSION)maxLevel=CURRENT_MAX_ASCENSION;
         multipref.putInteger("ASCENSION_LEVEL", maxLevel);
         i.getPrefs().putInteger("ASCENSION_LEVEL",maxLevel);
         s.getPrefs().putInteger("ASCENSION_LEVEL",maxLevel);
@@ -103,26 +110,69 @@ public class Ascension {
         }
     }
 
-    //These two patches are redundant with updateAscensionToggle postfix
 
-//    @SpirePatch2(clz=CharacterOption.class, method="incrementAscensionLevel",paramtypez = {int.class})
-//    public static class IncrementTextPatch{
-//        @SpirePostfixPatch
-//        public static void Postfix(int ___maxAscensionLevel, int ___level){
-//            if (___level > ___maxAscensionLevel)
-//                return;
-//            CardCrawlGame.mainMenuScreen.charSelectScreen.ascLevelInfoString = A_TEXT[___level-1];
-//        }
-//    }
-//    @SpirePatch2(clz=CharacterOption.class, method="decrementAscensionLevel",paramtypez = {int.class})
-//    public static class DecrementTextPatch{
-//        @SpirePostfixPatch
-//        public static void Postfix(CharacterOption __instance, int ___level){
-//            if(___level <= 0)
-//                return;
-//            CardCrawlGame.mainMenuScreen.charSelectScreen.ascLevelInfoString = A_TEXT[___level-1];
-//        }
-//    }
+    //Reminder: CharStat.incrementAscension is used to unlock additional max ascensions, CharacterOption is not
+
+    @SpirePatch2(clz = CharStat.class, method = "incrementAscension", paramtypez = {})
+    public static class CapUnlockAt13Patch {
+        @SpirePrefixPatch
+        public static SpireReturn<Void> Foo(CharStat __instance) {
+            if (AbstractDungeon.player instanceof AbstractBGPlayer) {
+                Prefs pref = ReflectionHacks.getPrivate(__instance, CharStat.class, "pref");
+                int derp = pref.getInteger("ASCENSION_LEVEL", 1);
+                if (derp >= 13) {
+                    return SpireReturn.Return();
+                }
+            }
+            return SpireReturn.Continue();
+        }
+    }
+
+    @SpirePatch2(clz = DeathScreen.class, method = "updateAscensionProgress", paramtypez = {})
+    public static class CapUnlockAt13Patch2 {
+        @SpireInsertPatch(
+                locator = Locator.class,
+                localvars = {}
+        )
+        public static SpireReturn<Void> Foo() {
+            if (AbstractDungeon.player instanceof AbstractBGPlayer) {
+                if(AbstractDungeon.ascensionLevel>=13){
+                    return SpireReturn.Return();
+                }
+            }
+            return SpireReturn.Continue();
+        }
+        private static class Locator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new Matcher.NewExprMatcher(AscensionLevelUpTextEffect.class);
+                return LineFinder.findInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher);
+            }
+        }
+    }
+
+    @SpirePatch2(clz = VictoryScreen.class, method = "updateAscensionAndBetaArtProgress", paramtypez = {})
+    public static class CapUnlockAt13Patch3 {
+        @SpireInsertPatch(
+                locator = Locator.class,
+                localvars = {}
+        )
+        public static SpireReturn<Void> Foo() {
+            if (AbstractDungeon.player instanceof AbstractBGPlayer) {
+                if(AbstractDungeon.ascensionLevel>=13){
+                    return SpireReturn.Return();
+                }
+            }
+            return SpireReturn.Continue();
+        }
+        private static class Locator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new Matcher.NewExprMatcher(AscensionLevelUpTextEffect.class);
+                return LineFinder.findInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher);
+            }
+        }
+    }
+
+
 
     @SpirePatch2(clz=CharacterSelectScreen.class, method="updateAscensionToggle",paramtypez = {})
     public static class AscensionTextPatch{

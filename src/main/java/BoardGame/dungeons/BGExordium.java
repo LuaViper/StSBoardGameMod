@@ -244,7 +244,8 @@ public class BGExordium
     }
 
     protected void generateMonsters() {
-        generateWeakEnemies(1);
+        generateWeakEnemies(4);
+        //weak enemy pool will be cleared immediately after first encounter is populated
         generateStrongEnemies(12);
         generateElites(3);
     }
