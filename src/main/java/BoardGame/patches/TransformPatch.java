@@ -26,7 +26,6 @@ import java.util.Objects;
 import static BoardGame.characters.BGCurse.Enums.BG_CURSE;
 
 
-//TODO NEXT: Transform animation shows BGMultiCharacter's (red) cards instead of current character's cards!
 // cards in animation appear to be chosen by AbstractDungeon.returnTrulyRandomCardFromAvailable(this.upgradePreviewCard).makeCopy();
 public class TransformPatch {
 
