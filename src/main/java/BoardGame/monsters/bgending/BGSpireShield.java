@@ -128,18 +128,18 @@ public class BGSpireShield extends AbstractBGMonster implements BGDamageIcons {
         }
     }
 
-//    public void changeState(String key) {
-//        switch (key) {
-//            case "OLD_ATTACK":
-//                this.state.setAnimation(0, "old_attack", false);
-//                this.state.addAnimation(0, "Idle", true, 0.0F);
-//                break;
-//            case "ATTACK":
-//                this.state.setAnimation(0, "Attack", false);
-//                this.state.addAnimation(0, "Idle", true, 0.0F);
-//        }
-//
-//    }
+    public void changeState(String key) {
+        switch (key) {
+            case "OLD_ATTACK":
+                this.state.setAnimation(0, "old_attack", false);
+                this.state.addAnimation(0, "Idle", true, 0.0F);
+                break;
+            case "ATTACK":
+                this.state.setAnimation(0, "Attack", false);
+                this.state.addAnimation(0, "Idle", true, 0.0F);
+        }
+
+    }
 
 //    public void damage(DamageInfo info) {
 //        super.damage(info);
@@ -149,6 +149,9 @@ public class BGSpireShield extends AbstractBGMonster implements BGDamageIcons {
 //        }
 //    }
 
+    //TODO NEXT: ordinary multicombat monsters are not processing in correct order -- both rendering and hitboxes
+    // (monsters are currently added to group from bottom row to top row; should be top row to bottom row)
+    // (maybe reverse the group at the end of multicombatencounterpatch?)
 
     @SpirePatch(clz = MonsterGroup.class, method = "update")
     public static class HitboxOrderPatch1 {

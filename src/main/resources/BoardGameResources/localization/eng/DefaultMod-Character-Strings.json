@@ -156,7 +156,7 @@
       "Select Cards to Upgrade",
       "[ Proceed ]",
       "#yDISCLAIMER",
-      "This mod remains very much a work in progress. You may notice rule inaccuracies, bugs, and even softlocks. #ySave #yfiles have been freshly implemented and may still be a bit glitchy.",
+      "This mod remains very much a work in progress. You may notice rule inaccuracies, bugs, and even softlocks. #ySave #yfiles have been freshly implemented and may still be a bit glitchy. NL NL Controllers are not presently supported. Certain mechanics will require mouse input.",
       "If the game softlocks on a reward screen, try opening and closing the map.",
       "This is TEXT[72] by the way. In case you lose count, the IDE will also keep track for you, beneath the text editor window.",
       "Well, that's interesting. NL NL If you are reading this message, you have somehow managed to select more than one character for The Board Game. The Board Game multiplayer experience is not yet ready for public playtesting. Don't even think about trying to recover your save #pwhen the game crashes. NL NL For a more stable experience, please exit and choose a solo character from the previous menu.",

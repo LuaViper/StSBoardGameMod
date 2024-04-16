@@ -26,8 +26,11 @@ public class GetNextActionPatch {
         if(CardCrawlGame.chosenCharacter!=BGMultiCharacter.Enums.BG_MULTICHARACTER)return;
         if(ContextPatches.originalBGMultiCharacter==null)ContextPatches.originalBGMultiCharacter=AbstractDungeon.player;
 
-        ContextPatches.pushPlayerContext(CardPatches.Field.owner.get(c));
-
+        if(c!=null) {
+            ContextPatches.pushPlayerContext(CardPatches.Field.owner.get(c));
+        }else{
+            ContextPatches.pushPlayerContext(ContextPatches.originalBGMultiCharacter);
+        }
     }
     public static void after(){
         ContextPatches.popTargetContext();

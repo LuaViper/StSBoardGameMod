@@ -103,20 +103,20 @@ public class BGSpireSpear extends AbstractBGMonster implements BGDamageIcons {
     }
 
 
-//    public void changeState(String key) {
-//        AnimationState.TrackEntry e = null;
-//        switch (key) {
-//            case "SLOW_ATTACK":
-//                this.state.setAnimation(0, "Attack_1", false);
-//                e = this.state.addAnimation(0, "Idle", true, 0.0F);
-//                e.setTimeScale(0.5F);
-//                break;
-//            case "ATTACK":
-//                this.state.setAnimation(0, "Attack_2", false);
-//                e = this.state.addAnimation(0, "Idle", true, 0.0F);
-//                e.setTimeScale(0.7F);
-//        }
-//    }
+    public void changeState(String key) {
+        AnimationState.TrackEntry e = null;
+        switch (key) {
+            case "SLOW_ATTACK":
+                this.state.setAnimation(0, "Attack_1", false);
+                e = this.state.addAnimation(0, "Idle", true, 0.0F);
+                e.setTimeScale(0.5F);
+                break;
+            case "ATTACK":
+                this.state.setAnimation(0, "Attack_2", false);
+                e = this.state.addAnimation(0, "Idle", true, 0.0F);
+                e.setTimeScale(0.7F);
+        }
+    }
 
 //    public void damage(DamageInfo info) {
 //        super.damage(info);

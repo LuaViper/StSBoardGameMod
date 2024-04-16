@@ -44,6 +44,7 @@ public class MultiCombatEncounterPatches {
                             AbstractDungeon.getMonsters().add(m);
                             m.init();
                         }
+                        //TODO: monsters need to be top-to-bottom order, so reverse the list
                     }
                     if(CardCrawlGame.dungeon instanceof BGExordium && AbstractDungeon.floorNum==1){
                         //if this was the first encounter, force switch to the strong enemies list
