@@ -24,3 +24,4 @@ This mod was thrown together haphazardly with no regard whatsoever for proper co
 # Glaring omissions
 - Non-vanilla events (and even some vanilla events) do not log results to run history
 - Some strings are currently hardcoded instead of placed in a localization json
+``
