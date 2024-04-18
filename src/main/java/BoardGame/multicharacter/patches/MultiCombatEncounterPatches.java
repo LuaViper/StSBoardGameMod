@@ -22,19 +22,25 @@ import javassist.CtBehavior;
 
 import javax.smartcardio.Card;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class MultiCombatEncounterPatches {
+
     @SpirePatch2(clz= MonsterRoom.class, method="onPlayerEntry")
     public static class AddAdditionalEnemiesPatch {
         @SpirePostfixPatch
         public static void Foo() {
             if(AbstractDungeon.player instanceof BGMultiCharacter){
+                //monsters need to end up in left-to-right, top-to-bottom order
+                //we're assembling the rows from bottom-to-top, so we'll add each row right-to-left then reverse
+                Collections.reverse(AbstractDungeon.getMonsters().monsters);
                 if(BGMultiCharacter.getSubcharacters().size()>1) {
                     for (int i = 1; i < BGMultiCharacter.getSubcharacters().size(); i += 1) {
                         //TODO: need to add lastCombatMetricKey for each row
-                        //TODO: first encounter check
+                        //TODO: better first encounter check, maybe
                         AbstractDungeon.monsterList.remove(0);
                         MonsterGroup newGroup = CardCrawlGame.dungeon.getMonsterForRoomCreation();
+                        Collections.reverse(newGroup.monsters);
                         for (AbstractMonster m : newGroup.monsters) {
                             if (m instanceof BGMultiCreature) {
                                 BGMultiCreature.Field.currentRow.set(m, i);
@@ -44,8 +50,8 @@ public class MultiCombatEncounterPatches {
                             AbstractDungeon.getMonsters().add(m);
                             m.init();
                         }
-                        //TODO: monsters need to be top-to-bottom order, so reverse the list
                     }
+                    Collections.reverse(AbstractDungeon.getMonsters().monsters);
                     if(CardCrawlGame.dungeon instanceof BGExordium && AbstractDungeon.floorNum==1){
                         //if this was the first encounter, force switch to the strong enemies list
                         AbstractDungeon.monsterList.clear();

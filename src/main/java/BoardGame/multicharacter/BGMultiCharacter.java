@@ -8,6 +8,7 @@ import BoardGame.multicharacter.patches.ContextPatches;
 import BoardGame.multicharacter.patches.HandLayoutHelper;
 import BoardGame.relics.BGBurningBlood;
 import BoardGame.relics.BGTheDieRelic;
+import BoardGame.ui.OverlayMenuPatches;
 import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -247,12 +248,14 @@ public class BGMultiCharacter extends AbstractBGPlayer {
     }
 
 
+
     public void preBattlePrep() {
         super.preBattlePrep();
         if (handLayoutHelper.currentHand < 0) handLayoutHelper.changeHand(0);
         for (AbstractPlayer c : this.subcharacters) {
             c.preBattlePrep();
         }
+        OverlayMenuPatches.OverlayMenuExtraInterface.gridBackground.get(AbstractDungeon.overlayMenu).resetGridAtStartOfCombat();
     }
 
     public void updateInput(){

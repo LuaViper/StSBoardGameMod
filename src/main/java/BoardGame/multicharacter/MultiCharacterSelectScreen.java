@@ -28,9 +28,7 @@ import BoardGame.ui.OverlayMenuPatches;
 
 public class MultiCharacterSelectScreen extends CustomScreen {
   public boolean isDone = false;
-  
   final Logger logger = LogManager.getLogger(MultiCharacterSelectScreen.class.getName());
-  
   public static class Enum {
     @SpireEnum
     public static AbstractDungeon.CurrentScreen MULTI_CHARACTER_SELECT;

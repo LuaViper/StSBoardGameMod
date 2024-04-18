@@ -1,6 +1,7 @@
 package BoardGame.ui;
 
 import BoardGame.multicharacter.MultiCharacterRowBoxes;
+import BoardGame.multicharacter.grid.GridBackground;
 import BoardGame.relics.AbstractBGRelic;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;
@@ -17,6 +18,7 @@ public class OverlayMenuPatches {
     @SpirePatch(clz= OverlayMenu.class, method=SpirePatch.CLASS)
     public static class OverlayMenuExtraInterface
     {
+        public static SpireField<GridBackground> gridBackground = new SpireField<>(()->new GridBackground());
         public static SpireField<LockInRollButton> lockinrollbutton = new SpireField<>(() -> new LockInRollButton());
         public static SpireField<RerollButton> rerollbutton = new SpireField<>(() -> new RerollButton());
         public static SpireField<TheAbacusButton> theabacusbutton = new SpireField<>(() -> new TheAbacusButton());
@@ -32,6 +34,7 @@ public class OverlayMenuPatches {
         @SpirePostfixPatch
         public static void Postfix(OverlayMenu __instance){
             //logger.info("OverlayMenuDiceInterfaceUpdatePatch postfix");
+            OverlayMenuExtraInterface.gridBackground.get(__instance).update();
             OverlayMenuExtraInterface.lockinrollbutton.get(__instance).update();
             OverlayMenuExtraInterface.rerollbutton.get(__instance).update();
             OverlayMenuExtraInterface.theabacusbutton.get(__instance).update();
@@ -48,6 +51,7 @@ public class OverlayMenuPatches {
     {
         @SpirePostfixPatch
         public static void Postfix(OverlayMenu __instance, SpriteBatch sb){
+            OverlayMenuExtraInterface.gridBackground.get(__instance).render(sb);
             OverlayMenuExtraInterface.lockinrollbutton.get(__instance).render(sb);
             OverlayMenuExtraInterface.rerollbutton.get(__instance).render(sb);
             OverlayMenuExtraInterface.theabacusbutton.get(__instance).render(sb);
@@ -63,6 +67,7 @@ public class OverlayMenuPatches {
     {
         @SpirePostfixPatch
         public static void Postfix(OverlayMenu __instance){
+            OverlayMenuExtraInterface.gridBackground.get(__instance).visible=true;
             OverlayMenuExtraInterface.lockinrollbutton.get(__instance).visible=true;
             OverlayMenuExtraInterface.rerollbutton.get(__instance).visible=true;
             OverlayMenuExtraInterface.theabacusbutton.get(__instance).visible=true;
@@ -77,6 +82,7 @@ public class OverlayMenuPatches {
     {
         @SpirePostfixPatch
         public static void Postfix(OverlayMenu __instance){
+            OverlayMenuExtraInterface.gridBackground.get(__instance).visible=false;
             OverlayMenuExtraInterface.lockinrollbutton.get(__instance).visible=false;
             OverlayMenuExtraInterface.rerollbutton.get(__instance).visible=false;
             OverlayMenuExtraInterface.theabacusbutton.get(__instance).visible=false;

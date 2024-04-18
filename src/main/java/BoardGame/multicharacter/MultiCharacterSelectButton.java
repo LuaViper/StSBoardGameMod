@@ -21,7 +21,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import java.util.Iterator;
 
 public class MultiCharacterSelectButton {
-  public static final boolean SOLO_MODE_ONLY=true;
+  public static final boolean SOLO_MODE_ONLY=false;
   public boolean selected = false;
   public boolean locked = false;
   

@@ -149,9 +149,7 @@ public class BGSpireShield extends AbstractBGMonster implements BGDamageIcons {
 //        }
 //    }
 
-    //TODO NEXT: ordinary multicombat monsters are not processing in correct order -- both rendering and hitboxes
-    // (monsters are currently added to group from bottom row to top row; should be top row to bottom row)
-    // (maybe reverse the group at the end of multicombatencounterpatch?)
+
 
     @SpirePatch(clz = MonsterGroup.class, method = "update")
     public static class HitboxOrderPatch1 {
