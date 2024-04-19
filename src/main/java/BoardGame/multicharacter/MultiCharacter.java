@@ -274,9 +274,8 @@ public class MultiCharacter extends AbstractBGPlayer {
 
 
     public void combatUpdate() {
-        super.combatUpdate();
+        //super.combatUpdate();
         for (AbstractPlayer c : this.subcharacters) {
-            //!!!
             ContextPatches.pushPlayerContext(c);
             c.combatUpdate();
             ContextPatches.popPlayerContext();
@@ -284,7 +283,7 @@ public class MultiCharacter extends AbstractBGPlayer {
     }
 
     public void update() {
-        super.update();
+        //super.update();
         handLayoutHelper.update();
         for (AbstractPlayer c : this.subcharacters) {
             ContextPatches.pushPlayerContext(c);
@@ -294,7 +293,7 @@ public class MultiCharacter extends AbstractBGPlayer {
     }
 
     public void showHealthBar(){
-        super.showHealthBar();
+        //super.showHealthBar();
         for (AbstractPlayer c : this.subcharacters) {
             ContextPatches.pushPlayerContext(c);
             c.showHealthBar();
@@ -302,7 +301,7 @@ public class MultiCharacter extends AbstractBGPlayer {
         }
     }
     public void hideHealthBar(){
-        super.hideHealthBar();
+        //super.hideHealthBar();
         for (AbstractPlayer c : this.subcharacters) {
             ContextPatches.pushPlayerContext(c);
             c.hideHealthBar();
@@ -311,52 +310,48 @@ public class MultiCharacter extends AbstractBGPlayer {
     }
 
     public void render(SpriteBatch sb) {
-        super.render(sb);
-        //sb.draw(ImageMaster.HEALTH_BAR_B, 50, 200, 300,300);
+        //super.render(sb);
         for (int i = subcharacters.size() - 1; i >= 0; i -= 1) {
             ContextPatches.pushPlayerContext(subcharacters.get(i));
-            //sb.setColor(Color.WHITE);
-            //sb.setBlendFunction(GL20.GL_ONE, GL20.GL_ZERO);
-            //sb.setBlendFunction(770,1);
             subcharacters.get(i).render(sb);
             ContextPatches.popPlayerContext();
         }
     }
 
-//
-//    public void renderHand(SpriteBatch sb) {
-//        if (handLayoutHelper.currentHand >= 0) {
-//            for (int i = handLayoutHelper.currentHand + subcharacters.size() - 1; i >= handLayoutHelper.currentHand; i -= 1) {
-//                //BoardGame.logger.info("???   " + i + "   " + i % subcharacters.size());
-//                AbstractPlayer c = subcharacters.get(i % subcharacters.size());
-//                ContextPatches.pushPlayerContext(c);
-//                c.renderHand(sb);
-//                ContextPatches.popPlayerContext();
-//            }
-//        }
-//    }
-//
-//    public void updateOrb(int orbCount){
-//        for(AbstractPlayer c : MultiCharacter.getSubcharacters()){
-//            c.updateOrb(orbCount);
-//        }
-//    }
-//    public void renderOrb(SpriteBatch sb, boolean enabled, float current_x, float current_y) {
-//        //do nothing
-//    }
-//
-//    @SpirePatch2(clz = AbstractPlayer.class, method = "renderCardHotKeyText", paramtypez = {SpriteBatch.class})
-//    public static class RenderCardHotKeyTextPatch {
-//        @SpirePrefixPatch
-//        public static SpireReturn<Void> Prefix(AbstractPlayer __instance) {
-//            if (CardCrawlGame.chosenCharacter == Enums.BG_MULTICHARACTER) {
-//                if (MultiCharacter.getSubcharacters().size() != 1) {
-//                    return SpireReturn.Return();
-//                }
-//            }
-//            return SpireReturn.Continue();
-//        }
-//    }
+
+    public void renderHand(SpriteBatch sb) {
+        if (handLayoutHelper.currentHand >= 0) {
+            for (int i = handLayoutHelper.currentHand + subcharacters.size() - 1; i >= handLayoutHelper.currentHand; i -= 1) {
+                //BoardGame.logger.info("???   " + i + "   " + i % subcharacters.size());
+                AbstractPlayer c = subcharacters.get(i % subcharacters.size());
+                ContextPatches.pushPlayerContext(c);
+                c.renderHand(sb);
+                ContextPatches.popPlayerContext();
+            }
+        }
+    }
+
+    public void updateOrb(int orbCount){
+        for(AbstractPlayer c : MultiCharacter.getSubcharacters()){
+            c.updateOrb(orbCount);
+        }
+    }
+    public void renderOrb(SpriteBatch sb, boolean enabled, float current_x, float current_y) {
+        //do nothing
+    }
+
+    @SpirePatch2(clz = AbstractPlayer.class, method = "renderCardHotKeyText", paramtypez = {SpriteBatch.class})
+    public static class RenderCardHotKeyTextPatch {
+        @SpirePrefixPatch
+        public static SpireReturn<Void> Prefix(AbstractPlayer __instance) {
+            if (CardCrawlGame.chosenCharacter == Enums.BG_MULTICHARACTER) {
+                if (MultiCharacter.getSubcharacters().size() != 1) {
+                    return SpireReturn.Return();
+                }
+            }
+            return SpireReturn.Continue();
+        }
+    }
 
 
 }
