@@ -17,6 +17,8 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 
 public class HandLayoutHelper {
 
+    //TODO: if a character's hand is empty, scroll past it to the next hand (unless EVERYONE'S hand is empty)
+
     //public final float BASE_SPACING = 35.0f;  //this works, provided no cards are playable
     public final float BASE_SPACING = 40.0f;    //this allows extra space for card glow
     public float SPACING;

@@ -11,6 +11,7 @@ import com.esotericsoftware.spine.BoneData;
 import com.esotericsoftware.spine.Skeleton;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.characters.Watcher;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -18,10 +19,21 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.GameTips;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
 
 import java.util.Collections;
 
 public class PerspectiveSkewPatches {
+
+    @SpirePatch2(clz=AbstractPlayer.class,method=SpirePatch.CONSTRUCTOR,
+            paramtypez={String.class, AbstractPlayer.PlayerClass.class})
+    public static class PlayerConstructorPostfix {
+        @SpirePostfixPatch
+        public static void Foo(AbstractPlayer __instance) {
+            GridTile.Field.originalDrawX.set(__instance,__instance.drawX);
+            GridTile.Field.originalDrawY.set(__instance,__instance.drawY);
+        }
+    }
 
     @SpirePatch2(clz= AbstractPlayer.class,method="movePosition",paramtypez={float.class,float.class})
     public static class PlayerMovePostfix {
@@ -119,10 +131,12 @@ public class PerspectiveSkewPatches {
         float sx=root.getScaleX();
         float sy=root.getScaleY();
         //TODO: store original scale
-        rootdata.setScaleX(0.75f);
-        rootdata.setScaleY(0.75f);
-        root.setScaleX(0.75f);
-        root.setScaleY(0.75f);
+        float scale=0.75f;
+        if(c instanceof Watcher)scale=0.65f;
+        rootdata.setScaleX(scale);
+        rootdata.setScaleY(scale);
+        root.setScaleX(scale);
+        root.setScaleY(scale);
 
         ReflectionHacks.privateMethod(AbstractCreature.class,"refreshHitboxLocation").invoke(c);
         if(tile!=null) {
@@ -138,6 +152,16 @@ public class PerspectiveSkewPatches {
             c.healthHb.width=0;
             c.healthHb.height=0;
         }
+
+        if(c instanceof AbstractPlayer){
+            //TODO: consider moving orbs much closer to player
+            int i=0;
+            for(AbstractOrb o : ((AbstractPlayer)c).orbs){
+                o.setSlot(i,((AbstractPlayer)c).orbs.size());
+                i+=1;
+            }
+        }
+
         if(c instanceof AbstractMonster){
             float temp=c.hb_h;
             c.hb_h=tile.height*Settings.scale;
