@@ -2,6 +2,7 @@ package BoardGame.multicharacter;
 
 import BoardGame.characters.AbstractBGPlayer;
 import BoardGame.util.TextureLoader;
+import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -10,6 +11,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.MathHelper;
+import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
+
 import java.util.ArrayList;
 
 public class MultiCharacterRowBoxes {
@@ -59,18 +62,25 @@ public class MultiCharacterRowBoxes {
   
   public void remakeSwapButtonsAndPositionCharacters() {
     this.swapButtons = new ArrayList<>();
-    BGMultiCharacter c = (BGMultiCharacter)AbstractDungeon.player;
+    MultiCharacter c = (MultiCharacter)AbstractDungeon.player;
     int i;
     for (i = 0; i < c.subcharacters.size(); i++) {
-      AbstractBGPlayer s = c.subcharacters.get(i);
-      s.currentRow = i;
-      MultiCharacterSwapButton b = new MultiCharacterSwapButton(s.name, (AbstractPlayer)s, s.getMultiSwapButtonUrl());
+      AbstractPlayer s = c.subcharacters.get(i);
+      MultiCreature.Field.currentRow.set(s,i);
+      MultiCharacterSwapButton b;
+      if(!BoardGame.BoardGame.ENABLE_TEST_FEATURES) {
+        b = new MultiCharacterSwapButton(s.name, s, ((AbstractBGPlayer) s).getMultiSwapButtonUrl());
+      }else{
+//      MultiCharacterSwapButton b = new MultiCharacterSwapButton(s.name, s,
+//              ReflectionHacks.getPrivate(s.getCharacterSelectOption(),CharacterOption.class,"portraitUrl"));
+        b = new MultiCharacterSwapButton(s.name, s, s.shoulderImg);
+      }
       Hitbox hb = b.hb;
       hb.y = this.posY + 8.0F + (80 * i) * Settings.scale * 2.0F;
       this.swapButtons.add(b);
     } 
     for (i = 0; i < c.subcharacters.size(); i++) {
-      AbstractBGPlayer s = c.subcharacters.get(i);
+      AbstractPlayer s = c.subcharacters.get(i);
       s.movePosition(Settings.WIDTH * 0.25F, AbstractDungeon.floorY);
     } 
   }

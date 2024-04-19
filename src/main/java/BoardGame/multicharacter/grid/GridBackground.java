@@ -1,5 +1,6 @@
 package BoardGame.multicharacter.grid;
 
+import BoardGame.BoardGame;
 import BoardGame.util.TextureLoader;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
@@ -19,10 +20,8 @@ public class GridBackground {
     public ArrayList<GridSubgrid> subGrids=new ArrayList<>();
     public GridSubgrid playerGrid;
     public GridSubgrid enemyGrid;
-
     public final float INITIAL_TILE_SPAWN_TIMER=1f;
     public final float TILE_SPAWN_SPEED=1/16f;
-
 
     public boolean visible=false;
     public float tileSpawnTimer=INITIAL_TILE_SPAWN_TIMER;
@@ -36,20 +35,22 @@ public class GridBackground {
     }
 
     public void resetGridAtStartOfCombat(){
+        if(!BoardGame.ENABLE_TEST_FEATURES)return;
         tileSpawnTimer=INITIAL_TILE_SPAWN_TIMER;
         subGrids.clear();
         playerGrid=new GridSubgrid();
-        playerGrid.screenOffsetX = Settings.WIDTH*(1/3f)- GridTile.TILE_WIDTH/2f*Settings.scale;
-        playerGrid.offsetY = 350*Settings.scale;
+        playerGrid.screenOffsetX = Settings.WIDTH*(1/3f)/Settings.scale- GridTile.TILE_WIDTH/2f;
+        playerGrid.offsetY = 350;
         enemyGrid = new GridSubgrid();
-        enemyGrid.screenOffsetX = Settings.WIDTH*(2/3f)- GridTile.TILE_WIDTH/2f*Settings.scale;
-        enemyGrid.offsetY = 350*Settings.scale;
+        enemyGrid.screenOffsetX = Settings.WIDTH*(2/3f)/Settings.scale- GridTile.TILE_WIDTH/2f;
+        enemyGrid.offsetY = 350;
         subGrids.add(playerGrid);
         subGrids.add(enemyGrid);
         enemyGrid.createTilesForEnemies();
     }
 
     public void update(){
+        if(!BoardGame.ENABLE_TEST_FEATURES)return;
         ArrayList<GridTile> tilesSpawningIn=new ArrayList<>();
         ArrayList<GridTile> tilesDespawning=new ArrayList<>();
         for(GridSubgrid sub : subGrids){
@@ -80,22 +81,10 @@ public class GridBackground {
         }
     }
     public void render(SpriteBatch sb){
+        if(!BoardGame.ENABLE_TEST_FEATURES)return;
         for(GridSubgrid sub : subGrids){
             sub.render(sb);
         }
-//        if(this.visible){
-//
-//            sb.setColor(Color.WHITE);
-//
-//            for(int i=0;i<4;i+=1){
-//                sb.draw(tileImg, 416*Settings.scale, (350+163*i)*Settings.scale, 32.0F, 32.0F, 216F*Settings.scale, 163F*Settings.scale, 1F, 1F, 0, 0, 0, 216, 163, false, false);
-//
-//                for(int j=0;j<5;j+=1){
-//                    sb.draw(tileImg, (416-50+216*2+(216*j))*Settings.scale, (350+163*i)*Settings.scale, 32.0F, 32.0F, 216F*Settings.scale, 163F*Settings.scale, 1F, 1F, 0, 0, 0, 216, 163, false, false);
-//                }
-//            }
-//
-//        }
     }
 
 

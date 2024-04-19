@@ -4,7 +4,7 @@ import BoardGame.cards.BGStatus.BGBurn;
 import BoardGame.cards.BGStatus.BGDazed;
 import BoardGame.monsters.AbstractBGMonster;
 import BoardGame.monsters.BGDamageIcons;
-import BoardGame.multicharacter.BGMultiCreature;
+import BoardGame.multicharacter.MultiCreature;
 import BoardGame.powers.BGDifferentRowsPower;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
@@ -45,7 +45,7 @@ public class BGSpireSpear extends AbstractBGMonster implements BGDamageIcons {
         this.stateData.setMix("Hit", "Idle", 0.1F);
         e.setTimeScale(0.7F);
 
-        BGMultiCreature.Field.currentRow.set(this,1);
+        MultiCreature.Field.currentRow.set(this,1);
 
         setHp(42);
 

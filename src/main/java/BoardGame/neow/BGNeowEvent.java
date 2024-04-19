@@ -4,7 +4,7 @@ package BoardGame.neow;
 //TODO: several rewards can softlock if player doesn't have enough cards (not just limited to Quick Start)
 
 import BoardGame.dungeons.AbstractBGDungeon;
-import BoardGame.multicharacter.BGMultiCharacter;
+import BoardGame.multicharacter.MultiCharacter;
 import BoardGame.multicharacter.MultiCharacterSelectScreen;
 import basemod.BaseMod;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -119,7 +119,7 @@ public class BGNeowEvent
 //            talk(TEXT[MathUtils.random(1, 3)]);
 //            this.roomEventText.addDialogOption(OPTIONS[1]);
 
-             if (AbstractDungeon.player instanceof BGMultiCharacter) {
+             if (AbstractDungeon.player instanceof MultiCharacter) {
                 BaseMod.openCustomScreen(MultiCharacterSelectScreen.Enum.MULTI_CHARACTER_SELECT);
             }
 

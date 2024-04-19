@@ -1,6 +1,7 @@
 package BoardGame.multicharacter.patches;
 
-import BoardGame.multicharacter.BGMultiCharacter;
+import BoardGame.multicharacter.MultiCharacter;
+import BoardGame.multicharacter.MultiCreature;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
@@ -29,24 +30,24 @@ public class HandLayoutHelper {
         SPACING = BASE_SPACING * Settings.scale;
         if(currentHand>=0) {
             if (!AbstractDungeon.isScreenUp) {
-                if (!BGMultiCharacter.getSubcharacters().isEmpty()) {
-                    for (int i = 0; i < BGMultiCharacter.getSubcharacters().size(); i += 1) {
+                if (!MultiCharacter.getSubcharacters().isEmpty()) {
+                    for (int i = 0; i < MultiCharacter.getSubcharacters().size(); i += 1) {
                         hand_offset_y[i] = MathHelper.uiLerpSnap(hand_offset_y[i], hand_target_y[i]);
                     }
                     //can't scroll hands while dragging a card (inc. InputHelper.getCardSelectedByHotkey?)
-                    AbstractPlayer currentCharacter = BGMultiCharacter.getSubcharacters().get(currentHand);
+                    AbstractPlayer currentCharacter = MultiCharacter.getSubcharacters().get(currentHand);
                     if (true || !currentCharacter.isDraggingCard){
                     //&& InputHelper.getCardSelectedByHotkey(currentCharacter.hand)==null) {
                         if (InputHelper.scrolledDown) {
                             int i = currentHand;
                             i += 1;
-                            if (i >= BGMultiCharacter.getSubcharacters().size()) i = 0;
+                            if (i >= MultiCharacter.getSubcharacters().size()) i = 0;
                             changeHand(i, 1);
                         }
                         if (InputHelper.scrolledUp) {
                             int i = currentHand;
                             i -= 1;
-                            if (i < 0) i = BGMultiCharacter.getSubcharacters().size() - 1;
+                            if (i < 0) i = MultiCharacter.getSubcharacters().size() - 1;
                             changeHand(i, -1);
                         }
                     }
@@ -57,7 +58,7 @@ public class HandLayoutHelper {
 
     public void changeHand(int index,int change){
         if(change==1){
-            hand_offset_y[currentHand]=0+SPACING*BGMultiCharacter.getSubcharacters().size();
+            hand_offset_y[currentHand]=0+SPACING* MultiCharacter.getSubcharacters().size();
         }
         changeHand(index);
         if(change==-1){
@@ -67,12 +68,12 @@ public class HandLayoutHelper {
 
     public void changeHand(int index){
         SPACING = BASE_SPACING * Settings.scale;
-        if(currentHand>=0)BGMultiCharacter.getSubcharacters().get(currentHand).releaseCard();
+        if(currentHand>=0) MultiCharacter.getSubcharacters().get(currentHand).releaseCard();
         currentHand=index;
         int i = index;
-        for(int j=0;j<BGMultiCharacter.getSubcharacters().size();j+=1) {
+        for(int j = 0; j< MultiCharacter.getSubcharacters().size(); j+=1) {
             hand_target_y[i]=0+SPACING*j;
-            i+=1;if(i>=BGMultiCharacter.getSubcharacters().size())i=0;
+            i+=1;if(i>= MultiCharacter.getSubcharacters().size())i=0;
         }
     }
 
@@ -81,11 +82,11 @@ public class HandLayoutHelper {
     public static class RenderCardPatch {
         @SpirePrefixPatch
         public static void Prefix(AbstractCard __instance, SpriteBatch sb, boolean hovered, boolean selected) {
-            if(CardCrawlGame.chosenCharacter!=BGMultiCharacter.Enums.BG_MULTICHARACTER)return;
+            if(CardCrawlGame.chosenCharacter!= MultiCharacter.Enums.BG_MULTICHARACTER)return;
             if(CardPatches.Field.owner.get(__instance)==null)return;
             //if (AbstractDungeon.player != null && AbstractDungeon.player.isDraggingCard && __instance == AbstractDungeon.player.hoveredCard) {}
-            int whichRow=CardPatches.Field.owner.get(__instance).currentRow;
-            __instance.current_y+=BGMultiCharacter.handLayoutHelper.hand_offset_y[whichRow];
+            int whichRow= MultiCreature.Field.currentRow.get(CardPatches.Field.owner.get(__instance));
+            __instance.current_y+= MultiCharacter.handLayoutHelper.hand_offset_y[whichRow];
         }
     }
     @SpirePatch2(clz = AbstractCard.class, method = "renderCard",
@@ -93,11 +94,11 @@ public class HandLayoutHelper {
     public static class RenderCardPatch2 {
         @SpirePostfixPatch
         public static void Postfix(AbstractCard __instance, SpriteBatch sb, boolean hovered, boolean selected) {
-            if(CardCrawlGame.chosenCharacter != BGMultiCharacter.Enums.BG_MULTICHARACTER) return;
+            if(CardCrawlGame.chosenCharacter != MultiCharacter.Enums.BG_MULTICHARACTER) return;
             if(CardPatches.Field.owner.get(__instance)==null)return;
             //if (AbstractDungeon.player != null && AbstractDungeon.player.isDraggingCard && __instance == AbstractDungeon.player.hoveredCard) {}
-            int whichRow=CardPatches.Field.owner.get(__instance).currentRow;
-            __instance.current_y-=BGMultiCharacter.handLayoutHelper.hand_offset_y[whichRow];
+            int whichRow= MultiCreature.Field.currentRow.get(CardPatches.Field.owner.get(__instance));
+            __instance.current_y-= MultiCharacter.handLayoutHelper.hand_offset_y[whichRow];
         }
     }
 
@@ -105,10 +106,10 @@ public class HandLayoutHelper {
     public static class RefreshHandLayoutPatch {
         @SpirePostfixPatch
         public static void Postfix(CardGroup __instance) {
-            if(CardCrawlGame.chosenCharacter != BGMultiCharacter.Enums.BG_MULTICHARACTER) return;
-            if(!(AbstractDungeon.player instanceof BGMultiCharacter)) return;
-            for(AbstractPlayer p : BGMultiCharacter.getSubcharacters()){
-                if(p instanceof BGMultiCharacter){
+            if(CardCrawlGame.chosenCharacter != MultiCharacter.Enums.BG_MULTICHARACTER) return;
+            if(!(AbstractDungeon.player instanceof MultiCharacter)) return;
+            for(AbstractPlayer p : MultiCharacter.getSubcharacters()){
+                if(p instanceof MultiCharacter){
                     //TODO: complain very loudly
                     continue;
                 }

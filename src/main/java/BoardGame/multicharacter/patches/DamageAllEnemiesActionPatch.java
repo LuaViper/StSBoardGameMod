@@ -1,20 +1,10 @@
 package BoardGame.multicharacter.patches;
 
-import BoardGame.dungeons.AbstractBGDungeon;
-import BoardGame.multicharacter.BGMultiCreature;
 import BoardGame.multicharacter.NullMonster;
 import BoardGame.screen.TargetSelectScreen;
 import basemod.BaseMod;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ModHelper;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-
-import java.util.ArrayList;
 
 public class DamageAllEnemiesActionPatch {
     @SpirePatch2(clz = DamageAllEnemiesAction.class, method = "update")

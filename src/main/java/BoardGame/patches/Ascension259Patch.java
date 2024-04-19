@@ -4,13 +4,9 @@ import BoardGame.cards.BGCurse.BGAscendersBane;
 import BoardGame.characters.AbstractBGPlayer;
 import BoardGame.dungeons.AbstractBGDungeon;
 import BoardGame.dungeons.BGExordium;
-import BoardGame.multicharacter.BGMultiCharacter;
-import BoardGame.multicharacter.patches.UpdateActionPatch;
+import BoardGame.multicharacter.MultiCharacter;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.GameActionManager;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -24,8 +20,8 @@ import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 public class Ascension259Patch {
 
     public static void applyAscension259ToSubCharacters(){
-        if(AbstractDungeon.player instanceof BGMultiCharacter) {
-            for(AbstractBGPlayer player : BGMultiCharacter.getSubcharacters()) {
+        if(AbstractDungeon.player instanceof MultiCharacter) {
+            for(AbstractPlayer player : MultiCharacter.getSubcharacters()) {
                 if (CardCrawlGame.dungeon instanceof BGExordium) {
                     if (AbstractDungeon.ascensionLevel >= 2)
                         player.decreaseMaxHealth(player.getAscensionMaxHPLoss());

@@ -1,8 +1,9 @@
 package BoardGame.multicharacter.grid;
 
-import BoardGame.multicharacter.BGMultiCharacter;
-import BoardGame.multicharacter.BGMultiCreature;
+import BoardGame.multicharacter.MultiCharacter;
+import BoardGame.multicharacter.MultiCreature;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -23,8 +24,13 @@ public class GridSubgrid {
             GridTile tile=new GridTile();
             tile.offsetX=0;
             tile.offsetY=i*GridTile.TILE_HEIGHT;
-            tile.shouldBeVisible=true;
+            tile.parent=this;
             tiles.add(tile);
+
+            if(i<MultiCharacter.getSubcharacters().size()){
+                tile.creature=MultiCharacter.getSubcharacters().get(i);
+                GridTile.Field.gridTile.set(tile.creature,tile);
+            }
         }
     }
 
@@ -38,19 +44,19 @@ public class GridSubgrid {
         }
         for(AbstractMonster m : AbstractDungeon.getMonsters().monsters){
             int whichRow=0;
-            if(m instanceof BGMultiCreature) {
-                whichRow=BGMultiCreature.Field.currentRow.get(m);
-            }
+            whichRow= MultiCreature.Field.currentRow.get(m);
             rows.get(whichRow).add(m);
         }
-        int offsetY=GridTile.TILE_HEIGHT*3;
+        float offsetY=GridTile.TILE_HEIGHT*3;
         int maxcolumn=0;
         for(int i=3;i>=0;i-=1){
             for(int j=0;j<rows.get(i).size();j+=1){
                 GridTile tile=new GridTile();
                 tile.offsetX=GridTile.TILE_WIDTH*j;
                 tile.offsetY=offsetY;
+                tile.parent=this;
                 tiles.add(tile);
+                tile.creature=rows.get(i).get(j);
                 if(j>maxcolumn)maxcolumn=j;
             }
             offsetY-=GridTile.TILE_HEIGHT;
@@ -59,8 +65,8 @@ public class GridSubgrid {
     }
     public void update(){
         //TODO: during shieldspear fight, increase numRows to 4 even with fewer players
-        if(BGMultiCharacter.getSubcharacters()!=null){
-            numRows=BGMultiCharacter.getSubcharacters().size();
+        if(MultiCharacter.getSubcharacters()!=null){
+            numRows= MultiCharacter.getSubcharacters().size();
         }
         for(GridTile tile : tiles){
             tile.update();
@@ -69,7 +75,7 @@ public class GridSubgrid {
     }
     public void render(SpriteBatch sb){
         for(GridTile tile : tiles){
-            tile.render(sb, screenOffsetX+centeringOffsetX,offsetY);
+            tile.render(sb);
         }
     }
 

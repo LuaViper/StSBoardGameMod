@@ -1,6 +1,6 @@
 package BoardGame.multicharacter.patches;
 
-import BoardGame.multicharacter.BGMultiCharacter;
+import BoardGame.multicharacter.MultiCharacter;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
@@ -19,8 +19,8 @@ public class OverlayMenuPatches {
     public static class OverlayMenuUpdatePatch {
         @SpirePostfixPatch
         public static void Postfix(){
-            if(AbstractDungeon.player instanceof BGMultiCharacter){
-                for(AbstractPlayer p : BGMultiCharacter.getSubcharacters()){
+            if(AbstractDungeon.player instanceof MultiCharacter){
+                for(AbstractPlayer p : MultiCharacter.getSubcharacters()){
                     p.hand.update();
                 }
             }
@@ -36,14 +36,14 @@ public class OverlayMenuPatches {
                 localvars = {}
         )
         public static void Postfix(OverlayMenu __instance, SpriteBatch sb){
-            if(AbstractDungeon.player instanceof BGMultiCharacter){
+            if(AbstractDungeon.player instanceof MultiCharacter){
                 //energyPanel.render four times, drawn top to bottom
-                for (AbstractPlayer c : BGMultiCharacter.getSubcharacters()) {
+                for (AbstractPlayer c : MultiCharacter.getSubcharacters()) {
                     __instance.energyPanel.current_y += ENERGY_ORB_SPACING * Settings.scale;
                 }
-                for (int i = BGMultiCharacter.getSubcharacters().size() - 1; i >= 0; i -= 1) {
+                for (int i = MultiCharacter.getSubcharacters().size() - 1; i >= 0; i -= 1) {
                     __instance.energyPanel.current_y -= ENERGY_ORB_SPACING * Settings.scale;
-                    ContextPatches.pushPlayerContext(BGMultiCharacter.getSubcharacters().get(i));
+                    ContextPatches.pushPlayerContext(MultiCharacter.getSubcharacters().get(i));
                     __instance.energyPanel.render(sb);
                     ContextPatches.popPlayerContext();
                 }

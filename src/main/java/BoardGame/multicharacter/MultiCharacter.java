@@ -4,12 +4,13 @@ import BoardGame.BoardGame;
 import BoardGame.cards.BGRed.BGStrike_Red;
 import BoardGame.characters.AbstractBGPlayer;
 import BoardGame.characters.BGIronclad;
+import BoardGame.multicharacter.patches.AbstractScenePatches;
 import BoardGame.multicharacter.patches.ContextPatches;
 import BoardGame.multicharacter.patches.HandLayoutHelper;
 import BoardGame.relics.BGBurningBlood;
 import BoardGame.relics.BGTheDieRelic;
 import BoardGame.ui.OverlayMenuPatches;
-import basemod.BaseMod;
+import basemod.abstracts.CustomPlayer;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -33,6 +34,7 @@ import com.megacrit.cardcrawl.helpers.RelicLibrary;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.scenes.AbstractScene;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import java.util.ArrayList;
@@ -46,8 +48,9 @@ import org.apache.logging.log4j.Logger;
 //TODO: each player has their own EnergyManager, but it checks OverlayMenu.EnergyPanel.totalCount, currently a singleton
 // EnergyManager is currently short enough that we might be able to patch it completely
 
-public class BGMultiCharacter extends AbstractBGPlayer {
-    public static final Logger logger = LogManager.getLogger(BGMultiCharacter.class.getName());
+public class MultiCharacter extends AbstractBGPlayer {
+//public class MultiCharacter extends CustomPlayer {
+    public static final Logger logger = LogManager.getLogger(MultiCharacter.class.getName());
 
     public static class Enums {
         @SpireEnum
@@ -60,19 +63,21 @@ public class BGMultiCharacter extends AbstractBGPlayer {
         public static CardLibrary.LibraryType LIBRARY_COLOR;
     }
 
-    public ArrayList<AbstractBGPlayer> subcharacters = new ArrayList<>();
+    public ArrayList<AbstractPlayer> subcharacters = new ArrayList<>();
     public static HandLayoutHelper handLayoutHelper = new HandLayoutHelper();
 
-    public static ArrayList<AbstractBGPlayer> getSubcharacters() {
+    public static ArrayList<AbstractPlayer> getSubcharacters() {
         if (ContextPatches.originalBGMultiCharacter == null){
-            if(AbstractDungeon.player instanceof BGMultiCharacter){
+            if(AbstractDungeon.player instanceof MultiCharacter){
                 ContextPatches.originalBGMultiCharacter=AbstractDungeon.player;
             }
         }
         if (ContextPatches.originalBGMultiCharacter != null)
-            return ((BGMultiCharacter) ContextPatches.originalBGMultiCharacter).subcharacters;
-        if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
-            logger.warn("tried to BGMultiCharacter.getSubcharacters, but ContextPatches.originalBGMultiCharacter==null, time to panic!");
+            return ((MultiCharacter) ContextPatches.originalBGMultiCharacter).subcharacters;
+        if (AbstractDungeon.currMapNode != null) {
+            if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
+                logger.warn("tried to BGMultiCharacter.getSubcharacters, but ContextPatches.originalBGMultiCharacter==null, time to panic!");
+            }
         }
         return new ArrayList<>();
     }
@@ -105,7 +110,7 @@ public class BGMultiCharacter extends AbstractBGPlayer {
 
     protected float blockScale;
 
-    public BGMultiCharacter(String name, AbstractPlayer.PlayerClass setClass) {
+    public MultiCharacter(String name, AbstractPlayer.PlayerClass setClass) {
         super(name, setClass, orbTextures, "BoardGameResources/images/char/defaultCharacter/orb/vfx.png", null, "");
         this.blockTextColor = new Color(0.9F, 0.9F, 0.9F, 0.0F);
         this.blockScale = 1.0F;
@@ -215,7 +220,7 @@ public class BGMultiCharacter extends AbstractBGPlayer {
     }
 
     public AbstractPlayer newInstance() {
-        return (AbstractPlayer) new BGMultiCharacter(this.name, this.chosenClass);
+        return (AbstractPlayer) new MultiCharacter(this.name, this.chosenClass);
     }
 
     public Color getCardRenderColor() {
@@ -255,13 +260,13 @@ public class BGMultiCharacter extends AbstractBGPlayer {
         for (AbstractPlayer c : this.subcharacters) {
             c.preBattlePrep();
         }
-        OverlayMenuPatches.OverlayMenuExtraInterface.gridBackground.get(AbstractDungeon.overlayMenu).resetGridAtStartOfCombat();
+        AbstractScenePatches.AbstractSceneExtraInterface.gridBackground.get(AbstractDungeon.scene).resetGridAtStartOfCombat();
     }
 
     public void updateInput(){
         super.updateInput();
         for (AbstractPlayer c : this.subcharacters) {
-            if(((AbstractBGPlayer)c).currentRow==handLayoutHelper.currentHand){
+            if(MultiCreature.Field.currentRow.get(c)==handLayoutHelper.currentHand){
                 c.updateInput();
             }else{
                // ((AbstractBGCharacter)c).nonInputReleaseCard();
@@ -334,7 +339,7 @@ public class BGMultiCharacter extends AbstractBGPlayer {
     }
 
     public void updateOrb(int orbCount){
-        for(AbstractPlayer c : BGMultiCharacter.getSubcharacters()){
+        for(AbstractPlayer c : MultiCharacter.getSubcharacters()){
             c.updateOrb(orbCount);
         }
     }
@@ -347,7 +352,7 @@ public class BGMultiCharacter extends AbstractBGPlayer {
         @SpirePrefixPatch
         public static SpireReturn<Void> Prefix(AbstractPlayer __instance) {
             if (CardCrawlGame.chosenCharacter == Enums.BG_MULTICHARACTER) {
-                if (BGMultiCharacter.getSubcharacters().size() != 1) {
+                if (MultiCharacter.getSubcharacters().size() != 1) {
                     return SpireReturn.Return();
                 }
             }

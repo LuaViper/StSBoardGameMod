@@ -1,5 +1,6 @@
 package BoardGame.multicharacter;
 
+import BoardGame.BoardGame;
 import BoardGame.characters.AbstractBGPlayer;
 import BoardGame.ui.OverlayMenuPatches;
 import basemod.BaseMod;
@@ -21,7 +22,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import java.util.Iterator;
 
 public class MultiCharacterSelectButton {
-  public static final boolean SOLO_MODE_ONLY=false;
+  public static final boolean SOLO_MODE_ONLY=!BoardGame.ENABLE_TEST_FEATURES;
   public boolean selected = false;
   public boolean locked = false;
   
@@ -72,21 +73,21 @@ public class MultiCharacterSelectButton {
 
         this.selected = true;
 
-        BGMultiCharacter p = (BGMultiCharacter)AbstractDungeon.player;
+        MultiCharacter p = (MultiCharacter)AbstractDungeon.player;
         if(SOLO_MODE_ONLY) {
           p.subcharacters.clear();
         }
 
         this.c.doCharSelectScreenSelectEffect();
 
-        AbstractBGPlayer newChar = (AbstractBGPlayer)this.c.newInstance();
+        AbstractPlayer newChar = (AbstractPlayer)this.c.newInstance();
         p.subcharacters.add(newChar);
         newChar.initializeStarterDeck();
       } else {
         this.selected = false;
-        BGMultiCharacter p = (BGMultiCharacter)AbstractDungeon.player;
-        for (Iterator<AbstractBGPlayer> i = p.subcharacters.iterator(); i.hasNext(); ) {
-          AbstractBGPlayer s = i.next();
+        MultiCharacter p = (MultiCharacter)AbstractDungeon.player;
+        for (Iterator<AbstractPlayer> i = p.subcharacters.iterator(); i.hasNext(); ) {
+          AbstractPlayer s = i.next();
           if (s.getClass() == this.c.getClass())
             i.remove(); 
         } 

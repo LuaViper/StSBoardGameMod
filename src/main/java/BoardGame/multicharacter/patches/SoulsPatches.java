@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 
+//TODO: we've hardcoded checks for AbstractBGCard -- make it compatible with AbstractCard too
 public class SoulsPatches {
     @SpirePatch(
             clz=Soul.class,

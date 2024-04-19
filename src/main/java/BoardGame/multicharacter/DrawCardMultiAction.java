@@ -41,7 +41,7 @@ public class DrawCardMultiAction extends AbstractGameAction {
             this.duration = Settings.ACTION_DUR_FASTER;
         }
 
-        for(AbstractPlayer c : BGMultiCharacter.getSubcharacters()){
+        for(AbstractPlayer c : MultiCharacter.getSubcharacters()){
             amountLeftToDraw.add(c.masterHandSize);
             shuffleChecks.add(false);
         }
@@ -65,8 +65,8 @@ public class DrawCardMultiAction extends AbstractGameAction {
         }else {
             this.duration -= Gdx.graphics.getDeltaTime();
             if(this.duration<0.0F) {
-                for (int i=0;i<BGMultiCharacter.getSubcharacters().size();i+=1) {
-                    AbstractPlayer p = BGMultiCharacter.getSubcharacters().get(i);
+                for (int i = 0; i< MultiCharacter.getSubcharacters().size(); i+=1) {
+                    AbstractPlayer p = MultiCharacter.getSubcharacters().get(i);
                     int deckSize = p.drawPile.size();
                     int discardSize = p.discardPile.size();
                     if (!SoulGroup.isActive()) {
@@ -104,9 +104,9 @@ public class DrawCardMultiAction extends AbstractGameAction {
             }
 
 
-            if(endActionCounter>=BGMultiCharacter.getSubcharacters().size()){
+            if(endActionCounter>= MultiCharacter.getSubcharacters().size()){
                 boolean shuffle=false;
-                for (int i=0;i<BGMultiCharacter.getSubcharacters().size();i+=1) {
+                for (int i = 0; i< MultiCharacter.getSubcharacters().size(); i+=1) {
                     if(this.amountLeftToDraw.get(i)>0){
                         shuffle=true;
                     }
@@ -120,9 +120,9 @@ public class DrawCardMultiAction extends AbstractGameAction {
                 }else {
                     //addToTop, so in reverse order:
                     addToTop(new DrawCardMultiAction_PostShuffleFollowUp(this.amountLeftToDraw));
-                    for (int i = 0; i < BGMultiCharacter.getSubcharacters().size(); i += 1) {
+                    for (int i = 0; i < MultiCharacter.getSubcharacters().size(); i += 1) {
                         if (this.amountLeftToDraw.get(i) > 0) {
-                            this.addToTop(ActionPatches.setOwnerFromConstructor(new EmptyDeckShuffleAction(),BGMultiCharacter.getSubcharacters().get(i)));
+                            this.addToTop(ActionPatches.setOwnerFromConstructor(new EmptyDeckShuffleAction(), MultiCharacter.getSubcharacters().get(i)));
                         }
                     }
                     this.isDone=true;

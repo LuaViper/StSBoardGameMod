@@ -1,13 +1,11 @@
 package BoardGame.multicharacter;
 
 import BoardGame.BoardGame;
-import BoardGame.multicharacter.patches.ActionPatches;
 import BoardGame.multicharacter.patches.ContextPatches;
 import basemod.BaseMod;
 import com.badlogic.gdx.Gdx;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.EmptyDeckShuffleAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.SoulGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -53,8 +51,8 @@ public class DrawCardMultiAction_PostShuffleFollowUp extends AbstractGameAction 
         }else {
             this.duration -= Gdx.graphics.getDeltaTime();
             if(this.duration<0.0F) {
-                for (int i=0;i<BGMultiCharacter.getSubcharacters().size();i+=1) {
-                    AbstractPlayer p = BGMultiCharacter.getSubcharacters().get(i);
+                for (int i = 0; i< MultiCharacter.getSubcharacters().size(); i+=1) {
+                    AbstractPlayer p = MultiCharacter.getSubcharacters().get(i);
                     int deckSize = p.drawPile.size();
                     int discardSize = p.discardPile.size();
                     if (!SoulGroup.isActive()) {
@@ -92,7 +90,7 @@ public class DrawCardMultiAction_PostShuffleFollowUp extends AbstractGameAction 
             }
 
 
-            if(endActionCounter>=BGMultiCharacter.getSubcharacters().size()){
+            if(endActionCounter>= MultiCharacter.getSubcharacters().size()){
                 this.endActionWithFollowUp();
             }
         }

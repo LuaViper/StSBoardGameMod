@@ -1,12 +1,10 @@
 package BoardGame.multicharacter.patches;
 
-import BoardGame.multicharacter.BGMultiCharacter;
-import BoardGame.multicharacter.DrawCardMultiAction;
+import BoardGame.multicharacter.MultiCharacter;
 import BoardGame.multicharacter.GainEnergyAndEnableControlsMultiAction;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAndEnableControlsAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
@@ -16,7 +14,7 @@ public class GainEnergyAndEnableControlsActionPatch {
     public static class EnergyPatch1{
         @SpirePrefixPatch
         public static SpireReturn<Void> Prefix(GainEnergyAndEnableControlsAction __instance) {
-            if(AbstractDungeon.player instanceof BGMultiCharacter){
+            if(AbstractDungeon.player instanceof MultiCharacter){
                 if(ActionPatches.Field.owner.get(__instance)==null) {
                     BoardGame.BoardGame.logger.info("called GainEnergyAndEnableControlsAction, subbing in GainEnergyAndEnableControlsMultiAction");
                     AbstractDungeon.actionManager.addToTop(new GainEnergyAndEnableControlsMultiAction());

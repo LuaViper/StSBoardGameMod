@@ -1,21 +1,16 @@
 package BoardGame.multicharacter.patches;
 
-import BoardGame.monsters.AbstractBGMonster;
 import BoardGame.multicharacter.ALLEnemiesMonster;
-import BoardGame.multicharacter.BGMultiCreature;
+import BoardGame.multicharacter.MultiCreature;
 import BoardGame.multicharacter.NullMonster;
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
 
@@ -40,7 +35,7 @@ public class AbstractDungeonMonsterPatches {
         }
         ArrayList<AbstractMonster> row = new ArrayList<>();
         for(AbstractMonster m : Field.originalMonsters.get(AbstractDungeon.getCurrRoom()).monsters){
-            if(BGMultiCreature.Field.currentRow.get(m).equals(BGMultiCreature.Field.currentRow.get(context))){
+            if(MultiCreature.Field.currentRow.get(m).equals(MultiCreature.Field.currentRow.get(context))){
                 row.add(m);
             }
         }

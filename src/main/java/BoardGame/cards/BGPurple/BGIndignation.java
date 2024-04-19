@@ -72,8 +72,11 @@ public class BGIndignation extends AbstractBGCard {
                 localvars={}
         )
         public static void Insert(AbstractStance ___newStance){
-            if(!___newStance.ID.equals(AbstractDungeon.player.stance.ID)){
-                ((AbstractBGPlayer)AbstractDungeon.player).stanceChangedThisTurn=true;
+            if(AbstractDungeon.player instanceof AbstractBGPlayer) {
+                //TODO: move to spirefield
+                if (!___newStance.ID.equals(AbstractDungeon.player.stance.ID)) {
+                    ((AbstractBGPlayer) AbstractDungeon.player).stanceChangedThisTurn = true;
+                }
             }
             for (AbstractCard c : AbstractDungeon.player.hand.group) {
                 if (c instanceof BGIndignation)

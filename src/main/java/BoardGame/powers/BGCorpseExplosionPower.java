@@ -2,7 +2,7 @@ package BoardGame.powers;
 
 import BoardGame.actions.BGDiscardCorpseExplosionAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
-import BoardGame.multicharacter.BGMultiCreature;
+import BoardGame.multicharacter.MultiCreature;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
@@ -37,12 +37,10 @@ public class BGCorpseExplosionPower extends AbstractBGPower {
     public void onDeath() {
         if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead() &&
                 this.owner.currentHealth <= 0) {
-            if(this.owner instanceof BGMultiCreature) {
-                addToBot((AbstractGameAction) new DamageAllEnemiesAction(
-                        AbstractDungeon.player,
-                        DamageInfo.createDamageMatrix(this.amount, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE
-                        ));
-            }
+            addToBot((AbstractGameAction) new DamageAllEnemiesAction(
+                    AbstractDungeon.player,
+                    DamageInfo.createDamageMatrix(this.amount, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE
+                    ));
             AbstractCard card=originalcard.makeStatEquivalentCopy();
             addToBot((AbstractGameAction) new BGDiscardCorpseExplosionAction(card));
         }

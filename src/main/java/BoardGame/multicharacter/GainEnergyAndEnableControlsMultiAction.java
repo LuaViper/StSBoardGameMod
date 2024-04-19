@@ -17,7 +17,7 @@ public class GainEnergyAndEnableControlsMultiAction extends AbstractGameAction {
 
     public void update() {
         if (this.duration == 0.5F) {
-            for(AbstractPlayer s : BGMultiCharacter.getSubcharacters()) {
+            for(AbstractPlayer s : MultiCharacter.getSubcharacters()) {
                 ContextPatches.pushPlayerContext(s);
 
                 int energyGain = AbstractDungeon.player.energy.energyMaster;

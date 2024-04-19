@@ -1,8 +1,6 @@
 package BoardGame.multicharacter.patches;
 
-import BoardGame.multicharacter.BGMultiCharacter;
-import BoardGame.multicharacter.NullMonster;
-import BoardGame.multicharacter.NullPlayer;
+import BoardGame.multicharacter.MultiCharacter;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.GameActionManager;
@@ -23,7 +21,7 @@ public class GetNextActionPatch {
             ContextPatches.pushTargetContext(null);
         }
         //REMINDER: copied cards (from Foreign Influence and Doppelganger) must manually set owner before playing
-        if(CardCrawlGame.chosenCharacter!=BGMultiCharacter.Enums.BG_MULTICHARACTER)return;
+        if(CardCrawlGame.chosenCharacter!= MultiCharacter.Enums.BG_MULTICHARACTER)return;
         if(ContextPatches.originalBGMultiCharacter==null)ContextPatches.originalBGMultiCharacter=AbstractDungeon.player;
 
         if(c!=null) {
@@ -34,7 +32,7 @@ public class GetNextActionPatch {
     }
     public static void after(){
         ContextPatches.popTargetContext();
-        if(CardCrawlGame.chosenCharacter!=BGMultiCharacter.Enums.BG_MULTICHARACTER)return;
+        if(CardCrawlGame.chosenCharacter!= MultiCharacter.Enums.BG_MULTICHARACTER)return;
         ContextPatches.popPlayerContext();
     }
 

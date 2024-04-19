@@ -1,12 +1,11 @@
 package BoardGame.multicharacter.patches;
 
 import BoardGame.characters.AbstractBGPlayer;
-import BoardGame.multicharacter.BGMultiCharacter;
+import BoardGame.multicharacter.MultiCharacter;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.ui.buttons.EndTurnButton;
 import javassist.CannotCompileException;
@@ -21,7 +20,7 @@ public class CardPatches {
     )
     public static class Field
     {
-        public static SpireField<AbstractBGPlayer> owner = new SpireField<>(() -> null);
+        public static SpireField<AbstractPlayer> owner = new SpireField<>(() -> null);
     }
 
 
@@ -33,11 +32,11 @@ public class CardPatches {
         )
         private static void Insert(AbstractPlayer __instance) {
             //called immediately after drawPile.initializeDeck
-            if (__instance instanceof AbstractBGPlayer) {
+            //if (__instance instanceof AbstractBGPlayer) {
                 for(AbstractCard c : __instance.drawPile.group) {
-                    CardPatches.Field.owner.set(c,(AbstractBGPlayer)__instance);
+                    CardPatches.Field.owner.set(c,__instance);
                 }
-            }
+            //}
         }
         private static class Locator extends SpireInsertLocator {
             public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
@@ -53,7 +52,7 @@ public class CardPatches {
     public static class HasEnoughEnergyPatch1 {
         @SpirePrefixPatch
         public static void Prefix(AbstractCard __instance) {
-            if (CardCrawlGame.chosenCharacter == BGMultiCharacter.Enums.BG_MULTICHARACTER) {
+            if (CardCrawlGame.chosenCharacter == MultiCharacter.Enums.BG_MULTICHARACTER) {
                 if (CardPatches.Field.owner.get(__instance) != null) {
                     ContextPatches.pushPlayerContext(CardPatches.Field.owner.get(__instance));
                 }
@@ -64,7 +63,7 @@ public class CardPatches {
     public static class HasEnoughEnergyPatch2 {
         @SpirePostfixPatch
         public static void Postfix(AbstractCard __instance) {
-            if (CardCrawlGame.chosenCharacter == BGMultiCharacter.Enums.BG_MULTICHARACTER) {
+            if (CardCrawlGame.chosenCharacter == MultiCharacter.Enums.BG_MULTICHARACTER) {
                 if (CardPatches.Field.owner.get(__instance) != null) {
                     ContextPatches.popPlayerContext();
                 }

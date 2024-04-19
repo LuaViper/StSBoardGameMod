@@ -2,7 +2,7 @@ package BoardGame.multicharacter;
 
 import BoardGame.monsters.AbstractBGMonster;
 
-public class NullMonster extends AbstractBGMonster implements BGMultiCreature {
+public class NullMonster extends AbstractBGMonster implements MultiCreature {
     public NullMonster(){
         super("NULL","NULL",0,0,0,0,0,"null",0,0);
     }

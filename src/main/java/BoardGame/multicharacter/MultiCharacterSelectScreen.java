@@ -1,5 +1,6 @@
 package BoardGame.multicharacter;
 
+import BoardGame.BoardGame;
 import BoardGame.characters.AbstractBGPlayer;
 import BoardGame.characters.BGDefect;
 import BoardGame.characters.BGIronclad;
@@ -14,6 +15,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
@@ -38,21 +40,23 @@ public class MultiCharacterSelectScreen extends CustomScreen {
     return Enum.MULTI_CHARACTER_SELECT;
   }
   
-  //public String description = "Choose up to 4 characters.";
-  public String description = "Choose 1 character.";
+  public String description = BoardGame.ENABLE_TEST_FEATURES ? "Choose up to 4 characters." : "Choose 1 character." ;
   
   public ArrayList<MultiCharacterSelectButton> buttons = new ArrayList<>();
   
   public MultiCharacterSelectScreen() {
-    this.buttons.add(new MultiCharacterSelectButton("The Ironclad", new BGIronclad("The Ironclad",BGIronclad.Enums.BG_IRONCLAD), "images/ui/charSelect/ironcladButton.png"));
-    this.buttons.add(new MultiCharacterSelectButton("The Silent", new BGSilent("The Silent",BGSilent.Enums.BG_SILENT), "images/ui/charSelect/silentButton.png"));
-    this.buttons.add(new MultiCharacterSelectButton("The Defect",  new BGDefect("The Defect",BGDefect.Enums.BG_DEFECT), "images/ui/charSelect/defectButton.png"));
-    this.buttons.add(new MultiCharacterSelectButton("The Watcher",  new BGWatcher("The Watcher",BGWatcher.Enums.BG_WATCHER), "images/ui/charSelect/watcherButton.png"));
+    if(!BoardGame.ENABLE_TEST_FEATURES) {
+      this.buttons.add(new MultiCharacterSelectButton("The Ironclad", new BGIronclad("The Ironclad", BGIronclad.Enums.BG_IRONCLAD), "images/ui/charSelect/ironcladButton.png"));
+      this.buttons.add(new MultiCharacterSelectButton("The Silent", new BGSilent("The Silent", BGSilent.Enums.BG_SILENT), "images/ui/charSelect/silentButton.png"));
+      this.buttons.add(new MultiCharacterSelectButton("The Defect", new BGDefect("The Defect", BGDefect.Enums.BG_DEFECT), "images/ui/charSelect/defectButton.png"));
+      this.buttons.add(new MultiCharacterSelectButton("The Watcher", new BGWatcher("The Watcher", BGWatcher.Enums.BG_WATCHER), "images/ui/charSelect/watcherButton.png"));
+    }else {
+      this.buttons.add(new MultiCharacterSelectButton("The Ironclad", BaseMod.findCharacter(AbstractPlayer.PlayerClass.IRONCLAD), "images/ui/charSelect/ironcladButton.png"));
+      this.buttons.add(new MultiCharacterSelectButton("The Silent", BaseMod.findCharacter(AbstractPlayer.PlayerClass.THE_SILENT), "images/ui/charSelect/silentButton.png"));
+      this.buttons.add(new MultiCharacterSelectButton("The Defect", BaseMod.findCharacter(AbstractPlayer.PlayerClass.DEFECT), "images/ui/charSelect/defectButton.png"));
+      this.buttons.add(new MultiCharacterSelectButton("The Watcher", BaseMod.findCharacter(AbstractPlayer.PlayerClass.WATCHER), "images/ui/charSelect/watcherButton.png"));
+    }
 
-//    this.buttons.add(new MultiCharacterSelectButton("The Ironclad", BaseMod.findCharacter(BGIronclad.Enums.BG_IRONCLAD), "images/ui/charSelect/ironcladButton.png"));
-//    this.buttons.add(new MultiCharacterSelectButton("The Silent", BaseMod.findCharacter(BGSilent.Enums.BG_SILENT), "images/ui/charSelect/silentButton.png"));
-//    this.buttons.add(new MultiCharacterSelectButton("The Defect", BaseMod.findCharacter(BGDefect.Enums.BG_DEFECT), "images/ui/charSelect/defectButton.png"));
-//    this.buttons.add(new MultiCharacterSelectButton("The Watcher", BaseMod.findCharacter(BGWatcher.Enums.BG_WATCHER), "images/ui/charSelect/watcherButton.png"));
     for (int i = 0; i < this.buttons.size(); i++) {
       Hitbox hb = ((MultiCharacterSelectButton)this.buttons.get(i)).hb;
       hb.x = Settings.WIDTH / 2.0F + (i - 1.5F) * 232.0F * Settings.scale;
@@ -76,7 +80,7 @@ public class MultiCharacterSelectScreen extends CustomScreen {
     ((MultiCharacterRowBoxes)OverlayMenuPatches.OverlayMenuExtraInterface.multiCharacterRowBoxes.get(AbstractDungeon.overlayMenu)).show();
     for (MultiCharacterSelectButton b : this.buttons) {
       b.selected = false;
-      for (AbstractBGPlayer c : ((BGMultiCharacter)AbstractDungeon.player).subcharacters) {
+      for (AbstractPlayer c : ((MultiCharacter)AbstractDungeon.player).subcharacters) {
         if (c.name.equals(b.c.name))
           b.selected = true; 
       } 
@@ -98,7 +102,7 @@ public class MultiCharacterSelectScreen extends CustomScreen {
       AbstractDungeon.closeCurrentScreen();
       return;
     }
-    BGMultiCharacter c = (BGMultiCharacter)AbstractDungeon.player;
+    MultiCharacter c = (MultiCharacter)AbstractDungeon.player;
     if (c.subcharacters.isEmpty()) {
       AbstractDungeon.overlayMenu.proceedButton.hide();
     } else {
@@ -118,7 +122,7 @@ public class MultiCharacterSelectScreen extends CustomScreen {
   public static class CharacterSelectTextPatch {
     @SpirePrefixPatch
     private static SpireReturn<Void> Prefix(CharacterOption __instance, @ByRef float[] ___infoX, @ByRef float[] ___infoY) {
-      if (!(__instance.c instanceof BGMultiCharacter))
+      if (!(__instance.c instanceof MultiCharacter))
         return SpireReturn.Continue(); 
       if (__instance.selected) {
         ___infoX[0] = MathHelper.uiLerpSnap(___infoX[0], Settings.WIDTH / 2.0F - 500.0F * Settings.scale + ((Float)ReflectionHacks.getPrivateStatic(CharacterOption.class, "DEST_INFO_X")).floatValue());
@@ -132,7 +136,3 @@ public class MultiCharacterSelectScreen extends CustomScreen {
 }
 
 
-/* Location:              C:\Spire dev\BoardGame.jar!\BoardGame\multicharacter\MultiCharacterSelectScreen.class
- * Java compiler version: 8 (52.0)
- * JD-Core Version:       1.1.3
- */

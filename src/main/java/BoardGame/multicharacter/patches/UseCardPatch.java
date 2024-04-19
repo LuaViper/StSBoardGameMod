@@ -1,6 +1,6 @@
 package BoardGame.multicharacter.patches;
 
-import BoardGame.multicharacter.BGMultiCharacter;
+import BoardGame.multicharacter.MultiCharacter;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInstrumentPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -14,13 +14,13 @@ import javassist.expr.MethodCall;
 public class UseCardPatch {
     public static void before(AbstractCard c){
         ContextPatches.pushTargetContext(CardTargetingPatches.CardField.lastHoveredTarget.get(c));
-        if(CardCrawlGame.chosenCharacter!=BGMultiCharacter.Enums.BG_MULTICHARACTER)return;
+        if(CardCrawlGame.chosenCharacter!= MultiCharacter.Enums.BG_MULTICHARACTER)return;
         //REMINDER: copied cards (from Foreign Influence and Doppelganger) must manually set owner before playing
         ContextPatches.pushPlayerContext(CardPatches.Field.owner.get(c));
     }
     public static void after(AbstractCard c){
         ContextPatches.popTargetContext();
-        if(CardCrawlGame.chosenCharacter!=BGMultiCharacter.Enums.BG_MULTICHARACTER)return;
+        if(CardCrawlGame.chosenCharacter!= MultiCharacter.Enums.BG_MULTICHARACTER)return;
         ContextPatches.popPlayerContext();
     }
     @SpirePatch2(clz = AbstractPlayer.class, method = "useCard")

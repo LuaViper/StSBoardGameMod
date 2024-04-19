@@ -1,6 +1,6 @@
 package BoardGame.multicharacter.patches;
 
-import BoardGame.multicharacter.BGMultiCreature;
+import BoardGame.multicharacter.MultiCreature;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
@@ -49,15 +49,13 @@ public class CardTargetingPatches {
     public static boolean moreThanOneRowExists(){
         int row = -1;
         for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
-            if(m instanceof BGMultiCreature) {
-                if (!m.isDeadOrEscaped()) {
-                    int newRow = BGMultiCreature.Field.currentRow.get(m);
-                    if (newRow != row) {
-                        if (row != -1) {
-                            return true;
-                        }
-                        row = newRow;
+            if (!m.isDeadOrEscaped()) {
+                int newRow = MultiCreature.Field.currentRow.get(m);
+                if (newRow != row) {
+                    if (row != -1) {
+                        return true;
                     }
+                    row = newRow;
                 }
             }
         }
@@ -88,7 +86,7 @@ public class CardTargetingPatches {
                     AbstractMonster hoveredMonster = ReflectionHacks.getPrivate(__instance,AbstractPlayer.class,"hoveredMonster");
                     if (__instance.inSingleTargetMode && hoveredMonster != null) {
                         for(AbstractMonster m : AbstractDungeon.getMonsters().monsters){
-                            if(Objects.equals(BGMultiCreature.Field.currentRow.get(m), BGMultiCreature.Field.currentRow.get(hoveredMonster))) {
+                            if(Objects.equals(MultiCreature.Field.currentRow.get(m), MultiCreature.Field.currentRow.get(hoveredMonster))) {
                                 m.renderReticle(sb);
                             }
                         }

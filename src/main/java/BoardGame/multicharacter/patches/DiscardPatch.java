@@ -1,14 +1,11 @@
 package BoardGame.multicharacter.patches;
 
-import BoardGame.multicharacter.BGMultiCharacter;
+import BoardGame.multicharacter.MultiCharacter;
 import BoardGame.multicharacter.DiscardAtEndOfTurnMultiAction;
-import BoardGame.multicharacter.DrawCardMultiAction;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.actions.common.DiscardAtEndOfTurnAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public class DiscardPatch {
@@ -16,7 +13,7 @@ public class DiscardPatch {
     public static class DiscardCardPatch1{
         @SpirePrefixPatch
         public static SpireReturn<Void> Prefix(DiscardAtEndOfTurnAction __instance) {
-            if(AbstractDungeon.player instanceof BGMultiCharacter){
+            if(AbstractDungeon.player instanceof MultiCharacter){
                 if(ActionPatches.Field.owner.get(__instance)==null) {
                     //discard from bottom of screen to top (changes depending on currentHand)
                     //addToTop, so cycle backwards

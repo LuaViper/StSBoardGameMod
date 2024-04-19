@@ -1,6 +1,7 @@
 package BoardGame.multicharacter.patches;
 
-import BoardGame.characters.AbstractBGPlayer;
+
+import BoardGame.multicharacter.MultiCreature;
 import BoardGame.multicharacter.NullMonster;
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
@@ -23,20 +24,20 @@ public class ContextPatches {
 
     public static void pushPlayerContext(AbstractPlayer newContext){
         //TODO: can we ... like ... push energy and maybe relics and potions here too?
-        ((AbstractBGPlayer)AbstractDungeon.player).savedCurrentEnergy=EnergyPanel.totalCount;
+        MultiCreature.Field.savedCurrentEnergy.set(AbstractDungeon.player,EnergyPanel.totalCount);
         playerContextHistory.push(AbstractDungeon.player);
         if(newContext!=null) {
             AbstractDungeon.player = newContext;
-            EnergyPanel.totalCount=((AbstractBGPlayer)AbstractDungeon.player).savedCurrentEnergy;
+            EnergyPanel.totalCount = MultiCreature.Field.savedCurrentEnergy.get(AbstractDungeon.player);
         }else{
             //TODO: consider complaining loudly here -- energy tracking is liable to mess up
         }
     }
     public static void popPlayerContext(){
-        ((AbstractBGPlayer)AbstractDungeon.player).savedCurrentEnergy = EnergyPanel.totalCount;
+        MultiCreature.Field.savedCurrentEnergy.set(AbstractDungeon.player,EnergyPanel.totalCount);
         AbstractDungeon.player = playerContextHistory.pop();
         //note that if we pushContext(null)ed earlier, we are essentially loading savestate with energy, so be careful
-        EnergyPanel.totalCount=((AbstractBGPlayer)AbstractDungeon.player).savedCurrentEnergy;
+        EnergyPanel.totalCount = MultiCreature.Field.savedCurrentEnergy.get(AbstractDungeon.player);
     }
 
     public static void pushTargetContext(AbstractCreature newContext){

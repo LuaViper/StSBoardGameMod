@@ -1,9 +1,8 @@
 package BoardGame.patches;
 
-import BoardGame.cards.BGRed.BGSeverSoul;
 import BoardGame.characters.*;
 import BoardGame.dungeons.AbstractBGDungeon;
-import BoardGame.multicharacter.BGMultiCharacter;
+import BoardGame.multicharacter.MultiCharacter;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
@@ -19,7 +18,6 @@ import com.megacrit.cardcrawl.screens.VictoryScreen;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterSelectScreen;
 import com.megacrit.cardcrawl.screens.stats.CharStat;
-import com.megacrit.cardcrawl.screens.stats.StatsScreen;
 import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
 import com.megacrit.cardcrawl.ui.panels.SeedPanel;
 import com.megacrit.cardcrawl.ui.panels.TopPanel;
@@ -30,7 +28,6 @@ import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
 
 import java.util.ArrayList;
-import java.util.Collection;
 import java.util.Collections;
 
 //TODO: disable "ascension 14 unlocked!" message, if it exists
@@ -50,7 +47,7 @@ public class Ascension {
         int totalDeaths=0;
         ArrayList<Integer> maxLevels = new ArrayList<>();
         AbstractPlayer p,i,s,d,w;
-        p=new BGMultiCharacter("Prefs Lookup", BGMultiCharacter.Enums.BG_MULTICHARACTER);
+        p=new MultiCharacter("Prefs Lookup", MultiCharacter.Enums.BG_MULTICHARACTER);
         Prefs multipref = p.getPrefs();
         i=new BGIronclad("Prefs Lookup", BGIronclad.Enums.BG_IRONCLAD);
         totalVictories+= i.getCharStat().getVictoryCount();
@@ -98,7 +95,7 @@ public class Ascension {
                     //o.update();
                     if (o.selected) {
                         //if (o.c instanceof AbstractBGPlayer) {
-                        if (o.c instanceof BGMultiCharacter) {
+                        if (o.c instanceof MultiCharacter) {
                             //___isAscensionModeUnlocked[0] = false;
                             //__instance.isAscensionMode=false;
                             if((int)ReflectionHacks.getPrivate(o,CharacterOption.class,"maxAscensionLevel")>CURRENT_MAX_ASCENSION)

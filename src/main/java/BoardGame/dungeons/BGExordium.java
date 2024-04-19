@@ -1,5 +1,6 @@
 package BoardGame.dungeons;
 
+import BoardGame.BoardGame;
 import BoardGame.monsters.bgexordium.*;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
@@ -257,14 +258,21 @@ public class BGExordium
         //TODO: add BoardGame: tag in front of all monster IDs -- probably search-and-replace "BG -> "BoardGame:BG
 
 
+        if(!BoardGame.ENABLE_TEST_FEATURES){
+            monsters.add(new MonsterInfo("BoardGame:Easy Small Slimes", 2.0F));
+            monsters.add(new MonsterInfo("BoardGame:Jaw Worm (Easy)", 2.0F));
+            monsters.add(new MonsterInfo(BGCultist.ID, 2.0F));
+            monsters.add(new MonsterInfo("BoardGame:2 Louse", 2.0F));
+        }else{
+            count=4;
+            monsters.add(new MonsterInfo("Small Slimes", 2.0F));
+            monsters.add(new MonsterInfo("Jaw Worm", 2.0F));
+            monsters.add(new MonsterInfo("Cultist",2.0F));
+            monsters.add(new MonsterInfo("2 Louse", 2.0F));
+        }
 
-        //monsters.add(new MonsterInfo("BoardGame:TheGuardian", 2000.0F));
-        //monsters.add(new MonsterInfo("BoardGame:Hexaghost", 2000.0F));
-        //monsters.add(new MonsterInfo("BoardGame:SlimeBoss", 2000.0F));
-        monsters.add(new MonsterInfo("BoardGame:Easy Small Slimes", 2.0F));
-        monsters.add(new MonsterInfo("BoardGame:Jaw Worm (Easy)", 2.0F));
-        monsters.add(new MonsterInfo(BGCultist.ID,2.0F));
-        monsters.add(new MonsterInfo("BoardGame:2 Louse", 2.0F));
+
+
 
         /* 159 */     MonsterInfo.normalizeWeights(monsters);
         /* 160 */     populateMonsterList(monsters, count, false);

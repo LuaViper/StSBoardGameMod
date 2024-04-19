@@ -5,7 +5,7 @@ import BoardGame.characters.BGIronclad;
 import BoardGame.characters.BGSilent;
 import BoardGame.characters.BGWatcher;
 import BoardGame.dungeons.AbstractBGDungeon;
-import BoardGame.multicharacter.BGMultiCharacter;
+import BoardGame.multicharacter.MultiCharacter;
 import BoardGame.multicharacter.MultiCharacterSelectScreen;
 import BoardGame.patches.Ascension259Patch;
 import basemod.ReflectionHacks;
@@ -27,7 +27,6 @@ import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
-import jdk.internal.reflect.Reflection;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -254,12 +253,12 @@ public class BGNeowQuickStart {
         public static SpireReturn<Void> update(ProceedButton __instance) {
             BGNeowQuickStart.logger.info("BGNeowQuickStart: ProceedButtonUpdatePatch4");
             if (AbstractDungeon.screen == MultiCharacterSelectScreen.Enum.MULTI_CHARACTER_SELECT) {
-                if(AbstractDungeon.player instanceof BGMultiCharacter) {
-                    if(((BGMultiCharacter)AbstractDungeon.player).subcharacters.size()==1){
+                if(AbstractDungeon.player instanceof MultiCharacter) {
+                    if(((MultiCharacter)AbstractDungeon.player).subcharacters.size()==1){
                         //TODO: static BGMultiCharacter.switchToSoloMode function
                         SaveAndContinue.deleteSave(AbstractDungeon.player);
                         Ascension259Patch.applyAscension259ToSubCharacters();
-                        AbstractDungeon.player = ((BGMultiCharacter)AbstractDungeon.player).subcharacters.get(0);
+                        AbstractDungeon.player = ((MultiCharacter)AbstractDungeon.player).subcharacters.get(0);
                         CardCrawlGame.chosenCharacter = AbstractDungeon.player.chosenClass;
                         //TODO: this is reused code from AbstractBGDungeon; move to static event
                         int whoAmI=0;
@@ -277,8 +276,8 @@ public class BGNeowQuickStart {
                         }
                     }
                     AbstractEvent event=AbstractDungeon.getCurrRoom().event;
-                    if (AbstractDungeon.player instanceof BGMultiCharacter
-                            && ((BGMultiCharacter) player).subcharacters.size()!=1
+                    if (AbstractDungeon.player instanceof MultiCharacter
+                            && ((MultiCharacter) player).subcharacters.size()!=1
                     ) {
                         ReflectionHacks.setPrivate(event,AbstractEvent.class,"body", EXTRA[69] + " NL NL " + EXTRA[73]);
                     } else {

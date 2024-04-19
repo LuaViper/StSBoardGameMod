@@ -21,17 +21,21 @@ public class MultiCharacterSwapButton {
   
   private Color glowColor = new Color(1.0F, 0.8F, 0.2F, 0.0F);
   
-  public MultiCharacterSwapButton(String optionName, AbstractPlayer c, String buttonUrl) {
+  public MultiCharacterSwapButton(String optionName, AbstractPlayer c, Texture texture) {
     this.name = optionName;
     this.hb = new Hitbox(HB_W, HB_W);
-    this.buttonImg = TextureLoader.getTexture(buttonUrl);
+    this.buttonImg = texture;
     this.c = c;
     this.charInfo = null;
     this.charInfo = c.getLoadout();
     this.flavorText = this.charInfo.flavorText;
     this.unlocksRemaining = 5 - UnlockTracker.getUnlockLevel(c.chosenClass);
   }
-  
+  public MultiCharacterSwapButton(String optionName, AbstractPlayer c, String buttonUrl) {
+    this(optionName,c,TextureLoader.getTexture(buttonUrl));
+  }
+
+
   public void update() {
     updateHitbox();
   }

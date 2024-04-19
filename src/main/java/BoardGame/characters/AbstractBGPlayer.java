@@ -34,8 +34,7 @@ public abstract class AbstractBGPlayer extends CustomPlayer {
     public int shivsPlayedThisTurn=0;
     public boolean startTurnPhaseIsActive=true;
     public boolean stanceChangedThisTurn=false;
-    public int currentRow=0;
-    public int savedCurrentEnergy=0;
+    //public int currentRow=0;
 
     public void applyStartOfTurnRelics() {
         super.applyStartOfTurnRelics();
