@@ -5,8 +5,10 @@ import BoardGame.multicharacter.MultiCharacter;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.ui.buttons.EndTurnButton;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
@@ -24,10 +26,22 @@ public class CardPatches {
     }
 
 
+    @SpirePatch2(clz = AbstractCard.class, method = SpirePatch.CONSTRUCTOR,
+    paramtypez = { String.class, String.class, String.class, int.class, String.class, AbstractCard.CardType.class, AbstractCard.CardColor.class, AbstractCard.CardRarity.class, AbstractCard.CardTarget.class, DamageInfo.DamageType.class })
+    public static class MarkConstructedCardOwnerPatch {
+        @SpirePostfixPatch
+        private static void Foo(AbstractCard __instance) {
+            if(!(AbstractDungeon.player instanceof MultiCharacter)){
+                Field.owner.set(__instance,AbstractDungeon.player);
+            }
+        }
+    }
+
+
 
     @SpirePatch2(clz = AbstractPlayer.class, method = "preBattlePrep")
-    public static class MarkCardOwnerPatch {
-        @SpireInsertPatch(locator = CardPatches.MarkCardOwnerPatch.Locator.class,
+    public static class MarkPreBattleCardOwnerPatch {
+        @SpireInsertPatch(locator = Locator.class,
                 localvars = {"foundClasses"}
         )
         private static void Insert(AbstractPlayer __instance) {

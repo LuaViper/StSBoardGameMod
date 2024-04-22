@@ -82,6 +82,7 @@ public class GridBackground {
     }
     public void render(SpriteBatch sb){
         if(!BoardGame.ENABLE_TEST_FEATURES)return;
+        if(!visible)return;
         for(GridSubgrid sub : subGrids){
             sub.render(sb);
         }

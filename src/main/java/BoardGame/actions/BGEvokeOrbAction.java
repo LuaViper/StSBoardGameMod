@@ -47,6 +47,8 @@ public class BGEvokeOrbAction extends AbstractGameAction {
     public static class EvokeOrbActionPatch {
         @SpirePrefixPatch
         public static SpireReturn<Void> Prefix(EvokeOrbAction __instance, int ___orbCount, float ___duration, float ___startDuration, boolean ___isDone) {
+            if(true)return SpireReturn.Continue();//!!!
+
             if(!(CardCrawlGame.dungeon instanceof AbstractBGDungeon))
                 return SpireReturn.Continue();
 

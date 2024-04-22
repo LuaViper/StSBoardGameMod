@@ -40,17 +40,19 @@ public class MultiCharacterSelectScreen extends CustomScreen {
     return Enum.MULTI_CHARACTER_SELECT;
   }
   
-  public String description = BoardGame.ENABLE_TEST_FEATURES ? "Choose up to 4 characters." : "Choose 1 character." ;
+  public String description;
   
   public ArrayList<MultiCharacterSelectButton> buttons = new ArrayList<>();
   
   public MultiCharacterSelectScreen() {
-    if(!BoardGame.ENABLE_TEST_FEATURES) {
+    if(true) {
+      //Board Game
       this.buttons.add(new MultiCharacterSelectButton("The Ironclad", new BGIronclad("The Ironclad", BGIronclad.Enums.BG_IRONCLAD), "images/ui/charSelect/ironcladButton.png"));
       this.buttons.add(new MultiCharacterSelectButton("The Silent", new BGSilent("The Silent", BGSilent.Enums.BG_SILENT), "images/ui/charSelect/silentButton.png"));
       this.buttons.add(new MultiCharacterSelectButton("The Defect", new BGDefect("The Defect", BGDefect.Enums.BG_DEFECT), "images/ui/charSelect/defectButton.png"));
       this.buttons.add(new MultiCharacterSelectButton("The Watcher", new BGWatcher("The Watcher", BGWatcher.Enums.BG_WATCHER), "images/ui/charSelect/watcherButton.png"));
     }else {
+      //Vanilla
       this.buttons.add(new MultiCharacterSelectButton("The Ironclad", BaseMod.findCharacter(AbstractPlayer.PlayerClass.IRONCLAD), "images/ui/charSelect/ironcladButton.png"));
       this.buttons.add(new MultiCharacterSelectButton("The Silent", BaseMod.findCharacter(AbstractPlayer.PlayerClass.THE_SILENT), "images/ui/charSelect/silentButton.png"));
       this.buttons.add(new MultiCharacterSelectButton("The Defect", BaseMod.findCharacter(AbstractPlayer.PlayerClass.DEFECT), "images/ui/charSelect/defectButton.png"));
@@ -113,6 +115,7 @@ public class MultiCharacterSelectScreen extends CustomScreen {
   }
   
   public void render(SpriteBatch sb) {
+    description = BoardGame.ENABLE_TEST_FEATURES ? "Choose up to 4 characters." : "Choose 1 character." ;
     FontHelper.renderFontCentered(sb, FontHelper.buttonLabelFont, this.description, (Settings.WIDTH / 2), Settings.HEIGHT/2f - 120.0F * Settings.scale, Settings.CREAM_COLOR);
     for (MultiCharacterSelectButton b : this.buttons)
       b.render(sb); 

@@ -24,7 +24,8 @@ public class SoulsPatches {
     public static class SoulContextBefore {
         @SpirePrefixPatch
         public static void Foo(Soul __instance) {
-            if(__instance.card!=null && __instance.card instanceof AbstractBGCard){
+            //if(__instance.card!=null && __instance.card instanceof AbstractBGCard){
+            if(__instance.card!=null){
                 ContextPatches.pushPlayerContext(CardPatches.Field.owner.get(__instance.card));
                 Field.contextActive.set(__instance,true);
             }

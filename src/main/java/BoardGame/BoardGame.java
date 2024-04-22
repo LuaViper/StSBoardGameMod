@@ -78,8 +78,9 @@ public class BoardGame implements
         PostInitializeSubscriber,
         PreStartGameSubscriber{
 
-    public static boolean ENABLE_TEST_FEATURES=true;
-
+    //////////////////////////////////////////////////////////////////////////////
+    public static boolean ENABLE_TEST_FEATURES=false;
+    //////////////////////////////////////////////////////////////////////////////
 
     // Make sure to implement the subscribers *you* are using (read basemod wiki). Editing cards? EditCardsSubscriber.
     // Making relics? EditRelicsSubscriber. etc., etc., for a full list and how to make your own, visit the basemod wiki.

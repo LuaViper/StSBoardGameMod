@@ -30,6 +30,8 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
+import com.megacrit.cardcrawl.orbs.AbstractOrb;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
@@ -39,11 +41,11 @@ import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-//TODO: clear debuffs when combat ends so Weak doesn't affect card reward numbers displayed? not sure how this happened?
+//TODO: oops we forgot Watcher's add-miracle-to-hand-at-start-of-combat relic
+
+//TODO LATER: clear debuffs when combat ends so Weak doesn't affect card reward numbers displayed? not sure how this happened?
 
 //REMINDER: players act from bottom lane to top lane, but monsters act from top lane to bottom lane
-//TODO: each player has their own EnergyManager, but it checks OverlayMenu.EnergyPanel.totalCount, currently a singleton
-// EnergyManager is currently short enough that we might be able to patch it completely
 
 public class MultiCharacter extends AbstractBGPlayer {
 //public class MultiCharacter extends CustomPlayer {
@@ -109,6 +111,7 @@ public class MultiCharacter extends AbstractBGPlayer {
 
     public MultiCharacter(String name, AbstractPlayer.PlayerClass setClass) {
         super(name, setClass, orbTextures, "BoardGameResources/images/char/defaultCharacter/orb/vfx.png", null, "");
+        if(BoardGame.ENABLE_TEST_FEATURES)TEXT[0]=TEXT[3];
         this.blockTextColor = new Color(0.9F, 0.9F, 0.9F, 0.0F);
         this.blockScale = 1.0F;
         initializeClass((String) null, "images/characters/ironclad/shoulder2.png", "images/characters/ironclad/shoulder.png", "images/characters/ironclad/corpse.png",
@@ -170,6 +173,8 @@ public class MultiCharacter extends AbstractBGPlayer {
         if (ModHelper.isModEnabled("ControlledChaos"))
             relics.add("Frozen Eye");
         int index = 0;
+
+        //TODO: "if(BoardGame.USE_BOARDGAME_RULES)" or inverse
         for (String s : relics) {
             if (s.equals(BGTheDieRelic.ID)) {
                 RelicLibrary.getRelic(s).makeCopy().instantObtain((AbstractPlayer) this, index, false);
@@ -243,22 +248,59 @@ public class MultiCharacter extends AbstractBGPlayer {
         return TEXT[2];
     }
 
-    public void applyStartOfTurnRelics() {
-        super.applyStartOfTurnRelics();
-        this.shivsPlayedThisTurn = 0;
-        this.stanceChangedThisTurn = false;
-    }
-
-
 
     public void preBattlePrep() {
         super.preBattlePrep();
         if (handLayoutHelper.currentHand < 0) handLayoutHelper.changeHand(0);
+
         for (AbstractPlayer c : this.subcharacters) {
+            ContextPatches.pushPlayerContext(c);
             c.preBattlePrep();
+            ContextPatches.popPlayerContext();
         }
         AbstractScenePatches.AbstractSceneExtraInterface.gridBackground.get(AbstractDungeon.scene).resetGridAtStartOfCombat();
     }
+
+    public void applyPreCombatLogic() {
+        //don't super
+        for (AbstractPlayer c : this.subcharacters) {
+            ContextPatches.pushPlayerContext(c);
+            c.applyPreCombatLogic();
+            ContextPatches.popPlayerContext();
+        }
+    }
+
+
+    public void applyStartOfCombatLogic() {
+        super.applyStartOfCombatLogic();
+        for (AbstractPlayer c : this.subcharacters) {
+            ContextPatches.pushPlayerContext(c);
+            c.applyStartOfCombatLogic();
+            ContextPatches.popPlayerContext();
+        }
+    }
+
+    public void applyStartOfCombatPreDrawLogic() {
+        super.applyStartOfCombatPreDrawLogic();
+        for (AbstractPlayer c : this.subcharacters) {
+            ContextPatches.pushPlayerContext(c);
+            c.applyStartOfCombatPreDrawLogic();
+            ContextPatches.popPlayerContext();
+        }
+    }
+
+
+    public void applyStartOfTurnRelics() {
+        super.applyStartOfTurnRelics();
+        this.shivsPlayedThisTurn = 0;
+        this.stanceChangedThisTurn = false;
+        for (AbstractPlayer c : this.subcharacters) {
+            ContextPatches.pushPlayerContext(c);
+            c.applyStartOfTurnRelics();
+            ContextPatches.popPlayerContext();
+        }
+    }
+
 
     public void updateInput(){
         super.updateInput();
@@ -331,14 +373,31 @@ public class MultiCharacter extends AbstractBGPlayer {
         }
     }
 
+    @Override
     public void updateOrb(int orbCount){
         for(AbstractPlayer c : MultiCharacter.getSubcharacters()){
             c.updateOrb(orbCount);
         }
     }
+    @Override
     public void renderOrb(SpriteBatch sb, boolean enabled, float current_x, float current_y) {
         //do nothing
     }
+
+    @Override
+    public void loseBlock(){
+        for(AbstractPlayer c : MultiCharacter.getSubcharacters()) {
+            ContextPatches.pushPlayerContext(c);
+            if (!AbstractDungeon.player.hasPower("Barricade") && !AbstractDungeon.player.hasPower("Blur"))
+                if (!AbstractDungeon.player.hasRelic("Calipers")) {
+                    AbstractDungeon.player.loseBlock();
+                } else {
+                    AbstractDungeon.player.loseBlock(15);
+                }
+            ContextPatches.popPlayerContext();
+        }
+    }
+
 
     @SpirePatch2(clz = AbstractPlayer.class, method = "renderCardHotKeyText", paramtypez = {SpriteBatch.class})
     public static class RenderCardHotKeyTextPatch {
@@ -352,6 +411,19 @@ public class MultiCharacter extends AbstractBGPlayer {
             return SpireReturn.Continue();
         }
     }
+
+
+
+    public void onVictory() {
+        //don't super
+        for (AbstractPlayer c : this.subcharacters) {
+            ContextPatches.pushPlayerContext(c);
+            c.onVictory();
+            ContextPatches.popPlayerContext();
+        }
+    }
+
+
 
 
 }

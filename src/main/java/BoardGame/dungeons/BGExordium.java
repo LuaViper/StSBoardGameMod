@@ -245,7 +245,7 @@ public class BGExordium
     }
 
     protected void generateMonsters() {
-        generateWeakEnemies(4);
+        generateWeakEnemies(1);
         //weak enemy pool will be cleared immediately after first encounter is populated
         generateStrongEnemies(12);
         generateElites(3);
@@ -258,25 +258,24 @@ public class BGExordium
         //TODO: add BoardGame: tag in front of all monster IDs -- probably search-and-replace "BG -> "BoardGame:BG
 
 
-        if(!BoardGame.ENABLE_TEST_FEATURES){
-            monsters.add(new MonsterInfo("BoardGame:Easy Small Slimes", 2.0F));
-            monsters.add(new MonsterInfo("BoardGame:Jaw Worm (Easy)", 2.0F));
-            monsters.add(new MonsterInfo(BGCultist.ID, 2.0F));
-            monsters.add(new MonsterInfo("BoardGame:2 Louse", 2.0F));
-        }else{
-            count=4;
-            monsters.add(new MonsterInfo("Small Slimes", 2.0F));
-            monsters.add(new MonsterInfo("Jaw Worm", 2.0F));
-            monsters.add(new MonsterInfo("Cultist",2.0F));
-            monsters.add(new MonsterInfo("2 Louse", 2.0F));
+        if (BoardGame.ENABLE_TEST_FEATURES) {
+            count = 4;
         }
+        monsters.add(new MonsterInfo("BoardGame:Easy Small Slimes", 2.0F));
+        monsters.add(new MonsterInfo("BoardGame:Jaw Worm (Easy)", 2.0F));
+        monsters.add(new MonsterInfo(BGCultist.ID, 2.0F));
+        monsters.add(new MonsterInfo("BoardGame:2 Louse", 2.0F));
 
+        ////vanilla test
+//            count=4;
+//            monsters.add(new MonsterInfo("Small Slimes", 2.0F));
+//            monsters.add(new MonsterInfo("Jaw Worm", 2.0F));
+//            monsters.add(new MonsterInfo("Cultist",2.0F));
+//            monsters.add(new MonsterInfo("2 Louse", 2.0F));
 
-
-
-        /* 159 */     MonsterInfo.normalizeWeights(monsters);
-        /* 160 */     populateMonsterList(monsters, count, false);
-        /*     */   }
+        MonsterInfo.normalizeWeights(monsters);
+        populateMonsterList(monsters, count, false);
+    }
 
 
     protected void generateStrongEnemies(int count) {

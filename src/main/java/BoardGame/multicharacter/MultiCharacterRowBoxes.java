@@ -68,13 +68,15 @@ public class MultiCharacterRowBoxes {
       AbstractPlayer s = c.subcharacters.get(i);
       MultiCreature.Field.currentRow.set(s,i);
       MultiCharacterSwapButton b;
-      if(!BoardGame.BoardGame.ENABLE_TEST_FEATURES) {
-        b = new MultiCharacterSwapButton(s.name, s, ((AbstractBGPlayer) s).getMultiSwapButtonUrl());
-      }else{
-//      MultiCharacterSwapButton b = new MultiCharacterSwapButton(s.name, s,
-//              ReflectionHacks.getPrivate(s.getCharacterSelectOption(),CharacterOption.class,"portraitUrl"));
-        b = new MultiCharacterSwapButton(s.name, s, s.shoulderImg);
-      }
+
+      //Board Game
+      b = new MultiCharacterSwapButton(s.name, s, ((AbstractBGPlayer) s).getMultiSwapButtonUrl());
+//      //vanilla
+//      b = new MultiCharacterSwapButton(s.name, s, s.shoulderImg);
+//      //ideally we make this work instead
+////      MultiCharacterSwapButton b = new MultiCharacterSwapButton(s.name, s,
+////              ReflectionHacks.getPrivate(s.getCharacterSelectOption(),CharacterOption.class,"portraitUrl"));
+
       Hitbox hb = b.hb;
       hb.y = this.posY + 8.0F + (80 * i) * Settings.scale * 2.0F;
       this.swapButtons.add(b);
