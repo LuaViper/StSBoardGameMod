@@ -3,18 +3,30 @@
 package BoardGame.powers;
 
 import BoardGame.BoardGame;
+import BoardGame.dungeons.AbstractBGDungeon;
+import BoardGame.dungeons.BGTheCity;
+import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.screens.DungeonMapScreen;
+import javassist.CannotCompileException;
+import javassist.CtBehavior;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+
+import java.util.ArrayList;
 
 import static BoardGame.powers.WeakVulnCancel.WEAKVULN_ZEROHITS;
 
@@ -101,7 +113,15 @@ public class BGVulnerablePower extends AbstractBGPower {
         }
         if (type == DamageInfo.DamageType.NORMAL) {
             if(this.amount>0){
-                return damage * 2.0F;
+                int stacks=1;
+                if(AbstractDungeon.player.hasPower("BGVulnerable")) {
+                    stacks = AbstractDungeon.player.getPower("BGVulnerable").amount;
+                }
+                int index=getEffectiveIndex(whichMonsterIsCalculatingDamage);
+
+                if(index<stacks) {
+                    return damage * 2.0F;
+                }
             }
         }
 
@@ -148,6 +168,64 @@ public int onAttacked(DamageInfo info, int damageAmount) {
         if(this.owner==AbstractDungeon.player){
             for (AbstractMonster mo : (AbstractDungeon.getCurrRoom()).monsters.monsters) {
                 addToTop((AbstractGameAction) new RemoveSpecificPowerAction((AbstractCreature) mo, (AbstractCreature) mo, "BGVulnerableWatchPlayer"));
+            }
+        }
+    }
+
+
+
+    public static AbstractMonster whichMonsterIsCalculatingDamage = null;
+    public static int getEffectiveIndex(AbstractMonster monster){
+        if(AbstractDungeon.lastCombatMetricKey.equals("BoardGame:A7 Shelled Parasite and Fungi Beast"))return 0;
+        if(monster==null)return 0;
+        int index=0;
+        for(AbstractMonster m : AbstractDungeon.getMonsters().monsters){
+            if(!(m.halfDead || m.isDying || m.isDead)){
+                if (m.getIntentBaseDmg() > 0) {
+                    if (m == monster) break;
+                    index += 1;
+                }
+            }
+        }
+        return index;
+    }
+    @SpirePatch(clz = AbstractMonster.class, method = "calculateDamage",
+            paramtypez = {int.class})
+    public static class MonsterCalculateDamagePatch{
+        @SpirePrefixPatch
+        public static void Foo(AbstractMonster __instance) {
+            whichMonsterIsCalculatingDamage=__instance;
+        }
+    }
+    @SpirePatch(clz = AbstractMonster.class, method = "calculateDamage",
+            paramtypez = {int.class})
+    public static class MonsterCalculateDamagePatch2{
+        @SpirePostfixPatch
+        public static void Foo(AbstractMonster __instance) {
+            whichMonsterIsCalculatingDamage=null;
+        }
+    }
+
+    @SpirePatch(clz = AbstractMonster.class, method = "die",
+            paramtypez = {boolean.class})
+    public static class MonsterCalculateDamagePatch3{
+        @SpireInsertPatch(
+                locator= Locator.class,
+                localvars={}
+        )
+        public static void Foo(AbstractMonster __instance) {
+            if(AbstractDungeon.player.hasPower("BGVulnerable")) {
+                for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
+                    if (m.getIntentBaseDmg() > 0) {
+                        m.createIntent();
+                    }
+                }
+            }
+        }
+        private static class Locator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new Matcher.FieldAccessMatcher(AbstractMonster.class,"currentHealth");
+                return LineFinder.findInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher);
             }
         }
     }

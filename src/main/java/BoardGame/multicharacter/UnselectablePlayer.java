@@ -30,8 +30,11 @@ public interface UnselectablePlayer {
         public static ExprEditor Foo() {
             return new ExprEditor() {
                 public void edit(MethodCall m) throws CannotCompileException {
+//                    if (m.getClassName().equals(ArrayList.class.getName()) && m.getMethodName().equals("add")) {
+//                        m.replace("{ if(!(character instanceof "+UnselectablePlayer.class.getName()+")){ $_ = $proceed($$); } }");
+//                    }
                     if (m.getClassName().equals(ArrayList.class.getName()) && m.getMethodName().equals("add")) {
-                        m.replace("{ if(!(character instanceof "+UnselectablePlayer.class.getName()+")){ $_ = $proceed($$); } }");
+                        m.replace("{ if(!(character instanceof "+MultiCharacter.class.getName()+")){ $_ = $proceed($$); } }");
                     }
                 }
             };

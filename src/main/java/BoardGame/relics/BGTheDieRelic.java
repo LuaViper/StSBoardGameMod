@@ -72,7 +72,7 @@ public class BGTheDieRelic extends AbstractBGRelic implements DieControlledRelic
         this.description = getUpdatedDescription();
     }
 
-    public void onAboutToUseCard(AbstractCard card) {
+    public void onAboutToUseCard(AbstractCard card, AbstractCreature originalTarget) {
         if ((AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT) {
             //mayhem fix
             //TODO: mayhem fix is still wrong -- player should have the chance to lock the roll + activate relics before playing mayhem (some cards change depending on roll)

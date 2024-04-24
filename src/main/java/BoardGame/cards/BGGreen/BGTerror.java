@@ -1,6 +1,7 @@
 package BoardGame.cards.BGGreen;
 
 import BoardGame.cards.AbstractBGCard;
+import BoardGame.characters.BGSilent;
 import BoardGame.powers.BGVulnerablePower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -18,7 +19,7 @@ public class BGTerror extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGTerror");
 
     public BGTerror() {
-        super("BGTerror", cardStrings.NAME, "green/skill/terror", 1, cardStrings.DESCRIPTION, CardType.SKILL, CardColor.GREEN, CardRarity.UNCOMMON, CardTarget.ENEMY);
+        super("BGTerror", cardStrings.NAME, "green/skill/terror", 1, cardStrings.DESCRIPTION, CardType.SKILL, BGSilent.Enums.BG_GREEN, CardRarity.UNCOMMON, CardTarget.ENEMY);
         this.baseMagicNumber=1;
         this.magicNumber = this.baseMagicNumber;
 

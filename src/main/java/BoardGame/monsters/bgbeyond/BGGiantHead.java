@@ -42,7 +42,7 @@ public class BGGiantHead extends AbstractBGMonster implements BGDamageIcons {
     private int count = 5; private static final int DEATH_DMG = 30; private static final int GLARE_WEAK = 1; private static final int INCREMENT_DMG = 5; private static final int A_2_DEATH_DMG = 40; private int startingDeathDmg; private static final byte GLARE = 1; private static final byte IT_IS_TIME = 2; private static final byte COUNT = 3;
     private int secondaryDmg=0;
     public BGGiantHead() {
-        super(NAME, "GiantHead", 500, 0.0F, -40.0F, 460.0F, 300.0F, null, -70.0F, 40.0F);
+        super(NAME, "BGGiantHead", 500, 0.0F, -40.0F, 460.0F, 300.0F, null, -70.0F, 40.0F);
         this.type = AbstractMonster.EnemyType.ELITE;
         this.dialogX = -100.0F * Settings.scale;
         this.dialogY -= 20.0F * Settings.scale;

@@ -158,5 +158,5 @@ public class AbstractBGPower extends AbstractPower {
      }
 
 
-     public void onAboutToUseCard(AbstractCard c){}
+     public void onAboutToUseCard(AbstractCard c,AbstractCreature target){}
 }

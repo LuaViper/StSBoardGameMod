@@ -109,7 +109,8 @@
     "FLAVOR": "\"These would be good here.\"",
     "DESCRIPTIONS": [
       "#yOnce #yper #ycombat: NL Keep your leftover #yBlock [BoardGame:BlockIcon] from last turn. NL (Gain #b",
-      " Block.)"
+      " Block.)",
+      "#yOnce #yper #ycombat: NL [BoardGame:BlockIcon] #yBlock is not removed at the start of your next turn."
     ]
   },
   "BGCalling Bell": {

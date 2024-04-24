@@ -13,10 +13,6 @@ import java.util.Collections;
 
 public class GridBackground {
 
-
-
-    //TODO NEXT: grid can't actually go on overlay menu, it needs to show up behind characters
-
     public ArrayList<GridSubgrid> subGrids=new ArrayList<>();
     public GridSubgrid playerGrid;
     public GridSubgrid enemyGrid;

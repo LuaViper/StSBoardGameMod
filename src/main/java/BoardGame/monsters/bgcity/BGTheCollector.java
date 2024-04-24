@@ -73,7 +73,7 @@ public class BGTheCollector extends AbstractBGMonster implements BGDamageIcons {
     private static final byte REVIVE = 5;
 
     public BGTheCollector() {
-        super(NAME, "TheCollector", 282, 15.0F, -40.0F, 300.0F, 390.0F, null, 60.0F, 135.0F);
+        super(NAME, "BGTheCollector", 282, 15.0F, -40.0F, 300.0F, 390.0F, null, 60.0F, 135.0F);
 
         this.dialogX = -90.0F * Settings.scale;
         this.dialogY = 10.0F * Settings.scale;

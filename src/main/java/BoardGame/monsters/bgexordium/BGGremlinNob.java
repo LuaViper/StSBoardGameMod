@@ -49,7 +49,7 @@ public class BGGremlinNob extends AbstractBGMonster implements BGDamageIcons {
     }
     private static final int DEBUFF_AMT = 2; private int bashDmg; private int rushDmg; private static final byte BULL_RUSH = 1; private static final byte SKULL_BASH = 2; private static final byte BELLOW = 3; private static final int ANGRY_LEVEL = 2; private boolean usedBellow = false; private boolean canVuln;
     public BGGremlinNob(float x, float y, boolean setVuln) {
-        super(NAME, "GremlinNob", 86, -70.0F, -10.0F, 270.0F, 380.0F, null, x, y);
+        super(NAME, "BGGremlinNob", 86, -70.0F, -10.0F, 270.0F, 380.0F, null, x, y);
         this.intentOffsetX = -30.0F * Settings.scale;
         this.type = AbstractMonster.EnemyType.ELITE;
         this.dialogX = -60.0F * Settings.scale;

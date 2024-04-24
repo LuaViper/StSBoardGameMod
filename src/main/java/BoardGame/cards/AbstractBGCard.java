@@ -18,6 +18,7 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
+import com.megacrit.cardcrawl.actions.utility.UnlimboAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -315,10 +316,12 @@ public abstract class AbstractBGCard extends CustomCard
                                     card.calculateCardDamage(target);
                                 }
                                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new NewQueueCardAction(card, target, true, true));
+                                AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new UnlimboAction(card,card.exhaust));
                             };
                             AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new TargetSelectScreenAction(tssAction, "Choose a target for " + card.name + ".")); //TODO: localization
                         } else {
                             AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new NewQueueCardAction(card, null, true, true));
+                            AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new UnlimboAction(card,card.exhaust));
                         }
                     }
                 }

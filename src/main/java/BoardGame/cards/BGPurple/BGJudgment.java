@@ -7,6 +7,7 @@ import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
+import com.megacrit.cardcrawl.actions.watcher.JudgementAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -39,7 +40,9 @@ public class BGJudgment extends AbstractBGCard {
             addToBot((AbstractGameAction)new WaitAction(0.8F));
             addToBot((AbstractGameAction)new VFXAction((AbstractGameEffect)new GiantTextEffect(m.hb.cX, m.hb.cY)));
         }
-        addToBot((AbstractGameAction)new BGJudgmentAction((AbstractCreature)m, this.magicNumber));
+        //addToBot((AbstractGameAction)new BGJudgmentAction((AbstractCreature)m, this.magicNumber));
+        //apparently Judgment DOES kill Nemesis
+        addToBot((AbstractGameAction)new JudgementAction((AbstractCreature)m, this.magicNumber));
     }
 
     public void upgrade() {

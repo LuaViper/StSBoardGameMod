@@ -3,15 +3,20 @@
 
 package BoardGame.relics;
 
+import BoardGame.powers.BGWeakPower;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.BlurPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import javassist.CannotCompileException;
@@ -47,7 +52,8 @@ public class BGCalipers
 
     public String getUpdatedDescription() {
         logger.info("BGCalipers.getUpdatedDescription...");
-        String desc = this.DESCRIPTIONS[0] + blockLastTurn + this.DESCRIPTIONS[1];
+        //String desc = this.DESCRIPTIONS[0] + blockLastTurn + this.DESCRIPTIONS[1];
+        String desc = this.DESCRIPTIONS[2];
         if(this.usedUp)desc+=DieControlledRelic.USED_THIS_COMBAT; else desc+=DieControlledRelic.RIGHT_CLICK_TO_ACTIVATE;
         return desc;
     }
@@ -55,8 +61,10 @@ public class BGCalipers
 
 
     @Override
-    public void onRightClick() {// On right click
-        if (!isObtained || usedThisTurn || !isPlayerTurn || !(blockLastTurn>0)) {
+    public
+    void onRightClick() {// On right click
+        if (!isObtained || usedThisTurn || !isPlayerTurn) {
+        //if (!isObtained || usedThisTurn || !isPlayerTurn || !(blockLastTurn>0)) {
             // If it has been used this turn, or the player doesn't actually have the relic (i.e. it's on display in the shop room), or it's the enemy's turn
             return; // Don't do anything.
         }
@@ -66,7 +74,8 @@ public class BGCalipers
             flash(); // Flash
             stopPulse(); // And stop the pulsing animation (which is started in atPreBattle() below)
 
-            addToBot((AbstractGameAction)new GainBlockAction(AbstractDungeon.player,blockLastTurn));
+            //addToBot((AbstractGameAction)new GainBlockAction(AbstractDungeon.player,blockLastTurn));
+            addToBot(new ApplyPowerAction(AbstractDungeon.player, AbstractDungeon.player, new BlurPower(AbstractDungeon.player, 1), 1));
 
             /* Used Up (Combat) */ {this.grayscale = true; this.usedUp=true; this.description = getUpdatedDescription();this.tips.clear();this.tips.add(new PowerTip(this.name, this.description));initializeTips();}
         }

@@ -1301,8 +1301,8 @@
     "DESCRIPTION": "!B! [BoardGame:BlockIcon] to any player. NL Enter boardgame:Calm."
   },
   "BoardGame:BGVoidCard": {
-    "NAME": "Void",
-    "DESCRIPTION": "Exhaust. NL This card automatically plays when drawn."
+    "NAME": "Slimed",
+    "DESCRIPTION": "Exhaust. NL When you draw this card, you must immediately pay [E] to Exhaust it, if able."
   },
   "BoardGame:BGVault": {
     "NAME": "Vault",

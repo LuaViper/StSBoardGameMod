@@ -46,7 +46,7 @@ public class BGTrigger2DieAbilityPower extends AbstractBGPower implements Manual
         this.description = DESCRIPTIONS[0];
     }
 
-    public void onAboutToUseCard(AbstractCard card) {
+    public void onAboutToUseCard(AbstractCard card, AbstractCreature originalTarget) {
         //mayhem fix
         //TODO: mayhem fix is still wrong -- player should have the chance to lock the roll + activate relics before playing mayhem (some cards change depending on roll)
         if(!card.isInAutoplay) {

@@ -2,6 +2,7 @@ package BoardGame.cards.BGColorless;
 
 import BoardGame.actions.BGXCostCardAction;
 import BoardGame.cards.AbstractBGAttackCardChoice;
+import BoardGame.cards.AbstractBGCard;
 import BoardGame.cards.BGRed.BGWhirlwind;
 import BoardGame.characters.BGColorless;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -20,6 +21,7 @@ public class BGXCostChoice extends AbstractBGAttackCardChoice {
     private AbstractCard doppelgangerCard;
 
     public boolean dontExpendResources;
+    public AbstractCard originalXCostCard;
 
     public BGXCostChoice(){
         this(new BGWhirlwind(), -1, true, null);
@@ -30,7 +32,7 @@ public class BGXCostChoice extends AbstractBGAttackCardChoice {
     }
 
     public BGXCostChoice(AbstractCard card, int energyOnUse, boolean dontExpendResources, BGXCostCardAction.XCostAction action, AbstractCard doppelgangerCard) {
-        super("BGXCostChoice", cardStrings.NAME, card.assetUrl, energyOnUse, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, BGColorless.Enums.CARD_COLOR, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE);
+        super("BGXCostChoice", cardStrings.NAME, doppelgangerCard==null?card.assetUrl:doppelgangerCard.assetUrl, energyOnUse, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, BGColorless.Enums.CARD_COLOR, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE);
 
         //Important: original card class must check for energy/freeplay restrictions (see BGWhirlwind.java for example)
         if(cost==-1) {
@@ -39,6 +41,7 @@ public class BGXCostChoice extends AbstractBGAttackCardChoice {
             this.name=card.name;
             this.originalName=card.originalName;
         }
+        this.originalXCostCard =card;
         this.baseMagicNumber=cost;
         this.magicNumber=cost;
         this.dontExpendResources=dontExpendResources;
@@ -67,10 +70,13 @@ public class BGXCostChoice extends AbstractBGAttackCardChoice {
 
     public void onChoseThisOption() {
         if(action!=null) {
-            if(this.copiedCard!=null){
-                this.copiedCard.copiedCardEnergyOnUse=this.cost;
+            if(this.originalXCostCard instanceof AbstractBGCard) {
+//                if (((AbstractBGCard)this.card).copiedCard != null) {
+//                    this.copiedCard.copiedCardEnergyOnUse = this.cost; //TODO: this line is *probably* deprecated
+//                }
+                this.originalXCostCard.energyOnUse = this.cost;
+                action.execute(this.cost, this.dontExpendResources);
             }
-            action.execute(this.cost,this.dontExpendResources);
         }
     }
 

@@ -26,6 +26,7 @@ import java.util.ArrayList;
 
 
 public class BGAboutToUseCard {
+    public static CardQueueItem cardQueueItemInstance=null;
     private AbstractCard targetCard;
 
     public AbstractCreature target = null;
@@ -33,23 +34,25 @@ public class BGAboutToUseCard {
     public static void process(AbstractCard card, AbstractCreature target) {
         for (AbstractPower p : AbstractDungeon.player.powers) {
             if (!card.dontTriggerOnUseCard && p instanceof AbstractBGPower)
-                ((AbstractBGPower)p).onAboutToUseCard(card);
+                ((AbstractBGPower)p).onAboutToUseCard(card,target);
         }
         for (AbstractRelic r : AbstractDungeon.player.relics) {
             if (!card.dontTriggerOnUseCard && r instanceof AbstractBGRelic)
-                ((AbstractBGRelic)r).onAboutToUseCard(card);
+                ((AbstractBGRelic)r).onAboutToUseCard(card,target);
         }
     }
 
     //TODO: there are multiple CardQueueItem constructors, make sure we don't need any more of these.
     // could also try AbstractPlayer.playCard instead.
-    @SpirePatch2(clz= CardQueueItem.class, method= SpirePatch.CONSTRUCTOR,
+    @SpirePatch2(clz = CardQueueItem.class, method= SpirePatch.CONSTRUCTOR,
         paramtypez = {AbstractCard.class, AbstractMonster.class})
     public static class Foo{
         @SpirePrefixPatch
-        public static void Foo(AbstractCard ___card, AbstractMonster ___monster) {
+        public static void Foo(CardQueueItem __instance, AbstractCard ___card, AbstractMonster ___monster) {
             if(CardCrawlGame.dungeon instanceof AbstractBGDungeon){
+                cardQueueItemInstance=__instance;
                 BGAboutToUseCard.process(___card,___monster);
+                cardQueueItemInstance=null;
             }
         }
     }

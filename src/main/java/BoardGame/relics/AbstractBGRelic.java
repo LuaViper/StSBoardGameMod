@@ -7,6 +7,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -152,7 +153,7 @@ public abstract class AbstractBGRelic extends AbstractRelic {
             Collections.shuffle(bossRelicDeck, new java.util.Random(relicRng.randomLong()));
         }
 
-    public void onAboutToUseCard(AbstractCard card) {
+    public void onAboutToUseCard(AbstractCard card, AbstractCreature originalTarget) {
     }
 //    }
 

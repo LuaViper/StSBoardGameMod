@@ -26,12 +26,14 @@ public class SpikerReflectAction extends AbstractGameAction {
             AbstractDungeon.actionManager.addToTop((AbstractGameAction) new ApplyPowerAction((AbstractCreature) this.spiker, (AbstractCreature) this.spiker, (AbstractPower) new BGSpikerProccedPower((AbstractCreature) this.spiker, this.dmgAmt, false), this.dmgAmt));
         }else {
             //spiker dead == deal the damage immediately
-            if(!this.spiker.hasPower("BGSpikerProccedPower")) {
-                //(but make sure we only deal it once)
-                AbstractDungeon.actionManager.addToTop((AbstractGameAction) new ApplyPowerAction((AbstractCreature) this.spiker, (AbstractCreature) this.spiker, (AbstractPower) new BGSpikerProccedPower((AbstractCreature) this.spiker, this.dmgAmt, false), this.dmgAmt));
-                AbstractDungeon.actionManager.addToTop((AbstractGameAction) new DamageAction((AbstractCreature) AbstractDungeon.player, new DamageInfo(this.spiker, this.dmgAmt,
-                        DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, true));
-                AbstractDungeon.actionManager.addToTop((AbstractGameAction) new RemoveSpecificPowerAction(this.spiker, this.spiker, "BGSpikerProcced"));
+            if(false) {     //or not.  recent rulings say dead spikers don't proc thorns, even if combat is still ongoing
+                if (!this.spiker.hasPower("BGSpikerProccedPower")) {
+                    //(but make sure we only deal it once)
+                    AbstractDungeon.actionManager.addToTop((AbstractGameAction) new ApplyPowerAction((AbstractCreature) this.spiker, (AbstractCreature) this.spiker, (AbstractPower) new BGSpikerProccedPower((AbstractCreature) this.spiker, this.dmgAmt, false), this.dmgAmt));
+                    AbstractDungeon.actionManager.addToTop((AbstractGameAction) new DamageAction((AbstractCreature) AbstractDungeon.player, new DamageInfo(this.spiker, this.dmgAmt,
+                            DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, true));
+                    AbstractDungeon.actionManager.addToTop((AbstractGameAction) new RemoveSpecificPowerAction(this.spiker, this.spiker, "BGSpikerProcced"));
+                }
             }
 
         }

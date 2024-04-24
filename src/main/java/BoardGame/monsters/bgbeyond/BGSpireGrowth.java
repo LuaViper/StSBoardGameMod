@@ -43,7 +43,7 @@ public class BGSpireGrowth extends AbstractBGMonster implements MixedAttacks, Di
     private boolean firstMove=true;
 
     public BGSpireGrowth() {
-        super(NAME, "Serpent", 170, -10.0F, -35.0F, 480.0F, 430.0F, null, 0.0F, 10.0F);
+        super(NAME, "BGSerpent", 170, -10.0F, -35.0F, 480.0F, 430.0F, null, 0.0F, 10.0F);
         loadAnimation("images/monsters/theForest/spireGrowth/skeleton.atlas", "images/monsters/theForest/spireGrowth/skeleton.json", 1.0F);
 
 

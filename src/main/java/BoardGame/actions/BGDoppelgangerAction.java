@@ -14,6 +14,8 @@ import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import java.util.ArrayList;
 
+//TODO: when Doppelganger is copied via Burst, and a targeted card is chosen, the targeting screen pops up for both cards before the first one resolves
+
 public class BGDoppelgangerAction extends BGXCostCardAction {
 
     XCostInfo info;
@@ -39,7 +41,7 @@ public class BGDoppelgangerAction extends BGXCostCardAction {
             for (int i = info.minEnergy; i <= effectiveMaxEnergy; i += 1) {
                 for (int j = BGDoppelganger.cardsPlayedThisTurn.size() - 1; j >= 0; j -= 1) {
                     AbstractCard d = BGDoppelganger.cardsPlayedThisTurn.get(j);
-                    //TODO: "are we allowed to copy this card" check
+                    //TODO: "are we allowed to copy this card" check - reminder: copies can't be copied
                     if (d.type == AbstractCard.CardType.ATTACK || d.type == AbstractCard.CardType.SKILL) {
                         if (d.cost >= 0) {
                             //TODO: this line almost certainly misses some edge cases
@@ -47,13 +49,13 @@ public class BGDoppelgangerAction extends BGXCostCardAction {
                                 XCostAction action=(e,dont)->{
                                     addToTop((AbstractGameAction)new BGCopyAndPlayCardAction(d, d.cost, dont));
                                 };
-                                BGXCostChoice c = new BGXCostChoice(d, d.cost, info.dontExpendResources, action,d);
+                                BGXCostChoice c = new BGXCostChoice(originalXCostCard, d.cost, info.dontExpendResources, action,d);
                                 choices.add(c);
-                                if (card instanceof AbstractBGCard) {
+                                if (originalXCostCard instanceof AbstractBGCard) {
                                     //Logger logger = LogManager.getLogger("TEMP");
                                     //logger.info("set BGDoppelganger's copiedcard to " + ((AbstractBGCard) this.card).copiedCard);
                                     //TODO: we've completely forgotten how copiedCard works at this point, should this be c.copied or d.copied?
-                                    ((AbstractBGCard) c).copiedCard = ((AbstractBGCard) this.card).copiedCard;
+                                    ((AbstractBGCard) c).copiedCard = ((AbstractBGCard) this.originalXCostCard).copiedCard;
                                     break;
                                 }
                             }

@@ -59,7 +59,7 @@ public class BGChosen extends AbstractBGMonster implements BGDamageIcons {
     }
     private static final int A_2_POKE_DMG = 6; private int zapDmg; private int debilitateDmg; private int pokeDmg; private static final int DEBILITATE_VULN = 2; private static final int DRAIN_STR = 3; private static final int DRAIN_WEAK = 3; private static final byte ZAP = 1; private static final byte DRAIN = 2; private static final byte DEBILITATE = 3; private static final byte HEX = 4; private static final byte POKE = 5; private static final int HEX_AMT = 1; private boolean firstTurn = true, usedHex = false;
     public BGChosen(float x, float y, int hp) {
-        super(NAME, "Chosen", 99, 5.0F, -10.0F, 200.0F, 280.0F, null, x, -20.0F + y);
+        super(NAME, "BGChosen", 99, 5.0F, -10.0F, 200.0F, 280.0F, null, x, -20.0F + y);
         this.dialogX = -30.0F * Settings.scale;
         this.dialogY = 50.0F * Settings.scale;
 
