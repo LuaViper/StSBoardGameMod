@@ -74,7 +74,7 @@ public class BGAcidSlime_L
             }
         }else{
             //this.behavior="4XD";
-            this.behavior="CUBE";
+            this.behavior="----";
             if(AbstractDungeon.ascensionLevel<7){
                 setHp(8);
             }else{
@@ -203,7 +203,7 @@ public class BGAcidSlime_L
         setMove((byte) 0, AbstractMonster.Intent.NONE);
     }
     public void dieMove(int roll){
-        if(this.behavior.equals("CUBE")){
+        if(this.behavior.equals("----")){
             if(firstMove) {
                 firstMove=false;
                 setMove("Splash", (byte) 6, Intent.ATTACK, damage.get(4).base);

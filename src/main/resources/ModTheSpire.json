@@ -8,5 +8,6 @@
   "sts_version": "${SlayTheSpire.version}",
   "mts_version": "${ModTheSpire.version}",
   "dependencies": ["basemod", "stslib"],
+  "optional_dependencies" : ["ojb_Bestiary"],
   "update_json": ""
 }

@@ -1,0 +1,56 @@
+{
+  "monsters": [
+    {
+      "name": "Blue Slaver",
+      "id": "BGBlueSlaver",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "d","color": "GRAY"}],
+              "name": "2 [BoardGame:HitIcon] [BoardGame:DazedIcon]"
+
+            },
+            {
+              "effects": [{"name": "D","color": "GRAY"}],
+              "name": "3 [BoardGame:HitIcon] [BoardGame:DazedIcon]"
+
+            },
+            {
+              "effects": [{"name": "W","color": "GRAY"}],
+              "name": "2 [BoardGame:HitIcon] [BoardGame:WeakIcon]"
+            },
+            {
+              "effects": [{"name": "2","color": "GRAY"}],
+              "name": "2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "3","color": "GRAY"}],
+              "name": "3 [BoardGame:HitIcon]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Fat Gremlin",
+      "id": "BGGremlinFat",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "During development, this enemy had 2 HP and attacked for #w1 [BoardGame:HitIcon] [BoardGame:WeakIcon] instead.",
+          "hp": "",
+          "moves": [
+            {
+              "name": "Every turn: [BoardGame:AOEIcon] 1 [BoardGame:HitIcon]",
+              "effects": [{"name": "","color": "GRAY"}]
+            }
+          ]
+        }
+      ]
+    }
+  ]
+}
