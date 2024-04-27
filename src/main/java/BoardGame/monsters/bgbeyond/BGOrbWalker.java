@@ -45,7 +45,7 @@ public class BGOrbWalker extends AbstractBGMonster implements DieControlledMoves
     private int laserDmg;
     private static final byte LASER = 1;
     private static final byte CLAW = 2;
-    public String behavior="--";
+
 
     public BGOrbWalker(float x, float y, String behavior) {
         super(NAME, "BGOrb Walker", AbstractDungeon.monsterHpRng.random(90, 96), -20.0F, -14.0F, 280.0F, 250.0F, null, x, y);

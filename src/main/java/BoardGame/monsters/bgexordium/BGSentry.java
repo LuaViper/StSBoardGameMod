@@ -45,7 +45,6 @@ public class BGSentry extends AbstractBGMonster implements BGDamageIcons, DieCon
     private static final int DAZED_AMT = 2;
     private static final int A_18_DAZED_AMT = 3;
     private boolean firstMove = true;
-    private String behavior="---";
 
     public BGSentry(float x, float y, String behavior) {
         super(NAME, "BGSentry", 42, 0.0F, -5.0F, 180.0F, 310.0F, null, x, y);

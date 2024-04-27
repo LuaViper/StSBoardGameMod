@@ -523,7 +523,7 @@ public class BoardGame implements
         addMonster("BoardGame:Large Slime", ()->new BGAcidSlime_L(-480.0F,0.0F,false));
         addMonster("BoardGame:Sneaky Gremlin Team", ()->new BGGremlinSneaky(-220.0F,0.0F,true));
         addMonster("BoardGame:Angry Gremlin Team", ()->new BGGremlinAngry(-220.0F,0.0F,true));
-        addMonster("BoardGame:Blue Slaver", ()->new BGBlueSlaver(0.0F, 0.0F,"W2D"));
+        addMonster("BoardGame:Blue Slaver", ()->new BGBlueSlaver(0.0F, 0.0F,"W3D"));
         addMonster("BoardGame:Red Slaver", ()->new BGRedSlaver(0.0F, 0.0F,"DV3"));
         addMonster("BoardGame:Looter", ()->new BGLooter(0.0F, 0.0F, false));
         addMonster("BoardGame:Jaw Worm (Medium)", ()->new BGJawWorm(0,0, 1, ""));
@@ -576,7 +576,7 @@ public class BoardGame implements
         }));
         addMonster("BoardGame:A7 Shelled Parasite and Fungi Beast",()->new MonsterGroup(new AbstractMonster[]{
                 new BGShelledParasite(-260.0F, 15.0F),
-                new BGFungiBeast(120.0F, 0.0F,"S2!",true)
+                new BGFungiBeast(120.0F, 0.0F,"s2!",true)
         }));
 
         addMonster("BoardGame:3 Cultists",()->new MonsterGroup(new AbstractMonster[]{
@@ -665,7 +665,8 @@ public class BoardGame implements
                 (AbstractMonster)new BGWrithingMass()
         }));
         addMonster("BoardGame:3 Darklings", ()->new MonsterGroup(new AbstractMonster[] {
-                (AbstractMonster)new BGDarkling(-440.0F, 10.0F,"CUBE"),
+                //(AbstractMonster)new BGDarkling(-440.0F, 10.0F,"----"),
+                (AbstractMonster)new BGDarkling(-440.0F, 10.0F,"2S3"),
                 (AbstractMonster)new BGDarkling(-140.0F, 30.0F,"32S"),
                 (AbstractMonster)new BGDarkling(180.0F, -5.0F,"S32")
         }));

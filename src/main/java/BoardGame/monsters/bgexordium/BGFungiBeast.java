@@ -48,7 +48,7 @@ public class BGFungiBeast extends AbstractBGMonster implements BGDamageIcons, Di
     private static final byte GROW = 2;
     private static final int VULN_AMT = 2;
     private int strAmount;
-    private String behavior;
+
 
     public BGFungiBeast(float x, float y, String behavior, boolean a7summon) {
         super(NAME, "BGFungiBeast", 28, 0.0F, -16.0F, 260.0F, 170.0F, null, x, y);
@@ -128,7 +128,7 @@ public class BGFungiBeast extends AbstractBGMonster implements BGDamageIcons, Di
 
             if (move == '2') {
                 setMove((byte) 1, AbstractMonster.Intent.ATTACK, ((DamageInfo) this.damage.get(0)).base);
-            } else if (move=='S'){
+            } else if (move=='S' || move=='s'){
                 setMove(MOVES[0], (byte) 3, AbstractMonster.Intent.BUFF);
             } else if (move=='1'){
                 setMove("Power Up", (byte) 2, AbstractMonster.Intent.ATTACK_BUFF, ((DamageInfo) this.damage.get(1)).base);

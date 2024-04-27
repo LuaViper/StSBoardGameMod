@@ -58,13 +58,13 @@ import org.apache.logging.log4j.Logger;
         private static final int A_2_CHOMPY_DMG = 8;
         private int rainBlowsDmg;
 
-        public String behavior="MMW";
+
 
         public BGSnakePlant(float x, float y) {
             super(NAME, "BGSnakePlant", 79, 0.0F, -44.0F, 350.0F, 360.0F, null, x, y + 50.0F);
             loadAnimation("images/monsters/theCity/snakePlant/skeleton.atlas", "images/monsters/theCity/snakePlant/skeleton.json", 1.0F);
 
-
+            behavior="MMW";
 
 
             AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);

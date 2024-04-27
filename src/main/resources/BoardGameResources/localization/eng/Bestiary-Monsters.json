@@ -36,17 +36,636 @@
       ]
     },
     {
+      "name": "Byrd",
+      "id": "BGByrd",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "These denizens of the Board Game have evolved hardier wings that do not falter after 3 consecutive hits.",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "1","color": "GRAY"}],
+              "name": "1 [BoardGame:HitIcon] 1 [BoardGame:HitIcon]"
+
+            },
+            {
+              "effects": [{"name": "3","color": "GRAY"}],
+              "name": "3 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "S","color": "GRAY"}],
+              "name": "1 [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": ">","color": "GRAY"}],
+              "name": "#yFlying: Byrd takes a max of 1 damage from each [BoardGame:HitIcon] ."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Centurion",
+      "id": "BGCenturion",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<","color": "GRAY"}],
+              "name": "#yFury: When the Mystic in this row dies, [BoardGame:StrIcon] , NL and only take the attack action (intent changes immediately)."
+
+            },
+            {
+              "effects": [{"name": "B","color": "GRAY"}],
+              "name": "3 [BoardGame:BlockIcon] to Mystic."
+
+            },
+            {
+              "effects": [{"name": "3","color": "GRAY"}],
+              "name": "3 [BoardGame:HitIcon]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Chosen",
+      "id": "BGChosen",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] 1 [BoardGame:HitIcon] [BoardGame:DazedIcon]"
+
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] 3 [BoardGame:HitIcon] [BoardGame:DazedIcon] [BoardGame:DazedIcon]"
+
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] 5 [BoardGame:HitIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "<d","color": "GRAY"}],
+              "name": "Repeats 2 and 3 for the remainder of combat."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Fat Gremlin",
+      "id": "BGCultist",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "CAW CAW!",
+          "hp": "",
+          "moves": [
+            {
+              "name": "Every turn: [] [] [] 1 [BoardGame:HitIcon] [BoardGame:StrIcon]",
+              "effects": [{"name": "<","color": "GRAY"}]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Darkling",
+      "id": "BGDarkling",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "During playtesting, these enemies revived with 5 HP, causing no small number of softlocks for solo characters.",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "2","color": "GRAY"}],
+              "name": "2 [BoardGame:HitIcon] 2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "S","color": "GRAY"}],
+              "name": "3 [BoardGame:BlockIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "3","color": "GRAY"}],
+              "name": "3 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": ">","color": "GRAY"}],
+              "name": "#yRegrow: At start of round, return all dead Darklings to play with 4 HP."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Exploder",
+      "id": "BGExploder",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Your friends will be happier if you don't try to Block your way through this one.",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] 3 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "S","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] \"...\""
+            },
+            {
+              "effects": [{"name": "3","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 10 [BoardGame:HitIcon] [] [] [] Exploder dies."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "Fat Gremlin",
       "id": "BGGremlinFat",
       "ai": [
         {
           "min_asc": 0,
-          "desc": "During development, this enemy had 2 HP and attacked for #w1 [BoardGame:HitIcon] [BoardGame:WeakIcon] instead.",
+          "desc": "During playtesting, this enemy had 2 HP and acted with #w1 [BoardGame:HitIcon] [BoardGame:WeakIcon] instead.",
           "hp": "",
           "moves": [
             {
-              "name": "Every turn: [BoardGame:AOEIcon] 1 [BoardGame:HitIcon]",
-              "effects": [{"name": "","color": "GRAY"}]
+              "name": "Every turn: [] [] [] [BoardGame:AOEIcon] 1 [BoardGame:HitIcon]",
+              "effects": [{"name": "<","color": "GRAY"}]
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Fungi Beast",
+      "id": "BGFungi Beast",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Remember, [BoardGame:WeakIcon] and [BoardGame:VulnIcon] cancel each other out.",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "2","color": "GRAY"}],
+              "name": "2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "1","color": "GRAY"}],
+              "name": "[BoardGame:AOEIcon] 1 [BoardGame:HitIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "S","color": "GRAY"}],
+              "name": "[BoardGame:StrIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "s","color": "GRAY"}],
+              "name": "[BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "!","color": "GRAY"}],
+              "name": "1 [BoardGame:HitIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": ">","color": "GRAY"}],
+              "name": "#ySpore #yCloud: On death, [BoardGame:VulnIcon] ."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Jaw Worm",
+      "id": "BGJawWorm",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "It is believed that at least one \"unwinnable seed\" consists of a floor 1 Jaw Worm dealing a total of 12 unblocked damage to a solo Ironclad. This would require astronomically bad luck with Neow bonuses, dice rolls, and shuffle order. NL NL Perhaps you have seen it already.",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "s","color": "GRAY"}],
+              "name": "2 [BoardGame:BlockIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "d","color": "GRAY"}],
+              "name": "2 [BoardGame:HitIcon] 1 [BoardGame:BlockIcon]"
+
+            },
+            {
+              "effects": [{"name": "a","color": "GRAY"}],
+              "name": "3 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "S","color": "GRAY"}],
+              "name": "3 [BoardGame:BlockIcon] 1 [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "D","color": "GRAY"}],
+              "name": "3 [BoardGame:HitIcon] 1 [BoardGame:BlockIcon]"
+            },
+            {
+              "effects": [{"name": "A","color": "GRAY"}],
+              "name": "4 [BoardGame:HitIcon]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Large Slime",
+      "id": "BGAcidSlime_L",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "-a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] 1 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "-b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] 4 [BoardGame:HitIcon] [BoardGame:DazedIcon]"
+            },
+            {
+              "effects": [{"name": "-c","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] #ySummon an Acid Slime at the start of the next round."
+            },
+            {
+              "effects": [{"name": "-d","color": "GRAY"}],
+              "name": "Repeat from 1."
+            },
+            {
+              "effects": [{"name": "W","color": "GRAY"}],
+              "name": "1 [BoardGame:HitIcon] [BoardGame:WeakIcon] [BoardGame:WeakIcon]"
+            },
+            {
+              "effects": [{"name": "4","color": "GRAY"}],
+              "name": "4 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "S","color": "GRAY"}],
+              "name": "3 [BoardGame:HitIcon] [BoardGame:SlimedIcon] [BoardGame:SlimedIcon]"
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "-a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] 2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "-b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] 4 [BoardGame:HitIcon] [BoardGame:DazedIcon] [BoardGame:DazedIcon]"
+            },
+            {
+              "effects": [{"name": "-c","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] #ySummon an Acid Slime at the start of the next round."
+            },
+            {
+              "effects": [{"name": "-d","color": "GRAY"}],
+              "name": "Repeat from 1."
+            },
+            {
+              "effects": [{"name": "W","color": "GRAY"}],
+              "name": "1 [BoardGame:HitIcon] [BoardGame:WeakIcon] [BoardGame:WeakIcon]"
+            },
+            {
+              "effects": [{"name": "4","color": "GRAY"}],
+              "name": "4 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "S","color": "GRAY"}],
+              "name": "3 [BoardGame:HitIcon] [BoardGame:SlimedIcon] [BoardGame:SlimedIcon]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Looter",
+      "id": "BGLooter",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] 2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] 3 [BoardGame:HitIcon] 1 [BoardGame:BlockIcon]"
+
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] Lose 2 gold. Looter leaves combat (you still get rewards)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mad Gremlin",
+      "id": "BGGremlinAngry",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Every turn: [] [] [] 1 [BoardGame:HitIcon]"
+
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "#yAngry: Whenever this enemy takes damage from [BoardGame:HitIcon] , [BoardGame:StrIcon] ."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Orb Walker",
+      "id": "BGOrbWalker",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "2","color": "GRAY"}],
+              "name": "2 [BoardGame:HitIcon] [BoardGame:StrIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "3","color": "GRAY"}],
+              "name": "3 [BoardGame:HitIcon] [BoardGame:DazedIcon] [BoardGame:StrIcon]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Red Louse",
+      "id": "BGRedLouse",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Fairly harmless, but be sure to take it out before it has a chance to bulk up.",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "1","color": "GRAY"}],
+              "name": "1 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "2","color": "GRAY"}],
+              "name": "2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "S","color": "GRAY"}],
+              "name": "[BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": ">a","color": "GRAY"}],
+              "name": "#yCurl #yUp: The first time Louse takes damage, it gets 2 [BoardGame:BlockIcon] ."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Red Slaver",
+      "id": "BGRedSlaver",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "D","color": "GRAY"}],
+              "name": "2 [BoardGame:HitIcon] [BoardGame:DazedIcon]"
+            },
+            {
+              "effects": [{"name": "V","color": "GRAY"}],
+              "name": "2 [BoardGame:HitIcon] [BoardGame:VulnIcon]"
+            },
+            {
+              "effects": [{"name": "3","color": "GRAY"}],
+              "name": "3 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": ">","color": "GRAY"}],
+              "name": "Red Slavers act last when applying Vulnerable, and always on all turns in Elite encounters."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Repulsor",
+      "id": "BGRepulsor",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Considerably more annoying when [BoardGame:DazedIcon] land on top of your draw pile.",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "D","color": "GRAY"}],
+              "name": "1 [BoardGame:HitIcon] [BoardGame:DazedIcon] [BoardGame:DazedIcon]"
+            },
+            {
+              "effects": [{"name": "V","color": "GRAY"}],
+              "name": "3 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "3","color": "GRAY"}],
+              "name": "3 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": ">","color": "GRAY"}],
+              "name": "Red Slavers act last when applying Vulnerable, and always on all turns in Elite encounters."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Shelled Parasite",
+      "id": "BGShelled Parasite",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] 4 [BoardGame:HitIcon] 2 [BoardGame:BlockIcon]"
+
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] 3 [BoardGame:HitIcon] [BoardGame:VulnIcon] 2 [BoardGame:BlockIcon]"
+
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 2 [BoardGame:HitIcon] 2 [BoardGame:BlockIcon]"
+            },
+            {
+              "effects": [{"name": "<d","color": "GRAY"}],
+              "name": "Repeats 2 and 3 for the remainder of combat."
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Pay very close attention on turn 2 if the Fungi Beast is still alive.",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] 4 [BoardGame:HitIcon] 2 [BoardGame:BlockIcon]"
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] 3 [BoardGame:HitIcon] [BoardGame:VulnIcon] 2 [BoardGame:BlockIcon]"
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 2 [BoardGame:HitIcon] 2 [BoardGame:BlockIcon]"
+            },
+            {
+              "effects": [{"name": "<d","color": "GRAY"}],
+              "name": "Repeats 2 and 3 for the remainder of combat."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Small Slime",
+      "id": "BGSpikeSlime_S",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "A Slime draws near! NL Command?",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Every turn: [] [] [] 1 [BoardGame:HitIcon]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Snake Plant",
+      "id": "BGSnakePlant",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "M","color": "GRAY"}],
+              "name": "3 [BoardGame:HitIcon] 2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "W","color": "GRAY"}],
+              "name": "[BoardGame:WeakIcon]"
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "M","color": "GRAY"}],
+              "name": "3 [BoardGame:HitIcon] , [BoardGame:AOEIcon] 2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "W","color": "GRAY"}],
+              "name": "[BoardGame:WeakIcon]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sneaky Gremlin",
+      "id": "BGGremlinSneaky",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Every turn: [] [] [] 2 [BoardGame:HitIcon]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Snecko",
+      "id": "BGSnecko",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "#yStart #yof #yturn: If Snecko is in your row, the first card NL you play this turn costs the #yConfused value."
+            },
+            {
+              "effects": [{"name": "3","color": "GRAY"}],
+              "name": "3 [BoardGame:HitIcon] [] #yConfused: 2"
+            },
+            {
+              "effects": [{"name": "4","color": "GRAY"}],
+              "name": "5 [BoardGame:HitIcon] [] #yConfused: 1"
+            },
+            {
+              "effects": [{"name": "2","color": "GRAY"}],
+              "name": "2 [BoardGame:HitIcon] [] #yConfused: 3"
             }
           ]
         }

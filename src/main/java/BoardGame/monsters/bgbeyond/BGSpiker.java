@@ -54,7 +54,7 @@ public class BGSpiker extends AbstractBGMonster implements DieControlledMoves, B
     private static final int BUFF_AMT = 2;
     private int thornsCount = 0;
 
-    public String behavior="--";
+
     public BGSpiker(float x, float y) {
         super(NAME, "BGSpiker", 56, -8.0F, -10.0F, 150.0F, 150.0F, null, x, y + 10.0F);
 

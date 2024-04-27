@@ -69,7 +69,7 @@ public class BGJawWorm extends AbstractBGMonster implements BGDamageIcons, DieCo
     private int bellowStr; private static final byte CHOMP = 1; private static final byte BELLOW = 2;
     private static final byte THRASH = 3; private boolean firstMove = true;
     private int difficulty;
-    private String behavior="---";
+
     public BGJawWorm(float x, float y, int difficulty, String behavior) {
         super(NAME, "BGJawWorm", 44, 0.0F, -25.0F, 260.0F, 170.0F, null, x, y);
 
@@ -83,14 +83,14 @@ public class BGJawWorm extends AbstractBGMonster implements BGDamageIcons, DieCo
             setHp(10);
 
         if(this.difficulty==0) {
-            this.behavior="SDA";
+            this.behavior="sda";
             this.bellowStr = 1;
             this.bellowBlock = 2;
             this.chompDmg = 3;
             this.thrashDmg = 2;
             this.thrashBlock = 1;
         }else if(this.difficulty==1){
-            this.behavior="DAS";
+            this.behavior="DAs";
             this.bellowStr = 1;
             this.bellowBlock = 2;
             this.chompDmg = 4;
@@ -109,7 +109,7 @@ public class BGJawWorm extends AbstractBGMonster implements BGDamageIcons, DieCo
             this.chompDmg = 3;
             this.thrashDmg = 2;
             this.thrashBlock = 1;
-            this.behavior="DSA";
+            this.behavior="dsa";
         }
 
         this.damage.add(new DamageInfo((AbstractCreature)this, this.chompDmg));
@@ -178,11 +178,11 @@ public class BGJawWorm extends AbstractBGMonster implements BGDamageIcons, DieCo
         else if(TheDie.monsterRoll==5 || TheDie.monsterRoll==6)
             move=this.behavior.charAt(2);
 
-        if(move=='S'){
+        if(move=='S' || move=='s'){
             setMove(MOVES[0], (byte)2, AbstractMonster.Intent.DEFEND_BUFF);
-        }else if(move=='D'){
+        }else if(move=='D' || move=='d'){
             setMove((byte)3, AbstractMonster.Intent.ATTACK_DEFEND, ((DamageInfo)this.damage.get(1)).base);
-        }else if(move=='A'){
+        }else if(move=='A' || move=='a'){
             setMove((byte)1, AbstractMonster.Intent.ATTACK, ((DamageInfo)this.damage.get(0)).base);
         }
 

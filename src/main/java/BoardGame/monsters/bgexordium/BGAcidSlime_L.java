@@ -52,7 +52,7 @@ public class BGAcidSlime_L
     public static final int A_2_N_TACKLE_DMG = 18;
     public static final float[] POSX = new float[] { -240.0F, -80.0F, 90.0F, 280.0F };
     public static final float[] POSY = new float[] { -15.0F, 0.0F, -7.5F, -7.5F };
-    public String behavior="---";
+
     public boolean firstMove=true;
     public boolean hard;
     private int dazeAmount=1;

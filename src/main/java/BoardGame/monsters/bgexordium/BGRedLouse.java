@@ -44,7 +44,6 @@ public class BGRedLouse extends AbstractBGMonster implements BGDamageIcons, DieC
     private static final int STR_AMOUNT = 3;
     private boolean hard;
 
-    public String behavior="---";
 
     public BGRedLouse(float x, float y, boolean hard, String behavior) {
         super(NAME, "BGRedLouse", 15, 0.0F, -5.0F, 180.0F, 140.0F, null, x, y);

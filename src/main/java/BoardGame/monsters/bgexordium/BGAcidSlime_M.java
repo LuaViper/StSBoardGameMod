@@ -44,7 +44,6 @@ public class BGAcidSlime_M extends AbstractBGMonster implements BGDamageIcons, D
     public static final int W_TACKLE_DMG = 7;
     public static final int WOUND_COUNT = 1;
 
-    public String behavior="---";
 
     public BGAcidSlime_M(float x, float y) {
         this(x, y, 0, 5);

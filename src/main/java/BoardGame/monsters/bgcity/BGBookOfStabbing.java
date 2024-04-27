@@ -42,11 +42,12 @@ public class BGBookOfStabbing extends AbstractBGMonster implements BGDamageIcons
     private static final int BIG_STAB_DAMAGE = 21;
     private int stabCount = 1; private static final int A_2_STAB_DAMAGE = 7; private static final int A_2_BIG_STAB_DAMAGE = 24; private int stabDmg; private int bigStabDmg; private static final byte STAB = 1; private static final byte BIG_STAB = 2;
 
-    private String behavior="131";
     public BGBookOfStabbing() {
         super(NAME, "BGBookOfStabbing", 164, 0.0F, -10.0F, 320.0F, 420.0F, null, 0.0F, 5.0F);
         loadAnimation("images/monsters/theCity/stabBook/skeleton.atlas", "images/monsters/theCity/stabBook/skeleton.json", 1.0F);
 
+        //behavior="131";
+        behavior="--";
 
         AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
         e.setTime(e.getEndTime() * MathUtils.random());

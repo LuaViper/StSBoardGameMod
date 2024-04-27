@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 //TODO: can we just have AbstractBGMonster implement BGDamageIcons instead of every individual monster?
 public abstract class AbstractBGMonster extends AbstractMonster implements MultiCreature {
 
+    public String behavior="-";
 
     public AbstractBGMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);

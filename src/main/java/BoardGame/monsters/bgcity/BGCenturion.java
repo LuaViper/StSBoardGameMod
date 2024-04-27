@@ -31,7 +31,7 @@ public class BGCenturion extends AbstractBGMonster implements DieControlledMoves
     public static final String[] MOVES = monsterStrings.MOVES; private static final float IDLE_TIMESCALE = 0.8F; private static final int HP_MIN = 76; private static final int HP_MAX = 80; private static final int A_2_HP_MIN = 78; private static final int A_2_HP_MAX = 83; private static final int SLASH_DMG = 12; private static final int FURY_DMG = 6;
     public static final String[] DIALOG = monsterStrings.DIALOG;
 
-    public String behavior="--";
+
     private static final int FURY_HITS = 3;
     private static final int A_2_SLASH_DMG = 14;
     private static final int A_2_FURY_DMG = 7;

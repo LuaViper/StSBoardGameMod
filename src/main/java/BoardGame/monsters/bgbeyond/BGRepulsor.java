@@ -38,7 +38,7 @@ public class BGRepulsor extends AbstractBGMonster implements DieControlledMoves,
     private int attackDmg;
     private int dazeAmt;
 
-    public String behavior="--";
+
 
     public BGRepulsor(float x, float y, String behavior) {
         super(NAME, "BGRepulsor", 35, -8.0F, -10.0F, 150.0F, 150.0F, null, x, y + 10.0F);

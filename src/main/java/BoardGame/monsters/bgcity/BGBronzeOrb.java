@@ -44,7 +44,7 @@ public class BGBronzeOrb extends AbstractBGMonster implements DieControlledMoves
     private static final int A_2_HP_MAX = 60;
     private static final int BEAM_DMG = 8;
 
-    public String behavior="---";
+
     public BGBronzeOrb(float x, float y, int count) {
         super(monsterStrings.NAME, "BGBronzeOrb", AbstractDungeon.monsterHpRng
 

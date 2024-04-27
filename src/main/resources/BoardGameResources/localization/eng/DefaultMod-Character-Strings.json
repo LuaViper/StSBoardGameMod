@@ -225,7 +225,8 @@
       "There is no maximum hand size.",
       "Transformed cards always revert to your character's color. Curses cannot be transformed.",
       "Unknown rooms contain only events until Ascension 3.",
-      "Some cards, relics, and events gain additional effects in multiplayer games."
+      "Some cards, relics, and events gain additional effects in multiplayer games.",
+      "If you have the Bestiary mod installed, you can review enemy behavior and combat rewards."
     ],
     "OPTIONS": [
       "You can discard potions to make room for others."

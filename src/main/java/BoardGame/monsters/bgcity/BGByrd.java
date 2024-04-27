@@ -59,7 +59,7 @@ public class BGByrd extends AbstractBGMonster implements DieControlledMoves, BGD
     private static final int SWOOP_DMG = 12;
     private static final int A_2_PECK_COUNT = 6;
 
-    private String behavior="---";
+
 
     public BGByrd(float x, float y) {
         this(x,y,BGTheCity.getSummonByrd(), 4);

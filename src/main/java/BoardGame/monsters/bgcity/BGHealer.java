@@ -42,7 +42,6 @@ public class BGHealer extends AbstractBGMonster implements DieControlledMoves, B
     private static final int A_2_HP_MAX = 58;
     private static final int MAGIC_DMG = 8;
     private static final int HEAL_AMT = 16;
-    private String behavior="---";
 
     public BGHealer(float x, float y) {
         super(NAME, "BGHealer", 56, 0.0F, -20.0F, 230.0F, 250.0F, null, x, y);
