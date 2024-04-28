@@ -29,6 +29,7 @@ import com.megacrit.cardcrawl.vfx.combat.ShockWaveEffect;
 
  import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.ascensionLevel;
 
+
 public class BGNemesis extends AbstractBGMonster implements BGDamageIcons {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Nemesis");
     public static final String ID = "BGNemesis";

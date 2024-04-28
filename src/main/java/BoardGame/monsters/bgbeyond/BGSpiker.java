@@ -1,4 +1,3 @@
-//TODO: Spiker isn't correctly reflecting damage if killing it triggers end-of-combat
 
 package BoardGame.monsters.bgbeyond; 
  import BoardGame.monsters.BGDamageIcons;
@@ -138,18 +137,19 @@ public class BGSpiker extends AbstractBGMonster implements DieControlledMoves, B
         }
     }
 
-    public void die() {
-        //BGSpikerPowerProcced won't activate if the player's attack also ends combat, so check here
-        AbstractPower p=this.getPower("BoardGame:BGSpikerProcced");
-        if(p!=null){
-            addToBot((AbstractGameAction) new DamageAction((AbstractCreature) AbstractDungeon.player, new DamageInfo(this, p.amount,
-                    DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, true));
-            //if spiker died and DIDN'T end combat, ...actually i'm not sure whether onAfterUseCard still happens here, but remove proc to be safe
-            p.amount=0;
-            addToBot((AbstractGameAction) new RemoveSpecificPowerAction(this, this, "BGSpikerProcced"));
-        }
-        super.die();
-    }
+    //as of latest discussion, spiker DOES reflect damage IF combat isn't over
+//    public void die() {
+//        //BGSpikerPowerProcced won't activate if the player's attack also ends combat, so check here
+//        AbstractPower p=this.getPower("BoardGame:BGSpikerProcced");
+//        if(p!=null){
+//            addToBot((AbstractGameAction) new DamageAction((AbstractCreature) AbstractDungeon.player, new DamageInfo(this, p.amount,
+//                    DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, true));
+//            //if spiker died and DIDN'T end combat, ...actually i'm not sure whether onAfterUseCard still happens here, but remove proc to be safe
+//            p.amount=0;
+//            addToBot((AbstractGameAction) new RemoveSpecificPowerAction(this, this, "BGSpikerProcced"));
+//        }
+//        super.die();
+//    }
 
 
 }

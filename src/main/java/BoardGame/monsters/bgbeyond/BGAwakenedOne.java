@@ -92,7 +92,7 @@ public class BGAwakenedOne
 
 
     public BGAwakenedOne(float x, float y) {
-        super(NAME, "BGAwakenedOne", 300, 40.0F, -30.0F, 460.0F, 250.0F, null, x, y);
+        super(NAME, ID, 300, 40.0F, -30.0F, 460.0F, 250.0F, null, x, y);
 
 //        if (AbstractDungeon.ascensionLevel >= 9) {
 //            setHp(320);

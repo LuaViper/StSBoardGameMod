@@ -1,6 +1,165 @@
 {
   "monsters": [
     {
+      "name": "Acid Slime",
+      "id": "BGAcidSlime_M",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "C","color": "GRAY"}],
+              "name": "2 [BoardGame:HitIcon] [BoardGame:DazedIcon]"
+
+            },
+            {
+              "effects": [{"name": "L","color": "GRAY"}],
+              "name": "[BoardGame:WeakIcon]"
+
+            },
+            {
+              "effects": [{"name": "A","color": "GRAY"}],
+              "name": "2 [BoardGame:HitIcon]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Awakened One",
+      "id": "BGAwakenedOne",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Phase 2 has its own separate monster card. No peeking.",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<1","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<2","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 5 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<3","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 2 [BoardGame:HitIcon] 2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<4","color": "GRAY"}],
+              "name": "Repeat from 1."
+            },
+            {
+              "effects": [{"name": "<5","color": "GRAY"}],
+              "name": "#yCuriosity: Each [BoardGame:HitIcon] deals extra damage to you NL equal to how many Powers you have in play."
+            },
+            {
+              "effects": [{"name": "<6","color": "GRAY"}],
+              "name": "#yAwaken: On death, summon #yAwakened #yOne: #yPhase #y2 NL at the start of next round."
+            }
+          ]
+        },
+        {
+          "min_asc": 10,
+          "desc": "Phase 2 has its own separate monster card. No peeking.",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<1","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<2","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 6 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<3","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 2 [BoardGame:HitIcon] 2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<4","color": "GRAY"}],
+              "name": "Repeat from 1."
+            },
+            {
+              "effects": [{"name": "<5","color": "GRAY"}],
+              "name": "#yCuriosity: Each [BoardGame:HitIcon] deals extra damage to you NL equal to how many Powers you have in play."
+            },
+            {
+              "effects": [{"name": "<6","color": "GRAY"}],
+              "name": "#yAwaken: On death, summon #yAwakened #yOne: #yPhase #y2 NL at the start of next round."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Awakened One: Phase 2",
+      "id": "BGAwakenedOne2",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<1","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] 7 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<2","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 4 [BoardGame:HitIcon] [BoardGame:SlimedIcon] [BoardGame:SlimedIcon]"
+            },
+            {
+              "effects": [{"name": "<3","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon] 3 [BoardGame:HitIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "<4","color": "GRAY"}],
+              "name": "Repeat from 1."
+            },
+            {
+              "effects": [{"name": "<5","color": "GRAY"}],
+              "name": "#yVoid: Whenever you draw a [BoardGame:SlimedIcon] , NL you must immediately pay [E] to #yExhaust it, if able."
+            }
+          ]
+        },
+        {
+          "min_asc": 10,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<0","color": "GRAY"}],
+              "name": "#yRebirth: When summoned, gain [BoardGame:StrIcon] equal to the number of Powers NL controlled by the player with the most Powers."
+            },
+            {
+              "effects": [{"name": "<1","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] 6 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<2","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 4 [BoardGame:HitIcon] [BoardGame:SlimedIcon] [BoardGame:SlimedIcon]"
+            },
+            {
+              "effects": [{"name": "<3","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon] 3 [BoardGame:HitIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "<4","color": "GRAY"}],
+              "name": "Repeat from 1."
+            },
+            {
+              "effects": [{"name": "<5","color": "GRAY"}],
+              "name": "#yVoid: Whenever you draw a [BoardGame:SlimedIcon] , NL you must immediately pay [E] to #yExhaust it, if able."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "Blue Slaver",
       "id": "BGBlueSlaver",
       "ai": [
@@ -30,6 +189,171 @@
             {
               "effects": [{"name": "3","color": "GRAY"}],
               "name": "3 [BoardGame:HitIcon]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Book of Stabbing",
+      "id": "BGBookOfStabbing",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "During playtesting, this enemy acted randomly.",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] 1 [BoardGame:HitIcon] 1 [BoardGame:HitIcon] [BoardGame:StrIcon]"
+
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] 3 [BoardGame:HitIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Repeat from 1."
+            },
+            {
+              "effects": [{"name": "<d","color": "GRAY"}],
+              "name": "#yPainful #yStabs: After Book of Stabbing attacks, NL gain [BoardGame:DazedIcon] if it dealt unblocked damage to you.."
+            }
+          ]
+        },
+        {
+          "min_asc": 1,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] 3 [BoardGame:HitIcon] [BoardGame:StrIcon]"
+
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 1 [BoardGame:HitIcon] 1 [BoardGame:HitIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Repeat from 1."
+            },
+            {
+              "effects": [{"name": "<d","color": "GRAY"}],
+              "name": "#yPainful #yStabs: After Book of Stabbing attacks, NL gain [BoardGame:DazedIcon] if it dealt unblocked damage to you.."
+            }
+          ]
+        },
+        {
+          "min_asc": 12,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] 4 [BoardGame:HitIcon] [BoardGame:StrIcon]"
+
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 1 [BoardGame:HitIcon] 1 [BoardGame:HitIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Repeat from 1."
+            },
+            {
+              "effects": [{"name": "<d","color": "GRAY"}],
+              "name": "#yPainful #yStabs: After Book of Stabbing attacks, NL gain [BoardGame:DazedIcon] if it dealt unblocked damage to you.."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Bronze Automaton",
+      "id": "BGBronzeAutomaton",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<1","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "<2","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 1 [BoardGame:HitIcon] 1 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<3","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:StrIcon] [] Remove all [BoardGame:WeakIcon] [BoardGame:VulnIcon] from Automaton."
+            },
+            {
+              "effects": [{"name": "<4","color": "GRAY"}],
+              "name": "Turn 4: [] [] [] [BoardGame:AOEIcon] 7 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<5","color": "GRAY"}],
+              "name": "Repeat from 1."
+            }
+          ]
+        },
+        {
+          "min_asc": 10,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<1","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:StrIcon] [] Remove all [BoardGame:WeakIcon] [BoardGame:VulnIcon] from Automaton."
+            },
+            {
+              "effects": [{"name": "<2","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 1 [BoardGame:HitIcon] 1 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<3","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:StrIcon] [] Remove all [BoardGame:WeakIcon] [BoardGame:VulnIcon] from Automaton."
+            },
+            {
+              "effects": [{"name": "<4","color": "GRAY"}],
+              "name": "Turn 4: [] [] [] [BoardGame:AOEIcon] 9 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<5","color": "GRAY"}],
+              "name": "Repeat from 1."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Bronze Orb",
+      "id": "BGBronzeOrb",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "3","color": "GRAY"}],
+              "name": "3 [BoardGame:HitIcon]"
+
+            },
+            {
+              "effects": [{"name": "D","color": "GRAY"}],
+              "name": "2 [BoardGame:HitIcon] [BoardGame:WeakIcon]"
+
+            },
+            {
+              "effects": [{"name": "B","color": "GRAY"}],
+              "name": "3 [BoardGame:BlockIcon] to Automaton."
             }
           ]
         }
@@ -117,14 +441,90 @@
             },
             {
               "effects": [{"name": "<d","color": "GRAY"}],
-              "name": "Repeats 2 and 3 for the remainder of combat."
+              "name": "Repeat from 2."
             }
           ]
         }
       ]
     },
     {
-      "name": "Fat Gremlin",
+      "name": "Corrupt Heart",
+      "id": "BGCorruptHeart",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<.","color": "GRAY"}],
+              "name": "#yInvincible: Corrupt Heart can't gain [BoardGame:WeakIcon] or go below 50 HP per player."
+            },
+            {
+              "effects": [{"name": "<0","color": "GRAY"}],
+              "name": "#yBeat #yof #yDeath: At end of turn, all players take 1 damage."
+            },
+            {
+              "effects": [{"name": "<1","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] [BoardGame:WeakIcon] [BoardGame:VulnIcon] [BoardGame:SlimedIcon] [BoardGame:SlimedIcon] [BoardGame:SlimedIcon] [BoardGame:SlimedIcon] [BoardGame:SlimedIcon] NL Shuffle the [BoardGame:SlimedIcon] into your draw pile."
+            },
+            {
+              "effects": [{"name": "<2","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 5 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<3","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 2 [BoardGame:HitIcon] 2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<4","color": "GRAY"}],
+              "name": "Turn 4: [] [] [] [BoardGame:StrIcon] [BoardGame:StrIcon] [] #yBeat #yof #yDeath +1. Lose #yInvincible ability."
+            },
+            {
+              "effects": [{"name": "<5","color": "GRAY"}],
+              "name": "Repeat from 2."
+            }
+          ]
+        },
+        {
+          "min_asc": 11,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<.","color": "GRAY"}],
+              "name": "#yInvincible: Corrupt Heart can't gain [BoardGame:WeakIcon] or go below 60 HP per player."
+            },
+            {
+              "effects": [{"name": "<0","color": "GRAY"}],
+              "name": "#yBeat #yof #yDeath: At end of turn, all players take 1 damage."
+            },
+            {
+              "effects": [{"name": "<1","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] [BoardGame:WeakIcon] [BoardGame:VulnIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon] NL Shuffle the [BoardGame:BurnIcon] into your draw pile."
+            },
+            {
+              "effects": [{"name": "<2","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 5 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<3","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 2 [BoardGame:HitIcon] 2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<4","color": "GRAY"}],
+              "name": "Turn 4: [] [] [] [BoardGame:StrIcon] [BoardGame:StrIcon] [] #yBeat #yof #yDeath +2. Lose #yInvincible ability."
+            },
+            {
+              "effects": [{"name": "<5","color": "GRAY"}],
+              "name": "Repeat from 2."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Cultist",
       "id": "BGCultist",
       "ai": [
         {
@@ -164,6 +564,96 @@
             {
               "effects": [{"name": ">","color": "GRAY"}],
               "name": "#yRegrow: At start of round, return all dead Darklings to play with 4 HP."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Dagger",
+      "id": "BGDagger",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "2","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] 2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "S","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] 5 [BoardGame:HitIcon] [] Dagger dies."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Deca",
+      "id": "BGDeca",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<1","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon] 3 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<2","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] [BoardGame:DazedIcon] [BoardGame:SlimedIcon]"
+            },
+            {
+              "effects": [{"name": "<3","color": "GRAY"}],
+              "name": "Repeat from 1."
+            }
+          ]
+        },
+        {
+          "min_asc": 10,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<1","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon] 3 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<2","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] [BoardGame:DazedIcon] [BoardGame:SlimedIcon] [BoardGame:SlimedIcon]"
+            },
+            {
+              "effects": [{"name": "<3","color": "GRAY"}],
+              "name": "Repeat from 1."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Donu",
+      "id": "BGDonu",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<1","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:StrIcon] to ALL enemies."
+            },
+            {
+              "effects": [{"name": "<2","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon] 3 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<3","color": "GRAY"}],
+              "name": "Repeat from 1."
             }
           ]
         }
@@ -249,6 +739,354 @@
       ]
     },
     {
+      "name": "Giant Head",
+      "id": "BGGiantHead",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Why are you still here?",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] \"3...\""
+
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] \"2...\""
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] \"1...\""
+            },
+            {
+              "effects": [{"name": "<d","color": "GRAY"}],
+              "name": "Turn 4: [] [] [] [BoardGame:AOEIcon] 7 [BoardGame:HitIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "<e","color": "GRAY"}],
+              "name": "Repeat 4 until end of combat."
+            },
+            {
+              "effects": [{"name": "<f","color": "GRAY"}],
+              "name": "#ySlow: Giant Head takes +1 damage from all [BoardGame:HitIcon] ."
+            }
+          ]
+        },
+        {
+            "min_asc": 1,
+            "desc": "Why are you still here?",
+            "hp": "",
+            "moves": [
+              {
+                "effects": [{"name": "<a","color": "GRAY"}],
+                "name": "Turn 1: [] [] [] \"3...\""
+
+              },
+              {
+                "effects": [{"name": "<b","color": "GRAY"}],
+                "name": "Turn 2: [] [] [] \"2...\" [] [BoardGame:AOEIcon] 5 [BoardGame:HitIcon]"
+              },
+              {
+                "effects": [{"name": "<c","color": "GRAY"}],
+                "name": "Turn 3: [] [] [] \"1...\""
+              },
+              {
+                "effects": [{"name": "<d","color": "GRAY"}],
+                "name": "Turn 4: [] [] [] [BoardGame:AOEIcon] 8 [BoardGame:HitIcon] [BoardGame:StrIcon]"
+              },
+              {
+                "effects": [{"name": "<e","color": "GRAY"}],
+                "name": "Repeat 4 until end of combat."
+              },
+              {
+                "effects": [{"name": "<f","color": "GRAY"}],
+                "name": "#ySlow: Giant Head takes +1 damage from all [BoardGame:HitIcon] ."
+              }
+            ]
+          },
+        {
+          "min_asc": 12,
+          "desc": "Why are you still here?",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] \"3...\""
+
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] \"2...\" [] [BoardGame:AOEIcon] 6 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] \"1...\""
+            },
+            {
+              "effects": [{"name": "<d","color": "GRAY"}],
+              "name": "Turn 4: [] [] [] [BoardGame:AOEIcon] 9 [BoardGame:HitIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "<e","color": "GRAY"}],
+              "name": "Repeat 4 until end of combat."
+            },
+            {
+              "effects": [{"name": "<f","color": "GRAY"}],
+              "name": "#ySlow: Giant Head takes +1 damage from all [BoardGame:HitIcon] ."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Green Louse",
+      "id": "BGGreenLouse",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "The lice of the Board Game are more resilient and will curl up after taking even non-attack damage.",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "1","color": "GRAY"}],
+              "name": "1 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "2","color": "GRAY"}],
+              "name": "2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "W","color": "GRAY"}],
+              "name": "[BoardGame:WeakIcon]"
+            },
+            {
+              "effects": [{"name": ">a","color": "GRAY"}],
+              "name": "#yCurl #yUp: The first time Louse takes damage, it gets 2 [BoardGame:BlockIcon] ."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Gremlin Leader",
+      "id": "BGGremlinLeader",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] 2 [BoardGame:HitIcon] , 1 [BoardGame:BlockIcon] [BoardGame:StrIcon] to ALL enemies."
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 5 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] Revive all dead Gremlins."
+            },
+            {
+              "effects": [{"name": "<d","color": "GRAY"}],
+              "name": "Repeat from 1."
+            }
+          ]
+        },
+        {
+          "min_asc": 1,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon] , 1 [BoardGame:BlockIcon] [BoardGame:StrIcon] to ALL enemies."
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 5 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] Revive all dead Gremlins."
+            },
+            {
+              "effects": [{"name": "<d","color": "GRAY"}],
+              "name": "Repeat from 1."
+            }
+          ]
+        },
+        {
+          "min_asc": 12,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon] , 1 [BoardGame:BlockIcon] [BoardGame:StrIcon] to ALL enemies."
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 5 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] Revive all dead Gremlins. 1 [BoardGame:StrIcon] to ALL enemies."
+            },
+            {
+              "effects": [{"name": "<d","color": "GRAY"}],
+              "name": "Repeat from 1."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Gremlin Nob",
+      "id": "BGGremlinNob",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "First turn: [] [] [] Gains #yEnraged for the rest of combat."
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Thereafter: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<d","color": "GRAY"}],
+              "name": "#yEnraged: After you play a Skill, you take 1 damage."
+            }
+          ]
+        },
+        {
+          "min_asc": 12,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "First turn: [] [] [] [BoardGame:AOEIcon] 1 [BoardGame:HitIcon] [] Gains #yEnraged for the rest of combat."
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Thereafter: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<d","color": "GRAY"}],
+              "name": "#yEnraged: After you play a Skill, you take 1 damage."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Gremlin Wizard",
+      "id": "BGGremlinWizard`",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "The wizard gets buffed and the warrior gets nerfed. So it goes.",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "First turn: [] [] [] \"Charging up...\""
+
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Thereafter: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Hexaghost",
+      "id": "BGHexaghost",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<1","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] 1 [BoardGame:HitIcon] [BoardGame:BurnIcon]"
+            },
+            {
+              "effects": [{"name": "<2","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 2 [BoardGame:HitIcon] 2 [BoardGame:HitIcon] [BoardGame:BurnIcon]"
+            },
+            {
+              "effects": [{"name": "<3","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon]"
+            },
+            {
+              "effects": [{"name": "<4","color": "GRAY"}],
+              "name": "Turn 4: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon] 5 [BoardGame:BlockIcon]"
+            },
+            {
+              "effects": [{"name": "<5","color": "GRAY"}],
+              "name": "Turn 5: [] [] [] [BoardGame:AOEIcon] 2 [BoardGame:HitIcon] [BoardGame:BurnIcon]"
+            },
+            {
+              "effects": [{"name": "<6","color": "GRAY"}],
+              "name": "Turn 6: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon] 3 [BoardGame:HitIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "<7","color": "GRAY"}],
+              "name": "Repeat from 1."
+            }
+          ]
+        },
+        {
+          "min_asc": 10,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<1","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] 1 [BoardGame:HitIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon]"
+            },
+            {
+              "effects": [{"name": "<2","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 2 [BoardGame:HitIcon] 2 [BoardGame:HitIcon] [BoardGame:BurnIcon]"
+            },
+            {
+              "effects": [{"name": "<3","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon]"
+            },
+            {
+              "effects": [{"name": "<4","color": "GRAY"}],
+              "name": "Turn 4: [] [] [] [BoardGame:AOEIcon] 4 [BoardGame:HitIcon] 5 [BoardGame:BlockIcon]"
+            },
+            {
+              "effects": [{"name": "<5","color": "GRAY"}],
+              "name": "Turn 5: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon] [BoardGame:BurnIcon]"
+            },
+            {
+              "effects": [{"name": "<6","color": "GRAY"}],
+              "name": "Turn 6: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon] 3 [BoardGame:HitIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "<7","color": "GRAY"}],
+              "name": "Repeat from 1."
+            }
+          ]
+        }
+      ]
+    },
+    {
       "name": "Jaw Worm",
       "id": "BGJawWorm",
       "ai": [
@@ -281,6 +1119,172 @@
             {
               "effects": [{"name": "A","color": "GRAY"}],
               "name": "4 [BoardGame:HitIcon]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Lagavulin",
+      "id": "BGLagavulin",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Only time will tell if we encounter its siblings Ardbeg and Laphroaig in StS 2.",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] \"Zzz... zzz...\""
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 4 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 4 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<d","color": "GRAY"}],
+              "name": "Turn 4: [] [] [] [BoardGame:AOEIcon] [BoardGame:WeakIcon] [BoardGame:WeakIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "<e","color": "GRAY"}],
+              "name": "Repeat from 2."
+            }
+          ]
+        },
+        {
+          "min_asc": 1,
+          "desc": "Lagavulin has undertaken a strict diet and exercise regimen to combat its chronic drowsiness.",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] [BoardGame:WeakIcon] [BoardGame:WeakIcon]"
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 4 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 4 [BoardGame:HitIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "<e","color": "GRAY"}],
+              "name": "Repeat from 1."
+            }
+          ]
+        },
+        {
+          "min_asc": 12,
+          "desc": "Lagavulin has undertaken a strict diet and exercise regimen to combat its chronic drowsiness.",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] [BoardGame:WeakIcon] [BoardGame:WeakIcon]"
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 4 [BoardGame:HitIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 4 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<e","color": "GRAY"}],
+              "name": "Repeat from 1."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Nemesis",
+      "id": "BGNemesis",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "It seems that effects which \"set HP to 0\" do not count as HP loss.",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon]"
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 4 [BoardGame:HitIcon] [] Nemesis can't lose HP this turn."
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 2 [BoardGame:HitIcon] 2 [BoardGame:HitIcon] [BoardGame:BurnIcon]"
+            },
+            {
+              "effects": [{"name": "<d","color": "GRAY"}],
+              "name": "Turn 4: [] [] [] [BoardGame:AOEIcon] 7 [BoardGame:HitIcon] [] Nemesis can't lose HP this turn."
+            },
+            {
+              "effects": [{"name": "<e","color": "GRAY"}],
+              "name": "Repeat from 3."
+            }
+          ]
+        },
+        {
+          "min_asc": 1,
+          "desc": "It seems that effects which \"set HP to 0\" do not count as HP loss.",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon]"
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 5 [BoardGame:HitIcon] [] Nemesis can't lose HP this turn."
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 2 [BoardGame:HitIcon] 2 [BoardGame:HitIcon] [BoardGame:BurnIcon]"
+            },
+            {
+              "effects": [{"name": "<d","color": "GRAY"}],
+              "name": "Turn 4: [] [] [] [BoardGame:AOEIcon] 8 [BoardGame:HitIcon] [] Nemesis can't lose HP this turn."
+            },
+            {
+              "effects": [{"name": "<e","color": "GRAY"}],
+              "name": "Repeat from 3."
+            }
+          ]
+        },
+        {
+          "min_asc": 12,
+          "desc": "It seems that at some point during development, Nemesis was this strong on Ascension 0.",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon]"
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 6 [BoardGame:HitIcon] [] Nemesis can't lose HP this turn."
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 2 [BoardGame:HitIcon] 2 [BoardGame:HitIcon] 2 [BoardGame:HitIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon]"
+            },
+            {
+              "effects": [{"name": "<d","color": "GRAY"}],
+              "name": "Turn 4: [] [] [] [BoardGame:AOEIcon] 8 [BoardGame:HitIcon] [] Nemesis can't lose HP this turn."
+            },
+            {
+              "effects": [{"name": "<e","color": "GRAY"}],
+              "name": "Repeat from 3."
             }
           ]
         }
@@ -400,11 +1404,66 @@
             {
               "effects": [{"name": "<a","color": "GRAY"}],
               "name": "Every turn: [] [] [] 1 [BoardGame:HitIcon]"
-
             },
             {
               "effects": [{"name": "<b","color": "GRAY"}],
               "name": "#yAngry: Whenever this enemy takes damage from [BoardGame:HitIcon] , [BoardGame:StrIcon] ."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mugger",
+      "id": "BGMugger",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "The newly-updated Thieves' Code requires all honorable cutpurses to wait until the last turn to steal anything.  Respect the Ectoplasm.  Respectoplasm.",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] 2 [BoardGame:HitIcon] 1 [BoardGame:BlockIcon]"
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] 2 [BoardGame:HitIcon]"
+
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] 4 [BoardGame:HitIcon] 2 [BoardGame:BlockIcon]"
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Turn 4: [] [] [] Lose 2 gold. Mugger leaves combat (you still get rewards)."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Mystic",
+      "id": "BGHealer",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Everyone knows you take out the Centurion first, then the Mystic. Right? NL NL ...Just try it this time.",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "2","color": "GRAY"}],
+              "name": "2 [BoardGame:HitIcon] [BoardGame:WeakIcon]"
+            },
+            {
+              "effects": [{"name": "H","color": "GRAY"}],
+              "name": "ALL enemies heal 3 HP."
+
+            },
+            {
+              "effects": [{"name": "S","color": "GRAY"}],
+              "name": "[BoardGame:StrIcon] to ALL enemies. Acts last."
             }
           ]
         }
@@ -483,7 +1542,82 @@
             },
             {
               "effects": [{"name": ">","color": "GRAY"}],
-              "name": "Red Slavers act last when applying Vulnerable, and always on all turns in Elite encounters."
+              "name": "Red Slavers act last when applying Vulnerable, and on all turns in Elite encounters."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Reptomancer",
+      "id": "BGReptomancer",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] Summon Daggers until there are 2 per player."
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon] 3 [BoardGame:HitIcon] NL If there are no Daggers, skip to turn 1."
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 7 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<d","color": "GRAY"}],
+              "name": "Repeat from 1."
+            }
+          ]
+        },
+        {
+          "min_asc": 1,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] Summon Daggers until there are 2 per player."
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] NL [BoardGame:AOEIcon] 7 [BoardGame:HitIcon] [BoardGame:DazedIcon] If there are no Daggers, skip to turn 1."
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 4 [BoardGame:HitIcon] 4 [BoardGame:HitIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "<d","color": "GRAY"}],
+              "name": "Repeat from 1."
+            }
+          ]
+        },
+        {
+          "min_asc": 12,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] Summon Daggers until there are 2 per player."
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] NL [BoardGame:AOEIcon] 7 [BoardGame:HitIcon] [BoardGame:DazedIcon] [BoardGame:DazedIcon] If there are no Daggers, skip to turn 1."
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 4 [BoardGame:HitIcon] 4 [BoardGame:HitIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "<d","color": "GRAY"}],
+              "name": "Repeat from 1."
             }
           ]
         }
@@ -503,16 +1637,88 @@
               "name": "1 [BoardGame:HitIcon] [BoardGame:DazedIcon] [BoardGame:DazedIcon]"
             },
             {
-              "effects": [{"name": "V","color": "GRAY"}],
-              "name": "3 [BoardGame:HitIcon]"
-            },
-            {
               "effects": [{"name": "3","color": "GRAY"}],
               "name": "3 [BoardGame:HitIcon]"
             },
             {
               "effects": [{"name": ">","color": "GRAY"}],
               "name": "Red Slavers act last when applying Vulnerable, and always on all turns in Elite encounters."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Sentries",
+      "id": "BGSentry",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "-a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:DazedIcon]"
+            },
+            {
+              "effects": [{"name": "-b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] 2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "-c","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:DazedIcon] [BoardGame:DazedIcon]"
+            },
+            {
+              "effects": [{"name": "-d","color": "GRAY"}],
+              "name": "Repeat from 1."
+            },
+            {
+              "effects": [{"name": "D","color": "GRAY"}],
+              "name": "[BoardGame:DazedIcon]"
+            },
+            {
+              "effects": [{"name": "2","color": "GRAY"}],
+              "name": "2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "3","color": "GRAY"}],
+              "name": "3 [BoardGame:HitIcon]"
+            }
+          ]
+        },
+        {
+          "min_asc": 12,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "-a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] [BoardGame:DazedIcon]"
+            },
+            {
+              "effects": [{"name": "-b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] 2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "-c","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:DazedIcon] [BoardGame:DazedIcon]"
+            },
+            {
+              "effects": [{"name": "-d","color": "GRAY"}],
+              "name": "Repeat from 1."
+            },
+            {
+              "effects": [{"name": "D","color": "GRAY"}],
+              "name": "[BoardGame:DazedIcon]"
+            },
+            {
+              "effects": [{"name": "2","color": "GRAY"}],
+              "name": "2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "3","color": "GRAY"}],
+              "name": "3 [BoardGame:HitIcon]"
             }
           ]
         }
@@ -543,7 +1749,7 @@
             },
             {
               "effects": [{"name": "<d","color": "GRAY"}],
-              "name": "Repeats 2 and 3 for the remainder of combat."
+              "name": "Repeat from 2."
             }
           ]
         },
@@ -566,7 +1772,67 @@
             },
             {
               "effects": [{"name": "<d","color": "GRAY"}],
-              "name": "Repeats 2 and 3 for the remainder of combat."
+              "name": "Repeat from 2."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Slime Boss",
+      "id": "BGSlimeBoss",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<1","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] [BoardGame:SlimedIcon] [BoardGame:SlimedIcon] [BoardGame:SlimedIcon]"
+            },
+            {
+              "effects": [{"name": "<2","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon] [BoardGame:SlimedIcon] [BoardGame:SlimedIcon]"
+            },
+            {
+              "effects": [{"name": "<3","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 6 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<4","color": "GRAY"}],
+              "name": "Repeat from 1."
+            },
+            {
+              "effects": [{"name": "<5","color": "GRAY"}],
+              "name": "#ySplit: On death, at start of next round, summon a NL #yLarge #ySlime, #yAcid #ySlime, and #ySpike #ySlime (in that order) NL from the summon deck for each player."
+            }
+          ]
+        },
+        {
+          "min_asc": 10,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<1","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] [BoardGame:SlimedIcon] [BoardGame:SlimedIcon] [BoardGame:SlimedIcon] [BoardGame:SlimedIcon]"
+            },
+            {
+              "effects": [{"name": "<2","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon] [BoardGame:SlimedIcon] [BoardGame:SlimedIcon]"
+            },
+            {
+              "effects": [{"name": "<3","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 6 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<4","color": "GRAY"}],
+              "name": "Repeat from 1."
+            },
+            {
+              "effects": [{"name": "<5","color": "GRAY"}],
+              "name": "#ySplit: On death, at start of next round, summon a NL #yLarge #ySlime, #yAcid #ySlime, and #ySpike #ySlime (in that order) NL from the summon deck for each player. NL Then all #yLarge #ySlimes gain [BoardGame:StrIcon] ."
             }
           ]
         }
@@ -666,6 +1932,665 @@
             {
               "effects": [{"name": "2","color": "GRAY"}],
               "name": "2 [BoardGame:HitIcon] [] #yConfused: 3"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Spheric Guardian",
+      "id": "BGSphericGuardian",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] 2 [BoardGame:HitIcon] 5 [BoardGame:BlockIcon]"
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] 5 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Repeat from 1."
+            },
+            {
+              "effects": [{"name": "<d","color": "GRAY"}],
+              "name": "#yStart #yof #ycombat: 10 [BoardGame:BlockIcon]"
+            },
+            {
+              "effects": [{"name": "<e","color": "GRAY"}],
+              "name": "#yBarricade: This enemy doesn't lose [BoardGame:BlockIcon] during its turn."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Spike Slime",
+      "id": "BGSpikeSlime_M",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "V","color": "GRAY"}],
+              "name": "1 [BoardGame:HitIcon] [BoardGame:VulnIcon] [] Acts last."
+
+            },
+            {
+              "effects": [{"name": "D","color": "GRAY"}],
+              "name": "1 [BoardGame:HitIcon] [BoardGame:Dazedcon]"
+
+            },
+            {
+              "effects": [{"name": "2","color": "GRAY"}],
+              "name": "2 [BoardGame:HitIcon]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Spiker",
+      "id": "BGSpiker",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "#yThorns: After you play an Attack against Spiker, take 1 damage."
+            },
+            {
+              "effects": [{"name": "2","color": "GRAY"}],
+              "name": "2 [BoardGame:HitIcon]"
+
+            },
+            {
+              "effects": [{"name": "T","color": "GRAY"}],
+              "name": "+1 #yThorns"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Spire Growth",
+      "id": "BGSerpent",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "#yTurn #y1: [] [] [] No action."
+            },
+            {
+              "effects": [{"name": "2","color": "GRAY"}],
+              "name": "2 [BoardGame:HitIcon] , [BoardGame:AOEIcon] 3 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "4","color": "GRAY"}],
+              "name": "4 [BoardGame:HitIcon] , [BoardGame:AOEIcon] 2 [BoardGame:HitIcon]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Spire Shield",
+      "id": "BGSpireShield",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "After #ystart #yof #yturn effects, players can switch rows. Then they're immediately NL targeted by the #yFacing ability from the enemy in their row."
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] #yFacing: Lose 1 Energy. NL [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] #yAction: 20 [BoardGame:BlockIcon]"
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] #yFacing: You can't draw cards this turn. NL [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] #yAction: [BoardGame:AOEIcon] 8 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<d","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] #yFacing: Damage you deal this turn is reduced to 0. NL [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] #yAction: [BoardGame:StrIcon] [BoardGame:StrIcon] to all enemies."
+            },
+            {
+              "effects": [{"name": "<e","color": "GRAY"}],
+              "name": "Repeat from 1."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Spire Spear",
+      "id": "BGSpireSpear",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "After #ystart #yof #yturn effects, players can switch rows. Then they're immediately NL targeted by the #yFacing ability from the enemy in their row."
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] #yFacing: [BoardGame:BurnIcon] [BoardGame:BurnIcon] NL [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] #yAction: [BoardGame:AOEIcon] 2 [BoardGame:HitIcon] 2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<c","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] #yFacing: [BoardGame:BurnIcon] [BoardGame:BurnIcon] NL [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] #yAction: [BoardGame:AOEIcon] [BoardGame:DazedIcon] [BoardGame:DazedIcon]"
+            },
+            {
+              "effects": [{"name": "<d","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] #yFacing: [BoardGame:BurnIcon] [BoardGame:BurnIcon] NL [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] #yAction: [BoardGame:AOEIcon] 9 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<e","color": "GRAY"}],
+              "name": "Repeat from 1."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Taskmaster",
+      "id": "BGTaskmaster",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Every turn: [] [] [] [BoardGame:AOEIcon] 1 [BoardGame:HitIcon] [BoardGame:StrIcon]"
+            }
+          ]
+        },
+        {
+          "min_asc": 1,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "First turn: [] [] [] [BoardGame:AOEIcon] 1 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Thereafter: [] [] [] [BoardGame:AOEIcon] 2 [BoardGame:DazedIcon] [BoardGame:StrIcon]"
+            }
+          ]
+        },
+        {
+          "min_asc": 0,
+          "desc": 12,
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Every turn: [] [] [] [BoardGame:AOEIcon] 1 [BoardGame:DazedIcon] [BoardGame:StrIcon]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "The Champ",
+      "id": "BGChamp",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<1","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] 4 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<2","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] [BoardGame:WeakIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "<3","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 5 [BoardGame:HitIcon] 3 [BoardGame:BlockIcon]"
+            },
+            {
+              "effects": [{"name": "<4","color": "GRAY"}],
+              "name": "Repeat from 1."
+            },
+            {
+              "effects": [{"name": "<5","color": "GRAY"}],
+              "name": "#yAnger: When The Champ reaches 0 HP, he immediately heals 40 HP per player NL and enters #yFury #yMode (intent changes immediately)."
+            },
+            {
+              "effects": [{"name": "<6","color": "GRAY"}],
+              "name": "#yFury A: Remove all [BoardGame:WeakIcon] [BoardGame:VulnIcon] tokens from The Champ."
+            },
+            {
+              "effects": [{"name": "<7","color": "GRAY"}],
+              "name": "#yFury B: [BoardGame:AOEIcon] 4 [BoardGame:HitIcon] 4 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<8","color": "GRAY"}],
+              "name": "#yFury C: [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "<8","color": "GRAY"}],
+              "name": "Repeat from B."
+            }
+          ]
+        },
+        {
+          "min_asc": 10,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<1","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] 4 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<2","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] [BoardGame:WeakIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "<3","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 6 [BoardGame:HitIcon] 3 [BoardGame:BlockIcon]"
+            },
+            {
+              "effects": [{"name": "<4","color": "GRAY"}],
+              "name": "Repeat from 1."
+            },
+            {
+              "effects": [{"name": "<5","color": "GRAY"}],
+              "name": "#yAnger: When The Champ reaches 0 HP, he immediately heals 40 HP per player NL and enters #yFury #yMode (intent changes immediately)."
+            },
+            {
+              "effects": [{"name": "<6","color": "GRAY"}],
+              "name": "#yFury A: Remove all [BoardGame:WeakIcon] [BoardGame:VulnIcon] tokens from The Champ."
+            },
+            {
+              "effects": [{"name": "<7","color": "GRAY"}],
+              "name": "#yFury B: [BoardGame:AOEIcon] 4 [BoardGame:HitIcon] 4 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<8","color": "GRAY"}],
+              "name": "#yFury C: [BoardGame:StrIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "<8","color": "GRAY"}],
+              "name": "Repeat from B."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "The Collector",
+      "id": "BGTheCollector",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<1","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] Summon #yTorch #yHeads until there are 2 for each player."
+            },
+            {
+              "effects": [{"name": "<2","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon] , [BoardGame:StrIcon] to all enemies."
+            },
+            {
+              "effects": [{"name": "<3","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 5 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<4","color": "GRAY"}],
+              "name": "Turn 4: #y(Once #yper #ycombat) [BoardGame:WeakIcon] [BoardGame:WeakIcon] [BoardGame:DazedIcon] [BoardGame:DazedIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon]"
+            },
+            {
+              "effects": [{"name": "<5","color": "GRAY"}],
+              "name": "Repeat 1-3."
+            }
+          ]
+        },
+        {
+          "min_asc": 10,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<1","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] Summon #yTorch #yHeads until there are 2 for each player."
+            },
+            {
+              "effects": [{"name": "<2","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon] , [BoardGame:StrIcon] to all enemies."
+            },
+            {
+              "effects": [{"name": "<3","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 6 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<4","color": "GRAY"}],
+              "name": "Turn 4: #y(Once #yper #ycombat) [BoardGame:WeakIcon] [BoardGame:WeakIcon] [BoardGame:DazedIcon] [BoardGame:DazedIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon]"
+            },
+            {
+              "effects": [{"name": "<5","color": "GRAY"}],
+              "name": "Repeat 1-3."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "The Guardian",
+      "id": "BGTheGuardian",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<1","color": "GRAY"}],
+              "name": "Attack 1: [] [] [] [BoardGame:AOEIcon] 2 [BoardGame:HitIcon] , 5 [BoardGame:BlockIcon] per player"
+            },
+            {
+              "effects": [{"name": "<2","color": "GRAY"}],
+              "name": "Attack 2: [] [] [] #yMode #yShift [BoardGame:AOEIcon] 6 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<3","color": "GRAY"}],
+              "name": "#yMode #yShift: If The Guardian starts this turn with no [BoardGame:BlockIcon], NL it doesn't attack this turn and enters #yDefensive #yMode A at start NL of next round. Otherwise, repeat from Attack 1."
+            },
+            {
+              "effects": [{"name": "<4","color": "GRAY"}],
+              "name": "Defensive A: [BoardGame:AOEIcon] 2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<5","color": "GRAY"}],
+              "name": "Defensive B: [BoardGame:AOEIcon] 4 [BoardGame:HitIcon] [BoardGame:StrIcon] and enters #yAttack #yMode 1 at start of next round."
+            },
+            {
+              "effects": [{"name": "<6","color": "GRAY"}],
+              "name": "#ySharp #yHide: While in #yDefensive #yMode, after you play an Attack, take 1 damage."
+            }
+          ]
+        },
+        {
+          "min_asc": 10,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<1","color": "GRAY"}],
+              "name": "Attack 1: [] [] [] [BoardGame:AOEIcon] 2 [BoardGame:HitIcon] , 6 [BoardGame:BlockIcon] per player"
+            },
+            {
+              "effects": [{"name": "<2","color": "GRAY"}],
+              "name": "Attack 2: [] [] [] #yMode #yShift [BoardGame:AOEIcon] 7 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<3","color": "GRAY"}],
+              "name": "#yMode #yShift: If The Guardian starts this turn with no [BoardGame:BlockIcon], NL it doesn't attack this turn and enters #yDefensive #yMode A at start NL of next round. Otherwise, repeat from Attack 1."
+            },
+            {
+              "effects": [{"name": "<4","color": "GRAY"}],
+              "name": "Defensive A: [BoardGame:AOEIcon] 3 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<5","color": "GRAY"}],
+              "name": "Defensive B: [BoardGame:AOEIcon] 4 [BoardGame:HitIcon] [BoardGame:StrIcon] and enters #yAttack #yMode 1 at start of next round."
+            },
+            {
+              "effects": [{"name": "<6","color": "GRAY"}],
+              "name": "#ySharp #yHide: While in #yDefensive #yMode, after you play an Attack, take 1 damage."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "The Maw",
+      "id": "BGMaw",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "Smells vaguely of ambergris.",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "-1","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] [BoardGame:VulnIcon] [] Acts last."
+            },
+            {
+              "effects": [{"name": "-2","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] 2 [BoardGame:HitIcon] 2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "-3","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:StrIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "-4","color": "GRAY"}],
+              "name": "Turn 4: [] [] [] 8 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "-4","color": "GRAY"}],
+              "name": "Repeat from 2."
+            }
+          ]
+        },
+        {
+          "min_asc": 7,
+          "desc": "Smells vaguely of ambergris.",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "-1","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] 2 [BoardGame:HitIcon] [BoardGame:VulnIcon] [] Acts last."
+            },
+            {
+              "effects": [{"name": "-2","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] 2 [BoardGame:HitIcon] 2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "-3","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:StrIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "-4","color": "GRAY"}],
+              "name": "Turn 4: [] [] [] 8 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "-4","color": "GRAY"}],
+              "name": "Repeat from 2."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Time Eater",
+      "id": "BGTimeEater",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<5","color": "GRAY"}],
+              "name": "#yTime #yWarp: Limits the number of cards each player can play this turn (include [BoardGame:SlimedIcon] , exclude [BoardGame:ShivIcon] .)"
+            },
+            {
+              "effects": [{"name": "<1","color": "GRAY"}],
+              "name": "Time Warp 5: [] [] [] [BoardGame:AOEIcon] 2 [BoardGame:HitIcon] 2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<2","color": "GRAY"}],
+              "name": "Time Warp 4: [] [] [] [BoardGame:AOEIcon] 6 [BoardGame:DazedIcon] [BoardGame:DazedIcon] [BoardGame:DazedIcon]"
+            },
+            {
+              "effects": [{"name": "<3","color": "GRAY"}],
+              "name": "Time Warp 3: [] [] [] [BoardGame:AOEIcon] 6 [BoardGame:HitIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "<4","color": "GRAY"}],
+              "name": "Repeat from 5."
+            },
+            {
+              "effects": [{"name": "<6","color": "GRAY"}],
+              "name": "#yHaste: The first time Time Eater reaches 0 HP, NL it immediately heals 30 HP per player, gains [BoardGame:StrIcon] , NL and remove all [BoardGame:WeakIcon] [BoardGame:"
+            }
+          ]
+        },
+        {
+          "min_asc": 10,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<5","color": "GRAY"}],
+              "name": "#yTime #yWarp: Limits the number of cards each player can play this turn (include [BoardGame:SlimedIcon] , exclude [BoardGame:ShivIcon] .)"
+            },
+            {
+              "effects": [{"name": "<1","color": "GRAY"}],
+              "name": "Time Warp 5: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon] 3 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "<2","color": "GRAY"}],
+              "name": "Time Warp 4: [] [] [] [BoardGame:AOEIcon] 6 [BoardGame:DazedIcon] [BoardGame:DazedIcon] [BoardGame:DazedIcon]"
+            },
+            {
+              "effects": [{"name": "<3","color": "GRAY"}],
+              "name": "Time Warp 3: [] [] [] [BoardGame:AOEIcon] 6 [BoardGame:HitIcon] [BoardGame:DazedIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "<4","color": "GRAY"}],
+              "name": "Repeat from 5."
+            },
+            {
+              "effects": [{"name": "<6","color": "GRAY"}],
+              "name": "#yHaste: The first time Time Eater reaches 0 HP, NL it immediately heals 32 HP per player, gains [BoardGame:StrIcon] , NL and remove all [BoardGame:WeakIcon] [BoardGame:"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Torch Head",
+      "id": "BGTorchHead",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "Every turn: [] [] [] 1 [BoardGame:HitIcon]"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Transient",
+      "id": "BGTransient",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "In the original game, Juggernaut keeps working at 999 Block. Oh well.",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "-1","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] 6 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "-2","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] 9 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "-3","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] 12 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "-4","color": "GRAY"}],
+              "name": "Turn 4: [] [] [] 15 [BoardGame:HitIcon] [] Transient dies."
+            },
+            {
+              "effects": [{"name": "-5","color": "GRAY"}],
+              "name": "#yShift: When Transient loses HP, the player in its row gains that much [BoardGame:BlockIcon] ."
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Writhing Mass",
+      "id": "BGWrithingMass",
+      "ai": [
+        {
+          "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "-1","color": "GRAY"}],
+              "name": "[BoardGame:Die1Icon] [] [] [] [BoardGame:AOEIcon] [BoardGame:VulnIcon] [] Acts last."
+            },
+            {
+              "effects": [{"name": "-2","color": "GRAY"}],
+              "name": "[BoardGame:Die2Icon] [] [] [] [BoardGame:AOEIcon] [BoardGame:DazedIcon] [BoardGame:DazedIcon]"
+            },
+            {
+              "effects": [{"name": "-3","color": "GRAY"}],
+              "name": "[BoardGame:Die3Icon] [] [] [] 3 [BoardGame:HitIcon] 3 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "-4","color": "GRAY"}],
+              "name": "[BoardGame:Die4Icon] [] [] [] 5 [BoardGame:HitIcon] 5 [BoardGame:BlockIcon]"
+            },
+            {
+              "effects": [{"name": "-5","color": "GRAY"}],
+              "name": "[BoardGame:Die5Icon] [] [] [] 7 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "-6","color": "GRAY"}],
+              "name": "[BoardGame:Die6Icon] [] [] [] 4 [BoardGame:HitIcon] [BoardGame:WeakIcon]"
+            },
+            {
+              "effects": [{"name": "-7","color": "GRAY"}],
+              "name": "#yReactive: When you damage Writhing Mass with an Attack, roll the die. NL (Don't trigger relics. ALL enemy die actions change.)"
             }
           ]
         }

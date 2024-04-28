@@ -65,7 +65,7 @@ public class BGSnecko extends AbstractBGMonster implements DieControlledMoves, B
         super(NAME, "BGSnecko", 120, -30.0F, -20.0F, 310.0F, 305.0F, null, x, y);
         loadAnimation("images/monsters/theCity/reptile/skeleton.atlas", "images/monsters/theCity/reptile/skeleton.json", 1.0F);
 
-
+        behavior="342"; //note: this is not currently checked by anything other than bestiary mod
 
         AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);
         e.setTime(e.getEndTime() * MathUtils.random());

@@ -1,10 +1,7 @@
 package BoardGame.patches.bestiary;
 
 import Bestiary.BestiaryMod;
-import Bestiary.database.AscensionMoveSet;
-import Bestiary.database.MonsterInfo;
-import Bestiary.database.Move;
-import Bestiary.database.MoveEffect;
+import Bestiary.database.*;
 import Bestiary.ui.Label;
 import Bestiary.ui.MonsterInfoRenderHelper;
 import Bestiary.ui.MonsterOverlay;
@@ -18,6 +15,7 @@ import BoardGame.events.BGDeadAdventurer;
 import BoardGame.events.BGHallwayEncounter;
 import BoardGame.monsters.AbstractBGMonster;
 import BoardGame.monsters.MonsterGroupRewardsList;
+import BoardGame.monsters.bgbeyond.BGAwakenedOne;
 import BoardGame.screen.OrbSelectScreen;
 import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.*;
@@ -33,6 +31,7 @@ import com.megacrit.cardcrawl.map.DungeonMap;
 import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.UnawakenedPower;
 import com.megacrit.cardcrawl.rooms.*;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
@@ -44,7 +43,8 @@ import java.util.ArrayList;
 
 public class OverlayPatches {
 
-    //TODO NEXT: also display combat rewards
+    //TODO NEXT: Awakened One Phase 2 is its own monster card, but same ID; needs bestiary patch
+    //TODO NEXT: we left off with Awakened One
 
     @SpirePatch(
             clz= BestiaryMod.class,
@@ -76,20 +76,39 @@ public class OverlayPatches {
                 locator = Locator.class,
                 localvars = {"moveSet"}
         )
-        public static SpireReturn<Void> Foo(MonsterInfoRenderHelper __instance, MonsterInfo monster, AscensionMoveSet ___moveSet) {
+        public static SpireReturn<Void> Foo(MonsterInfoRenderHelper __instance, @ByRef MonsterInfo[] monster, @ByRef AscensionMoveSet[] ___moveSet) {
             AbstractMonster actualMonster=(AbstractMonster)(Field.monster.get(ReflectionHacks.getPrivateStatic(BestiaryMod.class,"instance")));
             if(actualMonster==null)actualMonster=BestiaryMod.intentRenderingMonster;
             if(!(actualMonster instanceof AbstractBGMonster) ) return SpireReturn.Continue();
 
             ArrayList<Label> labels=(ReflectionHacks.getPrivate(__instance,MonsterInfoRenderHelper.class,"labels"));
             MonsterInfo currMonster=(ReflectionHacks.getPrivate(__instance,MonsterInfoRenderHelper.class,"currMonster"));
-            labels.add(new Label(currMonster.getName() + "  " + ___moveSet.getHp(), ExtraFonts.overlayTitleFont(), 315.0F, 886.0F, Settings.GOLD_COLOR));
 
-            labels.add(new SmartLabel(___moveSet.getDesc(), FontHelper.tipBodyFont, 1086.0F, 847.0F, 534.0F, 30.0F, ExtraColors.OJB_GRAY_COLOR));
-            if (___moveSet.hasNotes())
-                labels.add(new SmartLabel(___moveSet.getNotes(), FontHelper.tipBodyFont, 1086.0F, 334.0F, 534.0F, 30.0F, ExtraColors.OJB_GRAY_COLOR));
+            String monsterName=currMonster.getName();
+            if(actualMonster instanceof BGAwakenedOne){
+                //TODO LATER: use some combination of dying-but-not-half-dead checks to display Phase 2 if the screen is opened while phase2 is fading out
+                if(actualMonster.currentHealth>0) {
+                    if (!actualMonster.hasPower(UnawakenedPower.POWER_ID)) {
+                        BestiaryMod bestiaryMod = (ReflectionHacks.getPrivateStatic(BestiaryMod.class, "instance"));
+                        MonsterOverlay overlay = (ReflectionHacks.getPrivate(bestiaryMod, BestiaryMod.class, "overlay"));
+                        MonsterDatabase db = (ReflectionHacks.getPrivate(bestiaryMod,  BestiaryMod.class, "db"));
+                        monster[0]=db.getByID(BGAwakenedOne.ID + "2");
+                        int asc_level = AbstractDungeon.isAscensionMode ? AbstractDungeon.ascensionLevel : 0;
+                        ___moveSet[0] = monster[0].getApplicableMoveSet(asc_level);
+                        ReflectionHacks.setPrivate(__instance,MonsterInfoRenderHelper.class,"currMonster",monster[0]);
+                        //this doesn't actually change our current currMonster.getName(), so change it here
+                        monsterName=monster[0].getName();
+                    }
+                }
+            }
+
+            labels.add(new Label(monsterName + "  " + ___moveSet[0].getHp(), ExtraFonts.overlayTitleFont(), 315.0F, 886.0F, Settings.GOLD_COLOR));
+
+            labels.add(new SmartLabel(___moveSet[0].getDesc(), FontHelper.tipBodyFont, 1086.0F, 847.0F, 534.0F, 30.0F, ExtraColors.OJB_GRAY_COLOR));
+            if (___moveSet[0].hasNotes())
+                labels.add(new SmartLabel(___moveSet[0].getNotes(), FontHelper.tipBodyFont, 1086.0F, 334.0F, 534.0F, 30.0F, ExtraColors.OJB_GRAY_COLOR));
             float movesY = 780.0F;
-            for (Move m : ___moveSet.getMoves()) {
+            for (Move m : ___moveSet[0].getMoves()) {
                 boolean breakLoop=false;
                 for (MoveEffect e : m.getMoveEffects()) {
                     if(!e.getName().contains("<")){
@@ -104,7 +123,7 @@ public class OverlayPatches {
             }
 
             if(((AbstractBGMonster)actualMonster).behavior.contains("-")) {
-                for (Move m : ___moveSet.getMoves()) {
+                for (Move m : ___moveSet[0].getMoves()) {
                     boolean continueLoop = false;
                     for (MoveEffect e : m.getMoveEffects()) {
                         if (!e.getName().contains("-")) {
@@ -130,7 +149,7 @@ public class OverlayPatches {
                 }
                 for(int i=0;i<len;i+=1){
                     String move = String.valueOf(((AbstractBGMonster)actualMonster).behavior.charAt(i));
-                    for (Move m : ___moveSet.getMoves()) {
+                    for (Move m : ___moveSet[0].getMoves()) {
                         boolean continueLoop = false;
                         for (MoveEffect e : m.getMoveEffects()) {
                             if (!e.getName().contains(move)) {
@@ -146,7 +165,7 @@ public class OverlayPatches {
                 }
             }
 
-            for (Move m : ___moveSet.getMoves()) {
+            for (Move m : ___moveSet[0].getMoves()) {
                 boolean continueLoop=false;
                 for (MoveEffect e : m.getMoveEffects()) {
                     if(!e.getName().contains(">")){
@@ -161,7 +180,7 @@ public class OverlayPatches {
             }
 
             //TODO: localization
-            String rewards = "At the end of combat, the player in this row will receive ";
+            String rewards = "At the end of combat, the player in this row will gain ";
 
             AbstractRoom room=AbstractDungeon.getCurrRoom();
             String encounter="";
@@ -193,7 +212,7 @@ public class OverlayPatches {
             if(MonsterGroupRewardsList.rewards.containsKey(encounter)){
                 gold=MonsterGroupRewardsList.rewards.get(encounter).gold;
                 item=(MonsterGroupRewardsList.rewards.get(encounter).potion) ? "a potion" : "";
-                item=(MonsterGroupRewardsList.rewards.get(encounter).relic) ? "a relic" : item;
+                //item=(MonsterGroupRewardsList.rewards.get(encounter).relic) ? "a relic" : item;
             }
             if(gold>0) {
                 gold += goldModifier;
@@ -201,7 +220,10 @@ public class OverlayPatches {
             }
             if(gold>0 && !item.isEmpty()) and=" and ";
 
-            rewards = rewards + goldstr + and + item + ".";
+            if(gold<=0 && item.isEmpty())
+                rewards="";
+            else
+                rewards = rewards + goldstr + and + item + ".";
             //rewards = rewards + goldstr + and + item + " in addition to the card reward.";
 
             labels.add(new Label(rewards, FontHelper.tipBodyFont, 315.0F, movesY, Settings.CREAM_COLOR));

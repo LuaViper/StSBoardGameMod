@@ -7,6 +7,7 @@ import com.evacipated.cardcrawl.mod.stslib.icons.AbstractCustomIcon;
 import java.util.ArrayList;
 import java.util.List;
 
+//TODO: consider adding a BoardGame:SummonIcon for bestiary/multicharintent graphics
 public class AOEIcon extends AbstractCustomIcon {
     public static final String ID = "BoardGame:AOE";    //reminder: "Icon" is automatically added
     private static AOEIcon singleton;
