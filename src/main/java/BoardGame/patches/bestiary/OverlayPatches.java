@@ -42,13 +42,10 @@ import java.util.ArrayList;
 
 
 public class OverlayPatches {
-
-    //TODO NEXT: Awakened One Phase 2 is its own monster card, but same ID; needs bestiary patch
-    //TODO NEXT: we left off with Awakened One
-
     @SpirePatch(
             clz= BestiaryMod.class,
-            method=SpirePatch.CLASS
+            method=SpirePatch.CLASS,
+            requiredModId="ojb_Bestiary"
     )
     public static class Field
     {
@@ -56,7 +53,7 @@ public class OverlayPatches {
     }
 
     @SpirePatch2(clz = BestiaryMod.class, method = "openOverlayForMonster",
-            paramtypez={String.class})
+            paramtypez={String.class},requiredModId="ojb_Bestiary")
     public static class AddMonsterReferenceToOverlayPatch {
         @SpirePrefixPatch
         public static void Foo(BestiaryMod __instance) {
@@ -70,7 +67,7 @@ public class OverlayPatches {
     }
 
 
-    @SpirePatch2(clz= MonsterInfoRenderHelper.class,method="setCurrMonster",paramtypez={MonsterInfo.class})
+    @SpirePatch2(clz= MonsterInfoRenderHelper.class,method="setCurrMonster",paramtypez={MonsterInfo.class},requiredModId="ojb_Bestiary")
     public static class CreateLabelsPatch {
         @SpireInsertPatch(
                 locator = Locator.class,

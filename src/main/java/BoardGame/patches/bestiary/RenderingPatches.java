@@ -21,8 +21,6 @@ import javassist.CtBehavior;
 
 public class RenderingPatches {
 
-    //TODO NEXT: instance-specific behavior checking
-    //TODO NEXT: check for instanceof AbstractBGDungeon
 
 //    @SpirePatch(clz = ExtraColors.class, method = "stringToColor",
 //            paramtypez = {String.class})
@@ -38,7 +36,7 @@ public class RenderingPatches {
 
 
         @SpirePatch(clz = Label.class, method = "render",
-            paramtypez = {SpriteBatch.class})
+            paramtypez = {SpriteBatch.class},requiredModId="ojb_Bestiary")
     public static class LabelIconPatch {
         @SpirePrefixPatch
         public static SpireReturn<Void> Foo(Label __instance, SpriteBatch sb) {
@@ -70,7 +68,7 @@ public class RenderingPatches {
 //    }
 
 
-    @SpirePatch(clz = RenderingUtils.class, method = "renderSmartText", paramtypez = {SpriteBatch.class, BitmapFont.class, String.class, float.class, float.class, float.class, float.class, Color.class})
+    @SpirePatch(clz = RenderingUtils.class, method = "renderSmartText", paramtypez = {SpriteBatch.class, BitmapFont.class, String.class, float.class, float.class, float.class, float.class, Color.class},requiredModId="ojb_Bestiary")
     public static class FontHelpFixes {
         @SpireInsertPatch(locator = Locator.class, localvars = {"word"})
         public static void DrawIconsPls(SpriteBatch sb, BitmapFont font, String msg, float x, float y, float lineWidth, float lineSpacing, Color baseColor, @ByRef float[] ___curWidth, @ByRef float[] ___curHeight, @ByRef String[] word) {

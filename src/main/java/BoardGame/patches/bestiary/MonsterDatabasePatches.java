@@ -34,7 +34,7 @@ public class MonsterDatabasePatches {
 
 
     @SpirePatch2(clz = MonsterDatabase.class,method="load",
-            optional = true)
+            requiredModId="ojb_Bestiary")
     public static class MonsterConstructorPostfix {
         @SpirePostfixPatch
         public static void Foo(MonsterDatabase __instance) {

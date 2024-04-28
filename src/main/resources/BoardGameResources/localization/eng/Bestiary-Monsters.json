@@ -673,11 +673,11 @@
               "name": "Turn 1: [] [] [] 3 [BoardGame:HitIcon]"
             },
             {
-              "effects": [{"name": "S","color": "GRAY"}],
+              "effects": [{"name": "<b","color": "GRAY"}],
               "name": "Turn 2: [] [] [] \"...\""
             },
             {
-              "effects": [{"name": "3","color": "GRAY"}],
+              "effects": [{"name": "<c","color": "GRAY"}],
               "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 10 [BoardGame:HitIcon] [] [] [] Exploder dies."
             }
           ]
@@ -703,7 +703,7 @@
     },
     {
       "name": "Fungi Beast",
-      "id": "BGFungi Beast",
+      "id": "BGFungiBeast",
       "ai": [
         {
           "min_asc": 0,
@@ -1542,7 +1542,7 @@
             },
             {
               "effects": [{"name": ">","color": "GRAY"}],
-              "name": "Red Slavers act last when applying Vulnerable, and on all turns in Elite encounters."
+              "name": "Red Slavers act last when applying Vulnerable, NL and on all turns in Elite encounters."
             }
           ]
         }
@@ -1639,10 +1639,6 @@
             {
               "effects": [{"name": "3","color": "GRAY"}],
               "name": "3 [BoardGame:HitIcon]"
-            },
-            {
-              "effects": [{"name": ">","color": "GRAY"}],
-              "name": "Red Slavers act last when applying Vulnerable, and always on all turns in Elite encounters."
             }
           ]
         }
@@ -2116,7 +2112,7 @@
     },
     {
       "name": "Taskmaster",
-      "id": "BGTaskmaster",
+      "id": "BGSlaverBoss",
       "ai": [
         {
           "min_asc": 0,

@@ -50,8 +50,7 @@ public class BGGreenLouse extends AbstractBGMonster implements BGDamageIcons, Di
     private static final int WEAK_AMT = 2;
 
 
-    //TODO NEXT: fix vanilla monster IDs in super constructor call -- Bestiary mod is reading those IDs as valid
-    // (this is almost certainly what makes Together In Spire not crash as well)
+
     public BGGreenLouse(float x, float y) {
         super(NAME, "BGGreenLouse", 17, 0.0F, -5.0F, 180.0F, 140.0F, null, x, y);
 
