@@ -571,7 +571,7 @@
     },
     {
       "name": "Dagger",
-      "id": "BGDagger",
+      "id": "BGSnakeDagger",
       "ai": [
         {
           "min_asc": 0,
@@ -2444,7 +2444,7 @@
           "moves": [
             {
               "effects": [{"name": "<5","color": "GRAY"}],
-              "name": "#yTime #yWarp: Limits the number of cards each player can play this turn (include [BoardGame:SlimedIcon] , exclude [BoardGame:ShivIcon] .)"
+              "name": "#yTime #yWarp: Limits the number of cards each player can play this turn NL (include [BoardGame:SlimedIcon] , exclude [BoardGame:ShivIcon] .)"
             },
             {
               "effects": [{"name": "<1","color": "GRAY"}],
@@ -2464,7 +2464,7 @@
             },
             {
               "effects": [{"name": "<6","color": "GRAY"}],
-              "name": "#yHaste: The first time Time Eater reaches 0 HP, NL it immediately heals 30 HP per player, gains [BoardGame:StrIcon] , NL and remove all [BoardGame:WeakIcon] [BoardGame:"
+              "name": "#yHaste: The first time Time Eater reaches 0 HP, NL it immediately heals 30 HP per player, gains [BoardGame:StrIcon] , NL and remove all [BoardGame:WeakIcon] [BoardGame:VulnIcon] ."
             }
           ]
         },
@@ -2475,7 +2475,7 @@
           "moves": [
             {
               "effects": [{"name": "<5","color": "GRAY"}],
-              "name": "#yTime #yWarp: Limits the number of cards each player can play this turn (include [BoardGame:SlimedIcon] , exclude [BoardGame:ShivIcon] .)"
+              "name": "#yTime #yWarp: Limits the number of cards each player can play this turn NL (include [BoardGame:SlimedIcon] , exclude [BoardGame:ShivIcon] .)"
             },
             {
               "effects": [{"name": "<1","color": "GRAY"}],
@@ -2495,7 +2495,7 @@
             },
             {
               "effects": [{"name": "<6","color": "GRAY"}],
-              "name": "#yHaste: The first time Time Eater reaches 0 HP, NL it immediately heals 32 HP per player, gains [BoardGame:StrIcon] , NL and remove all [BoardGame:WeakIcon] [BoardGame:"
+              "name": "#yHaste: The first time Time Eater reaches 0 HP, NL it immediately heals 32 HP per player, gains [BoardGame:StrIcon] , NL and remove all [BoardGame:WeakIcon] [BoardGame:VulnIcon] ."
             }
           ]
         }

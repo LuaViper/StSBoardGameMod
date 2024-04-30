@@ -318,6 +318,9 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                     numCards = 0;
                 }
                 boolean rare=false;
+                //TODO NEXT: allow viewing boss card reward and boss relics at the same time.
+                // this will require moving card to treasure room, BUT make sure Orrery/TinyHouse rewards don't get forced rare too.
+                //TODO NEXT: bug report that A2 isn't unlocking
                 if((getCurrRoom() instanceof MonsterRoomBoss) || AbstractBGDungeon.forceRareRewards==true)
                     rare=true;
                 for (int i = 0; i < numCards; i++) {

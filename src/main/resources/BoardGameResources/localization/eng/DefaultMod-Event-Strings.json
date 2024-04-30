@@ -134,7 +134,7 @@
     "DESCRIPTIONS": [
       "@Thwack!!!@ NL .. NL ...... NL ... NL ~You~ ~were~ ~knocked~ ~unconscious...~",
       "~Groggy~ and with a @throbbing@ head, you awaken to find yourself thrown in the center of a massive stadium with an overflowing audience of #bSlavers, #pCultists, and other denizens of the City! NL ",
-      " NL (Placeholder text: the card just says \"Do you want to warm up the crowd or be the main event?\" but surely @THE@ @CHAMP@ @HAS@ @SOMETHING@ @TO@ @SAY@ @ABOUT@ @THAT.)@",
+      " NL (Editor's note: the event card just says \"Do you want to warm up the crowd or be the main event?\" but @SURELY@ @THE@ @CHAMP@ @HAS@ @SOMETHING@ @TO@ @SAY@ @ABOUT@ @THAT.)@",
       "TH@ @COMBAT!!!!\"@ NL A gate on the opposite side opens...",
       "@\"WELL@ @DONE,@ @WEAKLING!\"@ NL The giant mock claps whilst he riles up the crowd with exaggerated gestures. NL #y~Gold~ ~and~ #y~confetti~ ~shower~ ~you!~ NL @\"TIME@ @FOR@ @THE@ @REAL@ @CHALLENGE!!\"@ NL NL The last battle left a small opening in the Colosseum's wall, you can easily escape through there while everyone is distracted. NL Do you stay and fight?"
     ],
@@ -153,9 +153,9 @@
       "The Ancient of Resurrection, #yNeow, was exiled to the bottom of the Spire. NL NL You feel compelled to read more, but your body begins to #r~ache.~",
       "Seeking vengeance, #yNeow blesses outsiders, using them for her own purposes. NL NL You are starting to feel very #r~weak~ #r~and~ #r~tired...~",
       "Those resurrected by #yNeow remember only fragments of their past selves, cursed to fight for eternity. NL NL As you near the final page, your #r@old@ #r@wounds@ #r@begin@ #r@to@ #r@reopen!@",
-      "[Placeholder text: take the tome.]",
-      "[Placeholder text: read the tome.]",
-      "[Placeholder text: skim the tome.]"
+      "You're in a hurry, so you decide to take it with you to read later. NL NL ...If you find some spare time. Maybe some things would be better left unlearned, anyway...",
+      "You can't make out all of the words, but you'll do your best. NL NL This is the story of a #y[treasure #yhunter? #ytomb #yraider? #yruin #yseeker?] who embarks on a journey to collect #pkeys of #rruby, #gemerald, and #bsapphire in a quest for #y[the #ypower #yto #ydefy #ydeath?]. Along the way, our hero collects many #y[cards?], #y[potions?], and #y[relics?] and gradually learns that the world is more ~sinister~ than it first appears. The story reaches its climax as the #y[adventurer? #yprotagonist? #yfox?] discovers that they themselves are locked in a #pnever-ending #pcycle #pof #p-- NL NL ...The final pages are missing. What a shame.",
+      "You skim the tome, looking for anything that catches your eye. NL NL \"Among the many constructs of the Spire...\" NL NL \"...myriad flaws will lead it to rebel against the...\" NL NL \"...but justice will yet be served, for it is certain that...\" NL NL \"...even if it takes a thousand years.\" NL NL NL Eh. Probably nothing important in here. Time to move on."
     ],
     "OPTIONS": [
       "[Take] #gChoose #ga #grare #gcard #gto #gadd #gto #gyour #gdeck. #rGain #ra #rCurse.",
@@ -548,7 +548,7 @@
       "The owner died. NL NL ",
       "You #gwin the bet. Unsure what to think, you grab your winnings and leave.",
       "You #rlost the bet, but at least you weren't gouged by a lance.",
-      "[Placeholder text: skip event.]"
+      "You explain to the knight that realistic depictions of gambling are prohibited in your country of origin. NL NL The knight agrees to let you pass, so you quickly take your playing cards and dice and move on to the next room."
     ],
     "OPTIONS": [
       "[Continue]",

@@ -30,6 +30,9 @@ import javassist.expr.MethodCall;
 import java.util.ArrayList;
 import java.util.Collections;
 
+//TODO: the ascension unlock system is a total mess -- in addition to combining individual character stats,
+// we need to sync the character select option buttons
+// and we are currently trying to do each step several times all in the wrong places
 //TODO: disable "ascension 14 unlocked!" message, if it exists
 
 public class Ascension {
@@ -53,22 +56,22 @@ public class Ascension {
         totalVictories+= i.getCharStat().getVictoryCount();
         totalDeaths+= i.getCharStat().getDeathCount();
         Prefs pref = i.getPrefs();
-        maxLevels.add(pref.getInteger("ASCENSION_LEVEL", 0));
+        maxLevels.add(pref.getInteger("ASCENSION_LEVEL", 1));
         s=new BGSilent("Prefs Lookup", BGSilent.Enums.BG_SILENT);
         totalVictories+= s.getCharStat().getVictoryCount();
         totalDeaths+= s.getCharStat().getDeathCount();
         pref = s.getPrefs();
-        maxLevels.add(pref.getInteger("ASCENSION_LEVEL", 0));
+        maxLevels.add(pref.getInteger("ASCENSION_LEVEL", 1));
         d = new BGDefect("Prefs Lookup", BGDefect.Enums.BG_DEFECT);
         totalVictories+= d.getCharStat().getVictoryCount();
         totalDeaths+= d.getCharStat().getDeathCount();
         pref = d.getPrefs();
-        maxLevels.add(pref.getInteger("ASCENSION_LEVEL", 0));
+        maxLevels.add(pref.getInteger("ASCENSION_LEVEL", 1));
         w = new BGWatcher("Prefs Lookup", BGWatcher.Enums.BG_WATCHER);
         totalVictories+= w.getCharStat().getVictoryCount();
         totalDeaths+= w.getCharStat().getDeathCount();
         pref = w.getPrefs();
-        maxLevels.add(pref.getInteger("ASCENSION_LEVEL", 0));
+        maxLevels.add(pref.getInteger("ASCENSION_LEVEL", 1));
 
         int maxLevel = Collections.max(maxLevels);
         if(maxLevel>CURRENT_MAX_ASCENSION)maxLevel=CURRENT_MAX_ASCENSION;
@@ -84,6 +87,17 @@ public class Ascension {
         s.getPrefs().flush();
         d.getPrefs().flush();
         w.getPrefs().flush();
+
+        if(CardCrawlGame.mainMenuScreen!=null && CardCrawlGame.mainMenuScreen.charSelectScreen!=null) {
+            for (CharacterOption o : CardCrawlGame.mainMenuScreen.charSelectScreen.options) {
+                if (o.c instanceof MultiCharacter) {
+                    if (o.c.getCharStat().getVictoryCount() < 1) {
+                        o.c.getCharStat().incrementVictory();
+                    }
+                }
+            }
+        }
+
     }
 
     @SpirePatch2(clz= CharacterSelectScreen.class,method="updateAscensionToggle",paramtypez={})

@@ -25,9 +25,12 @@ public class RedWarningFlashPatches {
         public static void Bar(AbstractPlayer __instance) {
             if(__instance instanceof AbstractBGPlayer) {
                 if (__instance.currentHealth > 1) { //if currenthealth was exactly 1, then we've already flashed
-                    if (__instance.currentHealth <= 3) {
-                        AbstractDungeon.topLevelEffects.add(new BorderFlashEffect(new Color(1.0F, 0.1F, 0.05F, 0.0F)));
-                    }
+                    //if(__instance.maxHealth>6) {    //if player has mark of pain, never mind, maybe
+                        //if (__instance.currentHealth <= 3) {
+                        if (__instance.currentHealth <= 2) {
+                            AbstractDungeon.topLevelEffects.add(new BorderFlashEffect(new Color(1.0F, 0.1F, 0.05F, 0.0F)));
+                        }
+                    //}
                 }
             }
         }
