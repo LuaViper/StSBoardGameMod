@@ -75,7 +75,7 @@ public class BGKnowingSkull
         this.options.add(Reward.LEAVE);
 
         this.leaveCost = 0;
-        this.cardCost = 2;
+        this.cardCost = 1;
         this.potionCost = 1;
         this.goldCost = 1;
 
