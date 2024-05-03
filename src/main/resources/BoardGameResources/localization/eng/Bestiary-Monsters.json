@@ -990,7 +990,7 @@
     },
     {
       "name": "Gremlin Wizard",
-      "id": "BGGremlinWizard`",
+      "id": "BGGremlinWizard",
       "ai": [
         {
           "min_asc": 0,

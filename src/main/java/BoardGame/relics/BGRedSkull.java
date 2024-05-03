@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
+//TODO: does this work if we buy it from The Courier after shuffling?
 public class BGRedSkull
         extends AbstractBGRelic implements ClickableRelic {
     public static final String ID = "BGRed Skull";
