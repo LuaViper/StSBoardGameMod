@@ -579,11 +579,11 @@
           "hp": "",
           "moves": [
             {
-              "effects": [{"name": "2","color": "GRAY"}],
+              "effects": [{"name": "<a","color": "GRAY"}],
               "name": "Turn 1: [] [] [] 2 [BoardGame:HitIcon]"
             },
             {
-              "effects": [{"name": "S","color": "GRAY"}],
+              "effects": [{"name": "<b","color": "GRAY"}],
               "name": "Turn 2: [] [] [] 5 [BoardGame:HitIcon] [] Dagger dies."
             }
           ]
@@ -1563,7 +1563,7 @@
             },
             {
               "effects": [{"name": "<b","color": "GRAY"}],
-              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon] 3 [BoardGame:HitIcon] NL If there are no Daggers, skip to turn 1."
+              "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon] 3 [BoardGame:HitIcon] NL Then, if there are no Daggers, skip to turn 1."
             },
             {
               "effects": [{"name": "<c","color": "GRAY"}],
@@ -1586,7 +1586,7 @@
             },
             {
               "effects": [{"name": "<b","color": "GRAY"}],
-              "name": "Turn 2: [] [] [] NL [BoardGame:AOEIcon] 7 [BoardGame:HitIcon] [BoardGame:DazedIcon] If there are no Daggers, skip to turn 1."
+              "name": "Turn 2: [] [] [] NL [BoardGame:AOEIcon] 7 [BoardGame:HitIcon] [BoardGame:DazedIcon] Then, if there are no Daggers, skip to turn 1."
             },
             {
               "effects": [{"name": "<c","color": "GRAY"}],
@@ -1609,7 +1609,7 @@
             },
             {
               "effects": [{"name": "<b","color": "GRAY"}],
-              "name": "Turn 2: [] [] [] NL [BoardGame:AOEIcon] 7 [BoardGame:HitIcon] [BoardGame:DazedIcon] [BoardGame:DazedIcon] If there are no Daggers, skip to turn 1."
+              "name": "Turn 2: [] [] [] NL [BoardGame:AOEIcon] 7 [BoardGame:HitIcon] [BoardGame:DazedIcon] [BoardGame:DazedIcon] Then, if there are no Daggers, skip to turn 1."
             },
             {
               "effects": [{"name": "<c","color": "GRAY"}],
@@ -1828,7 +1828,11 @@
             },
             {
               "effects": [{"name": "<5","color": "GRAY"}],
-              "name": "#ySplit: On death, at start of next round, summon a NL #yLarge #ySlime, #yAcid #ySlime, and #ySpike #ySlime (in that order) NL from the summon deck for each player. NL Then all #yLarge #ySlimes gain [BoardGame:StrIcon] ."
+              "name": "#ySplit: On death, at start of next round, summon a NL #yLarge #ySlime, #yAcid #ySlime, and #ySpike #ySlime (in that order) NL from the summon deck for each player."
+            },
+            {
+              "effects": [{"name": "<6","color": "GRAY"}],
+              "name": "Then all #yLarge #ySlimes gain [BoardGame:StrIcon] ."
             }
           ]
         }
@@ -2180,7 +2184,7 @@
             },
             {
               "effects": [{"name": "<5","color": "GRAY"}],
-              "name": "#yAnger: When The Champ reaches 0 HP, he immediately heals 40 HP per player NL and enters #yFury #yMode (intent changes immediately)."
+              "name": "#yAnger: When The Champ reaches 0 HP, he immediately heals 40 HP per NL player and enters #yFury #yMode (intent changes immediately)."
             },
             {
               "effects": [{"name": "<6","color": "GRAY"}],
@@ -2223,7 +2227,7 @@
             },
             {
               "effects": [{"name": "<5","color": "GRAY"}],
-              "name": "#yAnger: When The Champ reaches 0 HP, he immediately heals 40 HP per player NL and enters #yFury #yMode (intent changes immediately)."
+              "name": "#yAnger: When The Champ reaches 0 HP, he immediately heals 40 HP per NL player and enters #yFury #yMode (intent changes immediately)."
             },
             {
               "effects": [{"name": "<6","color": "GRAY"}],
@@ -2324,11 +2328,11 @@
             },
             {
               "effects": [{"name": "<3","color": "GRAY"}],
-              "name": "#yMode #yShift: If The Guardian starts this turn with no [BoardGame:BlockIcon], NL it doesn't attack this turn and enters #yDefensive #yMode A at start NL of next round. Otherwise, repeat from Attack 1."
+              "name": "#yMode #yShift: If The Guardian starts this turn with no [BoardGame:BlockIcon] , NL it doesn't attack this turn and enters #yDefensive #yMode A at start NL of next round. Otherwise, repeat from Attack 1."
             },
             {
               "effects": [{"name": "<4","color": "GRAY"}],
-              "name": "Defensive A: [BoardGame:AOEIcon] 2 [BoardGame:HitIcon]"
+              "name": "NL Defensive A: [BoardGame:AOEIcon] 2 [BoardGame:HitIcon]"
             },
             {
               "effects": [{"name": "<5","color": "GRAY"}],
@@ -2355,7 +2359,7 @@
             },
             {
               "effects": [{"name": "<3","color": "GRAY"}],
-              "name": "#yMode #yShift: If The Guardian starts this turn with no [BoardGame:BlockIcon], NL it doesn't attack this turn and enters #yDefensive #yMode A at start NL of next round. Otherwise, repeat from Attack 1."
+              "name": "#yMode #yShift: If The Guardian starts this turn with no [BoardGame:BlockIcon] , NL it doesn't attack this turn and enters #yDefensive #yMode A at start NL of next round. Otherwise, repeat from Attack 1."
             },
             {
               "effects": [{"name": "<4","color": "GRAY"}],

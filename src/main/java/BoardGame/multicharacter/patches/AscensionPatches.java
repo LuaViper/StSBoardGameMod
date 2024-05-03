@@ -10,8 +10,6 @@ import com.megacrit.cardcrawl.screens.stats.CharStat;
 
 public class AscensionPatches {
 
-    //TODO: "Ascension Mode Unlocked" doesn't seem to play the first time A0 is cleared
-
     @SpirePatch2(clz = CharStat.class, method = "incrementAscension")
     public static class UnlockNextAscensionPatch {
         @SpirePostfixPatch

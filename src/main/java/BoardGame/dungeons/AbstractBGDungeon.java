@@ -17,10 +17,12 @@ import BoardGame.multicharacter.MultiCharacter;
 import BoardGame.ui.EntropicBrewPotionButton;
 import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.EventHelper;
 import com.megacrit.cardcrawl.helpers.ModHelper;
@@ -35,7 +37,10 @@ import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.screens.CombatRewardScreen;
+import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import javassist.CannotCompileException;
+import javassist.CtBehavior;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -318,9 +323,6 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                     numCards = 0;
                 }
                 boolean rare=false;
-                //TODO NEXT: allow viewing boss card reward and boss relics at the same time.
-                // this will require moving card to treasure room, BUT make sure Orrery/TinyHouse rewards don't get forced rare too.
-                //TODO NEXT: bug report that A2 isn't unlocking
                 if((getCurrRoom() instanceof MonsterRoomBoss) || AbstractBGDungeon.forceRareRewards==true)
                     rare=true;
                 for (int i = 0; i < numCards; i++) {
@@ -518,6 +520,31 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
             }
             return SpireReturn.Continue();
 
+        }
+    }
+
+    @SpirePatch2(clz = CombatRewardScreen.class, method = "setupItemReward",
+            paramtypez = {})
+    public static class noCardsAtBossPatch {
+        @SpireInsertPatch(
+                locator= Locator.class,
+                localvars={}
+        )
+        public static SpireReturn<Void> open(CombatRewardScreen __instance) {
+            if(CardCrawlGame.dungeon instanceof AbstractBGDungeon && AbstractDungeon.getCurrRoom() instanceof MonsterRoomBoss){
+                //skip card reward, but finish remainder of setupItemReward function
+                AbstractDungeon.overlayMenu.proceedButton.show();
+                __instance.hasTakenAll = false;
+                __instance.positionRewards();
+                return SpireReturn.Return();
+            }
+            return SpireReturn.Continue();
+        }
+        private static class Locator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(ModHelper.class,"isModEnabled");
+                return LineFinder.findInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher);
+            }
         }
     }
 

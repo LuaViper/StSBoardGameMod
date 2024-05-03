@@ -122,7 +122,7 @@ public class BGNeowEvent
              if (AbstractDungeon.player instanceof MultiCharacter) {
                 BaseMod.openCustomScreen(MultiCharacterSelectScreen.Enum.MULTI_CHARACTER_SELECT);
             }
-
+            //TODO NEXT: remove Neow screen disclaimer, maybe
             this.screenNum = -1;    //disclaimer intro
             this.roomEventText.addDialogOption(EXTRA[68]);
             //character screen is still open, we can't set disclaimer text until the player clicks proceed

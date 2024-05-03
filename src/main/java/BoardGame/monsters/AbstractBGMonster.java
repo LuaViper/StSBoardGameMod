@@ -11,6 +11,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.rewards.RewardItem;
+
+import java.util.ArrayList;
 
 //TODO: can we just have AbstractBGMonster implement BGDamageIcons instead of every individual monster?
 public abstract class AbstractBGMonster extends AbstractMonster implements MultiCreature {
@@ -111,5 +114,16 @@ public abstract class AbstractBGMonster extends AbstractMonster implements Multi
 
         return dmg;
     }
+
+//    protected void onBossVictoryLogic() {
+//        super.onBossVictoryLogic();
+//        if(AbstractDungeon.getCurrRoom() instanceof com.megacrit.cardcrawl.rooms.MonsterRoomBoss){
+//            if(!AbstractDungeon.player.hasRelic("BGWhite Beast Statue")) {
+//                ArrayList<RewardItem> rewards = AbstractDungeon.getCurrRoom().rewards;
+//                rewards.clear();
+//
+//            }
+//        }
+//    }
 
 }
