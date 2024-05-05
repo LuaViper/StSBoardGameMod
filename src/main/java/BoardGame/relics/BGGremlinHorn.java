@@ -2,14 +2,10 @@ package BoardGame.relics;
 
 import BoardGame.actions.BGActivateDieAbilityAction;
 import BoardGame.actions.BGChooseOneAttackAction;
+import BoardGame.cards.AbstractBGAttackCardChoice;
 import BoardGame.cards.BGColorless.BGGremlinHornDrawACard;
 import BoardGame.cards.BGColorless.BGGremlinHornGainEnergy;
-import BoardGame.cards.AbstractBGAttackCardChoice;
 import BoardGame.thedie.TheDie;
-import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-
-
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
@@ -17,6 +13,8 @@ import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.PowerTip;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import java.util.ArrayList;
 

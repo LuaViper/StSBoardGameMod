@@ -1,11 +1,11 @@
 package BoardGame.characters;
 
 import BoardGame.cards.BGRed.*;
+import BoardGame.multicharacter.UnselectablePlayer;
 import BoardGame.relics.BGTheDieRelic;
 import BoardGame.relics.BGBurningBlood;
-import basemod.BaseMod;
-import basemod.abstracts.CustomPlayer;
 import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
@@ -19,13 +19,15 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.helpers.FontHelper;
+import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.ScreenShake;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import BoardGame.monsters.AbstractBGMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
+import com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbInterface;
+import com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbRed;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -40,7 +42,7 @@ import static BoardGame.characters.BGIronclad.Enums.BG_RED;
 //and https://github.com/daviscook477/BaseMod/wiki/Migrating-to-5.0
 //All text (starting description and loadout, anything labeled TEXT[]) can be found in DefaultMod-character-Strings.json in the resources
 
-public class BGIronclad extends AbstractBGCharacter {
+public class BGIronclad extends AbstractBGPlayer implements UnselectablePlayer {
     public static final Logger logger = LogManager.getLogger(BoardGame.class.getName());
 
     // =============== CHARACTER ENUMERATORS =================
@@ -56,6 +58,7 @@ public class BGIronclad extends AbstractBGCharacter {
 
     // =============== CHARACTER ENUMERATORS  =================
 
+    public String getMultiSwapButtonUrl(){return "BoardGameResources/images/icons/ironclad.png";}
 
     // =============== BASE STATS =================
 
@@ -142,8 +145,11 @@ public class BGIronclad extends AbstractBGCharacter {
 
         // =============== /TEXT BUBBLE LOCATION/ =================
 
+        energyOrb = (EnergyOrbInterface)new EnergyOrbRed();
+    }
 
-        BaseMod.MAX_HAND_SIZE=999;
+    public Texture getEnergyImage() {
+        return ImageMaster.RED_ORB_FLASH_VFX;
     }
 
     // =============== /CHARACTER CLASS END/ =================

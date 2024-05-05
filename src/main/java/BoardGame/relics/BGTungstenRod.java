@@ -2,14 +2,12 @@ package BoardGame.relics;
 
 import BoardGame.actions.BGActivateDieAbilityAction;
 import BoardGame.thedie.TheDie;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-
-
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 public class BGTungstenRod
         extends AbstractBGRelic implements DieControlledRelic {

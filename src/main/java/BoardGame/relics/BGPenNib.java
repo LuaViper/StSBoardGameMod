@@ -3,7 +3,6 @@ package BoardGame.relics;
 import BoardGame.actions.BGActivateDieAbilityAction;
 import BoardGame.actions.TargetSelectScreenAction;
 import BoardGame.powers.BGVulnerablePower;
-import BoardGame.powers.BGWeakPower;
 import BoardGame.screen.TargetSelectScreen;
 import BoardGame.thedie.TheDie;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;

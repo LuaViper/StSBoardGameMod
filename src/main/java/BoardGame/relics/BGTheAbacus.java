@@ -1,14 +1,9 @@
 package BoardGame.relics;
 
-import BoardGame.powers.BGTheDiePower;
+import BoardGame.events.BGDeadAdventurer;
 import BoardGame.thedie.TheDie;
-import BoardGame.ui.LockInRollButton;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 public class BGTheAbacus extends AbstractBGRelic {
@@ -66,6 +61,11 @@ public class BGTheAbacus extends AbstractBGRelic {
 
     public void atPreBattle() {
         available = true;pendingUse=false;
+        if(AbstractDungeon.getCurrRoom().event instanceof BGDeadAdventurer){
+            if(((BGDeadAdventurer)AbstractDungeon.getCurrRoom().event).alreadyUsedTheAbacus)
+            {setUsedUp();}
+            //TODO: also call setUsedUp during events
+        }
     }
 
     public void atTurnStart(){

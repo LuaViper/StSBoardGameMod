@@ -1,5 +1,5 @@
 package BoardGame.cards.BGBlue;
-import BoardGame.actions.BGEvokeOrbTwiceAction;
+
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;

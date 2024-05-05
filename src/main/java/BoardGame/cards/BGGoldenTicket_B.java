@@ -2,7 +2,6 @@ package BoardGame.cards;
 
 import BoardGame.BoardGame;
 import BoardGame.characters.BGDefect;
-import BoardGame.characters.BGSilent;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 
 //TODO: exact wording of Golden Ticket card seems to have changed just before printing -- check physical copies when available

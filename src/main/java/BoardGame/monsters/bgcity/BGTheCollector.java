@@ -60,7 +60,8 @@ public class BGTheCollector extends AbstractBGMonster implements BGDamageIcons {
     private static final int STR_AMT = 3;
     private static final int BLOCK_AMT = 15;
     private static final int A_2_FIREBALL_DMG = 21;
-    private int turnsTaken = 0; private static final int A_2_STR_AMT = 4; private static final int A_2_BLOCK_AMT = 18; private int rakeDmg; private int strAmt; private int blockAmt; private int megaDebuffAmt; private static final int MEGA_DEBUFF_AMT = 3;
+    private int turnsTaken = 0; private static final int A_2_STR_AMT = 4; private static final int A_2_BLOCK_AMT = 18; private int rakeDmg; private int strAmt; private int blockAmt;
+    private int megaDebuffAmt; private int megaDebuffBurns;
     private float spawnX = -100.0F;
     private float fireTimer = 0.0F;
 
@@ -72,21 +73,22 @@ public class BGTheCollector extends AbstractBGMonster implements BGDamageIcons {
     private static final byte REVIVE = 5;
 
     public BGTheCollector() {
-        super(NAME, "TheCollector", 282, 15.0F, -40.0F, 300.0F, 390.0F, null, 60.0F, 135.0F);
+        super(NAME, "BGTheCollector", 282, 15.0F, -40.0F, 300.0F, 390.0F, null, 60.0F, 135.0F);
 
         this.dialogX = -90.0F * Settings.scale;
         this.dialogY = 10.0F * Settings.scale;
         this.type = AbstractMonster.EnemyType.BOSS;
 
 
-        setHp(57);
+        setHp((AbstractDungeon.ascensionLevel<10) ? 57 : 60);
 
         this.strAmt = 1;
         this.megaDebuffAmt = 2;
+        this.megaDebuffBurns = (AbstractDungeon.ascensionLevel<10) ? 2 : 3;
 
 
         this.damage.add(new DamageInfo((AbstractCreature)this, 3));
-        this.damage.add(new DamageInfo((AbstractCreature)this, 5));
+        this.damage.add(new DamageInfo((AbstractCreature)this, (AbstractDungeon.ascensionLevel<10) ? 5 : 6));
 
 
         loadAnimation("images/monsters/theCity/collector/skeleton.atlas", "images/monsters/theCity/collector/skeleton.json", 1.0F);
@@ -104,7 +106,7 @@ public class BGTheCollector extends AbstractBGMonster implements BGDamageIcons {
         AbstractDungeon.getCurrRoom().playBgmInstantly("BOSS_CITY");
         UnlockTracker.markBossAsSeen("COLLECTOR");
 
-        ArrayList<AbstractMonster> monsters = AbstractDungeon.getCurrRoom().monsters.monsters;
+        ArrayList<AbstractMonster> monsters = AbstractDungeon.getMonsters().monsters;
         //logger.info("checking gremlin slot "+slot);
 
 
@@ -132,7 +134,7 @@ public class BGTheCollector extends AbstractBGMonster implements BGDamageIcons {
                         }
                     }
                 }
-                setMove((byte) 2, AbstractMonster.Intent.ATTACK_BUFF, 3);
+                setMove((byte) 2, AbstractMonster.Intent.ATTACK_BUFF, damage.get(0).base);
                 break;
 
 
@@ -144,7 +146,7 @@ public class BGTheCollector extends AbstractBGMonster implements BGDamageIcons {
                         AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new ApplyPowerAction((AbstractCreature) m, (AbstractCreature) this, (AbstractPower) new StrengthPower((AbstractCreature) m, this.strAmt), this.strAmt));
                     }
                 }
-                setMove((byte) 3, AbstractMonster.Intent.ATTACK, 5);
+                setMove((byte) 3, AbstractMonster.Intent.ATTACK, damage.get(1).base);
                 break;
             case 3:
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new DamageAction((AbstractCreature) AbstractDungeon.player, this.damage
@@ -162,7 +164,7 @@ public class BGTheCollector extends AbstractBGMonster implements BGDamageIcons {
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractGameEffect)new CollectorCurseEffect(AbstractDungeon.player.hb.cX, AbstractDungeon.player.hb.cY), 2.0F));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)this, (AbstractPower)new BGWeakPower((AbstractCreature)AbstractDungeon.player, this.megaDebuffAmt, true), this.megaDebuffAmt));
                 addToBot((AbstractGameAction)new MakeTempCardInDrawPileAction((AbstractCard)new BGDazed(), this.megaDebuffAmt, false, true));
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new MakeTempCardInDiscardAction((AbstractCard)new BGBurn(), this.megaDebuffAmt));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new MakeTempCardInDiscardAction((AbstractCard)new BGBurn(), this.megaDebuffBurns));
                 this.ultUsed = true;
                 setMove((byte) 1, AbstractMonster.Intent.UNKNOWN);
 

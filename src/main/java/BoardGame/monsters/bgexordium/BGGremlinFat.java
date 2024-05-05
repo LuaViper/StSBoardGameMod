@@ -44,7 +44,7 @@ public class BGGremlinFat extends AbstractBGMonster implements BGDamageIcons {
         this.dialogY = 30.0F * Settings.scale;
 
 
-        setHp(2);
+        setHp(3);
         this.damage.add(new DamageInfo((AbstractCreature)this, 1));
 
         loadAnimation("images/monsters/theBottom/fatGremlin/skeleton.atlas", "images/monsters/theBottom/fatGremlin/skeleton.json", 1.0F);
@@ -62,7 +62,7 @@ public class BGGremlinFat extends AbstractBGMonster implements BGDamageIcons {
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new AnimateSlowAttackAction((AbstractCreature)this));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                         .get(0), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)this, (AbstractPower)new BGWeakPower((AbstractCreature)AbstractDungeon.player, 1, true), 1));
+                //AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)this, (AbstractPower)new BGWeakPower((AbstractCreature)AbstractDungeon.player, 1, true), 1));
 
 
 
@@ -128,7 +128,7 @@ public class BGGremlinFat extends AbstractBGMonster implements BGDamageIcons {
 
 
     protected void getMove(int num) {
-        setMove(MOVES[0], (byte)2, AbstractMonster.Intent.ATTACK_DEBUFF, ((DamageInfo)this.damage.get(0)).base);
+        setMove(MOVES[0], (byte)2, AbstractMonster.Intent.ATTACK, ((DamageInfo)this.damage.get(0)).base);
     }
 
 

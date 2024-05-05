@@ -1,17 +1,14 @@
 package BoardGame.actions;
-import BoardGame.BoardGame;
-import BoardGame.monsters.MixedAttacks;
+
+import BoardGame.monsters.AbstractBGMonster;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import BoardGame.monsters.AbstractBGMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 
 public class BGDarkShacklesAction extends AbstractGameAction {
@@ -35,7 +32,7 @@ public class BGDarkShacklesAction extends AbstractGameAction {
             //avoid attacking dead monsters (and corresponding visual fx)
             if (!mo.isDying && !mo.isDead && !mo.halfDead ) {
                 if (mo.getIntentBaseDmg() >= 0) {
-                    EnemyMoveInfo move = AbstractBGMonster.PublicMoveField.publicmove.get(mo);
+                    EnemyMoveInfo move = AbstractBGMonster.Field.publicMove.get(mo);
                     if (move != null) {
                         addToBot((AbstractGameAction) new GainBlockAction((AbstractCreature) player, this.blockAmount));
                     }

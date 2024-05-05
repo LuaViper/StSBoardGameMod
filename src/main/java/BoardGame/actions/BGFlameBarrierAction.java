@@ -1,5 +1,6 @@
 package BoardGame.actions;
-import BoardGame.BoardGame;
+
+import BoardGame.monsters.AbstractBGMonster;
 import BoardGame.monsters.MixedAttacks;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -10,7 +11,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import BoardGame.monsters.AbstractBGMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 
 public class BGFlameBarrierAction extends AbstractGameAction {
@@ -35,7 +35,7 @@ public class BGFlameBarrierAction extends AbstractGameAction {
             if (!mo.isDying && !mo.isDead) {
                 if (mo.getIntentBaseDmg() >= 0) {
                     //p.triggerMarks(this.card);
-                    EnemyMoveInfo move = AbstractBGMonster.PublicMoveField.publicmove.get(mo);
+                    EnemyMoveInfo move = AbstractBGMonster.Field.publicMove.get(mo);
                     if (move != null) {
                         if (move.isMultiDamage && move.multiplier > 1) {
                             for (int i = 1; i <= move.multiplier; i += 1) {

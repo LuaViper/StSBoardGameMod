@@ -1,8 +1,8 @@
 package BoardGame.cards.BGRed;
 
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGIronclad;
-import BoardGame.characters.BGSilent;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
@@ -22,13 +22,6 @@ public class BGStrike_Red extends AbstractBGCard {
 
     public BGStrike_Red() {
         super("BGStrike_R", cardStrings.NAME, "red/attack/strike", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, BGIronclad.Enums.BG_RED, AbstractCard.CardRarity.BASIC, AbstractCard.CardTarget.ENEMY);
-
-
-
-
-
-
-
 
 
 

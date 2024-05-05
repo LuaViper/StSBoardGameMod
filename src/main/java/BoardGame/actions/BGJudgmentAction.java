@@ -15,16 +15,16 @@ public class BGJudgmentAction
 
     public BGJudgmentAction(AbstractCreature target, int cutoff) {
         this.duration = Settings.ACTION_DUR_FAST;
-        this.source = null;
+        this.source = AbstractDungeon.player;
         this.target = target;
         this.cutoff = cutoff;
     }
 
     public void update() {
         if (this.duration == Settings.ACTION_DUR_FAST &&
-                this.target.currentHealth <= this.cutoff && this.target instanceof com.megacrit.cardcrawl.monsters.AbstractMonster)
-
-            addToBot((AbstractGameAction) new DamageAction((AbstractCreature) target, new DamageInfo((AbstractCreature) source, target.currentHealth, DamageInfo.DamageType.THORNS), AttackEffect.NONE));
+                this.target.currentHealth <= this.cutoff && this.target instanceof com.megacrit.cardcrawl.monsters.AbstractMonster) {
+            addToBot((AbstractGameAction) new DamageAction((AbstractCreature) target, new DamageInfo(source, target.currentHealth, DamageInfo.DamageType.HP_LOSS), AttackEffect.NONE));
+        }
         this.isDone = true;
     }
 }

@@ -39,8 +39,6 @@ public class BGBerserkPower extends AbstractBGPower {
             addToBot((AbstractGameAction)new VFXAction(this.owner, (AbstractGameEffect)new CleaveEffect(), 0.2F));
         }
         addToBot((AbstractGameAction)new DamageAllEnemiesAction(this.owner,
-
-
                 DamageInfo.createDamageMatrix(this.amount, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.NONE, true));
     }
 

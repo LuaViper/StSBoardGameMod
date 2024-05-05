@@ -2,7 +2,6 @@ package BoardGame.cards.BGGreen;
 
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGSilent;
-import BoardGame.powers.BGPoisonPower;
 import BoardGame.powers.BGWeakPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -43,7 +42,6 @@ public class BGPiercingWail extends AbstractBGCard {
         }
         addToBot(new GainBlockAction(AbstractDungeon.player,this.block));
         if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
-            flash();
             for (AbstractMonster monster : (AbstractDungeon.getMonsters()).monsters) {
                 if (!monster.isDead && !monster.isDying) {
                     addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)monster, (AbstractCreature)p, (AbstractPower)new BGWeakPower((AbstractCreature)monster, 1, false), this.magicNumber));

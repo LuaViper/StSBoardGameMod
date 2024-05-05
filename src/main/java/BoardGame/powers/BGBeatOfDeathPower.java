@@ -2,8 +2,6 @@ package BoardGame.powers;
 
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -35,7 +33,8 @@ public class BGBeatOfDeathPower extends AbstractBGPower {
         }
         this.fontScale = 8.0F;
         this.amount += stackAmount;
-        if(this.amount>3)this.amount=3; //TODO: max stacks is 5 on hardmode
+        int maxStacks=(AbstractDungeon.ascensionLevel<11) ? 100 : 120;
+        if(this.amount>maxStacks)this.amount=maxStacks; //TODO: max stacks is 5 on hardmode
     }
 
     public void atStartOfTurn(){

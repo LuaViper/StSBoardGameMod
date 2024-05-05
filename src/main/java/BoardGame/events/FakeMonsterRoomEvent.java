@@ -1,32 +1,14 @@
 package BoardGame.events;
 
-import BoardGame.dungeons.BGTheCity;
-import BoardGame.dungeons.BGTheEnding;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
-import com.megacrit.cardcrawl.events.RoomEventDialog;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.localization.EventStrings;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.rooms.EventRoom;
-import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.vfx.ThoughtBubble;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
-import javassist.CannotCompileException;
-import javassist.CtBehavior;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import java.util.ArrayList;
 
 public class FakeMonsterRoomEvent extends AbstractEvent {
     public static final String ID = "FakeMonsterRoomEvent";
@@ -54,6 +36,9 @@ public class FakeMonsterRoomEvent extends AbstractEvent {
 
     public void update() {
         super.update();
+
+        AbstractDungeon.getCurrRoom().setMapSymbol("E");
+        AbstractDungeon.getCurrRoom().setMapImg(ImageMaster.MAP_NODE_ELITE,ImageMaster.MAP_NODE_ELITE_OUTLINE);
 
 //        Logger logger = LogManager.getLogger(FakeMonsterRoomEvent.class.getName());
 //        logger.info("FMRE: "+this.hasDialog+" "+" "+this.phase+" "+this.waitTimer);

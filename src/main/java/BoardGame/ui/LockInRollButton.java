@@ -1,27 +1,16 @@
 package BoardGame.ui;
 
 import BoardGame.potions.BGGamblersBrew;
-import BoardGame.relics.AbstractBGRelic;
 import BoardGame.relics.BGTheDieRelic;
 import BoardGame.thedie.TheDie;
 import BoardGame.util.TextureLoader;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.OverlayMenu;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.TipHelper;
-import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.ui.buttons.Button;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import javax.tools.Tool;
-
-import static BoardGame.BoardGame.makeRelicPath;
 
 public class LockInRollButton extends Button {
 
@@ -94,73 +83,6 @@ public class LockInRollButton extends Button {
     }
 
 
-    private static Logger logger = LogManager.getLogger(AbstractBGRelic.class.getName());
-    @SpirePatch(clz= OverlayMenu.class, method=SpirePatch.CLASS)
-    public static class OverlayMenuDiceInterface
-    {
-        public static SpireField<LockInRollButton> lockinrollbutton = new SpireField<>(() -> new LockInRollButton());
-        public static SpireField<RerollButton> rerollbutton = new SpireField<>(() -> new RerollButton());
-        public static SpireField<TheAbacusButton> theabacusbutton = new SpireField<>(() -> new TheAbacusButton());
-        public static SpireField<ToolboxButton> toolboxbutton = new SpireField<>(() -> new ToolboxButton());
-        public static SpireField<PotionButton> potionbutton = new SpireField<>(() -> new PotionButton());
-    }
 
-    @SpirePatch2(clz= OverlayMenu.class, method="update",
-                    paramtypez={})
-    public static class OverlayMenuDiceInterfaceUpdatePatch
-    {
-        @SpirePostfixPatch
-        public static void Postfix(OverlayMenu __instance){
-            //logger.info("OverlayMenuDiceInterfaceUpdatePatch postfix");
-            OverlayMenuDiceInterface.lockinrollbutton.get(__instance).update();
-            OverlayMenuDiceInterface.rerollbutton.get(__instance).update();
-            OverlayMenuDiceInterface.theabacusbutton.get(__instance).update();
-            OverlayMenuDiceInterface.toolboxbutton.get(__instance).update();
-            OverlayMenuDiceInterface.potionbutton.get(__instance).update();
-
-        }
-    }
-
-    @SpirePatch2(clz= OverlayMenu.class, method="render",
-            paramtypez={SpriteBatch.class})
-    public static class OverlayMenuDiceInterfaceRenderPatch
-    {
-        @SpirePostfixPatch
-        public static void Postfix(OverlayMenu __instance, SpriteBatch sb){
-            OverlayMenuDiceInterface.lockinrollbutton.get(__instance).render(sb);
-            OverlayMenuDiceInterface.rerollbutton.get(__instance).render(sb);
-            OverlayMenuDiceInterface.theabacusbutton.get(__instance).render(sb);
-            OverlayMenuDiceInterface.toolboxbutton.get(__instance).render(sb);
-            OverlayMenuDiceInterface.potionbutton.get(__instance).render(sb);
-        }
-    }
-
-    @SpirePatch2(clz= OverlayMenu.class, method="showCombatPanels",
-            paramtypez={})
-    public static class showCombatPanelsPatch
-    {
-        @SpirePostfixPatch
-        public static void Postfix(OverlayMenu __instance){
-            OverlayMenuDiceInterface.lockinrollbutton.get(__instance).visible=true;
-            OverlayMenuDiceInterface.rerollbutton.get(__instance).visible=true;
-            OverlayMenuDiceInterface.theabacusbutton.get(__instance).visible=true;
-            OverlayMenuDiceInterface.toolboxbutton.get(__instance).visible=true;
-            OverlayMenuDiceInterface.potionbutton.get(__instance).visible=true;
-        }
-    }
-
-    @SpirePatch2(clz= OverlayMenu.class, method="hideCombatPanels",
-            paramtypez={})
-    public static class hideCombatPanelsPatch
-    {
-        @SpirePostfixPatch
-        public static void Postfix(OverlayMenu __instance){
-            OverlayMenuDiceInterface.lockinrollbutton.get(__instance).visible=false;
-            OverlayMenuDiceInterface.rerollbutton.get(__instance).visible=false;
-            OverlayMenuDiceInterface.theabacusbutton.get(__instance).visible=false;
-            OverlayMenuDiceInterface.toolboxbutton.get(__instance).visible=false;
-            OverlayMenuDiceInterface.potionbutton.get(__instance).visible=false;
-        }
-    }
 
 }

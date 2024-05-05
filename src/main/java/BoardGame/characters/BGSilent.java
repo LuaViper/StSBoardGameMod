@@ -1,7 +1,7 @@
 package BoardGame.characters;
 
 import BoardGame.cards.BGGreen.*;
-import BoardGame.dungeons.AbstractBGDungeon;
+import BoardGame.multicharacter.UnselectablePlayer;
 import BoardGame.relics.BGShivs;
 import BoardGame.relics.BGSnakeRing;
 import BoardGame.relics.BGTheDieRelic;
@@ -19,7 +19,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.EnergyManager;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.cutscenes.Cutscene;
 import com.megacrit.cardcrawl.cutscenes.CutscenePanel;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
@@ -30,8 +29,9 @@ import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
+import com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbGreen;
+import com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbInterface;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -46,7 +46,8 @@ import static BoardGame.BoardGame.*;
 //and https://github.com/daviscook477/BaseMod/wiki/Migrating-to-5.0
 //All text (starting description and loadout, anything labeled TEXT[]) can be found in DefaultMod-character-Strings.json in the resources
 
-public class BGSilent extends AbstractBGCharacter {
+
+public class BGSilent extends AbstractBGPlayer implements UnselectablePlayer {
     public static final Logger logger = LogManager.getLogger(BoardGame.class.getName());
 
     // =============== CHARACTER ENUMERATORS =================
@@ -61,7 +62,7 @@ public class BGSilent extends AbstractBGCharacter {
     }
 
     // =============== CHARACTER ENUMERATORS  =================
-
+    public String getMultiSwapButtonUrl(){return "BoardGameResources/images/icons/silent.png";}
 
     // =============== BASE STATS =================
 
@@ -149,7 +150,11 @@ public class BGSilent extends AbstractBGCharacter {
         // =============== /TEXT BUBBLE LOCATION/ =================
 
 
-        BaseMod.MAX_HAND_SIZE=999;
+        energyOrb = (EnergyOrbInterface)new EnergyOrbGreen();
+    }
+
+    public Texture getEnergyImage() {
+        return ImageMaster.GREEN_ORB_FLASH_VFX;
     }
 
     // =============== /CHARACTER CLASS END/ =================

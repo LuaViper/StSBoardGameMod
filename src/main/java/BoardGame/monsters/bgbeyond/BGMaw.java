@@ -44,6 +44,7 @@ public class BGMaw extends AbstractBGMonster implements BGDamageIcons {
 
     private boolean roared = false;
     private int turnCount = 1; private int strUp; private int terrifyDur;
+    private int multiCount;
 
     public BGMaw(float x, float y) {
         super(NAME, "BGMaw", 300, 0.0F, -40.0F, 430.0F, 360.0F, null, x, y);
@@ -77,23 +78,38 @@ public class BGMaw extends AbstractBGMonster implements BGDamageIcons {
         setHp(28);
 
         this.damage.add(new DamageInfo((AbstractCreature)this, 2));
-        this.damage.add(new DamageInfo((AbstractCreature)this, 6));
+        if(AbstractDungeon.ascensionLevel<7)
+            this.damage.add(new DamageInfo((AbstractCreature)this, 6));
+        else
+            this.damage.add(new DamageInfo((AbstractCreature)this, 8));
+
+        this.damage.add(new DamageInfo((AbstractCreature)this, 2));
+        multiCount=3;
+        if(AbstractDungeon.ascensionLevel>=7) {
+            multiCount=2;
+        }
+
     }
 
     public void takeTurn() {
         int i;
         switch (this.nextMove) {
             case 1:
+                if(AbstractDungeon.ascensionLevel>=7) {
+                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new DamageAction((AbstractCreature) AbstractDungeon.player, this.damage
+                            .get(2), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+                }
+
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SFXAction("MAW_DEATH", 0.1F));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)this, (AbstractPower)new BGVulnerablePower((AbstractCreature)AbstractDungeon.player, 1, true), 1));
 
                 this.roared = true;
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this,  (byte)2, AbstractMonster.Intent.ATTACK,2,3,true));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this,  (byte)2, AbstractMonster.Intent.ATTACK,2,multiCount,true));
                 break;
             case 2:
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new AnimateSlowAttackAction((AbstractCreature)this));
 
-                for (i = 0; i < 3; i++) {
+                for (i = 0; i < multiCount; i++) {
                     AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractGameEffect)new BiteEffect(AbstractDungeon.player.hb.cX +
 
 
@@ -108,7 +124,8 @@ public class BGMaw extends AbstractBGMonster implements BGDamageIcons {
                 break;
             case 3:
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new StrengthPower((AbstractCreature)this, 2), 2));
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this,  (byte)4, AbstractMonster.Intent.ATTACK,6));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this,  (byte)4, AbstractMonster.Intent.ATTACK,
+                        this.damage.get(1).base));
                 break;
             case 4:
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new AnimateSlowAttackAction((AbstractCreature)this));
@@ -127,7 +144,11 @@ public class BGMaw extends AbstractBGMonster implements BGDamageIcons {
 
     protected void getMove(int num) {
         if (this.turnCount==1) {
-            setMove((byte)1, AbstractMonster.Intent.STRONG_DEBUFF);
+            if(AbstractDungeon.ascensionLevel<7) {
+                setMove((byte) 1, AbstractMonster.Intent.STRONG_DEBUFF);
+            }else {
+                setMove((byte) 1, AbstractMonster.Intent.ATTACK_DEBUFF,damage.get(2).base);
+            }
             this.turnCount++;
         }else{
             setMove((byte)0, AbstractMonster.Intent.NONE);

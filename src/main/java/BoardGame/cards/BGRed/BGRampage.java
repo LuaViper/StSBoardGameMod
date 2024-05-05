@@ -2,8 +2,8 @@ package BoardGame.cards.BGRed;
 
 import BoardGame.BoardGame;
 import BoardGame.actions.BGRampageAction;
-import BoardGame.characters.BGIronclad;
 import BoardGame.cards.AbstractBGCard;
+import BoardGame.characters.BGIronclad;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ExhaustAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;

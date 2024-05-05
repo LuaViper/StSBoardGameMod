@@ -1,7 +1,6 @@
 package BoardGame.actions;
 
 import BoardGame.BoardGame;
-import BoardGame.monsters.DieControlledMoves;
 import BoardGame.powers.BGTheDiePower;
 import BoardGame.thedie.TheDie;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;

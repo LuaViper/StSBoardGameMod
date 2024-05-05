@@ -109,7 +109,8 @@
     "FLAVOR": "\"These would be good here.\"",
     "DESCRIPTIONS": [
       "#yOnce #yper #ycombat: NL Keep your leftover #yBlock [BoardGame:BlockIcon] from last turn. NL (Gain #b",
-      " Block.)"
+      " Block.)",
+      "#yOnce #yper #ycombat: NL [BoardGame:BlockIcon] #yBlock is not removed at the start of your next turn."
     ]
   },
   "BGCalling Bell": {
@@ -145,7 +146,7 @@
     ]
   },
   "BGCrackedCore": {
-    "NAME": "CrackedCore",
+    "NAME": "Cracked Core",
     "FLAVOR": "The mysterious life force which powers the Automatons within the Spire. It appears to be cracked.",
     "DESCRIPTIONS": [
       "#yStart #yof #ycombat: NL #yChannel 1 #yLightning."
@@ -412,9 +413,23 @@
   },
   "BGDiscardedOld Coin": {
     "NAME": "Old Coin (Discarded)",
-    "FLAVOR": "Unique coins are highly valued by merchants for their historical value and rare metallic composition.",
+    "FLAVOR": "",
     "DESCRIPTIONS": [
       "Old Coin was drawn at The Merchant or The Courier and subsequently discarded."
+    ]
+  },
+  "BGDiscardedHallwayEvent": {
+    "NAME": "Monster Event (Discarded)",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "A hallway encounter was drawn on floor 2 and subsequently discarded."
+    ]
+  },
+  "BGDiscardedMerchantEvent": {
+    "NAME": "Merchant Event (Discarded)",
+    "FLAVOR": "",
+    "DESCRIPTIONS": [
+      "A Merchant was drawn on floor 2 and subsequently discarded."
     ]
   },
   "BGOmamori": {
@@ -636,7 +651,7 @@
     "NAME": "Toolbox",
     "FLAVOR": "A tool for every job.",
     "DESCRIPTIONS": [
-      "#yOnce #yper #ycombat: NL +1 to the die result. NL ( [BoardGame:Die1Icon] becomes [BoardGame:Die6Icon] )"
+      "#yOnce #yper #ycombat: NL -1 to the die result. NL ( [BoardGame:Die1Icon] becomes [BoardGame:Die6Icon] )"
     ]
   },
   "BGToxic Egg 2": {

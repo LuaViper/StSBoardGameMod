@@ -47,7 +47,6 @@ public class TargetSelectScreen extends CustomScreen {
     public interface TargetSelectAction{
         void execute(AbstractMonster target);
     }
-
     final Logger logger = LogManager.getLogger(TargetSelectScreen.class.getName());
     public static class Enum
     {
@@ -59,43 +58,32 @@ public class TargetSelectScreen extends CustomScreen {
     {
         return Enum.TARGET_SELECT;
     }
-
-
     public TargetSelectAction action;
-
     public String description="(DNT) Target Select Screen.  Choose a target.";
     public boolean allowCancel=false;
     public TargetSelectAction cancelAction=null;    //dummied out
     public AbstractMonster finaltarget=null;
-
-
     private void open(TargetSelectAction action, String description, boolean allowCancel) {
         this.description=description;
         this.action=action;
         this.allowCancel=allowCancel;
-        //this.cancelAction=cancelAction;
         this.isDone=false;
-
         if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.NONE)
             AbstractDungeon.previousScreen = AbstractDungeon.screen;
         reopen();
     }
-
-
     @Override
     public void reopen()
     {
         AbstractDungeon.screen = curScreen();
         AbstractDungeon.isScreenUp = true;
     }
-
     @Override
     public void openingSettings()
     {
         // Required if you want to reopen your screen when the settings screen closes
         AbstractDungeon.previousScreen = curScreen();
     }
-
     @Override public void close()
     {
         //logger.info("CLOSE TARGETSELECTSCREEN "+AbstractDungeon.screen+" "+AbstractDungeon.previousScreen);
@@ -105,8 +93,6 @@ public class TargetSelectScreen extends CustomScreen {
         GameCursor.hidden = false;
         //___hoveredMonster[0] = null;
     }
-
-
     @Override
     public void update() {
         //logger.info("TSS: update");
@@ -117,7 +103,7 @@ public class TargetSelectScreen extends CustomScreen {
         }
         AbstractMonster firstmonster=null;
         int monstercount=0;
-        for(AbstractMonster m : AbstractDungeon.getCurrRoom().monsters.monsters){
+        for(AbstractMonster m : AbstractDungeon.getMonsters().monsters){
             if(!m.isDeadOrEscaped()){
                 monstercount+=1;
                 if(monstercount==1) firstmonster=m;
@@ -266,15 +252,15 @@ public class TargetSelectScreen extends CustomScreen {
         )
         public static SpireReturn<Void> Insert(AbstractPlayer __instance, @ByRef AbstractMonster[] ___hoveredMonster,
                                                float ___hoverStartLine, @ByRef boolean[] ___isUsingClickDragControl){
-            if(AbstractDungeon.screen.equals(Enum.TARGET_SELECT)){
+            if(AbstractDungeon.screen.equals(Enum.TARGET_SELECT)) {
                 if (__instance.isInKeyboardMode) {
                     //if (InputActionSet.releaseCard.isJustPressed() || CInputActionSet.cancel.isJustPressed()) {
-                    if(false){ //TODO: check getCustomScreen(TargetSelectScreen).allowCancel
+                    if (false) { //TODO: check getCustomScreen(TargetSelectScreen).allowCancel
                         __instance.inSingleTargetMode = false;
                         ___hoveredMonster[0] = null;
                         AbstractDungeon.closeCurrentScreen();
                     } else {
-                        ReflectionHacks.RMethod updateTargetArrowWithKeyboard=ReflectionHacks.privateMethod(AbstractPlayer.class,"updateTargetArrowWithKeyboard",
+                        ReflectionHacks.RMethod updateTargetArrowWithKeyboard = ReflectionHacks.privateMethod(AbstractPlayer.class, "updateTargetArrowWithKeyboard",
                                 Boolean.class);
                         updateTargetArrowWithKeyboard.invoke(__instance, true);
                     }
@@ -284,10 +270,9 @@ public class TargetSelectScreen extends CustomScreen {
                         m.hb.update();
                         //currently, the only card that allowsCancel is Carve Reality, which targets "one or two" enemies
                         //so we're allowing the cancel by clicking the same monster twice -- even if the first hit kills it
-                        //TODO: this DOES mean that the player can pick a dead enemy as their second target, regardless of whether it was the first target.  fix maybe.
                         //TODO: maybe pass a 4th arg along with AllowCancel being the originally-targeted enemy?
-                        TargetSelectScreen screen=(TargetSelectScreen)BaseMod.getCustomScreen(Enum.TARGET_SELECT);
-                        if (m.hb.hovered && ((!m.isDying && !m.isEscaping && m.currentHealth > 0) || screen.allowCancel)) {
+                        TargetSelectScreen screen = (TargetSelectScreen) BaseMod.getCustomScreen(Enum.TARGET_SELECT);
+                        if (m.hb.hovered && !m.isDying && !m.isEscaping && m.currentHealth > 0) {
                             ___hoveredMonster[0] = m;
                             break;
                         }
@@ -299,7 +284,7 @@ public class TargetSelectScreen extends CustomScreen {
                     if (Settings.isTouchScreen) {
                         InputHelper.moveCursorToNeutralPosition();
                     }
-                    ReflectionHacks.RMethod releaseCard=ReflectionHacks.privateMethod(AbstractPlayer.class,"updateTargetArrowWithKeyboard",
+                    ReflectionHacks.RMethod releaseCard = ReflectionHacks.privateMethod(AbstractPlayer.class, "updateTargetArrowWithKeyboard",
                             Boolean.class);
                     releaseCard.invoke(__instance);
                     CardCrawlGame.sound.play("UI_CLICK_2");
@@ -312,6 +297,19 @@ public class TargetSelectScreen extends CustomScreen {
                 }
 
                 //skip over "cardFromHotkey" entirely...
+                {
+                    TargetSelectScreen screen = (TargetSelectScreen) BaseMod.getCustomScreen(Enum.TARGET_SELECT);
+                    if (InputHelper.justClickedRight && screen.allowCancel) {
+                        InputHelper.justClickedRight = false;
+                        screen.isDone=true;
+                        ___isUsingClickDragControl[0] = false;
+                        __instance.inSingleTargetMode = false;
+                        GameCursor.hidden = false;
+                        ___hoveredMonster[0] = null;
+                        AbstractDungeon.closeCurrentScreen();
+                        return SpireReturn.Return();
+                    }
+                }
 
                 if (InputHelper.justClickedLeft || InputActionSet.confirm.isJustPressed() || CInputActionSet.select
                         .isJustPressed()) {

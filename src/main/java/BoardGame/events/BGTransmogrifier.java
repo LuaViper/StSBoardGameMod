@@ -4,7 +4,6 @@ import BoardGame.dungeons.AbstractBGDungeon;
 import BoardGame.neow.BGNeowReward;
 import BoardGame.patches.TransformPatch;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -88,7 +87,7 @@ public class BGTransmogrifier extends AbstractImageEvent {
             AbstractDungeon.topLevelEffects.add(new ShowCardAndObtainEffect(
                     card, Settings.WIDTH / 2.0F, Settings.HEIGHT / 2.0F));
 
-            AbstractBGDungeon.removeCardFromRewardDeck(card);
+            //AbstractBGDungeon.removeCardFromRewardDeck(card); //TODO: why was this here? we already removed the card earlier
         }
     }
 

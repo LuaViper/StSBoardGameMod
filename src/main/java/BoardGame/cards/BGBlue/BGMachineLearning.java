@@ -1,4 +1,5 @@
 package BoardGame.cards.BGBlue;
+
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -11,7 +12,6 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.DrawPower;
-import com.megacrit.cardcrawl.powers.HeatsinkPower;
 
 public class BGMachineLearning extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGMachineLearning");

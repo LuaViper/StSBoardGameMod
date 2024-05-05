@@ -42,7 +42,6 @@ public class BGHealer extends AbstractBGMonster implements DieControlledMoves, B
     private static final int A_2_HP_MAX = 58;
     private static final int MAGIC_DMG = 8;
     private static final int HEAL_AMT = 16;
-    private String behavior="---";
 
     public BGHealer(float x, float y) {
         super(NAME, "BGHealer", 56, 0.0F, -20.0F, 230.0F, 250.0F, null, x, y);
@@ -91,6 +90,7 @@ public class BGHealer extends AbstractBGMonster implements DieControlledMoves, B
                 playSfx();
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ChangeStateAction(this, "STAFF_RAISE"));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new WaitAction(0.25F));
+                //TODO: are there any act 2 monsters that summon?  use BuffAllEnemiesAction instead
                 for (AbstractMonster m : (AbstractDungeon.getMonsters()).monsters) {
                     if (!m.isDying && !m.isEscaping) {
                         AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)m, (AbstractCreature)this, (AbstractPower)new StrengthPower((AbstractCreature)m, this.strAmt), this.strAmt));

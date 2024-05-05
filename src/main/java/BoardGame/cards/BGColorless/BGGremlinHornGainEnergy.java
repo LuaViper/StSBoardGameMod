@@ -3,7 +3,7 @@ package BoardGame.cards.BGColorless;
 import BoardGame.cards.AbstractBGAttackCardChoice;
 import BoardGame.characters.BGColorless;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;

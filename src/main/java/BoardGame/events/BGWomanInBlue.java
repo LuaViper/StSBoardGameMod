@@ -1,7 +1,5 @@
 package BoardGame.events;
 
-import com.badlogic.gdx.math.MathUtils;
-import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;

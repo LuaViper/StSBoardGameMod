@@ -1,9 +1,8 @@
 package BoardGame.cards.BGBlue;
+
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.actions.defect.FTLAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;

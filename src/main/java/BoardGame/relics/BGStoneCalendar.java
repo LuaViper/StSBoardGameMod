@@ -2,11 +2,9 @@ package BoardGame.relics;
 
 import BoardGame.actions.BGActivateDieAbilityAction;
 import BoardGame.actions.TargetSelectScreenAction;
-import BoardGame.powers.BGVulnerablePower;
 import BoardGame.screen.TargetSelectScreen;
 import BoardGame.thedie.TheDie;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;

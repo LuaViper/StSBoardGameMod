@@ -55,6 +55,7 @@ public class BGHexaghost extends AbstractBGMonster implements BGDamageIcons {
     private int searDmg;
     private int strAmount;
     private int searBurnCount;
+    private int turn5BurnCount;
     private int strengthenBlockAmt = 5; private int fireTackleDmg;
     private int fireTackleCount = 2; private int infernoDmg;
     private int infernoHits = 2; private static final byte DIVIDER = 1;
@@ -77,21 +78,20 @@ public class BGHexaghost extends AbstractBGMonster implements BGDamageIcons {
         createOrbs();
 
 
-        setHp(36);
+        setHp((AbstractDungeon.ascensionLevel<10) ? 36 : 38);
 
-
+        this.searBurnCount = (AbstractDungeon.ascensionLevel<10) ? 1 : 2;
 
             this.strAmount = 1;
-            this.searBurnCount = 1;
-            this.fireTackleDmg = 5;
-            this.infernoDmg = 2;
+
+            this.turn5BurnCount=1;
 
 
-        this.searDmg = 6;
+
         this.damage.add(new DamageInfo((AbstractCreature)this, 1));
         this.damage.add(new DamageInfo((AbstractCreature)this, 2));
-        this.damage.add(new DamageInfo((AbstractCreature)this, 3));
-        this.damage.add(new DamageInfo((AbstractCreature)this, 2));
+        this.damage.add(new DamageInfo((AbstractCreature)this, (AbstractDungeon.ascensionLevel<10) ? 3 : 4));
+        this.damage.add(new DamageInfo((AbstractCreature)this, (AbstractDungeon.ascensionLevel<10) ? 2 : 3));
         this.damage.add(new DamageInfo((AbstractCreature)this, 3));
     }
 
@@ -201,7 +201,7 @@ public class BGHexaghost extends AbstractBGMonster implements BGDamageIcons {
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                         .get(3), AbstractGameAction.AttackEffect.FIRE));
                 c = new BGBurn();
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new MakeTempCardInDiscardAction((AbstractCard)c, this.searBurnCount));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new MakeTempCardInDiscardAction((AbstractCard)c, this.turn5BurnCount));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ChangeStateAction(this, "Activate Orb"));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new RollMoveAction(this));
                 return;

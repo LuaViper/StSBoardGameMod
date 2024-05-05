@@ -1,13 +1,9 @@
 package BoardGame.cards.BGPurple;
-import BoardGame.actions.BGIndignationAction;
 import BoardGame.cards.AbstractBGCard;
-import BoardGame.characters.AbstractBGCharacter;
+import BoardGame.characters.AbstractBGPlayer;
 import BoardGame.characters.BGWatcher;
-import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -16,11 +12,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.stances.AbstractStance;
-import javassist.CannotCompileException;
-import javassist.CtBehavior;
-
-import java.util.ArrayList;
 
 public class BGFlurryOfBlows extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGFlurryOfBlows");
@@ -35,12 +26,12 @@ public class BGFlurryOfBlows extends AbstractBGCard {
     //stanceChangedThisTurn patch is in BGIndignation
     public void triggerOnGlowCheck() {
         this
-                .glowColor = ((AbstractBGCharacter)AbstractDungeon.player).stanceChangedThisTurn ? AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy() : AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+                .glowColor = ((AbstractBGPlayer)AbstractDungeon.player).stanceChangedThisTurn ? AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy() : AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
-        if(((AbstractBGCharacter)AbstractDungeon.player).stanceChangedThisTurn){
+        if(((AbstractBGPlayer)AbstractDungeon.player).stanceChangedThisTurn){
             addToBot((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
             if(upgraded){
                 addToBot((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));

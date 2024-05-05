@@ -51,7 +51,6 @@ public class BGRedSlaver extends AbstractBGMonster implements BGDamageIcons, Die
     private static final String ENTANGLE_NAME = MOVES[1];
     private boolean usedEntangle = false, firstTurn = true;
 
-    private String behavior = "DV3";
 
     public BGRedSlaver(float x, float y){
         this(x,y,"DV3");

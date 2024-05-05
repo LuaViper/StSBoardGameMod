@@ -1,12 +1,10 @@
 package BoardGame.actions;
 
 
-import BoardGame.characters.AbstractBGCharacter;
+import BoardGame.characters.AbstractBGPlayer;
 import BoardGame.powers.WeakVulnCancel;
-import BoardGame.relics.BGShivs;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -34,8 +32,8 @@ public class BGDamagePerAttackPlayedAction extends AbstractGameAction {
                 if (c.type == AbstractCard.CardType.ATTACK)
                     count++;
             }
-            if(AbstractDungeon.player instanceof AbstractBGCharacter)
-                count+=((AbstractBGCharacter)AbstractDungeon.player).shivsPlayedThisTurn;
+            if(AbstractDungeon.player instanceof AbstractBGPlayer)
+                count+=((AbstractBGPlayer)AbstractDungeon.player).shivsPlayedThisTurn;
 
             count--;
             if(count>0) {

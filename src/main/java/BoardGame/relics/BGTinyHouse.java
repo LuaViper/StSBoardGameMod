@@ -1,27 +1,13 @@
 package BoardGame.relics;
 
 import BoardGame.rewards.TinyHouseUpgrade1Card;
-import basemod.ReflectionHacks;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PotionHelper;
-import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardItem;
-import com.megacrit.cardcrawl.screens.CombatRewardScreen;
-import com.megacrit.cardcrawl.ui.campfire.AbstractCampfireOption;
-import com.megacrit.cardcrawl.ui.campfire.SmithOption;
-import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
-import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
-
-import java.util.ArrayList;
-import java.util.Collections;
-import java.util.Random;
 
 //TODO: github.com/daviscook477/BaseMod/wiki/Custom-Rewards
-//TODO: BGTinyHouse needs to upgrade a NON-random card
+//TODO: TinyHouse rewards are not properly cleared upon entering next act? (read: get offered 2 potions if we skipped the one from tinyhouse)
 //TODO: BGTinyHouse breaks Neow's quickstart reward screen (rewards are autopicked) (maybe not an issue since potion stays on the menu if slots are full?)
 
 public class BGTinyHouse extends AbstractBGRelic  {

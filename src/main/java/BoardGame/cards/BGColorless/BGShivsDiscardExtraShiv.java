@@ -16,6 +16,7 @@ public class BGShivsDiscardExtraShiv extends AbstractBGAttackCardChoice {
 
     public BGShivsDiscardExtraShiv() {
         super("BGShivsDiscardExtraShiv", cardStrings.NAME, "green/skill/crippling_poison", -2, cardStrings.DESCRIPTION, CardType.STATUS, BGColorless.Enums.CARD_COLOR, CardRarity.SPECIAL, CardTarget.NONE);
+        this.isInAutoplay=true; //bandage fix for extra shivs triggering dice lock
     }
 
 

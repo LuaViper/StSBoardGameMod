@@ -1,21 +1,46 @@
 package BoardGame.powers;
 
 //TODO: see if we can get the green poison HP bar thing working with this one too
-//TODO: why are some power counters green and others white?  is that what IsTurnBased is for?
 
+import BoardGame.cards.BGGoldenTicket;
+import BoardGame.cards.BGRed.BGSeverSoul;
+import BoardGame.dungeons.AbstractBGDungeon;
 import BoardGame.monsters.bgexordium.BGGremlinAngry;
+import BoardGame.multicharacter.patches.AbstractDungeonMonsterPatches;
+import BoardGame.multicharacter.patches.UseCardPatch;
+import basemod.AutoAdd;
+import basemod.ReflectionHacks;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.unique.PoisonLoseHpAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.powers.PoisonPower;
+import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.screens.select.HandCardSelectScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import javassist.CannotCompileException;
+import javassist.CtBehavior;
+import javassist.expr.ExprEditor;
+import javassist.expr.FieldAccess;
+import javassist.expr.MethodCall;
+import org.clapper.util.classutil.ClassInfo;
+
+import javax.swing.*;
+import java.util.ArrayList;
+import java.util.Collection;
+import java.util.Iterator;
 
 public class BGPoisonPower extends AbstractBGPower {
     public static final String POWER_ID = "BGPoison";
@@ -31,11 +56,11 @@ public class BGPoisonPower extends AbstractBGPower {
 
     public BGPoisonPower(AbstractCreature owner, AbstractCreature source, int poisonAmt) {
         this.name = NAME;
-        this.ID = "BGPoison";
+        this.ID = POWER_ID;
         this.owner = owner;
         this.source = source;
         this.amount = poisonAmt;
-        //TODO: physical token limits -- also this should be 30 across ALL enemies
+        //TODO: this is currently 30 across ALL enemies, but it doesn't take physical token limits into account yet
         if (this.amount >= 30)
             this.amount = 30;
         updateDescription();
@@ -69,7 +94,14 @@ public class BGPoisonPower extends AbstractBGPower {
 
     public void capPoisonOnEnemy(AbstractMonster m){
         int total=0;
-        for (AbstractMonster m2 : (AbstractDungeon.getMonsters()).monsters) {
+        MonsterGroup oM = AbstractDungeonMonsterPatches.Field.originalMonsters.get(AbstractDungeon.getCurrRoom());
+        ArrayList<AbstractMonster> monsters;
+        if(oM!=null && !oM.monsters.isEmpty())
+            monsters=oM.monsters;
+        else
+            monsters=AbstractDungeon.getMonsters().monsters;
+
+        for (AbstractMonster m2 : monsters) {
             if(m2!=m) {
                 AbstractPower p = m2.getPower("BGPoison");
                 if (p != null) {
@@ -111,5 +143,92 @@ public class BGPoisonPower extends AbstractBGPower {
             addToBot((AbstractGameAction)new RemoveSpecificPowerAction(this.owner,this.source,this));
         }
     }
+
+
+    @SpirePatch2(clz= AbstractCreature.class, method="renderHealth",
+            paramtypez={SpriteBatch.class})
+    public static class PoisonHealthBarPatch1 {
+        @SpireInsertPatch(
+                locator = Locator.class,
+                localvars = {"x","y"}
+        )
+        public static void Foo(AbstractCreature __instance, SpriteBatch sb, float ___x, float ___y) {
+            if (__instance.hasPower(BGPoisonPower.POWER_ID))
+                ReflectionHacks.privateMethod(AbstractCreature.class,"renderGreenHealthBar",SpriteBatch.class,float.class,float.class).invoke(__instance,sb,___x,___y);
+        }
+        private static class Locator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractCreature.class, "hasPower");
+                return LineFinder.findInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher);
+            }
+        }
+    }
+
+    public static boolean isPoisoned(AbstractCreature instance) {
+        return instance.hasPower(PoisonPower.POWER_ID) || instance.hasPower(BGPoisonPower.POWER_ID);
+    }
+
+
+    @SpirePatch2(clz= AbstractCreature.class, method="renderRedHealthBar",
+            paramtypez={SpriteBatch.class, float.class, float.class})
+    public static class PoisonHealthBarPatch2 {
+        private static int counter=0;
+        @SpireInstrumentPatch
+        public static ExprEditor Foo() {
+            return new ExprEditor() {
+                public void edit(MethodCall m) throws CannotCompileException {
+                    if (counter == 0 && m.getClassName().equals(AbstractCreature.class.getName()) && m.getMethodName().equals("hasPower")) {
+                    //if (m.getClassName().equals(AbstractCreature.class.getName()) && m.getMethodName().equals("hasPower")) {
+                        counter += 1; //targeting hasPower("Poison")
+                        m.replace("$_ =  "+BGPoisonPower.class.getName()+".isPoisoned($0);");
+                    }
+                }
+            };
+        }
+    }
+
+    @SpirePatch2(clz= AbstractCreature.class, method="renderRedHealthBar",
+            paramtypez={SpriteBatch.class, float.class, float.class})
+    public static class PoisonHealthBarPatch3 {
+        @SpireInstrumentPatch
+        public static ExprEditor Foo() {
+            return new ExprEditor() {
+                public void edit(MethodCall m) throws CannotCompileException {
+                    if (m.getClassName().equals(AbstractCreature.class.getName()) && m.getMethodName().equals("getPower")) {
+                        //targeting int poisonAmt = (getPower("Poison")).amount;
+                        //at this point we know creature has either Poison or BGPoison, but we don't know which one
+                        //just stop getPower("Poison") from crashing.
+                        //we'll fill in the correct poisonAmt immediately afterward, in patch 4
+                        m.replace("$_ = new "+PoisonPower.class.getName()+"(null,null,0);");
+                    }
+                }
+            };
+        }
+    }
+
+    @SpirePatch2(clz= AbstractCreature.class, method="renderRedHealthBar",
+            paramtypez={SpriteBatch.class, float.class, float.class})
+    public static class PoisonHealthBarPatch4 {
+        @SpireInsertPatch(
+                locator = Locator.class,
+                localvars = {"poisonAmt"}
+        )
+        public static void Foo(AbstractCreature __instance, @ByRef int[] ___poisonAmt) {
+            if(__instance.hasPower(PoisonPower.POWER_ID)){
+                ___poisonAmt[0]=__instance.getPower(PoisonPower.POWER_ID).amount;
+            }
+            if(__instance.hasPower(BGPoisonPower.POWER_ID)){
+                ___poisonAmt[0]=Math.max(___poisonAmt[0],__instance.getPower(BGPoisonPower.POWER_ID).amount);
+            }
+        }
+
+        private static class Locator extends SpireInsertLocator {
+            public int[] Locate(CtBehavior ctMethodToPatch) throws CannotCompileException, PatchingException {
+                Matcher finalMatcher = new Matcher.MethodCallMatcher(AbstractCreature.class, "hasPower");
+                return new int[] {LineFinder.findAllInOrder(ctMethodToPatch, new ArrayList<Matcher>(), finalMatcher)[1]};
+            }
+        }
+    }
+
 }
 

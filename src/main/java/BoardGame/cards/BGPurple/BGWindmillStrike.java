@@ -1,20 +1,18 @@
 package BoardGame.cards.BGPurple;
-import BoardGame.actions.BGCrushJointsAction;
+
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGWatcher;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-//TODO: activated status does not work with Play Twice effects. should it?
+//TODO: activated status (wasRetainedLastTurn) does not work with Play Twice effects. should it?
 public class BGWindmillStrike extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGWindmillStrike");
     public static final String ID = "BGWindmillStrike";
@@ -26,6 +24,8 @@ public class BGWindmillStrike extends AbstractBGCard {
         this.baseDamage=2;
         this.baseMagicNumber=3;
         this.magicNumber=this.baseMagicNumber;
+
+        this.tags.add(AbstractCard.CardTags.STRIKE);
     }
 
 

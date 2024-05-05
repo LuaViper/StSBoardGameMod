@@ -1,21 +1,16 @@
 package BoardGame.cards.BGBlue;
-import BoardGame.actions.BGSkewerAction;
+
 import BoardGame.actions.BGTempestAction;
 import BoardGame.actions.BGXCostCardAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
-import BoardGame.powers.BGFreeCardPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 
 public class BGTempest extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGTempest");
@@ -32,7 +27,7 @@ public class BGTempest extends AbstractBGCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         BGXCostCardAction.XCostInfo info = BGXCostCardAction.preProcessCard(this);
-        addToTop((AbstractGameAction)new BGXCostCardAction(this, info,
+        addToBot((AbstractGameAction)new BGXCostCardAction(this, info,
                 (e,d)->addToTop((AbstractGameAction)new BGTempestAction(AbstractDungeon.player, m, this.damage, this.damageTypeForTurn, d, e, this.magicNumber))));
     }
 

@@ -1,5 +1,5 @@
 package BoardGame.cards.BGBlue;
-import BoardGame.actions.BGBarrageAction;
+
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
 import BoardGame.orbs.BGLightning;

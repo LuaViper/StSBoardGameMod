@@ -1,20 +1,19 @@
 package BoardGame.relics;
+
 import BoardGame.BoardGame;
 import BoardGame.actions.BGActivateDieAbilityAction;
+import BoardGame.actions.BGCheckEndPlayerStartTurnPhaseAction;
 import BoardGame.cards.BGColorless.BGShivSurrogate;
-import BoardGame.characters.AbstractBGCharacter;
-import BoardGame.monsters.DieControlledMoves;
 import BoardGame.potions.BGGamblersBrew;
-import BoardGame.powers.BGMayhemPower;
-import BoardGame.powers.BGTheDiePower;
 import BoardGame.powers.BGTriggerAnyDieAbilityPower;
 import BoardGame.thedie.TheDie;
 import BoardGame.ui.EntropicBrewPotionButton;
 import BoardGame.util.TextureLoader;
-import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.GainBlockAction;
+import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -73,19 +72,21 @@ public class BGTheDieRelic extends AbstractBGRelic implements DieControlledRelic
         this.description = getUpdatedDescription();
     }
 
-    public void onUseCard(AbstractCard card, UseCardAction action) {
+    public void onAboutToUseCard(AbstractCard card, AbstractCreature originalTarget) {
         if ((AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT) {
             //mayhem fix
             //TODO: mayhem fix is still wrong -- player should have the chance to lock the roll + activate relics before playing mayhem (some cards change depending on roll)
-            if(!card.isInAutoplay){
+            if (!card.isInAutoplay) {
                 TheDie.forceLockInRoll = true;
-                boolean isACunningPotion=false;
-                if(card instanceof BGShivSurrogate){
-                    isACunningPotion=!((BGShivSurrogate) card).isARealShiv;
+                boolean isACunningPotion = false;
+                if (card instanceof BGShivSurrogate) {
+                    isACunningPotion = !((BGShivSurrogate) card).isARealShiv;
                 }
                 lockRollAndActivateDieRelics(isACunningPotion);
             }
         }
+    }
+    public void onUseCard(AbstractCard card, UseCardAction action) {
         if (card.type == AbstractCard.CardType.POWER) {
             powersPlayedThisCombat+=1;
             for(AbstractOrb o : AbstractDungeon.player.orbs){
@@ -168,7 +169,17 @@ public class BGTheDieRelic extends AbstractBGRelic implements DieControlledRelic
 //            if(p!=null){
 //                ((BGMayhemPower)p).onRollLockedIn();
 //            }
+
+            //if player has a die trigger power, don't activate Surrounded until it's removed
+            //
+            //note that Charon's Ashes is also a start-of-turn trigger
+            addToBot(new BGCheckEndPlayerStartTurnPhaseAction());
+
         }
+
+
+
+
     }
 
     public void checkDieAbility(){
@@ -178,7 +189,9 @@ public class BGTheDieRelic extends AbstractBGRelic implements DieControlledRelic
         if(TheDie.finalRelicRoll==6){
             flash();
             addToBot((AbstractGameAction)new RelicAboveCreatureAction((AbstractCreature)AbstractDungeon.player, this));
-            addToTop((AbstractGameAction) new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)AbstractDungeon.player, (AbstractPower)new BGTriggerAnyDieAbilityPower((AbstractCreature)AbstractDungeon.player)));
+            //addToTop((AbstractGameAction) new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)AbstractDungeon.player, (AbstractPower)new BGTriggerAnyDieAbilityPower((AbstractCreature)AbstractDungeon.player)));
+            addToBot((AbstractGameAction) new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)AbstractDungeon.player, (AbstractPower)new BGTriggerAnyDieAbilityPower((AbstractCreature)AbstractDungeon.player)));
+
         }
     }
 

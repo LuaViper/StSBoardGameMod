@@ -44,7 +44,6 @@ public class BGSpikeSlime_M extends AbstractBGMonster implements BGDamageIcons, 
     private static final byte FRAIL_LICK = 4;
     private static final String FRAIL_NAME = MOVES[0];
 
-    public String behavior="---";
 
     public BGSpikeSlime_M(float x, float y) {
         this(x, y, 0, 5);

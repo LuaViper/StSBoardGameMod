@@ -57,7 +57,7 @@ public class BGSlimeBoss
     public static final int TACKLE_DAMAGE = 9;
 
     public static final int SLAM_DAMAGE = 35;
-
+    private int slimedAmt;
     public static final int A_2_TACKLE_DAMAGE = 10;
     public static final int A_2_SLAM_DAMAGE = 38;
     private static final String SLAM_NAME = MOVES[0], PREP_NAME = MOVES[1], SPLIT_NAME = MOVES[2]; private int tackleDmg; private int slamDmg; public static final int STICKY_TURNS = 3; private static final byte SLAM = 1; private static final byte PREP_SLAM = 2; private static final byte SPLIT = 3; private static final byte STICKY = 4;
@@ -71,8 +71,9 @@ public class BGSlimeBoss
         this.dialogX = -150.0F * Settings.scale;
         this.dialogY = -70.0F * Settings.scale;
 
-        setHp(22);
+        setHp((AbstractDungeon.ascensionLevel<10) ? 22 : 23);
 
+        slimedAmt=(AbstractDungeon.ascensionLevel<10) ? 3 : 4;
         this.tackleDmg = 3;
         this.slamDmg = 6;
 
@@ -106,7 +107,7 @@ public class BGSlimeBoss
             case 1: //3 slimed
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new AnimateSlowAttackAction((AbstractCreature)this));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SFXAction("MONSTER_SLIME_ATTACK"));
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new MakeTempCardInDiscardAction((AbstractCard)new BGSlimed(), 3));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new MakeTempCardInDiscardAction((AbstractCard)new BGSlimed(), slimedAmt));
 
                 //setMove(PREP_NAME, (byte)2, AbstractMonster.Intent.UNKNOWN);
                 setMove("Tackle", (byte)2, AbstractMonster.Intent.ATTACK_DEBUFF, ((DamageInfo)this.damage.get(0)).base);
@@ -157,7 +158,10 @@ public class BGSlimeBoss
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SpawnMonsterAction(new BGSpikeSlime_M(120.0F, -8.0F), false));
 
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new CanLoseAction());
-                setMove(SPLIT_NAME, (byte)4, AbstractMonster.Intent.UNKNOWN);
+                setMove(SPLIT_NAME, (byte)5, AbstractMonster.Intent.UNKNOWN);
+                break;
+            case 5:
+                //do nothing; we're dead
                 break;
         }
     }
@@ -177,11 +181,14 @@ public class BGSlimeBoss
 
         //if (!this.isDying && this.currentHealth <= this.maxHealth / 2.0F && this.nextMove != 3) {
         if(this.currentHealth<=0 && this.nextMove!=4){
-            logger.info("SPLIT");
-            setMove(SPLIT_NAME, (byte)4, AbstractMonster.Intent.UNKNOWN);
-            createIntent();
-            AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new TextAboveCreatureAction((AbstractCreature)this, TextAboveCreatureAction.TextType.INTERRUPTED));
-            AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SetMoveAction(this, SPLIT_NAME, (byte)4, AbstractMonster.Intent.UNKNOWN));
+            if(!halfDead) {
+                halfDead=true;
+                logger.info("SPLIT");
+                setMove(SPLIT_NAME, (byte) 4, AbstractMonster.Intent.UNKNOWN);
+                createIntent();
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new TextAboveCreatureAction((AbstractCreature) this, TextAboveCreatureAction.TextType.INTERRUPTED));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new SetMoveAction(this, SPLIT_NAME, (byte) 4, AbstractMonster.Intent.UNKNOWN));
+            }
         }
     }
 

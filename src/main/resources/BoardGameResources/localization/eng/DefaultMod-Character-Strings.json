@@ -1,4 +1,17 @@
 {
+  "${modID}:BGMultiCharacter": {
+    "NAMES": [
+      "The Board Game",
+      "the Board Game"
+    ],
+    "TEXT": [
+      "Based on the board game adaptation by Contention Games.",
+      "NL You switch to your phone's camera app...",
+      "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~cousins,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~",
+      "Based on the board game adaptation by Contention Games. NL Play up to four characters at once!"
+    ]
+  },
+
   "BoardGame:BGIronclad": {
     "NAMES": [
       "[]The Ironclad (Board Game)",
@@ -31,7 +44,7 @@
     "TEXT": [
       "A combat automaton which became self-aware. NL Ancient technology allows the manipulation of Orbs.",
       "NL You charge your core to its maximum...",
-      "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~brother,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~"
+      "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~broken~ ~one,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~"
     ]
   },
   "BoardGame:BGWatcher": {
@@ -142,10 +155,13 @@
       " #gboss #gRelics ]",
       "Select Cards to Upgrade",
       "[ Proceed ]",
-      "#yDISCLAIMER",
-      "This mod remains very much a work in progress. You may notice rule inaccuracies, bugs, and even softlocks. Ascension Mode is not fully implemented. NL NL Most importantly, #ysave #yfiles #yare #ynot #yready #yyet.  If you try to save the game and reload, everything will break in hilarious and horrifying ways.",
+      "#yLATEST #yUPDATES",
+      "Selecting the Board Game from a #ybrand #ynew save file should no longer softlock on the map screen. NL NL It should now be possible to choose your boss rewards in any order. This was a surprisingly complicated change under the hood and some relics may or may not be broken now. Please report any bugs you find, #respecially #rbugs #rthat #rimpact #rnon-BoardGame #rcharacters #rwhile #rthis #rmod #ris #rinstalled.",
       "If the game softlocks on a reward screen, try opening and closing the map.",
-      "This is TEXT[72] by the way. In case you lose count, the IDE will also keep track for you, beneath the text editor window."
+      "This is TEXT[72] by the way. In case you lose count, the IDE will also keep track for you, beneath the text editor window.",
+      "Well, that's interesting. NL NL If you are reading this message, you have somehow managed to select more than one character for The Board Game. The Board Game multiplayer experience is not yet ready for public playtesting. Don't even think about trying to recover your save #pwhen the game crashes. NL NL For a more stable experience, please exit and choose a solo character from the previous menu.",
+      "If you are reading this message, you have somehow managed to select The Board Game from the character select screen. The Board Game is not yet ready for public playtesting. Don't even think about trying to recover your save #rwhen the game crashes. NL NL For a more stable experience, please exit and choose one of the solo characters from the previous menu.",
+      "This mod remains very much a work in progress. You may notice rule inaccuracies, bugs, and even softlocks. #ySave #yfiles have been freshly implemented and may still be a bit glitchy. NL NL Please report any issues you discover in the #yBoard #yGame #ythread #yof #ythe #y#modding-forum #ychannel #yon #yDiscord."
     ],
     "UNIQUE_REWARDS": [
       "[ #rLose #ryour #rstarting #rRelic #gObtain #ga #grandom #gboss #gRelic ]"
@@ -207,10 +223,10 @@
       "When you Exhaust a Status card, it disappears instead of going into your Exhaust pile.",
       "You will never see the same rare card twice in one run.",
       "There is no maximum hand size.",
-      "Transformed cards revert to your character's color. Curses cannot be transformed.",
+      "Transformed cards always revert to your character's color. Curses cannot be transformed.",
       "Unknown rooms contain only events until Ascension 3.",
-      "The card removal service does not increase in price each time you use it. Ignore that tooltip.",
-      "Some cards, relics, and events gain additional effects in multiplayer games."
+      "Some cards, relics, and events gain additional effects in multiplayer games.",
+      "If you have the Bestiary mod installed, you can review enemy behavior and combat rewards."
     ],
     "OPTIONS": [
       "You can discard potions to make room for others."

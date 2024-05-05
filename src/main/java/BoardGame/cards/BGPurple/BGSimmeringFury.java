@@ -1,7 +1,7 @@
 package BoardGame.cards.BGPurple;
+
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGWatcher;
-import BoardGame.powers.BGBattleHymnPower;
 import BoardGame.powers.BGSimmeringFuryPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;

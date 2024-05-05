@@ -48,6 +48,7 @@ public class BGReptomancer extends AbstractBGMonster implements BGDamageIcons {
     private AbstractMonster[] daggers = new AbstractMonster[2];
     private boolean firstMove = true;
 
+    private int dazeAmt;
     public BGReptomancer() {
         super(NAME, "BGReptomancer", AbstractDungeon.monsterHpRng.random(180, 190), 0.0F, -30.0F, 220.0F, 320.0F, null, -20.0F, 10.0F);
         this.type = AbstractMonster.EnemyType.ELITE;
@@ -65,9 +66,13 @@ public class BGReptomancer extends AbstractBGMonster implements BGDamageIcons {
 
         if(AbstractDungeon.ascensionLevel<1) {
             setHp(35);
-        }else {
+        }else if(AbstractDungeon.ascensionLevel<12) {
             setHp(40);
+        }else{
+            setHp(42);
         }
+        dazeAmt=(AbstractDungeon.ascensionLevel<12 ? 1 : 2);
+
         this.damage.add(new DamageInfo((AbstractCreature)this, 3));
         this.damage.add(new DamageInfo((AbstractCreature)this, 7));
         this.damage.add(new DamageInfo((AbstractCreature)this, 7));
@@ -186,7 +191,7 @@ public class BGReptomancer extends AbstractBGMonster implements BGDamageIcons {
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                         .get(2), AbstractGameAction.AttackEffect.NONE));
                 //AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)this, (AbstractPower)new BGWeakPower((AbstractCreature)AbstractDungeon.player, 1, true), 1));
-                addToBot((AbstractGameAction)new MakeTempCardInDrawPileAction((AbstractCard)new BGDazed(), 1, false, true));
+                addToBot((AbstractGameAction)new MakeTempCardInDrawPileAction((AbstractCard)new BGDazed(), dazeAmt, false, true));
                 {
                     boolean daggerStillAlive = false;
                     for (i = 0; i < this.daggers.length; i++) {

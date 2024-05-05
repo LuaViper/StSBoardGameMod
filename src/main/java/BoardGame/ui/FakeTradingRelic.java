@@ -1,27 +1,15 @@
 package BoardGame.ui;
 
-import BoardGame.relics.AbstractBGRelic;
-import BoardGame.relics.BGTheDieRelic;
 import BoardGame.screen.RelicTradingScreen;
-import BoardGame.thedie.TheDie;
-import BoardGame.util.TextureLoader;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpireField;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.OverlayMenu;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.TipHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.ui.buttons.Button;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 public class FakeTradingRelic extends Button {
     RelicTradingScreen screen;
@@ -67,7 +55,7 @@ public class FakeTradingRelic extends Button {
         if (this.hb.hovered && !Settings.isTouchScreen) {
             TipHelper.renderGenericTip(this.x - 90.0F * Settings.scale, this.y - 90.0F * Settings.scale,
                     realRelic.name,
-                    "Shop price "+realRelic.getPrice()+" gold"
+                    realRelic.description + " NL Shop price "+realRelic.getPrice()+" gold"
             );
         }
 

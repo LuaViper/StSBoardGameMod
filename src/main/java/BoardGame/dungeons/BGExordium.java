@@ -1,5 +1,6 @@
 package BoardGame.dungeons;
 
+import BoardGame.BoardGame;
 import BoardGame.monsters.bgexordium.*;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
@@ -33,6 +34,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
+
 
 public class BGExordium
         extends AbstractBGDungeon
@@ -244,6 +246,7 @@ public class BGExordium
 
     protected void generateMonsters() {
         generateWeakEnemies(1);
+        //weak enemy pool will be cleared immediately after first encounter is populated
         generateStrongEnemies(12);
         generateElites(3);
     }
@@ -255,18 +258,24 @@ public class BGExordium
         //TODO: add BoardGame: tag in front of all monster IDs -- probably search-and-replace "BG -> "BoardGame:BG
 
 
-
-        //monsters.add(new MonsterInfo("BoardGame:TheGuardian", 2000.0F));
-        //monsters.add(new MonsterInfo("BoardGame:Hexaghost", 2000.0F));
-        //monsters.add(new MonsterInfo("BoardGame:SlimeBoss", 2000.0F));
+        if (BoardGame.ENABLE_TEST_FEATURES) {
+            count = 4;
+        }
         monsters.add(new MonsterInfo("BoardGame:Easy Small Slimes", 2.0F));
         monsters.add(new MonsterInfo("BoardGame:Jaw Worm (Easy)", 2.0F));
-        monsters.add(new MonsterInfo(BGCultist.ID,2.0F));
+        monsters.add(new MonsterInfo(BGCultist.ID, 2.0F));
         monsters.add(new MonsterInfo("BoardGame:2 Louse", 2.0F));
 
-        /* 159 */     MonsterInfo.normalizeWeights(monsters);
-        /* 160 */     populateMonsterList(monsters, count, false);
-        /*     */   }
+        ////vanilla test
+//            count=4;
+//            monsters.add(new MonsterInfo("Small Slimes", 2.0F));
+//            monsters.add(new MonsterInfo("Jaw Worm", 2.0F));
+//            monsters.add(new MonsterInfo("Cultist",2.0F));
+//            monsters.add(new MonsterInfo("2 Louse", 2.0F));
+
+        MonsterInfo.normalizeWeights(monsters);
+        populateMonsterList(monsters, count, false);
+    }
 
 
     protected void generateStrongEnemies(int count) {
@@ -281,10 +290,15 @@ public class BGExordium
         monsters.add(new MonsterInfo("BoardGame:Angry Gremlin Team",2.0F));
         monsters.add(new MonsterInfo("BoardGame:Blue Slaver",2.0F));
         monsters.add(new MonsterInfo("BoardGame:Red Slaver",2.0F));
-        monsters.add(new MonsterInfo("BoardGame:Looter",2.0F));
-        monsters.add(new MonsterInfo("BoardGame:Jaw Worm (Medium)", 2.0F));
+        if(ascensionLevel<7) {
+            monsters.add(new MonsterInfo("BoardGame:Jaw Worm (Medium)", 2.0F));
+            monsters.add(new MonsterInfo("BoardGame:Looter",2.0F));
+        }else{
+            monsters.add(new MonsterInfo("BoardGame:A7 Jaw Worm and Spike Slime", 2.0F));
+            monsters.add(new MonsterInfo("BoardGame:A7 Looter and Acid Slime",2.0F));
+        }
         MonsterInfo.normalizeWeights(monsters);
-        populateFirstStrongEnemy(monsters, generateExclusions());
+        //populateFirstStrongEnemy(monsters, generateExclusions());
         populateMonsterList(monsters, count, false);
     }
 

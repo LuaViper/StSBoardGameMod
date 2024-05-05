@@ -1,16 +1,13 @@
 package BoardGame.cards.BGBlue;
-import BoardGame.actions.BGReinforcedBodyAction;
+
 import BoardGame.actions.BGReinforcedBodyEnergyCheckAction;
-import BoardGame.actions.BGTempestAction;
 import BoardGame.actions.BGXCostCardAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
-import BoardGame.powers.BGFreeCardPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
@@ -37,14 +34,19 @@ public class BGReinforcedBody extends AbstractBGCard {
                 this.cantUseMessage = cardStrings.EXTENDED_DESCRIPTION[0];
                 return false;
             }
-            if (this.copiedCardEnergyOnUse == 0) {
+//            if (this.copiedCardEnergyOnUse == 0) {
+//                this.cantUseMessage = cardStrings.EXTENDED_DESCRIPTION[0];
+//                return false;
+//            }
+            if(this.copiedCard != null && this.copiedCard.energyOnUse==0){
                 this.cantUseMessage = cardStrings.EXTENDED_DESCRIPTION[0];
                 return false;
             }
-            if ((this.ignoreEnergyOnUse || this.isInAutoplay) && (this.copiedCardEnergyOnUse<=0)){
-                this.cantUseMessage = cardStrings.EXTENDED_DESCRIPTION[0];
-                return false;
-            }
+            //if ((this.ignoreEnergyOnUse || this.isInAutoplay) && (this.copiedCardEnergyOnUse<=0)){
+//            if ((this.ignoreEnergyOnUse || this.isInAutoplay) && (this.copiedCardEnergyOnUse<=0)){
+//                this.cantUseMessage = cardStrings.EXTENDED_DESCRIPTION[0];
+//                return false;
+//            }
             if (this.freeToPlay()){
                 this.cantUseMessage = cardStrings.EXTENDED_DESCRIPTION[0];
                 return false;

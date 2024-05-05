@@ -1,6 +1,6 @@
 package BoardGame.cards.BGPurple;
+
 import BoardGame.cards.AbstractBGCard;
-import BoardGame.characters.BGDefect;
 import BoardGame.characters.BGWatcher;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;

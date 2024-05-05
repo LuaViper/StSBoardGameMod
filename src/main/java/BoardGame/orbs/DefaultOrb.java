@@ -1,5 +1,8 @@
 package BoardGame.orbs;
 
+import BoardGame.BoardGame;
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
+import basemod.abstracts.CustomOrb;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -18,9 +21,6 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbActivateEffect;
 import com.megacrit.cardcrawl.vfx.combat.DarkOrbPassiveEffect;
 import com.megacrit.cardcrawl.vfx.combat.OrbFlareEffect;
-
-import basemod.abstracts.CustomOrb;
-import BoardGame.BoardGame;
 
 import static BoardGame.BoardGame.makeOrbPath;
 
@@ -108,14 +108,14 @@ public class DefaultOrb extends CustomOrb {
     // Render the orb.
     @Override
     public void render(SpriteBatch sb) {
-        sb.setColor(new Color(1.0f, 1.0f, 1.0f, c.a / 2.0f));
-        sb.draw(img, cX - 48.0f, cY - 48.0f + bobEffect.y, 48.0f, 48.0f, 96.0f, 96.0f, scale + MathUtils.sin(angle / PI_4) * ORB_WAVY_DIST * Settings.scale, scale, angle, 0, 0, 96, 96, false, false);
-        sb.setColor(new Color(1.0f, 1.0f, 1.0f, this.c.a / 2.0f));
-        sb.setBlendFunction(770, 1);
-        sb.draw(img, cX - 48.0f, cY - 48.0f + bobEffect.y, 48.0f, 48.0f, 96.0f, 96.0f, scale, scale + MathUtils.sin(angle / PI_4) * ORB_WAVY_DIST * Settings.scale, -angle, 0, 0, 96, 96, false, false);
-        sb.setBlendFunction(770, 771);
-        renderText(sb);
-        hb.render(sb);
+//        sb.setColor(new Color(1.0f, 1.0f, 1.0f, c.a / 2.0f));
+//        sb.draw(img, cX - 48.0f, cY - 48.0f + bobEffect.y, 48.0f, 48.0f, 96.0f, 96.0f, scale + MathUtils.sin(angle / PI_4) * ORB_WAVY_DIST * Settings.scale, scale, angle, 0, 0, 96, 96, false, false);
+//        sb.setColor(new Color(1.0f, 1.0f, 1.0f, this.c.a / 2.0f));
+//        sb.setBlendFunction(770, 1);
+//        sb.draw(img, cX - 48.0f, cY - 48.0f + bobEffect.y, 48.0f, 48.0f, 96.0f, 96.0f, scale, scale + MathUtils.sin(angle / PI_4) * ORB_WAVY_DIST * Settings.scale, -angle, 0, 0, 96, 96, false, false);
+//        sb.setBlendFunction(770, 771);
+//        renderText(sb);
+//        hb.render(sb);
     }
 
 

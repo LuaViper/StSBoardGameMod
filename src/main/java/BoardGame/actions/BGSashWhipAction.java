@@ -1,6 +1,5 @@
 package BoardGame.actions;
 
-import BoardGame.powers.BGVulnerablePower;
 import BoardGame.powers.BGWeakPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;

@@ -1,9 +1,13 @@
 package BoardGame.relics;
+
 import BoardGame.actions.BGActivateDieAbilityAction;
-import BoardGame.powers.*;
+import BoardGame.powers.BGTrigger2DieAbilityPower;
+import BoardGame.powers.NilrysCodexCompatible;
 import BoardGame.thedie.TheDie;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DrawCardAction;
+import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
@@ -36,7 +40,8 @@ public class BGNilrysCodex extends AbstractBGRelic implements DieControlledRelic
         if(TheDie.finalRelicRoll==4){
             flash();
             addToBot((AbstractGameAction)new RelicAboveCreatureAction((AbstractCreature)AbstractDungeon.player, this));
-            addToTop((AbstractGameAction) new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)AbstractDungeon.player, (AbstractPower)new BGTrigger2DieAbilityPower((AbstractCreature)AbstractDungeon.player)));
+            //addToTop((AbstractGameAction) new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)AbstractDungeon.player, (AbstractPower)new BGTrigger2DieAbilityPower((AbstractCreature)AbstractDungeon.player)));
+            addToBot((AbstractGameAction) new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)AbstractDungeon.player, (AbstractPower)new BGTrigger2DieAbilityPower((AbstractCreature)AbstractDungeon.player)));
         }
     }
 

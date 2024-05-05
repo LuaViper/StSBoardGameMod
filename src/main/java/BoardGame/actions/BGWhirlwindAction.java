@@ -1,8 +1,8 @@
 
 package BoardGame.actions;
 
+import BoardGame.cards.AbstractBGCard;
 import BoardGame.cards.BGRed.BGWhirlwind;
-import BoardGame.powers.BGConfusionPower;
 import BoardGame.powers.WeakVulnCancel;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
@@ -61,7 +61,8 @@ public class BGWhirlwindAction
             for (int i = effect - 1; i >= 0; i--) {
                 //damage needs to be addToTop instead of addToBot, otherwise weakvuln checks will fail
                 //as a consequence, actions are added in reverse order from the original card
-                addToTop((AbstractGameAction) new DamageAllEnemiesAction((AbstractCreature) this.p, this.multiDamage, this.damageType, AbstractGameAction.AttackEffect.NONE, true));
+                addToTop((AbstractGameAction) new DamageAllEnemiesAction((AbstractCreature) this.p,
+                        this.multiDamage, this.damageType, AbstractGameAction.AttackEffect.NONE, true));
                 addToTop((AbstractGameAction) new VFXAction((AbstractCreature) this.p, (AbstractGameEffect) new CleaveEffect(), 0.0F));
                 addToTop((AbstractGameAction) new SFXAction("ATTACK_HEAVY"));
                 if (i == 0) {
@@ -74,7 +75,8 @@ public class BGWhirlwindAction
                 this.p.energy.use(this.energyOnUse);
             }
         }else{
-            addToTop((AbstractGameAction)new DamageAllEnemiesAction(this.p,0, WeakVulnCancel.WEAKVULN_ZEROHITS, AbstractGameAction.AttackEffect.NONE));
+            addToTop((AbstractGameAction)new DamageAllEnemiesAction(this.p,
+                    0, WeakVulnCancel.WEAKVULN_ZEROHITS, AbstractGameAction.AttackEffect.NONE));
         }
         this.isDone = true;
     }

@@ -1,4 +1,5 @@
 package BoardGame.monsters;
+import BoardGame.multicharacter.MultiCreature;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
@@ -6,29 +7,41 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import BoardGame.monsters.AbstractBGMonster;
-import BoardGame.monsters.AbstractBGMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.rewards.RewardItem;
+
+import java.util.ArrayList;
 
 //TODO: can we just have AbstractBGMonster implement BGDamageIcons instead of every individual monster?
-public abstract class AbstractBGMonster extends AbstractMonster {
+public abstract class AbstractBGMonster extends AbstractMonster implements MultiCreature {
 
+    public String behavior="-";
 
     public AbstractBGMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY);
+        MultiCreature.Field.currentRow.set(this,0);
     }
 
     public AbstractBGMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl, float offsetX, float offsetY, boolean ignoreBlights) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl, offsetX, offsetY, ignoreBlights);
+        MultiCreature.Field.currentRow.set(this,0);
     }
 
     public AbstractBGMonster(String name, String id, int maxHealth, float hb_x, float hb_y, float hb_w, float hb_h, String imgUrl) {
         super(name, id, maxHealth, hb_x, hb_y, hb_w, hb_h, imgUrl);
+        MultiCreature.Field.currentRow.set(this,0);
     }
+
+
+//    public int currentRow=0;
+//    public int getCurrentRow(){
+//        return currentRow;
+//    }
+
+    public void publicBrokeBlock(){}
 
 
     //PublicMoveField is used by BGFlameBarrierAction
@@ -36,9 +49,10 @@ public abstract class AbstractBGMonster extends AbstractMonster {
             clz= AbstractMonster.class,
             method=SpirePatch.CLASS
     )
-    public static class PublicMoveField
+    public static class Field
     {
-        public static SpireField<EnemyMoveInfo> publicmove = new SpireField<>(()->null);
+        //TODO: replace publicMove with ReflectionHacks.getPrivate
+        public static SpireField<EnemyMoveInfo> publicMove = new SpireField<>(()->null);
     }
 
     @SpirePatch2(clz = AbstractMonster.class, method = "setMove",
@@ -46,7 +60,7 @@ public abstract class AbstractBGMonster extends AbstractMonster {
     public static class setMovePatch {
         @SpirePostfixPatch
         public static void setMovePatch(AbstractMonster __instance, String moveName, byte nextMove, AbstractMonster.Intent intent, int baseDamage, int multiplier, boolean isMultiDamage, EnemyMoveInfo ___move) {
-            PublicMoveField.publicmove.set(__instance,___move);
+            Field.publicMove.set(__instance,___move);
         }
     }
 
@@ -100,5 +114,16 @@ public abstract class AbstractBGMonster extends AbstractMonster {
 
         return dmg;
     }
+
+//    protected void onBossVictoryLogic() {
+//        super.onBossVictoryLogic();
+//        if(AbstractDungeon.getCurrRoom() instanceof com.megacrit.cardcrawl.rooms.MonsterRoomBoss){
+//            if(!AbstractDungeon.player.hasRelic("BGWhite Beast Statue")) {
+//                ArrayList<RewardItem> rewards = AbstractDungeon.getCurrRoom().rewards;
+//                rewards.clear();
+//
+//            }
+//        }
+//    }
 
 }

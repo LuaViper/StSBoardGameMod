@@ -1,6 +1,6 @@
 package BoardGame.cards.BGBlue;
+
 import BoardGame.actions.BGGainBlockIfDiscardCostsZeroAction;
-import BoardGame.actions.BGGainBlockIfShivAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
 import com.badlogic.gdx.math.MathUtils;
@@ -13,8 +13,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 public class BGSteamBarrier extends AbstractBGCard {

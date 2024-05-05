@@ -55,7 +55,11 @@ public class BGLooter extends AbstractBGMonster implements BGDamageIcons {
 
             this.goldAmt = 2;
             if(!hardmode){
-                setHp(9);
+                if(AbstractDungeon.ascensionLevel<7) {
+                    setHp(9);
+                }else{
+                    setHp(7);
+                }
             }else{
                 setHp(10);
             }

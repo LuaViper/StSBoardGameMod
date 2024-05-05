@@ -1,7 +1,6 @@
 package BoardGame.cards.BGRed;
 
 import BoardGame.cards.AbstractBGCard;
-import BoardGame.cards.BGCurse.BGParasite;
 import BoardGame.characters.BGIronclad;
 import BoardGame.dungeons.AbstractBGDungeon;
 import com.evacipated.cardcrawl.modthespire.lib.*;
@@ -14,7 +13,6 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.screens.select.HandCardSelectScreen;

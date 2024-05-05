@@ -1,11 +1,11 @@
 package BoardGame.cards.BGRed;
 
 
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.cards.BGStatus.BGDazed;
 import BoardGame.characters.BGIronclad;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -37,7 +37,8 @@ public class BGImmolate extends AbstractBGCard {
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot((AbstractGameAction)new DamageAllEnemiesAction((AbstractCreature)p, this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE));
+        addToBot((AbstractGameAction)new DamageAllEnemiesAction((AbstractCreature)p,
+                this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.FIRE));
         //addToBot((AbstractGameAction)new LoseHPAction((AbstractCreature)p, (AbstractCreature)p, 1));
         addToBot((AbstractGameAction)new MakeTempCardInDrawPileAction((AbstractCard)new BGDazed(), 2, false, true));
 

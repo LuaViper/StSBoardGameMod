@@ -5,6 +5,7 @@
     //intent dmg is determined during AbstractMonster.calculateDamage(int damage)
     //attacking should be easy enough, just have a 3 dmg action then a delay action then a 2 dmg action
 
+    //TODO: ascension 7+ attacks with 3 + AOE2 instead of 3 + 2.  no other changes though
 
  package BoardGame.monsters.bgcity; 
  import BoardGame.monsters.BGDamageIcons;
@@ -57,13 +58,13 @@ import org.apache.logging.log4j.Logger;
         private static final int A_2_CHOMPY_DMG = 8;
         private int rainBlowsDmg;
 
-        public String behavior="MMW";
+
 
         public BGSnakePlant(float x, float y) {
             super(NAME, "BGSnakePlant", 79, 0.0F, -44.0F, 350.0F, 360.0F, null, x, y + 50.0F);
             loadAnimation("images/monsters/theCity/snakePlant/skeleton.atlas", "images/monsters/theCity/snakePlant/skeleton.json", 1.0F);
 
-
+            behavior="MMW";
 
 
             AnimationState.TrackEntry e = this.state.setAnimation(0, "Idle", true);

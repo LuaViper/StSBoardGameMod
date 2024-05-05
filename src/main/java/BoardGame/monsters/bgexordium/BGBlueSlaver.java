@@ -48,7 +48,7 @@ public class BGBlueSlaver extends AbstractBGMonster implements BGDamageIcons, Di
     private int weakAmt = 1; private static final byte STAB = 1;
     private static final byte RAKE = 4;
 
-    private String behavior = "W2D";
+
 
     //Summoned Act2 Slavers are thankfully identical to Act1 Slavers with the exception of behavior arrangement
     public BGBlueSlaver(float x, float y) {

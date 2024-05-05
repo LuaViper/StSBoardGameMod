@@ -1,14 +1,18 @@
 package BoardGame.patches;
 
 import BoardGame.BoardGame;
+import BoardGame.dungeons.AbstractBGDungeon;
 import BoardGame.powers.AbstractBGPower;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.random.Random;
+import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import javassist.*;
 import javassist.expr.Expr;
 import javassist.expr.ExprEditor;
@@ -16,9 +20,13 @@ import javassist.expr.FieldAccess;
 import javassist.expr.MethodCall;
 
 import java.util.ArrayList;
+import java.util.Iterator;
+import java.util.Objects;
 
 import static BoardGame.characters.BGCurse.Enums.BG_CURSE;
 
+
+// cards in animation appear to be chosen by AbstractDungeon.returnTrulyRandomCardFromAvailable(this.upgradePreviewCard).makeCopy();
 public class TransformPatch {
 
 
@@ -48,6 +56,38 @@ public class TransformPatch {
                     retVal.group.add(c);
             }
             return retVal;
+        }
+    }
+
+
+    //note that returnTrulyRandomCardFromAvailable is also used to determine the actual result of a vanilla transform,
+    // but our patched transform (in AbstractBGDungeon) uses DrawFromRewardDeck instead.
+    @SpirePatch2(clz = AbstractDungeon.class, method = "returnTrulyRandomCardFromAvailable",
+            paramtypez = {AbstractCard.class, Random.class})
+    public static class TransformAnimationPatch {
+        @SpirePrefixPatch
+        private static SpireReturn<AbstractCard> Foo(AbstractCard prohibited, Random rng) {
+            if (CardCrawlGame.dungeon instanceof AbstractBGDungeon) {
+                ArrayList<AbstractCard> list = new ArrayList();
+                Iterator var3;
+                AbstractCard c;
+                var3 = AbstractBGDungeon.rewardDeck.group.iterator();
+                while(var3.hasNext()) {
+                    c = (AbstractCard)var3.next();
+                    if (!Objects.equals(c.cardID, prohibited.cardID)) {
+                        list.add(c);
+                    }
+                }
+                var3 = AbstractBGDungeon.rareRewardDeck.group.iterator();
+                while(var3.hasNext()) {
+                    c = (AbstractCard)var3.next();
+                    if (!Objects.equals(c.cardID, prohibited.cardID)) {
+                        list.add(c);
+                    }
+                }
+                return SpireReturn.Return((list.get(rng.random(list.size() - 1))).makeCopy());
+            }
+            return SpireReturn.Continue();
         }
     }
 

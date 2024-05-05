@@ -1,14 +1,12 @@
 
 package BoardGame.cards;
-import BoardGame.actions.BGCopyCardAction;
+
 import BoardGame.actions.TargetSelectScreenAction;
 import BoardGame.characters.BGColorless;
 import BoardGame.dungeons.AbstractBGDungeon;
-import BoardGame.dungeons.BGExordium;
 import BoardGame.relics.BGTheDieRelic;
 import BoardGame.screen.TargetSelectScreen;
 import basemod.BaseMod;
-import basemod.ReflectionHacks;
 import basemod.abstracts.CustomCard;
 import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.RenderFixSwitches;
 import com.badlogic.gdx.Gdx;
@@ -20,19 +18,17 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
-import com.megacrit.cardcrawl.actions.utility.ShowCardAndPoofAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
-import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
+import com.megacrit.cardcrawl.actions.utility.UnlimboAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
@@ -43,10 +39,14 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 //class for cards which use artwork from the original game but custom colors.
-public abstract class AbstractBGCard extends CustomCard {
+public abstract class AbstractBGCard extends CustomCard
+        //implements AlternateCardCostModifier
+    {
 
     private static final Logger logger = LogManager.getLogger(AbstractCard.class.getName());
     //public CardType type; //AbstractCard already has a type
+
+    public AbstractPlayer owner;
 
     public static HashMap<String, Texture> imgMap;
     public static HashMap<String, Texture> betaImgMap;
@@ -69,6 +69,7 @@ public abstract class AbstractBGCard extends CustomCard {
     public int defaultBaseSecondMagicNumber;    // And our base stat - the number in it's base state. It will reset to that by default.
     public boolean upgradedDefaultSecondMagicNumber; // A boolean to check whether the number has been upgraded or not.
     public boolean isDefaultSecondMagicNumberModified; // A boolean to check whether the number has been modified or not, for coloring purposes. (red/green)
+
 
 
 
@@ -295,7 +296,7 @@ public abstract class AbstractBGCard extends CustomCard {
 
 
 
-
+    //TODO: consider moving this to either DistilledChaos or one of the DoubleCardPlayPowers
 
     @SpirePatch2(clz = AbstractPlayer.class, method = "useCard",
             paramtypez={AbstractCard.class, AbstractMonster.class, int.class})
@@ -315,10 +316,12 @@ public abstract class AbstractBGCard extends CustomCard {
                                     card.calculateCardDamage(target);
                                 }
                                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new NewQueueCardAction(card, target, true, true));
+                                AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new UnlimboAction(card,card.exhaust));
                             };
                             AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new TargetSelectScreenAction(tssAction, "Choose a target for " + card.name + ".")); //TODO: localization
                         } else {
                             AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new NewQueueCardAction(card, null, true, true));
+                            AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new UnlimboAction(card,card.exhaust));
                         }
                     }
                 }
@@ -366,5 +369,47 @@ public abstract class AbstractBGCard extends CustomCard {
             }
         }
     }
+
+
+//    @Override
+//    public int getAlternateResource(AbstractCard card) {
+//        if(AbstractDungeon.player instanceof AbstractBGCharacter) {
+//            return (((AbstractBGCharacter)AbstractDungeon.player).currentMultiEnergy);
+//        }
+//        return -1;
+//    }
+//    @Override
+//    public boolean prioritizeAlternateCost(AbstractCard card) {
+//        return true;
+//    }
+//    @Override
+//    public boolean canSplitCost(AbstractCard card) {
+//        return false;
+//    }
+//    @Override
+//    public int spendAlternateCost(AbstractCard card, int costToSpend) {
+//        int resource = -1;
+//        if(AbstractDungeon.player instanceof AbstractBGCharacter) {
+//            resource = (((AbstractBGCharacter)AbstractDungeon.player).currentMultiEnergy);
+//        }
+//        if (resource > costToSpend) {
+//            ((AbstractBGCharacter)AbstractDungeon.player).currentMultiEnergy-=costToSpend;
+//            costToSpend = 0;
+//        } else if (resource > 0) {
+//            ((AbstractBGCharacter)AbstractDungeon.player).currentMultiEnergy-=resource;
+//            costToSpend -= resource;
+//        }
+//        return costToSpend;
+//    }
+
+    @SpirePatch(
+            clz=AbstractCard.class,
+            method=SpirePatch.CLASS
+    )
+    public static class Field
+    {
+        public static SpireField<AbstractCreature> rowTargetCreature = new SpireField<>(()->null);
+    }
+
 
 }

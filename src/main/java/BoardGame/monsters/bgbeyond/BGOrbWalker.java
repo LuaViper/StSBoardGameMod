@@ -1,6 +1,7 @@
 //TODO: "At the end of its turn, gains #rat #rleast #b",
 
 package BoardGame.monsters.bgbeyond; 
+ import BoardGame.cards.BGStatus.BGDazed;
  import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.DieControlledMoves;
 import BoardGame.powers.BGOrbWalkerPower;
@@ -44,7 +45,7 @@ public class BGOrbWalker extends AbstractBGMonster implements DieControlledMoves
     private int laserDmg;
     private static final byte LASER = 1;
     private static final byte CLAW = 2;
-    public String behavior="--";
+
 
     public BGOrbWalker(float x, float y, String behavior) {
         super(NAME, "BGOrb Walker", AbstractDungeon.monsterHpRng.random(90, 96), -20.0F, -14.0F, 280.0F, 250.0F, null, x, y);
@@ -98,7 +99,7 @@ public class BGOrbWalker extends AbstractBGMonster implements DieControlledMoves
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new WaitAction(0.4F));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                         .get(1), AbstractGameAction.AttackEffect.FIRE));
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new MakeTempCardInDrawPileAction((AbstractCard)new Dazed(), 1, false, true));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new MakeTempCardInDrawPileAction((AbstractCard)new BGDazed(), 1, false, true));
                 break;
         }
         AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new RollMoveAction(this));

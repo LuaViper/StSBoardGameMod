@@ -1,7 +1,5 @@
 package BoardGame.events;
 
-import BoardGame.dungeons.AbstractBGDungeon;
-import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.curses.Regret;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -12,7 +10,6 @@ import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
@@ -42,7 +39,7 @@ public class BGBigFish
 
     public BGBigFish() {
         super(NAME, DIALOG_1, "images/events/fishing.jpg");
-        this.healAmt = AbstractDungeon.player.maxHealth / 3;
+        this.healAmt = 2;
         this.imageEventText.setDialogOption(OPTIONS[0] + this.healAmt + OPTIONS[1]);
         this.imageEventText.setDialogOption(OPTIONS[2]);
         this.imageEventText.setDialogOption(OPTIONS[4]);

@@ -2,22 +2,22 @@ package BoardGame.relics;
 
 import BoardGame.actions.BGActivateDieAbilityAction;
 import BoardGame.actions.TargetSelectScreenAction;
-import BoardGame.powers.BGTrigger2DieAbilityPower;
 import BoardGame.powers.BGTriggerCharonsAshesPower;
 import BoardGame.powers.NilrysCodexCompatible;
 import BoardGame.screen.TargetSelectScreen;
 import BoardGame.thedie.TheDie;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.*;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.ExhaustAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 
 //TODO: don't stop flashing if we click Ashes while another wildcard power is active
 public class BGCharonsAshes extends AbstractBGRelic implements DieControlledRelic, ClickableRelic, NilrysCodexCompatible {

@@ -1,4 +1,5 @@
 package BoardGame.cards.BGPurple;
+
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGWatcher;
 import BoardGame.powers.BGLikeWaterPower;
@@ -9,7 +10,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.powers.watcher.MentalFortressPower;
 
 public class BGLikeWater extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGLikeWater");

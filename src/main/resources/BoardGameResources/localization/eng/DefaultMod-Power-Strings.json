@@ -214,6 +214,12 @@
                         "."
                 ]
         },
+        "BoardGame:BGDifferentRowsPower": {
+                "NAME": "Pincer Movement",
+                "DESCRIPTIONS": [
+                        "These enemies are in different rows. NL [BoardGame:AOEIcon] Area of Effect attacks will hit only one of them."
+                ]
+        },
         "BoardGame:BGDistractionPower": {
                 "NAME": "Distraction",
                 "DESCRIPTIONS": [
@@ -417,14 +423,14 @@
                 ]
         },
 "BoardGame:BGOrbWalkerPower": {
-        "NAME": "",
+        "NAME": "Strength Up",
         "DESCRIPTIONS": [
                 "At the end of its turn, gains #rat #rleast #b",
                 " #yStrength."
         ]
 },
         "BoardGame:BGOmegaPower": {
-                "NAME": "",
+                "NAME": "Omega",
                 "DESCRIPTIONS": [
                         "At the end of your turn, deal #b",
                         " damage to any row."
@@ -527,6 +533,12 @@
                         " #cards."
                 ]
         },
+        "BoardGame:BGSurroundedPower": {
+                "NAME": "Flanked",
+                "DESCRIPTIONS": [
+                        "After #ystart #yof #yturn effects, players can switch rows. Then they're immediately targeted by a special ability from the enemy in that row."
+                ]
+        },
         "BoardGame:BGTemporaryRetainCardsPower": {
                 "NAME": "Equilibrium",
                 "DESCRIPTIONS": [
@@ -575,6 +587,12 @@
                         "You can't lose more than #b1 HP this round.",
                         "You can't lose more than #b1 HP per round for the next #b",
                         " rounds."
+                ]
+        },
+        "BoardGame:BGZeroDamagePower": {
+                "NAME": "Blocked",
+                "DESCRIPTIONS": [
+                        "Damage you deal this turn is reduced to #b0."
                 ]
         },
 "BGTriggerAnyDieAbilityPower": {

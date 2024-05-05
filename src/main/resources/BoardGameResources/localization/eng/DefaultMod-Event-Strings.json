@@ -134,7 +134,7 @@
     "DESCRIPTIONS": [
       "@Thwack!!!@ NL .. NL ...... NL ... NL ~You~ ~were~ ~knocked~ ~unconscious...~",
       "~Groggy~ and with a @throbbing@ head, you awaken to find yourself thrown in the center of a massive stadium with an overflowing audience of #bSlavers, #pCultists, and other denizens of the City! NL ",
-      " NL (Placeholder text: the card just says \"Do you want to warm up the crowd or be the main event?\" but surely @THE@ @CHAMP@ @HAS@ @SOMETHING@ @TO@ @SAY@ @ABOUT@ @THAT.)@",
+      " NL (Editor's note: the event card just says \"Do you want to warm up the crowd or be the main event?\" but @SURELY@ @THE@ @CHAMP@ @HAS@ @SOMETHING@ @TO@ @SAY@ @ABOUT@ @THAT.)@",
       "TH@ @COMBAT!!!!\"@ NL A gate on the opposite side opens...",
       "@\"WELL@ @DONE,@ @WEAKLING!\"@ NL The giant mock claps whilst he riles up the crowd with exaggerated gestures. NL #y~Gold~ ~and~ #y~confetti~ ~shower~ ~you!~ NL @\"TIME@ @FOR@ @THE@ @REAL@ @CHALLENGE!!\"@ NL NL The last battle left a small opening in the Colosseum's wall, you can easily escape through there while everyone is distracted. NL Do you stay and fight?"
     ],
@@ -153,9 +153,9 @@
       "The Ancient of Resurrection, #yNeow, was exiled to the bottom of the Spire. NL NL You feel compelled to read more, but your body begins to #r~ache.~",
       "Seeking vengeance, #yNeow blesses outsiders, using them for her own purposes. NL NL You are starting to feel very #r~weak~ #r~and~ #r~tired...~",
       "Those resurrected by #yNeow remember only fragments of their past selves, cursed to fight for eternity. NL NL As you near the final page, your #r@old@ #r@wounds@ #r@begin@ #r@to@ #r@reopen!@",
-      "[Placeholder text: take the tome.]",
-      "[Placeholder text: read the tome.]",
-      "[Placeholder text: skim the tome.]"
+      "You're in a hurry, so you decide to take it with you to read later. NL NL ...If you find some spare time. Maybe some things would be better left unlearned, anyway...",
+      "You can't make out all of the words, but you'll do your best. NL NL This is the story of a #y[treasure #yhunter? #ytomb #yraider? #yruin #yseeker?] who embarks on a journey to collect #pkeys of #rruby, #gemerald, and #bsapphire in a quest for #y[the #ypower #yto #ydefy #ydeath?]. Along the way, our hero collects many #y[cards?], #y[potions?], and #y[relics?] and gradually learns that the world is more ~sinister~ than it first appears. The story reaches its climax as the #y[adventurer? #yprotagonist? #yfox?] discovers that they themselves are locked in a #pnever-ending #pcycle #pof #p-- NL NL ...The final pages are missing. What a shame.",
+      "You skim the tome, looking for anything that catches your eye. NL NL \"Among the many constructs of the Spire...\" NL NL \"...myriad flaws will lead it to rebel against the...\" NL NL \"...but justice will yet be served, for it is certain that...\" NL NL \"...even if it takes a thousand years.\" NL NL NL Eh. Probably nothing important in here. Time to move on."
     ],
     "OPTIONS": [
       "[Take] #gChoose #ga #grare #gcard #gto #gadd #gto #gyour #gdeck. #rGain #ra #rCurse.",
@@ -167,6 +167,38 @@
       " #rHP.",
       "[Leave]",
       "Add a card to your deck."
+    ]
+  },
+  "BoardGame:BGDeadAdventurer": {
+    "NAME": "Dead Adventurer",
+    "DESCRIPTIONS": [
+      "While searching the adventurer you are caught off guard!",
+      "You exit without a sound.",
+      "You come across a #rdead #radventurer on the floor. NL His #bpants have been stolen! Also, ",
+      "he's carrying a note that says #y\"if #ythis #yis #ythe #yfirst #y? #yRoom, #ydiscard #yit #yand #ydraw #yagain.\" NL NL Moving on...",
+      "an #r@elite@ #r@encounter@ #r@card@ has been neatly embedded in his skull. ",
+      "",
+      "NL Though his #ypossessions #yare #ystill #yintact, you're in no mind to find out what happened here...",
+      "You found some #ygold! NL ",
+      "",
+      "You found a #yrelic! NL ",
+      "Looks like you searched all his belongings without a hitch!",
+      "While searching the adventurer you are caught off guard! NL (We're not allowed to reveal the encounter yet because you still have items available.)"
+    ],
+    "OPTIONS": [
+      "[Search] 33% each: #gFind #g2 #gGold, #gfind #ga #gRelic, #ror #rfight #ran #rElite.",
+      "[Leave]",
+      "[Fight]",
+      "[Continue] #gFind #gLoot. #r",
+      "%: #rmonster #rreturns.",
+      "[Move On]",
+      "[Gambling Chip] Reroll.",
+      "[The Abacus] ",
+      "[Toolbox] ",
+      "[Gambler's Brew] Choose an outcome.",
+      "Fight an Elite instead.",
+      "Everyone gains 2 Gold instead.",
+      "One player gains a Relic instead."
     ]
   },
   "BoardGame:BGDesigner": {
@@ -259,6 +291,23 @@
       "[Leave]",
       "[Continue]",
       " #rHP, #ggain #g"
+    ]
+  },
+  "BoardGame:BGForgottenAltar": {
+    "NAME": "Forgotten Altar",
+    "DESCRIPTIONS": [
+      "In front of you sits an altar to a forgotten god. NL Atop the altar sits an ornate female statue with arms outstretched. NL She calls out to you, demanding sacrifice.",
+      "As you gently set the relic onto the altar a #bcold wind swirls throughout the room. NL The arms of the statue begin to discolor and crumble. NL NL Its head begins to dull in color and begins bleeding from its eyes. NL The bleeding never ceases.",
+      "You stand on the altar and cut your wrists. NL As the #rblood spills out in sacrifice, the arms of the statue reach out and close around your eyes. NL Everything goes dark. NL You wake up a short time later feeling ~empty~ ~inside.~",
+      "You lash out and smash the statue in front of you, breaking the magical hold the room had placed upon you. NL A dark wail echoes all around you, and you can feel the #p~cursed~ #p~magic~ seep into your bones."
+    ],
+    "OPTIONS": [
+      "[Offer] #rLose ",
+      ". #gObtain #ga #gRelic.",
+      "[Locked] Requires: Undiscarded normal Relic.",
+      "[Sacrifice] #rLose #r2 #rHP.",
+      "[Locked] Requires: Rune Arc.",
+      "[Desecrate] #rGain #ra #rCurse."
     ]
   },
   "BoardGame:BGGolden Idol": {
@@ -385,6 +434,15 @@
       "]"
     ]
   },
+  "BoardGame:BGPlaceholderEvent": {
+    "NAME": "",
+    "DESCRIPTIONS": [
+      ""
+    ],
+    "OPTIONS": [
+      ""
+    ]
+  },
   "BoardGame:BGPurificationShrine": {
     "NAME": "Purifier",
     "DESCRIPTIONS": [
@@ -414,13 +472,14 @@
       " #rHP. #g",
       "%: #gFind #g2 #gGold #gor #ga #gRelic.",
       "[Leave]",
-      "[Deeper] #rLose #r",
+      "[Deeper] #rLose #r1 #rHP. #g66%: #gFind #g2 #gGold #gor #ga #gRelic.",
       "[Leave] #gGain #g2 #gGold.",
       "[Leave] #gGain #ga #gRelic.",
       "[Gambling Chip] Reroll.",
       "[The Abacus] ",
       "[Toolbox] ",
-      "[Gambler's Brew] Choose a prize.",
+      "[Gambler's Brew] Choose a reward.",
+      "Lose 1 HP and try again for a different reward.",
       "Gain 2 Gold instead.",
       "Gain a Relic instead."
     ]
@@ -489,7 +548,7 @@
       "The owner died. NL NL ",
       "You #gwin the bet. Unsure what to think, you grab your winnings and leave.",
       "You #rlost the bet, but at least you weren't gouged by a lance.",
-      "[Placeholder text: skip event.]"
+      "You explain to the knight that realistic depictions of gambling are prohibited in your country of origin. NL NL The knight agrees to let you pass, so you quickly take your playing cards and dice and move on to the next room."
     ],
     "OPTIONS": [
       "[Continue]",
@@ -522,6 +581,21 @@
       "[Leave]",
       "Add a card to your deck.",
       " #g(Peace #gPipe) #gYou #gmay #gremove #ga #gcard."
+    ]
+  },
+  "BoardGame:BGTheMausoleum": {
+    "NAME": "The Mausoleum",
+    "DESCRIPTIONS": [
+      "Venturing through a series of tombs, you are faced with a large sarcophagus ~studded~ ~with~ ~gems~ in the center of a circular room. NL You cannot make out the writing on the coffin, however, you do notice #p~black~ #p~fog~ seeping out from the sides.",
+      "You push open the coffin. As you do, #p~black~ #p~fog~ spews forth and covers the entire room! Inside, you find no body, only a #y~relic.~ You take it and move onwards, #r@coughing@ #r@violently.@",
+      "You push open the coffin. The fog dissipates harmlessly. Inside, you find the mortal remains of a decorated soldier grasping an old #yrelic. You pilfer it and move on.",
+      "You continue along your way, leaving the forgotten dead undisturbed."
+    ],
+    "OPTIONS": [
+      "[Open Coffin] #gObtain #ga #gRelic. #r50%: #rGain #ra #rCurse.",
+      "",
+      "[Leave]",
+      "[Gambler's Brew] Don't gain a Curse."
     ]
   },
   "BoardGame:BGTheMoaiHead": {
@@ -678,6 +752,24 @@
       " #gHP.",
       "[Retrace Your Steps] #rLose #r",
       " #rHP."
+    ]
+  },
+  "BoardGame:BGWorldOfGoop": {
+    "NAME": "World of Goop",
+    "DESCRIPTIONS": [
+      "You fall into a puddle. NL @IT'S@ @MADE@ @OF@ #g@SLIME@ #g@GOOP!!@ NL Frantically, you claw yourself out over several minutes as you feel the goop starting to burn. NL You can feel goop in your ears, goop in your nose, goop everywhere. NL NL Climbing out, you notice that some of your #ygold is missing. Looking back to the puddle you see your missing coins combined with #ygold from unfortunate adventurers mixed together in the puddle.",
+      "Feeling the sting of the goop as the prolonged exposure starts to melt away at your skin, you manage to fish out the #ygold.",
+      "You decide that mess is not worth it.",
+      "Feeling the #p@sting@ of the goop as the prolonged exposure starts to melt away at your skin, you manage to fish out a #yrelic."
+    ],
+    "OPTIONS": [
+      "[Gather Gold] #gGain #g",
+      " #gGold. #rLose #r",
+      " #rHP.",
+      "[Leave It] #rLose #r",
+      " #rGold.",
+      "[Leave]",
+      "[Reach Deeper] #gGain #ga #gRelic #rand #ra #rCurse."
     ]
   },
   "BoardGame:FakeMonsterRoomEvent": {

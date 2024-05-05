@@ -45,7 +45,7 @@ public class BGMercuryHourglass
     public void activateDieAbility(){
         flash();
         addToBot((AbstractGameAction)new RelicAboveCreatureAction((AbstractCreature)AbstractDungeon.player, this));
-        addToBot((AbstractGameAction)new DamageAllEnemiesAction(null,
+        addToBot((AbstractGameAction)new DamageAllEnemiesAction(AbstractDungeon.player,
 
 
                 DamageInfo.createDamageMatrix(DMG, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.BLUNT_LIGHT));

@@ -1,18 +1,10 @@
 package BoardGame.relics;
 
+import BoardGame.events.BGDeadAdventurer;
 import BoardGame.thedie.TheDie;
-import BoardGame.ui.LockInRollButton;
-import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
-import com.megacrit.cardcrawl.actions.utility.ScryAction;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
-import com.megacrit.cardcrawl.actions.unique.GamblingChipAction;
-import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 public class BGGamblingChip extends AbstractBGRelic {
     public static final String ID = "BGGambling Chip";
@@ -53,7 +45,7 @@ public class BGGamblingChip extends AbstractBGRelic {
 
 
             TheDie.roll();
-            /* Used Up (Combat) */ {this.grayscale = true; this.usedUp=true; this.description = getUpdatedDescription();this.tips.clear();this.tips.add(new PowerTip(this.name, this.description));initializeTips();}
+            /* Used Up (Combat) */ setUsedUp();
             //LockInRollButton.OverlayMenuDiceInterface.rerollbutton.get(AbstractDungeon.overlayMenu).visible = false;
         }
     }
@@ -62,6 +54,11 @@ public class BGGamblingChip extends AbstractBGRelic {
 
     public void atPreBattle() {
         available = true;
+        if(AbstractDungeon.getCurrRoom().event instanceof BGDeadAdventurer){
+            if(((BGDeadAdventurer)AbstractDungeon.getCurrRoom().event).alreadyUsedGamblingChip)
+            {setUsedUp();}
+            //TODO: also call setUsedUp during events
+        }
     }
 
     public void atTurnStart(){
@@ -77,6 +74,10 @@ public class BGGamblingChip extends AbstractBGRelic {
         /* Unused Up */ { this.grayscale = false; this.usedUp=false; this.description = getUpdatedDescription();this.tips.clear();this.tips.add(new PowerTip(this.name, this.description));initializeTips();}
     }
 
+
+    public void setUsedUp(){
+        { available=false; this.grayscale = true; this.usedUp=true; this.description = getUpdatedDescription();this.tips.clear();this.tips.add(new PowerTip(this.name, this.description));initializeTips();}
+    }
 }
 
 
