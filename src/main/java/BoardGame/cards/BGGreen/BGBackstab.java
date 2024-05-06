@@ -1,6 +1,5 @@
 package BoardGame.cards.BGGreen;
 
-import BoardGame.actions.BGFlechetteAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGSilent;
 import basemod.ReflectionHacks;

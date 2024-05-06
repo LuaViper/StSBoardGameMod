@@ -1,9 +1,8 @@
 package BoardGame.cards.BGBlue;
-import BoardGame.actions.BGBeamCellConditionalVulnAction;
+
 import BoardGame.actions.BGGoForTheEyesConditionalWeakAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
-import BoardGame.powers.BGVulnerablePower;
 import BoardGame.powers.BGWeakPower;
 import BoardGame.thedie.TheDie;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;

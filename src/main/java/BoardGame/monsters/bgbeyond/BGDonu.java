@@ -73,7 +73,7 @@ public class BGDonu extends AbstractBGMonster implements BGDamageIcons {
 //            this.beamDmg = 10;
 //        }
 
-        setHp(50);
+        setHp((AbstractDungeon.ascensionLevel<10) ? 50 : 55);
         this.beamDmg=3;
 
         this.damage.add(new DamageInfo((AbstractCreature)this, this.beamDmg));

@@ -173,9 +173,7 @@ public class BGTheCity
 
         populatePathTaken(saveFile);
 
-        //TODO: is this correct?  or are we reshuffling an already shuffled saved deck?
-        logger.info("Shuffling reward deck...");
-        rewardDeck.shuffle(cardRng);
+        //Saved deck is already shuffled -- don't reshuffle! (especially not after the 1st floor!)
     }
 
 
@@ -227,18 +225,23 @@ public class BGTheCity
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
         monsters.add(new MonsterInfo("BoardGame:Snecko", 2.0F));
         monsters.add(new MonsterInfo("BoardGame:SnakePlant", 2.0F));
-        monsters.add(new MonsterInfo("BoardGame:SphericGuardian", 2.0F));
         monsters.add(new MonsterInfo("BoardGame:3 Byrds", 2.0F));
         monsters.add(new MonsterInfo("BoardGame:3 Cultists", 2.0F));
-        monsters.add(new MonsterInfo("BoardGame:Shelled Parasite", 2.0F));
         monsters.add(new MonsterInfo("BoardGame:Chosen and Cultist", 2.0F));
         monsters.add(new MonsterInfo("BoardGame:Chosen and Byrd", 2.0F));
         monsters.add(new MonsterInfo("BoardGame:Looter (Hard)", 2.0F));
         monsters.add(new MonsterInfo("BoardGame:Another Looter (Hard)", 2.0F));
         monsters.add(new MonsterInfo("BoardGame:Centurion A", 2.0F));
         monsters.add(new MonsterInfo("BoardGame:Centurion B", 2.0F));
+        if(AbstractDungeon.ascensionLevel<7) {
+            monsters.add(new MonsterInfo("BoardGame:Shelled Parasite", 2.0F));
+            monsters.add(new MonsterInfo("BoardGame:SphericGuardian", 2.0F));
+        }else{
+            monsters.add(new MonsterInfo("BoardGame:A7 Shelled Parasite and Fungi Beast", 2.0F));
+            monsters.add(new MonsterInfo("BoardGame:A7 Spheric Guardian and Sentry A", 2.0F));
+        }
         MonsterInfo.normalizeWeights(monsters);
-        populateFirstStrongEnemy(monsters, generateExclusions());
+        //populateFirstStrongEnemy(monsters, generateExclusions());
         populateMonsterList(monsters, count, false);
     }
 

@@ -1,5 +1,6 @@
 package BoardGame.characters;
 
+//TODO: updateOrb incorrectly sets orb's angle1 spin rate very high (appears to be based on Ironclad animation; vanilla Defect orb angle1 does not change)
 //TODO: does Recycle interact correctly with card cost changes?
 
 import BoardGame.BoardGame;
@@ -7,10 +8,7 @@ import BoardGame.cards.BGBlue.BGDefend_Blue;
 import BoardGame.cards.BGBlue.BGDualcast;
 import BoardGame.cards.BGBlue.BGStrike_Blue;
 import BoardGame.cards.BGBlue.BGZap;
-import BoardGame.cards.BGGreen.BGDefend_Green;
-import BoardGame.cards.BGGreen.BGNeutralize;
-import BoardGame.cards.BGGreen.BGStrike_Green;
-import BoardGame.cards.BGGreen.BGSurvivor;
+import BoardGame.multicharacter.UnselectablePlayer;
 import BoardGame.relics.*;
 import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
@@ -36,6 +34,8 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
+import com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbBlue;
+import com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbInterface;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -49,7 +49,7 @@ import static BoardGame.BoardGame.*;
 //and https://github.com/daviscook477/BaseMod/wiki/Migrating-to-5.0
 //All text (starting description and loadout, anything labeled TEXT[]) can be found in DefaultMod-character-Strings.json in the resources
 
-public class BGDefect extends AbstractBGCharacter {
+public class BGDefect extends AbstractBGPlayer implements UnselectablePlayer {
     public static final Logger logger = LogManager.getLogger(BoardGame.class.getName());
 
     // =============== CHARACTER ENUMERATORS =================
@@ -65,6 +65,7 @@ public class BGDefect extends AbstractBGCharacter {
 
     // =============== CHARACTER ENUMERATORS  =================
 
+    public String getMultiSwapButtonUrl(){return "BoardGameResources/images/icons/defect.png";}
 
     // =============== BASE STATS =================
 
@@ -102,8 +103,9 @@ public class BGDefect extends AbstractBGCharacter {
             "BoardGameResources/images/char/theDefect/orb/layer3d.png",
             "BoardGameResources/images/char/theDefect/orb/layer4d.png",
             "BoardGameResources/images/char/theDefect/orb/layer5d.png",};
-
     // =============== /TEXTURES OF BIG ENERGY ORB/ ===============
+
+
 
     // =============== CHARACTER CLASS START =================
 
@@ -150,7 +152,11 @@ public class BGDefect extends AbstractBGCharacter {
         // =============== /TEXT BUBBLE LOCATION/ =================
 
 
-        BaseMod.MAX_HAND_SIZE=999;
+        energyOrb = (EnergyOrbInterface)new EnergyOrbBlue();
+    }
+
+    public Texture getEnergyImage() {
+        return ImageMaster.BLUE_ORB_FLASH_VFX;
     }
 
     // =============== /CHARACTER CLASS END/ =================

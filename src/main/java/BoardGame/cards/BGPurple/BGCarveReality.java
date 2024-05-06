@@ -16,7 +16,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
-//TODO: if first target is killed, player is unable to choose first enemy again to cancel!
 //TODO: if first target is killed AND only one target remains, targetscreen autoselects!
 
 public class BGCarveReality extends AbstractBGCard {
@@ -43,7 +42,7 @@ public class BGCarveReality extends AbstractBGCard {
             }
         };
         //TODO: localization
-        addToBot((AbstractGameAction) new TargetSelectScreenAction(tssAction, "Choose a second target, or click same target again to pass.", true));
+        addToBot((AbstractGameAction) new TargetSelectScreenAction(tssAction, "Left-click second target, or right-click to pass.", true));
     }
 
 

@@ -1,5 +1,7 @@
 package BoardGame.cards;
 
+import BoardGame.BoardGame;
+import BoardGame.characters.BGIronclad;
 import basemod.AutoAdd;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -7,9 +9,6 @@ import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import BoardGame.monsters.AbstractBGMonster;
-import BoardGame.BoardGame;
-import BoardGame.characters.BGIronclad;
 
 import static BoardGame.BoardGame.makeCardPath;
 

@@ -2,7 +2,6 @@ package BoardGame.events;
 
 import BoardGame.relics.AbstractBGRelic;
 import BoardGame.screen.RelicTradingScreen;
-import BoardGame.screen.TargetSelectScreen;
 import basemod.BaseMod;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;

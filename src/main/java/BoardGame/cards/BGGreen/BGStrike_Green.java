@@ -1,7 +1,7 @@
 package BoardGame.cards.BGGreen;
 
+import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import BoardGame.cards.AbstractBGCard;
-import BoardGame.characters.BGIronclad;
 import BoardGame.characters.BGSilent;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -22,14 +22,6 @@ public class BGStrike_Green extends AbstractBGCard {
 
     public BGStrike_Green() {
         super("BGStrike_G", cardStrings.NAME, "green/attack/strike", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, BGSilent.Enums.BG_GREEN, AbstractCard.CardRarity.BASIC, AbstractCard.CardTarget.ENEMY);
-
-
-
-
-
-
-
-
 
 
         this.baseDamage = 1;

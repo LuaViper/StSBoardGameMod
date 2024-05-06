@@ -1,5 +1,6 @@
 package BoardGame.cards;
 
+import BoardGame.BoardGame;
 import BoardGame.characters.BGColorless;
 import basemod.AutoAdd;
 import com.badlogic.gdx.graphics.Texture;
@@ -8,12 +9,9 @@ import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import BoardGame.BoardGame;
-import com.megacrit.cardcrawl.vfx.AwakenedWingParticle;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 import org.clapper.util.classutil.ClassInfo;
-
 
 import java.util.ArrayList;
 import java.util.Collection;

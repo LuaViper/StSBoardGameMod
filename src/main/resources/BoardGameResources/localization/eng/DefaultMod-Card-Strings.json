@@ -129,7 +129,11 @@
   "BoardGame:BGBouncingFlask": {
     "NAME": "Bouncing Flask",
     "DESCRIPTION": "[BoardGame:PoisonIcon] [BoardGame:PoisonIcon] NL Each boardgame:Poison may have a different target.",
-    "UPGRADE_DESCRIPTION": "[BoardGame:PoisonIcon] [BoardGame:PoisonIcon] [BoardGame:PoisonIcon] NL Each boardgame:Poison may have a different target."
+    "UPGRADE_DESCRIPTION": "[BoardGame:PoisonIcon] [BoardGame:PoisonIcon] [BoardGame:PoisonIcon] NL Each boardgame:Poison may have a different target.",
+    "EXTENDED_DESCRIPTION": [
+      "Choose the first target for Bouncing Flask.",
+      "Choose the next target for Bouncing Flask."
+    ]
   },
   "BoardGame:BGBrilliance": {
     "NAME": "Brilliance",
@@ -200,6 +204,10 @@
   "BoardGame:BGClaw": {
     "NAME": "Claw",
     "DESCRIPTION": "!D! [BoardGame:HitIcon] NL +!M! damage if the topmost card in your discard pile costs 0."
+  },
+  "BoardGame:BGClaw2": {
+    "NAME": "Claw",
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL Increase the damage of ALL Claw cards by !M! this combat."
   },
   "BoardGame:BGCleave": {
     "NAME": "Cleave",
@@ -1052,10 +1060,22 @@
     "NAME": "Shrug It Off",
     "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL Draw 1 card."
   },
-  "BoardGame:BGSkewer": {
-    "NAME": "Skewer",
-    "DESCRIPTION": "Deal !D! [BoardGame:HitIcon] NL X+1 times.",
-    "UPGRADE_DESCRIPTION": "Deal !D! [BoardGame:HitIcon] X times."
+  "BoardGame:BGShieldSpear_Shield": {
+    "NAME": "???",
+    "DESCRIPTION": "Nothing to see here.",
+    "EXTENDED_DESCRIPTION": [
+      "The Shield bashes you. NL Lose 1 Energy.",
+      "The Shield snares you. NL You can't draw cards this turn.",
+      "The Shield []blocks you. NL Damage you deal this turn is reduced to 0.",
+      "Don't stand in the fire."
+    ]
+  },
+  "BoardGame:BGShieldSpear_Spear": {
+    "NAME": "???",
+    "DESCRIPTION": "Even in the Board Game, there is no escape.",
+    "EXTENDED_DESCRIPTION": [
+      "The Spear []burns you. NL [BoardGame:BurnIcon] [BoardGame:BurnIcon]"
+    ]
   },
   "BoardGame:BGSignatureMove": {
     "NAME": "Signature Move",
@@ -1064,6 +1084,11 @@
   "BoardGame:BGSimmeringFury": {
     "NAME": "Simmering Fury",
     "DESCRIPTION": "Your [BoardGame:HitIcon] deal +!M! additional damage while in boardgame:Wrath."
+  },
+  "BoardGame:BGSkewer": {
+    "NAME": "Skewer",
+    "DESCRIPTION": "Deal !D! [BoardGame:HitIcon] NL X+1 times.",
+    "UPGRADE_DESCRIPTION": "Deal !D! [BoardGame:HitIcon] X times."
   },
   "BoardGame:BGSlice": {
     "NAME": "Slice",
@@ -1276,8 +1301,8 @@
     "DESCRIPTION": "!B! [BoardGame:BlockIcon] to any player. NL Enter boardgame:Calm."
   },
   "BoardGame:BGVoidCard": {
-    "NAME": "Void",
-    "DESCRIPTION": "Exhaust. NL This card automatically plays when drawn."
+    "NAME": "Slimed",
+    "DESCRIPTION": "Exhaust. NL When you draw this card, you must immediately pay [E] to Exhaust it, if able."
   },
   "BoardGame:BGVault": {
     "NAME": "Vault",

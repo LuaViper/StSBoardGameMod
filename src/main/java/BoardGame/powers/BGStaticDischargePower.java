@@ -1,11 +1,8 @@
 package BoardGame.powers;
 
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 public class BGStaticDischargePower extends AbstractBGPower {
     public static final String POWER_ID = "BGStaticDischargePower";

@@ -1,26 +1,22 @@
 
 package BoardGame.actions;
 
+import BoardGame.cards.AbstractBGCard;
 import BoardGame.cards.BGRed.BGWhirlwind;
-import BoardGame.orbs.BGFrost;
 import BoardGame.orbs.BGLightning;
 import BoardGame.powers.WeakVulnCancel;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import com.megacrit.cardcrawl.actions.utility.SFXAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.orbs.Frost;
 import com.megacrit.cardcrawl.orbs.Lightning;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import com.megacrit.cardcrawl.vfx.combat.BlizzardEffect;
 import com.megacrit.cardcrawl.vfx.combat.FlashAtkImgEffect;
 import com.megacrit.cardcrawl.vfx.combat.LightningEffect;
 import org.apache.logging.log4j.LogManager;
@@ -69,13 +65,15 @@ public class BGThunderStrikeAction
                 } else {
                     addToTop((AbstractGameAction)new VFXAction((AbstractGameEffect)new LightningEffect(target.drawX, target.drawY),1.0F));
                 }
-                addToTop((AbstractGameAction) new DamageAllEnemiesAction((AbstractCreature) this.p, this.multiDamage, this.damageType, AttackEffect.BLUNT_HEAVY, true));
+                addToTop((AbstractGameAction) new DamageAllEnemiesAction(p,
+                        this.multiDamage, this.damageType, AttackEffect.BLUNT_HEAVY, true));
                 addToTop((AbstractGameAction)new SFXAction("ORB_LIGHTNING_EVOKE",0.1F));
                 addToTop((AbstractGameAction)new VFXAction((AbstractGameEffect)new FlashAtkImgEffect(target.hb.cX, target.hb.cY, this.attackEffect)));
 
             }
         }else{
-            addToTop((AbstractGameAction)new DamageAllEnemiesAction(this.p,0, WeakVulnCancel.WEAKVULN_ZEROHITS, AttackEffect.NONE));
+            addToTop((AbstractGameAction)new DamageAllEnemiesAction(p,
+                    0, WeakVulnCancel.WEAKVULN_ZEROHITS, AttackEffect.NONE));
         }
         this.isDone = true;
     }

@@ -1,17 +1,15 @@
 package BoardGame.powers;
 
 import BoardGame.actions.BGDiscardCorpseExplosionAction;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
-import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
+import BoardGame.multicharacter.MultiCreature;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 public class BGCorpseExplosionPower extends AbstractBGPower {
@@ -39,8 +37,10 @@ public class BGCorpseExplosionPower extends AbstractBGPower {
     public void onDeath() {
         if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead() &&
                 this.owner.currentHealth <= 0) {
-            addToBot((AbstractGameAction) new DamageAllEnemiesAction(null,
-                    DamageInfo.createDamageMatrix(this.amount, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE));
+            addToBot((AbstractGameAction) new DamageAllEnemiesAction(
+                    AbstractDungeon.player,
+                    DamageInfo.createDamageMatrix(this.amount, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE
+                    ));
             AbstractCard card=originalcard.makeStatEquivalentCopy();
             addToBot((AbstractGameAction) new BGDiscardCorpseExplosionAction(card));
         }

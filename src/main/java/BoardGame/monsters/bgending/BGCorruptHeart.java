@@ -1,4 +1,5 @@
 package BoardGame.monsters.bgending;
+import BoardGame.cards.BGStatus.BGBurn;
 import BoardGame.cards.BGStatus.BGSlimed;
 import BoardGame.monsters.BGDamageIcons;
 import BoardGame.powers.BGBeatOfDeathPower;
@@ -68,23 +69,9 @@ public class BGCorruptHeart extends AbstractMonster implements BGDamageIcons {
         this.state.addListener((AnimationState.AnimationStateListener)this.animListener);
         this.type = AbstractMonster.EnemyType.BOSS;
 
-//        if (AbstractDungeon.ascensionLevel >= 9) {
-//            setHp(800);
-//        } else {
-//            setHp(750);
-//        }
-//
-//        if (AbstractDungeon.ascensionLevel >= 4) {
-//            this.damage.add(new DamageInfo((AbstractCreature)this, 45));
-//            this.damage.add(new DamageInfo((AbstractCreature)this, 2));
-//            this.bloodHitCount = 15;
-//        } else {
-//            this.damage.add(new DamageInfo((AbstractCreature)this, 40));
-//            this.damage.add(new DamageInfo((AbstractCreature)this, 2));
-//            this.bloodHitCount = 12;
-//        }
 
-        setHp(100);
+
+        setHp((AbstractDungeon.ascensionLevel<11) ? 100 : 120);
         this.damage.add(new DamageInfo((AbstractCreature)this, 5));
         this.damage.add(new DamageInfo((AbstractCreature)this, 2));
         this.bloodHitCount = 3;
@@ -105,7 +92,7 @@ public class BGCorruptHeart extends AbstractMonster implements BGDamageIcons {
 //        if (AbstractDungeon.ascensionLevel >= 19) {
 //            beatAmount++;
 //        }
-        int invincibleAmt=50;
+        int invincibleAmt=(AbstractDungeon.ascensionLevel<11) ? 50 : 60;
         int beatAmount=1;
         AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new BGInvinciblePower((AbstractCreature)this, invincibleAmt), invincibleAmt));
         AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new BGBeatOfDeathPower((AbstractCreature)this, beatAmount), beatAmount));
@@ -119,10 +106,14 @@ public class BGCorruptHeart extends AbstractMonster implements BGDamageIcons {
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new VFXAction((AbstractGameEffect) new HeartMegaDebuffEffect()));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new ApplyPowerAction((AbstractCreature) AbstractDungeon.player, (AbstractCreature) this, (AbstractPower) new BGWeakPower((AbstractCreature) AbstractDungeon.player, 1, true), 1));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new ApplyPowerAction((AbstractCreature) AbstractDungeon.player, (AbstractCreature) this, (AbstractPower) new BGVulnerablePower((AbstractCreature) AbstractDungeon.player, 1, true), 1));
-                //AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new MakeTempCardInDiscardAction((AbstractCard) new BGSlimed(), 5));
-                //TODO: also shuffle the deck properly for the BG
-                //AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new MakeTempCardInDrawPileAction((AbstractCard) new BGSlimed(), 5,true,false ));
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new MakeTempCardInDrawPileAction((AbstractCard) new BGSlimed(), 5,true,true ));
+
+                if(AbstractDungeon.ascensionLevel<11) {
+                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new MakeTempCardInDrawPileAction((AbstractCard) new BGSlimed(), 5, true, true));
+                }else{
+                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new MakeTempCardInDrawPileAction((AbstractCard) new BGBurn(), 5, true, true));
+                }
+                //in VG we wouldn't shuffle here, but in BG we've just disrupted Scry/Rebound effects
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new ShuffleAction(AbstractDungeon.player.drawPile));
                 break;
 
             case 1:
@@ -149,7 +140,8 @@ public class BGCorruptHeart extends AbstractMonster implements BGDamageIcons {
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new VFXAction((AbstractGameEffect) new BorderFlashEffect(new Color(0.8F, 0.5F, 1.0F, 1.0F))));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new VFXAction((AbstractGameEffect) new HeartBuffEffect(this.hb.cX, this.hb.cY)));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new ApplyPowerAction((AbstractCreature) this, (AbstractCreature) this, (AbstractPower) new StrengthPower((AbstractCreature) this, 2),2));
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new ApplyPowerAction((AbstractCreature) this, (AbstractCreature) this, (AbstractPower) new BGBeatOfDeathPower((AbstractCreature) this, 1), 1));
+                int additionalBeatAmt=(AbstractDungeon.ascensionLevel<11) ? 1 : 2;
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new ApplyPowerAction((AbstractCreature) this, (AbstractCreature) this, (AbstractPower) new BGBeatOfDeathPower((AbstractCreature) this, additionalBeatAmt), additionalBeatAmt));
                 if(this.hasPower("BGInvinciblePower")){
                     addToBot((AbstractGameAction) new RemoveSpecificPowerAction((AbstractCreature)this,(AbstractCreature)this,"BGInvinciblePower"));
                 }

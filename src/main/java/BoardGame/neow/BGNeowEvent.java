@@ -4,18 +4,12 @@ package BoardGame.neow;
 //TODO: several rewards can softlock if player doesn't have enough cards (not just limited to Quick Start)
 
 import BoardGame.dungeons.AbstractBGDungeon;
-import BoardGame.thedie.TheDie;
+import BoardGame.multicharacter.MultiCharacter;
+import BoardGame.multicharacter.MultiCharacterSelectScreen;
+import basemod.BaseMod;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
-import com.megacrit.cardcrawl.blights.AbstractBlight;
-import com.megacrit.cardcrawl.blights.GrotesqueTrophy;
-import com.megacrit.cardcrawl.blights.MimicInfestation;
-import com.megacrit.cardcrawl.blights.Muzzle;
-import com.megacrit.cardcrawl.blights.Shield;
-import com.megacrit.cardcrawl.blights.Spear;
-import com.megacrit.cardcrawl.blights.TimeMaze;
+import com.megacrit.cardcrawl.blights.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AnimatedNpc;
@@ -27,7 +21,6 @@ import com.megacrit.cardcrawl.events.RoomEventDialog;
 import com.megacrit.cardcrawl.helpers.ModHelper;
 import com.megacrit.cardcrawl.helpers.PotionHelper;
 import com.megacrit.cardcrawl.helpers.SaveHelper;
-import com.megacrit.cardcrawl.helpers.TipTracker;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.neow.NeowEvent;
@@ -37,20 +30,18 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
-import com.megacrit.cardcrawl.ui.DialogWord;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.*;
 import com.megacrit.cardcrawl.vfx.cardManip.PurgeCardEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 import com.megacrit.cardcrawl.vfx.scene.LevelTransitionTextOverlayEffect;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
+
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.Collections;
-import java.util.Iterator;
-
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import static BoardGame.neow.BGNeowQuickStart.clearAllRewards;
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.*;
@@ -128,9 +119,13 @@ public class BGNeowEvent
 //            talk(TEXT[MathUtils.random(1, 3)]);
 //            this.roomEventText.addDialogOption(OPTIONS[1]);
 
-            this.screenNum=-1;          //disclaimer intro
+             if (AbstractDungeon.player instanceof MultiCharacter) {
+                BaseMod.openCustomScreen(MultiCharacterSelectScreen.Enum.MULTI_CHARACTER_SELECT);
+            }
+            //TODO NEXT: remove Neow screen disclaimer, maybe
+            this.screenNum = -1;    //disclaimer intro
             this.roomEventText.addDialogOption(EXTRA[68]);
-            this.body=EXTRA[69]+" NL NL "+EXTRA[70];
+            //character screen is still open, we can't set disclaimer text until the player clicks proceed
 
             AbstractDungeon.topLevelEffects.add(new LevelTransitionTextOverlayEffect(AbstractDungeon.name, AbstractDungeon.levelNum, true));
         } else {

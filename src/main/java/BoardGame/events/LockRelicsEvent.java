@@ -1,6 +1,5 @@
 package BoardGame.events;
 
-import BoardGame.relics.AbstractBGRelic;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;

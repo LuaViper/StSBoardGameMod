@@ -27,6 +27,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class BGAcidSlime_M extends AbstractBGMonster implements BGDamageIcons, DieControlledMoves {
+
     public static final String ID = "BGAcidSlime_M";
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("AcidSlime_M");
     public static final String NAME = monsterStrings.NAME;
@@ -44,14 +45,13 @@ public class BGAcidSlime_M extends AbstractBGMonster implements BGDamageIcons, D
     public static final int W_TACKLE_DMG = 7;
     public static final int WOUND_COUNT = 1;
 
-    public String behavior="---";
 
     public BGAcidSlime_M(float x, float y) {
         this(x, y, 0, 5);
     }
     public static final int N_TACKLE_DMG = 10; public static final int A_2_W_TACKLE_DMG = 8; public static final int A_2_N_TACKLE_DMG = 12; public static final int WEAK_TURNS = 1; private static final byte WOUND_TACKLE = 1; private static final byte NORMAL_TACKLE = 2; private static final byte WEAK_LICK = 4;
     public BGAcidSlime_M(float x, float y, int poisonAmount, int newHealth) {
-        super(NAME, "AcidSlime_M", newHealth, 0.0F, 0.0F, 170.0F, 130.0F, null, x, y, true);
+        super(NAME, "BGAcidSlime_M", newHealth, 0.0F, 0.0F, 170.0F, 130.0F, null, x, y, true);
 
         behavior = BGExordium.getSummonAcidSlime();
 

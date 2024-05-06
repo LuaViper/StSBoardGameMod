@@ -1,7 +1,10 @@
 package BoardGame.shop;
 
 import BoardGame.dungeons.AbstractBGDungeon;
-import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.evacipated.cardcrawl.modthespire.lib.ByRef;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AnimatedNpc;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -27,6 +30,7 @@ public class BGMerchant {
                                           @ByRef float[] ___speechTimer, @ByRef float[]___modX, @ByRef float[]___modY, @ByRef int[]___shopScreen) {
             if(CardCrawlGame.dungeon instanceof AbstractBGDungeon) {
             //if(false){
+                BoardGame.BoardGame.logger.info("Rolling BG MERCHANT CARDS");
                 merchant.anim = new AnimatedNpc(Merchant.DRAW_X + 256.0F * Settings.scale, AbstractDungeon.floorY + 30.0F * Settings.scale, "images/npcs/merchant/skeleton.atlas", "images/npcs/merchant/skeleton.json", "idle");
 
                 merchant.hb = new Hitbox(360.0F * Settings.scale, 300.0F * Settings.scale);

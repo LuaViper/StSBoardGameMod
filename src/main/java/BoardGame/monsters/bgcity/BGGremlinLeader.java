@@ -1,5 +1,6 @@
 
 package BoardGame.monsters.bgcity; 
+ import BoardGame.actions.BGBuffAllEnemiesAction;
  import BoardGame.monsters.BGDamageIcons;
 import BoardGame.actions.BGSpawnTwoGremlinsForGremlinLeaderAction;
 import BoardGame.dungeons.BGExordium;
@@ -7,7 +8,7 @@ import BoardGame.monsters.AbstractBGMonster;
 
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
+ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.ShoutAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.ChangeStateAction;
@@ -25,6 +26,8 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
 import java.util.ArrayList;
+
+//TODO: Carve Reality is improperly cancelling against live minions
 
 public class BGGremlinLeader extends AbstractBGMonster implements BGDamageIcons {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("GremlinLeader");
@@ -76,8 +79,10 @@ public class BGGremlinLeader extends AbstractBGMonster implements BGDamageIcons 
 
         if(AbstractDungeon.ascensionLevel<1)
             setHp(30);
-        else
+        else if(AbstractDungeon.ascensionLevel<12)
             setHp(35);
+        else
+            setHp(40);
 
 
         this.blockAmt = 1;
@@ -134,6 +139,9 @@ public class BGGremlinLeader extends AbstractBGMonster implements BGDamageIcons 
             case 3:
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ChangeStateAction(this, "CALL"));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new BGSpawnTwoGremlinsForGremlinLeaderAction(this));
+                if(AbstractDungeon.ascensionLevel>=12){
+                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new BGBuffAllEnemiesAction(this));
+                }
                 setMove((byte) 1, AbstractMonster.Intent.ATTACK_BUFF, ((DamageInfo) this.damage.get(0)).base);
                 break;
         }

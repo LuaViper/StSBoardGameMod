@@ -1,8 +1,8 @@
 package BoardGame.cards.BGRed;
 
+import BoardGame.cards.AbstractBGCard;
 import BoardGame.cards.BGStatus.BGDazed;
 import BoardGame.characters.BGIronclad;
-import BoardGame.cards.AbstractBGCard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;

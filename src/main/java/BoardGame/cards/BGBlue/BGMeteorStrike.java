@@ -1,7 +1,7 @@
 package BoardGame.cards.BGBlue;
+
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
-import BoardGame.relics.BGTheDieRelic;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -24,6 +24,7 @@ public class BGMeteorStrike extends AbstractBGCard {
         super("BGMeteorStrike", cardStrings.NAME, "blue/attack/meteor_strike", 5, cardStrings.DESCRIPTION, CardType.ATTACK, BGDefect.Enums.BG_BLUE, CardRarity.RARE, CardTarget.ENEMY);
         this.baseDamage = 10;
         receivesPowerDiscount=true;
+        this.tags.add(AbstractCard.CardTags.STRIKE);
     }
 
 

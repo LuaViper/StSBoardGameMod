@@ -1,9 +1,8 @@
 package BoardGame.cards.BGBlue;
+
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
 import BoardGame.powers.BGBufferPower;
-import BoardGame.powers.BGEchoFormPower;
-import BoardGame.powers.BGWraithFormPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;

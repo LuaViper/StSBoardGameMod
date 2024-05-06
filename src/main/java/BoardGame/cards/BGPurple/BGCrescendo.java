@@ -1,7 +1,7 @@
 package BoardGame.cards.BGPurple;
+
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGWatcher;
-import basemod.devcommands.draw.Draw;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;

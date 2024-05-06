@@ -36,8 +36,8 @@ public class TinyHouseUpgrade1Card extends CustomReward {
                         c.upgrade();
                         AbstractDungeon.player.bottledCardUpgradeCheck(c);
                         AbstractDungeon.effectsQueue.add(new ShowCardBrieflyEffect(c.makeStatEquivalentCopy()));
-                        AbstractDungeon.gridSelectScreen.selectedCards.clear();
                     }
+                    AbstractDungeon.gridSelectScreen.selectedCards.clear();
                 });
 
         return true;

@@ -1,15 +1,14 @@
 package BoardGame.powers;
 
+import BoardGame.actions.BGCheckEndPlayerStartTurnPhaseAction;
 import BoardGame.actions.BGUpdateDieRelicPulseAction;
-import BoardGame.relics.BGCharonsAshes;
 import BoardGame.relics.BGNilrysCodex;
 import BoardGame.thedie.TheDie;
 import BoardGame.util.TextureLoader;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.*;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -19,7 +18,7 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 
-public class BGTrigger2DieAbilityPower extends AbstractBGPower {
+public class BGTrigger2DieAbilityPower extends AbstractBGPower implements ManualStartTurnPhasePower{
     public static final String POWER_ID = "BGTrigger2DieAbilityPower";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BGTrigger2DieAbilityPower");
     private static final String thoughtbubble = "I can trigger a #r\"2\" die ability!"; //TODO: move to localization
@@ -47,11 +46,12 @@ public class BGTrigger2DieAbilityPower extends AbstractBGPower {
         this.description = DESCRIPTIONS[0];
     }
 
-    public void onUseCard(AbstractCard card, UseCardAction action) {
+    public void onAboutToUseCard(AbstractCard card, AbstractCreature originalTarget) {
         //mayhem fix
         //TODO: mayhem fix is still wrong -- player should have the chance to lock the roll + activate relics before playing mayhem (some cards change depending on roll)
         if(!card.isInAutoplay) {
-            addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, "BGTrigger2DieAbilityPower"));
+            //addToTop(new RemoveSpecificPowerAction(this.owner, this.owner, "BGTrigger2DieAbilityPower"));
+            addToBot(new RemoveSpecificPowerAction(this.owner, this.owner, "BGTrigger2DieAbilityPower"));
         }
         //TODO: also trigger on use potion and on rightclick power
     }
@@ -77,7 +77,7 @@ public class BGTrigger2DieAbilityPower extends AbstractBGPower {
             }
         }
         addToBot((AbstractGameAction)new BGUpdateDieRelicPulseAction());
-
+        addToBot(new BGCheckEndPlayerStartTurnPhaseAction());
     }
 
 

@@ -2,7 +2,6 @@ package BoardGame.cards.BGBlue;
 
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
-import BoardGame.characters.BGSilent;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;

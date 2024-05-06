@@ -4,15 +4,12 @@ import BoardGame.dungeons.AbstractBGDungeon;
 import BoardGame.potions.BGGamblersBrew;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.curses.Pain;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.WarpedTongs;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
@@ -58,7 +55,7 @@ public class BGAccursedBlacksmith extends AbstractImageEvent {
         gamblingChipButtonWasActive=false;
 
         this.imageEventText.setDialogOption(OPTIONS[1]);
-        this.imageEventText.setDialogOption(OPTIONS[2]);
+        //this.imageEventText.setDialogOption(OPTIONS[2]);
     }
 
 

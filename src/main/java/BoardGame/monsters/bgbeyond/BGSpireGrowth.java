@@ -27,7 +27,7 @@ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class BGSpireGrowth extends AbstractBGMonster implements MixedAttacks, DieControlledMoves {
-    public static final String ID = "Serpent";
+    public static final String ID = "BGSerpent";
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Serpent");
     public static final String NAME = monsterStrings.NAME;
     public static final String[] MOVES = monsterStrings.MOVES;
@@ -43,10 +43,10 @@ public class BGSpireGrowth extends AbstractBGMonster implements MixedAttacks, Di
     private boolean firstMove=true;
 
     public BGSpireGrowth() {
-        super(NAME, "Serpent", 170, -10.0F, -35.0F, 480.0F, 430.0F, null, 0.0F, 10.0F);
+        super(NAME, "BGSerpent", 170, -10.0F, -35.0F, 480.0F, 430.0F, null, 0.0F, 10.0F);
         loadAnimation("images/monsters/theForest/spireGrowth/skeleton.atlas", "images/monsters/theForest/spireGrowth/skeleton.json", 1.0F);
 
-
+        behavior = "24";    //only checked by bestiary mod
 
 
 //        if (AbstractDungeon.ascensionLevel >= 7) {

@@ -91,9 +91,7 @@ public class BGTheEnding extends AbstractBGDungeon {
         firstRoomChosen = true;
         populatePathTaken(saveFile);
 
-        //TODO: is this correct?  or are we reshuffling an already shuffled saved deck?
-        logger.info("Shuffling reward deck...");
-        rewardDeck.shuffle(cardRng);
+        //Saved deck is already shuffled -- don't reshuffle! (especially not after the 1st floor!)
     }
 
     private void generateSpecialMap() {
@@ -108,7 +106,7 @@ public class BGTheEnding extends AbstractBGDungeon {
         MapRoomNode shopNode = new MapRoomNode(3, 1);
         shopNode.room = (AbstractRoom)new ShopRoom();
         MapRoomNode enemyNode = new MapRoomNode(3, 2);
-        if(false) {
+        if(ascensionLevel>=11) {
             enemyNode.room = (AbstractRoom) new MonsterRoomElite();
         }else{
             enemyNode.room = (AbstractRoom) new EventRoom();

@@ -117,9 +117,7 @@ public class BGTheBeyond
 
         populatePathTaken(saveFile);
 
-        //TODO: is this correct?  or are we reshuffling an already shuffled saved deck?
-        logger.info("Shuffling reward deck...");
-        rewardDeck.shuffle(cardRng);
+        //Saved deck is already shuffled -- don't reshuffle! (especially not after the 1st floor!)
     }
 
 
@@ -170,16 +168,22 @@ public class BGTheBeyond
         ArrayList<MonsterInfo> monsters = new ArrayList<>();
         monsters.add(new MonsterInfo("BoardGame:Jaw Worms (Hard)", 2.0F));
         monsters.add(new MonsterInfo("BoardGame:Spire Growth", 2.0F));
-        monsters.add(new MonsterInfo("BoardGame:Exploder and Friends", 2.0F));
-        monsters.add(new MonsterInfo("BoardGame:Repulsor and Friends", 2.0F));
         monsters.add(new MonsterInfo("BoardGame:Orb Walker v2.3", 2.0F));
         monsters.add(new MonsterInfo("BoardGame:Orb Walker v3.2", 2.0F));
         monsters.add(new MonsterInfo("BoardGame:Transient", 2.0F));
         monsters.add(new MonsterInfo("BoardGame:Maw", 2.0F));
         monsters.add(new MonsterInfo("BoardGame:Writhing Mass", 2.0F));
         monsters.add(new MonsterInfo("BoardGame:3 Darklings", 2.0F));
+        if(AbstractDungeon.ascensionLevel<7) {
+            monsters.add(new MonsterInfo("BoardGame:Exploder and Friends", 2.0F));
+            monsters.add(new MonsterInfo("BoardGame:Repulsor and Friends", 2.0F));
+        }else{
+            monsters.add(new MonsterInfo("BoardGame:A7 Exploder and Friends", 2.0F));
+            monsters.add(new MonsterInfo("BoardGame:A7 Repulsor and Friends", 2.0F));
+        }
+
         MonsterInfo.normalizeWeights(monsters);
-        populateFirstStrongEnemy(monsters, generateExclusions());
+        //populateFirstStrongEnemy(monsters, generateExclusions());
         populateMonsterList(monsters, count, false);
     }
 

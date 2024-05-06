@@ -1,9 +1,11 @@
 package BoardGame.actions;
 
 
-
 import BoardGame.monsters.bgcity.BGGremlinLeader;
-import BoardGame.monsters.bgexordium.*;
+import BoardGame.monsters.bgexordium.BGGremlinAngry;
+import BoardGame.monsters.bgexordium.BGGremlinFat;
+import BoardGame.monsters.bgexordium.BGGremlinSneaky;
+import BoardGame.monsters.bgexordium.BGGremlinWizard;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.SpawnMonsterAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -26,7 +28,7 @@ public class BGSpawnTwoGremlinsForGremlinLeaderAction extends AbstractGameAction
 
 
     private String getGremlinInSlot(int slot) {
-        ArrayList<AbstractMonster> monsters = AbstractDungeon.getCurrRoom().monsters.monsters;
+        ArrayList<AbstractMonster> monsters = AbstractDungeon.getMonsters().monsters;
         logger.info("checking gremlin slot "+slot);
         if (slot>=monsters.size() || monsters.get(slot) == null || (monsters.get(slot)).isDying) {
             logger.info("return "+this.leader.gremlintypes[slot]);
@@ -58,9 +60,9 @@ public class BGSpawnTwoGremlinsForGremlinLeaderAction extends AbstractGameAction
                 logger.info("Not dead, don't resummon");
             }
             logger.info("Gremlin type: "+type);
-            logger.info("Gremlin: "+gremlin+null);
+            logger.info("Gremlin: "+gremlin);
             if (gremlin != null)
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new SpawnMonsterAction(gremlin, false));
+                AbstractDungeon.actionManager.addToTop((AbstractGameAction) new SpawnMonsterAction(gremlin, false));
 
         }
         AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new ApplyAngerToGremlinsAction());

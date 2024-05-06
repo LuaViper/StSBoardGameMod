@@ -2,7 +2,6 @@ package BoardGame.cards.BGColorless;
 
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGColorless;
-
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -19,13 +18,6 @@ public class BGSwiftStrike extends AbstractBGCard {
 
     public BGSwiftStrike() {
         super("BGSwift Strike", cardStrings.NAME, "colorless/attack/swift_strike", 0, cardStrings.DESCRIPTION, AbstractCard.CardType.ATTACK, BGColorless.Enums.CARD_COLOR, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.ENEMY);
-
-
-
-
-
-
-
 
 
 

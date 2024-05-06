@@ -1,7 +1,6 @@
 package BoardGame.relics;
 
 import BoardGame.dungeons.BGTheEnding;
-import BoardGame.events.FakeMonsterRoomEvent;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
@@ -10,7 +9,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 public class BGSsserpentHead
         extends AbstractBGRelic {
     public static final String ID = "BGSsserpentHead";
-    private static final int GOLD_AMT = 2;
+    public static final int GOLD_AMT = 2;
 
     public BGSsserpentHead() {
         super("BGSsserpentHead", "serpentHead.png", AbstractRelic.RelicTier.SPECIAL, AbstractRelic.LandingSound.CLINK);

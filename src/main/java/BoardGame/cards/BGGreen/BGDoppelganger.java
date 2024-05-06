@@ -2,30 +2,22 @@ package BoardGame.cards.BGGreen;
 
 import BoardGame.BoardGame;
 import BoardGame.actions.BGDoppelgangerAction;
-import BoardGame.actions.BGWhirlwindAction;
 import BoardGame.actions.BGXCostCardAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGSilent;
-import BoardGame.powers.BGFreeCardPower;
-import BoardGame.ui.BGGameTips;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.DiscardAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
 import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.GameTips;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 //TODO: Doppelganger should copy Shiv and (1x) Cunning Potion if it isn't already
 
@@ -47,7 +39,8 @@ public class BGDoppelganger extends AbstractBGCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         BGXCostCardAction.XCostInfo info = BGXCostCardAction.preProcessCard(this);
         //BoardGame.logger.info("Doppelganger energyOnUse: "+this.energyOnUse);
-        addToTop((AbstractGameAction)new BGDoppelgangerAction(this, info, (e,d)-> {}));
+        //addToTop((AbstractGameAction)new BGDoppelgangerAction(this, info, (e,d)-> {}));
+        addToBot((AbstractGameAction)new BGDoppelgangerAction(this, info, (e,d)-> {}));
     }
 
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {

@@ -1,24 +1,17 @@
 package BoardGame.cards.BGPurple;
-import BoardGame.actions.BGVaultDiscardAction;
+
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.cards.BGColorless.BGBecomeAlmighty;
 import BoardGame.cards.BGColorless.BGFameAndFortune;
 import BoardGame.cards.BGColorless.BGLiveForever;
 import BoardGame.characters.BGWatcher;
-import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
-import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.watcher.ChooseOneAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import com.megacrit.cardcrawl.vfx.combat.WhirlwindEffect;
 
 import java.util.ArrayList;
 

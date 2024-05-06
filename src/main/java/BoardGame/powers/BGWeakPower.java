@@ -17,6 +17,9 @@ import com.megacrit.cardcrawl.powers.AbstractPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import static BoardGame.powers.BGVulnerablePower.getEffectiveIndex;
+import static BoardGame.powers.BGVulnerablePower.whichMonsterIsCalculatingDamage;
+
 public class BGWeakPower extends AbstractBGPower {
     public static final String POWER_ID = BoardGame.makeID("Weakened (BG)");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -120,7 +123,16 @@ public class BGWeakPower extends AbstractBGPower {
         //if(this.amount>0) {
         if(this.owner!=AbstractDungeon.player){
             if(AbstractDungeon.player.hasPower("BGVulnerable")){
-                return (float) (damage*0.5);
+                int stacks=1;
+                if(AbstractDungeon.player.hasPower("BGVulnerable")) {
+                    stacks = AbstractDungeon.player.getPower("BGVulnerable").amount;
+                }
+                int index=getEffectiveIndex(whichMonsterIsCalculatingDamage);
+
+                if(index<stacks) {
+                    return (float) (damage*0.5);
+                }
+
             }
         }
         if(true){

@@ -1,16 +1,11 @@
 package BoardGame.relics;
 
-import BoardGame.BoardGame;
 import BoardGame.actions.BGUseShivAction;
 import BoardGame.util.TextureLoader;
-import basemod.abstracts.CustomRelic;
 import com.badlogic.gdx.graphics.Texture;
 import com.evacipated.cardcrawl.mod.stslib.relics.ClickableRelic;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 import static BoardGame.BoardGame.makeRelicOutlinePath;

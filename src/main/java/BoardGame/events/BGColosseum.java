@@ -1,16 +1,11 @@
 package BoardGame.events;
 
-import BoardGame.potions.PlaceholderPotion;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.events.AbstractEvent;
-import com.megacrit.cardcrawl.events.AbstractImageEvent;
 import com.megacrit.cardcrawl.events.city.Colosseum;
-import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.relics.Circlet;
 
 //TODO: Colosseum encounters need to draw from the physical decks
 // additionally, since vanilla Colosseum isn't random, this event doesn't even cycle through the monster list
@@ -24,7 +19,7 @@ public class BGColosseum extends Colosseum {    //game is hardcoded to check for
     public static final String[] DESCRIPTIONS = eventStrings.DESCRIPTIONS;
 
     public static final String[] OPTIONS = eventStrings.OPTIONS;
-
+    public boolean isElite=false;
     public String encounterID="";
 
     private CurScreen screen = CurScreen.INTRO;
@@ -63,6 +58,7 @@ public class BGColosseum extends Colosseum {    //game is hardcoded to check for
                         AbstractDungeon.lastCombatMetricKey = "Standard Encounter";
                         break;
                     case 1:
+                        isElite=true;
                         (AbstractDungeon.getCurrRoom()).monsters = CardCrawlGame.dungeon.getEliteMonsterForRoomCreation();
                         encounterID=AbstractDungeon.eliteMonsterList.get(0);
                         AbstractDungeon.eliteMonsterList.remove(0);

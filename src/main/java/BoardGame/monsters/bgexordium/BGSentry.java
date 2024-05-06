@@ -29,6 +29,8 @@ import com.megacrit.cardcrawl.vfx.combat.SmallLaserEffect;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import javax.swing.*;
+
 public class BGSentry extends AbstractBGMonster implements BGDamageIcons, DieControlledMoves {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Sentry"); public static final String ID = "Sentry";
     public static final String NAME = monsterStrings.NAME;
@@ -43,7 +45,6 @@ public class BGSentry extends AbstractBGMonster implements BGDamageIcons, DieCon
     private static final int DAZED_AMT = 2;
     private static final int A_18_DAZED_AMT = 3;
     private boolean firstMove = true;
-    private String behavior="---";
 
     public BGSentry(float x, float y, String behavior) {
         super(NAME, "BGSentry", 42, 0.0F, -5.0F, 180.0F, 310.0F, null, x, y);
@@ -53,8 +54,11 @@ public class BGSentry extends AbstractBGMonster implements BGDamageIcons, DieCon
 
         if(behavior.equals("D3") || (behavior.equals("2D") && AbstractDungeon.ascensionLevel==0))
             setHp(7);
+        else if(behavior.equals("2D") && AbstractDungeon.ascensionLevel>=12)
+            setHp(9);
         else
             setHp(8);
+
 
         this.dazedAmt = 1;
 
@@ -91,6 +95,7 @@ public class BGSentry extends AbstractBGMonster implements BGDamageIcons, DieCon
                     AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractCreature)this, (AbstractGameEffect)new ShockWaveEffect(this.hb.cX, this.hb.cY, Color.ROYAL, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.1F));
                     AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new FastShakeAction((AbstractCreature)AbstractDungeon.player, 0.6F, 0.15F));
                 }
+                //TODO: on ascension 12,
                 addToBot((AbstractGameAction)new MakeTempCardInDrawPileAction((AbstractCard)new BGDazed(), 1, false, true));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new RollMoveAction(this));
                 break;

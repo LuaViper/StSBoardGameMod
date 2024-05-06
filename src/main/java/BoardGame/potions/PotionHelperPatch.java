@@ -27,40 +27,42 @@ public abstract class PotionHelperPatch {
         @SpirePrefixPatch
         public static SpireReturn<ArrayList<String>> getPotions() {
             if(CardCrawlGame.dungeon instanceof AbstractBGDungeon) {
-                potionDeck = new ArrayList<>();
-                //...these are listed in the order they appear in Tabletop Simulator's deck search
-                potionDeck.add("BoardGame:BGBlock Potion");
-                potionDeck.add("BoardGame:BGEnergy Potion");
-                potionDeck.add("BoardGame:BGExplosive Potion");
-                potionDeck.add("BoardGame:BGFire Potion");
-                potionDeck.add("BoardGame:BGSwift Potion");
-                potionDeck.add("BoardGame:BGWeak Potion");
-                potionDeck.add("BoardGame:BGFearPotion");
-                potionDeck.add("BoardGame:BGSteroidPotion");
-                potionDeck.add("BoardGame:BGGamblersBrew");
-                potionDeck.add("BoardGame:BGBloodPotion");
-                potionDeck.add("BoardGame:BGGhostInAJar");
-                potionDeck.add("BoardGame:BGDistilledChaos");
-                potionDeck.add("BoardGame:BGEntropicBrew");
-                potionDeck.add("BoardGame:BGFairyPotion");
-                potionDeck.add("BoardGame:BGAttackPotion");
-                potionDeck.add("BoardGame:BGSkillPotion");
-                potionDeck.add("BoardGame:BGAncientPotion");
-                potionDeck.add("BoardGame:BGBlock Potion");
-                potionDeck.add("BoardGame:BGEnergy Potion");
-                potionDeck.add("BoardGame:BGExplosive Potion");
-                potionDeck.add("BoardGame:BGFire Potion");
-                potionDeck.add("BoardGame:BGSwift Potion");
-                potionDeck.add("BoardGame:BGWeak Potion");
-                potionDeck.add("BoardGame:BGFearPotion");
-                potionDeck.add("BoardGame:BGSteroidPotion");
-                potionDeck.add("BoardGame:BGLiquidMemories");
-                potionDeck.add("BoardGame:BGSneckoOil");
-                potionDeck.add("BoardGame:BGElixirPotion");
-                potionDeck.add("BoardGame:BGCunningPotion");
-                Collections.shuffle(potionDeck, new java.util.Random(cardRng.randomLong()));
-                BoardGame.BoardGame.logger.info("Shuffled potion deck successfully");
-                return SpireReturn.Continue();
+                if(potionDeck.isEmpty()) {
+                    potionDeck = new ArrayList<>();
+                    //...these are listed in the order they appear in Tabletop Simulator's deck search
+                    potionDeck.add("BoardGame:BGBlock Potion");
+                    potionDeck.add("BoardGame:BGEnergy Potion");
+                    potionDeck.add("BoardGame:BGExplosive Potion");
+                    potionDeck.add("BoardGame:BGFire Potion");
+                    potionDeck.add("BoardGame:BGSwift Potion");
+                    potionDeck.add("BoardGame:BGWeak Potion");
+                    potionDeck.add("BoardGame:BGFearPotion");
+                    potionDeck.add("BoardGame:BGSteroidPotion");
+                    potionDeck.add("BoardGame:BGGamblersBrew");
+                    potionDeck.add("BoardGame:BGBloodPotion");
+                    potionDeck.add("BoardGame:BGGhostInAJar");
+                    potionDeck.add("BoardGame:BGDistilledChaos");
+                    potionDeck.add("BoardGame:BGEntropicBrew");
+                    potionDeck.add("BoardGame:BGFairyPotion");
+                    potionDeck.add("BoardGame:BGAttackPotion");
+                    potionDeck.add("BoardGame:BGSkillPotion");
+                    potionDeck.add("BoardGame:BGAncientPotion");
+                    potionDeck.add("BoardGame:BGBlock Potion");
+                    potionDeck.add("BoardGame:BGEnergy Potion");
+                    potionDeck.add("BoardGame:BGExplosive Potion");
+                    potionDeck.add("BoardGame:BGFire Potion");
+                    potionDeck.add("BoardGame:BGSwift Potion");
+                    potionDeck.add("BoardGame:BGWeak Potion");
+                    potionDeck.add("BoardGame:BGFearPotion");
+                    potionDeck.add("BoardGame:BGSteroidPotion");
+                    potionDeck.add("BoardGame:BGLiquidMemories");
+                    potionDeck.add("BoardGame:BGSneckoOil");
+                    potionDeck.add("BoardGame:BGElixirPotion");
+                    potionDeck.add("BoardGame:BGCunningPotion");
+                    Collections.shuffle(potionDeck, new java.util.Random(cardRng.randomLong()));
+                    BoardGame.BoardGame.logger.info("Shuffled potion deck successfully");
+                    return SpireReturn.Continue();
+                }
             }
             return SpireReturn.Continue();
         }

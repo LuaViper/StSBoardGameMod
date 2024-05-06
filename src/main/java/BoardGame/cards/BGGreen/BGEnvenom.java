@@ -2,7 +2,6 @@ package BoardGame.cards.BGGreen;
 
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGSilent;
-import BoardGame.powers.BGAThousandCutsPower;
 import BoardGame.powers.BGEnvenomPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;

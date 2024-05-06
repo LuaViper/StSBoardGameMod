@@ -1,6 +1,5 @@
 package BoardGame.cards.BGColorless;
 
-import BoardGame.actions.BGGainMiracleAction;
 import BoardGame.cards.AbstractBGAttackCardChoice;
 import BoardGame.characters.BGColorless;
 import BoardGame.ui.EntropicBrewPotionButton;
@@ -13,8 +12,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import com.megacrit.cardcrawl.vfx.RainingGoldEffect;
-import com.megacrit.cardcrawl.vfx.SpotlightPlayerEffect;
 
 import java.util.ArrayList;
 

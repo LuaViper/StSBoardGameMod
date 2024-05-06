@@ -7,13 +7,15 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.PotionBounceEffect;
 
 public class BGBouncingFlaskAction extends AbstractGameAction {
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGBouncingFlask");
     private static final float DURATION = 0.01F;
 
     private static final float POST_ATTACK_WAIT_DUR = 0.1F;
@@ -48,7 +50,7 @@ public class BGBouncingFlaskAction extends AbstractGameAction {
                     addToTop((AbstractGameAction)new VFXAction((AbstractGameEffect)new PotionBounceEffect(this.target.hb.cX, this.target.hb.cY, target.hb.cX, target.hb.cY), 0.4F));
                 }
             };
-            addToTop((AbstractGameAction) new TargetSelectScreenAction(tssAction, "Choose the next target for Bouncing Flask."));
+            addToTop((AbstractGameAction) new TargetSelectScreenAction(tssAction, cardStrings.EXTENDED_DESCRIPTION[1]));
         }
         if (this.target.currentHealth > 0) {
             addToTop((AbstractGameAction)new ApplyPowerAction(this.target, (AbstractCreature)AbstractDungeon.player, (AbstractPower)new BGPoisonPower(this.target, (AbstractCreature)AbstractDungeon.player, this.amount), this.amount, true, AbstractGameAction.AttackEffect.POISON));

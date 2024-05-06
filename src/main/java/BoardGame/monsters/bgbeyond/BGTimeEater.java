@@ -2,6 +2,7 @@
 
 
 package BoardGame.monsters.bgbeyond; 
+ import BoardGame.cards.BGStatus.BGDazed;
  import BoardGame.characters.BGWatcher;
  import BoardGame.monsters.BGDamageIcons;
 import BoardGame.cards.BGStatus.BGSlimed;
@@ -67,11 +68,6 @@ public class BGTimeEater extends AbstractBGMonster implements BGDamageIcons {
     public BGTimeEater() {
         super(NAME, "BGTimeEater", 456, -10.0F, -30.0F, 476.0F, 410.0F, null, -50.0F, 30.0F);
 
-//        if (AbstractDungeon.ascensionLevel >= 9) {
-//            setHp(480);
-//        } else {
-//            setHp(456);
-//        }
 
         loadAnimation("images/monsters/theForest/timeEater/skeleton.atlas", "images/monsters/theForest/timeEater/skeleton.json", 1.0F);
 
@@ -86,17 +82,10 @@ public class BGTimeEater extends AbstractBGMonster implements BGDamageIcons {
         this.dialogX = -200.0F * Settings.scale;
         this.dialogY = 10.0F * Settings.scale;
 
-//        if (AbstractDungeon.ascensionLevel >= 4) {
-//            this.reverbDmg = 8;
-//            this.headSlamDmg = 32;
-//        } else {
-//            this.reverbDmg = 7;
-//            this.headSlamDmg = 26;
-//        }
 
-        setHp(60);
+        setHp((AbstractDungeon.ascensionLevel<10) ? 60 : 64);
 
-        this.reverbDmg=2;
+        this.reverbDmg=(AbstractDungeon.ascensionLevel<10) ? 2 : 3;
         this.headSlamDmg=6;
 
         this.damage.add(new DamageInfo((AbstractCreature)this, this.reverbDmg, DamageInfo.DamageType.NORMAL));
@@ -149,6 +138,7 @@ public class BGTimeEater extends AbstractBGMonster implements BGDamageIcons {
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new WaitAction(0.4F));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                         .get(1), AbstractGameAction.AttackEffect.POISON));
+                addToBot((AbstractGameAction)new MakeTempCardInDrawPileAction((AbstractCard)new BGDazed(), 1, false, true));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new StrengthPower((AbstractCreature)this, 1), 1));
                 addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)this, (AbstractPower)new BGTimeWarpPower((AbstractCreature)AbstractDungeon.player, 5), 5));
                 break;
@@ -180,11 +170,11 @@ public class BGTimeEater extends AbstractBGMonster implements BGDamageIcons {
     protected void getMove(int num) {
         //to make things slightly more organized here, first turn is turn 0, not turn 1
         if(turnCount%3==0){
-            setMove((byte)0,AbstractMonster.Intent.ATTACK,2,2,true);
+            setMove((byte)0,AbstractMonster.Intent.ATTACK,damage.get(0).base,2,true);
         }else if(turnCount%3==1){
             setMove((byte)1,AbstractMonster.Intent.DEBUFF);
         }else if(turnCount%3==2){
-            setMove((byte)2,AbstractMonster.Intent.ATTACK_BUFF,6);
+            setMove((byte)2,AbstractMonster.Intent.ATTACK_BUFF,damage.get(1).base);
         }
 
         turnCount+=1;
@@ -211,7 +201,8 @@ public class BGTimeEater extends AbstractBGMonster implements BGDamageIcons {
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new WaitAction(1.0F));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new TextAboveCreatureAction((AbstractCreature)this, "Haste"));    //TODO: localization
                 addToBot((AbstractGameAction) new RemoveSpecificPowerAction((AbstractCreature) this, (AbstractCreature) this, "BGTimeEaterPhase2WarningPower"));
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new HealAction((AbstractCreature) this, (AbstractCreature) this, 30));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new HealAction((AbstractCreature) this, (AbstractCreature) this,
+                        (AbstractDungeon.ascensionLevel<10) ? 30 : 32));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new StrengthPower((AbstractCreature)this, 1), 1));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new RemoveSpecificPowerAction((AbstractCreature)this,(AbstractCreature)this,"BGVulnerable"));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new RemoveSpecificPowerAction((AbstractCreature)this,(AbstractCreature)this,"BGWeakened"));

@@ -1,7 +1,6 @@
 package BoardGame.cards;
 
 import BoardGame.BoardGame;
-import BoardGame.characters.BGIronclad;
 import BoardGame.characters.BGSilent;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 

@@ -44,7 +44,7 @@ public class BGBronzeOrb extends AbstractBGMonster implements DieControlledMoves
     private static final int A_2_HP_MAX = 60;
     private static final int BEAM_DMG = 8;
 
-    public String behavior="---";
+
     public BGBronzeOrb(float x, float y, int count) {
         super(monsterStrings.NAME, "BGBronzeOrb", AbstractDungeon.monsterHpRng
 
@@ -78,6 +78,7 @@ public class BGBronzeOrb extends AbstractBGMonster implements DieControlledMoves
                 addToBot((AbstractGameAction)new MakeTempCardInDrawPileAction((AbstractCard)new BGDazed(), 1, false, true));
                 break;
             case 3:
+                //TODO: if Automaton is dead, should Orb gain block instead?
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new GainBlockAction(
                         (AbstractCreature)AbstractDungeon.getMonsters().getMonster("BGBronzeAutomaton"), (AbstractCreature)this, BLOCK_AMT));
                 break;

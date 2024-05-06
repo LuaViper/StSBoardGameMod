@@ -59,14 +59,16 @@ public class BGChosen extends AbstractBGMonster implements BGDamageIcons {
     }
     private static final int A_2_POKE_DMG = 6; private int zapDmg; private int debilitateDmg; private int pokeDmg; private static final int DEBILITATE_VULN = 2; private static final int DRAIN_STR = 3; private static final int DRAIN_WEAK = 3; private static final byte ZAP = 1; private static final byte DRAIN = 2; private static final byte DEBILITATE = 3; private static final byte HEX = 4; private static final byte POKE = 5; private static final int HEX_AMT = 1; private boolean firstTurn = true, usedHex = false;
     public BGChosen(float x, float y, int hp) {
-        super(NAME, "Chosen", 99, 5.0F, -10.0F, 200.0F, 280.0F, null, x, -20.0F + y);
+        super(NAME, "BGChosen", 99, 5.0F, -10.0F, 200.0F, 280.0F, null, x, -20.0F + y);
         this.dialogX = -30.0F * Settings.scale;
         this.dialogY = 50.0F * Settings.scale;
 
         setHp(hp);
 
+
         this.damage.add(new DamageInfo((AbstractCreature)this, 3));
         this.damage.add(new DamageInfo((AbstractCreature)this, 5));
+        this.damage.add(new DamageInfo((AbstractCreature)this, 1));
 
         loadAnimation("images/monsters/theCity/chosen/skeleton.atlas", "images/monsters/theCity/chosen/skeleton.json", 1.0F);
 
@@ -86,6 +88,9 @@ public class BGChosen extends AbstractBGMonster implements BGDamageIcons {
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new TalkAction((AbstractCreature)this, DIALOG[0]));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ChangeStateAction(this, "ATTACK"));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new WaitAction(0.2F));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new FastShakeAction((AbstractCreature)this, 0.3F, 0.5F));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
+                        .get(2), AbstractGameAction.AttackEffect.FIRE));
                 addToBot((AbstractGameAction)new MakeTempCardInDrawPileAction((AbstractCard)new BGDazed(), 1, false, true));
                 setMove((byte)2, AbstractMonster.Intent.ATTACK_DEBUFF, this.damage.get(0).base);
                 break;
@@ -104,7 +109,7 @@ public class BGChosen extends AbstractBGMonster implements BGDamageIcons {
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                         .get(1), AbstractGameAction.AttackEffect.SLASH_HEAVY));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new StrengthPower((AbstractCreature)this, 1), 1));
-                setMove((byte)1, AbstractMonster.Intent.DEBUFF);
+                setMove((byte)2, AbstractMonster.Intent.ATTACK_DEBUFF, this.damage.get(0).base);
                 break;
 
 
@@ -126,7 +131,7 @@ public class BGChosen extends AbstractBGMonster implements BGDamageIcons {
 
 
     protected void getMove(int num) {
-                setMove((byte)1, AbstractMonster.Intent.DEBUFF);
+                setMove((byte)1, AbstractMonster.Intent.ATTACK_DEBUFF,this.damage.get(2).base);
     }
 
 

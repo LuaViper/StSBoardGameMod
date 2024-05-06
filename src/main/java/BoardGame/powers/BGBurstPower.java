@@ -18,6 +18,9 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
+import java.util.Collections;
+
 public class BGBurstPower extends AbstractBGPower {
     public static final String POWER_ID = "BoardGame:BGBurstPower";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGBurstPower");
@@ -46,52 +49,57 @@ public class BGBurstPower extends AbstractBGPower {
         }
     }
 
-    public void onUseCard(AbstractCard card, UseCardAction action) {
-        //TODO: copied card needs to get played FIRST, somehow
-        //TODO: check card.cannotBeCopied flag
+    public void onAboutToUseCard(AbstractCard originalCard, AbstractCreature originalTarget) {
+
+
         boolean copyOK=true;
-        if(card instanceof AbstractBGCard){
-            if(((AbstractBGCard)card).cannotBeCopied) copyOK=false;
+        if(originalCard instanceof AbstractBGCard){
+            if(((AbstractBGCard)originalCard).cannotBeCopied) copyOK=false;
         }
+
         //TODO: depending on ruling, maybe preserve burst and wait until next card?
-        if (!card.purgeOnUse && card.type == AbstractCard.CardType.SKILL && this.amount > 0 && copyOK) {
+        if (!originalCard.purgeOnUse && originalCard.type == AbstractCard.CardType.SKILL && this.amount > 0 && copyOK) {
             flash();
             AbstractMonster m = null;
-            if (action.target != null)
-                m = (AbstractMonster)action.target;
-            AbstractCard tmp = card.makeSameInstanceOf();
-            AbstractDungeon.player.limbo.addToBottom(tmp);
-            tmp.current_x = card.current_x;
-            tmp.current_y = card.current_y;
-            tmp.target_x = Settings.WIDTH / 2.0F - 300.0F * Settings.scale;
-            tmp.target_y = Settings.HEIGHT / 2.0F;
 
-            tmp.purgeOnUse = true;
 
-            if(card instanceof AbstractBGCard){
-                //logger.info("set old card's copy reference: "+tmp);
-                ((AbstractBGCard)card).copiedCard=(AbstractBGCard)tmp;
+            AbstractCard copiedCard = originalCard.makeSameInstanceOf();
+            BGDoubleAttackPower.swapOutQueueCard(copiedCard);
+
+            AbstractDungeon.player.limbo.addToTop(copiedCard);
+            copiedCard.current_x = originalCard.current_x;
+            copiedCard.current_y = originalCard.current_y;
+            copiedCard.target_x = Settings.WIDTH / 2.0F - 300.0F * Settings.scale;
+            copiedCard.target_y = Settings.HEIGHT / 2.0F;
+
+            copiedCard.purgeOnUse = true;
+
+            Logger logger = LogManager.getLogger(BGDoubleTapPower_DEPRECATED.class.getName());
+            //logger.info("DoubleAttackPower instanceof check");
+            if(originalCard instanceof AbstractBGCard){
+                //logger.info("set old card's copy reference: "+copiedCard);
+                ((AbstractBGCard)originalCard).copiedCard=(AbstractBGCard)copiedCard;
             }
 
-            if (m != null)
-                tmp.calculateCardDamage(m);
-            tmp.purgeOnUse = true;
+            //((AbstractBGCard)copiedCard).followUpCardChain=new ArrayList<>(Arrays.asList(copiedCard));
+            ((AbstractBGCard)copiedCard).followUpCardChain=new ArrayList<>(Collections.singletonList(originalCard));
 
-            if(card.target== AbstractCard.CardTarget.ENEMY || card.target== AbstractCard.CardTarget.SELF_AND_ENEMY) {
-                TargetSelectScreen.TargetSelectAction tssAction = (target) -> {
-                    //logger.info("DoubleTap tssAction.execute");
-                    if (target != null) {
-                        tmp.calculateCardDamage(target);
-                    }
-                    //logger.info("DoubleTap final target: "+target);
-                    addToBot((AbstractGameAction) new NewQueueCardAction(tmp, target, true, true));
-                };
-                //logger.info("DoubleTap addToTop");
-                addToBot((AbstractGameAction)new TargetSelectScreenAction(tssAction,"Choose a target for the copy of "+card.name+"."));
-            }else {
-                //AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, m, card.energyOnUse, true, true), true);
-                addToBot((AbstractGameAction) new NewQueueCardAction(tmp, null, true, true));
-            }
+
+//            if(originalCard.target== AbstractCard.CardTarget.ENEMY || originalCard.target== AbstractCard.CardTarget.SELF_AND_ENEMY) {
+//                TargetSelectScreen.TargetSelectAction tssAction = (target) -> {
+//                    //logger.info("DoubleTap tssAction.execute");
+//                    if (target != null) {
+//                        copiedCard.calculateCardDamage(target);
+//                    }
+//                    //logger.info("DoubleTap final target: "+target);
+//                    addToBot((AbstractGameAction) new NewQueueCardAction(copiedCard, target, true, true));
+//                };
+//                //logger.info("DoubleTap addToTop");
+//                addToBot((AbstractGameAction)new TargetSelectScreenAction(tssAction,"Choose a target for the copy of "+originalCard.name+"."));
+//            }else {
+//                //AbstractDungeon.actionManager.addCardQueueItem(new CardQueueItem(tmp, m, card.energyOnUse, true, true), true);
+//                addToBot((AbstractGameAction) new NewQueueCardAction(copiedCard, null, true, true));
+//            }
 
 
 

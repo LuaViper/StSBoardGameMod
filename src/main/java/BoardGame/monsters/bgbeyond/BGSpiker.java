@@ -1,4 +1,3 @@
-//TODO: Spiker isn't correctly reflecting damage if killing it triggers end-of-combat
 
 package BoardGame.monsters.bgbeyond; 
  import BoardGame.monsters.BGDamageIcons;
@@ -54,7 +53,7 @@ public class BGSpiker extends AbstractBGMonster implements DieControlledMoves, B
     private static final int BUFF_AMT = 2;
     private int thornsCount = 0;
 
-    public String behavior="--";
+
     public BGSpiker(float x, float y) {
         super(NAME, "BGSpiker", 56, -8.0F, -10.0F, 150.0F, 150.0F, null, x, y + 10.0F);
 
@@ -138,6 +137,7 @@ public class BGSpiker extends AbstractBGMonster implements DieControlledMoves, B
         }
     }
 
+    //as of latest discussion, spiker DOES reflect damage IF combat isn't over
     public void die() {
         //BGSpikerPowerProcced won't activate if the player's attack also ends combat, so check here
         AbstractPower p=this.getPower("BoardGame:BGSpikerProcced");

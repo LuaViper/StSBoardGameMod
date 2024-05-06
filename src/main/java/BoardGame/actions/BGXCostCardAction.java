@@ -4,19 +4,13 @@ package BoardGame.actions;
 
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.cards.BGColorless.BGXCostChoice;
-import BoardGame.cards.BGRed.BGWhirlwind;
 import BoardGame.powers.BGCorruptionPower;
 import BoardGame.powers.BGFreeAttackPower;
 import BoardGame.powers.BGFreeCardPower;
-import basemod.helpers.ModalChoice;
-import basemod.helpers.ModalChoiceBuilder;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 import org.apache.logging.log4j.LogManager;
@@ -25,7 +19,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 
 public class BGXCostCardAction extends AbstractGameAction {
-    protected AbstractCard card;
+    protected AbstractCard originalXCostCard;
     protected ArrayList<AbstractCard> choices;
     protected boolean choicesHaveBeenSetup=false;
 
@@ -36,6 +30,7 @@ public class BGXCostCardAction extends AbstractGameAction {
         public int exactEnergyCost=-99;
         public boolean dontExpendResources=false;
     }
+
 
     public static XCostInfo preProcessCard(AbstractBGCard c){
         XCostInfo info=new XCostInfo();
@@ -58,11 +53,17 @@ public class BGXCostCardAction extends AbstractGameAction {
             info.exactEnergyCost=0;
             info.dontExpendResources=true;
         }
-        if(c.copiedCardEnergyOnUse!=-99){
-            c.energyOnUse=c.copiedCardEnergyOnUse;
-            info.exactEnergyCost=c.copiedCardEnergyOnUse;
+//        if(c.copiedCardEnergyOnUse!=-99){
+//            c.energyOnUse=c.copiedCardEnergyOnUse;
+//            info.exactEnergyCost=c.copiedCardEnergyOnUse;
+//            info.dontExpendResources=true;
+//        }
+        if(c.copiedCard!=null){
+            c.energyOnUse=c.copiedCard.energyOnUse;
+            info.exactEnergyCost=c.energyOnUse;
             info.dontExpendResources=true;
         }
+
         return info;
     }
 
@@ -87,15 +88,21 @@ public class BGXCostCardAction extends AbstractGameAction {
         }
         if(card instanceof AbstractBGCard){
             //TODO: there might be an edge case we haven't thought of where we're forced to play a copied card for free
-            if(((AbstractBGCard)card).copiedCardEnergyOnUse!=-99) {
-                info.exactEnergyCost=((AbstractBGCard) card).copiedCardEnergyOnUse;
+//            if(((AbstractBGCard)card).copiedCardEnergyOnUse!=-99) {
+//                info.exactEnergyCost=((AbstractBGCard) card).copiedCardEnergyOnUse;
+//                info.minEnergy = info.exactEnergyCost;
+//                info.maxEnergy=info.exactEnergyCost;
+//                info.dontExpendResources=true;
+//            }
+            if(((AbstractBGCard) card).copiedCard!=null){
+                info.exactEnergyCost=((AbstractBGCard)card).energyOnUse;
                 info.minEnergy = info.exactEnergyCost;
                 info.maxEnergy=info.exactEnergyCost;
                 info.dontExpendResources=true;
             }
         }
         this.duration = Settings.ACTION_DUR_XFAST;
-        this.card=card;
+        this.originalXCostCard =card;
 
         this.action=action;
     }
@@ -116,12 +123,12 @@ public class BGXCostCardAction extends AbstractGameAction {
                 effectiveMaxEnergy=info.exactEnergyCost;
             }
             for(int i=info.minEnergy;i<=effectiveMaxEnergy;i+=1){
-                BGXCostChoice c=new BGXCostChoice(this.card,i,info.dontExpendResources,this.action);
+                BGXCostChoice c=new BGXCostChoice(this.originalXCostCard,i,info.dontExpendResources,this.action);
                 choices.add(c);
-                if(card instanceof AbstractBGCard){
+                if(originalXCostCard instanceof AbstractBGCard){
                     Logger logger = LogManager.getLogger("TEMP");
-                    logger.info("set BGXCostChoice's copiedcard to "+((AbstractBGCard)this.card).copiedCard);
-                    ((AbstractBGCard)c).copiedCard=((AbstractBGCard)this.card).copiedCard;
+                    logger.info("set BGXCostChoice's copiedcard to "+((AbstractBGCard)this.originalXCostCard).copiedCard);
+                    ((AbstractBGCard)c).copiedCard=((AbstractBGCard)this.originalXCostCard).copiedCard;
                 }
             }
             choicesHaveBeenSetup=true;

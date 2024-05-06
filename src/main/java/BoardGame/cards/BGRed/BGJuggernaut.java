@@ -1,18 +1,18 @@
 package BoardGame.cards.BGRed;
 
 
- import BoardGame.powers.BGJuggernautPower;
- import BoardGame.characters.BGIronclad;
 import BoardGame.cards.AbstractBGCard;
+import BoardGame.characters.BGIronclad;
+import BoardGame.powers.BGJuggernautPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
- import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
- import com.megacrit.cardcrawl.cards.AbstractCard;
- import com.megacrit.cardcrawl.characters.AbstractPlayer;
- import com.megacrit.cardcrawl.core.AbstractCreature;
- import com.megacrit.cardcrawl.core.CardCrawlGame;
- import com.megacrit.cardcrawl.localization.CardStrings;
- import com.megacrit.cardcrawl.monsters.AbstractMonster;
- import com.megacrit.cardcrawl.powers.AbstractPower;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.powers.AbstractPower;
 
 //TODO: if BGJuggernaut is played while BGBirdFacedUrn is active, player will gain Block but won't deal damage. should this change? -- note: in vanilla, Rupture will not proc itself if played while Pain is in hand.  Also of interest: VG FiendFire+Pain procs Runic Cube before hand is played.
  public class BGJuggernaut extends AbstractBGCard {

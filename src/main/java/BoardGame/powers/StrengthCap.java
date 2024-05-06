@@ -1,16 +1,31 @@
 package BoardGame.powers;
 
 import BoardGame.dungeons.AbstractBGDungeon;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
-@SpirePatch2(clz= StrengthPower.class,method="stackPower",paramtypez={int.class})
 public class StrengthCap {
+@SpirePatch2(clz= StrengthPower.class,method=SpirePatch.CONSTRUCTOR,paramtypez={AbstractCreature.class,int.class})
+public static class Patch1 {
+    @SpirePrefixPatch
+    public static void Foo(StrengthPower __instance, AbstractCreature owner, @ByRef int[] amount){
+        if(!(CardCrawlGame.dungeon instanceof AbstractBGDungeon)) return;
+        if(__instance instanceof BGUncappedStrengthPower) return;
+        if(amount[0]>8){
+            amount[0]=8;
+        }
+        if(amount[0]<0){    //this is theoretically possible with Wreath of Flame + Flex effects
+            amount[0]=0;
+        }
+    }
+}
+
+@SpirePatch2(clz= StrengthPower.class,method="stackPower",paramtypez={int.class})
+public static class Patch2 {
     @SpirePostfixPatch
-    public static void Postfix(StrengthPower __instance, int stackAmount){
-        //TODO: dungeon must be instanceof AbstractBGDungeon!!
+    public static void Foo(StrengthPower __instance, int stackAmount){
         if(!(CardCrawlGame.dungeon instanceof AbstractBGDungeon)) return;
         if(__instance instanceof BGUncappedStrengthPower) return;
         if(__instance.amount>8){
@@ -21,4 +36,5 @@ public class StrengthCap {
         }
 
     }
+}
 }

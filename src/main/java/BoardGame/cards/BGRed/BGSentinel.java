@@ -1,6 +1,7 @@
 package BoardGame.cards.BGRed;
-import BoardGame.characters.BGIronclad;
+
 import BoardGame.cards.AbstractBGCard;
+import BoardGame.characters.BGIronclad;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.GainBlockAction;
 import com.megacrit.cardcrawl.actions.common.GainEnergyAction;

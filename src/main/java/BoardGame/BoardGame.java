@@ -1,5 +1,6 @@
 package BoardGame;
 
+import BoardGame.cards.BGBlue.BGClaw2;
 import BoardGame.characters.*;
 import BoardGame.icons.*;
 import BoardGame.monsters.bgexordium.*;
@@ -7,15 +8,20 @@ import BoardGame.monsters.bgcity.*;
 import BoardGame.monsters.bgbeyond.*;
 import BoardGame.monsters.bgending.*;
 import BoardGame.dungeons.*;
+import BoardGame.multicharacter.MultiCharacter;
+import BoardGame.multicharacter.MultiCharacterSelectScreen;
+import BoardGame.patches.Ascension;
 import BoardGame.potions.*;
 import BoardGame.relics.*;
 import BoardGame.rewards.TinyHouseUpgrade1Card;
 import BoardGame.rewards.TinyHouseUpgrade1CardTypePatch;
+import BoardGame.savables.DeckSaveInfo;
 import BoardGame.screen.OrbSelectScreen;
 import BoardGame.screen.RelicTradingScreen;
 import BoardGame.screen.TargetSelectScreen;
 import basemod.*;
 import basemod.eventUtil.AddEventParams;
+import basemod.eventUtil.util.Condition;
 import basemod.interfaces.*;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.files.FileHandle;
@@ -26,12 +32,15 @@ import com.evacipated.cardcrawl.mod.stslib.Keyword;
 import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.google.gson.Gson;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.CardHelper;
+import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rewards.RewardSave;
+import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -50,8 +59,8 @@ import java.util.Properties;
 
 import static basemod.BaseMod.addMonster;
 
+//TODO: Game softlocks if boardgame character is started on a completely new profile (tries to skip Neow screen)
 //TODO: implement PostCreditsNeow easter egg -- need to put these back in the box -- does anyone have opposable thumbs
-
 
 /*
 
@@ -68,15 +77,20 @@ public class BoardGame implements
         EditCharactersSubscriber,
         PostInitializeSubscriber,
         PreStartGameSubscriber{
+
+    //////////////////////////////////////////////////////////////////////////////
+    public static boolean ENABLE_TEST_FEATURES=false;
+    //////////////////////////////////////////////////////////////////////////////
+
     // Make sure to implement the subscribers *you* are using (read basemod wiki). Editing cards? EditCardsSubscriber.
     // Making relics? EditRelicsSubscriber. etc., etc., for a full list and how to make your own, visit the basemod wiki.
     public static final Logger logger = LogManager.getLogger(BoardGame.class.getName());
     private static String modID;
 
     // Mod-settings settings. This is if you want an on/off savable button
-    public static Properties theDefaultDefaultSettings = new Properties();
-    public static final String ENABLE_PLACEHOLDER_SETTINGS = "enablePlaceholder";
-    public static boolean enablePlaceholder = true; // The boolean we'll be setting on/off (true/false)
+    public static Properties BoardGameSettings = new Properties();
+    public static final String CLAW_PACK_COUNT = "enablePlaceholder";
+    public static float clawPackCount = 0;
 
     //This is for the in-game mod settings panel.
     private static final String MODNAME = "Board Game";
@@ -90,7 +104,7 @@ public class BoardGame implements
     //public static final Color BG_IRONCLAD_RED = CardHelper.getColor(128.0f, 25.6f, 25.6f);
     public static final Color BG_IRONCLAD_RED = CardHelper.getColor(121, 12, 28);
     public static final Color BG_SILENT_GREEN = CardHelper.getColor(52, 123, 8);
-    //TODO: we're just guessing here
+    //TODO: we're just guessing at RGB values here
     public static final Color BG_DEFECT_BLUE = CardHelper.getColor(8, 52, 123);
     public static final Color BG_WATCHER_PURPLE = CardHelper.getColor(153, 52, 8);
     public static final Color BG_CURSE_BLACK = CardHelper.getColor(29, 29, 29);
@@ -115,7 +129,11 @@ public class BoardGame implements
     private static final String ENERGY_ORB_P_IRONCLAD = "BoardGameResources/images/1024/card_default_gray_orb.png";
 
     // Character assets
-    private static final String CHAR_SELECT_BUTTON_IRONCLAD = "images/ui/charSelect/ironcladButton.png";
+
+    public static final String CHAR_SELECT_BUTTON_MULTICHARACTER = "BoardGameResources/images/charSelect/BGMultiCharacterButton.png";
+    private static final String CHAR_SELECT_PORTRAIT_MULTICHARACTER = "BoardGameResources/images/charSelect/MultiCharacterPortrait.png";
+
+    public static final String CHAR_SELECT_BUTTON_IRONCLAD = "images/ui/charSelect/ironcladButton.png";
     private static final String CHAR_SELECT_PORTRAIT_IRONCLAD = "images/ui/charSelect/ironcladPortrait.jpg";
 
     private static final String BGATTACK_SILENT = "BoardGameResources/images/512/bg_attack_theSilent.png";
@@ -127,7 +145,7 @@ public class BoardGame implements
     private static final String BGSKILL_P_SILENT = "BoardGameResources/images/1024/bg_skill_theSilent.png";
     private static final String BGPOWER_P_SILENT = "BoardGameResources/images/1024/bg_power_theSilent.png";
     private static final String ENERGY_ORB_P_SILENT = "BoardGameResources/images/1024/card_orb_theSilent.png";
-    private static final String CHAR_SELECT_BUTTON_SILENT = "images/ui/charSelect/silentButton.png";
+    public static final String CHAR_SELECT_BUTTON_SILENT = "images/ui/charSelect/silentButton.png";
     private static final String CHAR_SELECT_PORTRAIT_SILENT = "images/ui/charSelect/silentPortrait.jpg";
 
     private static final String BGATTACK_DEFECT = "BoardGameResources/images/512/bg_attack_theDefect.png";
@@ -139,7 +157,7 @@ public class BoardGame implements
     private static final String BGSKILL_P_DEFECT = "BoardGameResources/images/1024/bg_skill_theDefect.png";
     private static final String BGPOWER_P_DEFECT = "BoardGameResources/images/1024/bg_power_theDefect.png";
     private static final String ENERGY_ORB_P_DEFECT = "BoardGameResources/images/1024/card_orb_theDefect.png";
-    private static final String CHAR_SELECT_BUTTON_DEFECT = "images/ui/charSelect/defectButton.png";
+    public static final String CHAR_SELECT_BUTTON_DEFECT = "images/ui/charSelect/defectButton.png";
     private static final String CHAR_SELECT_PORTRAIT_DEFECT = "images/ui/charSelect/defectPortrait.jpg";
 
     private static final String BGATTACK_WATCHER = "BoardGameResources/images/512/bg_attack_theWatcher.png";
@@ -151,7 +169,7 @@ public class BoardGame implements
     private static final String BGSKILL_P_WATCHER = "BoardGameResources/images/1024/bg_skill_theWatcher.png";
     private static final String BGPOWER_P_WATCHER = "BoardGameResources/images/1024/bg_power_theWatcher.png";
     private static final String ENERGY_ORB_P_WATCHER = "BoardGameResources/images/1024/card_orb_theWatcher.png";
-    private static final String CHAR_SELECT_BUTTON_WATCHER = "images/ui/charSelect/watcherButton.png";
+    public static final String CHAR_SELECT_BUTTON_WATCHER = "images/ui/charSelect/watcherButton.png";
     private static final String CHAR_SELECT_PORTRAIT_WATCHER = "images/ui/charSelect/watcherPortrait.jpg";
     
     
@@ -218,10 +236,14 @@ public class BoardGame implements
 
     // =============== SUBSCRIBE, CREATE THE COLOR_GRAY, INITIALIZE =================
 
+    public static DeckSaveInfo deckSaveInfo = new DeckSaveInfo();
+
     public BoardGame() {
         logger.info("Subscribe to BaseMod hooks");
 
         BaseMod.subscribe(this);
+
+        BaseMod.addSaveField("Deck Info", deckSaveInfo);
 
         setModID("BoardGame");
 
@@ -271,12 +293,12 @@ public class BoardGame implements
         logger.info("Adding mod settings");
         // This loads the mod settings.
         // The actual mod Button is added below in receivePostInitialize()
-        theDefaultDefaultSettings.setProperty(ENABLE_PLACEHOLDER_SETTINGS, "FALSE"); // This is the default setting. It's actually set...
+        BoardGameSettings.setProperty(CLAW_PACK_COUNT, "0"); // This is the default setting. It's actually set...
         try {
-            SpireConfig config = new SpireConfig("defaultMod", "theDefaultConfig", theDefaultDefaultSettings); // ...right here
+            SpireConfig config = new SpireConfig("BoardGame", "BoardGameConfig", BoardGameSettings); // ...right here
             // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
             config.load(); // Load the setting and set the boolean to equal it
-            enablePlaceholder = config.getBool(ENABLE_PLACEHOLDER_SETTINGS);
+            clawPackCount = config.getFloat(CLAW_PACK_COUNT);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -341,11 +363,16 @@ public class BoardGame implements
 
     @Override
     public void receiveEditCharacters() {
-        logger.info("Beginning to edit characters. " + "Add " + BGIronclad.Enums.BG_IRONCLAD.toString());
+        logger.info("Beginning to edit characters.");
 
+        //create BGIronclad before BGMultiCharacter so that red cards are labeled correctly in the compendium
         BaseMod.addCharacter(new BGIronclad("the Ironclad", BGIronclad.Enums.BG_IRONCLAD),
                 CHAR_SELECT_BUTTON_IRONCLAD, CHAR_SELECT_PORTRAIT_IRONCLAD, BGIronclad.Enums.BG_IRONCLAD);
         logger.info("Added " + BGIronclad.Enums.BG_IRONCLAD.toString());
+
+        BaseMod.addCharacter(new MultiCharacter("the Board Game", MultiCharacter.Enums.BG_MULTICHARACTER),
+                CHAR_SELECT_BUTTON_MULTICHARACTER, CHAR_SELECT_PORTRAIT_MULTICHARACTER, MultiCharacter.Enums.BG_MULTICHARACTER);
+        logger.info("Added " + MultiCharacter.Enums.BG_MULTICHARACTER.toString());
 
         BaseMod.addCharacter(new BGSilent("the Silent", BGSilent.Enums.BG_SILENT),
                 CHAR_SELECT_BUTTON_SILENT, CHAR_SELECT_PORTRAIT_SILENT, BGSilent.Enums.BG_SILENT);
@@ -367,40 +394,82 @@ public class BoardGame implements
 
     // =============== POST-INITIALIZE =================
 
+
     @Override
     public void receivePostInitialize() {
+
         logger.info("Loading badge image and mod options");
 
         // Load the Mod Badge
         Texture badgeTexture = TextureLoader.getTexture(BADGE_IMAGE);
 
         // Create the Mod Menu
-//        ModPanel settingsPanel = new ModPanel();
+        ModPanel settingsPanel = new ModPanel();
+        ModLabel clawLabel = new ModLabel("Claw Pack: OFF",500f,720f,settingsPanel,(label)->{});
+        settingsPanel.addUIElement(clawLabel);
+        setClawLabel(clawLabel);
+        ModMinMaxSlider clawSlider = new ModMinMaxSlider(" ",
+                500.0f, 700.0f, 0, 8,
+                clawPackCount,
+                " ",
+                settingsPanel,
+                (button) -> {
+                    clawPackCount = button.getValue();
+                    setClawLabel(clawLabel);
+                    try {
+                        SpireConfig config = new SpireConfig("BoardGame", "BoardGameConfig", BoardGameSettings);
+                        config.setFloat(CLAW_PACK_COUNT, clawPackCount);
+                        config.save();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+        settingsPanel.addUIElement(clawSlider); // Add the button to the settings panel. Button is a go.
 
-//        // Create the on/off button:
-//        ModLabeledToggleButton enableNormalsButton = new ModLabeledToggleButton("This is the text which goes next to the checkbox.",
-//                350.0f, 700.0f, Settings.CREAM_COLOR, FontHelper.charDescFont, // Position (trial and error it), color, font
-//                enablePlaceholder, // Boolean it uses
-//                settingsPanel, // The mod panel in which this button will be in
-//                (label) -> {
-//                }, // thing??????? idk
-//                (button) -> { // The actual button:
-//
-//                    enablePlaceholder = button.enabled; // The boolean true/false will be whether the button is enabled or not
-//                    try {
-//                        // And based on that boolean, set the settings and save them
-//                        SpireConfig config = new SpireConfig("defaultMod", "theDefaultConfig", theDefaultDefaultSettings);
-//                        config.setBool(ENABLE_PLACEHOLDER_SETTINGS, enablePlaceholder);
-//                        config.save();
-//                    } catch (Exception e) {
-//                        e.printStackTrace();
-//                    }
-//                });
-//
-//        settingsPanel.addUIElement(enableNormalsButton); // Add the button to the settings panel. Button is a go.
+        ModLabeledButton unlockButton=new ModLabeledButton("Click here to unlock max Ascension",500f,500f,settingsPanel,
+                (button)->{
+                    {Prefs prefs = new BGIronclad("Prefs Lookup", BGIronclad.Enums.BG_IRONCLAD).getPrefs();
+                        prefs.putInteger("ASCENSION_LEVEL",13);
+                        if(prefs.getInteger("WIN_COUNT")<1) prefs.putInteger("WIN_COUNT",1);
+                        prefs.flush();}
+                    {Prefs prefs = new BGSilent("Prefs Lookup", BGSilent.Enums.BG_SILENT).getPrefs();
+                        prefs.putInteger("ASCENSION_LEVEL",13);
+                        if(prefs.getInteger("WIN_COUNT")<1) prefs.putInteger("WIN_COUNT",1);
+                        prefs.flush();}
+                    {Prefs prefs = new BGDefect("Prefs Lookup", BGDefect.Enums.BG_DEFECT).getPrefs();
+                        prefs.putInteger("ASCENSION_LEVEL",13);
+                        if(prefs.getInteger("WIN_COUNT")<1) prefs.putInteger("WIN_COUNT",1);
+                        prefs.flush();}
+                    {Prefs prefs = new BGWatcher("Prefs Lookup", BGWatcher.Enums.BG_WATCHER).getPrefs();
+                        prefs.putInteger("ASCENSION_LEVEL",13);
+                        if(prefs.getInteger("WIN_COUNT")<1) prefs.putInteger("WIN_COUNT",1);
+                        prefs.flush();}
+                    for (CharacterOption o : CardCrawlGame.mainMenuScreen.charSelectScreen.options) {
+                        if (o.c instanceof MultiCharacter) {
+                            if(o.c.getCharStat().getVictoryCount()<1) {
+                                o.c.getCharStat().incrementVictory();
+                            }
+                            Prefs prefs=o.c.getPrefs();
+                            if(prefs.getInteger("WIN_COUNT")<1){
+                                prefs.putInteger("WIN_COUNT",1);
+                                prefs.data.put("WIN_COUNT","1");
+                            }
+                            prefs.putInteger("ASCENSION_LEVEL",13);
+                            prefs.data.put("ASCENSION_LEVEL","13");
+                            prefs.flush();
 
-//        BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
+                            //set unlocked ascension to 13
+                            ReflectionHacks.setPrivate(o, CharacterOption.class, "maxAscensionLevel", Ascension.CURRENT_MAX_ASCENSION);
+                        }
+                    }
+                    button.label="Ascension 13 has been unlocked! Sorry for the inconvenience.";
+                });
+        settingsPanel.addUIElement(unlockButton);
 
+
+        BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
+
+        BaseMod.addCustomScreen(new MultiCharacterSelectScreen());
         BaseMod.addCustomScreen(new TargetSelectScreen());
         BaseMod.addCustomScreen(new OrbSelectScreen());
         BaseMod.addCustomScreen(new RelicTradingScreen());
@@ -438,8 +507,8 @@ public class BoardGame implements
                 new BGGreenLouse(80.0F, 30.0F)
         }));
         addMonster("BoardGame:Fungi Beasts",()->new MonsterGroup(new AbstractMonster[]{
-                new BGFungiBeast(-200.0F, 10.0F, "21S"),
-                new BGFungiBeast(80.0F, 30.0F,"2S1")
+                new BGFungiBeast(-200.0F, 10.0F, "21S",false),
+                new BGFungiBeast(80.0F, 30.0F,"2S1",false)
         }));
         addMonster("BoardGame:Slime Trio",()->new MonsterGroup(new AbstractMonster[]{
                 new BGSpikeSlime_S(-350.0F,0.0F),
@@ -454,10 +523,18 @@ public class BoardGame implements
         addMonster("BoardGame:Large Slime", ()->new BGAcidSlime_L(-480.0F,0.0F,false));
         addMonster("BoardGame:Sneaky Gremlin Team", ()->new BGGremlinSneaky(-220.0F,0.0F,true));
         addMonster("BoardGame:Angry Gremlin Team", ()->new BGGremlinAngry(-220.0F,0.0F,true));
-        addMonster("BoardGame:Blue Slaver", ()->new BGBlueSlaver(0.0F, 0.0F,"W2D"));
+        addMonster("BoardGame:Blue Slaver", ()->new BGBlueSlaver(0.0F, 0.0F,"W3D"));
         addMonster("BoardGame:Red Slaver", ()->new BGRedSlaver(0.0F, 0.0F,"DV3"));
         addMonster("BoardGame:Looter", ()->new BGLooter(0.0F, 0.0F, false));
         addMonster("BoardGame:Jaw Worm (Medium)", ()->new BGJawWorm(0,0, 1, ""));
+        addMonster("BoardGame:A7 Jaw Worm and Spike Slime", ()->new MonsterGroup(new AbstractMonster[]{
+                new BGJawWorm(-200,0, 3, ""),
+                new BGSpikeSlime_M(80.0F,0.0F)
+        }));
+        addMonster("BoardGame:A7 Looter and Acid Slime", ()->new MonsterGroup(new AbstractMonster[]{
+                new BGLooter(-200,0, false),
+                new BGAcidSlime_M(80.0F,0.0F)
+        }));
         addMonster("BoardGame:Lagavulin", ()->new BGLagavulin());
         addMonster("BoardGame:Gremlin Nob", ()->new BGGremlinNob(0,0));
         addMonster("BoardGame:3 Sentries",()->new MonsterGroup(new AbstractMonster[]
@@ -497,6 +574,11 @@ public class BoardGame implements
         addMonster("BoardGame:Shelled Parasite",()->new MonsterGroup(new AbstractMonster[]{
                 new BGShelledParasite()
         }));
+        addMonster("BoardGame:A7 Shelled Parasite and Fungi Beast",()->new MonsterGroup(new AbstractMonster[]{
+                new BGShelledParasite(-260.0F, 15.0F),
+                new BGFungiBeast(120.0F, 0.0F,"s2!",true)
+        }));
+
         addMonster("BoardGame:3 Cultists",()->new MonsterGroup(new AbstractMonster[]{
                 new BGCultist(-465.0F, -20.0F, false),
                 new BGCultist(-130.0F, 15.0F, false),
@@ -509,6 +591,10 @@ public class BoardGame implements
         }));
         addMonster("BoardGame:SphericGuardian",()->new MonsterGroup(new AbstractMonster[]{
                 new BGSphericGuardian()
+        }));
+        addMonster("BoardGame:A7 Spheric Guardian and Sentry A",()->new MonsterGroup(new AbstractMonster[]{
+                new BGSphericGuardian(-305.0F, 30.0F),
+                new BGSentry(0F,0F,"D3")
         }));
         addMonster("BoardGame:SnakePlant",()->new MonsterGroup(new AbstractMonster[]{
                 new BGSnakePlant(-30.0F, -30.0F)
@@ -552,6 +638,17 @@ public class BoardGame implements
                 (AbstractMonster)new BGExploder(-240.0F, -6.0F),
                 (AbstractMonster)new BGSpiker(0.0F, -12.0F)
         }));
+        addMonster("BoardGame:A7 Exploder and Friends", ()->new MonsterGroup(new AbstractMonster[] {
+                (AbstractMonster)new BGExploder(-480.0F, 6.0F),
+                (AbstractMonster)new BGRepulsor(-240.0F, -6.0F, "3D"),
+                (AbstractMonster)new BGSpiker(0.0F, -12.0F),
+                (AbstractMonster)new BGSpiker(240.0F, 12.0F)
+        }));
+        addMonster("BoardGame:A7 Repulsor and Friends", ()->new MonsterGroup(new AbstractMonster[] {
+                (AbstractMonster)new BGRepulsor(-435.0F, 10.0F, "D3"),
+                (AbstractMonster)new BGExploder(-210.0F, 0.0F),
+                (AbstractMonster)new BGSphericGuardian(110.0F, 10.0F)
+        }));
         addMonster("BoardGame:Orb Walker v2.3", ()->new MonsterGroup(new AbstractMonster[] {
                 (AbstractMonster)new BGOrbWalker(-30.0F, 20.0F, "23")
         }));
@@ -568,7 +665,8 @@ public class BoardGame implements
                 (AbstractMonster)new BGWrithingMass()
         }));
         addMonster("BoardGame:3 Darklings", ()->new MonsterGroup(new AbstractMonster[] {
-                (AbstractMonster)new BGDarkling(-440.0F, 10.0F,"CUBE"),
+                //(AbstractMonster)new BGDarkling(-440.0F, 10.0F,"----"),
+                (AbstractMonster)new BGDarkling(-440.0F, 10.0F,"2S3"),
                 (AbstractMonster)new BGDarkling(-140.0F, 30.0F,"32S"),
                 (AbstractMonster)new BGDarkling(180.0F, -5.0F,"S32")
         }));
@@ -592,6 +690,11 @@ public class BoardGame implements
         addMonster("BoardGame:Donu and Deca", ()->new MonsterGroup(new AbstractMonster[] {
                 (AbstractMonster)new BGDeca(), (AbstractMonster)new BGDonu()
         }));
+
+        addMonster("BoardGame:Shield and Spear", ()->new MonsterGroup(new AbstractMonster[] {
+            new BGSpireSpear(-200,25),
+            new BGSpireShield(0,-100)
+        }));
         addMonster("BoardGame:The Heart", ()->new MonsterGroup(new AbstractMonster[] {
                 (AbstractMonster)new BGCorruptHeart()
         }));
@@ -608,55 +711,77 @@ public class BoardGame implements
         // deffo take a look at that basemod wiki link as well, as it explains things very in-depth
         // btw if you don't provide event type, normal is assumed by default
 
+        class Ascension3Condition implements Condition{
+            public boolean test(){
+                return (AbstractBGDungeon.ascensionLevel>=3);
+            }
+        }
 
-        BaseMod.addEvent(new AddEventParams.Builder(BGLivingWall.ID, BGLivingWall.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGTheLibrary.ID, BGTheLibrary.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGGoldenIdolEvent.ID, BGGoldenIdolEvent.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGGoldenWing.ID, BGGoldenWing.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGBonfire.ID, BGBonfire.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGTransmogrifier.ID, BGTransmogrifier.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGCleric.ID, BGCleric.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGUpgradeShrine.ID, BGUpgradeShrine.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGGremlinWheelGame.ID, BGGremlinWheelGame.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGAccursedBlacksmith.ID, BGAccursedBlacksmith.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGLab.ID, BGLab.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGBigFish.ID, BGBigFish.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        //Scrap Ooze was moved to Ascension 3
-        //BaseMod.addEvent(new AddEventParams.Builder(BGScrapOoze.ID, BGScrapOoze.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGLivingWall.ID, BGLivingWall.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGTheLibrary.ID, BGTheLibrary.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGGoldenIdolEvent.ID, BGGoldenIdolEvent.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGGoldenWing.ID, BGGoldenWing.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGBonfire.ID, BGBonfire.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGTransmogrifier.ID, BGTransmogrifier.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGCleric.ID, BGCleric.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGUpgradeShrine.ID, BGUpgradeShrine.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGGremlinWheelGame.ID, BGGremlinWheelGame.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGAccursedBlacksmith.ID, BGAccursedBlacksmith.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGLab.ID, BGLab.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGBigFish.ID, BGBigFish.class).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        //Ascension 3
+        BaseMod.addEvent(new AddEventParams.Builder(BGScrapOoze.ID, BGScrapOoze.class).spawnCondition(new Ascension3Condition()).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGWorldOfGoop.ID, BGWorldOfGoop.class).spawnCondition(new Ascension3Condition()).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGDeadAdventurer.ID, BGDeadAdventurer.class).spawnCondition(new Ascension3Condition()).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGHallwayEncounter.ID, BGHallwayEncounter.class).spawnCondition(new Ascension3Condition()).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGHallwayEncounter.ID, BGHallwayEncounter.class).spawnCondition(new Ascension3Condition()).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGMerchantEncounter.ID, BGMerchantEncounter.class).spawnCondition(new Ascension3Condition()).dungeonID(BGExordium.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
 
-        BaseMod.addEvent(new AddEventParams.Builder(BGGremlinWheelGame.ID, BGGremlinWheelGame.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGGoldShrine.ID, BGGoldShrine.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGCursedTome.ID, BGCursedTome.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGBackToBasics.ID, BGBackToBasics.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGDrugDealer.ID, BGDrugDealer.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGDesigner.ID, BGDesigner.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGWomanInBlue.ID, BGWomanInBlue.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGBeggar.ID, BGBeggar.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGKnowingSkull.ID, BGKnowingSkull.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGANoteForYourself.ID, BGANoteForYourself.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGColosseum.ID, BGColosseum.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGNloth.ID, BGNloth.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGWeMeetAgain.ID, BGWeMeetAgain.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGTheJoust.ID, BGTheJoust.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGGremlinWheelGame.ID, BGGremlinWheelGame.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGGoldShrine.ID, BGGoldShrine.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGCursedTome.ID, BGCursedTome.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGBackToBasics.ID, BGBackToBasics.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGDrugDealer.ID, BGDrugDealer.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGDesigner.ID, BGDesigner.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGWomanInBlue.ID, BGWomanInBlue.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGBeggar.ID, BGBeggar.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGKnowingSkull.ID, BGKnowingSkull.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGANoteForYourself.ID, BGANoteForYourself.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGColosseum.ID, BGColosseum.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGNloth.ID, BGNloth.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGWeMeetAgain.ID, BGWeMeetAgain.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGTheJoust.ID, BGTheJoust.class).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        //Ascension 3
+        BaseMod.addEvent(new AddEventParams.Builder(BGTheMausoleum.ID, BGTheMausoleum.class).spawnCondition(new Ascension3Condition()).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGForgottenAltar.ID, BGForgottenAltar.class).spawnCondition(new Ascension3Condition()).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGHallwayEncounter.ID, BGHallwayEncounter.class).spawnCondition(new Ascension3Condition()).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGHallwayEncounter.ID, BGHallwayEncounter.class).spawnCondition(new Ascension3Condition()).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGMerchantEncounter.ID, BGMerchantEncounter.class).spawnCondition(new Ascension3Condition()).dungeonID(BGTheCity.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
 
-        BaseMod.addEvent(new AddEventParams.Builder(BGGremlinWheelGame.ID, BGGremlinWheelGame.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGBonfire.ID, BGBonfire.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGPurificationShrine.ID, BGPurificationShrine.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGMindBloom.ID, BGMindBloom.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGTombRedMask.ID, BGTombRedMask.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGFalling.ID, BGFalling.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGSecretPortal.ID, BGSecretPortal.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGWindingHalls.ID, BGWindingHalls.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGSensoryStone.ID, BGSensoryStone.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGANoteForYourself.ID, BGANoteForYourself.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGTheMoaiHead.ID, BGTheMoaiHead.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-        BaseMod.addEvent(new AddEventParams.Builder(BGFaceTrader.ID, BGFaceTrader.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
 
-        BaseMod.addEvent(new AddEventParams.Builder(FakeMonsterRoomEvent.ID, FakeMonsterRoomEvent.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-//        BaseMod.addEvent(new AddEventParams.Builder(BGMindBloom.ID, BGMindBloom.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-//        BaseMod.addEvent(new AddEventParams.Builder(BGTombRedMask.ID, BGTombRedMask.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-//        BaseMod.addEvent(new AddEventParams.Builder(BGFalling.ID, BGFalling.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
-//        BaseMod.addEvent(new AddEventParams.Builder(BGSecretPortal.ID, BGSecretPortal.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGGremlinWheelGame.ID, BGGremlinWheelGame.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGBonfire.ID, BGBonfire.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGPurificationShrine.ID, BGPurificationShrine.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGMindBloom.ID, BGMindBloom.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGTombRedMask.ID, BGTombRedMask.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGFalling.ID, BGFalling.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGSecretPortal.ID, BGSecretPortal.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGWindingHalls.ID, BGWindingHalls.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGSensoryStone.ID, BGSensoryStone.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGANoteForYourself.ID, BGANoteForYourself.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGTheMoaiHead.ID, BGTheMoaiHead.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGFaceTrader.ID, BGFaceTrader.class).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        //Ascension 3
+        BaseMod.addEvent(new AddEventParams.Builder(BGHallwayEncounter.ID, BGHallwayEncounter.class).spawnCondition(new Ascension3Condition()).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGHallwayEncounter.ID, BGHallwayEncounter.class).spawnCondition(new Ascension3Condition()).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+        BaseMod.addEvent(new AddEventParams.Builder(BGMerchantEncounter.ID, BGMerchantEncounter.class).spawnCondition(new Ascension3Condition()).dungeonID(BGTheBeyond.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+
+
+        BaseMod.addEvent(new AddEventParams.Builder(FakeMonsterRoomEvent.ID, FakeMonsterRoomEvent.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(MultiCharacter.Enums.BG_MULTICHARACTER).create());
+//        BaseMod.addEvent(new AddEventParams.Builder(BGMindBloom.ID, BGMindBloom.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
+//        BaseMod.addEvent(new AddEventParams.Builder(BGTombRedMask.ID, BGTombRedMask.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
+//        BaseMod.addEvent(new AddEventParams.Builder(BGFalling.ID, BGFalling.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
+//        BaseMod.addEvent(new AddEventParams.Builder(BGSecretPortal.ID, BGSecretPortal.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
 
 
         // =============== /EVENTS/ =================
@@ -835,6 +960,10 @@ public class BoardGame implements
         // for people who like to look at the card list before playing your mod
 
         logger.info("Done adding cards!");
+
+        logger.info("Updating ascension save files...");
+        Ascension.combineUnlockedAscensions();
+        logger.info("Done");
     }
 
     // ================ /ADD CARDS/ ===================
@@ -927,7 +1056,23 @@ public class BoardGame implements
     }
 
 
-
+    private static void setClawLabel(ModLabel clawLabel){
+        int intClawPackCount= BGClaw2.getClawPackCount();
+        if(intClawPackCount==0){
+            clawLabel.text="Claw Pack: OFF";
+        }else{
+            clawLabel.text="Claw Pack: " + intClawPackCount + " Claws";
+        }
+        if(intClawPackCount==2){
+            clawLabel.text+=" - The minimum.";
+        }else if(intClawPackCount>=3 && intClawPackCount<=4){
+            clawLabel.text+=" - Recommended.";
+        }else if(intClawPackCount>=5 && intClawPackCount<=6){
+            clawLabel.text+=" - A bit overpowered.";
+        }else if(intClawPackCount>=7 && intClawPackCount<=8) {
+            clawLabel.text+=" - Overpowered, but fun.";
+        }
+    }
 
 
 

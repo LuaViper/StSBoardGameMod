@@ -44,6 +44,8 @@ public class MonsterGroupRewardsList {
         rewards.put("BoardGame:Red Slaver",new MonsterGroupRewards(1));
         rewards.put("BoardGame:Looter",new MonsterGroupRewards(0,true));
         rewards.put("BoardGame:Jaw Worm (Medium)",new MonsterGroupRewards(1));
+        rewards.put("BoardGame:A7 Looter and Acid Slime",new MonsterGroupRewards(0,true));
+        rewards.put("BoardGame:A7 Jaw Worm and Spike Slime",new MonsterGroupRewards(1));
 
         rewards.put("BoardGame:Lagavulin",new MonsterGroupRewards(2,false,true));
         rewards.put("BoardGame:Gremlin Nob",new MonsterGroupRewards(2,false,true));
@@ -59,12 +61,15 @@ public class MonsterGroupRewardsList {
         rewards.put("BoardGame:Another Looter (Hard)",new MonsterGroupRewards(0,true));
         rewards.put("BoardGame:Chosen and Cultist",new MonsterGroupRewards(1,true));
         rewards.put("BoardGame:Chosen and Byrd",new MonsterGroupRewards(2));
-        rewards.put("BoardGame:Shelled Parasite",new MonsterGroupRewards(0,true));
         rewards.put("BoardGame:3 Cultists",new MonsterGroupRewards(2));
         rewards.put("BoardGame:3 Byrds",new MonsterGroupRewards(1));
         rewards.put("BoardGame:SphericGuardian",new MonsterGroupRewards(1));
         rewards.put("BoardGame:SnakePlant",new MonsterGroupRewards(1));
         rewards.put("BoardGame:Snecko",new MonsterGroupRewards(1));
+        rewards.put("BoardGame:Shelled Parasite",new MonsterGroupRewards(0,true));
+        rewards.put("BoardGame:A7 Shelled Parasite and Fungi Beast",new MonsterGroupRewards(0,true));
+        rewards.put("BoardGame:A7 Spheric Guardian and Sentry A",new MonsterGroupRewards(1));
+
         rewards.put("BoardGame:Book of Stabbing",new MonsterGroupRewards(2,false, true));
         rewards.put("BoardGame:Gremlin Leader",new MonsterGroupRewards(2,false, true));
         rewards.put("BoardGame:Taskmaster",new MonsterGroupRewards(2,false, true));
@@ -86,6 +91,10 @@ public class MonsterGroupRewardsList {
         rewards.put("BoardGame:Giant Head",new MonsterGroupRewards(3,false, true));
         rewards.put("BoardGame:Nemesis",new MonsterGroupRewards(3,false, true));
         rewards.put("BoardGame:Reptomancer",new MonsterGroupRewards(3,false, true));
+        rewards.put("BoardGame:A7 Exploder and Friends",new MonsterGroupRewards(1));
+        rewards.put("BoardGame:A7 Repulsor and Friends",new MonsterGroupRewards(0,true));
+
+        rewards.put("BoardGame:Shield and Spear",new MonsterGroupRewards(0,false, true));
 
         rewards.put("Time Eater",new MonsterGroupRewards(0));
         rewards.put("Awakened One",new MonsterGroupRewards(0));

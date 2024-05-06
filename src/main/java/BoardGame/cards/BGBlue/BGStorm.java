@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
+//TODO: trigger storm AFTER start-of-turn draw so player can see cards before choosing an orb to evoke
 public class BGStorm extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGStorm");
     public static final String ID = "BGStorm";

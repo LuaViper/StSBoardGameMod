@@ -2,11 +2,9 @@ package BoardGame.cards.BGGreen;
 
 import BoardGame.actions.BGDamagePerAttackPlayedAction;
 import BoardGame.cards.AbstractBGCard;
-import BoardGame.characters.AbstractBGCharacter;
+import BoardGame.characters.AbstractBGPlayer;
 import BoardGame.characters.BGSilent;
-import BoardGame.relics.BGShivs;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.unique.DamagePerAttackPlayedAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -39,8 +37,8 @@ public class BGFinisher extends AbstractBGCard {
             if (c.type == AbstractCard.CardType.ATTACK)
                 count++;
         }
-        if(AbstractDungeon.player instanceof AbstractBGCharacter)
-            count+=((AbstractBGCharacter)AbstractDungeon.player).shivsPlayedThisTurn;
+        if(AbstractDungeon.player instanceof AbstractBGPlayer)
+            count+=((AbstractBGPlayer)AbstractDungeon.player).shivsPlayedThisTurn;
 
         this.rawDescription = cardStrings.DESCRIPTION;
         this.rawDescription += cardStrings.EXTENDED_DESCRIPTION[0] + count;

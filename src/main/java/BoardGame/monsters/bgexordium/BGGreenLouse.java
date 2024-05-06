@@ -33,7 +33,6 @@ import com.megacrit.cardcrawl.vfx.combat.WebEffect;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-
 public class BGGreenLouse extends AbstractBGMonster implements BGDamageIcons, DieControlledMoves {
     final Logger logger = LogManager.getLogger(BoardGame.class.getName());
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("FuzzyLouseDefensive"); public static final String ID = "FuzzyLouseDefensive";
@@ -50,10 +49,10 @@ public class BGGreenLouse extends AbstractBGMonster implements BGDamageIcons, Di
     private static final String REAR_IDLE = "REAR_IDLE";
     private static final int WEAK_AMT = 2;
 
-    public String behavior="---";
+
 
     public BGGreenLouse(float x, float y) {
-        super(NAME, "FuzzyLouseDefensive", 17, 0.0F, -5.0F, 180.0F, 140.0F, null, x, y);
+        super(NAME, "BGGreenLouse", 17, 0.0F, -5.0F, 180.0F, 140.0F, null, x, y);
 
         loadAnimation("images/monsters/theBottom/louseGreen/skeleton.atlas", "images/monsters/theBottom/louseGreen/skeleton.json", 1.0F);
 

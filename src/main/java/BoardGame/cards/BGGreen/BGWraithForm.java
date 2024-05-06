@@ -2,7 +2,6 @@ package BoardGame.cards.BGGreen;
 
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGSilent;
-import BoardGame.powers.BGAfterImagePower;
 import BoardGame.powers.BGInvinciblePlayerPower;
 import BoardGame.powers.BGWraithFormPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -14,8 +13,6 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-
-import java.util.ArrayList;
 
 public class BGWraithForm extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGWraithForm");

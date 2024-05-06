@@ -2,11 +2,12 @@
   "modid": "${project.artifactId}",
   "name": "${project.name}",
   "author_list": ["Lua Viper"],
-  "credits": "Basemod, ModTheSpire, StSLib, #modding-technical, #sts-playtesting-public",
+  "credits": "Original BG Game Design by Gary Dworetsky.  Special thanks to #modding-technical and #sts-playtesting-public.",
   "description": "${project.description}",
   "version": "${project.version}",
   "sts_version": "${SlayTheSpire.version}",
   "mts_version": "${ModTheSpire.version}",
   "dependencies": ["basemod", "stslib"],
+  "optional_dependencies" : ["ojb_Bestiary"],
   "update_json": ""
 }

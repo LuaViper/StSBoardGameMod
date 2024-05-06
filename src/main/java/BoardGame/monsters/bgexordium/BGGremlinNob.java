@@ -49,7 +49,7 @@ public class BGGremlinNob extends AbstractBGMonster implements BGDamageIcons {
     }
     private static final int DEBUFF_AMT = 2; private int bashDmg; private int rushDmg; private static final byte BULL_RUSH = 1; private static final byte SKULL_BASH = 2; private static final byte BELLOW = 3; private static final int ANGRY_LEVEL = 2; private boolean usedBellow = false; private boolean canVuln;
     public BGGremlinNob(float x, float y, boolean setVuln) {
-        super(NAME, "GremlinNob", 86, -70.0F, -10.0F, 270.0F, 380.0F, null, x, y);
+        super(NAME, "BGGremlinNob", 86, -70.0F, -10.0F, 270.0F, 380.0F, null, x, y);
         this.intentOffsetX = -30.0F * Settings.scale;
         this.type = AbstractMonster.EnemyType.ELITE;
         this.dialogX = -60.0F * Settings.scale;
@@ -58,11 +58,13 @@ public class BGGremlinNob extends AbstractBGMonster implements BGDamageIcons {
 
         if(AbstractDungeon.ascensionLevel==0)
             setHp(14);
-        else
+        else if(AbstractDungeon.ascensionLevel<12)
             setHp(17);
+        else
+            setHp(19);
 
-        this.rushDmg = 3;
-        this.bashDmg = 3;
+        this.rushDmg = 1;   //A12 first turn
+        this.bashDmg = 3;   //default attack
 
         this.damage.add(new DamageInfo((AbstractCreature)this, this.rushDmg));
         this.damage.add(new DamageInfo((AbstractCreature)this, this.bashDmg));
@@ -89,6 +91,10 @@ public class BGGremlinNob extends AbstractBGMonster implements BGDamageIcons {
                 playSfx();
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new TalkAction((AbstractCreature)this, DIALOG[0], 1.0F, 3.0F));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new BGAngerPower((AbstractCreature)this, 1), 1));
+                if(AbstractDungeon.ascensionLevel>=12){
+                    AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
+                            .get(0), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+                }
                 break;
 
 
@@ -126,7 +132,12 @@ public class BGGremlinNob extends AbstractBGMonster implements BGDamageIcons {
     protected void getMove(int num) {
         if (!this.usedBellow) {
             this.usedBellow = true;
-            setMove((byte)3, AbstractMonster.Intent.BUFF);
+            if (AbstractDungeon.ascensionLevel < 12) {
+                setMove((byte) 3, AbstractMonster.Intent.BUFF);
+            }else{
+                setMove((byte) 3, AbstractMonster.Intent.ATTACK_BUFF,
+                        ((DamageInfo)this.damage.get(0)).base);
+            }
 
             return;
         }
