@@ -20,8 +20,7 @@ import java.util.ArrayList;
 import java.util.Collections;
 
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.relicRng;
-import static com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier.BOSS;
-import static com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier.STARTER;
+import static com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier.*;
 
 //TODO: player needs to be able to see the boss relic options at the same time as the rare card
 
@@ -35,7 +34,7 @@ public abstract class AbstractBGRelic extends AbstractRelic {
     public static ArrayList<AbstractRelic> bossRelicDeck = new ArrayList<>();
 
     public boolean usableAsPayment(){
-        return !(tier == BOSS || tier == STARTER);
+        return !(tier == BOSS || tier == STARTER || tier == SPECIAL);
     }
 
     public static ArrayList<AbstractRelic> getAllPayableRelics(){

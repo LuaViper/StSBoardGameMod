@@ -42,7 +42,7 @@ public class BGOmegaPower extends AbstractBGPower {
         this.description = powerStrings.DESCRIPTIONS[0] + this.amount + powerStrings.DESCRIPTIONS[1];
     }
 
-    public void atEndOfTurn(boolean isPlayer) {
+    public void atEndOfTurnPreEndTurnCards(boolean isPlayer) {
         if (isPlayer) {
             flash();
             for (AbstractMonster m : (AbstractDungeon.getMonsters()).monsters) {

@@ -1,6 +1,6 @@
 package BoardGame.powers;
 
-//TODO: see if we can get the green poison HP bar thing working with this one too
+
 
 import BoardGame.cards.BGGoldenTicket;
 import BoardGame.cards.BGRed.BGSeverSoul;
@@ -14,6 +14,7 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.unique.PoisonLoseHpAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -68,6 +69,8 @@ public class BGPoisonPower extends AbstractBGPower {
         this.type = AbstractPower.PowerType.DEBUFF;
         //this.isTurnBased = true;
         capPoisonOnEnemy((AbstractMonster) owner);
+        //TODO: if this is a multicharacter, apply only to one player (possibly the original multichar)!
+        addToTop(new ApplyPowerAction(AbstractDungeon.player,AbstractDungeon.player,new BGPoisonProccerPower(AbstractDungeon.player)));
     }
 
     public void playApplyPowerSfx() {
@@ -131,7 +134,7 @@ public class BGPoisonPower extends AbstractBGPower {
         //BoardGame.BoardGame.logger.info("Final amount: "+this.amount);
     }
 
-    public void atStartOfTurn() {
+    public void proc() {
         if ((AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT &&
                 !AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
             flashWithoutSound();

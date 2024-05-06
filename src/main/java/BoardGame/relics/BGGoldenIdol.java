@@ -13,7 +13,7 @@ public class BGGoldenIdol
     public static final String ID = "BGGolden Idol";
 
     public BGGoldenIdol() {
-        super("BGGolden Idol", "goldenIdolRelic.png", AbstractRelic.RelicTier.SPECIAL, AbstractRelic.LandingSound.HEAVY);
+        super("BGGolden Idol", "goldenIdolRelic.png", AbstractRelic.RelicTier.UNCOMMON, AbstractRelic.LandingSound.HEAVY);
     }
     public int getPrice() {return 4;}
 

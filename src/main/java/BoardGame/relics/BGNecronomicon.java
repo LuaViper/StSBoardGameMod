@@ -20,7 +20,7 @@ public class BGNecronomicon extends AbstractBGRelic implements DieControlledReli
     private boolean activated = true;
 
     public BGNecronomicon() {
-        super("BGNecronomicon", "necronomicon.png", AbstractRelic.RelicTier.SPECIAL, AbstractRelic.LandingSound.FLAT);
+        super("BGNecronomicon", "necronomicon.png", AbstractRelic.RelicTier.UNCOMMON, AbstractRelic.LandingSound.FLAT);
     }
     public int getPrice() {return 9;}
 

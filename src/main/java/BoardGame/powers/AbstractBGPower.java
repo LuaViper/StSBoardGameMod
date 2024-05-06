@@ -65,6 +65,7 @@ public class AbstractBGPower extends AbstractPower {
          updateDescription();
      }
     public void atEndTurnQueued(){
+         //TODO: is this correct, or does it need to move to preendofturncards?  (note that this is a custom event called during endturnpatch)
         if (autoActivate) {
             onRightClick();
         }

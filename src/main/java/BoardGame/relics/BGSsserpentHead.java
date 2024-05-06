@@ -12,7 +12,7 @@ public class BGSsserpentHead
     public static final int GOLD_AMT = 2;
 
     public BGSsserpentHead() {
-        super("BGSsserpentHead", "serpentHead.png", AbstractRelic.RelicTier.SPECIAL, AbstractRelic.LandingSound.CLINK);
+        super("BGSsserpentHead", "serpentHead.png", AbstractRelic.RelicTier.UNCOMMON, AbstractRelic.LandingSound.CLINK);
     }
     public int getPrice() {return 6;}
 

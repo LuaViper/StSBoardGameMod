@@ -14,7 +14,7 @@ public class BGMutagenicStrength extends AbstractBGRelic {
     public static final String ID = "BGMutagenicStrength";
 
     public BGMutagenicStrength() {
-        super("BGMutagenicStrength", "mutagen.png", AbstractRelic.RelicTier.SPECIAL, AbstractRelic.LandingSound.CLINK);
+        super("BGMutagenicStrength", "mutagen.png", AbstractRelic.RelicTier.UNCOMMON, AbstractRelic.LandingSound.CLINK);
     }
     public int getPrice() {return 6;}
     private static final int STR_AMT = 1;

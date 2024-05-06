@@ -447,7 +447,7 @@
                 "DESCRIPTIONS": [
                         "At the start of your turn, lose #b",
                         " HP.",
-                        "At the start of its turn, loses #b"
+                        "At the end of the player's turn, this enemy loses #b"
                 ]
         },
         "BoardGame:BGRushdownPower": {

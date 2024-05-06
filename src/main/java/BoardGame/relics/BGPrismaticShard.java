@@ -9,7 +9,7 @@ public class BGPrismaticShard extends AbstractBGRelic {
 
     //TODO: consider changing RelicTier for all(?) relics so they show up in a more appropriate category in the compendium
     public BGPrismaticShard() {
-        super("BGPrismaticShard", "prism.png", AbstractRelic.RelicTier.SHOP, AbstractRelic.LandingSound.MAGICAL);
+        super("BGPrismaticShard", "prism.png", AbstractRelic.RelicTier.SPECIAL, AbstractRelic.LandingSound.MAGICAL);
     }
 
     public String getUpdatedDescription() {
