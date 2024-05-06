@@ -1,5 +1,3 @@
-# Important: the most recent changes are exclusive to the "MultipleSimultaneousCharacters" branch until we get more comfortable with VCS.
-
 # StSBoardGameMod
 Video game adaptation of the board game adaptation of the video game.
 Based on the StS-Default Mod Base, because we didn't find BasicMod until it was too late.
@@ -11,10 +9,7 @@ This mod was thrown together haphazardly with no regard whatsoever for proper co
 - Quick Start interface is hilariously broken in several ways -- in many cases, the proceed button will not appear. You can usually escape a softlock by opening and closing the map screen. Additionally, it's possible to escape Quick Start completely and begin Act 1 with all of your bonuses
 - Some events can softlock if you don't have enough cards
 - Some events don't check if you can afford to pay for them
-- "Low health" effect only plays at 1HP (2-3HP would be better)
-- Golden Ticket is visible during the Transform animation
 - Cards use the wrong cardUI graphics in some situations
-- Unupgradeable cards are displayed as upgradeable in the compendium
 - Score bonuses are calculated incorrectly (game doesn't know which floors are boss floors)
 - Strange things can happen if an Egg relic is used up on the shop screen
 
@@ -26,4 +21,3 @@ This mod was thrown together haphazardly with no regard whatsoever for proper co
 # Glaring omissions
 - Non-vanilla events (and even some vanilla events) do not log results to run history
 - Some strings are currently hardcoded instead of placed in a localization json
-``
