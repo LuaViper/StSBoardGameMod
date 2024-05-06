@@ -26,9 +26,8 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 
 public class SecondDynamicBanner {
-    //TODO NEXT: cursed bell etc Proceed button causes game to skip directly to next act (even if card reward hasn't been taken yet)
     // note that "boss relic preview" at the MonsterRoomBoss reward screen isn't feasible as Orrery/Enchiridion could influence player's card pick
-    //TODO NEXT: make sure enchiridion/orrery/tiny house don't break anything
+
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString("BossRelicSelectScreen");
     public static final String[] TEXT = uiStrings.TEXT;
     private static final String SELECT_MSG = TEXT[2];

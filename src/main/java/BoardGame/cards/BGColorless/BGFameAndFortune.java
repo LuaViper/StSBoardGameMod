@@ -38,7 +38,7 @@ public class BGFameAndFortune extends AbstractBGAttackCardChoice {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeBlock(1);
+            upgradeMagicNumber(1);
             this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
             initializeDescription();
         }
