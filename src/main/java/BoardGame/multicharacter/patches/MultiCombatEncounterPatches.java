@@ -41,12 +41,16 @@ public class MultiCombatEncounterPatches {
                     }
                     Collections.reverse(AbstractDungeon.getMonsters().monsters);
                     if(CardCrawlGame.dungeon instanceof BGExordium && AbstractDungeon.floorNum==1){
-                        //if this was the first encounter, force switch to the strong enemies list
+                        //if this was the first encounter of multiplayer board game, force switch to the strong enemies list by clearing entire list
                         AbstractDungeon.monsterList.clear();
                     }
                 }
+            }else if(CardCrawlGame.dungeon instanceof BGExordium && AbstractDungeon.floorNum==1){
+                //if this was the first encounter of solo board game, force switch to the strong enemies list by clearing all but index 0
+                if (AbstractDungeon.monsterList.size() > 1) {
+                    AbstractDungeon.monsterList.subList(1, AbstractDungeon.monsterList.size()).clear();
+                }
             }
-
         }
 
         private static class Locator extends SpireInsertLocator {

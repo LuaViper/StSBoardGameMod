@@ -168,13 +168,13 @@ public class BGWrithingMass extends AbstractBGMonster implements DieControlledMo
     public void dieMove(int roll){
         final Logger logger = LogManager.getLogger(DieControlledMoves.class.getName());
 
-        if (TheDie.monsterRoll == 1) {
+        if (TheDie.monsterRoll == 4) {
             setMove((byte) 0, AbstractMonster.Intent.ATTACK_DEFEND, ((DamageInfo) this.damage.get(0)).base);
         }else if (TheDie.monsterRoll == 2) {
             setMove((byte) 1, AbstractMonster.Intent.DEBUFF);
         }else if (TheDie.monsterRoll == 3) {
             setMove((byte) 2, AbstractMonster.Intent.ATTACK,((DamageInfo) this.damage.get(2)).base,2,true);
-        }else if (TheDie.monsterRoll == 4) {
+        }else if (TheDie.monsterRoll == 1) {
             AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ShoutAction((AbstractCreature)this, "@(Ominous@ @noises)@", 1.0F, 2.0F)); //TODO: localization
             setMove((byte) 3, AbstractMonster.Intent.STRONG_DEBUFF);
         }else if (TheDie.monsterRoll == 5) {
