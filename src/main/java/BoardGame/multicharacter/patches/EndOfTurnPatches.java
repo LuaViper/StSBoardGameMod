@@ -61,18 +61,44 @@ public class EndOfTurnPatches {
     public static class ApplyEndOfTurnActionsPatch {
         @SpirePostfixPatch
         public static void Foo() {
-            //TODO: maybe do functions in order per player instead of players in order per function?
             if(AbstractDungeon.player instanceof MultiCharacter){
                 for(AbstractPlayer ch : MultiCharacter.getSubcharacters()) {
                     ContextPatches.pushPlayerContext(ch);
                     AbstractDungeon.getCurrRoom().applyEndOfTurnRelics();
+                    ContextPatches.popPlayerContext();
+                }
+                for(AbstractPlayer ch : MultiCharacter.getSubcharacters()) {
+                    ContextPatches.pushPlayerContext(ch);
                     AbstractDungeon.getCurrRoom().applyEndOfTurnPreCardPowers();
+                    ContextPatches.popPlayerContext();
+                }
+                for(AbstractPlayer ch : MultiCharacter.getSubcharacters()) {
+                    ContextPatches.pushPlayerContext(ch);
                     AbstractDungeon.actionManager.addToBottom(new TriggerEndOfTurnOrbsAction());
+                    ContextPatches.popPlayerContext();
+                }
+                for(AbstractPlayer ch : MultiCharacter.getSubcharacters()) {
+                    ContextPatches.pushPlayerContext(ch);
                     for (AbstractCard c : AbstractDungeon.player.hand.group)
                         c.triggerOnEndOfTurnForPlayingCard();
+                    ContextPatches.popPlayerContext();
+                }
+                for(AbstractPlayer ch : MultiCharacter.getSubcharacters()) {
+                    ContextPatches.pushPlayerContext(ch);
                     AbstractDungeon.player.stance.onEndOfTurn();
                     ContextPatches.popPlayerContext();
                 }
+                ////old behavior -- all actions for one player at a time -- no longer used
+//                for(AbstractPlayer ch : MultiCharacter.getSubcharacters()) {
+//                    ContextPatches.pushPlayerContext(ch);
+//                    AbstractDungeon.getCurrRoom().applyEndOfTurnRelics();
+//                    AbstractDungeon.getCurrRoom().applyEndOfTurnPreCardPowers();
+//                    AbstractDungeon.actionManager.addToBottom(new TriggerEndOfTurnOrbsAction());
+//                    for (AbstractCard c : AbstractDungeon.player.hand.group)
+//                        c.triggerOnEndOfTurnForPlayingCard();
+//                    AbstractDungeon.player.stance.onEndOfTurn();
+//                    ContextPatches.popPlayerContext();
+//                }
             }
         }
     }

@@ -41,9 +41,9 @@ public class BGRushdownPower extends AbstractBGPower {
 
     public void updateDescription() {
         if (this.amount == 1) {
-            this.description = powerStrings.DESCRIPTIONS[0] + this.baseAmount + powerStrings.DESCRIPTIONS[2];
-        } else {
             this.description = powerStrings.DESCRIPTIONS[0] + this.baseAmount + powerStrings.DESCRIPTIONS[1];
+        } else {
+            this.description = powerStrings.DESCRIPTIONS[0] + this.baseAmount + powerStrings.DESCRIPTIONS[2];
         }
     }
 
@@ -58,7 +58,7 @@ public class BGRushdownPower extends AbstractBGPower {
         if (!oldStance.ID.equals(newStance.ID) && newStance.ID.equals("BGWrath")) {
             if(this.amount>0) {
                 flash();
-                addToBot((AbstractGameAction) new DrawCardAction(this.owner, this.amount));
+                addToTop((AbstractGameAction) new DrawCardAction(this.owner, this.amount));
                 this.amount=0;
             }
         }

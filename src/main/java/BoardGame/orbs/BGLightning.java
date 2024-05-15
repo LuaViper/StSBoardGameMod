@@ -96,10 +96,10 @@ public class BGLightning extends CustomOrb {
             float speedTime = 0.2F / AbstractDungeon.player.orbs.size();
             if (Settings.FAST_MODE)
                 speedTime = 0.0F;
-            AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractGameEffect)new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), speedTime));
-            AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new BGLightningOrbEvokeAction(new DamageInfo((AbstractCreature)AbstractDungeon.player, this.passiveAmount, DamageInfo.DamageType.THORNS), true));
+            AbstractDungeon.actionManager.addToTop((AbstractGameAction)new BGLightningOrbEvokeAction(new DamageInfo((AbstractCreature)AbstractDungeon.player, this.passiveAmount, DamageInfo.DamageType.THORNS), true));
+            AbstractDungeon.actionManager.addToTop((AbstractGameAction)new VFXAction((AbstractGameEffect)new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.LIGHTNING), speedTime));
         } else {
-            AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new BGLightningOrbPassiveAction(new DamageInfo((AbstractCreature)AbstractDungeon.player, this.passiveAmount, DamageInfo.DamageType.THORNS), this, false));
+            AbstractDungeon.actionManager.addToTop((AbstractGameAction)new BGLightningOrbPassiveAction(new DamageInfo((AbstractCreature)AbstractDungeon.player, this.passiveAmount, DamageInfo.DamageType.THORNS), this, false));
         }
     }
 

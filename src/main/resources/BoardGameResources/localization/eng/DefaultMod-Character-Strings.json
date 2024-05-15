@@ -8,7 +8,7 @@
       "Based on the board game adaptation by Contention Games.",
       "NL You switch to your phone's camera app...",
       "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~cousins,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~",
-      "Based on the board game adaptation by Contention Games. NL Play up to four characters at once!"
+      "Based on the board game adaptation by Contention Games."
     ]
   },
 
@@ -155,11 +155,11 @@
       " #gboss #gRelics ]",
       "Select Cards to Upgrade",
       "[ Proceed ]",
-      "#yLATEST #yUPDATES",
-      "It should now be possible to choose your boss rewards in any order. This was a surprisingly complicated change under the hood and some relics may or may not be broken now. Please report any bugs you find, #respecially #rbugs #rthat #rimpact #rnon-BoardGame #rcharacters #rwhile #rthis #rmod #ris #rinstalled.",
+      "",
+      "#yLATEST #yUPDATES NL NL Fixed a bug which made Act 1 encounters considerably easier than usual if Experimental Features were enabled, even if you weren't actually using those features. NL NL It should now be possible to choose your boss rewards in any order. This was a surprisingly complicated change under the hood and some relics may or may not be broken now. Please report any bugs you find, #respecially #rbugs #rthat #rimpact #rnon-BoardGame #rcharacters #rwhile #rthis #rmod #ris #rinstalled.",
       "If the game softlocks on a reward screen, try opening and closing the map.",
       "This is TEXT[72] by the way. In case you lose count, the IDE will also keep track for you, beneath the text editor window.",
-      "Well, that's interesting. NL NL If you are reading this message, you have somehow managed to select more than one character for The Board Game. The Board Game multiplayer experience is not yet ready for public playtesting. Don't even think about trying to recover your save #pwhen the game crashes. NL NL For a more stable experience, please exit and choose a solo character from the previous menu.",
+      "#yNOTICE NL NL If you are reading this, you have selected more than one character for The Board Game. The Board Game multiplayer experience is not yet ready for public consumption. At best, you will be able to test one or two hallway encounters. Events and rewards will not function. Don't even think about trying to recover your save #pwhen the game crashes. NL NL For a more stable experience, please exit and choose a solo character from the previous menu. NL NL Scroll wheel to change hands btw.",
       "If you are reading this message, you have somehow managed to select The Board Game from the character select screen. The Board Game is not yet ready for public playtesting. Don't even think about trying to recover your save #rwhen the game crashes. NL NL For a more stable experience, please exit and choose one of the solo characters from the previous menu.",
       "This mod remains very much a work in progress. You may notice rule inaccuracies, bugs, and even softlocks. #ySave #yfiles have been freshly implemented and may still be a bit glitchy. NL NL Please report any issues you discover in the #yBoard #yGame #ythread #yof #ythe #y#modding-forum #ychannel #yon #yDiscord."
     ],
@@ -198,7 +198,8 @@
       "No rush. NL No rush.",
       "Now isn't this @exciting!?@",
       "I used to be like you.",
-      "Heading up?"
+      "Heading up?",
+      "Strength (max 8) NL NL @*cough*@ Uh... never mind."
     ]
   },
 

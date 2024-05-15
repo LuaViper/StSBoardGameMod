@@ -20,7 +20,7 @@ public class GridSubgrid {
 
     public int numRows=0;
     public GridSubgrid(){
-        for(int i=0;i<4;i+=1){
+        for(int i=0;i<MultiCharacter.getSubcharacters().size();i+=1){
             GridTile tile=new GridTile();
             tile.offsetX=0;
             tile.offsetY=i*GridTile.TILE_HEIGHT;

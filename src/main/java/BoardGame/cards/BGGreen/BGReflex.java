@@ -12,6 +12,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+
 public class BGReflex extends AbstractBGCard {
     public static final String ID = "BGReflex";
 
@@ -24,7 +25,7 @@ public class BGReflex extends AbstractBGCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot((AbstractGameAction)new DrawCardAction((AbstractCreature)p, this.magicNumber));
+        //addToBot((AbstractGameAction)new DrawCardAction((AbstractCreature)p, this.magicNumber));
     }
 
     public boolean canUse(AbstractPlayer p, AbstractMonster m) {
@@ -33,7 +34,7 @@ public class BGReflex extends AbstractBGCard {
     }
 
     public void triggerOnManualDiscard() {
-        addToBot((AbstractGameAction)new DrawCardAction((AbstractCreature)AbstractDungeon.player, this.magicNumber));
+        addToTop((AbstractGameAction)new DrawCardAction((AbstractCreature)AbstractDungeon.player, this.magicNumber));
     }
 
     public void upgrade() {

@@ -488,7 +488,7 @@
         },
         {
           "min_asc": 11,
-          "desc": "",
+          "desc": "Thank you for playing!",
           "hp": "",
           "moves": [
             {
@@ -1471,7 +1471,7 @@
     },
     {
       "name": "Orb Walker",
-      "id": "BGOrbWalker",
+      "id": "BGOrb Walker",
       "ai": [
         {
           "min_asc": 0,
@@ -1650,6 +1650,41 @@
       "ai": [
         {
           "min_asc": 0,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "-a","color": "GRAY"}],
+              "name": "Turn 1: [] [] [] [BoardGame:DazedIcon]"
+            },
+            {
+              "effects": [{"name": "-b","color": "GRAY"}],
+              "name": "Turn 2: [] [] [] 2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "-c","color": "GRAY"}],
+              "name": "Turn 3: [] [] [] [BoardGame:DazedIcon] [BoardGame:DazedIcon]"
+            },
+            {
+              "effects": [{"name": "-d","color": "GRAY"}],
+              "name": "Repeat from 1."
+            },
+            {
+              "effects": [{"name": "D","color": "GRAY"}],
+              "name": "[BoardGame:DazedIcon]"
+            },
+            {
+              "effects": [{"name": "2","color": "GRAY"}],
+              "name": "2 [BoardGame:HitIcon]"
+            },
+            {
+              "effects": [{"name": "3","color": "GRAY"}],
+              "name": "3 [BoardGame:HitIcon]"
+            }
+          ]
+        },
+        {
+          "min_asc": 1,
           "desc": "",
           "hp": "",
           "moves": [
@@ -1986,7 +2021,7 @@
             },
             {
               "effects": [{"name": "D","color": "GRAY"}],
-              "name": "1 [BoardGame:HitIcon] [BoardGame:Dazedcon]"
+              "name": "1 [BoardGame:HitIcon] [BoardGame:DazedIcon]"
 
             },
             {
@@ -2456,7 +2491,7 @@
             },
             {
               "effects": [{"name": "<2","color": "GRAY"}],
-              "name": "Time Warp 4: [] [] [] [BoardGame:AOEIcon] 6 [BoardGame:DazedIcon] [BoardGame:DazedIcon] [BoardGame:DazedIcon]"
+              "name": "Time Warp 4: [] [] [] [BoardGame:SlimedIcon] [BoardGame:SlimedIcon] [BoardGame:SlimedIcon]"
             },
             {
               "effects": [{"name": "<3","color": "GRAY"}],
@@ -2487,7 +2522,7 @@
             },
             {
               "effects": [{"name": "<2","color": "GRAY"}],
-              "name": "Time Warp 4: [] [] [] [BoardGame:AOEIcon] 6 [BoardGame:DazedIcon] [BoardGame:DazedIcon] [BoardGame:DazedIcon]"
+              "name": "Time Warp 4: [] [] [] [BoardGame:SlimedIcon] [BoardGame:SlimedIcon] [BoardGame:SlimedIcon]"
             },
             {
               "effects": [{"name": "<3","color": "GRAY"}],

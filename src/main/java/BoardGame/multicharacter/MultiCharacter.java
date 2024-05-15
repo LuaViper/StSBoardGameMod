@@ -75,7 +75,7 @@ public class MultiCharacter extends AbstractBGPlayer {
             return ((MultiCharacter) ContextPatches.originalBGMultiCharacter).subcharacters;
         if (AbstractDungeon.currMapNode != null) {
             if (AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT) {
-                logger.warn("tried to BGMultiCharacter.getSubcharacters, but ContextPatches.originalBGMultiCharacter==null, time to panic!");
+                //logger.warn("tried to BGMultiCharacter.getSubcharacters, but ContextPatches.originalBGMultiCharacter==null, time to panic!");
             }
         }
         return new ArrayList<>();
@@ -382,6 +382,7 @@ public class MultiCharacter extends AbstractBGPlayer {
     @Override
     public void renderOrb(SpriteBatch sb, boolean enabled, float current_x, float current_y) {
         //do nothing
+        //note that multi energy rendering is handled in OverlayMenuPatches
     }
 
     @Override

@@ -48,7 +48,7 @@ public class BGLightningOrbPassiveAction extends AbstractGameAction {
                         addToTop((AbstractGameAction) new VFXAction((AbstractGameEffect) new OrbFlareEffect(this.orb, OrbFlareEffect.OrbFlareColor.LIGHTNING), speedTime));
                 }
             };
-            addToBot((AbstractGameAction)new TargetSelectScreenAction(tssAction,"Choose a target for Lightning Orb."));
+            addToTop((AbstractGameAction)new TargetSelectScreenAction(tssAction,"Choose a target for Lightning Orb."));
         } else {
             float speedTime = 0.2F / AbstractDungeon.player.orbs.size();
             if (Settings.FAST_MODE)

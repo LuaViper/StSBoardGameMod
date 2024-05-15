@@ -87,8 +87,8 @@ public class BGFrost extends CustomOrb {
         float speedTime = 0.6F / AbstractDungeon.player.orbs.size();
         if (Settings.FAST_MODE)
             speedTime = 0.0F;
-        AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractGameEffect)new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), speedTime));
-        AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new GainBlockAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)AbstractDungeon.player, this.passiveAmount, true));
+        AbstractDungeon.actionManager.addToTop((AbstractGameAction)new GainBlockAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)AbstractDungeon.player, this.passiveAmount, true));
+        AbstractDungeon.actionManager.addToTop((AbstractGameAction)new VFXAction((AbstractGameEffect)new OrbFlareEffect(this, OrbFlareEffect.OrbFlareColor.FROST), speedTime));
     }
 
     public void triggerEvokeAnimation() {

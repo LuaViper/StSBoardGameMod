@@ -6,15 +6,14 @@ import BoardGame.characters.BGDefect;
 import BoardGame.characters.BGIronclad;
 import BoardGame.characters.BGSilent;
 import BoardGame.characters.BGWatcher;
+import BoardGame.multicharacter.patches.UpdateActionPatch;
 import basemod.BaseMod;
 import basemod.ReflectionHacks;
 import basemod.abstracts.CustomScreen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.modthespire.lib.ByRef;
-import com.evacipated.cardcrawl.modthespire.lib.SpireEnum;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
+import com.evacipated.cardcrawl.modthespire.lib.*;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -22,8 +21,14 @@ import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import java.util.ArrayList;
+
+import javassist.CannotCompileException;
+import javassist.expr.ExprEditor;
+import javassist.expr.FieldAccess;
+import javassist.expr.MethodCall;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import BoardGame.ui.OverlayMenuPatches;
@@ -126,7 +131,7 @@ public class MultiCharacterSelectScreen extends CustomScreen {
     @SpirePrefixPatch
     private static SpireReturn<Void> Prefix(CharacterOption __instance, @ByRef float[] ___infoX, @ByRef float[] ___infoY) {
       if (!(__instance.c instanceof MultiCharacter))
-        return SpireReturn.Continue(); 
+        return SpireReturn.Continue();
       if (__instance.selected) {
         ___infoX[0] = MathHelper.uiLerpSnap(___infoX[0], Settings.WIDTH / 2.0F - 500.0F * Settings.scale + ((Float)ReflectionHacks.getPrivateStatic(CharacterOption.class, "DEST_INFO_X")).floatValue());
       } else {
@@ -135,6 +140,30 @@ public class MultiCharacterSelectScreen extends CustomScreen {
       ___infoY[0] = Settings.HEIGHT / 2.0F + 250.0F * Settings.scale;
       return SpireReturn.Return();
     }
+  }
+
+  //TODO LATER: this patch will be unnecessary once multichar mode becomes baseline
+  @SpirePatch2(clz = CharacterOption.class, method = "renderInfo")
+  public static class Foo {
+    @SpireInstrumentPatch
+    public static ExprEditor Bar() {
+      return new ExprEditor() {
+        public void edit(FieldAccess m) throws CannotCompileException {
+          if (m.getClassName().equals(CharacterOption.class.getName()) && m.getFieldName().equals("flavorText")) {
+            m.replace("$_ = "+MultiCharacterSelectScreen.class.getName()+".flavorTextPatch(this);");
+          }
+        }
+      };
+    }
+  }
+  public static String flavorTextPatch(CharacterOption __instance){
+    CharSelectInfo charInfo=ReflectionHacks.getPrivate(__instance, CharacterOption.class, "charInfo");
+    if(charInfo.player instanceof MultiCharacter){
+      if(BoardGame.ENABLE_TEST_FEATURES){
+        return charInfo.flavorText+" NL Play up to four characters at once!";
+      }
+    }
+    return charInfo.flavorText;
   }
 }
 

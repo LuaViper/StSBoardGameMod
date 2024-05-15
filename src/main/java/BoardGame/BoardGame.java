@@ -34,6 +34,7 @@ import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.CardHelper;
+import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -90,6 +91,7 @@ public class BoardGame implements
     // Mod-settings settings. This is if you want an on/off savable button
     public static Properties BoardGameSettings = new Properties();
     public static final String CLAW_PACK_COUNT = "enablePlaceholder";
+    public static final String ENABLE_MULTICHAR_SAVE_FLAG = "enableMultichar";
     public static float clawPackCount = 0;
 
     //This is for the in-game mod settings panel.
@@ -294,11 +296,13 @@ public class BoardGame implements
         // This loads the mod settings.
         // The actual mod Button is added below in receivePostInitialize()
         BoardGameSettings.setProperty(CLAW_PACK_COUNT, "0"); // This is the default setting. It's actually set...
+        BoardGameSettings.setProperty(ENABLE_MULTICHAR_SAVE_FLAG, "false");
         try {
             SpireConfig config = new SpireConfig("BoardGame", "BoardGameConfig", BoardGameSettings); // ...right here
             // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
             config.load(); // Load the setting and set the boolean to equal it
             clawPackCount = config.getFloat(CLAW_PACK_COUNT);
+            ENABLE_TEST_FEATURES = config.getBool(ENABLE_MULTICHAR_SAVE_FLAG);
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -465,6 +469,22 @@ public class BoardGame implements
                     button.label="Ascension 13 has been unlocked! Sorry for the inconvenience.";
                 });
         settingsPanel.addUIElement(unlockButton);
+
+        ModLabeledToggleButton multicharButton = new ModLabeledToggleButton("Enable EXPERIMENTAL 4-PLAYER FEATURES","(this will void your warranty)",500f,280f,Color.WHITE, FontHelper.buttonLabelFont,false,settingsPanel,
+                (label)-> {
+                },
+                (button)->{
+                    ENABLE_TEST_FEATURES=button.enabled;
+                    try {
+                        SpireConfig config = new SpireConfig("BoardGame", "BoardGameConfig", BoardGameSettings);
+                        config.setBool(ENABLE_MULTICHAR_SAVE_FLAG, ENABLE_TEST_FEATURES);
+                        config.save();
+                    } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                });
+        multicharButton.toggle.enabled = ENABLE_TEST_FEATURES;
+        settingsPanel.addUIElement(multicharButton);
 
 
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);

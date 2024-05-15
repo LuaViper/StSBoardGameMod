@@ -84,10 +84,8 @@ public class BGMaw extends AbstractBGMonster implements BGDamageIcons {
             this.damage.add(new DamageInfo((AbstractCreature)this, 8));
 
         this.damage.add(new DamageInfo((AbstractCreature)this, 2));
-        multiCount=3;
-        if(AbstractDungeon.ascensionLevel>=7) {
-            multiCount=2;
-        }
+
+        multiCount=2;
 
     }
 

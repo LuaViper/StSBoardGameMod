@@ -279,9 +279,9 @@ public class BGNeowQuickStart {
                     if (AbstractDungeon.player instanceof MultiCharacter
                             && ((MultiCharacter) player).subcharacters.size()!=1
                     ) {
-                        ReflectionHacks.setPrivate(event,AbstractEvent.class,"body", EXTRA[69] + " NL NL " + EXTRA[73]);
+                        ReflectionHacks.setPrivate(event,AbstractEvent.class,"body", EXTRA[73]);
                     } else {
-                        ReflectionHacks.setPrivate(event,AbstractEvent.class,"body", EXTRA[69] + " NL NL " + EXTRA[70]);
+                        ReflectionHacks.setPrivate(event,AbstractEvent.class,"body", EXTRA[70]);
                     }
                 }
                 AbstractDungeon.closeCurrentScreen();

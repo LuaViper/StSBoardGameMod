@@ -32,6 +32,8 @@ import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+
+//TODO: Summon doesn't work during multicharacter combat
 public class BGAcidSlime_L
         extends AbstractBGMonster implements BGDamageIcons, DieControlledMoves  {
     public static final String ID = "BGAcidSlime_L";

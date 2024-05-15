@@ -18,6 +18,7 @@ import javassist.CannotCompileException;
 import javassist.CtBehavior;
 
 import java.util.ArrayList;
+import java.util.Iterator;
 
 public class BGFairyPotion extends AbstractPotion {
     public static final String POTION_ID = "BGFairyPotion";
@@ -81,11 +82,33 @@ public class BGFairyPotion extends AbstractPotion {
         public static SpireReturn<Void> Insert(AbstractPlayer __instance) {
             //we're not 100% sure this patch doesn't break anything, so only do it if we're playing the board game
             if(CardCrawlGame.dungeon instanceof AbstractBGDungeon) {
+                ////
+                // Behavior for Fairy Potion protecting from multihits
+                ////
+//                if (__instance.hasPotion("BGFairyPotion")) {
+//                    //TODO: if it's ruled that Fairy Potion doesn't protect from multihits, just copy the vanilla fairy potion code block over to here
+//                    AbstractDungeon.actionManager.addToBottom(new BGDestroyFairyPotionAction());
+//                    BoardGame.BoardGame.logger.info("hasPotion(BGFairyPotion)==true");
+//                    return SpireReturn.Return();
+//                }
+
+                ////
+                // Behavior for Fairy Potion NOT protecting from multihits
+                ////
+                Iterator var4;
                 if (__instance.hasPotion("BGFairyPotion")) {
-                    //TODO: if it's ruled that Fairy Potion doesn't protect from multihits, just copy the vanilla fairy potion code block over to here
-                    AbstractDungeon.actionManager.addToBottom(new BGDestroyFairyPotionAction());
-                    BoardGame.BoardGame.logger.info("hasPotion(BGFairyPotion)==true");
-                    return SpireReturn.Return();
+                    var4 = __instance.potions.iterator();
+
+                    while(var4.hasNext()) {
+                        AbstractPotion p = (AbstractPotion)var4.next();
+                        if (p.ID.equals("BGFairyPotion")) {
+                            p.flash();
+                            __instance.currentHealth = 0;
+                            p.use(__instance);
+                            AbstractDungeon.topPanel.destroyPotion(p.slot);
+                            return SpireReturn.Return();
+                        }
+                    }
                 }
             }
             return SpireReturn.Continue();

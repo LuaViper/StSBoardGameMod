@@ -1,19 +1,26 @@
 package BoardGame.multicharacter.patches;
 
 import BoardGame.multicharacter.MultiCharacter;
+import BoardGame.multicharacter.MultiCharacterSelectScreen;
 import BoardGame.multicharacter.MultiCreature;
+import BoardGame.multicharacter.grid.GridBackground;
+import basemod.ReflectionHacks;
+import com.badlogic.gdx.graphics.Color;
+import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.badlogic.gdx.graphics.g2d.TextureAtlas;
+import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+
+import static com.badlogic.gdx.graphics.GL20.*;
 
 public class HandLayoutHelper {
 
@@ -123,4 +130,92 @@ public class HandLayoutHelper {
         }
     }
 
+    public static boolean shouldCardBeGrayedOut(AbstractCard __instance){
+        if(true)return false;
+        //TODO NEXT: this is currently returning true for vanilla/singleplayer modes.
+        if (GridBackground.isGridViewActive()) {
+            AbstractPlayer owner = CardPatches.Field.owner.get(__instance);
+            if (owner != null) {
+                int whichRow = MultiCreature.Field.currentRow.get(CardPatches.Field.owner.get(__instance));
+                if (whichRow != MultiCharacter.handLayoutHelper.currentHand) {
+                    return true;
+
+                }
+            }
+        }
+        return false;
+    }
+
+    @SpirePatch2(clz = AbstractCard.class, method = "renderGlow")
+    public static class OnlyGlowCurrentHand {
+        @SpirePrefixPatch
+        public static SpireReturn<Void> Foo(AbstractCard __instance, SpriteBatch sb) {
+            if(shouldCardBeGrayedOut(__instance)) {
+                //TODO: but DO render glow if card is Glowing Gold, maybe
+                return SpireReturn.Return();
+            }
+            return SpireReturn.Continue();
+        }
+    }
+
+    //TODO NEXT: single edit-color function rather than 4x code reuse
+    //TODO: if card is not completely settled in a player's hand, do not gray it out (can we check if it's attached to a cardsoul?)
+    @SpirePatch2(clz=AbstractCard.class,method="renderHelper",
+            paramtypez={SpriteBatch.class,Color.class, TextureAtlas.AtlasRegion.class,float.class,float.class})
+    public static class RenderHelperPatch1{
+        @SpirePrefixPatch
+        public static void Foo(AbstractCard __instance, @ByRef Color[] color){
+            if(shouldCardBeGrayedOut(__instance)) {
+                color[0] = color[0].cpy();
+                color[0].r *= 0.75f;
+                color[0].g *= 0.75f;
+                color[0].b *= 0.75f;
+                color[0].a *= 0.75f;
+            }
+        }
+    }
+    @SpirePatch2(clz=AbstractCard.class,method="renderHelper",
+            paramtypez={SpriteBatch.class,Color.class, TextureAtlas.AtlasRegion.class,float.class,float.class,float.class})
+    public static class RenderHelperPatch2{
+        @SpirePrefixPatch
+        public static void Foo(AbstractCard __instance, @ByRef Color[] color){
+            if(shouldCardBeGrayedOut(__instance)) {
+                color[0] = color[0].cpy();
+                color[0].r *= 0.75f;
+                color[0].g *= 0.75f;
+                color[0].b *= 0.75f;
+                color[0].a *= 0.75f;
+            }
+        }
+    }
+
+    @SpirePatch2(clz=AbstractCard.class,method="renderHelper",
+            paramtypez={SpriteBatch.class,Color.class, Texture.class,float.class,float.class})
+    public static class RenderHelperPatch3{
+        @SpirePrefixPatch
+        public static void Foo(AbstractCard __instance, @ByRef Color[] color){
+            if(shouldCardBeGrayedOut(__instance)) {
+                color[0] = color[0].cpy();
+                color[0].r *= 0.75f;
+                color[0].g *= 0.75f;
+                color[0].b *= 0.75f;
+                color[0].a *= 0.75f;
+            }
+        }
+    }
+
+    @SpirePatch2(clz=AbstractCard.class,method="renderHelper",
+            paramtypez={SpriteBatch.class,Color.class, Texture.class,float.class,float.class,float.class})
+    public static class RenderHelperPatch4{
+        @SpirePrefixPatch
+        public static void Foo(AbstractCard __instance, @ByRef Color[] color){
+            if(shouldCardBeGrayedOut(__instance)) {
+                color[0] = color[0].cpy();
+                color[0].r *= 0.75f;
+                color[0].g *= 0.75f;
+                color[0].b *= 0.75f;
+                color[0].a *= 0.75f;
+            }
+        }
+    }
 }

@@ -2,6 +2,7 @@ package BoardGame.cards.BGRed;
 
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGIronclad;
+import BoardGame.powers.BGDarkEmbracePower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
@@ -32,7 +33,7 @@ public class BGDarkEmbrace extends AbstractBGCard {
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new DarkEmbracePower((AbstractCreature)p, 1), 1));
+        addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new BGDarkEmbracePower((AbstractCreature)p, 1), 1));
     }
 
 

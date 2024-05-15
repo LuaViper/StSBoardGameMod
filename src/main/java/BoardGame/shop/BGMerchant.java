@@ -67,6 +67,7 @@ public class BGMerchant {
 
                 if(CardCrawlGame.dungeon instanceof AbstractBGDungeon) {
                     if (AbstractDungeon.id.equals("TheEnding")) {
+                        //TODO: we're still using Vanilla merchant text -- add the Strength (max 8) easter egg somehow
                         Collections.addAll(___idleMessages[0], Merchant.ENDING_TEXT);
                     } else {
                         Collections.addAll(___idleMessages[0], Merchant.TEXT);

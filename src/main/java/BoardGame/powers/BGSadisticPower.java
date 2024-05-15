@@ -45,7 +45,7 @@ public class BGSadisticPower
                 //power.amount is the number of stacks being applied, not the total number of stacks after application
                 //TODO: if it's ruled that this doesn't count if we're at the stack limit, must check weak/vuln <= 3, poison <= 30
                 //TODO: weak cap appears to be ignored, but capped poison will deal 0 damage despite not checking for it.  why?
-                //TODO: does Corpse Explosion count, and is this consistent with the card's current text?
+                //TODO: does Corpse Explosion count?
                 addToBot((AbstractGameAction) new DamageAction(target, new DamageInfo(this.owner, this.amount*power.amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.FIRE));
             }
         }

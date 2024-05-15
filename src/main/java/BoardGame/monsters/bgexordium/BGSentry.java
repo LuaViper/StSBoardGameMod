@@ -58,7 +58,7 @@ public class BGSentry extends AbstractBGMonster implements BGDamageIcons, DieCon
             setHp(9);
         else
             setHp(8);
-
+        //note -- on A1+, sentry C's behavior is changed to "--" later
 
         this.dazedAmt = 1;
 
@@ -95,7 +95,7 @@ public class BGSentry extends AbstractBGMonster implements BGDamageIcons, DieCon
                     AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractCreature)this, (AbstractGameEffect)new ShockWaveEffect(this.hb.cX, this.hb.cY, Color.ROYAL, ShockWaveEffect.ShockWaveType.ADDITIVE), 0.1F));
                     AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new FastShakeAction((AbstractCreature)AbstractDungeon.player, 0.6F, 0.15F));
                 }
-                //TODO: on ascension 12,
+                //TODO: on ascension 12, single daze is AOE
                 addToBot((AbstractGameAction)new MakeTempCardInDrawPileAction((AbstractCard)new BGDazed(), 1, false, true));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new RollMoveAction(this));
                 break;
@@ -217,6 +217,7 @@ public class BGSentry extends AbstractBGMonster implements BGDamageIcons, DieCon
 
     protected void getMove(int num) {
         if (behavior.equals("2D") && AbstractDungeon.ascensionLevel >= 1){
+            behavior="--";
             setMove((byte) 6, AbstractMonster.Intent.DEBUFF);
         }else {
             setMove((byte) 0, AbstractMonster.Intent.NONE);

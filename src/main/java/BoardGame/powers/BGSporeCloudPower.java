@@ -8,6 +8,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
+//TODO: Vuln should go to character in same row, not character who killed it
 public class BGSporeCloudPower extends AbstractBGPower {
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("Spore Cloud");
     public static final String POWER_ID = "BGSpore Cloud";

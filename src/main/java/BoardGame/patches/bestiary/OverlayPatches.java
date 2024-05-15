@@ -40,6 +40,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 
+//TODO NEXT: Corrupt Heart (and more?) improperly show their "attack names" in dark gray on the right half of the bestiary card
 
 public class OverlayPatches {
     @SpirePatch(

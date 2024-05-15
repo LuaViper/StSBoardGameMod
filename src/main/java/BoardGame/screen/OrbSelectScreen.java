@@ -124,6 +124,7 @@ public class OrbSelectScreen extends CustomScreen {
             return;
         }
 
+
         boolean moreThanOneOrbType=false;
         String lastOrbID=null;
         int firstValidOrbSlot=-1;

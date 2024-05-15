@@ -1,11 +1,14 @@
 package BoardGame.multicharacter.grid;
 
 import BoardGame.BoardGame;
+import BoardGame.multicharacter.MultiCharacter;
+import BoardGame.multicharacter.patches.AbstractScenePatches;
 import BoardGame.util.TextureLoader;
 import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 import java.util.ArrayList;
 import java.util.Collections;
@@ -19,7 +22,14 @@ public class GridBackground {
     public final float INITIAL_TILE_SPAWN_TIMER=1f;
     public final float TILE_SPAWN_SPEED=1/16f;
 
-    public boolean visible=false;
+
+    //TODO NEXT: cards in non-active hands should be darker and/or non-glowing -- also autocycle if hand is empty and gridview is enabled
+    //TODO NEXT: reapply powers/damage to cards after cycling hands (probably current hand only)
+    //TODO: move *monsters* up a bit so HP bars don't cover them (players are OK)
+    //TODO NEXT: move Defect orbs somewhere better
+
+    public boolean visible=true;
+    public boolean gridViewIsReady=false;
     public float tileSpawnTimer=INITIAL_TILE_SPAWN_TIMER;
     public float offsetX=0;
     public float offsetY=0;
@@ -32,7 +42,9 @@ public class GridBackground {
 
     public void resetGridAtStartOfCombat(){
         if(!BoardGame.ENABLE_TEST_FEATURES)return;
+        if(MultiCharacter.getSubcharacters().size()<2)return;
         tileSpawnTimer=INITIAL_TILE_SPAWN_TIMER;
+        gridViewIsReady=false;
         subGrids.clear();
         playerGrid=new GridSubgrid();
         playerGrid.screenOffsetX = Settings.WIDTH*(1/3f)/Settings.scale- GridTile.TILE_WIDTH/2f;
@@ -69,10 +81,13 @@ public class GridBackground {
                 Collections.shuffle(tilesSpawningIn);
                 tilesSpawningIn.get(0).targetFade=1.0F;
                 tileSpawnTimer=TILE_SPAWN_SPEED;
-            }else if(!tilesDespawning.isEmpty()){
-                Collections.shuffle(tilesDespawning);
-                tilesDespawning.get(0).targetFade=0.0F;
-                tileSpawnTimer=TILE_SPAWN_SPEED;
+            }else{
+                gridViewIsReady=true;
+                if(!tilesDespawning.isEmpty()){
+                    Collections.shuffle(tilesDespawning);
+                    tilesDespawning.get(0).targetFade=0.0F;
+                    tileSpawnTimer=TILE_SPAWN_SPEED;
+                }
             }
         }
     }
@@ -82,6 +97,17 @@ public class GridBackground {
         for(GridSubgrid sub : subGrids){
             sub.render(sb);
         }
+    }
+
+    public static boolean isGridViewActive(){
+        //TODO: also check gridViewIsEnabled
+        //TODO: consider renaming gridbackground to something like "gridsystem"
+        if(AbstractDungeon.scene==null) return false;
+        GridBackground grid = AbstractScenePatches.AbstractSceneExtraInterface.gridBackground.get(AbstractDungeon.scene);
+        if(grid==null)return false;
+        if(!grid.gridViewIsReady)return false;
+
+        return true;
     }
 
 

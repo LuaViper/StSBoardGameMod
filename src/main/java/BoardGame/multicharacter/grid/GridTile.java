@@ -65,7 +65,7 @@ public class GridTile {
         }
         if(creature!=null){
             Field.tileLerpAmount.set(creature,
-                    MathHelper.cardLerpSnap(
+                    MathHelper.scaleLerpSnap(
                     Field.tileLerpAmount.get(creature),
                     Field.tileLerpTarget.get(creature)
                     ));
