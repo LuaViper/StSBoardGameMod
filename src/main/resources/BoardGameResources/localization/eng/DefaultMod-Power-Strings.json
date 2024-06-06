@@ -49,7 +49,7 @@
         ]
 },
         "BoardGame:Anger": {
-                "NAME": "Anger",
+                "NAME": "Enraged",
                 "DESCRIPTIONS": [
                         "Whenever you play a #ySkill, take #b",
                         " damage."
