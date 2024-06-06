@@ -99,7 +99,7 @@ public class BGKnowingSkull
                 this.imageEventText.updateBodyText(INTRO_2_MSG);
                 this.imageEventText.clearAllDialogs();
                 this.imageEventText.setDialogOption(OPTIONS[4] + this.potionCost + OPTIONS[1]);
-                this.imageEventText.setDialogOption(OPTIONS[5] + 2 + OPTIONS[6] + this.goldCost + OPTIONS[1]);
+                this.imageEventText.setDialogOption(OPTIONS[5] + 3 + OPTIONS[6] + this.goldCost + OPTIONS[1]);
                 this.imageEventText.setDialogOption(OPTIONS[3] + this.cardCost + OPTIONS[1]);
                 //this.imageEventText.setDialogOption(OPTIONS[7]);
                 this.screen = CurScreen.ASK;
@@ -189,8 +189,8 @@ public class BGKnowingSkull
                 this.optionsChosen += "GOLD ";
                 this.imageEventText.updateBodyText(GOLD_MSG + nextmsg);
                 AbstractDungeon.effectList.add(new RainingGoldEffect(90));
-                AbstractDungeon.player.gainGold(2);
-                this.goldEarned += 2;
+                AbstractDungeon.player.gainGold(3);
+                this.goldEarned += 3;
                 break;
             case 2:
                 AbstractDungeon.player.damage(new DamageInfo(null, this.cardCost, DamageInfo.DamageType.HP_LOSS));

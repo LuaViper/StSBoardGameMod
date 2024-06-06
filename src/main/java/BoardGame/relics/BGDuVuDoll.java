@@ -1,5 +1,6 @@
 package BoardGame.relics;
 
+import BoardGame.actions.GainTemporaryStrengthIfNotCappedAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
@@ -28,8 +29,7 @@ public class BGDuVuDoll extends AbstractBGRelic {
     public void onCardDraw(AbstractCard card) {
         if (card.type == AbstractCard.CardType.CURSE) {
             flash();
-            addToTop((AbstractGameAction)new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)AbstractDungeon.player, (AbstractPower)new StrengthPower((AbstractCreature)AbstractDungeon.player, STR_AMT), STR_AMT));
-            addToTop((AbstractGameAction)new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)AbstractDungeon.player, (AbstractPower)new LoseStrengthPower((AbstractCreature)AbstractDungeon.player, STR_AMT), STR_AMT));
+            addToTop(new GainTemporaryStrengthIfNotCappedAction(AbstractDungeon.player,STR_AMT));
             addToTop((AbstractGameAction)new RelicAboveCreatureAction((AbstractCreature)AbstractDungeon.player, this));
         }
     }

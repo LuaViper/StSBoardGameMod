@@ -39,7 +39,7 @@ public class BGMeteorStrike extends AbstractBGCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            upgradeDamage(2);
+            upgradeDamage(5);
             initializeDescription();
         }
     }

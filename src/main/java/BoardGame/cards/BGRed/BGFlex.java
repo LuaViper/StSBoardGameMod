@@ -1,5 +1,6 @@
 package BoardGame.cards.BGRed;
 
+import BoardGame.actions.GainTemporaryStrengthIfNotCappedAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGIronclad;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -37,8 +38,7 @@ public class BGFlex extends AbstractBGCard {
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new StrengthPower((AbstractCreature)p, this.magicNumber), this.magicNumber));
-        addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new LoseStrengthPower((AbstractCreature)p, this.magicNumber), this.magicNumber));
+        addToBot(new GainTemporaryStrengthIfNotCappedAction(p,magicNumber));
     }
 
 

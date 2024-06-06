@@ -1,5 +1,6 @@
 package BoardGame.cards.BGBlue;
 
+import BoardGame.actions.BGChannelAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
 import BoardGame.orbs.BGFrost;
@@ -30,7 +31,7 @@ public class BGColdSnap extends AbstractBGCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HEAVY));
-        addToBot((AbstractGameAction)new ChannelAction((AbstractOrb)new BGFrost()));
+        addToBot((AbstractGameAction)new BGChannelAction((AbstractOrb)new BGFrost()));
     }
 
     public void upgrade() {

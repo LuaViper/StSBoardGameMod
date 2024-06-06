@@ -26,6 +26,7 @@ public class CardPatches {
     public static class Field
     {
         public static SpireField<AbstractPlayer> owner = new SpireField<>(() -> null);
+        public static SpireField<Color> originalRenderColor = new SpireField<>(() -> null);
 
     }
 

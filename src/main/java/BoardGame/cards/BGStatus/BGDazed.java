@@ -11,7 +11,7 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 public class BGDazed extends AbstractBGCard implements CardDisappearsOnExhaust {
     public static final String ID = "BGDazed";
-    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("Dazed");
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGDazed");
 
     public BGDazed() {
         super("BGDazed", cardStrings.NAME, "status/dazed", -2, cardStrings.DESCRIPTION, AbstractCard.CardType.STATUS, BGColorless.Enums.CARD_COLOR, AbstractCard.CardRarity.COMMON, AbstractCard.CardTarget.NONE);

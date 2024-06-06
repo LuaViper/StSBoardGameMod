@@ -1,5 +1,6 @@
 package BoardGame.cards.BGBlue;
 
+import BoardGame.actions.BGChannelAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
 import BoardGame.orbs.BGLightning;
@@ -32,7 +33,7 @@ public class BGElectrodynamics extends AbstractBGCard {
             addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new BGElectroPower((AbstractCreature)p)));
         for (int i = 0; i < this.magicNumber; i++) {
             BGLightning lightning = new BGLightning();
-            addToBot((AbstractGameAction)new ChannelAction((AbstractOrb)lightning));
+            addToBot((AbstractGameAction)new BGChannelAction((AbstractOrb)lightning));
         }
     }
 

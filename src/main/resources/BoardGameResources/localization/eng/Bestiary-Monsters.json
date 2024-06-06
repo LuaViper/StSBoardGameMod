@@ -457,31 +457,31 @@
           "hp": "",
           "moves": [
             {
-              "effects": [{"name": "<.","color": "GRAY"}],
+              "effects": [{"name": "<a","color": "GRAY"}],
               "name": "#yInvincible: Corrupt Heart can't gain [BoardGame:WeakIcon] or go below 50 HP per player."
             },
             {
-              "effects": [{"name": "<0","color": "GRAY"}],
+              "effects": [{"name": "<b","color": "GRAY"}],
               "name": "#yBeat #yof #yDeath: At end of turn, all players take 1 damage."
             },
             {
-              "effects": [{"name": "<1","color": "GRAY"}],
+              "effects": [{"name": "<c","color": "GRAY"}],
               "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] [BoardGame:WeakIcon] [BoardGame:VulnIcon] [BoardGame:SlimedIcon] [BoardGame:SlimedIcon] [BoardGame:SlimedIcon] [BoardGame:SlimedIcon] [BoardGame:SlimedIcon] NL Shuffle the [BoardGame:SlimedIcon] into your draw pile."
             },
             {
-              "effects": [{"name": "<2","color": "GRAY"}],
+              "effects": [{"name": "<d","color": "GRAY"}],
               "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 5 [BoardGame:HitIcon]"
             },
             {
-              "effects": [{"name": "<3","color": "GRAY"}],
+              "effects": [{"name": "<e","color": "GRAY"}],
               "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 2 [BoardGame:HitIcon] 2 [BoardGame:HitIcon]"
             },
             {
-              "effects": [{"name": "<4","color": "GRAY"}],
+              "effects": [{"name": "<f","color": "GRAY"}],
               "name": "Turn 4: [] [] [] [BoardGame:StrIcon] [BoardGame:StrIcon] [] #yBeat #yof #yDeath +1. Lose #yInvincible ability."
             },
             {
-              "effects": [{"name": "<5","color": "GRAY"}],
+              "effects": [{"name": "<g","color": "GRAY"}],
               "name": "Repeat from 2."
             }
           ]
@@ -492,31 +492,31 @@
           "hp": "",
           "moves": [
             {
-              "effects": [{"name": "<.","color": "GRAY"}],
+              "effects": [{"name": "<a","color": "GRAY"}],
               "name": "#yInvincible: Corrupt Heart can't gain [BoardGame:WeakIcon] or go below 60 HP per player."
             },
             {
-              "effects": [{"name": "<0","color": "GRAY"}],
+              "effects": [{"name": "<b","color": "GRAY"}],
               "name": "#yBeat #yof #yDeath: At end of turn, all players take 1 damage."
             },
             {
-              "effects": [{"name": "<1","color": "GRAY"}],
+              "effects": [{"name": "<c","color": "GRAY"}],
               "name": "Turn 1: [] [] [] [BoardGame:AOEIcon] [BoardGame:WeakIcon] [BoardGame:VulnIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon] [BoardGame:BurnIcon] NL Shuffle the [BoardGame:BurnIcon] into your draw pile."
             },
             {
-              "effects": [{"name": "<2","color": "GRAY"}],
+              "effects": [{"name": "<d","color": "GRAY"}],
               "name": "Turn 2: [] [] [] [BoardGame:AOEIcon] 5 [BoardGame:HitIcon]"
             },
             {
-              "effects": [{"name": "<3","color": "GRAY"}],
+              "effects": [{"name": "<e","color": "GRAY"}],
               "name": "Turn 3: [] [] [] [BoardGame:AOEIcon] 2 [BoardGame:HitIcon] 2 [BoardGame:HitIcon]"
             },
             {
-              "effects": [{"name": "<4","color": "GRAY"}],
+              "effects": [{"name": "<f","color": "GRAY"}],
               "name": "Turn 4: [] [] [] [BoardGame:StrIcon] [BoardGame:StrIcon] [] #yBeat #yof #yDeath +2. Lose #yInvincible ability."
             },
             {
-              "effects": [{"name": "<5","color": "GRAY"}],
+              "effects": [{"name": "<g","color": "GRAY"}],
               "name": "Repeat from 2."
             }
           ]
@@ -968,6 +968,25 @@
           ]
         },
         {
+          "min_asc": 1,
+          "desc": "",
+          "hp": "",
+          "moves": [
+            {
+              "effects": [{"name": "<a","color": "GRAY"}],
+              "name": "First turn: [] [] [] Gains #yEnraged for the rest of combat."
+            },
+            {
+              "effects": [{"name": "<b","color": "GRAY"}],
+              "name": "Thereafter: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon] [BoardGame:StrIcon]"
+            },
+            {
+              "effects": [{"name": "<d","color": "GRAY"}],
+              "name": "#yEnraged: After you play a Skill, you take 1 damage."
+            }
+          ]
+        },
+        {
           "min_asc": 12,
           "desc": "",
           "hp": "",
@@ -978,7 +997,7 @@
             },
             {
               "effects": [{"name": "<b","color": "GRAY"}],
-              "name": "Thereafter: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon]"
+              "name": "Thereafter: [] [] [] [BoardGame:AOEIcon] 3 [BoardGame:HitIcon] [BoardGame:StrIcon]"
             },
             {
               "effects": [{"name": "<d","color": "GRAY"}],
@@ -2180,8 +2199,8 @@
           ]
         },
         {
-          "min_asc": 0,
-          "desc": 12,
+          "min_asc": 12,
+          "desc": "",
           "hp": "",
           "moves": [
             {

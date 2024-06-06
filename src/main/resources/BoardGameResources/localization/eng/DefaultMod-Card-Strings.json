@@ -319,6 +319,10 @@
     "NAME": "Dash",
     "DESCRIPTION": "!D! [BoardGame:HitIcon] !B! [BoardGame:BlockIcon] NL You may switch rows with another player."
   },
+  "BoardGame:BGDazed": {
+    "NAME": "Daze",
+    "DESCRIPTION": "Unplayable. NL Ethereal."
+  },
   "BoardGame:BGDeadlyPoison": {
     "NAME": "Deadly Poison",
     "DESCRIPTION": "[BoardGame:PoisonIcon]"
@@ -434,7 +438,7 @@
     "DESCRIPTION": "[BoardGame:AOEIcon] !D! [BoardGame:HitIcon] NL +!M! damage if it's the first turn of combat."
   },
   "BoardGame:BGDualcast":{
-    "NAME": "Dual Cast",
+    "NAME": "Dualcast",
     "DESCRIPTION": "boardgame:Evoke an Orb twice."
   },
   "BoardGame:BGDuality2Block":{

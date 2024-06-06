@@ -22,7 +22,6 @@ import java.util.Collections;
 import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.relicRng;
 import static com.megacrit.cardcrawl.relics.AbstractRelic.RelicTier.*;
 
-//TODO: player needs to be able to see the boss relic options at the same time as the rare card
 
 public abstract class AbstractBGRelic extends AbstractRelic {
     public AbstractBGRelic(String setId, String imgName, RelicTier tier, LandingSound sfx) {
@@ -171,7 +170,7 @@ public abstract class AbstractBGRelic extends AbstractRelic {
         if(relicDeck.size()==0){
             initialize();   //TODO: if this is the second time we would have called initialize, return a circlet instead
         }
-        AbstractRelic relic=relicDeck.remove(0);
+        AbstractRelic relic=relicDeck.remove(0).makeCopy();
         //TODO: remove relic from deck if player obtains it
         relicDeck.add(relic);
         return relic;
@@ -182,7 +181,7 @@ public abstract class AbstractBGRelic extends AbstractRelic {
         if(bossRelicDeck.size()==0){
             initializeBossRelics();   //TODO: if this is the second time we would have called initialize, return a circlet instead
         }
-        AbstractRelic relic=bossRelicDeck.remove(0);
+        AbstractRelic relic=bossRelicDeck.remove(0).makeCopy();
         //TODO: remove relic from deck if player obtains it
         bossRelicDeck.add(relic);
         return relic;

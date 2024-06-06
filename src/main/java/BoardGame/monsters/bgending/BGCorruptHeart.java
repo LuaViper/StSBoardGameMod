@@ -1,4 +1,5 @@
 package BoardGame.monsters.bgending;
+import BoardGame.monsters.AbstractBGMonster;
 import BoardGame.cards.BGStatus.BGBurn;
 import BoardGame.cards.BGStatus.BGSlimed;
 import BoardGame.monsters.BGDamageIcons;
@@ -42,7 +43,8 @@ import com.megacrit.cardcrawl.vfx.combat.HeartBuffEffect;
 import com.megacrit.cardcrawl.vfx.combat.HeartMegaDebuffEffect;
 import com.megacrit.cardcrawl.vfx.combat.ViceCrushEffect;
 
-public class BGCorruptHeart extends AbstractMonster implements BGDamageIcons {
+
+public class BGCorruptHeart extends AbstractBGMonster implements BGDamageIcons {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("CorruptHeart");
     public static final String ID = "BGCorruptHeart";
     public static final String NAME = monsterStrings.NAME;
@@ -113,7 +115,7 @@ public class BGCorruptHeart extends AbstractMonster implements BGDamageIcons {
                     AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new MakeTempCardInDrawPileAction((AbstractCard) new BGBurn(), 5, true, true));
                 }
                 //in VG we wouldn't shuffle here, but in BG we've just disrupted Scry/Rebound effects
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new ShuffleAction(AbstractDungeon.player.drawPile));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new ShuffleAction(AbstractDungeon.player.drawPile, true));
                 break;
 
             case 1:

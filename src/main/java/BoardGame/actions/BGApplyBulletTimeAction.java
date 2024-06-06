@@ -25,7 +25,7 @@ public class BGApplyBulletTimeAction extends AbstractGameAction {
             AbstractCard c = (AbstractCard)var1.next();
             c.setCostForTurn(-9);
             if(c instanceof AbstractBGCard){
-                ((AbstractBGCard)c).temporarilyCostsZero =true;
+                ((AbstractBGCard)c).temporarilyCostsZero=true;
             }
         }
 

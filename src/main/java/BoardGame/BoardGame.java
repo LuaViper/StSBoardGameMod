@@ -33,6 +33,7 @@ import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Prefs;
@@ -40,6 +41,7 @@ import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -59,6 +61,7 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import static basemod.BaseMod.addMonster;
+import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.bossRelicPool;
 
 //TODO: Game softlocks if boardgame character is started on a completely new profile (tries to skip Neow screen)
 //TODO: implement PostCreditsNeow easter egg -- need to put these back in the box -- does anyone have opposable thumbs
@@ -82,6 +85,9 @@ public class BoardGame implements
     //////////////////////////////////////////////////////////////////////////////
     public static boolean ENABLE_TEST_FEATURES=false;
     //////////////////////////////////////////////////////////////////////////////
+
+    public static boolean alreadyShowedMaxPoisonWarning=false;
+    public static boolean alreadyShowedMaxMiraclesWarning=false;
 
     // Make sure to implement the subscribers *you* are using (read basemod wiki). Editing cards? EditCardsSubscriber.
     // Making relics? EditRelicsSubscriber. etc., etc., for a full list and how to make your own, visit the basemod wiki.

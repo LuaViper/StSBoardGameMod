@@ -1,6 +1,7 @@
 package BoardGame.relics;
 
 import BoardGame.actions.BGActivateDieAbilityAction;
+import BoardGame.actions.GainTemporaryStrengthIfNotCappedAction;
 import BoardGame.powers.NilrysCodexCompatible;
 import BoardGame.thedie.TheDie;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -55,8 +56,7 @@ public class BGVajra
     public void activateDieAbility(){
         flash();
         addToBot((AbstractGameAction)new RelicAboveCreatureAction((AbstractCreature)AbstractDungeon.player, this));
-        addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)AbstractDungeon.player, (AbstractPower)new StrengthPower((AbstractCreature)AbstractDungeon.player, STR_AMT), STR_AMT));
-        addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)AbstractDungeon.player, (AbstractPower)new LoseStrengthPower((AbstractCreature)AbstractDungeon.player, STR_AMT), STR_AMT));
+        addToBot(new GainTemporaryStrengthIfNotCappedAction(AbstractDungeon.player,STR_AMT));
 
         stopPulse();
     }

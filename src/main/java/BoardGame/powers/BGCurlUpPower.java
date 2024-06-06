@@ -13,6 +13,7 @@ import BoardGame.monsters.AbstractBGMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
 //TODO: BGDoomAndGloom against 4HP BGLouse, evoking a BGLightning: Louse takes 3 -> procs Curl -> Lightning evoked.  can we fix this?
+//TODO: Lightning Orbs end-of-turn all proc at once against BGLouse
 
 public class BGCurlUpPower extends AbstractBGPower {
     public static final String POWER_ID = "BGCurl Up";

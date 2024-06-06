@@ -1,5 +1,6 @@
 package BoardGame.cards.BGBlue;
 
+import BoardGame.actions.BGChannelAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
 import BoardGame.orbs.BGDark;
@@ -21,7 +22,7 @@ public class BGDarkness extends AbstractBGCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot((AbstractGameAction)new ChannelAction((AbstractOrb)new BGDark()));
+        addToBot((AbstractGameAction)new BGChannelAction((AbstractOrb)new BGDark()));
 
     }
 

@@ -1,4 +1,5 @@
 package BoardGame.potions;
+import BoardGame.actions.GainTemporaryStrengthIfNotCappedAction;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -46,8 +47,7 @@ public class BGSteroidPotion extends AbstractPotion {
     public void use(AbstractCreature target) {
         AbstractPlayer abstractPlayer = AbstractDungeon.player;
         if ((AbstractDungeon.getCurrRoom()).phase == AbstractRoom.RoomPhase.COMBAT) {
-            addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)abstractPlayer, (AbstractCreature)AbstractDungeon.player, (AbstractPower)new StrengthPower((AbstractCreature)abstractPlayer, this.potency), this.potency));
-            addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)abstractPlayer, (AbstractCreature)AbstractDungeon.player, (AbstractPower)new LoseStrengthPower((AbstractCreature)abstractPlayer, this.potency), this.potency));
+            addToBot(new GainTemporaryStrengthIfNotCappedAction(abstractPlayer,potency));
         }
     }
 

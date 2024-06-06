@@ -1,5 +1,6 @@
 package BoardGame.multicharacter.patches;
 
+import BoardGame.BoardGame;
 import BoardGame.multicharacter.NullMonster;
 import BoardGame.patches.Ascension;
 import com.evacipated.cardcrawl.modthespire.lib.*;
@@ -25,6 +26,8 @@ public class OnGameResetPatch {
             ContextPatches.playerContextHistory = new ArrayDeque<>();
             ContextPatches.targetContextHistory = new ArrayDeque<>();
             ContextPatches.currentTargetContext = new NullMonster();
+            BoardGame.alreadyShowedMaxPoisonWarning=false;
+            BoardGame.alreadyShowedMaxMiraclesWarning=false;
             Ascension.combineUnlockedAscensions();
         }
         private static class Locator extends SpireInsertLocator {

@@ -1,5 +1,6 @@
 package BoardGame.cards.BGBlue;
 
+import BoardGame.actions.BGChannelAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
 import BoardGame.orbs.BGFrost;
@@ -24,7 +25,7 @@ public class BGCoolheaded extends AbstractBGCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot((AbstractGameAction)new ChannelAction((AbstractOrb)new BGFrost()));
+        addToBot((AbstractGameAction)new BGChannelAction((AbstractOrb)new BGFrost()));
         if(upgraded){
             addToBot((AbstractGameAction)new DrawCardAction((AbstractCreature)p, 1));
         }

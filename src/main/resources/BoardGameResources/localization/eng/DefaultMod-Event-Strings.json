@@ -261,16 +261,17 @@
     ],
     "OPTIONS": [
       "[Continue]",
-      "[Land] ",
+      "[Land]",
       "[Locked] Requires more cards",
-      "[Channel] ",
+      "[Channel]",
       "[Locked] Requires more cards",
-      "[Strike] ",
+      "[Strike]",
       "[Locked] Requires more cards",
       "[Leave]",
       "[Land] ",
-      "[Flail] ",
-      " #rLose "
+      "[Flail]",
+      " #rLose ",
+      "[Locked]"
     ]
   },
   "BoardGame:BGFaceTrader": {
@@ -688,6 +689,7 @@
       "\" @Aaaaagghh!!@ That wasn't even an option on the event card!\" NL He runs away.",
       "  NL NL He rummages around his various pockets... NL \"Here, look what I've got for you today! Take it take it!\"",
       "Relic trading interface activated. ~#yRight-click~ one of your highlighted relics to continue."
+
     ],
     "OPTIONS": [
       "[Give Gold] #rPay #r4 #rGold. ",
@@ -697,9 +699,10 @@
       "[Give Card] #rRemove #ra #rrare #ror #runcommon #rcard. ",
       "[Locked] Requires: Rare or uncommon card.",
       ". #gObtain #ga #gRelic.",
-      "[Softlocked?] Punch him.",
+      "[Attack]",
       "[Leave]",
-      " #rGold"
+      " #rGold",
+      "[Softlocked?] Punch him."
     ]
   },
   "BoardGame:BGWheel of Change": {

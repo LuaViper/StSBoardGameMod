@@ -156,7 +156,7 @@
       "Select Cards to Upgrade",
       "[ Proceed ]",
       "",
-      "#yLATEST #yUPDATES NL NL Fixed a bug which made Act 1 encounters considerably easier than usual if Experimental Features were enabled, even if you weren't actually using those features. NL NL It should now be possible to choose your boss rewards in any order. This was a surprisingly complicated change under the hood and some relics may or may not be broken now. Please report any bugs you find, #respecially #rbugs #rthat #rimpact #rnon-BoardGame #rcharacters #rwhile #rthis #rmod #ris #rinstalled.",
+      "#yLATEST #yUPDATES NL NL Acquiring Prismatic Shard on a vanilla character will no longer cause Board Game cards to appear in rewards. Many additional bugfixes have been implemented. NL NL Please continue to report any inconsistencies you discover in the Steam Workshop bug report thread or on Discord.",
       "If the game softlocks on a reward screen, try opening and closing the map.",
       "This is TEXT[72] by the way. In case you lose count, the IDE will also keep track for you, beneath the text editor window.",
       "#yNOTICE NL NL If you are reading this, you have selected more than one character for The Board Game. The Board Game multiplayer experience is not yet ready for public consumption. At best, you will be able to test one or two hallway encounters. Events and rewards will not function. Don't even think about trying to recover your save #pwhen the game crashes. NL NL For a more stable experience, please exit and choose a solo character from the previous menu. NL NL Scroll wheel to change hands btw.",

@@ -48,8 +48,7 @@ public class BGWreathOfFlameAction
         }
 
         if (effect > 0) {
-            addToTop((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new LoseStrengthPower((AbstractCreature)p, effect), effect));
-            addToTop((AbstractGameAction)new ApplyPowerAction((AbstractCreature)p, (AbstractCreature)p, (AbstractPower)new StrengthPower((AbstractCreature)p, effect), effect));
+            addToTop(new GainTemporaryStrengthIfNotCappedAction(p,effect));
 
 
             //logger.info("BGWhirlwindAction: subtract energy "+this.energyOnUse);

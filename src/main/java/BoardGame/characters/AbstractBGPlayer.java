@@ -70,6 +70,7 @@ public abstract class AbstractBGPlayer extends CustomPlayer {
                 animation);
 
         //AbstractPlayer expects potion slots to decrease at A11; override that here
+        //TODO: code reuse; move to function
         if (AbstractDungeon.ascensionLevel >= 4)this.potionSlots--;
         if (AbstractDungeon.ascensionLevel >= 11)this.potionSlots++;
         this.potions.clear();
@@ -79,6 +80,15 @@ public abstract class AbstractBGPlayer extends CustomPlayer {
     }
     public AbstractBGPlayer(String name, AbstractPlayer.PlayerClass playerClass, EnergyOrbInterface energyOrbInterface, String model, String animation) {
         super(name, playerClass, energyOrbInterface, model, animation);
+
+        //AbstractPlayer expects potion slots to decrease at A11; override that here
+        //TODO: code reuse; move to function
+        if (AbstractDungeon.ascensionLevel >= 4)this.potionSlots--;
+        if (AbstractDungeon.ascensionLevel >= 11)this.potionSlots++;
+        this.potions.clear();
+        int i;
+        for (i = 0; i < this.potionSlots; i++)
+            this.potions.add(new PotionSlot(i));
     }
 
     public void nonInputReleaseCard() {

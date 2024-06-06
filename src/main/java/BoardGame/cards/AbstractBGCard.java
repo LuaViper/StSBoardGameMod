@@ -151,6 +151,22 @@ public abstract class AbstractBGCard extends CustomCard
     }
 
 
+    @Override
+    public boolean canUse(AbstractPlayer p, AbstractMonster m) {
+        boolean canUse = super.canUse(p, m);
+        if(this.isInAutoplay) {
+            if (target == CardTarget.ENEMY || target == CardTarget.SELF_AND_ENEMY) {
+                if (m == null || m.halfDead || m.isDead || m.isDying || m.isEscaping) {
+                    //TODO: localization
+                    this.cantUseMessage = "I don't have a target!";
+                    return false;
+                }
+            }
+        }
+        return canUse;
+    }
+
+
     public void setCostForTurn(int amt) {
         //TODO: complain extraordinarily loudly if amt!=0 -- new cost reduction system is incompatible
         if (this.costForTurn >= -1) {       //X-cost cards can be modified too.
@@ -246,8 +262,10 @@ public abstract class AbstractBGCard extends CustomCard
             }
         }
         if(temporarilyCostsZero){
-            costForTurn=0;
-            if(costForTurn!= nonvolatileBaseCost)isCostModifiedForTurn = true;
+            if(nonvolatileBaseCost>=-1) {   //don't affect cards that cost "-2" !
+                costForTurn = 0;
+                if (costForTurn != nonvolatileBaseCost) isCostModifiedForTurn = true;
+            }
         }
     }
 

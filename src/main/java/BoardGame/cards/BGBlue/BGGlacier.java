@@ -1,5 +1,6 @@
 package BoardGame.cards.BGBlue;
 
+import BoardGame.actions.BGChannelAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
 import BoardGame.orbs.BGFrost;
@@ -25,7 +26,7 @@ public class BGGlacier extends AbstractBGCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot((AbstractGameAction)new GainBlockAction((AbstractCreature)p, (AbstractCreature)p, this.block));
-        addToBot((AbstractGameAction)new ChannelAction((AbstractOrb)new BGFrost()));
+        addToBot((AbstractGameAction)new BGChannelAction((AbstractOrb)new BGFrost()));
     }
 
     public void upgrade() {

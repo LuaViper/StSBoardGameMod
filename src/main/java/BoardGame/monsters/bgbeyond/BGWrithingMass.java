@@ -167,7 +167,7 @@ public class BGWrithingMass extends AbstractBGMonster implements DieControlledMo
     }
     public void dieMove(int roll){
         final Logger logger = LogManager.getLogger(DieControlledMoves.class.getName());
-
+        //TODO: reorder if-else from 1 to 6 after checking physical card
         if (TheDie.monsterRoll == 4) {
             setMove((byte) 0, AbstractMonster.Intent.ATTACK_DEFEND, ((DamageInfo) this.damage.get(0)).base);
         }else if (TheDie.monsterRoll == 2) {

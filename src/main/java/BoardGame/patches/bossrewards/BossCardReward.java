@@ -25,7 +25,6 @@ import java.util.ArrayList;
 
 public class BossCardReward {
 
-    //TODO: save+quit on relic collect screen still keeps relic in "obtained" status so clicking on it after resume just displays description
     @SpirePatch(
             clz= TreasureRoomBoss.class,
             method=SpirePatch.CLASS

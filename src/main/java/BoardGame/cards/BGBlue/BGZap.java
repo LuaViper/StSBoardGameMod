@@ -1,4 +1,5 @@
 package BoardGame.cards.BGBlue;
+import BoardGame.actions.BGChannelAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
 import BoardGame.orbs.BGLightning;
@@ -26,7 +27,7 @@ public class BGZap extends AbstractBGCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         for (int i = 0; i < this.magicNumber; i++)
-            addToBot((AbstractGameAction)new ChannelAction((AbstractOrb)new BGLightning()));
+            addToBot((AbstractGameAction)new BGChannelAction((AbstractOrb)new BGLightning()));
     }
 
     public void upgrade() {

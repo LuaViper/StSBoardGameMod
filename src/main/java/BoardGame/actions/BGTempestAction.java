@@ -61,7 +61,7 @@ public class BGTempestAction
         if (effect > 0) {
             for (int i = effect - 1; i >= 0; i--) {
                 BGLightning lightning = new BGLightning();
-                addToTop((AbstractGameAction)new ChannelAction((AbstractOrb)lightning));
+                addToTop((AbstractGameAction)new BGChannelAction((AbstractOrb)lightning));
             }
             if (!this.dontExpendResources) {
                 this.p.energy.use(this.energyOnUse);

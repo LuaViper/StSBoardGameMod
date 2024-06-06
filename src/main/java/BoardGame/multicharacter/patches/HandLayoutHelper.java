@@ -12,6 +12,8 @@ import com.badlogic.gdx.graphics.g2d.TextureAtlas;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
+import com.megacrit.cardcrawl.cards.Soul;
+import com.megacrit.cardcrawl.cards.SoulGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
@@ -19,6 +21,9 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+
+import javax.naming.Context;
+import java.util.ArrayList;
 
 import static com.badlogic.gdx.graphics.GL20.*;
 
@@ -84,6 +89,12 @@ public class HandLayoutHelper {
             hand_target_y[i]=0+SPACING*j;
             i+=1;if(i>= MultiCharacter.getSubcharacters().size())i=0;
         }
+        AbstractPlayer newCurrentPlayer=MultiCharacter.getSubcharacters().get(currentHand);
+        ContextPatches.pushPlayerContext(newCurrentPlayer);
+        for(AbstractCard c : newCurrentPlayer.hand.group){
+            c.applyPowers();
+        }
+        ContextPatches.popPlayerContext();
     }
 
     @SpirePatch2(clz = AbstractCard.class, method = "renderCard",
@@ -130,8 +141,26 @@ public class HandLayoutHelper {
         }
     }
 
+    public static boolean cardIsAttachedToSoul(AbstractCard __instance){
+        if(AbstractDungeon.getCurrRoom()!=null && AbstractDungeon.getCurrRoom().souls!=null){
+            ArrayList<Soul> souls = ReflectionHacks.getPrivate(AbstractDungeon.getCurrRoom().souls, SoulGroup.class,"souls");
+            for(Soul s : souls){
+                if(s.card!=null && !s.isDone) {
+                    boolean breakpoint=true;
+                    if (s.card == __instance) {
+                        return true;
+                    }
+                }
+            }
+        }
+        return false;
+    }
+
     public static boolean shouldCardBeGrayedOut(AbstractCard __instance){
-        if(true)return false;
+        if(CardCrawlGame.chosenCharacter!=MultiCharacter.Enums.BG_MULTICHARACTER)
+            return false;
+        if(cardIsAttachedToSoul(__instance))
+            return false;
         //TODO NEXT: this is currently returning true for vanilla/singleplayer modes.
         if (GridBackground.isGridViewActive()) {
             AbstractPlayer owner = CardPatches.Field.owner.get(__instance);
@@ -158,19 +187,21 @@ public class HandLayoutHelper {
         }
     }
 
-    //TODO NEXT: single edit-color function rather than 4x code reuse
-    //TODO: if card is not completely settled in a player's hand, do not gray it out (can we check if it's attached to a cardsoul?)
+    public static void SetGrayedOutColor(Color[] color){
+        color[0] = color[0].cpy();
+        color[0].r *= 0.75f;
+        color[0].g *= 0.75f;
+        color[0].b *= 0.75f;
+        //color[0].a *= 0.75f;
+    }
+
     @SpirePatch2(clz=AbstractCard.class,method="renderHelper",
             paramtypez={SpriteBatch.class,Color.class, TextureAtlas.AtlasRegion.class,float.class,float.class})
     public static class RenderHelperPatch1{
         @SpirePrefixPatch
         public static void Foo(AbstractCard __instance, @ByRef Color[] color){
             if(shouldCardBeGrayedOut(__instance)) {
-                color[0] = color[0].cpy();
-                color[0].r *= 0.75f;
-                color[0].g *= 0.75f;
-                color[0].b *= 0.75f;
-                color[0].a *= 0.75f;
+                SetGrayedOutColor(color);
             }
         }
     }
@@ -180,11 +211,7 @@ public class HandLayoutHelper {
         @SpirePrefixPatch
         public static void Foo(AbstractCard __instance, @ByRef Color[] color){
             if(shouldCardBeGrayedOut(__instance)) {
-                color[0] = color[0].cpy();
-                color[0].r *= 0.75f;
-                color[0].g *= 0.75f;
-                color[0].b *= 0.75f;
-                color[0].a *= 0.75f;
+                SetGrayedOutColor(color);
             }
         }
     }
@@ -195,11 +222,7 @@ public class HandLayoutHelper {
         @SpirePrefixPatch
         public static void Foo(AbstractCard __instance, @ByRef Color[] color){
             if(shouldCardBeGrayedOut(__instance)) {
-                color[0] = color[0].cpy();
-                color[0].r *= 0.75f;
-                color[0].g *= 0.75f;
-                color[0].b *= 0.75f;
-                color[0].a *= 0.75f;
+                SetGrayedOutColor(color);
             }
         }
     }
@@ -210,12 +233,64 @@ public class HandLayoutHelper {
         @SpirePrefixPatch
         public static void Foo(AbstractCard __instance, @ByRef Color[] color){
             if(shouldCardBeGrayedOut(__instance)) {
-                color[0] = color[0].cpy();
-                color[0].r *= 0.75f;
-                color[0].g *= 0.75f;
-                color[0].b *= 0.75f;
-                color[0].a *= 0.75f;
+                SetGrayedOutColor(color);
             }
         }
     }
+
+    public static void setPortraitColor(AbstractCard __instance){
+        Color originalColor=ReflectionHacks.getPrivate(__instance,AbstractCard.class,"renderColor");
+        CardPatches.Field.originalRenderColor.set(__instance,originalColor);
+        if(shouldCardBeGrayedOut(__instance)) {
+            Color[] c={originalColor};
+            SetGrayedOutColor(c);
+            ReflectionHacks.setPrivate(__instance,AbstractCard.class,"renderColor",c[0]);
+        }
+    }
+
+    public static void unsetPortraitColor(AbstractCard __instance){
+        Color originalColor=CardPatches.Field.originalRenderColor.get(__instance);
+        if(originalColor!=null) {
+            ReflectionHacks.setPrivate(__instance, AbstractCard.class, "renderColor", originalColor);
+        }
+    }
+
+    @SpirePatch2(clz=AbstractCard.class,method="renderPortrait")
+    public static class PortraitPatch1{
+        @SpirePrefixPatch
+        public static void Foo(AbstractCard __instance){
+            setPortraitColor(__instance);
+        }
+        @SpirePostfixPatch
+        public static void Foo2(AbstractCard __instance){
+            unsetPortraitColor(__instance);
+        }
+    }
+
+    @SpirePatch2(clz=AbstractCard.class,method="renderJokePortrait")
+    public static class PortraitPatch2{
+        @SpirePrefixPatch
+        public static void Foo(AbstractCard __instance){
+            setPortraitColor(__instance);
+        }
+        @SpirePostfixPatch
+        public static void Foo2(AbstractCard __instance){
+            unsetPortraitColor(__instance);
+        }
+    }
+
+    @SpirePatch2(clz=AbstractCard.class,method="renderTitle")
+    public static class TitlePatch{
+        @SpirePrefixPatch
+        public static void Foo(AbstractCard __instance){
+            setPortraitColor(__instance);
+        }
+        @SpirePostfixPatch
+        public static void Foo2(AbstractCard __instance){
+            unsetPortraitColor(__instance);
+        }
+    }
+
+    //TODO: renderDescription patch will take a bit more effort -- need to set/unset, at minimum, __instance.textColor and __instance.goldColor
+
 }

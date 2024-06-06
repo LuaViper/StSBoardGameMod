@@ -1,5 +1,6 @@
 package BoardGame.powers;
 
+import BoardGame.actions.BGChannelAction;
 import BoardGame.orbs.BGLightning;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
@@ -31,7 +32,7 @@ public class BGStormPower extends AbstractBGPower {
     public void atStartOfTurn() {
         flash();
         for (int i = 0; i < this.amount; i++)
-            addToBot((AbstractGameAction)new ChannelAction((AbstractOrb)new BGLightning()));
+            addToBot((AbstractGameAction)new BGChannelAction((AbstractOrb)new BGLightning()));
 
     }
 

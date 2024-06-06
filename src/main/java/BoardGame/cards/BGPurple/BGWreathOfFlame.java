@@ -34,7 +34,7 @@ public class BGWreathOfFlame extends AbstractBGCard {
     public void upgrade() {
         if (!this.upgraded) {
             upgradeName();
-            this.exhaust=true;
+            this.exhaust=false;
             this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
             initializeDescription();
         }

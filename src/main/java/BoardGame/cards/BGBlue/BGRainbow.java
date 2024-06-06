@@ -1,5 +1,6 @@
 package BoardGame.cards.BGBlue;
 
+import BoardGame.actions.BGChannelAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
 import BoardGame.orbs.BGDark;
@@ -31,9 +32,9 @@ public class BGRainbow extends AbstractBGCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot((AbstractGameAction)new VFXAction((AbstractGameEffect)new RainbowCardEffect()));
-        addToBot((AbstractGameAction)new ChannelAction((AbstractOrb)new BGLightning()));
-        addToBot((AbstractGameAction)new ChannelAction((AbstractOrb)new BGFrost()));
-        addToBot((AbstractGameAction)new ChannelAction((AbstractOrb)new BGDark()));
+        addToBot((AbstractGameAction)new BGChannelAction((AbstractOrb)new BGLightning()));
+        addToBot((AbstractGameAction)new BGChannelAction((AbstractOrb)new BGFrost()));
+        addToBot((AbstractGameAction)new BGChannelAction((AbstractOrb)new BGDark()));
     }
 
     public AbstractCard makeCopy() {

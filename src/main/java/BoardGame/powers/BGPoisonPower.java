@@ -2,6 +2,7 @@ package BoardGame.powers;
 
 
 
+import BoardGame.BoardGame;
 import BoardGame.cards.BGGoldenTicket;
 import BoardGame.cards.BGRed.BGSeverSoul;
 import BoardGame.dungeons.AbstractBGDungeon;
@@ -31,6 +32,7 @@ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.screens.select.HandCardSelectScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
+import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 import javassist.expr.ExprEditor;
@@ -122,9 +124,13 @@ public class BGPoisonPower extends AbstractBGPower {
 //        BoardGame.BoardGame.logger.info("Remaining tokens: "+maximumAllowedPoisonOnCurrentEnemy);
 
         if(this.amount>maximumAllowedPoisonOnCurrentEnemy) {
-            //TODO: "Out of poison tokens" thought bubble
             //BoardGame.BoardGame.logger.info("Out of poison tokens, cap to " + maximumAllowedPoisonOnCurrentEnemy);
             this.amount = maximumAllowedPoisonOnCurrentEnemy;
+            if(!BoardGame.alreadyShowedMaxPoisonWarning) {
+                BoardGame.alreadyShowedMaxPoisonWarning=true;
+                //TODO: localization
+                AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, "I only have 30 Poison tokens.", true));
+            }
         }
         if(this.amount<=0){
             //TODO: for reasons we don't yet understand, both addToBot and addToTop fail to remove a 0-stack poison here unless the poison stack already existed (has it not been registered with the powers list?)

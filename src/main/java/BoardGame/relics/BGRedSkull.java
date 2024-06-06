@@ -42,7 +42,7 @@ public class BGRedSkull
         return desc;
     }
 
-    private static final String thoughtbubble = "I can trigger #rRed #rSkull!"; //TODO: move to localization
+    private static final String thoughtbubble = "(UNUSED) I can trigger #rRed #rSkull!"; //TODO: move to localization
     public void onShuffle(){
 //        if(!usedThisTurn && !shuffledThisCombat){
 //            AbstractDungeon.effectList.add(new ThoughtBubble(AbstractDungeon.player.dialogX, AbstractDungeon.player.dialogY, 3.0F, thoughtbubble, true));

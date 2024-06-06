@@ -9,6 +9,7 @@ import com.megacrit.cardcrawl.actions.common.DiscardAtEndOfTurnAction;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 
 public class DiscardPatch {
+    //TODO: we might eventually want to call AbstractRoom.endTurn on each character, in which case we don't need to substitute a multiaction here
     @SpirePatch2(clz = DiscardAtEndOfTurnAction.class, method = "update")
     public static class DiscardCardPatch1{
         @SpirePrefixPatch

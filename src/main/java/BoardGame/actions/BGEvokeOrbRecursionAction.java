@@ -21,7 +21,7 @@ public class BGEvokeOrbRecursionAction extends AbstractGameAction {
                 } else {
                     //TODO: is there a convincing reason to do all this instead of BGEvokeWithoutRemovingOrbAction?
                     //addToTop -- reverse order
-                    addToTop(new ChannelAction(orb, false));
+                    addToTop(new BGChannelAction(orb, false));
                     addToTop((AbstractGameAction) new BGEvokeSpecificOrbAction(target));
                 }
             };

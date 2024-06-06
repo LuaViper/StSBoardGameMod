@@ -23,8 +23,7 @@ public class GridBackground {
     public final float TILE_SPAWN_SPEED=1/16f;
 
 
-    //TODO NEXT: cards in non-active hands should be darker and/or non-glowing -- also autocycle if hand is empty and gridview is enabled
-    //TODO NEXT: reapply powers/damage to cards after cycling hands (probably current hand only)
+    //TODO: autocycle if hand is empty and gridview is enabled
     //TODO: move *monsters* up a bit so HP bars don't cover them (players are OK)
     //TODO NEXT: move Defect orbs somewhere better
 

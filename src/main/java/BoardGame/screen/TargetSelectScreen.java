@@ -120,8 +120,14 @@ public class TargetSelectScreen extends CustomScreen {
             return;
         }else if(monstercount==0){
             isDone=true;
+            ((TargetSelectScreen) BaseMod.getCustomScreen(Enum.TARGET_SELECT)).action.execute(null);
             AbstractDungeon.closeCurrentScreen();
             return;
+        }else{
+            //releaseCard sets iSTM to false, so change it right back afterward
+            boolean temp = AbstractDungeon.player.inSingleTargetMode;
+            AbstractDungeon.player.releaseCard();
+            AbstractDungeon.player.inSingleTargetMode=temp;
         }
     }
 
@@ -280,6 +286,7 @@ public class TargetSelectScreen extends CustomScreen {
                 }
 
                 //if ((AbstractDungeon.getCurrRoom()).monsters.areMonstersBasicallyDead() || InputHelper.justClickedRight || InputHelper.mY < 50.0F * Settings.scale || InputHelper.mY < ___hoverStartLine - 400.0F * Settings.scale) {
+                //if ((AbstractDungeon.getCurrRoom()).monsters.areMonstersBasicallyDead()) {
                 if ((AbstractDungeon.getCurrRoom()).monsters.areMonstersBasicallyDead()) {
                     if (Settings.isTouchScreen) {
                         InputHelper.moveCursorToNeutralPosition();

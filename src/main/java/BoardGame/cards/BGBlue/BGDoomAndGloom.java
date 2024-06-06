@@ -1,5 +1,6 @@
 package BoardGame.cards.BGBlue;
 
+import BoardGame.actions.BGChannelAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
@@ -38,7 +39,7 @@ public class BGDoomAndGloom extends AbstractBGCard {
         addToBot((AbstractGameAction)new VFXAction((AbstractCreature)p, (AbstractGameEffect)new CleaveEffect(), 0.1F));
         addToBot((AbstractGameAction)new DamageAllEnemiesAction((AbstractCreature)p,
                 this.multiDamage, this.damageTypeForTurn, AbstractGameAction.AttackEffect.NONE));
-        addToBot((AbstractGameAction)new ChannelAction((AbstractOrb)new BGDark()));
+        addToBot((AbstractGameAction)new BGChannelAction((AbstractOrb)new BGDark()));
     }
 
     public void upgrade() {

@@ -19,11 +19,11 @@ public class BGChaosAction extends AbstractGameAction {
 
     public void update() {
         if(TheDie.monsterRoll==1 || TheDie.monsterRoll==2)
-            addToTop((AbstractGameAction)new ChannelAction((AbstractOrb)new BGLightning()));
+            addToTop((AbstractGameAction)new BGChannelAction((AbstractOrb)new BGLightning()));
         if(TheDie.monsterRoll==3 || TheDie.monsterRoll==4)
-            addToTop((AbstractGameAction)new ChannelAction((AbstractOrb)new BGFrost()));
+            addToTop((AbstractGameAction)new BGChannelAction((AbstractOrb)new BGFrost()));
         if(TheDie.monsterRoll==5 || TheDie.monsterRoll==6)
-            addToTop((AbstractGameAction)new ChannelAction((AbstractOrb)new BGDark()));
+            addToTop((AbstractGameAction)new BGChannelAction((AbstractOrb)new BGDark()));
 
 
 

@@ -25,7 +25,7 @@ public class DazedIcon extends AbstractCustomIcon {
 
     public List<TooltipInfo> getCustomTooltips() {
         List<TooltipInfo>list=new ArrayList<>();
-        list.add(new TooltipInfo("[BoardGame:DazedIcon] Dazed","Put a Dazed on top of your draw pile."));
+        list.add(new TooltipInfo("[BoardGame:DazedIcon] Daze","Put a Daze on top of your draw pile."));
         return list;
     }
 }

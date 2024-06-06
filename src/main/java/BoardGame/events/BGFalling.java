@@ -1,5 +1,6 @@
 package BoardGame.events;
 
+import BoardGame.cards.BGCurse.BGAscendersBane;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -68,22 +69,31 @@ public class BGFalling
     private void makeDialogOption(AbstractCard card){
         //TODO: more verbs for duplicate card types!
         String verb;
-        if(card.type== AbstractCard.CardType.SKILL){
+        if(card.type==AbstractCard.CardType.SKILL){
             verb=OPTIONS[1];
         }else if(card.type== AbstractCard.CardType.POWER){
             verb=OPTIONS[3];
-        }else if(card.type== AbstractCard.CardType.ATTACK){
-            verb=OPTIONS[5];
+        }else if(card.type== AbstractCard.CardType.ATTACK) {
+            verb = OPTIONS[5];
+        }else if(card instanceof BGAscendersBane){
+            verb = OPTIONS[11];
         }else{
             verb=OPTIONS[9];
         }
-        this.imageEventText.setDialogOption(verb+OPTIONS[10] +
-                FontHelper.colorString(card.name, "r"), card
-                .makeStatEquivalentCopy());
+
+        if(card instanceof BGAscendersBane) {
+            this.imageEventText.setDialogOption(verb + OPTIONS[10] +
+                    FontHelper.colorString(card.name, "r"),true);
+
+        }else{
+            this.imageEventText.setDialogOption(verb + OPTIONS[10] +
+                    FontHelper.colorString(card.name, "r"), card
+                    .makeStatEquivalentCopy());
+        }
     }
 
     private void setBodyText(AbstractCard card){
-        if(card.type== AbstractCard.CardType.SKILL) {
+        if(card.type==AbstractCard.CardType.SKILL) {
             this.imageEventText.updateBodyText(DESCRIPTIONS[2]);
         }else if(card.type== AbstractCard.CardType.POWER){
             this.imageEventText.updateBodyText(DESCRIPTIONS[3]);
@@ -121,6 +131,11 @@ public class BGFalling
                         this.imageEventText.setDialogOption(OPTIONS[6], true);
                     }
                 }
+                if(!this.skill && !this.power && this.attackCard instanceof BGAscendersBane) {
+                    this.imageEventText.setDialogOption(OPTIONS[8]);
+                }
+
+
                 return;
             case CHOICE:
                 this.screen = CurScreen.RESULT;
@@ -150,6 +165,11 @@ public class BGFalling
                         logMetricCardRemoval("Falling", "Removed Card", this.attackCard);
                         AbstractDungeon.player.masterDeck.removeCard(this.attackCard);
                         break;
+                    case 3:
+                        if(!this.skill && !this.power && this.attackCard instanceof BGAscendersBane) {
+                            this.imageEventText.updateBodyText(DESCRIPTIONS[5]);
+                            logMetricIgnored("Falling"); break;
+                        }
                 }
 
                 return;

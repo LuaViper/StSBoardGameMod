@@ -1,5 +1,6 @@
 package BoardGame.powers;
 
+import BoardGame.actions.CheckAkabekoStrengthCapAction;
 import BoardGame.cards.BGRed.BGLimitBreak;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
@@ -13,6 +14,7 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
 
+//TODO LATER: depending on rulings, we might uncap strength altogether but manually cap it to 8 during calculations/numberdisplay.
 public class BGAkabekoPower extends AbstractBGPower {
     public static final String POWER_ID = "BGAkabeko";
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:Akabeko");
@@ -32,6 +34,7 @@ public class BGAkabekoPower extends AbstractBGPower {
     public void onInitialApplication() {
         //TODO: if we were already strength-capped, set gainedStrengthSuccessfully to false
         addToTop((AbstractGameAction) new ApplyPowerAction((AbstractCreature) this.owner, (AbstractCreature) this.owner, (AbstractPower) new StrengthPower((AbstractCreature) AbstractDungeon.player, 1), 1));
+        addToTop(new CheckAkabekoStrengthCapAction(this));
     }
 
     public void updateDescription() {

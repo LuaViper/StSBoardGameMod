@@ -1,5 +1,6 @@
 package BoardGame.powers;
 
+import BoardGame.cards.BGBlue.BGStrike_Blue;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -42,26 +43,26 @@ public class BGApotheosisPower
     private void updateExistingStrikes() {
         for (AbstractCard c : AbstractDungeon.player.hand.group) {
             if (c.hasTag(AbstractCard.CardTags.STARTER_STRIKE)) {
-                if(!c.upgraded){c.baseDamage = 1+this.amount;}else{c.baseDamage = 2+this.amount;}
+                if(!c.upgraded || c instanceof BGStrike_Blue){c.baseDamage = 1+this.amount;}else{c.baseDamage = 2+this.amount;}
 
             }
         }
 
         for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
             if (c.hasTag(AbstractCard.CardTags.STARTER_STRIKE)) {
-                if(!c.upgraded){c.baseDamage = 1+this.amount;}else{c.baseDamage = 2+this.amount;}
+                if(!c.upgraded || c instanceof BGStrike_Blue){c.baseDamage = 1+this.amount;}else{c.baseDamage = 2+this.amount;}
             }
         }
 
         for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
             if (c.hasTag(AbstractCard.CardTags.STARTER_STRIKE)) {
-                if(!c.upgraded){c.baseDamage = 1+this.amount;}else{c.baseDamage = 2+this.amount;}
+                if(!c.upgraded || c instanceof BGStrike_Blue){c.baseDamage = 1+this.amount;}else{c.baseDamage = 2+this.amount;}
             }
         }
 
         for (AbstractCard c : AbstractDungeon.player.exhaustPile.group) {
             if (c.hasTag(AbstractCard.CardTags.STARTER_STRIKE)) {
-                if(!c.upgraded){c.baseDamage = 1+this.amount;}else{c.baseDamage = 2+this.amount;}
+                if(!c.upgraded || c instanceof BGStrike_Blue){c.baseDamage = 1+this.amount;}else{c.baseDamage = 2+this.amount;}
             }
         }
     }

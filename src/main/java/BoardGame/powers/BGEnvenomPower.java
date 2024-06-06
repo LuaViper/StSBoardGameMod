@@ -40,7 +40,7 @@ public class BGEnvenomPower extends AbstractBGPower {
     public void onAttack(DamageInfo info, int damageAmount, AbstractCreature target) {
         if (target != this.owner && info.type == DamageInfo.DamageType.NORMAL) {
             flash();
-            addToTop((AbstractGameAction)new ApplyPowerAction(target, this.owner, new BGPoisonPower(target, this.owner, this.amount), this.amount, true));
+            addToBot((AbstractGameAction)new ApplyPowerAction(target, this.owner, new BGPoisonPower(target, this.owner, this.amount), this.amount, true));
         }
     }
 }

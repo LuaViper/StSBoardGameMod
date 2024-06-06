@@ -1,5 +1,6 @@
 package BoardGame.cards.BGBlue;
 
+import BoardGame.actions.BGChannelAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
 import BoardGame.orbs.BGLightning;
@@ -32,7 +33,7 @@ public class BGBallLightning extends AbstractBGCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HEAVY));
         for (int i = 0; i < this.magicNumber; i++)
-            addToBot((AbstractGameAction)new ChannelAction((AbstractOrb)new BGLightning()));
+            addToBot((AbstractGameAction)new BGChannelAction((AbstractOrb)new BGLightning()));
     }
 
     public void upgrade() {

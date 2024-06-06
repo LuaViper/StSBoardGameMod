@@ -77,7 +77,8 @@ public class BGWeMeetAgain
         } else {
             this.imageEventText.setDialogOption(OPTIONS[5], true);
         }
-        if(softlocked)
+        //if(softlocked)
+        if(true)
             this.imageEventText.setDialogOption(OPTIONS[7]);
     }
 
@@ -119,8 +120,7 @@ public class BGWeMeetAgain
         switch (this.screen) {
             case INTRO:
                 this.screen = CUR_SCREEN.COMPLETE;
-                if(!softlocked){
-                    switch (buttonPressed) {
+                switch (buttonPressed) {
                     case 0:
                         reliclock=false;
                         this.imageEventText.updateBodyText(DESCRIPTIONS[1] + DESCRIPTIONS[5]);
@@ -146,13 +146,13 @@ public class BGWeMeetAgain
                         //TODO: localization
                         AbstractDungeon.gridSelectScreen.open(getRanwiddableCards(), 1, "Choose a card to remove from your deck.", false, false, false, true);
                         break;
-                }
-                }else{
-                    reliclock=false;
-                    this.imageEventText.updateBodyText(DESCRIPTIONS[4]);
-                    CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.HIGH, ScreenShake.ShakeDur.SHORT, false);
-                    CardCrawlGame.sound.play("BLUNT_HEAVY");
-                    logMetricIgnored("WeMeetAgain");
+                    case 3:
+                        reliclock=false;
+                        this.imageEventText.updateBodyText(DESCRIPTIONS[4]);
+                        CardCrawlGame.screenShake.shake(ScreenShake.ShakeIntensity.HIGH, ScreenShake.ShakeDur.SHORT, false);
+                        CardCrawlGame.sound.play("BLUNT_HEAVY");
+                        logMetricIgnored("WeMeetAgain");
+                        break;
                 }
                 this.imageEventText.updateDialogOption(0, OPTIONS[8]);
                 this.imageEventText.clearRemainingOptions();

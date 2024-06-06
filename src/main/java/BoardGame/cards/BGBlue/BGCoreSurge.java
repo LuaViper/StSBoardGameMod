@@ -1,5 +1,6 @@
 package BoardGame.cards.BGBlue;
 
+import BoardGame.actions.BGCoreSurgeAttackAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGDefect;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -28,7 +29,12 @@ public class BGCoreSurge extends AbstractBGCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot((AbstractGameAction)new RemoveSpecificPowerAction((AbstractCreature)p, (AbstractCreature)p, "BGWeakened"));
         addToBot((AbstractGameAction)new RemoveSpecificPowerAction((AbstractCreature)p, (AbstractCreature)p, "BGVulnerable"));
-        addToBot((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
+        //we can't recalculate card damage yet because RemoveSpecificPower hasn't run,
+        // so we need a custom action to do it for us
+        addToBot(new BGCoreSurgeAttackAction(this,p,m));
+//        applyPowers();
+//        calculateCardDamage(m);
+//        addToBot((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
     }
 
     public void upgrade() {
