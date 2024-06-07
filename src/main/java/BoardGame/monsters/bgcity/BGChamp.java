@@ -143,7 +143,7 @@ public class BGChamp
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
                         .get(1), AbstractGameAction.AttackEffect.NONE));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new GainBlockAction((AbstractCreature)this, 3));
-                setMove((byte)1, AbstractMonster.Intent.ATTACK, ((DamageInfo)this.damage.get(1)).base);
+                setMove((byte)1, AbstractMonster.Intent.ATTACK, ((DamageInfo)this.damage.get(0)).base);
                 break;
             case 4: //debuff
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new SFXAction("MONSTER_CHAMP_CHARGE"));
