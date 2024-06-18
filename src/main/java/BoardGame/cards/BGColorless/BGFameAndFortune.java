@@ -16,11 +16,16 @@ import com.megacrit.cardcrawl.vfx.SpotlightPlayerEffect;
 public class BGFameAndFortune extends AbstractBGAttackCardChoice {
     public static final String ID = "BGFameAndFortune";
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGFameAndFortune");
+    private AbstractCard wishCard;
 
     public BGFameAndFortune() {
+        this(null);
+    }
+    public BGFameAndFortune(AbstractCard wishCard) {
         super("BGFameAndFortune", cardStrings.NAME, "colorless/skill/fame_and_fortune", -2, cardStrings.DESCRIPTION, CardType.STATUS, BGColorless.Enums.CARD_COLOR, CardRarity.SPECIAL, CardTarget.NONE);
         this.baseMagicNumber=4;
         magicNumber=baseMagicNumber;
+        this.wishCard=wishCard;
     }
 
 
@@ -31,7 +36,7 @@ public class BGFameAndFortune extends AbstractBGAttackCardChoice {
     public void onChoseThisOption() {
         AbstractDungeon.effectList.add(new RainingGoldEffect(this.magicNumber * 20, true));
         AbstractDungeon.effectsQueue.add(new SpotlightPlayerEffect());
-        addToBot((AbstractGameAction)new BGGainMiracleAction(this.magicNumber));
+        addToBot((AbstractGameAction)new BGGainMiracleAction(this.magicNumber,wishCard));
     }
 
 
@@ -45,7 +50,7 @@ public class BGFameAndFortune extends AbstractBGAttackCardChoice {
     }
 
     public AbstractCard makeCopy() {
-        return new BGFameAndFortune();
+        return new BGFameAndFortune(null);
     }
 }
 

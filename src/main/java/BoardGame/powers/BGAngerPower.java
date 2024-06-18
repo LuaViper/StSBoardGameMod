@@ -36,16 +36,6 @@ public class BGAngerPower extends AbstractBGPower implements AfterCompletelyReso
         this.amount = amount;
         updateDescription();
         loadRegion("anger");
-        //TODO NEXT NEXT: onAfterUseCard works with Distraction, still doesn't work with Feel No Pain
-        // FNP triggers onExhaust
-        // onAfterCardPlayed is player only, and probably not late enough anyway
-        //TODO NEXT NEXT:
-        // insert patch, targeting abstractgameaction.tickduration
-        // if (this.duration == UseCardAction.DUR)     //ReflectionHacks.getPrivateStatic
-        //  for (AbstractPower p : m.powers)
-        //    if (!card.dontTriggerOnUseCard)
-        //      if(p instanceof AfterCompletelyResolveCardPower)
-        //        p.onAfterCompletelyResolveCard(card, this);
     }
 
 

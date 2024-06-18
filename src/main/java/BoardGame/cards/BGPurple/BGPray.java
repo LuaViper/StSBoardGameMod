@@ -23,7 +23,7 @@ public class BGPray extends AbstractBGCard {
     }
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot(new BGGainMiracleAction(magicNumber));
+        addToBot(new BGGainMiracleAction(magicNumber,this));
         addToBot(new DrawCardAction(2));
         addToBot(new ApplyPowerAction(p,p,new NoDrawPower(p)));
     }

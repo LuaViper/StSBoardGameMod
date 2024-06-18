@@ -96,7 +96,7 @@ public class BGApotheosisPower
     public void onDrawOrDiscard() {
         for (AbstractCard c : AbstractDungeon.player.hand.group) {
             if (c.hasTag(AbstractCard.CardTags.STARTER_STRIKE))
-                if(!c.upgraded){c.baseDamage = 1+this.amount;}else{c.baseDamage = 2+this.amount;}
+                if(!c.upgraded || c instanceof BGStrike_Blue){c.baseDamage = 1+this.amount;}else{c.baseDamage = 2+this.amount;}
             if (c.hasTag(AbstractCard.CardTags.STARTER_DEFEND))
                 if(!c.upgraded){c.baseBlock = 1+this.amount;}else{c.baseBlock = 2+this.amount;}
         }

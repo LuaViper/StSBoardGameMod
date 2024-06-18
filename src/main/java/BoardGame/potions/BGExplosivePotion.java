@@ -47,9 +47,7 @@ public class BGExplosivePotion extends AbstractPotion {
         }
 
         addToBot((AbstractGameAction)new WaitAction(0.5F));
-        addToBot((AbstractGameAction)new DamageAllEnemiesAction(AbstractDungeon.player,
-
-
+        addToBot((AbstractGameAction)new DamageAllEnemiesAction(null,
                 DamageInfo.createDamageMatrix(this.potency, true), DamageInfo.DamageType.NORMAL, AbstractGameAction.AttackEffect.NONE));
     }
 

@@ -11,7 +11,9 @@ import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
+import java.util.List;
 
 public class BGWhetstone
         extends AbstractBGRelic implements ClickableRelic
@@ -52,12 +54,20 @@ public class BGWhetstone
         return desc;
     }
 
+    public static final List<AbstractDungeon.CurrentScreen> blockingScreens =
+            Arrays.asList(AbstractDungeon.CurrentScreen.GRID,
+        AbstractDungeon.CurrentScreen.TRANSFORM);
+
     @Override
     public void onRightClick() {// On right click
         if (!isObtained || usedThisTurn || AbstractDungeon.getCurrRoom().phase == AbstractRoom.RoomPhase.COMBAT ) {
             return;
         }
-        if(AbstractDungeon.isScreenUp && AbstractDungeon.screen!= AbstractDungeon.CurrentScreen.MAP){
+        if(AbstractDungeon.isScreenUp && AbstractDungeon.screen != AbstractDungeon.CurrentScreen.MAP){
+            return;
+        }
+        if(AbstractDungeon.isScreenUp &&
+                BGWhetstone.blockingScreens.contains(AbstractDungeon.previousScreen)){
             return;
         }
 

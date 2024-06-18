@@ -1,4 +1,5 @@
 package BoardGame.cards.BGRed;
+import BoardGame.actions.BGFiendFireAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGIronclad;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -33,7 +34,7 @@ public class BGFiendFire extends AbstractBGCard {
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot((AbstractGameAction)new FiendFireAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, this.damageTypeForTurn)));
+        addToBot((AbstractGameAction)new BGFiendFireAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, this.damageTypeForTurn)));
     }
 
 

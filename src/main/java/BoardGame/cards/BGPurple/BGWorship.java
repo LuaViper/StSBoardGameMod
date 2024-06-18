@@ -26,7 +26,7 @@ public class BGWorship extends AbstractBGCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         BGXCostCardAction.XCostInfo info = BGXCostCardAction.preProcessCard(this);
         addToBot((AbstractGameAction)new BGXCostCardAction(this, info,
-                (e,d)->addToTop((AbstractGameAction)new BGWorshipAction(AbstractDungeon.player, d, e))));
+                (e,d)->addToTop((AbstractGameAction)new BGWorshipAction(AbstractDungeon.player, d, e,this))));
     }
 
 

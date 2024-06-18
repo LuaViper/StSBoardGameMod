@@ -21,7 +21,7 @@ public class BGProstrate extends AbstractBGCard {
 
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot(new GainBlockAction(p,block));
-        addToBot(new BGGainMiracleAction(1));
+        addToBot(new BGGainMiracleAction(1,this));
     }
 
     public void upgrade() {

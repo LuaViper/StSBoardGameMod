@@ -621,7 +621,7 @@
   },
   "BoardGame:BGGhostly Armor": {
     "NAME": "Ghostly Armor",
-    "DESCRIPTION": "Ethereal. NL !B! Block to any player."
+    "DESCRIPTION": "Ethereal. NL !B! [BoardGame:BlockIcon] to any player."
   },
   "BoardGame:BGGlacier": {
     "NAME": "Glacier",

@@ -3,6 +3,7 @@ package BoardGame.actions;
 
 import BoardGame.cards.BGRed.BGWhirlwind;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
@@ -16,17 +17,19 @@ public class BGWorshipAction
     private boolean dontExpendResources = false;
     private int energyOnUse = -1;
     private static final int extrahits=1;
+    private AbstractCard card;
 
 
     private AbstractPlayer p;
 
 
-    public BGWorshipAction(AbstractPlayer p, boolean dontExpendResources, int energyOnUse) {
+    public BGWorshipAction(AbstractPlayer p, boolean dontExpendResources, int energyOnUse, AbstractCard card) {
         this.p = p;
         this.dontExpendResources = dontExpendResources;
         this.duration = Settings.ACTION_DUR_XFAST;
         this.actionType = ActionType.SPECIAL;
         this.energyOnUse = energyOnUse;
+        this.card=card;
     }
 
 
@@ -44,7 +47,7 @@ public class BGWorshipAction
 
         if (effect > 0) {
             for (int i = effect - 1; i >= 0; i--) {
-                addToTop((AbstractGameAction) new BGGainMiracleAction(1));
+                addToTop((AbstractGameAction) new BGGainMiracleAction(1,card));
             }
             //logger.info("BGWhirlwindAction: subtract energy "+this.energyOnUse);
             if (!this.dontExpendResources) {

@@ -24,7 +24,7 @@ public class BGDeusExMachina extends AbstractBGCard {
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
-        addToBot((AbstractGameAction)new BGGainMiracleAction(magicNumber));
+        addToBot((AbstractGameAction)new BGGainMiracleAction(magicNumber,this));
     }
 
 

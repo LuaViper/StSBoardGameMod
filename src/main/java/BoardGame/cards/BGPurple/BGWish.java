@@ -30,7 +30,7 @@ public class BGWish extends AbstractBGCard {
         stanceChoices.add(new BGBecomeAlmighty());
         AbstractCard lf=new BGLiveForever();
         stanceChoices.add(lf);
-        stanceChoices.add(new BGFameAndFortune());
+        stanceChoices.add(new BGFameAndFortune(this));
         if (this.upgraded)
             for (AbstractCard c : stanceChoices)
                 c.upgrade();

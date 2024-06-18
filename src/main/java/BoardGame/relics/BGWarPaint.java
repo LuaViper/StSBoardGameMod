@@ -97,7 +97,10 @@ public class BGWarPaint
         if(AbstractDungeon.isScreenUp && AbstractDungeon.screen!= AbstractDungeon.CurrentScreen.MAP){
             return;
         }
-
+        if(AbstractDungeon.isScreenUp &&
+                BGWhetstone.blockingScreens.contains(AbstractDungeon.previousScreen)){
+            return;
+        }
 
         if(true){
             activated=true;

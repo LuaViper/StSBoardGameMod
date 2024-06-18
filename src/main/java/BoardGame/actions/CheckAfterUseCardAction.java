@@ -18,8 +18,8 @@ public class CheckAfterUseCardAction
             extends AbstractGameAction {
     private DamageInfo info;
     private DieControlledRelic relic = null;
-    private AbstractBGCard fakeCard = new BGShivSurrogate();
-    private UseCardAction fakeCardAction = new UseCardAction(fakeCard, target);
+    private AbstractBGCard fakeCard = null;
+    private UseCardAction fakeCardAction = null;
 
     public CheckAfterUseCardAction(AbstractBGCard fakeCard, UseCardAction fakeCardAction) {
         this.fakeCard = fakeCard;
