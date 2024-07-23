@@ -33,7 +33,7 @@ public class BGBeatOfDeathPower extends AbstractBGPower {
         }
         this.fontScale = 8.0F;
         this.amount += stackAmount;
-        int maxStacks=(AbstractDungeon.ascensionLevel<11) ? 100 : 120;
+        int maxStacks=(AbstractDungeon.ascensionLevel<11) ? 3 : 5;
         if(this.amount>maxStacks)this.amount=maxStacks; //TODO: max stacks is 5 on hardmode
     }
 

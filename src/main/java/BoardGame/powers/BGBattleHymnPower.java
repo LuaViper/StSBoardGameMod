@@ -44,6 +44,7 @@ public class BGBattleHymnPower extends AbstractBGPower {
                 }
                 int finalDamage = damage;
                 TargetSelectScreen.TargetSelectAction tssAction = (target) -> {
+                    if(target==null)return;
                     addToTop((AbstractGameAction) new DamageAction((AbstractCreature) target, new DamageInfo((AbstractCreature) AbstractDungeon.player, finalDamage, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.BLUNT_HEAVY));
                 };
                 addToTop((AbstractGameAction) new TargetSelectScreenAction(tssAction, "Choose a target for Battle Hymn."));

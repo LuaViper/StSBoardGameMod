@@ -74,6 +74,7 @@ public class BGDuality extends AbstractBGRelic implements DieControlledRelic, Ni
     public void activateDieAbility4(){
         flash();
         TargetSelectScreen.TargetSelectAction tssAction = (target) -> {
+            if(target==null)return;
             addToBot((AbstractGameAction) new DamageAction(target,
                     new DamageInfo(AbstractDungeon.player,2, DamageInfo.DamageType.THORNS),
                     AbstractGameAction.AttackEffect.BLUNT_LIGHT));

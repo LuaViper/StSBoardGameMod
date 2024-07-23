@@ -37,12 +37,12 @@ public class BGCorpseExplosionPower extends AbstractBGPower {
     public void onDeath() {
         if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead() &&
                 this.owner.currentHealth <= 0) {
-            addToBot((AbstractGameAction) new DamageAllEnemiesAction(
+            addToBot(new DamageAllEnemiesAction(
                     AbstractDungeon.player,
                     DamageInfo.createDamageMatrix(this.amount, true), DamageInfo.DamageType.THORNS, AbstractGameAction.AttackEffect.FIRE
                     ));
             AbstractCard card=originalcard.makeStatEquivalentCopy();
-            addToBot((AbstractGameAction) new BGDiscardCorpseExplosionAction(card));
+            addToBot(new BGDiscardCorpseExplosionAction(card));
         }
     }
 

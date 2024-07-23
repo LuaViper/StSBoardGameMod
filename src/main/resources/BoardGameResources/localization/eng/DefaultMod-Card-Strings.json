@@ -364,6 +364,10 @@
     "NAME": "Demon Form",
     "DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: NL Gain [BoardGame:StrIcon] ."
   },
+  "BoardGame:BGDesync": {
+    "NAME": "Desync",
+    "DESCRIPTION": "An error has occurred. NL One of your other mods is not compatible with The Board Game."
+  },
   "BoardGame:BGDeusExMachina": {
     "NAME": "Deus Ex Machina",
     "DESCRIPTION": "[BoardGame:MiracleIcon] [BoardGame:MiracleIcon] NL Exhaust.",

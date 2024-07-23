@@ -61,6 +61,7 @@ public class BGCharonsAshes extends AbstractBGRelic implements DieControlledReli
 
             addToBot((AbstractGameAction) new ExhaustAction(1, false));
             TargetSelectScreen.TargetSelectAction tssAction = (target) -> {
+                if(target==null)return;
                 addToBot((AbstractGameAction) new DamageAction(target,
                         new DamageInfo(AbstractDungeon.player, 2, DamageInfo.DamageType.THORNS),
                         AbstractGameAction.AttackEffect.FIRE));

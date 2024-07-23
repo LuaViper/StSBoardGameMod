@@ -1,6 +1,7 @@
 package BoardGame.cards;
 
 import BoardGame.BoardGame;
+
 import BoardGame.characters.BGColorless;
 import basemod.AutoAdd;
 import com.badlogic.gdx.graphics.Texture;
@@ -100,6 +101,9 @@ public class BGGoldenTicket extends AbstractBGCard {
                 if(c.getClassName().equals(BGGoldenTicket.class.getName())){
                     itr.remove();
                 }
+//                if(c.getClassName().equals(BGDesync.class.getName())){
+//                    itr.remove();
+//                }
             }
         }
         private static class Locator extends SpireInsertLocator {

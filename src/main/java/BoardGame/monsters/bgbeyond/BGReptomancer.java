@@ -127,7 +127,7 @@ public class BGReptomancer extends AbstractBGMonster implements BGDamageIcons {
                     AbstractDungeon.actionManager.addToBottom((AbstractGameAction) new SetMoveAction(this, (byte) 3, AbstractMonster.Intent.ATTACK_DEBUFF, 7, 1, false));
                 }
                 break;
-            case 1:
+            case 1: //Ascension 0 3x2
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ChangeStateAction(this, "ATTACK"));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new WaitAction(0.3F));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractGameEffect)new BiteEffect(AbstractDungeon.player.hb.cX +
@@ -163,7 +163,7 @@ public class BGReptomancer extends AbstractBGMonster implements BGDamageIcons {
                 }
                 break;
 
-            case 2:
+            case 2: //Ascension 0 7
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new AnimateFastAttackAction((AbstractCreature)this));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractGameEffect)new BiteEffect(AbstractDungeon.player.hb.cX +
 
@@ -179,7 +179,7 @@ public class BGReptomancer extends AbstractBGMonster implements BGDamageIcons {
                 break;
 
 
-            case 3:
+            case 3: //Ascension 1+ 7
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new AnimateFastAttackAction((AbstractCreature)this));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractGameEffect)new BiteEffect(AbstractDungeon.player.hb.cX +
 
@@ -207,20 +207,19 @@ public class BGReptomancer extends AbstractBGMonster implements BGDamageIcons {
                 }
                 break;
 
-            case 4:
+            case 4: //Ascension 1+ 4x2
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ChangeStateAction(this, "ATTACK"));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new WaitAction(0.3F));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractGameEffect)new BiteEffect(AbstractDungeon.player.hb.cX +
                         MathUtils.random(-50.0F, 50.0F) * Settings.scale, AbstractDungeon.player.hb.cY +
                         MathUtils.random(-50.0F, 50.0F) * Settings.scale, Color.ORANGE
                         .cpy()), 0.1F));
-
-                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage
-                        .get(3), AbstractGameAction.AttackEffect.NONE));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage.get(3), AbstractGameAction.AttackEffect.NONE));
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new VFXAction((AbstractGameEffect)new BiteEffect(AbstractDungeon.player.hb.cX +
                         MathUtils.random(-50.0F, 50.0F) * Settings.scale, AbstractDungeon.player.hb.cY +
                         MathUtils.random(-50.0F, 50.0F) * Settings.scale, Color.ORANGE
                         .cpy()), 0.1F));
+                AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new DamageAction((AbstractCreature)AbstractDungeon.player, this.damage.get(3), AbstractGameAction.AttackEffect.NONE));
 
                 AbstractDungeon.actionManager.addToBottom((AbstractGameAction)new ApplyPowerAction((AbstractCreature)this, (AbstractCreature)this, (AbstractPower)new StrengthPower(this, 1), 1));
 

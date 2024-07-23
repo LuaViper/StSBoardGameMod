@@ -32,6 +32,7 @@ public class BGNoxiousFumesPower extends AbstractBGPower {
         if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
             flash();
             TargetSelectScreen.TargetSelectAction tssAction = (target) -> {
+                if(target==null)return;
                 addToBot((AbstractGameAction)new ApplyPowerAction((AbstractCreature)target, this.owner, new BGPoisonPower((AbstractCreature)target, this.owner, this.amount), this.amount));
             };
             //logger.info("DoubleTap addToTop");

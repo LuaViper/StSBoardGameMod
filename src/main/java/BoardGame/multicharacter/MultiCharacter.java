@@ -132,6 +132,16 @@ public class MultiCharacter extends AbstractBGPlayer {
     public ArrayList<String> getStartingDeck() {
         ArrayList<String> retVal = new ArrayList<>();
         logger.info("Begin loading starter Deck Strings");
+//        retVal.add("BGDesync");
+//        retVal.add("BGDesync");
+//        retVal.add("BGDesync");
+//        retVal.add("BGDesync");
+//        retVal.add("BGDesync");
+//        retVal.add("BGDesync");
+//        retVal.add("BGDesync");
+//        retVal.add("BGDesync");
+//        retVal.add("BGDesync");
+//        retVal.add("BGDesync");
         retVal.add("BGStrike_R");
         retVal.add("BGStrike_R");
         retVal.add("BGStrike_R");

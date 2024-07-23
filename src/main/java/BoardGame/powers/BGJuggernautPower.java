@@ -54,6 +54,7 @@ public class BGJuggernautPower extends AbstractBGPower {
 //            }
 
             TargetSelectScreen.TargetSelectAction action=(target)->{
+                if(target==null)return;
                 addToTop((AbstractGameAction) new DamageAction((AbstractCreature) target, new DamageInfo(this.owner, this.amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
 //                if(target instanceof BGTransient){
 //                    transientSkipCounter--;

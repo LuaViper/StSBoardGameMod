@@ -31,6 +31,7 @@ public class BGDuality2Damage extends AbstractBGAttackCardChoice {
 
     public void onChoseThisOption() {
         TargetSelectScreen.TargetSelectAction tssAction = (target) -> {
+            if(target==null)return;
             addToBot((AbstractGameAction) new DamageAction(target,
                     new DamageInfo(AbstractDungeon.player,2, DamageInfo.DamageType.THORNS),
                     AbstractGameAction.AttackEffect.BLUNT_LIGHT));
@@ -47,4 +48,5 @@ public class BGDuality2Damage extends AbstractBGAttackCardChoice {
         return new BGDuality2Damage();
     }
 }
+
 

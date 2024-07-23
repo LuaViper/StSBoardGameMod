@@ -46,6 +46,7 @@ public class BGTheBoot extends AbstractBGRelic implements DieControlledRelic {
         addToBot((AbstractGameAction)new RelicAboveCreatureAction((AbstractCreature)AbstractDungeon.player, this));
 
         TargetSelectScreen.TargetSelectAction tssAction = (target) -> {
+            if(target==null)return;
             addToBot((AbstractGameAction) new DamageAction(target,
                     new DamageInfo(AbstractDungeon.player,1, DamageInfo.DamageType.THORNS),
                     AbstractGameAction.AttackEffect.BLUNT_LIGHT));

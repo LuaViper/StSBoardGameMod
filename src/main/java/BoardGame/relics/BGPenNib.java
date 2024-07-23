@@ -46,6 +46,7 @@ public class BGPenNib extends AbstractBGRelic implements DieControlledRelic {
         addToBot((AbstractGameAction)new RelicAboveCreatureAction((AbstractCreature)AbstractDungeon.player, this));
 
         TargetSelectScreen.TargetSelectAction tssAction = (target) -> {
+            if(target==null)return;
             addToBot((AbstractGameAction) new ApplyPowerAction(target,AbstractDungeon.player,new BGVulnerablePower(target,1,false),1 ));
         };
         addToBot((AbstractGameAction)new TargetSelectScreenAction(tssAction,"Choose a target for Pen Nib (1 Vulnerable)."));

@@ -33,6 +33,7 @@ public class BGCarveReality extends AbstractBGCard {
     public void use(AbstractPlayer p, AbstractMonster m) {
         addToBot((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.SLASH_HEAVY));
         TargetSelectScreen.TargetSelectAction tssAction = (target) -> {
+            if(target==null)return;
             if(target!=m) {
                 UseCardAction fakeShivAction = new UseCardAction(this, target);
                 this.calculateCardDamage(target);

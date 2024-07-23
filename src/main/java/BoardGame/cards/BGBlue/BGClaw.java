@@ -30,8 +30,13 @@ public class BGClaw extends AbstractBGCard {
     }
 
 
-
-
+    private boolean shouldGlow() {
+        return IsTopDiscardZeroCost()>0;
+    }
+    public void triggerOnGlowCheck() {
+        this
+                .glowColor = shouldGlow() ? AbstractCard.GOLD_BORDER_GLOW_COLOR.cpy() : AbstractCard.BLUE_BORDER_GLOW_COLOR.cpy();
+    }
 
 
     public void use(AbstractPlayer p, AbstractMonster m) {
