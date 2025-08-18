@@ -9,7 +9,7 @@
   },
   "BoardGame:BGAmplify": {
     "NAME": "Amplify",
-    "DESCRIPTION": "boardgame:Dark Orbs boardgame:Evoke for +!M! damage."
+    "DESCRIPTION": "BoardGame:Dark Orbs BoardGame:Evoke for +!M! damage."
   },
   "BoardGame:Bash": {
     "NAME": "Bash",
@@ -57,7 +57,7 @@
   },
   "BoardGame:BGBallLightning": {
     "NAME": "Ball Lightning",
-    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL boardgame:Channel 1 boardgame:Lightning."
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL BoardGame:Channel 1 BoardGame:Lightning."
   },
   "BoardGame:BGBane": {
     "NAME": "Bane",
@@ -74,7 +74,7 @@
   },
   "BoardGame:BGBattleHymn": {
     "NAME": "Battle Hymn",
-    "DESCRIPTION": "[#EFC851]Once [#EFC851]per [#EFC851]turn[]: NL Deal !M! damage, NL +!M! if you're in boardgame:Wrath."
+    "DESCRIPTION": "[#EFC851]Once [#EFC851]per [#EFC851]turn[]: NL Deal !M! damage, NL +!M! if you're in BoardGame:Wrath."
   },
   "BoardGame:BGBeamCell": {
     "NAME": "Beam Cell",
@@ -107,7 +107,7 @@
   },
   "BoardGame:BGBlizzard": {
     "NAME": "Blizzard",
-    "DESCRIPTION": "Deal [BoardGame:AOEIcon] !D! [BoardGame:HitIcon] for each boardgame:Frost orb you have."
+    "DESCRIPTION": "Deal [BoardGame:AOEIcon] !D! [BoardGame:HitIcon] for each BoardGame:Frost orb you have."
   },
   "BoardGame:BGBlood for Blood": {
     "NAME": "Blood for Blood",
@@ -128,8 +128,8 @@
   },
   "BoardGame:BGBouncingFlask": {
     "NAME": "Bouncing Flask",
-    "DESCRIPTION": "[BoardGame:PoisonIcon] [BoardGame:PoisonIcon] NL Each boardgame:Poison may have a different target.",
-    "UPGRADE_DESCRIPTION": "[BoardGame:PoisonIcon] [BoardGame:PoisonIcon] [BoardGame:PoisonIcon] NL Each boardgame:Poison may have a different target.",
+    "DESCRIPTION": "[BoardGame:PoisonIcon] [BoardGame:PoisonIcon] NL Each BoardGame:Poison may have a different target.",
+    "UPGRADE_DESCRIPTION": "[BoardGame:PoisonIcon] [BoardGame:PoisonIcon] [BoardGame:PoisonIcon] NL Each BoardGame:Poison may have a different target.",
     "EXTENDED_DESCRIPTION": [
       "Choose the first target for Bouncing Flask.",
       "Choose the next target for Bouncing Flask."
@@ -173,16 +173,16 @@
   },
   "BoardGame:BGChaos": {
     "NAME": "Chaos",
-    "DESCRIPTION": "boardgame:Channel the Orb the die is on. NL [BoardGame:Die1Icon] [BoardGame:Die2Icon] boardgame:Lightning NL [BoardGame:Die3Icon] [BoardGame:Die4Icon] boardgame:Frost        NL [BoardGame:Die5Icon] [BoardGame:Die6Icon] boardgame:Dark       ",
+    "DESCRIPTION": "BoardGame:Channel the Orb the die is on. NL [BoardGame:Die1Icon] [BoardGame:Die2Icon] BoardGame:Lightning NL [BoardGame:Die3Icon] [BoardGame:Die4Icon] BoardGame:Frost        NL [BoardGame:Die5Icon] [BoardGame:Die6Icon] BoardGame:Dark       ",
     "EXTENDED_DESCRIPTION": [
-      "boardgame:Channel the Orb the die is on. NL [BoardGame:Die1Icon] [BoardGame:Die2Icon] ",
-      "boardgame:Lightning NL [BoardGame:Die3Icon] [BoardGame:Die4Icon] ",
-      "boardgame:Frost        NL [BoardGame:Die5Icon] [BoardGame:Die6Icon] ",
-      "boardgame:Dark       ",
+      "BoardGame:Channel the Orb the die is on. NL [BoardGame:Die1Icon] [BoardGame:Die2Icon] ",
+      "BoardGame:Lightning NL [BoardGame:Die3Icon] [BoardGame:Die4Icon] ",
+      "BoardGame:Frost        NL [BoardGame:Die5Icon] [BoardGame:Die6Icon] ",
+      "BoardGame:Dark       ",
       " NL (Channel 1 ",
-      "boardgame:Lightning. )",
-      "boardgame:Frost. )",
-      "boardgame:Dark. )"
+      "BoardGame:Lightning. )",
+      "BoardGame:Frost. )",
+      "BoardGame:Dark. )"
 
     ]
   },
@@ -224,7 +224,7 @@
   },
   "BoardGame:BGColdSnap": {
     "NAME": "Cold Snap",
-    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL boardgame:Channel 1 boardgame:Frost."
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL BoardGame:Channel 1 BoardGame:Frost."
   },
   "BoardGame:BGCollect": {
     "NAME": "Collect",
@@ -259,12 +259,12 @@
   },
   "BoardGame:BGConsume": {
     "NAME": "Consume",
-    "DESCRIPTION": "Orb boardgame:Evoke effects NL get +1."
+    "DESCRIPTION": "Orb BoardGame:Evoke effects NL get +1."
   },
   "BoardGame:BGCoolheaded": {
     "NAME": "Coolheaded",
-    "DESCRIPTION": "boardgame:Channel 1 boardgame:Frost.",
-    "UPGRADE_DESCRIPTION": "boardgame:Channel 1 boardgame:Frost. NL Draw a card."
+    "DESCRIPTION": "BoardGame:Channel 1 BoardGame:Frost.",
+    "UPGRADE_DESCRIPTION": "BoardGame:Channel 1 BoardGame:Frost. NL Draw a card."
   },
   "BoardGame:BGCopiedCard": {
     "NAME": "Copied Card",
@@ -282,8 +282,8 @@
   },
   "BoardGame:BGCrescendo": {
     "NAME": "Crescendo",
-    "DESCRIPTION": "Retain. NL Enter boardgame:Wrath. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "Retain. NL Enter boardgame:Wrath. NL Draw 1 card. NL Exhaust."
+    "DESCRIPTION": "Retain. NL Enter BoardGame:Wrath. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "Retain. NL Enter BoardGame:Wrath. NL Draw 1 card. NL Exhaust."
   },
   "BoardGame:BGCripplingCloud": {
     "NAME": "Crippling Cloud",
@@ -292,7 +292,7 @@
   },
   "BoardGame:BGCrushJoints": {
     "NAME": "Crush Joints",
-    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL If you're in boardgame:Wrath, [BoardGame:VulnIcon] ."
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL If you're in BoardGame:Wrath, [BoardGame:VulnIcon] ."
   },
   "BoardGame:BGCutThroughFate": {
     "NAME": "Cut Through Fate",
@@ -309,7 +309,7 @@
   },
   "BoardGame:BGDarkness": {
     "NAME": "Darkness",
-    "DESCRIPTION": "boardgame:Channel 1 boardgame:Dark."
+    "DESCRIPTION": "BoardGame:Channel 1 BoardGame:Dark."
   },
   "BoardGame:BGDarkShackles": {
     "NAME": "Dark Shackles",
@@ -412,7 +412,7 @@
   },
   "BoardGame:BGDoomAndGloom": {
     "NAME": "Doom and Gloom",
-    "DESCRIPTION": "[BoardGame:AOEIcon] !D! [BoardGame:HitIcon] NL boardgame:Channel 1 boardgame:Dark."
+    "DESCRIPTION": "[BoardGame:AOEIcon] !D! [BoardGame:HitIcon] NL BoardGame:Channel 1 BoardGame:Dark."
   },
   "BoardGame:BGDoppelganger": {
     "NAME": "Doppelganger",
@@ -439,11 +439,11 @@
   },
   "BoardGame:BGDramatic Entrance": {
     "NAME": "Dramatic Entrance",
-    "DESCRIPTION": "[BoardGame:AOEIcon] !D! [BoardGame:HitIcon] NL +!M! damage if it's the first turn of combat."
+    "DESCRIPTION": "[BoardGame:AOEIcon] !D! [BoardGame:HitIcon] NL +!M! damage if it's the first turn of combat. NL Exhaust."
   },
   "BoardGame:BGDualcast":{
     "NAME": "Dualcast",
-    "DESCRIPTION": "boardgame:Evoke an Orb twice."
+    "DESCRIPTION": "BoardGame:Evoke an Orb twice."
   },
   "BoardGame:BGDuality2Block":{
     "NAME": "Yin",
@@ -460,19 +460,19 @@
   },
   "BoardGame:BGElectrodynamics": {
     "NAME": "Electrodynamics",
-    "DESCRIPTION": "boardgame:Lightning deals damage to any row instead of a single target. NL When played, NL boardgame:Channel !M! boardgame:Lightning."
+    "DESCRIPTION": "BoardGame:Lightning deals damage to any row instead of a single target. NL When played, NL BoardGame:Channel !M! BoardGame:Lightning."
   },
   "BoardGame:BGEmptyBody": {
     "NAME": "Empty Body",
-    "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL Enter boardgame:Neutral."
+    "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL Enter BoardGame:Neutral."
   },
   "BoardGame:BGEmptyFist": {
     "NAME": "Empty Fist",
-    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL Enter boardgame:Neutral."
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL Enter BoardGame:Neutral."
   },
   "BoardGame:BGEmptyMind": {
     "NAME": "Empty Mind",
-    "DESCRIPTION": "Draw !M! cards. NL Enter boardgame:Neutral."
+    "DESCRIPTION": "Draw !M! cards. NL Enter BoardGame:Neutral."
   },
   "BoardGame:BGEntrench": {
     "NAME": "Entrench",
@@ -490,7 +490,7 @@
   },
   "BoardGame:BGEruption": {
     "NAME": "Eruption",
-    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL Enter boardgame:Wrath."
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL Enter BoardGame:Wrath."
   },
   "BoardGame:BGEscapePlan": {
     "NAME": "Escape Plan",
@@ -507,8 +507,8 @@
   },
   "BoardGame:BGShivSurrogate": {
     "NAME": "Shiv",
-    "DESCRIPTION": "Deal !D! damage. NL For debug purposes only. In the Board Game, boardgame:Shivs are tokens, not cards.",
-    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL For debug purposes only. You can't upgrade boardgame:Shivs in the Board Game."
+    "DESCRIPTION": "Deal !D! damage. NL For debug purposes only. In the Board Game, BoardGame:Shivs are tokens, not cards.",
+    "UPGRADE_DESCRIPTION": "Deal !D! damage. NL For debug purposes only. You can't upgrade BoardGame:Shivs in the Board Game."
   },
   "BoardGame:BGFameAndFortune": {
     "NAME": "Fame and Fortune",
@@ -517,7 +517,7 @@
   },
   "BoardGame:BGFearNoEvil": {
     "NAME": "Fear No Evil",
-    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL If you're in boardgame:Wrath, NL enter boardgame:Calm."
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL If you're in BoardGame:Wrath, NL enter BoardGame:Calm."
   },
   "BoardGame:BGFeed": {
     "NAME": "Feed",
@@ -553,7 +553,7 @@
   "BoardGame:BGFission": {
     "NAME": "Fission",
     "DESCRIPTION": "Remove all of your Orbs. NL For each Orb removed, gain [B] and draw a card. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "boardgame:Evoke all of your Orbs. NL For each Orb boardgame:Evoked, gain [B] and draw a card. NL Exhaust."
+    "UPGRADE_DESCRIPTION": "BoardGame:Evoke all of your Orbs. NL For each Orb BoardGame:Evoked, gain [B] and draw a card. NL Exhaust."
   },
   "BoardGame:BGFlame Barrier": {
     "NAME": "Flame Barrier",
@@ -629,8 +629,8 @@
   },
   "BoardGame:BGGlacier": {
     "NAME": "Glacier",
-    "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL boardgame:Channel 1 boardgame:Frost.",
-    "UPGRADE_DESCRIPTION": "!B! [BoardGame:BlockIcon] to any player. NL boardgame:Channel 1 boardgame:Frost."
+    "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL BoardGame:Channel 1 BoardGame:Frost.",
+    "UPGRADE_DESCRIPTION": "!B! [BoardGame:BlockIcon] to any player. NL BoardGame:Channel 1 BoardGame:Frost."
   },
   "BoardGame:BGGoForTheEyes": {
     "NAME": "Go for the Eyes",
@@ -659,7 +659,7 @@
   },
   "BoardGame:BGHalt": {
     "NAME": "Halt",
-    "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL +!M! [BoardGame:BlockIcon] if you're in boardgame:Wrath."
+    "DESCRIPTION": "!B! [BoardGame:BlockIcon] NL +!M! [BoardGame:BlockIcon] if you're in BoardGame:Wrath."
   },
   "BoardGame:BGHandOfGreed": {
     "NAME": "Hand of Greed",
@@ -702,8 +702,8 @@
   },
   "BoardGame:BGIndignation": {
     "NAME": "Indignation",
-    "DESCRIPTION": "If you're in boardgame:Wrath, [BoardGame:VulnIcon] . NL Otherwise, enter boardgame:Wrath.",
-    "UPGRADE_DESCRIPTION": "If you're in boardgame:Wrath, [BoardGame:AOEIcon] [BoardGame:VulnIcon] NL Otherwise, enter boardgame:Wrath."
+    "DESCRIPTION": "If you're in BoardGame:Wrath, [BoardGame:VulnIcon] . NL Otherwise, enter BoardGame:Wrath.",
+    "UPGRADE_DESCRIPTION": "If you're in BoardGame:Wrath, [BoardGame:AOEIcon] [BoardGame:VulnIcon] NL Otherwise, enter BoardGame:Wrath."
   },
   "BoardGame:BGInfinite Blades": {
     "NAME": "Infinite Blades",
@@ -716,7 +716,7 @@
   },
   "BoardGame:BGInnerPeace": {
     "NAME": "Inner Peace",
-    "DESCRIPTION": "If you're in boardgame:Calm, NL draw !M! cards. NL Otherwise, enter boardgame:Calm."
+    "DESCRIPTION": "If you're in BoardGame:Calm, NL draw !M! cards. NL Otherwise, enter BoardGame:Calm."
   },
   "BoardGame:BGIron Wave": {
     "NAME": "Iron Wave",
@@ -754,7 +754,7 @@
   },
   "BoardGame:BGLikeWater": {
     "NAME": "Like Water",
-    "DESCRIPTION": "[#EFC851]End [#EFC851]of [#EFC851]turn[]: NL If you're in boardgame:Calm, !M! [BoardGame:BlockIcon] ."
+    "DESCRIPTION": "[#EFC851]End [#EFC851]of [#EFC851]turn[]: NL If you're in BoardGame:Calm, !M! [BoardGame:BlockIcon] ."
   },
   "BoardGame:BGLimitBreak": {
     "NAME": "Limit Break",
@@ -795,8 +795,8 @@
   },
   "BoardGame:BGMeditate": {
     "NAME": "Meditate",
-    "DESCRIPTION": "Put !M! card from your discard pile into your hand and Retain it. NL Enter boardgame:Calm. NL You can't play additional cards this turn.",
-    "UPGRADE_DESCRIPTION": "Put !M! cards from your discard pile into your hand and Retain them. NL Enter boardgame:Calm. NL You can't play additional cards this turn."
+    "DESCRIPTION": "Put !M! card from your discard pile into your hand and Retain it. NL Enter BoardGame:Calm. NL You can't play additional cards this turn.",
+    "UPGRADE_DESCRIPTION": "Put !M! cards from your discard pile into your hand and Retain them. NL Enter BoardGame:Calm. NL You can't play additional cards this turn."
   },
   "BoardGame:BGMelter": {
     "NAME": "Melter",
@@ -824,8 +824,8 @@
   },
   "BoardGame:BGMultiCast": {
     "NAME": "Multi-Cast",
-    "DESCRIPTION": "boardgame:Evoke 1 Orb X times.",
-    "UPGRADE_DESCRIPTION": "boardgame:Evoke 1 Orb X+1 times."
+    "DESCRIPTION": "BoardGame:Evoke 1 Orb X times.",
+    "UPGRADE_DESCRIPTION": "BoardGame:Evoke 1 Orb X+1 times."
   },
   "BoardGame:BGNeutralize": {
     "NAME": "Neutralize",
@@ -907,7 +907,7 @@
   "BoardGame:BGPommelStrike": {
     "NAME": "Pommel Strike",
     "DESCRIPTION": "!D! [BoardGame:HitIcon] NL Draw a card.",
-    "UPGRADE_DESCRIPTION": "!D! [Boardgame:HitIcon] NL Draw !M! cards."
+    "UPGRADE_DESCRIPTION": "!D! [BoardGame:HitIcon] NL Draw !M! cards."
   },
   "BoardGame:BGPower Through": {
     "NAME": "Power Through",
@@ -941,8 +941,8 @@
   },
   "BoardGame:BGRainbow": {
     "NAME": "Rainbow",
-    "DESCRIPTION": "boardgame:Channel 1 boardgame:Lightning. NL boardgame:Channel 1 boardgame:Frost. NL boardgame:Channel 1 boardgame:Dark. Exhaust.",
-    "UPGRADE_DESCRIPTION": "boardgame:Channel 1 boardgame:Lightning. NL boardgame:Channel 1 boardgame:Frost. NL boardgame:Channel 1 boardgame:Dark."
+    "DESCRIPTION": "BoardGame:Channel 1 BoardGame:Lightning. NL BoardGame:Channel 1 BoardGame:Frost. NL BoardGame:Channel 1 BoardGame:Dark. Exhaust.",
+    "UPGRADE_DESCRIPTION": "BoardGame:Channel 1 BoardGame:Lightning. NL BoardGame:Channel 1 BoardGame:Frost. NL BoardGame:Channel 1 BoardGame:Dark."
   },
   "BoardGame:BGRampage": {
     "NAME": "Rampage",
@@ -959,7 +959,7 @@
   },
   "BoardGame:BGRecursion": {
     "NAME": "Recursion",
-    "DESCRIPTION": "boardgame:Evoke 1 Orb. NL boardgame:Channel the Orb that was just boardgame:Evoked."
+    "DESCRIPTION": "BoardGame:Evoke 1 Orb. NL BoardGame:Channel the Orb that was just BoardGame:Evoked."
   },
   "BoardGame:BGRecycle": {
     "NAME": "Recycle",
@@ -1000,7 +1000,7 @@
   },
   "BoardGame:BGRushdown": {
     "NAME": "Rushdown",
-    "DESCRIPTION": "The first time you enter boardgame:Wrath each turn, draw !M! cards."
+    "DESCRIPTION": "The first time you enter BoardGame:Wrath each turn, draw !M! cards."
   },
   "BoardGame:BGSadisticNature": {
     "NAME": "Sadistic Nature",
@@ -1012,8 +1012,8 @@
   },
   "BoardGame:BGSashWhip": {
     "NAME": "Sash Whip",
-    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL If you're in boardgame:Calm, [BoardGame:WeakIcon] .",
-    "UPGRADE_DESCRIPTION": "!D! [BoardGame:HitIcon] NL If you're in boardgame:Calm, NL [BoardGame:WeakIcon] [BoardGame:WeakIcon] ."
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL If you're in BoardGame:Calm, [BoardGame:WeakIcon] .",
+    "UPGRADE_DESCRIPTION": "!D! [BoardGame:HitIcon] NL If you're in BoardGame:Calm, NL [BoardGame:WeakIcon] [BoardGame:WeakIcon] ."
   },
   "BoardGame:BGScrape": {
     "NAME": "Scrape",
@@ -1053,11 +1053,11 @@
   },
   "BoardGame:BGShivsDiscardExtraShiv": {
     "NAME": "Discard",
-    "DESCRIPTION": "Discard the extra boardgame:Shiv without using it."
+    "DESCRIPTION": "Discard the extra BoardGame:Shiv without using it."
   },
   "BoardGame:BGShivsUseExtraShiv": {
     "NAME": "Shiv",
-    "DESCRIPTION": "Too many boardgame:Shivs! Use one now."
+    "DESCRIPTION": "Too many BoardGame:Shivs! Use one now."
   },
   "BoardGame:BGShockwave": {
     "NAME": "Shockwave",
@@ -1091,7 +1091,7 @@
   },
   "BoardGame:BGSimmeringFury": {
     "NAME": "Simmering Fury",
-    "DESCRIPTION": "Your [BoardGame:HitIcon] deal +!M! additional damage while in boardgame:Wrath."
+    "DESCRIPTION": "Your [BoardGame:HitIcon] deal +!M! additional damage while in BoardGame:Wrath."
   },
   "BoardGame:BGSkewer": {
     "NAME": "Skewer",
@@ -1121,7 +1121,7 @@
   },
   "BoardGame:BGStaticDischarge": {
     "NAME": "Static Discharge",
-    "DESCRIPTION": "boardgame:Lightning Orb NL [#EFC851]End [#EFC851]of [#EFC851]turn[] effects NL get +!M!."
+    "DESCRIPTION": "BoardGame:Lightning Orb NL [#EFC851]End [#EFC851]of [#EFC851]turn[] effects NL get +!M!."
   },
   "BoardGame:BGStormOfSteel": {
     "NAME": "Storm of Steel",
@@ -1159,7 +1159,7 @@
   },
   "BoardGame:BGStorm": {
     "NAME": "Storm",
-    "DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: NL boardgame:Channel !M! boardgame:Lightning."
+    "DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: NL BoardGame:Channel !M! BoardGame:Lightning."
   },
   "BoardGame:BGStreamline":{
     "NAME": "Streamline",
@@ -1183,7 +1183,7 @@
   },
   "BoardGame:BGStudy": {
     "NAME": "Study",
-    "DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: NL If you're in boardgame:Calm, draw 2 cards."
+    "DESCRIPTION": "[#EFC851]Start [#EFC851]of [#EFC851]turn[]: NL If you're in BoardGame:Calm, draw 2 cards."
   },
   "BoardGame:BGSurvivor": {
     "NAME": "Survivor",
@@ -1208,13 +1208,13 @@
   },
   "BoardGame:BGTantrum": {
     "NAME": "Tantrum",
-    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL Enter boardgame:Wrath. NL Put this card on top of your draw pile.",
-    "UPGRADE_DESCRIPTION": "!D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon] NL Enter boardgame:Wrath. NL Put this card on top of your draw pile."
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL Enter BoardGame:Wrath. NL Put this card on top of your draw pile.",
+    "UPGRADE_DESCRIPTION": "!D! [BoardGame:HitIcon] !D! [BoardGame:HitIcon] NL Enter BoardGame:Wrath. NL Put this card on top of your draw pile."
   },
   "BoardGame:BGTempest": {
     "NAME": "Tempest",
-    "DESCRIPTION": "boardgame:Channel X boardgame:Lightning. NL Exhaust.",
-    "UPGRADE_DESCRIPTION": "boardgame:Channel X+1 boardgame:Lightning. NL Exhaust."
+    "DESCRIPTION": "BoardGame:Channel X BoardGame:Lightning. NL Exhaust.",
+    "UPGRADE_DESCRIPTION": "BoardGame:Channel X+1 BoardGame:Lightning. NL Exhaust."
   },
   "BoardGame:BGTalkToTheHand": {
     "NAME": "Talk to the Hand",
@@ -1227,7 +1227,7 @@
   },
   "BoardGame:BGTranquility": {
     "NAME": "Tranquility",
-    "DESCRIPTION": "Retain. NL Enter boardgame:Calm. NL Exhaust."
+    "DESCRIPTION": "Retain. NL Enter BoardGame:Calm. NL Exhaust."
   },
   "BoardGame:BGThe Bomb": {
     "NAME": "The Bomb",
@@ -1270,7 +1270,7 @@
   },
   "BoardGame:BGThunderStrike": {
     "NAME": "Thunder Strike",
-    "DESCRIPTION": "Deal [BoardGame:AOEIcon] !D! [BoardGame:HitIcon] for each boardgame:Lightning Orb you have."
+    "DESCRIPTION": "Deal [BoardGame:AOEIcon] !D! [BoardGame:HitIcon] for each BoardGame:Lightning Orb you have."
   },
   "BoardGame:BGToolsOfTheTrade": {
     "NAME": "Tools of the Trade",
@@ -1306,7 +1306,7 @@
   },
   "BoardGame:BGVigilance": {
     "NAME": "Vigilance",
-    "DESCRIPTION": "!B! [BoardGame:BlockIcon] to any player. NL Enter boardgame:Calm."
+    "DESCRIPTION": "!B! [BoardGame:BlockIcon] to any player. NL Enter BoardGame:Calm."
   },
   "BoardGame:BGVoidCard": {
     "NAME": "Slimed",
@@ -1327,7 +1327,7 @@
   },
   "BoardGame:BGWeave": {
     "NAME": "Weave",
-    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL If you would discard this card while boardgame:Scrying, instead play it and it deals +!M! damage."
+    "DESCRIPTION": "!D! [BoardGame:HitIcon] NL If you would discard this card while BoardGame:Scrying, instead play it and it deals +!M! damage."
   },
   "BoardGame:BGWellLaidPlans": {
     "NAME": "Well Laid Plans",
@@ -1381,6 +1381,6 @@
   },
   "BoardGame:BGZap":{
     "NAME": "Zap",
-    "DESCRIPTION": "boardgame:Channel 1 boardgame:Lightning."
+    "DESCRIPTION": "BoardGame:Channel 1 BoardGame:Lightning."
   }
 }

@@ -1,6 +1,5 @@
 package BoardGame.powers;
 
-import BoardGame.powers.AbstractBGPower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.core.AbstractCreature;

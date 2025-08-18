@@ -114,7 +114,7 @@ public class BGNeowEvent
             talk(TEXT[10]);     //Time for a CHALLENGE...
             this.roomEventText.addDialogOption(OPTIONS[1]);
         }
-        else if (!isDone) {     //normally, boardgame starts HERE
+        else if (!isDone) {     //normally, BoardGame starts HERE
 //            this.screenNum = 2;       //standard intro
 //            talk(TEXT[MathUtils.random(1, 3)]);
 //            this.roomEventText.addDialogOption(OPTIONS[1]);

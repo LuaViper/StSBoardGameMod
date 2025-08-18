@@ -9,10 +9,7 @@ import BoardGame.multicharacter.patches.ContextPatches;
 import BoardGame.multicharacter.patches.HandLayoutHelper;
 import BoardGame.relics.BGBurningBlood;
 import BoardGame.relics.BGTheDieRelic;
-import BoardGame.ui.OverlayMenuPatches;
-import basemod.abstracts.CustomPlayer;
 import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.GL20;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -30,10 +27,7 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.*;
 import com.megacrit.cardcrawl.localization.CharacterStrings;
-import com.megacrit.cardcrawl.orbs.AbstractOrb;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.scenes.AbstractScene;
 import com.megacrit.cardcrawl.screens.CharSelectInfo;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import java.util.ArrayList;
@@ -55,10 +49,10 @@ public class MultiCharacter extends AbstractBGPlayer {
         @SpireEnum
         public static AbstractPlayer.PlayerClass BG_MULTICHARACTER;
 
-        @SpireEnum(name = "BG_BOARDGAME_COLOR")
+        @SpireEnum(name = "BG_BoardGame_COLOR")
         public static AbstractCard.CardColor CARD_COLOR;
 
-        @SpireEnum(name = "BG_BOARDGAME_COLOR")
+        @SpireEnum(name = "BG_BoardGame_COLOR")
         public static CardLibrary.LibraryType LIBRARY_COLOR;
     }
 
@@ -184,7 +178,7 @@ public class MultiCharacter extends AbstractBGPlayer {
             relics.add("Frozen Eye");
         int index = 0;
 
-        //TODO: "if(BoardGame.USE_BOARDGAME_RULES)" or inverse
+        //TODO: "if(BoardGame.USE_BoardGame_RULES)" or inverse
         for (String s : relics) {
             if (s.equals(BGTheDieRelic.ID)) {
                 RelicLibrary.getRelic(s).makeCopy().instantObtain((AbstractPlayer) this, index, false);

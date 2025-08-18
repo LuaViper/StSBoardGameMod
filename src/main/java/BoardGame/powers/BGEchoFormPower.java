@@ -1,12 +1,6 @@
 package BoardGame.powers;
 
-import BoardGame.actions.TargetSelectScreenAction;
 import BoardGame.cards.AbstractBGCard;
-import BoardGame.screen.TargetSelectScreen;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
-import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
-import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;

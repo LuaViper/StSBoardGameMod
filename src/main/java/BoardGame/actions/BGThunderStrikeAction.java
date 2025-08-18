@@ -1,7 +1,6 @@
 
 package BoardGame.actions;
 
-import BoardGame.cards.AbstractBGCard;
 import BoardGame.cards.BGRed.BGWhirlwind;
 import BoardGame.orbs.BGLightning;
 import BoardGame.powers.WeakVulnCancel;

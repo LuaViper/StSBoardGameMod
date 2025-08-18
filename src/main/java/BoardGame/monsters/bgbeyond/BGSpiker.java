@@ -1,5 +1,5 @@
 
-package BoardGame.monsters.bgbeyond; 
+package BoardGame.monsters.bgbeyond;
  import BoardGame.monsters.BGDamageIcons;
 import BoardGame.dungeons.BGTheBeyond;
 import BoardGame.monsters.DieControlledMoves;
@@ -17,13 +17,11 @@ import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.RollMoveAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.ThornsPower;
-import org.apache.logging.log4j.LogManager;
+ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 public class BGSpiker extends AbstractBGMonster implements DieControlledMoves, BGDamageIcons {
@@ -53,7 +51,8 @@ public class BGSpiker extends AbstractBGMonster implements DieControlledMoves, B
     private static final int BUFF_AMT = 2;
     private int thornsCount = 0;
 
-
+//TODO NEXT NEXT: final attack against Spiker (ending combat) still triggered recoil damage.
+//              it was a Whirlwind+ for reference.
     public BGSpiker(float x, float y) {
         super(NAME, "BGSpiker", 56, -8.0F, -10.0F, 150.0F, 150.0F, null, x, y + 10.0F);
 

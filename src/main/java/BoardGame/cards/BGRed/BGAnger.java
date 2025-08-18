@@ -1,7 +1,6 @@
 package BoardGame.cards.BGRed;
 
 import BoardGame.cards.AbstractBGCard;
-import BoardGame.cards.BGStatus.BGDazed;
 import BoardGame.characters.BGIronclad;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;

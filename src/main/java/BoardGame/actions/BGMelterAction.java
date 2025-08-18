@@ -1,7 +1,6 @@
 
 package BoardGame.actions;
 
-import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.RemoveAllBlockAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;

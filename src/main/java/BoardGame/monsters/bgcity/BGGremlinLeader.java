@@ -1,5 +1,5 @@
 
-package BoardGame.monsters.bgcity; 
+package BoardGame.monsters.bgcity;
  import BoardGame.actions.BGBuffAllEnemiesAction;
  import BoardGame.monsters.BGDamageIcons;
 import BoardGame.actions.BGSpawnTwoGremlinsForGremlinLeaderAction;

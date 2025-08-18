@@ -2,8 +2,6 @@
 package BoardGame.actions;
 
 import BoardGame.cards.AbstractBGCard;
-import BoardGame.powers.BGDoubleAttackPower;
-import BoardGame.powers.BGDoubleTapPower_DEPRECATED;
 import BoardGame.screen.TargetSelectScreen;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
@@ -13,8 +11,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.Collections;

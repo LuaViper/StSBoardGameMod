@@ -21,7 +21,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import BoardGame.monsters.AbstractBGMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
 
 public class BGGremlinNob extends AbstractBGMonster implements BGDamageIcons {
     public static final String ID = "BGGremlinNob";

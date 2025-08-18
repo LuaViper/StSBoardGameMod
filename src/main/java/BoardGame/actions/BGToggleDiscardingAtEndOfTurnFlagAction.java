@@ -1,6 +1,5 @@
 package BoardGame.actions;
 
-import BoardGame.cards.BGRed.BGSeverSoul;
 import BoardGame.dungeons.AbstractBGDungeon;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
@@ -11,7 +10,6 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.screens.select.HandCardSelectScreen;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 

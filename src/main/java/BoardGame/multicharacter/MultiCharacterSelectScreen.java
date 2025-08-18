@@ -1,19 +1,15 @@
 package BoardGame.multicharacter;
 
 import BoardGame.BoardGame;
-import BoardGame.characters.AbstractBGPlayer;
 import BoardGame.characters.BGDefect;
 import BoardGame.characters.BGIronclad;
 import BoardGame.characters.BGSilent;
 import BoardGame.characters.BGWatcher;
-import BoardGame.multicharacter.patches.UpdateActionPatch;
 import basemod.BaseMod;
 import basemod.ReflectionHacks;
 import basemod.abstracts.CustomScreen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -28,7 +24,6 @@ import java.util.ArrayList;
 import javassist.CannotCompileException;
 import javassist.expr.ExprEditor;
 import javassist.expr.FieldAccess;
-import javassist.expr.MethodCall;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 import BoardGame.ui.OverlayMenuPatches;

@@ -1,6 +1,5 @@
 package BoardGame.powers;
 
-import BoardGame.relics.BGPrismaticShard;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;

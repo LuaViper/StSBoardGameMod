@@ -11,9 +11,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.rewards.RewardItem;
-
-import java.util.ArrayList;
 
 //TODO: can we just have AbstractBGMonster implement BGDamageIcons instead of every individual monster?
 public abstract class AbstractBGMonster extends AbstractMonster implements MultiCreature {

@@ -1,18 +1,13 @@
 package BoardGame.multicharacter.patches;
 
-import BoardGame.dungeons.AbstractBGDungeon;
 import BoardGame.multicharacter.MultiCharacter;
 import BoardGame.multicharacter.MultiCreature;
-import BoardGame.neow.BGNeowQuickStart;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.MonsterQueueItem;
-import com.megacrit.cardcrawl.neow.NeowRoom;
-import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 

@@ -1,4 +1,4 @@
-package BoardGame.monsters.bgcity; 
+package BoardGame.monsters.bgcity;
  import BoardGame.monsters.BGDamageIcons;
 
 import BoardGame.cards.BGStatus.BGDazed;
@@ -20,10 +20,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.HexPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.powers.WeakPower;
+ import com.megacrit.cardcrawl.powers.StrengthPower;
 
 public class BGChosen extends AbstractBGMonster implements BGDamageIcons {
     public static final String ID = "BGChosen";

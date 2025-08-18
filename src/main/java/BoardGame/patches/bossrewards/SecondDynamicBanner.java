@@ -1,10 +1,6 @@
 package BoardGame.patches.bossrewards;
 
 import BoardGame.dungeons.AbstractBGDungeon;
-import BoardGame.dungeons.BGTheBeyond;
-import BoardGame.multicharacter.MultiCharacter;
-import basemod.BaseMod;
-import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -12,16 +8,9 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import com.megacrit.cardcrawl.map.DungeonMap;
 import com.megacrit.cardcrawl.rooms.TreasureRoomBoss;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
-import com.megacrit.cardcrawl.screens.select.BossRelicSelectScreen;
 import com.megacrit.cardcrawl.ui.buttons.DynamicBanner;
-import javassist.CannotCompileException;
-import javassist.expr.ExprEditor;
-import javassist.expr.MethodCall;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 

@@ -1,32 +1,23 @@
 
 package BoardGame.monsters.bgending;
 
-import BoardGame.actions.BGForcedWaitAction;
-import BoardGame.cards.BGStatus.BGDazed;
 import BoardGame.dungeons.AbstractBGDungeon;
 import BoardGame.monsters.AbstractBGMonster;
 import BoardGame.monsters.BGDamageIcons;
-import BoardGame.monsters.bgbeyond.BGSnakeDagger;
 import BoardGame.powers.BGDifferentRowsPower;
 import BoardGame.powers.BGSurroundedPower;
 import BoardGame.powers.BGZeroDamagePower;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.animations.AnimateFastAttackAction;
-import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.unique.LoseEnergyAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
@@ -34,10 +25,6 @@ import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.NoDrawPower;
 import com.megacrit.cardcrawl.powers.StrengthPower;
-import com.megacrit.cardcrawl.shop.OnSaleTag;
-import com.megacrit.cardcrawl.shop.ShopScreen;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
-import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 
 import java.util.Collections;
 

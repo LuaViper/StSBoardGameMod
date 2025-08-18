@@ -15,8 +15,6 @@ import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
-import javax.swing.*;
-
 public class BGDevotionPower extends AbstractBGPower {
     public static final String POWER_ID = "BGDevotionPower";
 

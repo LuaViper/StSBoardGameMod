@@ -1,7 +1,6 @@
 package BoardGame.multicharacter;
 
 import BoardGame.BoardGame;
-import BoardGame.characters.AbstractBGPlayer;
 import BoardGame.ui.OverlayMenuPatches;
 import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;

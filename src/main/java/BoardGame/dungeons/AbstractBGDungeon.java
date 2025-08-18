@@ -22,7 +22,6 @@ import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.EventHelper;
 import com.megacrit.cardcrawl.helpers.ModHelper;
@@ -37,7 +36,6 @@ import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.screens.CardRewardScreen;
 import com.megacrit.cardcrawl.screens.CombatRewardScreen;
-import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
@@ -83,11 +81,11 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
         public static SpireReturn<AbstractDungeon> Prefix(@ByRef String[] key, AbstractPlayer p) {
             if(p instanceof AbstractBGPlayer) {
                 if (key[0].equals("BoardGameSetupDungeon")){
-//                    //logger.info("BOARDGAME SETUPDUNGEON DETECTED");
+//                    //logger.info("BoardGame SETUPDUNGEON DETECTED");
 //                    ArrayList<String>emptyList = new ArrayList<>();
 //                    return SpireReturn.Return((AbstractDungeon)new BGSetupDungeon(p, emptyList));
                 }else if (key[0].equals("Exordium")) {
-                    //logger.info("BOARDGAME EXORDIUM DETECTED");
+                    //logger.info("BoardGame EXORDIUM DETECTED");
                     //do not change the key itself.  game is hard-coded in several places to check for "Exordium"
                     ArrayList<String>emptyList = new ArrayList<>();
                     return SpireReturn.Return((AbstractDungeon)new BGExordium(p, emptyList));
@@ -118,7 +116,7 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                 if (key[0].equals("BoardGameSetupDungeon")) {
 //                    return SpireReturn.Return((AbstractDungeon)new BGSetupDungeon(p, saveFile));
                 }else if (key[0].equals("Exordium")) {
-                    //logger.info("BOARDGAME EXORDIUM DETECTED (savefile)");
+                    //logger.info("BoardGame EXORDIUM DETECTED (savefile)");
                     //do not change key.  game is hard-coded to check for "Exordium"
                     return SpireReturn.Return((AbstractDungeon)new BGExordium(p, saveFile));
                 }else if(key[0].equals("TheCity")){

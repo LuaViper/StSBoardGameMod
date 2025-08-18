@@ -1,12 +1,9 @@
 //TODO: there is an unhandled edge case where right dagger kills itself via Thorns after Reptomancer has already checked if daggers are dead
 
-package BoardGame.monsters.bgbeyond; 
+package BoardGame.monsters.bgbeyond;
  import BoardGame.cards.BGStatus.BGDazed;
  import BoardGame.monsters.BGDamageIcons;
-import BoardGame.monsters.DieControlledMoves;
-import BoardGame.powers.BGWeakPower;
-import com.megacrit.cardcrawl.actions.common.*;
-import com.megacrit.cardcrawl.actions.utility.HideHealthBarAction;
+ import com.megacrit.cardcrawl.actions.common.*;
  import com.megacrit.cardcrawl.cards.AbstractCard;
  import com.megacrit.cardcrawl.core.CardCrawlGame;
 import BoardGame.monsters.AbstractBGMonster;
@@ -19,16 +16,13 @@ import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
+ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.MinionPower;
  import com.megacrit.cardcrawl.powers.StrengthPower;
- import com.megacrit.cardcrawl.powers.WeakPower;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
+ import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 
 public class BGReptomancer extends AbstractBGMonster implements BGDamageIcons {

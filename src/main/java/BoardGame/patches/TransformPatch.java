@@ -1,23 +1,12 @@
 package BoardGame.patches;
 
-import BoardGame.BoardGame;
 import BoardGame.dungeons.AbstractBGDungeon;
-import BoardGame.powers.AbstractBGPower;
 import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.random.Random;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
-import javassist.*;
-import javassist.expr.Expr;
-import javassist.expr.ExprEditor;
-import javassist.expr.FieldAccess;
-import javassist.expr.MethodCall;
 
 import java.util.ArrayList;
 import java.util.Iterator;

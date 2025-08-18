@@ -1,24 +1,10 @@
 package BoardGame.multicharacter.grid;
 
-import BoardGame.cards.AbstractBGCard;
-import BoardGame.characters.BGColorless;
-import BoardGame.dungeons.AbstractBGDungeon;
-import basemod.BaseMod;
 import basemod.ReflectionHacks;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.screens.CardRewardScreen;
-import javassist.CannotCompileException;
-import javassist.CtBehavior;
-
-import java.util.ArrayList;
 
 public class GridHealthBarSize {
     //TODO: also healthBarRevivedEvent

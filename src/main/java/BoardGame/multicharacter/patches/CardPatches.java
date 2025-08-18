@@ -1,9 +1,6 @@
 package BoardGame.multicharacter.patches;
 
-import BoardGame.characters.AbstractBGPlayer;
 import BoardGame.multicharacter.MultiCharacter;
-import BoardGame.multicharacter.MultiCreature;
-import BoardGame.multicharacter.grid.GridBackground;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;

@@ -1,16 +1,10 @@
 package BoardGame.actions;
-import BoardGame.cards.AbstractBGAttackCardChoice;
-import BoardGame.cards.BGColorless.BGShivsDiscardExtraShiv;
-import BoardGame.cards.BGColorless.BGShivsUseExtraShiv;
 import BoardGame.relics.AbstractBGRelic;
 import BoardGame.relics.BGShivs;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-
-import java.util.ArrayList;
 
 //TODO: apparently the game stops prompting for extra shivs if you kill Awakened One Phase 1 with one of them
 //TODO: it is suspected that Cunning Potion will close BGEntropicBrew menu

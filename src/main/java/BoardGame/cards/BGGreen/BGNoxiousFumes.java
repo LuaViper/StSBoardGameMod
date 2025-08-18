@@ -18,8 +18,6 @@ import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.swing.*;
-
 public class BGNoxiousFumes extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGNoxiousFumes");
     public static final String ID = "BGNoxiousFumes";

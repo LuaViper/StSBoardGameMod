@@ -1,14 +1,10 @@
 package BoardGame.powers;
 
-import BoardGame.BoardGame;
-import BoardGame.relics.AbstractBGRelic;
 import BoardGame.relics.BGShivs;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 public class BGAccuracyPower extends AbstractBGPower {

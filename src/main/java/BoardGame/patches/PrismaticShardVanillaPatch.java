@@ -1,27 +1,15 @@
 package BoardGame.patches;
 
-import BoardGame.cards.BGRed.BGSeverSoul;
 import BoardGame.characters.*;
-import BoardGame.dungeons.AbstractBGDungeon;
-import BoardGame.multicharacter.MultiCharacter;
-import basemod.BaseMod;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.helpers.CardLibrary;
-import com.megacrit.cardcrawl.relics.PrismaticShard;
-import com.megacrit.cardcrawl.screens.select.HandCardSelectScreen;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
-import javassist.expr.ExprEditor;
-import javassist.expr.FieldAccess;
-import javassist.expr.MethodCall;
 
 import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.Collection;
 
 public class PrismaticShardVanillaPatch {
     public static ArrayList<AbstractCard.CardColor> excludedColors;

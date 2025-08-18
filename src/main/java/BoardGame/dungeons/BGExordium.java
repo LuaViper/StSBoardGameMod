@@ -25,7 +25,6 @@ import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import com.megacrit.cardcrawl.scenes.TheBottomScene;
 import com.megacrit.cardcrawl.screens.DungeonMapScreen;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 import org.apache.logging.log4j.LogManager;
@@ -51,7 +50,11 @@ public class BGExordium
     public static ArrayList<String> darkMapTokenPool=new ArrayList<>();
     public static ArrayList<String> lightMapTokenPool=new ArrayList<>();
     public static void shuffleMapTokens(){
-        darkMapTokenPool=new ArrayList<String>(Arrays.asList("E","E","E","M","M","M","?","?"));
+        if (Settings.isFinalActAvailable && !Settings.hasEmeraldKey) {
+            darkMapTokenPool = new ArrayList<String>(Arrays.asList("E", "E", "E", "É", "M", "M", "?", "?"));
+        }else {
+            darkMapTokenPool = new ArrayList<String>(Arrays.asList("E", "E", "E", "M", "M", "M", "?", "?"));
+        }
         lightMapTokenPool=new ArrayList<String>(Arrays.asList("M","?","$","$","R","R","R"));
         Collections.shuffle(darkMapTokenPool, new java.util.Random(mapRng.randomLong()));
         Collections.shuffle(lightMapTokenPool, new java.util.Random(mapRng.randomLong()));
@@ -245,6 +248,8 @@ public class BGExordium
     }
 
     protected void generateMonsters() {
+        //TODO NEXT NEXT: the change to modID may have broken everyone's savefiles, deal with it
+        //TODO NEXT NEXT: game crash if encounter list is empty upon entering a "?" that turns into a combat
         generateWeakEnemies(1);
         //weak enemy pool will be cleared immediately after first encounter is populated
         generateStrongEnemies(12);
@@ -395,6 +400,10 @@ public class BGExordium
                 break;
             case 'E':
                 node.room = (AbstractRoom) new MonsterRoomElite();
+                break;
+            case 'É':
+                node.room = (AbstractRoom) new MonsterRoomElite();
+                node.hasEmeraldKey = true;
                 break;
             case '.':
                 //empty node, no room
@@ -602,9 +611,11 @@ public class BGExordium
         firstRoomChosen = false;
 
         fadeIn();
+        //TODO: controllermode crash when clicking pandora'sbox. index 0 out of range -- maybe looking at blight list?
+        //TODO: controllermode crash when targeting enemies with shivs etc
         //TODO NEXT NEXT: don't use vanilla setEmeraldElite at all -- in addition to replacing the wrong token,
         // it can pick the hardcoded non-token map nodes as well
-        setEmeraldElite();
+        //setEmeraldElite();
 
     }
 

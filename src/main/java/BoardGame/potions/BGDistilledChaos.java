@@ -1,34 +1,24 @@
 
 package BoardGame.potions;
 
-import BoardGame.actions.BGPlayDrawnCardAction;
 import BoardGame.actions.BGPlayThreeDrawnCardsAction;
 import BoardGame.actions.TargetSelectScreenAction;
 import BoardGame.cards.AbstractBGCard;
-import BoardGame.cards.BGCurse.BGParasite;
 import BoardGame.screen.TargetSelectScreen;
-import BoardGame.ui.EntropicBrewPotionButton;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.common.DrawCardAction;
-import com.megacrit.cardcrawl.actions.common.ObtainPotionAction;
 import com.megacrit.cardcrawl.actions.utility.NewQueueCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import com.megacrit.cardcrawl.potions.PotionSlot;
-import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.vfx.ObtainPotionEffect;
 import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;

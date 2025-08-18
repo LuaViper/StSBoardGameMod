@@ -22,7 +22,6 @@ import com.megacrit.cardcrawl.rooms.*;
 import com.megacrit.cardcrawl.saveAndContinue.SaveFile;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import com.megacrit.cardcrawl.scenes.TheBeyondScene;
-import com.megacrit.cardcrawl.scenes.TheCityScene;
 import com.megacrit.cardcrawl.screens.DungeonMapScreen;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
@@ -48,7 +47,11 @@ public class BGTheBeyond
     public static ArrayList<String> darkMapTokenPool=new ArrayList<>();
     public static ArrayList<String> lightMapTokenPool=new ArrayList<>();
     public static void shuffleMapTokens(){  //TODO: move to AbstractBGDungeon
-        darkMapTokenPool=new ArrayList<String>(Arrays.asList("E","E","E","M","M","M","?","?"));
+        if (Settings.isFinalActAvailable && !Settings.hasEmeraldKey) {
+            darkMapTokenPool = new ArrayList<String>(Arrays.asList("E", "E", "E", "É", "M", "M", "?", "?"));
+        }else {
+            darkMapTokenPool = new ArrayList<String>(Arrays.asList("E", "E", "E", "M", "M", "M", "?", "?"));
+        }
         lightMapTokenPool=new ArrayList<String>(Arrays.asList("M","?","$","$","R","R","R"));
         Collections.shuffle(darkMapTokenPool, new java.util.Random(mapRng.randomLong()));
         Collections.shuffle(lightMapTokenPool, new java.util.Random(mapRng.randomLong()));
@@ -261,6 +264,10 @@ public class BGTheBeyond
             case 'E':
                 node.room = (AbstractRoom) new MonsterRoomElite();
                 break;
+            case 'É':
+                node.room = (AbstractRoom) new MonsterRoomElite();
+                node.hasEmeraldKey = true;
+                break;
             case '.':
                 //empty node, no room
                 break;
@@ -382,7 +389,7 @@ public class BGTheBeyond
         firstRoomChosen = false;
 
         fadeIn();
-        setEmeraldElite();
+        //setEmeraldElite();
 
 
 

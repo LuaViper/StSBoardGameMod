@@ -26,7 +26,7 @@ public class BGDramaticEntrance extends AbstractBGCard {
 
 
 
-
+        this.exhaust=true;
 
         this.baseDamage = 2;
         this.isMultiDamage=true;

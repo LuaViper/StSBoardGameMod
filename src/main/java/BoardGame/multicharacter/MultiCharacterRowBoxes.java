@@ -2,7 +2,6 @@ package BoardGame.multicharacter;
 
 import BoardGame.characters.AbstractBGPlayer;
 import BoardGame.util.TextureLoader;
-import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -11,7 +10,6 @@ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.MathHelper;
-import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 
 import java.util.ArrayList;
 

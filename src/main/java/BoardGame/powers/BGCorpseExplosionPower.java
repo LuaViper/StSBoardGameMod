@@ -2,7 +2,6 @@ package BoardGame.powers;
 
 import BoardGame.actions.BGDiscardCorpseExplosionAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
-import BoardGame.multicharacter.MultiCreature;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;

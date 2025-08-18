@@ -5,7 +5,6 @@ import BoardGame.powers.BGSurroundedPower;
 import BoardGame.powers.ManualStartTurnPhasePower;
 import basemod.ReflectionHacks;
 import basemod.abstracts.CustomPlayer;
-import com.megacrit.cardcrawl.cards.green.Doppelganger;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.GameCursor;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;

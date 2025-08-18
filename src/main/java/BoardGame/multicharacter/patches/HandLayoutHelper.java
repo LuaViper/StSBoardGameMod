@@ -1,7 +1,6 @@
 package BoardGame.multicharacter.patches;
 
 import BoardGame.multicharacter.MultiCharacter;
-import BoardGame.multicharacter.MultiCharacterSelectScreen;
 import BoardGame.multicharacter.MultiCreature;
 import BoardGame.multicharacter.grid.GridBackground;
 import basemod.ReflectionHacks;
@@ -18,14 +17,10 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 
-import javax.naming.Context;
 import java.util.ArrayList;
-
-import static com.badlogic.gdx.graphics.GL20.*;
 
 public class HandLayoutHelper {
 

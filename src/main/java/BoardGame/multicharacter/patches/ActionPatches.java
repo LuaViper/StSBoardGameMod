@@ -1,6 +1,5 @@
 package BoardGame.multicharacter.patches;
 
-import basemod.BaseMod;
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;

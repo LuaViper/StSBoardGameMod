@@ -1,7 +1,6 @@
-package BoardGame.monsters.bgbeyond; 
+package BoardGame.monsters.bgbeyond;
  import BoardGame.monsters.BGDamageIcons;
-import BoardGame.monsters.DieControlledMoves;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
+ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import BoardGame.monsters.AbstractBGMonster;
 
 import com.badlogic.gdx.math.MathUtils;
@@ -15,14 +14,12 @@ import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
+ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.ArtifactPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+ import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 
 public class BGDonu extends AbstractBGMonster implements BGDamageIcons {

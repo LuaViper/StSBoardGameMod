@@ -3,26 +3,15 @@ package BoardGame.patches;
 import BoardGame.dungeons.AbstractBGDungeon;
 import BoardGame.powers.AbstractBGPower;
 import BoardGame.relics.AbstractBGRelic;
-import BoardGame.relics.BGRegalPillow;
 import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.CardQueueItem;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.LocalizedStrings;
-import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.ui.campfire.RestOption;
-import javassist.CannotCompileException;
-import javassist.CtBehavior;
-
-import java.util.ArrayList;
 
 
 public class BGAboutToUseCard {

@@ -2,11 +2,7 @@ package BoardGame.actions;
 import BoardGame.cards.AbstractBGAttackCardChoice;
 import BoardGame.cards.BGColorless.BGShivsDiscardExtraShiv;
 import BoardGame.cards.BGColorless.BGShivsUseExtraShiv;
-import BoardGame.relics.AbstractBGRelic;
-import BoardGame.relics.BGShivs;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 

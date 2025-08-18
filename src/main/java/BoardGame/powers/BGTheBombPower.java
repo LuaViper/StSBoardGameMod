@@ -1,9 +1,7 @@
 package BoardGame.powers;
 
-import BoardGame.cards.BGRed.BGWhirlwind;
 import BoardGame.multicharacter.ALLEnemiesMonster;
 import BoardGame.multicharacter.patches.ActionPatches;
-import BoardGame.multicharacter.patches.CardTargetingPatches;
 import BoardGame.relics.BGTheDieRelic;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
@@ -17,11 +15,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
-
-import javax.swing.*;
 
 public class BGTheBombPower extends AbstractBGPower {
     public static final String POWER_ID = "BGTheBomb";

@@ -1,7 +1,6 @@
 
 package BoardGame.actions;
 
-import BoardGame.cards.AbstractBGCard;
 import BoardGame.cards.BGRed.BGWhirlwind;
 import BoardGame.powers.WeakVulnCancel;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;

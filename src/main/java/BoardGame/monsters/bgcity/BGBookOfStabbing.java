@@ -1,12 +1,10 @@
 //TODO: use GenericStrengthUpPower
 
-package BoardGame.monsters.bgcity; 
+package BoardGame.monsters.bgcity;
  import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.AbstractBGMonster;
-import BoardGame.monsters.DieControlledMoves;
-import BoardGame.powers.BGPainfulStabsPower;
-import BoardGame.thedie.TheDie;
-import com.badlogic.gdx.math.MathUtils;
+ import BoardGame.powers.BGPainfulStabsPower;
+ import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.*;
@@ -20,10 +18,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.PainfulStabsPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
+ import com.megacrit.cardcrawl.powers.StrengthPower;
 
 public class BGBookOfStabbing extends AbstractBGMonster implements BGDamageIcons {
     public static final String ID = "BGBookOfStabbing";

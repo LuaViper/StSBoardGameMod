@@ -1,10 +1,7 @@
 package BoardGame.patches.bestiary;
 
 import Bestiary.ui.Label;
-import Bestiary.ui.SmartLabel;
-import Bestiary.utils.ExtraColors;
 import Bestiary.utils.RenderingUtils;
-import BoardGame.dungeons.AbstractBGDungeon;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;
@@ -13,9 +10,7 @@ import com.evacipated.cardcrawl.mod.stslib.icons.AbstractCustomIcon;
 import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.evacipated.cardcrawl.mod.stslib.patches.TipBoxCustomIcons;
 import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import javassist.CtBehavior;
 

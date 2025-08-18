@@ -1,4 +1,4 @@
-package BoardGame.monsters.bgbeyond; 
+package BoardGame.monsters.bgbeyond;
  import BoardGame.cards.BGStatus.BGDazed;
  import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.AbstractBGMonster;
@@ -15,23 +15,16 @@ import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
 import com.megacrit.cardcrawl.actions.animations.FastShakeAction;
 import com.megacrit.cardcrawl.actions.animations.ShoutAction;
 import com.megacrit.cardcrawl.actions.common.*;
-import com.megacrit.cardcrawl.actions.unique.AddCardToDeckAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
+ import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.status.Dazed;
-import com.megacrit.cardcrawl.core.AbstractCreature;
+ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.CardLibrary;
-import com.megacrit.cardcrawl.localization.MonsterStrings;
+ import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.MalleablePower;
-import com.megacrit.cardcrawl.powers.ReactivePower;
-import com.megacrit.cardcrawl.powers.VulnerablePower;
-import com.megacrit.cardcrawl.powers.WeakPower;
-import org.apache.logging.log4j.LogManager;
+ import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
 //TODO: when hit with Skewer, Writhing Mass *repeatedly* switched to vulnerable and made several overlapping Ominous Noises

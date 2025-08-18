@@ -1,14 +1,11 @@
 package BoardGame.patches;
 
 import BoardGame.dungeons.AbstractBGDungeon;
-import BoardGame.relics.BGRegalPillow;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.localization.LocalizedStrings;
-import com.megacrit.cardcrawl.localization.UIStrings;
 import com.megacrit.cardcrawl.ui.campfire.RestOption;
 import com.megacrit.cardcrawl.vfx.campfire.CampfireSleepEffect;
 import javassist.CannotCompileException;

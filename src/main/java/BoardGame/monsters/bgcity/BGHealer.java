@@ -1,7 +1,6 @@
-package BoardGame.monsters.bgcity; 
+package BoardGame.monsters.bgcity;
  import BoardGame.monsters.BGDamageIcons;
-import BoardGame.dungeons.BGExordium;
-import BoardGame.dungeons.BGTheCity;
+ import BoardGame.dungeons.BGTheCity;
 import BoardGame.monsters.AbstractBGMonster;
 import BoardGame.monsters.DieControlledMoves;
 import BoardGame.powers.BGWeakPower;
@@ -20,8 +19,7 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.powers.AbstractPower;
-import com.megacrit.cardcrawl.powers.FrailPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
+ import com.megacrit.cardcrawl.powers.StrengthPower;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 

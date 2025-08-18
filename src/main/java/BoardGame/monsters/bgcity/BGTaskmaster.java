@@ -1,6 +1,6 @@
 //TODO: on A1+, should Taskmaster's 2nd action be ATTACK_DEBUFF or ATTACK_BUFF?
 
-package BoardGame.monsters.bgcity; 
+package BoardGame.monsters.bgcity;
  import BoardGame.cards.BGStatus.BGDazed;
  import BoardGame.monsters.BGDamageIcons;
 import BoardGame.monsters.AbstractBGMonster;
@@ -12,8 +12,7 @@ import com.megacrit.cardcrawl.actions.animations.AnimateSlowAttackAction;
  import com.megacrit.cardcrawl.actions.utility.SFXAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.status.Wound;
-import com.megacrit.cardcrawl.core.AbstractCreature;
+ import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;

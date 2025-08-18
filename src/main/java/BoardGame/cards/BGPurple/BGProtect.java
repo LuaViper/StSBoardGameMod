@@ -14,8 +14,9 @@ public class BGProtect extends AbstractBGCard {
     public static final String ID = "BGProtect";
 
     public BGProtect() {
-        super("BGSwivel", cardStrings.NAME, "purple/skill/protect", 2, cardStrings.DESCRIPTION, CardType.SKILL, BGWatcher.Enums.BG_PURPLE, CardRarity.COMMON, CardTarget.SELF);
+        super("BGProtect", cardStrings.NAME, "purple/skill/protect", 2, cardStrings.DESCRIPTION, CardType.SKILL, BGWatcher.Enums.BG_PURPLE, CardRarity.COMMON, CardTarget.SELF);
 
+        this.selfRetain=true;
         this.baseBlock=3;
     }
 

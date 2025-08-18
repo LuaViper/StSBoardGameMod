@@ -1,13 +1,7 @@
 package BoardGame.multicharacter.patches;
 
-import BoardGame.cards.AbstractBGCard;
-import BoardGame.dungeons.AbstractBGDungeon;
 import com.evacipated.cardcrawl.modthespire.lib.*;
-import com.megacrit.cardcrawl.actions.defect.AnimateOrbAction;
 import com.megacrit.cardcrawl.cards.Soul;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import com.megacrit.cardcrawl.monsters.EnemyMoveInfo;
 
 //TODO: we've hardcoded checks for AbstractBGCard -- make it compatible with AbstractCard too
 public class SoulsPatches {

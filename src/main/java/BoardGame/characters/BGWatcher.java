@@ -10,7 +10,6 @@ import BoardGame.multicharacter.UnselectablePlayer;
 import BoardGame.relics.BGCrackedCore;
 import BoardGame.relics.BGMiracles;
 import BoardGame.relics.BGTheDieRelic;
-import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;

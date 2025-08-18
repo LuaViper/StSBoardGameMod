@@ -1,14 +1,12 @@
 //use NoSkillsPower+VelvetChoker as a base for BGTimeWarpPower
 
 
-package BoardGame.monsters.bgbeyond; 
+package BoardGame.monsters.bgbeyond;
  import BoardGame.cards.BGStatus.BGDazed;
  import BoardGame.characters.BGWatcher;
  import BoardGame.monsters.BGDamageIcons;
 import BoardGame.cards.BGStatus.BGSlimed;
-import BoardGame.monsters.DieControlledMoves;
-import BoardGame.powers.BGInvinciblePlayerPower;
-import BoardGame.powers.BGTimeEaterPhase2WarningPower;
+ import BoardGame.powers.BGTimeEaterPhase2WarningPower;
 import BoardGame.powers.BGTimeWarpPower;
 import com.megacrit.cardcrawl.actions.common.*;
 import com.megacrit.cardcrawl.actions.unique.CanLoseAction;
@@ -22,15 +20,12 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.ShoutAction;
 import com.megacrit.cardcrawl.actions.animations.TalkAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
-import com.megacrit.cardcrawl.actions.unique.RemoveDebuffsAction;
-import com.megacrit.cardcrawl.actions.utility.WaitAction;
+ import com.megacrit.cardcrawl.actions.utility.WaitAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
-import com.megacrit.cardcrawl.cards.status.Slimed;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
+ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
+ import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.MonsterStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;

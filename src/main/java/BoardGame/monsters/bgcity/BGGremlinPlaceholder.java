@@ -1,4 +1,4 @@
-package BoardGame.monsters.bgcity; 
+package BoardGame.monsters.bgcity;
  import BoardGame.monsters.BGDamageIcons;
 
 import BoardGame.monsters.AbstractBGMonster;

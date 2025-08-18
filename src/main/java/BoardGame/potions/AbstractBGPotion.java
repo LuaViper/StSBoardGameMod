@@ -2,15 +2,11 @@ package BoardGame.potions;
 
 import BoardGame.events.BGNloth;
 import BoardGame.events.BGTheJoust;
-import BoardGame.events.BGWeMeetAgain;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.GameTips;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import com.megacrit.cardcrawl.shop.Merchant;
 import com.megacrit.cardcrawl.ui.panels.PotionPopUp;
 
 public abstract class AbstractBGPotion {

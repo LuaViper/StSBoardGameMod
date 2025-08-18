@@ -33,7 +33,6 @@ import com.evacipated.cardcrawl.mod.stslib.icons.CustomIconHelper;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.google.gson.Gson;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.CardHelper;
 import com.megacrit.cardcrawl.helpers.FontHelper;
 import com.megacrit.cardcrawl.helpers.Prefs;
@@ -41,7 +40,6 @@ import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import com.megacrit.cardcrawl.relics.AbstractRelic;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
@@ -61,9 +59,8 @@ import java.util.ArrayList;
 import java.util.Properties;
 
 import static basemod.BaseMod.addMonster;
-import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.bossRelicPool;
 
-//TODO: Game softlocks if boardgame character is started on a completely new profile (tries to skip Neow screen)
+//TODO: Game softlocks if BoardGame character is started on a completely new profile (tries to skip Neow screen)
 //TODO: implement PostCreditsNeow easter egg -- need to put these back in the box -- does anyone have opposable thumbs
 
 /*
@@ -502,7 +499,7 @@ public class BoardGame implements
 
 
         BaseMod.registerCustomReward(
-                TinyHouseUpgrade1CardTypePatch.BOARDGAME_UPGRADEREWARD,
+                TinyHouseUpgrade1CardTypePatch.BoardGame_UPGRADEREWARD,
                 (rewardSave) -> { // this handles what to do when this quest type is loaded.
                     return new TinyHouseUpgrade1Card(1);
                 },

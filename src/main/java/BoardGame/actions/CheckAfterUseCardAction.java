@@ -2,7 +2,6 @@ package BoardGame.actions;
 
 import BoardGame.BoardGame;
 import BoardGame.cards.AbstractBGCard;
-import BoardGame.cards.BGColorless.BGShivSurrogate;
 import BoardGame.relics.DieControlledRelic;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.utility.HandCheckAction;

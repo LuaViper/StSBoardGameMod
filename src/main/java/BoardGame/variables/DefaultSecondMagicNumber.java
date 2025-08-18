@@ -3,7 +3,6 @@ package BoardGame.variables;
 import BoardGame.cards.AbstractBGCard;
 import basemod.abstracts.DynamicVariable;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import BoardGame.cards.AbstractDefaultCard;
 
 import static BoardGame.BoardGame.makeID;
 

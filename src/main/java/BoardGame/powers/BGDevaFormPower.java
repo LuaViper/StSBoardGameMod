@@ -1,15 +1,9 @@
 package BoardGame.powers;
 
 import BoardGame.actions.BGGainMiracleAction;
-import basemod.ReflectionHacks;
-import com.esotericsoftware.spine.AnimationState;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
-import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 
 public class BGDevaFormPower extends AbstractBGPower {
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGDevaFormPower");

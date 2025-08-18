@@ -1,23 +1,17 @@
 package BoardGame.patches;
 
-import BoardGame.actions.BGToggleDiscardingAtEndOfTurnFlagAction;
 import BoardGame.characters.*;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.Color;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.screens.VictoryScreen;
-import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
 import com.megacrit.cardcrawl.vfx.BorderFlashEffect;
-import com.megacrit.cardcrawl.vfx.scene.*;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class RedWarningFlashPatches {
     @SpirePatch2(clz = AbstractPlayer.class, method = "damage",

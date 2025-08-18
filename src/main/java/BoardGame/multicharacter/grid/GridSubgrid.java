@@ -3,7 +3,6 @@ package BoardGame.multicharacter.grid;
 import BoardGame.multicharacter.MultiCharacter;
 import BoardGame.multicharacter.MultiCreature;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 

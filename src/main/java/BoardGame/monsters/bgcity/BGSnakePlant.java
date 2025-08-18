@@ -7,9 +7,8 @@
 
     //TODO: ascension 7+ attacks with 3 + AOE2 instead of 3 + 2.  no other changes though
 
- package BoardGame.monsters.bgcity; 
- import BoardGame.monsters.BGDamageIcons;
-import BoardGame.monsters.AbstractBGMonster;
+ package BoardGame.monsters.bgcity;
+ import BoardGame.monsters.AbstractBGMonster;
 import BoardGame.monsters.DieControlledMoves;
 import BoardGame.monsters.MixedAttacks;
 import BoardGame.powers.BGWeakPower;
@@ -34,8 +33,6 @@ import com.badlogic.gdx.graphics.Color;
  import com.megacrit.cardcrawl.localization.MonsterStrings;
  import com.megacrit.cardcrawl.monsters.AbstractMonster;
  import com.megacrit.cardcrawl.powers.AbstractPower;
- import com.megacrit.cardcrawl.powers.FrailPower;
- import com.megacrit.cardcrawl.powers.WeakPower;
  import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
  import com.megacrit.cardcrawl.vfx.combat.BiteEffect;
 import org.apache.logging.log4j.LogManager;

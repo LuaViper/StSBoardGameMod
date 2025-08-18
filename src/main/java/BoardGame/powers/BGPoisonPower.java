@@ -3,13 +3,7 @@ package BoardGame.powers;
 
 
 import BoardGame.BoardGame;
-import BoardGame.cards.BGGoldenTicket;
-import BoardGame.cards.BGRed.BGSeverSoul;
-import BoardGame.dungeons.AbstractBGDungeon;
-import BoardGame.monsters.bgexordium.BGGremlinAngry;
 import BoardGame.multicharacter.patches.AbstractDungeonMonsterPatches;
-import BoardGame.multicharacter.patches.UseCardPatch;
-import basemod.AutoAdd;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
@@ -18,8 +12,6 @@ import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
 import com.megacrit.cardcrawl.actions.unique.PoisonLoseHpAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -28,22 +20,14 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.powers.PoisonPower;
-import com.megacrit.cardcrawl.powers.StrengthPower;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.screens.select.HandCardSelectScreen;
-import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import com.megacrit.cardcrawl.vfx.ThoughtBubble;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 import javassist.expr.ExprEditor;
-import javassist.expr.FieldAccess;
 import javassist.expr.MethodCall;
-import org.clapper.util.classutil.ClassInfo;
 
-import javax.swing.*;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Iterator;
 
 public class BGPoisonPower extends AbstractBGPower {
     public static final String POWER_ID = "BGPoison";

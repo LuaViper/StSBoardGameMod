@@ -1,7 +1,6 @@
 package BoardGame.ui;
 
 import BoardGame.multicharacter.MultiCharacterRowBoxes;
-import BoardGame.multicharacter.grid.GridBackground;
 import BoardGame.relics.AbstractBGRelic;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;

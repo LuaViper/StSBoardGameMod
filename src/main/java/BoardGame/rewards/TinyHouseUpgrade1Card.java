@@ -5,13 +5,10 @@ import BoardGame.util.TextureLoader;
 import basemod.abstracts.CustomReward;
 import com.badlogic.gdx.graphics.Texture;
 import com.megacrit.cardcrawl.cards.AbstractCard;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.vfx.UpgradeShineEffect;
 import com.megacrit.cardcrawl.vfx.cardManip.ShowCardBrieflyEffect;
-
-import static basemod.BaseMod.openCustomScreen;
 
 public class TinyHouseUpgrade1Card extends CustomReward {
 
@@ -20,7 +17,7 @@ public class TinyHouseUpgrade1Card extends CustomReward {
 
     public int amount;
     public TinyHouseUpgrade1Card(int amount) {
-        super(ICON, "Upgrade a card", TinyHouseUpgrade1CardTypePatch.BOARDGAME_UPGRADEREWARD);
+        super(ICON, "Upgrade a card", TinyHouseUpgrade1CardTypePatch.BoardGame_UPGRADEREWARD);
     }
 
     @Override

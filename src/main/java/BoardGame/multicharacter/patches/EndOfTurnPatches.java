@@ -1,32 +1,18 @@
 package BoardGame.multicharacter.patches;
 
-import BoardGame.cards.AbstractBGCard;
-import BoardGame.characters.BGColorless;
-import BoardGame.dungeons.BGTheBeyond;
 import BoardGame.multicharacter.MultiCharacter;
-import basemod.BaseMod;
-import basemod.patches.com.megacrit.cardcrawl.cards.AbstractCard.RenderFixSwitches;
-import com.badlogic.gdx.graphics.Color;
-import com.badlogic.gdx.graphics.Texture;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.actions.GameActionManager;
 import com.megacrit.cardcrawl.actions.defect.TriggerEndOfTurnOrbsAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
-import javax.naming.Context;
 import java.util.ArrayList;
 
 public class EndOfTurnPatches {

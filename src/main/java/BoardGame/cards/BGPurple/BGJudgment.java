@@ -1,6 +1,5 @@
 package BoardGame.cards.BGPurple;
 
-import BoardGame.actions.BGJudgmentAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGWatcher;
 import com.badlogic.gdx.graphics.Color;

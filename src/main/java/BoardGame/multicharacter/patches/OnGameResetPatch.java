@@ -6,7 +6,6 @@ import BoardGame.patches.Ascension;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.helpers.TipTracker;
 import com.megacrit.cardcrawl.screens.DungeonTransitionScreen;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;

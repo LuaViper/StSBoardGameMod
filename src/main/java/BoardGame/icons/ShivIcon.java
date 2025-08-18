@@ -7,7 +7,7 @@ import com.evacipated.cardcrawl.mod.stslib.icons.AbstractCustomIcon;
 
 import java.util.ArrayList;
 import java.util.List;
-
+//TODO NEXT NEXT: game crash on viewing CERTAIN shiv cards in compendium -- inconsistent between steam and intellij, apparently
 public class ShivIcon extends AbstractCustomIcon {
     public static final String ID = "BoardGame:Shiv";    //reminder: "Icon" is automatically added
     private static ShivIcon singleton;

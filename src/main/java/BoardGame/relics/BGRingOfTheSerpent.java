@@ -1,6 +1,5 @@
 package BoardGame.relics;
 
-import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
 
 

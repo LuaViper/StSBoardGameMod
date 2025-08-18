@@ -1,25 +1,16 @@
 package BoardGame.powers;
 
-import BoardGame.actions.BGEvokeSpecificOrbAction;
 import BoardGame.actions.OrbSelectScreenAction;
 import BoardGame.orbs.BGDark;
-import BoardGame.relics.BGTheDieRelic;
 import BoardGame.screen.OrbSelectScreen;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
-import com.megacrit.cardcrawl.actions.common.ExhaustSpecificCardAction;
-import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
-import com.megacrit.cardcrawl.actions.defect.ChannelAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.orbs.EmptyOrbSlot;
-import com.megacrit.cardcrawl.powers.AbstractPower;
 
 public class BGLoopPower extends AbstractBGPower {
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings("BoardGame:BGLoopPower");

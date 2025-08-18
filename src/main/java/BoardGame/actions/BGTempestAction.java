@@ -4,7 +4,6 @@ package BoardGame.actions;
 import BoardGame.cards.BGRed.BGWhirlwind;
 import BoardGame.orbs.BGLightning;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.defect.ChannelAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;

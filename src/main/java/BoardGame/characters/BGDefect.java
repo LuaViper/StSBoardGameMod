@@ -10,7 +10,6 @@ import BoardGame.cards.BGBlue.BGStrike_Blue;
 import BoardGame.cards.BGBlue.BGZap;
 import BoardGame.multicharacter.UnselectablePlayer;
 import BoardGame.relics.*;
-import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.BitmapFont;

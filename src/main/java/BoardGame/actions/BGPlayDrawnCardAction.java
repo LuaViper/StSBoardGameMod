@@ -70,8 +70,6 @@ public class BGPlayDrawnCardAction extends AbstractGameAction {
             }
         }
     }
-
-
 }
 
 

@@ -4,7 +4,6 @@ import BoardGame.actions.BGBouncingFlaskAction;
 import BoardGame.actions.TargetSelectScreenAction;
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGSilent;
-import BoardGame.characters.BGWatcher;
 import BoardGame.screen.TargetSelectScreen;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;

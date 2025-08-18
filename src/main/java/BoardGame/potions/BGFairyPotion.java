@@ -1,7 +1,5 @@
 package BoardGame.potions;
 
-import BoardGame.actions.BGDestroyFairyPotionAction;
-import BoardGame.cards.BGRed.BGSeverSoul;
 import BoardGame.dungeons.AbstractBGDungeon;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
@@ -13,7 +11,6 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.PowerTip;
 import com.megacrit.cardcrawl.localization.PotionStrings;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
-import com.megacrit.cardcrawl.screens.select.HandCardSelectScreen;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 

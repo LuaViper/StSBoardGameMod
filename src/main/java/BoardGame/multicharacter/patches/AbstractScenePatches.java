@@ -1,18 +1,11 @@
 package BoardGame.multicharacter.patches;
 
-import BoardGame.cards.AbstractBGCard;
-import BoardGame.characters.BGColorless;
-import BoardGame.multicharacter.MultiCharacterRowBoxes;
 import BoardGame.multicharacter.grid.GridBackground;
 import BoardGame.relics.AbstractBGRelic;
-import basemod.BaseMod;
-import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.scenes.AbstractScene;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;

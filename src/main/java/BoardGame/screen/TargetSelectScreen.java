@@ -5,9 +5,6 @@
 
 package BoardGame.screen;
 
-import BoardGame.BoardGame;
-import BoardGame.actions.BGSpawnTwoGremlinsForGremlinLeaderAction;
-import BoardGame.relics.BGIceCream;
 import basemod.BaseMod;
 import basemod.ReflectionHacks;
 import basemod.abstracts.CustomScreen;
@@ -17,9 +14,6 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.Vector2;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
-import com.megacrit.cardcrawl.actions.AbstractGameAction;
-import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
-import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -32,7 +26,6 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.badlogic.gdx.math.Interpolation;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
-import com.megacrit.cardcrawl.ui.panels.EnergyPanel;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
 import org.apache.logging.log4j.LogManager;
@@ -267,7 +260,7 @@ public class TargetSelectScreen extends CustomScreen {
                         AbstractDungeon.closeCurrentScreen();
                     } else {
                         ReflectionHacks.RMethod updateTargetArrowWithKeyboard = ReflectionHacks.privateMethod(AbstractPlayer.class, "updateTargetArrowWithKeyboard",
-                                Boolean.class);
+                                boolean.class);
                         updateTargetArrowWithKeyboard.invoke(__instance, true);
                     }
                 } else {
@@ -292,7 +285,7 @@ public class TargetSelectScreen extends CustomScreen {
                         InputHelper.moveCursorToNeutralPosition();
                     }
                     ReflectionHacks.RMethod releaseCard = ReflectionHacks.privateMethod(AbstractPlayer.class, "updateTargetArrowWithKeyboard",
-                            Boolean.class);
+                            boolean.class);
                     releaseCard.invoke(__instance);
                     CardCrawlGame.sound.play("UI_CLICK_2");
                     ___isUsingClickDragControl[0] = false;

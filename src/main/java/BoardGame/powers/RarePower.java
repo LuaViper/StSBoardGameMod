@@ -10,7 +10,6 @@
 //import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 //import com.megacrit.cardcrawl.localization.PowerStrings;
 //import com.megacrit.cardcrawl.monsters.AbstractMonster;
-import BoardGame.monsters.AbstractBGMonster;
 //import com.megacrit.cardcrawl.powers.AbstractPower;
 //import BoardGame.BoardGame;
 ////import BoardGame.cards.DefaultRareAttack;

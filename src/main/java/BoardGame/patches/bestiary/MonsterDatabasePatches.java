@@ -2,22 +2,14 @@ package BoardGame.patches.bestiary;
 
 import Bestiary.database.MonsterDatabase;
 import Bestiary.database.MonsterInfo;
-import BoardGame.BoardGame;
-import BoardGame.multicharacter.grid.GridTile;
-import basemod.BaseMod;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.google.gson.*;
-import com.megacrit.cardcrawl.localization.RelicStrings;
-import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
-
-import static BoardGame.BoardGame.getModID;
 
 public class MonsterDatabasePatches {
 

@@ -1,7 +1,6 @@
 package BoardGame.patches;
 
 import BoardGame.cards.BGCurse.BGAscendersBane;
-import BoardGame.characters.AbstractBGPlayer;
 import BoardGame.dungeons.AbstractBGDungeon;
 import BoardGame.dungeons.BGExordium;
 import BoardGame.multicharacter.MultiCharacter;

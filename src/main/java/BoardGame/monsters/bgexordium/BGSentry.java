@@ -29,8 +29,6 @@ import com.megacrit.cardcrawl.vfx.combat.SmallLaserEffect;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import javax.swing.*;
-
 public class BGSentry extends AbstractBGMonster implements BGDamageIcons, DieControlledMoves {
     private static final MonsterStrings monsterStrings = CardCrawlGame.languagePack.getMonsterStrings("Sentry"); public static final String ID = "Sentry";
     public static final String NAME = monsterStrings.NAME;

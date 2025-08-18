@@ -1,24 +1,11 @@
 package BoardGame.screen;
 
-import BoardGame.dungeons.AbstractBGDungeon;
-import BoardGame.neow.BGNeowQuickStart;
-import basemod.abstracts.CustomScreen;
-import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
-import com.megacrit.cardcrawl.cards.CardGroup;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
-import com.megacrit.cardcrawl.core.GameCursor;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.neow.NeowRoom;
-import com.megacrit.cardcrawl.rewards.RewardItem;
-import com.megacrit.cardcrawl.screens.CombatRewardScreen;
 import com.megacrit.cardcrawl.screens.select.GridCardSelectScreen;
-import com.megacrit.cardcrawl.ui.buttons.ProceedButton;
 import javassist.CannotCompileException;
 import javassist.CtBehavior;
-import org.apache.logging.log4j.LogManager;
-import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 

@@ -5,5 +5,5 @@ import com.megacrit.cardcrawl.rewards.RewardItem;
 
 public class TinyHouseUpgrade1CardTypePatch {
     @SpireEnum
-    public static RewardItem.RewardType BOARDGAME_UPGRADEREWARD;
+    public static RewardItem.RewardType BoardGame_UPGRADEREWARD;
 }
