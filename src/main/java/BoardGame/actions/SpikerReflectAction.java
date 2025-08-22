@@ -36,7 +36,7 @@ public class SpikerReflectAction extends AbstractGameAction {
 //            }
 //
 //        }
-        AbstractDungeon.actionManager.addToTop((AbstractGameAction) new ApplyPowerAction(AbstractDungeon.player, (AbstractCreature) this.spiker, (AbstractPower) new BGSpikerProccedPower((AbstractCreature) this.spiker, this.dmgAmt, false), this.dmgAmt));
+        AbstractDungeon.actionManager.addToTop((AbstractGameAction) new ApplyPowerAction(AbstractDungeon.player, (AbstractCreature) this.spiker, (AbstractPower) new BGSpikerProccedPower((AbstractCreature) AbstractDungeon.player, this.dmgAmt, false), this.dmgAmt));
 
         this.isDone = true;
     }
