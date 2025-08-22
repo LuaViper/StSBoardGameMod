@@ -176,7 +176,8 @@ public class BoardGame implements
     private static final String ENERGY_ORB_P_WATCHER = "BoardGameResources/images/1024/card_orb_theWatcher.png";
     public static final String CHAR_SELECT_BUTTON_WATCHER = "images/ui/charSelect/watcherButton.png";
     private static final String CHAR_SELECT_PORTRAIT_WATCHER = "images/ui/charSelect/watcherPortrait.jpg";
-    
+
+
     
     private static final String ENERGY_ORB_COLORLESS = "BoardGameResources/images/512/card_orb_Colorless.png";
 
@@ -204,8 +205,11 @@ public class BoardGame implements
     private static final String ATTACK_COLORLESS = "BoardGameResources/images/512/colorless_bg_attack.png";
     private static final String SKILL_COLORLESS = "BoardGameResources/images/512/colorless_bg_skill.png";
     private static final String POWER_COLORLESS = "BoardGameResources/images/512/colorless_bg_power.png";
+    private static final String ATTACK_P_COLORLESS = "BoardGameResources/images/1024/colorless_bg_attack.png";
+    private static final String SKILL_P_COLORLESS = "BoardGameResources/images/1024/colorless_bg_skill.png";
+    private static final String POWER_P_COLORLESS = "BoardGameResources/images/1024/colorless_bg_power.png";
 
-
+    private static final String SKILL_P_CURSE = "BoardGameResources/images/1024/curse_bg_skill.png";
 
 
     // =============== MAKE IMAGE PATHS =================
@@ -282,13 +286,13 @@ public class BoardGame implements
         logger.info("Creating the color " + BGCurse.Enums.BG_CURSE.toString());
         BaseMod.addColor(BGCurse.Enums.BG_CURSE, BG_CURSE_BLACK,
                 BGATTACK_IRONCLAD, BGSKILL_IRONCLAD, BGPOWER_IRONCLAD, ENERGY_ORB_COLORLESS,
-                BGATTACK_P_IRONCLAD, BGSKILL_P_IRONCLAD, BGPOWER_P_IRONCLAD,
+                BGATTACK_P_IRONCLAD, SKILL_P_CURSE, BGPOWER_P_IRONCLAD,
                 ENERGY_ORB_P_IRONCLAD, SMALL_ORB_IRONCLAD);
 
         logger.info("Creating the color " + BGColorless.Enums.CARD_COLOR.toString());
         BaseMod.addColor(BGColorless.Enums.CARD_COLOR, BG_COLORLESS_GRAY,
                 ATTACK_COLORLESS, SKILL_COLORLESS, POWER_COLORLESS, ENERGY_ORB_COLORLESS,
-                BGATTACK_P_IRONCLAD, BGSKILL_P_IRONCLAD, BGPOWER_P_IRONCLAD,
+                ATTACK_P_COLORLESS, SKILL_P_COLORLESS, POWER_P_COLORLESS,
                 ENERGY_ORB_P_IRONCLAD, SMALL_ORB_IRONCLAD);
 
 
