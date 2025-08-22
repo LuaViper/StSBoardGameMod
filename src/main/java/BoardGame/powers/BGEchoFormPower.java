@@ -85,6 +85,7 @@ public class BGEchoFormPower extends AbstractBGPower {
         boolean copyOK=true;
         if(originalCard instanceof AbstractBGCard){
             if(((AbstractBGCard)originalCard).cannotBeCopied) copyOK=false;
+            if(((AbstractBGCard)originalCard).ignoreFurtherCopies) copyOK=false;
         }
 
         if (!originalCard.purgeOnUse &&
@@ -95,6 +96,10 @@ public class BGEchoFormPower extends AbstractBGPower {
 
 
             AbstractCard copiedCard = originalCard.makeSameInstanceOf();
+            if(copiedCard instanceof AbstractBGCard){
+                ((AbstractBGCard)originalCard).ignoreFurtherCopies=true;
+                ((AbstractBGCard)copiedCard).ignoreFurtherCopies=true;
+            }
             BGDoubleAttackPower.swapOutQueueCard(copiedCard);
 
             AbstractDungeon.player.limbo.addToTop(copiedCard);

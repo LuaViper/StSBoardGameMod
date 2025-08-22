@@ -49,12 +49,17 @@ public class BGTripleAttackPower extends AbstractBGPower {
         boolean copyOK=true;
         if(originalCard instanceof AbstractBGCard){
             if(((AbstractBGCard)originalCard).cannotBeCopied) copyOK=false;
+            if(((AbstractBGCard)originalCard).ignoreFurtherCopies) copyOK=false;
         }
 
         if (!originalCard.purgeOnUse && originalCard.type == AbstractCard.CardType.ATTACK && this.amount > 0 && copyOK) {
             flash();
 
             AbstractCard copiedCard = originalCard.makeSameInstanceOf();
+            if(copiedCard instanceof AbstractBGCard){
+                ((AbstractBGCard)originalCard).ignoreFurtherCopies=true;
+                ((AbstractBGCard)copiedCard).ignoreFurtherCopies=true;
+            }
             BGDoubleAttackPower.swapOutQueueCard(copiedCard);
             AbstractDungeon.player.limbo.addToTop(copiedCard);
             copiedCard.current_x = originalCard.current_x;
@@ -65,6 +70,10 @@ public class BGTripleAttackPower extends AbstractBGPower {
 
 
             AbstractCard copiedCard2 = originalCard.makeSameInstanceOf();
+            if(copiedCard2 instanceof AbstractBGCard){
+                ((AbstractBGCard)copiedCard2).ignoreFurtherCopies=true;
+            }
+
             AbstractDungeon.player.limbo.addToTop(copiedCard2);
             copiedCard2.current_x = originalCard.current_x;
             copiedCard2.current_y = originalCard.current_y;

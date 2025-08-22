@@ -61,6 +61,7 @@ public abstract class AbstractBGCard extends CustomCard
     public int copiedCardEnergyOnUse=-99;
 
     public boolean cannotBeCopied=false;
+    public boolean ignoreFurtherCopies=false;
 
     public ArrayList<AbstractCard> followUpCardChain=null; //TODO: we can probably use this instead of BGCopyCardAction's tripleAttack flag
 
@@ -233,11 +234,13 @@ public abstract class AbstractBGCard extends CustomCard
     public void resetAttributes(){
         super.resetAttributes();
         wasRetainedLastTurn=false;
-        temporarilyCostsZero =false;
+        temporarilyCostsZero=false;
+        ignoreFurtherCopies=false;
     }
     public void onResetBeforeMoving() {
         wasRetainedLastTurn=false;
-        temporarilyCostsZero =false;
+        temporarilyCostsZero=false;
+        ignoreFurtherCopies=false;
     }
 
     @Override
@@ -317,6 +320,7 @@ public abstract class AbstractBGCard extends CustomCard
         defaultSecondMagicNumber = defaultBaseSecondMagicNumber; // Set the number to be equal to the base value.
         upgradedDefaultSecondMagicNumber = true; // Upgraded = true - which does what the above method does.
     }
+
 
 
 

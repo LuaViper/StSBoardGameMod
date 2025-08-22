@@ -50,6 +50,7 @@ public class BGBurstPower extends AbstractBGPower {
         boolean copyOK=true;
         if(originalCard instanceof AbstractBGCard){
             if(((AbstractBGCard)originalCard).cannotBeCopied) copyOK=false;
+            if(((AbstractBGCard)originalCard).ignoreFurtherCopies) copyOK=false;
         }
 
         //TODO: depending on ruling, maybe preserve burst and wait until next card?
@@ -59,6 +60,10 @@ public class BGBurstPower extends AbstractBGPower {
 
 
             AbstractCard copiedCard = originalCard.makeSameInstanceOf();
+            if(copiedCard instanceof AbstractBGCard){
+                ((AbstractBGCard)originalCard).ignoreFurtherCopies=true;
+                ((AbstractBGCard)copiedCard).ignoreFurtherCopies=true;
+            }
             BGDoubleAttackPower.swapOutQueueCard(copiedCard);
 
             AbstractDungeon.player.limbo.addToTop(copiedCard);

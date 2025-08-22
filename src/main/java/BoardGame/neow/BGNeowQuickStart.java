@@ -288,7 +288,6 @@ public class BGNeowQuickStart {
                         ReflectionHacks.setPrivate(event,AbstractEvent.class,"body", EXTRA[69]);
                         BGNeowEvent.playSfx();
                         BGNeowEvent.talk(BGNeowEvent.TEXT[MathUtils.random(1, 3)]);
-
                     }
                 }
                 AbstractDungeon.closeCurrentScreen();

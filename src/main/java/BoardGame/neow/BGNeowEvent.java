@@ -26,6 +26,7 @@ import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.neow.NeowEvent;
 import com.megacrit.cardcrawl.random.Random;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.relics.PaperFrog;
 import com.megacrit.cardcrawl.rewards.RewardItem;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.ShopRoom;
@@ -129,8 +130,8 @@ public class BGNeowEvent
 //            this.roomEventText.addDialogOption(EXTRA[68]);
 //            //character screen is still open, we can't set disclaimer text until the player clicks proceed
 ////////            //skip LATEST UPDATES screen
-                this.screenNum=2;
                 this.roomEventText.addDialogOption(EXTRA[0]);
+                blessing(true);
 //            this.roomEventText.updateBodyText("");
 //            playSfx();
 //            talk(TEXT[MathUtils.random(1, 3)]);
@@ -302,10 +303,10 @@ public class BGNeowEvent
         switch (this.screenNum) {
             case -1:    //DISCLAIMER
                 this.roomEventText.updateBodyText("");
+                this.roomEventText.updateDialogOption(0,EXTRA[0]);
                 playSfx();
                 talk(TEXT[MathUtils.random(1, 3)]);
-                this.screenNum = 2;
-                this.roomEventText.updateDialogOption(0,EXTRA[0]);
+                blessing(true);
                 return;
 
 
@@ -315,7 +316,7 @@ public class BGNeowEvent
 
                 if (true) {
                     AbstractDungeon.cardRewardScreen.open(getRewardCards(), null, text22);
-                    blessing();
+                    blessing(false);
                 } else {
                     miniBlessing();
                 }
@@ -330,16 +331,16 @@ public class BGNeowEvent
                     miniBlessing();
                 } else {
                     AbstractDungeon.cardRewardScreen.open(getRewardCards(), null, text22);
-                    blessing();
+                    blessing(false);
                 }
                 return;
 
 
             case 2:
-
                 if (buttonPressed == 0) {
+                    //Guaranteed "choose a card" reward activates here.
                     AbstractDungeon.cardRewardScreen.open(getRewardCards(), null, text22);
-                    blessing();
+                    blessing(false);
                 } else {
                     openMap();  //change phase to COMPLETE
                 }
@@ -836,13 +837,14 @@ public class BGNeowEvent
         logger.info("ERROR: BGNeowReward tried to call a miniBlessing instead of a Blessing!  Panic!");
     }
 
-    private void blessing() {
+    private void blessing(boolean previewOnly) {
         logger.info("BLESSING");
         NeowEvent.rng = new Random(Settings.seed);
         logger.info("COUNTER: " + NeowEvent.rng.counter);
         AbstractDungeon.bossCount = 0;
         dismissBubble();
-        talk(TEXT[7]);
+        if(!previewOnly)
+            talk(TEXT[7]);
 
         //-: no tradeoff
         //C: gain a curse
@@ -928,18 +930,28 @@ public class BGNeowEvent
         String[] rewards=card.split(" ");
         logger.info("Neow card: "+rewards[0]+" "+rewards[1]+" "+rewards[2]);
 
+        this.rewards.clear();
         this.rewards.add(new BGNeowReward(rewards[0]));
         this.rewards.add(new BGNeowReward(rewards[1]));
         this.rewards.add(new BGNeowReward(rewards[2]));
         //this.rewards.add(new NeowReward(3));
 
-        this.roomEventText.clearRemainingOptions();
-        this.roomEventText.updateDialogOption(0, ((BGNeowReward)this.rewards.get(0)).optionLabel);
-        this.roomEventText.addDialogOption(((BGNeowReward)this.rewards.get(1)).optionLabel);
-        this.roomEventText.addDialogOption(((BGNeowReward)this.rewards.get(2)).optionLabel);
-        //this.roomEventText.addDialogOption(((NeowReward)this.rewards.get(3)).optionLabel);
+        if(previewOnly) {
+            this.roomEventText.addDialogOption((this.rewards.get(0)).optionLabel, true);
+            this.roomEventText.addDialogOption((this.rewards.get(1)).optionLabel, true);
+            this.roomEventText.addDialogOption((this.rewards.get(2)).optionLabel, true);
+            this.screenNum = 2;
+        }else{
+            this.roomEventText.clearRemainingOptions();
+            this.roomEventText.updateDialogOption(0, ((BGNeowReward) this.rewards.get(0)).optionLabel);
+            this.roomEventText.addDialogOption(((BGNeowReward) this.rewards.get(1)).optionLabel);
+            this.roomEventText.addDialogOption(((BGNeowReward) this.rewards.get(2)).optionLabel);
+            //this.roomEventText.addDialogOption(((NeowReward)this.rewards.get(3)).optionLabel);
+            this.screenNum = 3;
+        }
 
-        this.screenNum = 3;
+
+
     }
 
     private void dismissBubble() {

@@ -49,7 +49,7 @@ public class BGDoubleAttackPower extends AbstractBGPower {
 
     //public void onUseCard(AbstractCard card, UseCardAction action) {
     public void onAboutToUseCard(AbstractCard originalCard, AbstractCreature originalTarget) {
-        //TODO: in addition to the cannotBeCopied flag, also check if the card itself is a copy
+
         if(this.owner.getPower("BGDouble Tap")!=null){
             //neither Double Tap nor Double Attack stack in the BG
             //it's slightly more likely that Double Tap will be available twice, so use it up first
@@ -62,7 +62,9 @@ public class BGDoubleAttackPower extends AbstractBGPower {
 
         boolean copyOK=true;
         if(originalCard instanceof AbstractBGCard){
+            //in addition to the cannotBeCopied flag, also check if the card itself is a copy
             if(((AbstractBGCard)originalCard).cannotBeCopied) copyOK=false;
+            if(((AbstractBGCard)originalCard).ignoreFurtherCopies) copyOK=false;
         }
 
         if (!originalCard.purgeOnUse && originalCard.type == AbstractCard.CardType.ATTACK && this.amount > 0 && copyOK) {
@@ -71,6 +73,11 @@ public class BGDoubleAttackPower extends AbstractBGPower {
 
 
             AbstractCard copiedCard = originalCard.makeSameInstanceOf();
+            //note that if the copied card is not a BG card, stacks of doubleattack will be improperly consumed on the new copy
+            if(copiedCard instanceof AbstractBGCard){
+                ((AbstractBGCard)originalCard).ignoreFurtherCopies=true;
+                ((AbstractBGCard)copiedCard).ignoreFurtherCopies=true;
+            }
             BGDoubleAttackPower.swapOutQueueCard(copiedCard);
 
             AbstractDungeon.player.limbo.addToTop(copiedCard);
