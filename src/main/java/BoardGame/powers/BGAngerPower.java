@@ -1,5 +1,6 @@
 package BoardGame.powers;
 
+import BoardGame.actions.BGForcedWaitAction;
 import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
@@ -43,6 +44,7 @@ public class BGAngerPower extends AbstractBGPower implements AfterCompletelyReso
     @Override
     public void onAfterCompletelyResolveCard(AbstractCard card, UseCardAction action) {
         if (card.type == AbstractCard.CardType.SKILL) {
+            addToBot(new BGForcedWaitAction(1.0F));
             addToBot(new DamageAction( AbstractDungeon.player, new DamageInfo(this.owner, this.amount, DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL));
             flash();
         }

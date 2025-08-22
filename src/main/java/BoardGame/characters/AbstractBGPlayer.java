@@ -101,7 +101,8 @@ public abstract class AbstractBGPlayer extends CustomPlayer {
         ReflectionHacks.setPrivate(this,AbstractPlayer.class,"passedHesitationLine",false);
 
         this.inSingleTargetMode = false;
-        if (!this.isInKeyboardMode) {
+        this.isInKeyboardMode=false;
+        if (true || !this.isInKeyboardMode) {
             GameCursor.hidden = false;
         }
 

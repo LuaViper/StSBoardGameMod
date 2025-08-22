@@ -33,18 +33,37 @@ public class BGAboutToUseCard {
 
     //TODO: there are multiple CardQueueItem constructors, make sure we don't need any more of these.
     // could also try AbstractPlayer.playCard instead.
+//    @SpirePatch2(clz = CardQueueItem.class, method= SpirePatch.CONSTRUCTOR,
+//        paramtypez = {AbstractCard.class, AbstractMonster.class})
+//    public static class Patch1{
+//        @SpirePrefixPatch
+//        public static void Foo(CardQueueItem __instance, AbstractCard card, AbstractMonster monster) {
+//            if(CardCrawlGame.dungeon instanceof AbstractBGDungeon){
+//                cardQueueItemInstance=__instance;
+//                BGAboutToUseCard.process(card,monster);
+//                cardQueueItemInstance=null;
+//            }
+//        }
+//    }
+
+
+//    //TODO NEXT NEXT: above block ignores Weave and Havoc
+//    //TODO NEXT NEXT: this block catches Havoc and Weave but completely breaks ALL playtwice effects
+
     @SpirePatch2(clz = CardQueueItem.class, method= SpirePatch.CONSTRUCTOR,
-        paramtypez = {AbstractCard.class, AbstractMonster.class})
-    public static class Foo{
-        @SpirePrefixPatch
-        public static void Foo(CardQueueItem __instance, AbstractCard ___card, AbstractMonster ___monster) {
+        paramtypez = {AbstractCard.class, AbstractMonster.class, int.class, boolean.class, boolean.class})
+    public static class Patch2{
+        @SpirePostfixPatch
+        public static void Foo(CardQueueItem __instance, AbstractCard card, AbstractMonster monster) {
             if(CardCrawlGame.dungeon instanceof AbstractBGDungeon){
                 cardQueueItemInstance=__instance;
-                BGAboutToUseCard.process(___card,___monster);
+                BGAboutToUseCard.process(card,monster);
                 cardQueueItemInstance=null;
             }
         }
     }
+
+
 
 //    @SpirePatch2(clz= AbstractPlayer.class, method= "useCard",
 //            paramtypez={AbstractCard.class, AbstractMonster.class,int.class})

@@ -332,7 +332,7 @@ public class BGTheEnding extends AbstractBGDungeon {
         @SpirePostfixPatch
         public static void Postfix(AbstractRoom __instance, AbstractRelic.RelicTier tier) {
             Logger logger = LogManager.getLogger(BGTheEnding.class.getName());
-            logger.info("EliteSapphireKeyPatch");
+            //logger.info("EliteSapphireKeyPatch");
             if (CardCrawlGame.dungeon instanceof AbstractBGDungeon) {
                 logger.info("it's an AbstractBGDungeon");
                 if (__instance instanceof MonsterRoomElite) {

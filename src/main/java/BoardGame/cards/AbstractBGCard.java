@@ -275,6 +275,12 @@ public abstract class AbstractBGCard extends CustomCard
     }
 
 
+        public AbstractCard makeStatEquivalentCopy(){
+            AbstractCard card = super.makeStatEquivalentCopy();
+            ((AbstractBGCard)card).wasRetainedLastTurn=this.wasRetainedLastTurn;
+            return card;
+        }
+
 
 
 
@@ -288,9 +294,9 @@ public abstract class AbstractBGCard extends CustomCard
             paramtypez={AbstractCard.class})
     public static class resetCardBeforeMovingPatch {
         @SpirePrefixPatch
-        public static void Prefix(AbstractCard ___c) {
-            if(___c instanceof AbstractBGCard){
-                ((AbstractBGCard)___c).onResetBeforeMoving();
+        public static void Prefix(AbstractCard c) {
+            if(c instanceof AbstractBGCard){
+                ((AbstractBGCard)c).onResetBeforeMoving();
             }
         }
     }
@@ -320,9 +326,9 @@ public abstract class AbstractBGCard extends CustomCard
             paramtypez={AbstractCard.class, AbstractMonster.class, int.class})
     public static class FollowUpCardChainPatch {
         @SpirePostfixPatch
-        public static void Postfix(AbstractCard ___c) {
-            if(___c instanceof AbstractBGCard){
-                AbstractBGCard oldCard = (AbstractBGCard)___c;
+        public static void Postfix(AbstractCard c) {
+            if(c instanceof AbstractBGCard){
+                AbstractBGCard oldCard = (AbstractBGCard)c;
                 if(oldCard.followUpCardChain!=null && !oldCard.followUpCardChain.isEmpty()){
                     AbstractCard card=oldCard.followUpCardChain.get(0);
                     if(card instanceof AbstractBGCard){

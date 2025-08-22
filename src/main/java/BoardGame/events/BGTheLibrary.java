@@ -15,6 +15,7 @@ import com.megacrit.cardcrawl.vfx.cardManip.ShowCardAndObtainEffect;
 
 import java.util.ArrayList;
 
+//TODO: boardgame library should allow you to skip
 
 public class BGTheLibrary
         extends AbstractImageEvent

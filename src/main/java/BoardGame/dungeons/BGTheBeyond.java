@@ -389,6 +389,8 @@ public class BGTheBeyond
         firstRoomChosen = false;
 
         fadeIn();
+        //don't use vanilla setEmeraldElite at all -- in addition to replacing the wrong token,
+        // it can pick the hardcoded non-token map nodes as well
         //setEmeraldElite();
 
 

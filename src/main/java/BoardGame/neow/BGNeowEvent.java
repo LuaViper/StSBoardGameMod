@@ -122,10 +122,21 @@ public class BGNeowEvent
              if (AbstractDungeon.player instanceof MultiCharacter) {
                 BaseMod.openCustomScreen(MultiCharacterSelectScreen.Enum.MULTI_CHARACTER_SELECT);
             }
-            //TODO: remove Neow screen disclaimer, maybe
-            this.screenNum = -1;    //disclaimer intro
-            this.roomEventText.addDialogOption(EXTRA[68]);
-            //character screen is still open, we can't set disclaimer text until the player clicks proceed
+
+/// //// note -- when changing LATEST UPDATES visibility, must also change corresponding line in BGNeowQuickStart
+////////            //LATEST UPDATES screen
+//            this.screenNum = -1;    //disclaimer intro
+//            this.roomEventText.addDialogOption(EXTRA[68]);
+//            //character screen is still open, we can't set disclaimer text until the player clicks proceed
+////////            //skip LATEST UPDATES screen
+                this.screenNum=2;
+                this.roomEventText.addDialogOption(EXTRA[0]);
+//            this.roomEventText.updateBodyText("");
+//            playSfx();
+//            talk(TEXT[MathUtils.random(1, 3)]);
+//            this.screenNum = 2;
+//            this.roomEventText.addDialogOption(EXTRA[0]);
+
 
             AbstractDungeon.topLevelEffects.add(new LevelTransitionTextOverlayEffect(AbstractDungeon.name, AbstractDungeon.levelNum, true));
         } else {
@@ -282,7 +293,7 @@ public class BGNeowEvent
         }
     }
 
-    private void talk(String msg) {
+    public static void talk(String msg) {
         AbstractDungeon.effectList.add(new InfiniteSpeechBubble(DIALOG_X, DIALOG_Y, msg));
     }
 
@@ -939,7 +950,7 @@ public class BGNeowEvent
         }
     }
 
-    private void playSfx() {
+    public static void playSfx() {
         int roll = MathUtils.random(3);
         if (roll == 0) {
             CardCrawlGame.sound.play("VO_NEOW_1A");

@@ -577,7 +577,6 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                 }else if(__instance instanceof EventRoom && __instance.event instanceof BGDeadAdventurer){
                     encounter = ((BGDeadAdventurer)__instance.event).encounterID;
                 }else if(__instance instanceof EventRoom && __instance.event instanceof BGHallwayEncounter){
-                    //note: BGHallwayEncounter currently swaps itself out for a MonsterRoom, so this line shouldn't be reachable
                     encounter = ((BGHallwayEncounter)__instance.event).encounterID;
                 }
                 if(MonsterGroupRewardsList.rewards.containsKey(encounter)){
@@ -621,7 +620,6 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
             }else if(__instance instanceof EventRoom && __instance.event instanceof BGDeadAdventurer){
                 encounter = ((BGDeadAdventurer)__instance.event).encounterID;
             }else if(__instance instanceof EventRoom && __instance.event instanceof BGHallwayEncounter){
-                //note: BGHallwayEncounter currently swaps itself out for a MonsterRoom, so this line shouldn't be reachable
                 encounter = ((BGHallwayEncounter)__instance.event).encounterID;
             }
             if(MonsterGroupRewardsList.rewards.containsKey(encounter)){
@@ -700,6 +698,7 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
         //TODO: monsters go to the bottom of the monster deck after they're selected
         // (rather than reshuffling the entire deck when it's depleted)
         // (but First Encounter monsters don't go back into the deck)
+        //TODO: should we ignore numMonsters and always use monsters.size() instead?
         numMonsters=Math.min(numMonsters,monsters.size());
         Collections.shuffle(monsters, new java.util.Random(monsterRng.randomLong()));
         if(!elites) {

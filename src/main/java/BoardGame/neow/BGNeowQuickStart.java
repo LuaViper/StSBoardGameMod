@@ -9,6 +9,7 @@ import BoardGame.multicharacter.MultiCharacter;
 import BoardGame.multicharacter.MultiCharacterSelectScreen;
 import BoardGame.patches.Ascension259Patch;
 import basemod.ReflectionHacks;
+import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.evacipated.cardcrawl.modthespire.patcher.PatchingException;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -188,7 +189,7 @@ public class BGNeowQuickStart {
                 localvars={}
         )
         public static SpireReturn<Void> update(ProceedButton __instance ) {
-            logger.info("BGNeowQuickStart: ProceedButtonUpdatePatch2");
+            //logger.info("BGNeowQuickStart: ProceedButtonUpdatePatch2");
             if (CardCrawlGame.dungeon != null && CardCrawlGame.dungeon instanceof AbstractBGDungeon) {
                 if(AbstractDungeon.getCurrRoom() instanceof com.megacrit.cardcrawl.rooms.ShopRoom) {
                     if(rewardIndex==12){
@@ -251,7 +252,7 @@ public class BGNeowQuickStart {
                 localvars = {}
         )
         public static SpireReturn<Void> update(ProceedButton __instance) {
-            BGNeowQuickStart.logger.info("BGNeowQuickStart: ProceedButtonUpdatePatch4");
+            //BGNeowQuickStart.logger.info("BGNeowQuickStart: ProceedButtonUpdatePatch4");
             if (AbstractDungeon.screen == MultiCharacterSelectScreen.Enum.MULTI_CHARACTER_SELECT) {
                 if(AbstractDungeon.player instanceof MultiCharacter) {
                     if(((MultiCharacter)AbstractDungeon.player).subcharacters.size()==1){
@@ -281,7 +282,13 @@ public class BGNeowQuickStart {
                     ) {
                         ReflectionHacks.setPrivate(event,AbstractEvent.class,"body", EXTRA[73]);
                     } else {
-                        ReflectionHacks.setPrivate(event,AbstractEvent.class,"body", EXTRA[70]);
+                        ////display LATEST UPDATES
+                        //ReflectionHacks.setPrivate(event,AbstractEvent.class,"body", EXTRA[70]);
+                        ////skip LATEST UPDATES
+                        ReflectionHacks.setPrivate(event,AbstractEvent.class,"body", EXTRA[69]);
+                        BGNeowEvent.playSfx();
+                        BGNeowEvent.talk(BGNeowEvent.TEXT[MathUtils.random(1, 3)]);
+
                     }
                 }
                 AbstractDungeon.closeCurrentScreen();

@@ -98,7 +98,7 @@ public class BGDoppelganger extends AbstractBGCard {
                 if(((AbstractBGCard)card).cannotBeCopied)
                     return;
             //TODO: copies cannot be copied
-            BoardGame.logger.info("Adding "+card.name+" to the Doppelganger stack...");
+            //BoardGame.logger.info("Adding "+card.name+" to the Doppelganger stack...");
             cardsPlayedThisTurn.add(card);
         }
     }

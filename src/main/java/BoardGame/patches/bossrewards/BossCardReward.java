@@ -63,6 +63,12 @@ public class BossCardReward {
     @SpirePatch2(clz = BossRelicSelectScreen.class, method = "updateControllerInput",
             paramtypez={})
     public static class ClickOpenCardReward {
+        @SpirePrefixPatch
+        public static void Pre(BossRelicSelectScreen __instance) {
+            if(CardCrawlGame.dungeon instanceof AbstractBGDungeon){
+                Settings.isControllerMode=false;
+            }
+        }
         @SpirePostfixPatch
         public static void Foo(BossRelicSelectScreen __instance) {
             if(!(AbstractBGDungeon.getCurrRoom() instanceof TreasureRoomBoss))return;

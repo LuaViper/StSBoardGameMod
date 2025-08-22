@@ -121,7 +121,7 @@ public class BGWeave extends AbstractBGCard {
                 for(StackTraceElement ste : Thread.currentThread().getStackTrace()){
                     //TODO: is there a way to check for BGWeave instead of ScryAction? (It's not in the stacktrace at this point)
                     if(ste.getClassName().equals("com.megacrit.cardcrawl.actions.utility.ScryAction")){
-                        BoardGame.BoardGame.logger.info("Just called moveToDiscardPile(null), but ScryAction was in the stack trace as expected, so we're failing silently");
+                        //BoardGame.BoardGame.logger.info("Just called moveToDiscardPile(null), but ScryAction was in the stack trace as expected, so we're failing silently");
                         return SpireReturn.Return();
                     }
                 }
@@ -129,6 +129,12 @@ public class BGWeave extends AbstractBGCard {
             }
             return SpireReturn.Continue();
         }
+    }
+
+    public AbstractCard makeStatEquivalentCopy(){
+        AbstractCard card = super.makeStatEquivalentCopy();
+        ((BGWeave)card).activated=this.activated;
+        return card;
     }
 
 

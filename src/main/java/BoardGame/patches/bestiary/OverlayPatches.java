@@ -192,7 +192,6 @@ public class OverlayPatches {
             }else if(room instanceof EventRoom && room.event instanceof BGDeadAdventurer){
                 encounter = ((BGDeadAdventurer)room.event).encounterID;
             }else if(room instanceof EventRoom && room.event instanceof BGHallwayEncounter){
-                //note: BGHallwayEncounter currently swaps itself out for a MonsterRoom, so this line shouldn't be reachable
                 encounter = ((BGHallwayEncounter)room.event).encounterID;
             }
             if(MonsterGroupRewardsList.rewards.containsKey(encounter)){

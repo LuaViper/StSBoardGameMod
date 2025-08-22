@@ -135,6 +135,22 @@ public class BGDoubleAttackPower extends AbstractBGPower {
                 c.remove();
             }
         }
+        //weave check
+        for (Iterator<AbstractCard> c = AbstractDungeon.player.discardPile.group.iterator(); c.hasNext(); ) {
+            AbstractCard e = c.next();
+            if (e == originalCard) {
+                AbstractDungeon.player.limbo.addToTop(e);
+                c.remove();
+            }
+        }
+        //we don't THINK we ever need to check the draw pile, but it won't hurt
+        for (Iterator<AbstractCard> c = AbstractDungeon.player.drawPile.group.iterator(); c.hasNext(); ) {
+            AbstractCard e = c.next();
+            if (e == originalCard) {
+                AbstractDungeon.player.limbo.addToTop(e);
+                c.remove();
+            }
+        }
 
         //TODO: do we need to do this, or does queuecard handle it for us?
 //        if(BGAboutToUseCard.cardQueueItemInstance.monster!=null){

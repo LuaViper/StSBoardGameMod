@@ -14,6 +14,10 @@ import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
+//the Swivel-Tantrum interaction was due to MakeTempCardInDrawPileAction copying the 0 cost
+//   it looks like freeToPlayOnce was getting set on Tantrum, then copied to the card that goes to the draw pile
+// theoretically, BGAnger should have similar issues
+
 public class BGTantrum extends AbstractBGCard {
     private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings("BoardGame:BGTantrum");
     public static final String ID = "BGTantrum";
@@ -36,6 +40,7 @@ public class BGTantrum extends AbstractBGCard {
         if(!this.purgeOnUse) {
             this.purgeOnUse = true;
             AbstractCard copy = this.makeStatEquivalentCopy();
+            copy.freeToPlayOnce=false;
             addToBot(new MakeTempCardInDrawPileAction(copy, 1, false, true));
         }
 

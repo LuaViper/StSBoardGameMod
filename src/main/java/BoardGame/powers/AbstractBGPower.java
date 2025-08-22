@@ -81,21 +81,21 @@ public class AbstractBGPower extends AbstractPower {
                 localvars={}
         )
         public static SpireReturn<Void> updateInput(AbstractPlayer __instance) {
-            BoardGame.logger.info("EndTurn is queued, run a BG power check...");
+            //BoardGame.logger.info("EndTurn is queued, run a BG power check...");
             for(AbstractPower power : __instance.powers){
                 if(power instanceof AbstractBGPower){
                     ((AbstractBGPower)power).atEndTurnQueued();
                 }
             }
-            BoardGame.logger.info("BG power check is done, call actionManager.update...");
+            //BoardGame.logger.info("BG power check is done, call actionManager.update...");
             AbstractDungeon.actionManager.update();
-            BoardGame.logger.info("Now look at the action list again...");
+            //BoardGame.logger.info("Now look at the action list again...");
             if (AbstractDungeon.actionManager.cardQueue.isEmpty() && !AbstractDungeon.actionManager.hasControl) {
-                BoardGame.logger.info("Actions are empty, proceed");
+                //BoardGame.logger.info("Actions are empty, proceed");
                 return SpireReturn.Continue();
             }
             else {
-                BoardGame.logger.info("Queue is not empty, abort");
+                //BoardGame.logger.info("Queue is not empty, abort");
                 return SpireReturn.Return();
             }
         }

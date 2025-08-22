@@ -26,8 +26,7 @@ public class BGStormPower extends AbstractBGPower {
         loadRegion("storm");
     }
 
-    //TODO NEXT NEXT: this should be atStartOfTurnPostDraw instead
-    public void atStartOfTurn() {
+    public void atStartOfTurnPostDraw() {
         flash();
         for (int i = 0; i < this.amount; i++)
             addToBot((AbstractGameAction)new BGChannelAction((AbstractOrb)new BGLightning()));

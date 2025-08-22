@@ -1,6 +1,7 @@
 package BoardGame.powers;
 
 import BoardGame.BoardGame;
+import BoardGame.actions.BGForcedWaitAction;
 import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
@@ -14,6 +15,10 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.PowerStrings;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 
+import java.util.logging.Logger;
+
+//BGSpikerProccedPower has been rewritten to apply to the PLAYER instead of the MONSTER
+//  in order to fix an inconsistency with the end-of-combat referee whistle.
 public class BGSpikerProccedPower extends AbstractBGPower implements InvisiblePower {
     public static final String POWER_ID = BoardGame.makeID("BGSpikerProcced");
     private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(POWER_ID);
@@ -46,6 +51,7 @@ public class BGSpikerProccedPower extends AbstractBGPower implements InvisiblePo
 
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
         //if monster, wears off after card resolves
+        addToBot(new BGForcedWaitAction(1.0f));
         addToBot((AbstractGameAction) new DamageAction((AbstractCreature) AbstractDungeon.player, new DamageInfo(this.owner, this.amount,
                 DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, true));
         addToBot((AbstractGameAction) new RemoveSpecificPowerAction(this.owner, this.owner, "BGSpikerProcced"));

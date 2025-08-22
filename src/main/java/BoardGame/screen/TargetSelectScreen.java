@@ -252,7 +252,9 @@ public class TargetSelectScreen extends CustomScreen {
         public static SpireReturn<Void> Insert(AbstractPlayer __instance, @ByRef AbstractMonster[] ___hoveredMonster,
                                                float ___hoverStartLine, @ByRef boolean[] ___isUsingClickDragControl){
             if(AbstractDungeon.screen.equals(Enum.TARGET_SELECT)) {
-                if (__instance.isInKeyboardMode) {
+                __instance.isInKeyboardMode=false;
+                if (false && __instance.isInKeyboardMode) {
+                    //THIS BLOCK INEVITABLY CRASHES OR SOFTLOCKS. DON'T USE IT
                     //if (InputActionSet.releaseCard.isJustPressed() || CInputActionSet.cancel.isJustPressed()) {
                     if (false) { //TODO: check getCustomScreen(TargetSelectScreen).allowCancel
                         __instance.inSingleTargetMode = false;

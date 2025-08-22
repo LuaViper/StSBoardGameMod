@@ -6,11 +6,14 @@ import BoardGame.relics.BGSsserpentHead;
 import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.events.AbstractEvent;
 import com.megacrit.cardcrawl.events.AbstractImageEvent;
+import com.megacrit.cardcrawl.helpers.MonsterHelper;
 import com.megacrit.cardcrawl.localization.EventStrings;
 import com.megacrit.cardcrawl.map.MapEdge;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import com.megacrit.cardcrawl.rooms.MonsterRoom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
@@ -18,7 +21,7 @@ import org.apache.logging.log4j.Logger;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class BGHallwayEncounter extends AbstractImageEvent {
+public class BGHallwayEncounter extends AbstractEvent {
     public static final String ID = "BGHallwayEncounter";
 
     private static final Logger logger = LogManager.getLogger(BGHallwayEncounter.class.getName());
@@ -29,10 +32,6 @@ public class BGHallwayEncounter extends AbstractImageEvent {
 
     public static final String[] OPTIONS = eventStrings.OPTIONS;
     public String encounterID="";
-
-    public BGHallwayEncounter() {
-        super(ID,"DNT: Hallway Encounter placeholder","");
-    }
 
     boolean isDone=false;
     public void update(){
@@ -54,29 +53,26 @@ public class BGHallwayEncounter extends AbstractImageEvent {
                 //TODO LATER: this will probably break something if the player S&Qs immediately
                 AbstractDungeon.floorNum-=1;
             }else {
-                AbstractDungeon.floorNum-=1;
+                //TODO NEXT NEXT: "?" that turns into a combat changes after a S&Q
+                // (same for merchants)
+                (AbstractDungeon.getCurrRoom()).monsters = CardCrawlGame.dungeon.getMonsterForRoomCreation();
                 encounterID=AbstractDungeon.monsterList.get(0);
-
-                MapRoomNode cur = AbstractDungeon.currMapNode;
-                cur.taken=true;
-                MapRoomNode node = new MapRoomNode(cur.x, cur.y);
-                node.room = new MonsterRoom();
-                ArrayList<MapEdge> curEdges = cur.getEdges();
-                Iterator var8 = curEdges.iterator();
-                while(var8.hasNext()) {
-                    MapEdge edge = (MapEdge)var8.next();
-                    node.addEdge(edge);
-                }
-                AbstractDungeon.nextRoom = node;
-                ReflectionHacks.setPrivateStatic(AbstractDungeon.class,"fadeTimer",0F);
-                AbstractDungeon.nextRoomTransitionStart();
-                node.taken=true;
+                this.enterCombat();
             }
         }
     }
     protected void buttonEffect(int buttonPressed){}
 
 
+    public void enterCombat() {
+        this.roomEventText.clear();// 92
+        AbstractDungeon.getCurrRoom().phase = AbstractRoom.RoomPhase.COMBAT;// 93
+        AbstractDungeon.getCurrRoom().monsters.init();// 94
+        AbstractRoom.waitTimer = 0.1F;// 95
+        AbstractDungeon.player.preBattlePrep();// 96
+        this.hasFocus = false;// 97
+        this.roomEventText.hide();// 98
+    }// 99
 }
 
 

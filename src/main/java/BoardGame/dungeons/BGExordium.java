@@ -248,7 +248,6 @@ public class BGExordium
     }
 
     protected void generateMonsters() {
-        //TODO NEXT NEXT: the change to modID may have broken everyone's savefiles, deal with it
         //TODO NEXT NEXT: game crash if encounter list is empty upon entering a "?" that turns into a combat
         generateWeakEnemies(1);
         //weak enemy pool will be cleared immediately after first encounter is populated
@@ -611,9 +610,7 @@ public class BGExordium
         firstRoomChosen = false;
 
         fadeIn();
-        //TODO: controllermode crash when clicking pandora'sbox. index 0 out of range -- maybe looking at blight list?
-        //TODO: controllermode crash when targeting enemies with shivs etc
-        //TODO NEXT NEXT: don't use vanilla setEmeraldElite at all -- in addition to replacing the wrong token,
+        //don't use vanilla setEmeraldElite at all -- in addition to replacing the wrong token,
         // it can pick the hardcoded non-token map nodes as well
         //setEmeraldElite();
 
