@@ -3,7 +3,9 @@
     "allow": [
       "Bash(copy \"C:\\Users\\Alex\\.claude\\plans\\validated-snuggling-platypus.md\" \"d:\\STS_BG_Mod\\StSCoopBoardGameCoopMod\\TEST_PLAN.md\")",
       "Bash(powershell -Command \"cd ''d:\\STS_BG_Mod\\StSCoopBoardGameCoopMod''; .\\mvnw.cmd test\")",
-      "Bash(powershell -Command \"cd ''d:\\STS_BG_Mod\\StSBoardGameCoopMod''; .\\mvnw.cmd test -Dtest=BGStrike_RedTest\")"
+      "Bash(powershell -Command \"cd ''d:\\STS_BG_Mod\\StSBoardGameCoopMod''; .\\mvnw.cmd test -Dtest=BGStrike_RedTest\")",
+      "Bash(find:*)",
+      "Bash(powershell -Command:*)"
     ],
     "deny": [],
     "ask": []
