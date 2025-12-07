@@ -283,10 +283,26 @@ public class RelicDragManager {
      */
     public static void checkArrowHover(TopPanel topPanel) {
         // Access arrow hitboxes via reflection
-        Hitbox leftArrowHb = ReflectionHacks.getPrivate(topPanel, TopPanel.class, "relicArrowHbL");
-        Hitbox rightArrowHb = ReflectionHacks.getPrivate(topPanel, TopPanel.class, "relicArrowHbR");
+        Hitbox leftArrowHb = null;
+        Hitbox rightArrowHb = null;
 
-        if (leftArrowHb == null || rightArrowHb == null) return;
+        try {
+            leftArrowHb = ReflectionHacks.getPrivate(topPanel, TopPanel.class, "relicArrowHbL");
+            rightArrowHb = ReflectionHacks.getPrivate(topPanel, TopPanel.class, "relicArrowHbR");
+        } catch (Exception e) {
+            // Arrows don't exist (not enough relics for pagination)
+            hoveringLeftArrow = false;
+            hoveringRightArrow = false;
+            arrowHoverTime = 0f;
+            return;
+        }
+
+        if (leftArrowHb == null || rightArrowHb == null) {
+            hoveringLeftArrow = false;
+            hoveringRightArrow = false;
+            arrowHoverTime = 0f;
+            return;
+        }
 
         boolean wasHoveringLeft = hoveringLeftArrow;
         boolean wasHoveringRight = hoveringRightArrow;
