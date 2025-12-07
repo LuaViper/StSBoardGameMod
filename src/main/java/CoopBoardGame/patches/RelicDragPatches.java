@@ -88,7 +88,10 @@ public class RelicDragPatches {
             int index = RelicDragManager.getCachedIndex(__instance);
             if (index >= 0) {
                 float offset = RelicDragManager.getRelicOffset(index);
-                __instance.currentX += offset;
+                // Only modify position if offset is significant (performance)
+                if (offset != 0) {
+                    __instance.currentX += offset;
+                }
             }
 
             return SpireReturn.Continue();
@@ -103,7 +106,10 @@ public class RelicDragPatches {
             int index = RelicDragManager.getCachedIndex(__instance);
             if (index >= 0) {
                 float offset = RelicDragManager.getRelicOffset(index);
-                __instance.currentX -= offset;
+                // Only restore position if we modified it (performance)
+                if (offset != 0) {
+                    __instance.currentX -= offset;
+                }
             }
         }
     }
