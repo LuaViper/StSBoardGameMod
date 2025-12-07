@@ -61,12 +61,14 @@ public class TargetSelectScreen extends CustomScreen {
     public AbstractMonster finaltarget = null;
 
     public void open(TargetSelectAction action, String description, boolean allowCancel) {
-        this.action = action;
         this.description = description;
+        this.action = action;
         this.allowCancel = allowCancel;
         this.isDone = false;
-        AbstractDungeon.screen = curScreen();
-        AbstractDungeon.isScreenUp = true;
+        if (
+            AbstractDungeon.screen != AbstractDungeon.CurrentScreen.NONE
+        ) AbstractDungeon.previousScreen = AbstractDungeon.screen;
+        reopen();
     }
 
     @Override

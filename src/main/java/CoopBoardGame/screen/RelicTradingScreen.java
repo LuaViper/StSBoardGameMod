@@ -1,5 +1,6 @@
 package CoopBoardGame.screen;
 
+import CoopBoardGame.relics.AbstractBGRelic;
 import CoopBoardGame.ui.FakeTradingRelic;
 import basemod.abstracts.CustomScreen;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -45,10 +46,37 @@ public class RelicTradingScreen extends CustomScreen {
 
     public ArrayList<FakeTradingRelic> relics;
 
-    public void open() {
-        AbstractDungeon.screen = curScreen();
-        AbstractDungeon.isScreenUp = true;
+    public void open(RelicTradingAction action, String description, boolean displayRelicPrice) {
         AbstractDungeon.overlayMenu.showBlackScreen();
+        this.action = action;
+        this.description = description;
+        this.displayRelicPrice = displayRelicPrice;
+        this.isDone = false;
+
+        // Initialize relics list with FakeTradingRelic objects
+        this.relics = new ArrayList<>();
+        ArrayList<AbstractRelic> payableRelics = AbstractBGRelic.getAllPayableRelics();
+
+        // Position relics in a grid pattern (5 per row, centered)
+        int relicsPerRow = 5;
+        int spacing = 160; // spacing between relics
+
+        for (int i = 0; i < payableRelics.size(); i++) {
+            int row = i / relicsPerRow;
+            int col = i % relicsPerRow;
+            int numInThisRow = Math.min(relicsPerRow, payableRelics.size() - row * relicsPerRow);
+
+            // Center each row
+            int xOffset = (col - numInThisRow / 2) * spacing + (numInThisRow % 2 == 0 ? spacing / 2 : 0);
+            int yOffset = (1 - row) * spacing; // rows go downward
+
+            this.relics.add(new FakeTradingRelic(this, payableRelics.get(i), xOffset, yOffset));
+        }
+
+        if (
+            AbstractDungeon.screen != AbstractDungeon.CurrentScreen.NONE
+        ) AbstractDungeon.previousScreen = AbstractDungeon.screen;
+        reopen();
     }
 
     @Override
