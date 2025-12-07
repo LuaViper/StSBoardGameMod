@@ -19,10 +19,22 @@ import com.megacrit.cardcrawl.ui.panels.TopPanel;
 public class RelicDragPatches {
 
     /**
-     * Patch AbstractRelic.update() to detect drag initiation.
+     * Patch AbstractRelic.update() to detect drag initiation and block clicks after dragging.
      */
     @SpirePatch2(clz = AbstractRelic.class, method = "update")
     public static class RelicUpdateDragPatch {
+        @SpirePrefixPatch
+        public static SpireReturn<Void> Prefix(AbstractRelic __instance) {
+            // Block relic click interactions during and shortly after dragging
+            if (RelicDragManager.shouldBlockRelicClicks()) {
+                if (__instance.hb != null) {
+                    __instance.hb.clicked = false;
+                    __instance.hb.clickStarted = false;
+                }
+            }
+            return SpireReturn.Continue();
+        }
+
         @SpirePostfixPatch
         public static void Postfix(AbstractRelic __instance) {
             // Only handle relics in player's relic list (not shop/reward relics)

@@ -40,6 +40,11 @@ public class RelicDragManager {
     public static int pendingDragIndex = -1;
     public static final float DRAG_THRESHOLD = 8f; // Pixels before drag starts
 
+    // ===== Post-Drag State (to prevent accidental relic info popup) =====
+    private static boolean justFinishedDrag = false;
+    private static float postDragCooldown = 0f;
+    private static final float POST_DRAG_COOLDOWN_TIME = 0.2f; // Seconds to block clicks after drag
+
     // ===== Animation State =====
     public static float[] relicTargetOffsets;  // Target X offset for each relic
     public static float[] relicCurrentOffsets; // Current (animated) X offset
@@ -58,6 +63,13 @@ public class RelicDragManager {
      */
     public static boolean isDragging() {
         return draggedRelic != null;
+    }
+
+    /**
+     * Returns true if we should block relic clicks (during or just after dragging).
+     */
+    public static boolean shouldBlockRelicClicks() {
+        return isDragging() || justFinishedDrag;
     }
 
     /**
@@ -104,6 +116,14 @@ public class RelicDragManager {
         if (!Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
             clickStarted = false;
             pendingDragRelic = null;
+        }
+
+        // Countdown post-drag cooldown
+        if (justFinishedDrag) {
+            postDragCooldown -= Gdx.graphics.getDeltaTime();
+            if (postDragCooldown <= 0) {
+                justFinishedDrag = false;
+            }
         }
     }
 
@@ -291,6 +311,10 @@ public class RelicDragManager {
         } else {
             CardCrawlGame.sound.play("UI_CLICK_2");
         }
+
+        // Set cooldown to prevent accidental relic info popup
+        justFinishedDrag = true;
+        postDragCooldown = POST_DRAG_COOLDOWN_TIME;
 
         // Reset all state
         draggedRelic = null;
