@@ -1,0 +1,85 @@
+package CoopBoardGame.actions;
+
+import CoopBoardGame.CoopBoardGame;
+import CoopBoardGame.relics.AbstractBGRelic;
+import CoopBoardGame.relics.BGMiracles;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.GainEnergyAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.relics.AbstractRelic;
+import com.megacrit.cardcrawl.vfx.ThoughtBubble;
+
+public class BGGainMiracleAction extends AbstractGameAction {
+
+    private int amount;
+    private AbstractCard card;
+
+    //TODO LATER: check for exceptions to the "if card wasn't in autoplay, convert excess miracles to energy" rule
+
+    public BGGainMiracleAction(int amount, AbstractCard card) {
+        this.duration = 0.0F;
+        this.actionType = ActionType.WAIT;
+        this.amount = amount;
+        this.card = card;
+    }
+
+    public BGGainMiracleAction(int amount) {
+        this(amount, null);
+    }
+
+    public void update() {
+        if (!AbstractDungeon.player.hasRelic("CoopBoardGame:BGMiracles")) {
+            AbstractRelic miracles = new BGMiracles();
+            AbstractDungeon.getCurrRoom().spawnRelicAndObtain(
+                (Settings.WIDTH / 2),
+                (Settings.HEIGHT / 2),
+                miracles
+            );
+            ((AbstractBGRelic) miracles).setupObtainedDuringCombat();
+        }
+
+        AbstractRelic relic = AbstractDungeon.player.getRelic("CoopBoardGame:BGMiracles");
+        for (int i = 0; i < this.amount; i += 1) {
+            relic.counter = relic.counter + 1;
+        }
+        if (relic.counter > 5) {
+            //addToTop
+            int surplus = relic.counter - 5;
+            relic.counter = 5;
+            if (card != null && !card.isInAutoplay) {
+                addToTop(new GainEnergyAction(surplus));
+            }
+            if (!CoopBoardGame.alreadyShowedMaxMiraclesWarning) {
+                CoopBoardGame.alreadyShowedMaxMiraclesWarning = true;
+                //TODO: localization
+                AbstractDungeon.effectList.add(
+                    new ThoughtBubble(
+                        AbstractDungeon.player.dialogX,
+                        AbstractDungeon.player.dialogY,
+                        3.0F,
+                        "I can't have more than 5 Miracles.",
+                        true
+                    )
+                );
+            }
+        }
+        //TODO: also check global token cap (5*number_of_Watchers) (only relevant if prismatic shard)
+
+        for (AbstractCard c : AbstractDungeon.player.hand.group) {
+            c.applyPowers();
+        }
+        for (AbstractCard c : AbstractDungeon.player.drawPile.group) {
+            c.applyPowers();
+        }
+        for (AbstractCard c : AbstractDungeon.player.discardPile.group) {
+            c.applyPowers();
+        }
+        for (AbstractCard c : AbstractDungeon.player.exhaustPile.group) {
+            c.applyPowers();
+        }
+
+        this.isDone = true;
+    }
+}

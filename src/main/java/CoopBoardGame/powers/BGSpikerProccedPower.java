@@ -1,0 +1,70 @@
+package CoopBoardGame.powers;
+
+import CoopBoardGame.CoopBoardGame;
+import CoopBoardGame.actions.BGForcedWaitAction;
+import com.evacipated.cardcrawl.mod.stslib.powers.interfaces.InvisiblePower;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.actions.common.DamageAction;
+import com.megacrit.cardcrawl.actions.common.RemoveSpecificPowerAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.cards.DamageInfo;
+import com.megacrit.cardcrawl.core.AbstractCreature;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.PowerStrings;
+import com.megacrit.cardcrawl.powers.AbstractPower;
+
+//BGSpikerProccedPower has been rewritten to apply to the PLAYER instead of the MONSTER
+//  in order to fix an inconsistency with the end-of-combat referee whistle.
+public class BGSpikerProccedPower extends AbstractBGPower implements InvisiblePower {
+
+    public static final String POWER_ID = CoopBoardGame.makeID("BGSpikerProcced");
+    private static final PowerStrings powerStrings = CardCrawlGame.languagePack.getPowerStrings(
+        POWER_ID
+    );
+    public static final String NAME = powerStrings.NAME;
+    public static final String[] DESCRIPTIONS = powerStrings.DESCRIPTIONS;
+
+    public BGSpikerProccedPower(AbstractCreature owner, int amount, boolean isSourceMonster) {
+        this.name = NAME;
+        this.ID = "BGSpikerProcced";
+        this.owner = owner;
+        this.amount = amount;
+        updateDescription();
+        loadRegion("thorns");
+
+        this.type = AbstractPower.PowerType.BUFF;
+        this.isTurnBased = false;
+
+        this.priority = 99;
+    }
+
+    public void stackPower(int stackAmount) {
+        this.amount = stackAmount;
+    }
+
+    public void onAfterUseCard(AbstractCard card, UseCardAction action) {
+        //if monster, wears off after card resolves
+        addToBot(new BGForcedWaitAction(1.0f));
+        addToBot(
+            (AbstractGameAction) new DamageAction(
+                (AbstractCreature) AbstractDungeon.player,
+                new DamageInfo(this.owner, this.amount, DamageInfo.DamageType.THORNS),
+                AbstractGameAction.AttackEffect.SLASH_HORIZONTAL,
+                true
+            )
+        );
+        addToBot(
+            (AbstractGameAction) new RemoveSpecificPowerAction(
+                this.owner,
+                this.owner,
+                "BGSpikerProcced"
+            )
+        );
+    }
+
+    public void updateDescription() {
+        this.description = DESCRIPTIONS[0] + this.amount + DESCRIPTIONS[1];
+    }
+}

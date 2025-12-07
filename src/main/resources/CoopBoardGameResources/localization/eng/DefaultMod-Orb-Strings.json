@@ -1,0 +1,28 @@
+{
+    "CoopBoardGame:BGLightning": {
+        "NAME": "Lightning",
+        "DESCRIPTION": [
+            "#yPassive: At the end of turn, deal #b",
+            " damage. NL #yEvoke: Deal #b",
+            " damage."
+        ]
+    },
+    "CoopBoardGame:BGFrost": {
+        "NAME": "Frost",
+        "DESCRIPTION": [
+            "#yPassive: At the end of turn, gain #b",
+            " #yBlock. NL #yEvoke: Gain #b",
+            " #yBlock."
+        ]
+    },
+    "CoopBoardGame:BGDark": {
+        "NAME": "Dark",
+        "DESCRIPTION": [
+            "(DNT - you shouldn't see this message)",
+            " ...",
+            " ...",
+            "#yEvoke: Deal #b",
+            " damage. Deals 1 additional damage for each Power you have in play."
+        ]
+    }
+}

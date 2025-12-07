@@ -1,0 +1,75 @@
+[
+    {
+        "PROPER_NAME": "[CoopBoardGame:VulnIcon] Vulnerable",
+        "NAMES": ["vulnerable"],
+        "DESCRIPTION": "Deal 2x damage on each [CoopBoardGame:HitIcon] in the next Attack, then remove a [CoopBoardGame:VulnIcon] token."
+    },
+    {
+        "PROPER_NAME": "[CoopBoardGame:WeakIcon] Weak",
+        "NAMES": ["weak"],
+        "DESCRIPTION": "Deal -1 damage on each [CoopBoardGame:HitIcon] in the next Attack, then remove a [CoopBoardGame:WeakIcon] token."
+    },
+    {
+        "PROPER_NAME": "Poison",
+        "NAMES": [
+            "Poison (BG)",
+            "poison_(bg)",
+            "poison(bg)",
+            "poisoned (bg)",
+            "poisoned_(bg)",
+            "poison",
+            "poisoned"
+        ],
+        "DESCRIPTION": "Poisoned creatures lose HP at the end of the player's turn."
+    },
+    {
+        "PROPER_NAME": "[CoopBoardGame:ShivIcon] Shivs",
+        "NAMES": ["shiv", "shivs"],
+        "DESCRIPTION": "Shivs [CoopBoardGame:ShivIcon] are tokens that may be used whenever you could play a card to deal 1 [CoopBoardGame:HitIcon] ."
+    },
+    {
+        "PROPER_NAME": "Channel",
+        "NAMES": ["channel", "channeled"],
+        "DESCRIPTION": "Channeling an Orb puts it into your first empty slot. If you have no empty slots, one of your Orbs is #yEvoked to make room."
+    },
+    {
+        "PROPER_NAME": "Evoke",
+        "NAMES": ["evoke", "evoked"],
+        "DESCRIPTION": "Consume one of your Orbs and use its Evoke effect."
+    },
+    {
+        "PROPER_NAME": "Lightning",
+        "NAMES": ["lightning", "lightning+"],
+        "DESCRIPTION": "Orb: Deals damage to enemies."
+    },
+    {
+        "PROPER_NAME": "Frost",
+        "NAMES": ["frost", "frost+"],
+        "DESCRIPTION": "Orb: Gains #yBlock."
+    },
+    {
+        "PROPER_NAME": "Dark",
+        "NAMES": ["dark", "dark+"],
+        "DESCRIPTION": "Orb: When #yEvoked, deals damage based on active Powers."
+    },
+    {
+        "PROPER_NAME": "Wrath",
+        "NAMES": ["wrath"],
+        "DESCRIPTION": "+1 to your [CoopBoardGame:HitIcon] . NL #yEnd #yof #yturn: NL Take 1 damage."
+    },
+    {
+        "PROPER_NAME": "Calm",
+        "NAMES": ["calm"],
+        "DESCRIPTION": "Gain [W] [W] when you leave #yCalm."
+    },
+    {
+        "PROPER_NAME": "Neutral",
+        "NAMES": ["neutral"],
+        "DESCRIPTION": "Exit your #yStance."
+    },
+    {
+        "PROPER_NAME": "Scry",
+        "NAMES": ["scry", "scrying"],
+        "DESCRIPTION": "Look at the top X cards of your draw pile. You may discard any of them."
+    }
+]

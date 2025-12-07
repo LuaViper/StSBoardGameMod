@@ -1,0 +1,61 @@
+package CoopBoardGame.cards.BGPurple;
+
+import CoopBoardGame.actions.BGWreathOfFlameAction;
+import CoopBoardGame.actions.BGXCostCardAction;
+import CoopBoardGame.cards.AbstractBGCard;
+import CoopBoardGame.characters.BGWatcher;
+import com.megacrit.cardcrawl.actions.AbstractGameAction;
+import com.megacrit.cardcrawl.cards.AbstractCard;
+import com.megacrit.cardcrawl.characters.AbstractPlayer;
+import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.localization.CardStrings;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
+
+public class BGWreathOfFlame extends AbstractBGCard {
+
+    private static final CardStrings cardStrings = CardCrawlGame.languagePack.getCardStrings(
+        "CoopBoardGame:BGWreathOfFlame"
+    );
+    public static final String ID = "BGWreathOfFlame";
+
+    public BGWreathOfFlame() {
+        //img is properly wreathe_of_flame [sic]
+        super(
+            "BGWreathOfFlame",
+            cardStrings.NAME,
+            "purple/skill/wreathe_of_flame",
+            -1,
+            cardStrings.DESCRIPTION,
+            CardType.SKILL,
+            BGWatcher.Enums.BG_PURPLE,
+            CardRarity.UNCOMMON,
+            CardTarget.SELF
+        );
+        this.exhaust = true;
+    }
+
+    public void use(AbstractPlayer p, AbstractMonster m) {
+        BGXCostCardAction.XCostInfo info = BGXCostCardAction.preProcessCard(this);
+        addToBot(
+            (AbstractGameAction) new BGXCostCardAction(this, info, (e, d) ->
+                addToTop(
+                    (AbstractGameAction) new BGWreathOfFlameAction(AbstractDungeon.player, d, e)
+                )
+            )
+        );
+    }
+
+    public void upgrade() {
+        if (!this.upgraded) {
+            upgradeName();
+            this.exhaust = false;
+            this.rawDescription = cardStrings.UPGRADE_DESCRIPTION;
+            initializeDescription();
+        }
+    }
+
+    public AbstractCard makeCopy() {
+        return new BGWreathOfFlame();
+    }
+}

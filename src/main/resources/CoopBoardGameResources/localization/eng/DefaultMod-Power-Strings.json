@@ -1,0 +1,502 @@
+{
+    "CoopBoardGame:TheDiePower": {
+        "NAME": "Roll the Die",
+        "DESCRIPTIONS": ["You rolled a #b", "."]
+    },
+    "CoopBoardGame:Vulnerable (BG)": {
+        "NAME": "Vulnerable",
+        "DESCRIPTIONS": ["Receive #b", "% more damage from the next #b", "Attack.", " Attacks."]
+    },
+    "CoopBoardGame:Weakened (BG)": {
+        "NAME": "Weakened",
+        "DESCRIPTIONS": ["The next #b", "Attack deals #b", " Attacks deal #b", " less damage."]
+    },
+    "CoopBoardGame:VulnerableProccedPlayer": {
+        "NAME": "DEPRECATED_Decrement Vulnerable (Player)",
+        "DESCRIPTIONS": ["At the end of this action, player loses 1 Vulnerable(BG)."]
+    },
+    "CoopBoardGame:VulnerableProcced": {
+        "NAME": "Enemy Vulnerable -1",
+        "DESCRIPTIONS": ["At the end of this action, lose 1 Vulnerable(BG)."]
+    },
+    "CoopBoardGame:VulnerableWatchPlayer": {
+        "NAME": "Check Enemy Intent (Player Vulnerable)",
+        "DESCRIPTIONS": ["If this enemy intends to #yAttack, player loses 1 Vulnerable(BG)."]
+    },
+    "CoopBoardGame:WeakProcced": {
+        "NAME": "DEPRECATED_Decrement Weakened",
+        "DESCRIPTIONS": ["At the end of this action, lose 1 Weakened(BG)."]
+    },
+    "CoopBoardGame:Anger": {
+        "NAME": "Enraged",
+        "DESCRIPTIONS": ["Whenever you play a #ySkill, take #b", " damage."]
+    },
+    "CoopBoardGame:BGAccuracyPower": {
+        "NAME": "Accuracy",
+        "DESCRIPTIONS": ["Your #yShivs deal #b", " additional damage."]
+    },
+    "CoopBoardGame:BGAfterImagePower": {
+        "NAME": "After Image",
+        "DESCRIPTIONS": [
+            "Whenever you discard one or more cards during your turn, gain #b",
+            " Block."
+        ]
+    },
+    "CoopBoardGame:Akabeko": {
+        "NAME": "Akabeko",
+        "DESCRIPTIONS": ["Lose #b", " #yStrength after your next #yAttack."]
+    },
+    "CoopBoardGame:BGAmplifyPower": {
+        "NAME": "Amplify",
+        "DESCRIPTIONS": [
+            "#yDark Orb #yEvoke effects get #b+",
+            "#yDark Orb #yEvoke effects get #b-",
+            "."
+        ]
+    },
+    "CoopBoardGame:BGApotheosisPower": {
+        "NAME": "Apotheosis",
+        "DESCRIPTIONS": ["Starter Strikes and Defends gain #b+", " effectiveness."]
+    },
+    "CoopBoardGame:BGAThousandCutsPower": {
+        "NAME": "A Thousand Cuts",
+        "DESCRIPTIONS": ["Whenever you shuffle your draw pile, deal #b", " damage to any row."]
+    },
+    "CoopBoardGame:BGBattleHymnPower": {
+        "NAME": "Battle Hymn",
+        "DESCRIPTIONS": ["Once per turn,", " deal #b", " damage, #b+", " if you're in #yWrath."]
+    },
+    "CoopBoardGame:BGBeatOfDeathPower": {
+        "NAME": "Beat Of Death",
+        "DESCRIPTIONS": ["Player takes #b", " damage at end of their turn."]
+    },
+    "CoopBoardGame:Berserk": {
+        "NAME": "Berserk",
+        "DESCRIPTIONS": ["Whenever a card is #yExhausted, deal #b", " damage to any row."]
+    },
+    "CoopBoardGame:BGBurstPower": {
+        "NAME": "Burst",
+        "DESCRIPTIONS": [
+            "Your next #ySkill is played twice this turn.",
+            "Your next ",
+            " #ySkills are played twice this turn."
+        ]
+    },
+    "CoopBoardGame:BGChampPhase2WarningPower": {
+        "NAME": "Undefeated",
+        "DESCRIPTIONS": ["This enemy won't lose gracefully..."]
+    },
+    "CoopBoardGame:Combust": {
+        "NAME": "Combust",
+        "DESCRIPTIONS": ["Once per turn,", " deal #b", " damage to any row."]
+    },
+    "CoopBoardGame:BGConclusionPower": {
+        "NAME": "Conclude",
+        "DESCRIPTIONS": [
+            "You can only play #b",
+            " more cards this turn.",
+            " more card this turn.",
+            "You can't play any more cards this turn.",
+            "I can only play up to NL #r",
+            " cards this turn."
+        ]
+    },
+    "CoopBoardGame:BGConfusion": {
+        "NAME": "Confusion",
+        "DESCRIPTIONS": [
+            "The first card you play each turn has its cost randomized.",
+            "The first card you play this turn costs ",
+            " ."
+        ]
+    },
+    "CoopBoardGame:BGConjureBladePower": {
+        "NAME": "Conjure Blade",
+        "DESCRIPTIONS": ["Your starter Strikes deal #b", " additional damage."]
+    },
+    "CoopBoardGame:BGCorpseExplosionPower": {
+        "NAME": "Corpse Explosion",
+        "DESCRIPTIONS": [
+            "(Unused) On death, deal damage equal to its Max HP to its row.",
+            "On death, deal #b",
+            " damage to its row."
+        ]
+    },
+    "CoopBoardGame:BGCuriosityPower": {
+        "NAME": "Curiosity",
+        "DESCRIPTIONS": [
+            "Attacks deal #b",
+            " additional damage to each player for each Power card they have in play. Ignores the Strength cap and physical token limits."
+        ]
+    },
+    "CoopBoardGame:Curl Up": {
+        "NAME": "Curl Up",
+        "DESCRIPTIONS": [
+            "On receiving damage, rolls up and gains #b",
+            " #yBlock. (Once per combat)"
+        ]
+    },
+    "CoopBoardGame:BGDevaFormPower": {
+        "NAME": "Deva Form",
+        "DESCRIPTIONS": ["#yStart #yof #yturn: gain #b", " [CoopBoardGame:MiracleIcon] ."]
+    },
+    "CoopBoardGame:BGDevotionPower": {
+        "NAME": "Devotion",
+        "DESCRIPTIONS": [
+            "Gain [CoopBoardGame:MiracleIcon] and draw 1 card at the start of your next turn.",
+            "Gain [CoopBoardGame:MiracleIcon] and draw 1 card at the start of your next #b",
+            " turns."
+        ]
+    },
+    "CoopBoardGame:BGDexterity": {
+        "NAME": "Dexterity",
+        "DESCRIPTIONS": [
+            "Increases #yBlock applied by your cards by #b",
+            "Decreases #yBlock applied by your cards by #b",
+            "."
+        ]
+    },
+    "CoopBoardGame:BGDifferentRowsPower": {
+        "NAME": "Pincer Movement",
+        "DESCRIPTIONS": [
+            "These enemies are in different rows. NL [CoopBoardGame:AOEIcon] Area of Effect attacks will hit only one of them."
+        ]
+    },
+    "CoopBoardGame:BGDistractionPower": {
+        "NAME": "Distraction",
+        "DESCRIPTIONS": [
+            "#yOnce #yper #yturn: NL When you put a token on an enemy, gain #b",
+            " #yBlock."
+        ]
+    },
+    "CoopBoardGame:BGDouble Attack": {
+        "NAME": "Double Attack",
+        "DESCRIPTIONS": [
+            "Your next #yAttack is played twice this turn.",
+            "Your next #b",
+            " #yAttacks are played twice this turn."
+        ]
+    },
+    "CoopBoardGame:BGEchoFormPower": {
+        "NAME": "Echo Form",
+        "DESCRIPTIONS": [
+            "The first Attack or Skill you play each turn is played twice.",
+            "The first #b",
+            " Attacks or Skills you play each turn are played twice.",
+            "Echo Form is applied at the start of your next turn."
+        ]
+    },
+    "CoopBoardGame:BGElectroPower": {
+        "NAME": "Electro",
+        "DESCRIPTIONS": ["#yLightning deals damage to any row instead of a single target.", "", ""]
+    },
+    "CoopBoardGame:BGEnergyUpPower": {
+        "NAME": "Fusion",
+        "DESCRIPTIONS": [
+            "Gain #b",
+            " additional [B] each turn.",
+            " additional [B] each turn.",
+            " - TRANSLATOR NOTE: - The above line is for plural if needed to distinguish from singular."
+        ]
+    },
+    "CoopBoardGame:BGEnvenomPower": {
+        "NAME": "Envenom",
+        "DESCRIPTIONS": [
+            "Your Attacks also apply #b1 Poison.",
+            "Your Attacks also apply #b1 Poison."
+        ]
+    },
+    "CoopBoardGame:BGEstablishmentPower": {
+        "NAME": "Establishment",
+        "DESCRIPTIONS": [
+            "Cards you #yRetained last turn cost #b",
+            " less [W] this turn.",
+            "Establishment is applied at the start of your next turn."
+        ]
+    },
+    "CoopBoardGame:BGExplosive": {
+        "NAME": "Explosive",
+        "DESCRIPTIONS": [
+            "Self-destructs in #b",
+            " turns, #yAttacking for #b",
+            " damage as it dies.",
+            "Dies this turn."
+        ]
+    },
+    "CoopBoardGame:BGFlight": {
+        "NAME": "Flight",
+        "DESCRIPTIONS": ["Reduce all damage from #yAttacks to 1."]
+    },
+    "CoopBoardGame:BGFreeAttackPower": {
+        "NAME": "Swivel",
+        "DESCRIPTIONS": [
+            "The next #yAttack you play this turn costs 0.",
+            "The next #b",
+            " #yAttacks you play this turn cost 0."
+        ]
+    },
+    "CoopBoardGame:BGFreeCardPower": {
+        "NAME": "Madness",
+        "DESCRIPTIONS": [
+            "The next card you play this turn costs 0.",
+            "The next #b",
+            " cards you play this turn cost 0."
+        ]
+    },
+    "CoopBoardGame:BGInfinite Blades": {
+        "NAME": "Infinite Blades",
+        "DESCRIPTIONS": ["At the start of your turn, gain #b", " #yShivs.", " #yShiv."]
+    },
+    "CoopBoardGame:Instant Rebound": {
+        "NAME": "Instant Rebound",
+        "DESCRIPTIONS": [
+            "The card you just played is placed on top of your draw pile.",
+            "The next #b",
+            " cards you play this turn are placed on top of your draw pile."
+        ]
+    },
+    "CoopBoardGame:BGIntangible": {
+        "NAME": "Invincible",
+        "DESCRIPTIONS": [
+            "Can only lose #b",
+            " more HP this turn.",
+            "Can no longer be harmed this turn."
+        ]
+    },
+    "CoopBoardGame:BGIntangiblePower": {
+        "NAME": "Intangible",
+        "DESCRIPTIONS": [
+            "Reduce ALL damage taken and HP loss to #b0 this turn. #yIntangible is reapplied every other turn."
+        ]
+    },
+
+    "CoopBoardGame:BGInvinciblePower": {
+        "NAME": "Invincible",
+        "DESCRIPTIONS": [
+            "Can only lose #b",
+            " more HP. NL Immune to Weak.",
+            "Can no longer be harmed. NL Immune to Weak."
+        ]
+    },
+    "CoopBoardGame:Juggernaut": {
+        "NAME": "Juggernaut",
+        "DESCRIPTIONS": [
+            "Whenever you gain #yBlock, deal #b",
+            " damage.",
+            "Now look what you've done.",
+            "Zzz... zzz... zzz..."
+        ]
+    },
+    "CoopBoardGame:BGLoopPower": {
+        "NAME": "Loop",
+        "DESCRIPTIONS": [
+            "At the end of your turn, trigger 1 Orb's #yEnd #yof #yturn ability.",
+            "At the end of your turn, trigger 1 Orb's #yEnd #yof #yturn ability #b",
+            " times."
+        ]
+    },
+    "CoopBoardGame:BGMayhemPower": {
+        "NAME": "Mayhem",
+        "DESCRIPTIONS": [
+            "At the start of your turn, play the top card of your draw pile for 0 Energy.",
+            "At the start of your turn, play the top #b",
+            " cards of your draw pile for 0 Energy."
+        ]
+    },
+    "CoopBoardGame:Mode Shift": {
+        "NAME": "Mode Shift",
+        "DESCRIPTIONS": ["If its #yBlock is broken, changes to a defensive mode."]
+    },
+    "CoopBoardGame:BGNoxiousFumes": {
+        "NAME": "Noxious Fumes",
+        "DESCRIPTIONS": [
+            "At the start of your turn, apply #b",
+            " #yPoison.",
+            " #yPoison to any row."
+        ]
+    },
+    "CoopBoardGame:BGOrbEndOfTurnPower": {
+        "NAME": "Defragment",
+        "DESCRIPTIONS": [
+            "Orb #yEnd #yof #yturn effects get #b+",
+            "Orb #yEnd #yof #yturn effects get #b-",
+            "."
+        ]
+    },
+    "CoopBoardGame:BGOrbEvokePower": {
+        "NAME": "Consume",
+        "DESCRIPTIONS": ["Orb #yEvoke effects get #b+", "Orb #yEvoke effects get #b-", "."]
+    },
+    "CoopBoardGame:BGPanachePower": {
+        "NAME": "Panache",
+        "DESCRIPTIONS": [
+            "If your hand is empty at the end of your turn, deal #b",
+            " damage to any row."
+        ]
+    },
+    "CoopBoardGame:Split": {
+        "NAME": "Split",
+        "DESCRIPTIONS": ["On death, will split into #b3 smaller slimes."]
+    },
+
+    "CoopBoardGame:BGOneTurnRetain Cards": {
+        "NAME": "Runic Pyramid",
+        "DESCRIPTIONS": ["Retain any number of cards this turn."]
+    },
+    "CoopBoardGame:BGOrbWalkerPower": {
+        "NAME": "Strength Up",
+        "DESCRIPTIONS": ["At the end of its turn, gains #rat #rleast #b", " #yStrength."]
+    },
+    "CoopBoardGame:BGOmegaPower": {
+        "NAME": "Omega",
+        "DESCRIPTIONS": ["At the end of your turn, deal #b", " damage to any row."]
+    },
+    "CoopBoardGame:BGPainful Stabs": {
+        "NAME": "Painful Stabs",
+        "DESCRIPTIONS": [
+            "When you lose HP from this enemy's attacks, put 1 #yDazed on top of your draw pile."
+        ]
+    },
+    "CoopBoardGame:BGPoison": {
+        "NAME": "Poison",
+        "DESCRIPTIONS": [
+            "At the start of your turn, lose #b",
+            " HP.",
+            "At the end of the player's turn, this enemy loses #b"
+        ]
+    },
+    "CoopBoardGame:BGRushdownPower": {
+        "NAME": "Rushdown",
+        "DESCRIPTIONS": ["The first time you enter #yWrath each turn, draw #b", " card.", " cards."]
+    },
+    "CoopBoardGame:BGSimmeringFuryPower": {
+        "NAME": "Simmering Fury",
+        "DESCRIPTIONS": ["Additional #b+", " to [CoopBoardGame:HitIcon] during #yWrath."]
+    },
+    "CoopBoardGame:BGSpiker": {
+        "NAME": "Sharp Hide",
+        "DESCRIPTIONS": ["Whenever you play an #yAttack against Spiker, take #b", " damage."]
+    },
+    "CoopBoardGame:BGSpikerProcced": {
+        "NAME": "Sharp Hide Proc",
+        "DESCRIPTIONS": ["At the end of this action, player takes ", " damage."]
+    },
+    "CoopBoardGame:BGReactivePower": {
+        "NAME": "Reactive",
+        "DESCRIPTIONS": ["Upon receiving attack damage, rerolls #yThe #yDie."]
+    },
+    "CoopBoardGame:BGRegrowPower": {
+        "NAME": "Life Link",
+        "DESCRIPTIONS": [
+            "If other enemies are still alive, revives at the start of the player's turn at #b50% HP."
+        ]
+    },
+    "CoopBoardGame:BGShiftingPower": {
+        "NAME": "Shifting",
+        "DESCRIPTIONS": ["", "When Transient loses HP, the player gains that much #yBlock."]
+    },
+    "CoopBoardGame:BGSlowPower": {
+        "NAME": "Slow",
+        "DESCRIPTIONS": [
+            " takes #b",
+            " additional damage from Attacks.",
+            " gains #yVulnerable if you play #b",
+            " more cards this turn.",
+            " more card this turn.",
+            " gains #yVulnerable if you play #b4 cards in a single turn.",
+            " (Receives #b",
+            "% more damage)"
+        ]
+    },
+    "CoopBoardGame:BGStaticDischargePower": {
+        "NAME": "Static Discharge",
+        "DESCRIPTIONS": [
+            "#yLightning Orb #yEnd #yof #yturn effects get #b+",
+            "#yLightning Orb #yEnd #yof #yturn effects get #b-",
+            "."
+        ]
+    },
+    "CoopBoardGame:BGStormPower": {
+        "NAME": "Storm",
+        "DESCRIPTIONS": ["At the start of your turn, #yChannel #b", " #yLightning."]
+    },
+    "CoopBoardGame:BGStudyPower": {
+        "NAME": "Study",
+        "DESCRIPTIONS": ["If you are in #yCalm at the start of your turn, draw #b", " #cards."]
+    },
+    "CoopBoardGame:BGSurroundedPower": {
+        "NAME": "Flanked",
+        "DESCRIPTIONS": [
+            "After #ystart #yof #yturn effects, players can switch rows. Then they're immediately targeted by a special ability from the enemy in that row."
+        ]
+    },
+    "CoopBoardGame:BGTemporaryRetainCardsPower": {
+        "NAME": "Equilibrium",
+        "DESCRIPTIONS": ["You may retain #b", " card this turn.", " cards this turn."]
+    },
+    "CoopBoardGame:Thievery": {
+        "NAME": "Thievery",
+        "DESCRIPTIONS": [" steals #b", " #yGold if it escapes from combat."]
+    },
+    "CoopBoardGame:BGTimeEaterPhase2WarningPower": {
+        "NAME": "Rewind",
+        "DESCRIPTIONS": ["Time moves in both directions..."]
+    },
+    "CoopBoardGame:BGTimeWarpPower": {
+        "NAME": "Time Warp",
+        "DESCRIPTIONS": [
+            "You can only play #b",
+            " more cards this turn.",
+            " more card this turn.",
+            "You can't play any more cards this turn.",
+            "I can only play up to NL #r",
+            " cards this turn."
+        ]
+    },
+    "CoopBoardGame:BGTripleAttackPower": {
+        "NAME": "Blasphemy",
+        "DESCRIPTIONS": [
+            "Your next #yAttack is played 3 times this turn.",
+            "Your next #b",
+            " #yAttacks are played 3 times this turn.",
+            " NL NL You are already dead."
+        ]
+    },
+    "CoopBoardGame:BGWraithFormPower": {
+        "NAME": "Wraith Form",
+        "DESCRIPTIONS": [
+            "You can't lose more than #b1 HP this round.",
+            "You can't lose more than #b1 HP per round for the next #b",
+            " rounds."
+        ]
+    },
+    "CoopBoardGame:BGZeroDamagePower": {
+        "NAME": "Blocked",
+        "DESCRIPTIONS": ["Damage you deal this turn is reduced to #b0."]
+    },
+    "BGTriggerAnyDieAbilityPower": {
+        "NAME": "Wildcard",
+        "DESCRIPTIONS": [
+            "At the start of this turn, #bRight-Click a relic with any die ability to trigger it an extra time. NL If unused, will automatically trigger Loaded Die's #b1 #yBlock ability."
+        ]
+    },
+    "BGTrigger2DieAbilityPower": {
+        "NAME": "Nilry's Codex",
+        "DESCRIPTIONS": [
+            "At the start of this turn, #bRight-Click a relic with a #b2 die ability to trigger it an extra time. NL If unused, will automatically trigger Nilry's Codex's draw #b1 card ability."
+        ]
+    },
+    "BGTriggerCharonsAshesPower": {
+        "NAME": "Charon's Ashes",
+        "DESCRIPTIONS": [
+            "At the start of this turn, #bRight-Click the Charon's Ashes relic to #yExhaust a card and deal #b2 damage."
+        ]
+    },
+    "CoopBoardGame:CommonPower": {
+        "NAME": "Placeholder Power",
+        "DESCRIPTIONS": ["You applied #b", " keyword.", " keywords."]
+    },
+    "CoopBoardGame:RarePower": {
+        "NAME": "Placeholder Power",
+        "DESCRIPTIONS": ["At the start of your turn, TOUCH #b", " enemy.", " enemies."]
+    }
+}

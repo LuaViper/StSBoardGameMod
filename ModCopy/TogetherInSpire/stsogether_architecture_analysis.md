@@ -68,23 +68,27 @@ The mod uses a **full state replication model** where each client maintains a co
 The mod supports **two networking backends** that share the same high-level API:
 
 #### 1. **P2P (Peer-to-Peer) - Steam Integration**
+
 - **File**: `spireTogether/network/P2P/`
 - **Transport**: Steam Networking API
 - **Topology**: Mesh network (all clients connect to each other)
 - **Use Case**: Primary mode for Steam users, handles NAT traversal automatically
 
 **Key Classes**:
+
 - `P2PPlayer` (abstract): Base representation of a networked player
 - `P2PManager`: Central registry of all connected players
 - `P2PClientData`: Game session data (seeds, settings, keys collected)
 
 #### 2. **PF (Port Forward) - Socket-Based**
+
 - **File**: `spireTogether/network/PF/`
 - **Transport**: Java `ServerSocket`/`Socket` (TCP)
 - **Topology**: Client-server (one player hosts, others connect)
 - **Use Case**: Fallback for non-Steam users, LAN play, or direct IP connections
 
 **Key Classes**:
+
 - `PFServer`: Manages server socket, client connections, message broadcasting
 - `PFClient`: Connects to server, sends/receives messages
 - `PFServerClient`: Server-side representation of each connected client
@@ -101,15 +105,17 @@ The mod supports **two networking backends** that share the same high-level API:
 
 ```java
 public class NetworkMessage {
-    String request;         // Message type identifier (e.g., "ChangedPlayerData")
-    Object object;          // Payload (serialized game object)
-    Integer senderID;       // ID of sending player
-    Integer targetID;       // ID of target player (null = broadcast)
-    Instant timeGenerated;  // Timestamp for ordering/debugging
+
+    String request; // Message type identifier (e.g., "ChangedPlayerData")
+    Object object; // Payload (serialized game object)
+    Integer senderID; // ID of sending player
+    Integer targetID; // ID of target player (null = broadcast)
+    Instant timeGenerated; // Timestamp for ordering/debugging
 }
 ```
 
 **Serialization**: Java object serialization → byte array → ByteBuffer
+
 - Supports splitting large messages into chunks
 - Automatic deserialization on receive
 
@@ -118,6 +124,7 @@ public class NetworkMessage {
 The `P2PMessageSender` class defines **35+ message types**, categorized as:
 
 #### Player State Changes
+
 - `ChangedPlayerData` - Full player state sync
 - `ChangedPlayerHP/Block/Energy/Gold` - Resource updates
 - `ChangedPlayerPowers` - Status effects (Strength, Weak, etc.)
@@ -125,22 +132,26 @@ The `P2PMessageSender` class defines **35+ message types**, categorized as:
 - `EndedTurn` - Player ready signal
 
 #### Card Operations
+
 - `UsedCard` - Card played in combat
 - `ChangedPlayerCards` - Deck/hand/discard pile updates
 - `ChangedPlayerCard` - Single card modification
 
 #### Item Management
+
 - `ChangedPlayerRelics` - Relic collection updates
 - `ChangedPlayerPotions` - Potion inventory updates
 - `ChangedPlayerBlights` - Blight (negative relics) updates
 
 #### Map & Navigation
+
 - `ChangedPlayerLocation` - Room movement
 - `ChangedNodeMark` - Map node markers
 - `AddMapDot` - Visual indicators on map
 - `ChangedMapMouseCoords` - Cursor position sharing
 
 #### Session Management
+
 - `ChangedGameSetting` - Host updates game settings
 - `ExecuteCommand` - Chat commands
 - `UnlockedRoom` - Progression sync
@@ -155,24 +166,25 @@ Each `P2PPlayer` object contains **complete player state**:
 
 ```java
 public abstract class P2PPlayer {
+
     // Identity
     Integer id;
     String username;
-    PlayerClass playerClass;  // Ironclad, Silent, Defect, Watcher
+    PlayerClass playerClass; // Ironclad, Silent, Defect, Watcher
 
     // Combat Resources
     Integer HP, maxHP;
     Integer block;
     Integer energy, energyMax;
-    ArrayList<NetworkPower> powers;  // Strength, Vulnerable, etc.
-    NetworkStance stance;  // Watcher stances
+    ArrayList<NetworkPower> powers; // Strength, Vulnerable, etc.
+    NetworkStance stance; // Watcher stances
 
     // Deck State
-    ArrayList<NetworkCard> deck;         // Full deck
-    ArrayList<NetworkCard> drawPile;     // Draw pile
-    ArrayList<NetworkCard> handPile;     // Current hand
-    ArrayList<NetworkCard> discardPile;  // Discard pile
-    ArrayList<NetworkCard> exhaustPile;  // Exhausted cards
+    ArrayList<NetworkCard> deck; // Full deck
+    ArrayList<NetworkCard> drawPile; // Draw pile
+    ArrayList<NetworkCard> handPile; // Current hand
+    ArrayList<NetworkCard> discardPile; // Discard pile
+    ArrayList<NetworkCard> exhaustPile; // Exhausted cards
 
     // Items
     ArrayList<NetworkRelic> relics;
@@ -181,41 +193,46 @@ public abstract class P2PPlayer {
     Integer gold;
 
     // Session State
-    NetworkLocation location;  // Current room
-    Boolean endedTurn;         // Combat ready state
+    NetworkLocation location; // Current room
+    Boolean endedTurn; // Combat ready state
     TradingStatus tradingStatus;
     HealthStatus healthStatus;
 
     // UI State
-    float[] mapMouseCoords;    // Cursor position
-    Boolean flipHorizontal;    // Character facing direction
+    float[] mapMouseCoords; // Cursor position
+    Boolean flipHorizontal; // Character facing direction
 }
 ```
 
 ### Synchronization Pattern
 
 **1. Local State Change Detection**
+
 - Game hooks (via SpirePatches or action listeners) detect when player state changes
 - Example: Playing a card triggers card play action
 
 **2. Message Broadcasting**
+
 ```java
 // Player plays a Strike card on Cultist
 P2PMessageSender.Send_UsedCard(strikeCard, cultistEnemy, 1);
 ```
 
 **3. Message Transmission**
+
 - Message serialized to bytes
 - Sent via active network backend (P2P or PF)
 - Broadcast to all connected players (or specific target if targetID set)
 
 **4. Remote State Update**
+
 ```java
 // Remote clients receive message
 P2PCallbacks.OnAllyPlayedCard(card, target, playerID);
 ```
 
 **5. Callback Execution**
+
 - Callback updates remote player's state
 - Triggers visual effects (card animation, damage numbers)
 - Updates UI (health bars, energy display)
@@ -223,6 +240,7 @@ P2PCallbacks.OnAllyPlayedCard(card, target, playerID);
 ### Conflict Resolution
 
 **No conflict resolution mechanism** - relies on **authoritative local actions**:
+
 - Each player is authoritative for their own state
 - No server validates actions (trust-based model)
 - Works because game is cooperative (no adversarial actions)
@@ -237,14 +255,16 @@ P2PCallbacks.OnAllyPlayedCard(card, target, playerID);
 
 ```java
 public class P2PManager {
-    static List<P2PPlayer> players;           // Thread-safe synchronized list
-    static Map<Integer, Integer> playerIndx;  // ID → list index mapping
-    static P2PClientData data;                // Shared game session data
-    static Integer selfID;                    // Local player's ID
+
+    static List<P2PPlayer> players; // Thread-safe synchronized list
+    static Map<Integer, Integer> playerIndx; // ID → list index mapping
+    static P2PClientData data; // Shared game session data
+    static Integer selfID; // Local player's ID
 }
 ```
 
 **Core Functions**:
+
 - `Init()` - Initialize player list, register local player
 - `AddPlayer(P2PPlayer)` - Add newly connected player
 - `GetPlayer(Integer id)` - Retrieve player by ID
@@ -254,6 +274,7 @@ public class P2PManager {
 ### Thread Safety
 
 Uses `Collections.synchronizedList()` for concurrent access:
+
 - Network thread receives messages
 - Render thread reads player state for UI
 - Update thread modifies local player state
@@ -267,6 +288,7 @@ Uses `Collections.synchronizedList()` for concurrent access:
 **45+ callback methods** handle all incoming state changes:
 
 #### Player Lifecycle
+
 ```java
 OnPlayerRegistered(P2PPlayer)        // New player joins
 OnPlayerDisconnected(P2PPlayer)      // Player leaves
@@ -274,6 +296,7 @@ OnPlayerChangedCharacter(...)        // Character selection
 ```
 
 #### Resource Changes (with deltas)
+
 ```java
 OnPlayerHPChanged(player, oldHP, newHP, delta)
 OnPlayerBlockChanged(player, oldBlock, newBlock, delta)
@@ -282,6 +305,7 @@ OnPlayerEnergyChanged(player, newEnergy)
 ```
 
 #### Collection Changes (with diffs)
+
 ```java
 OnPlayerChangedCards(player, groupType, oldCards, newCards)
 OnPlayerPowersChanged(player, allPowers, added, removed, changed)
@@ -289,6 +313,7 @@ OnPlayerChangedPotions(player, newPotions)
 ```
 
 #### Combat Events
+
 ```java
 OnAllyPlayedCard(card, target, playerID)
 OnPlayerEndedTurn(player)
@@ -297,6 +322,7 @@ OnPlayerChangedStance(player, oldStance, newStance)
 ```
 
 #### Monster Synchronization
+
 ```java
 OnMonsterHealthIncreased(monster, amount)
 OnMonsterBlockIncreased(monster, amount)
@@ -306,6 +332,7 @@ OnMonsterBlockDecreased(monster, amount, attacker)
 ### Callback Design Pattern
 
 **Before/After State Pattern**: Many callbacks receive both old and new values, enabling:
+
 - Visual transition animations (HP bar smoothly decreases)
 - Event logging ("Alice gained 5 gold")
 - Rollback/undo (if needed)
@@ -326,6 +353,7 @@ CustomMultiplayerEvent extends AbstractEvent
 ```
 
 **Pattern**: Adds hooks for network synchronization in key lifecycle methods:
+
 - `onUse()` → broadcast card usage
 - `atEndOfTurn()` → sync power stack changes
 - `onObtainCard()` → sync deck updates
@@ -337,6 +365,7 @@ CharacterEntity extends AbstractMonster
 ```
 
 **Purpose**: Renders allied players as entities in combat
+
 - Displays ally HP, block, powers
 - Shows ally animations (card play, damage taken)
 - Clickable for targeting (buff cards, team effects)
@@ -374,11 +403,13 @@ UIElement (abstract base)
 ### Key UI Components
 
 #### PlayerInfoBox
+
 - Displays ally HP, energy, block
 - Shows current intent/action
 - Click to focus on player
 
 #### Chat System
+
 ```java
 ChatConsole
 ├── ChatMessage (individual messages)
@@ -386,6 +417,7 @@ ChatConsole
 ```
 
 #### Map Visualization
+
 ```java
 AllyCursorObject     // Shows ally cursor on map
 MapDot               // Visual markers (ping, objectives)
@@ -407,11 +439,13 @@ MultiplayerGameSave
 ```
 
 **Save Points**:
+
 - After each combat
 - Before each event/merchant
 - On manual save request
 
 **Load Process**:
+
 1. Host loads save
 2. Sends `NetworkStartingData` to all clients
 3. Clients reconstruct game state from save
@@ -424,12 +458,14 @@ MultiplayerGameSave
 ### Patching Strategy
 
 The mod uses **dLib** (a modding library) for minimal patching:
+
 - Only 3 patches in `spireTogether`:
-  - `DialogWordPatcher` - Chat message processing
-  - `MPSkillsPatches` - Skill card multiplayer logic
-  - `RaidPatches` - Special raid mode features
+    - `DialogWordPatcher` - Chat message processing
+    - `MPSkillsPatches` - Skill card multiplayer logic
+    - `RaidPatches` - Special raid mode features
 
 **Most patching is in dLib**, which provides hooks for:
+
 - Main menu modifications
 - Save/load system hooks
 - Network initialization
@@ -437,6 +473,7 @@ The mod uses **dLib** (a modding library) for minimal patching:
 ### Action Queue Integration
 
 Custom actions extend `AbstractGameAction`:
+
 ```java
 ApplyPowerWithoutModificationAction  // Sync power application
 CustomDamageAction                   // Networked damage
@@ -444,6 +481,7 @@ FeedbackDiscardAction                // Discard with network sync
 ```
 
 **Pattern**: Override `update()` to:
+
 1. Execute local action
 2. Broadcast state change via `P2PMessageSender`
 
@@ -456,6 +494,7 @@ FeedbackDiscardAction                // Discard with network sync
 **Current Implementation**: Sequential (one player acts, others watch)
 
 **Extension Strategy**:
+
 ```java
 // Add to P2PPlayer
 ArrayList<NetworkCard> plannedActions;  // Cards queued to play
@@ -473,6 +512,7 @@ OnAllPlayersReady() {
 ```
 
 **Implementation**:
+
 - Add "Queue Mode" toggle to combat
 - Players select cards and targets, but don't execute
 - When all players mark ready, resolve all actions
@@ -481,6 +521,7 @@ OnAllPlayersReady() {
 ### 2. **Shared Die Roll System**
 
 **Required Components**:
+
 ```java
 // Add to P2PClientData
 Integer currentDieResult;  // 1-6, rolled at start of turn
@@ -497,6 +538,7 @@ OnDieRolled(result) {
 ```
 
 **Implementation**:
+
 - Host rolls die at start of player turn
 - Broadcasts result to all players
 - Enemy cards check `currentDieResult` for action selection
@@ -505,15 +547,17 @@ OnDieRolled(result) {
 ### 3. **Row-Based Combat System**
 
 **Data Model Extension**:
+
 ```java
 // Add to P2PPlayer
-Integer combatRow;  // 1-4
+Integer combatRow; // 1-4
 
 // Add to enemy tracking
 public class EnemyRowAssignment {
-    Integer row;                    // Which row enemy is in
+
+    Integer row; // Which row enemy is in
     AbstractMonster monster;
-    Integer targetPlayerID;         // Which player enemy targets
+    Integer targetPlayerID; // Which player enemy targets
 }
 
 // Add to P2PManager
@@ -521,6 +565,7 @@ static Map<Integer, EnemyRowAssignment> rowAssignments;
 ```
 
 **Implementation**:
+
 - Modify combat initialization to assign enemies to rows
 - Add row selection UI between combats
 - Filter targeting: enemies can only target player in their row
@@ -531,20 +576,22 @@ static Map<Integer, EnemyRowAssignment> rowAssignments;
 **Current**: Game allows unlimited Strength, Block, etc.
 
 **Extension**:
+
 ```java
 // Add to CustomMultiplayerPower
-int maxStacks;  // Cap for this power type
+int maxStacks; // Cap for this power type
 
 @Override
 public void stackPower(int amount) {
     if (amount + this.amount > maxStacks) {
-        amount = maxStacks - this.amount;  // Cap at maximum
+        amount = maxStacks - this.amount; // Cap at maximum
     }
     super.stackPower(amount);
 }
 ```
 
 **Caps to Implement**:
+
 - Strength: 8 (Ironclad)
 - Block: 20 (all characters)
 - Poison: 30 global (Silent)
@@ -555,15 +602,18 @@ public void stackPower(int amount) {
 **Current**: Energy increases as you gain energy relics
 
 **Extension**:
+
 ```java
 // Patch AbstractPlayer.applyStartOfTurnRelics()
 public static class FixedEnergyPatch {
+
     @SpirePatch(clz = AbstractPlayer.class, method = "applyStartOfTurnRelics")
     public static class ResetToThree {
+
         @SpirePostfixPatch
         public static void Postfix(AbstractPlayer __instance) {
-            if (GameSettings.boardGameMode) {
-                __instance.energy.energy = 3;  // Always reset to 3
+            if (GameSettings.coopBoardGameMode) {
+                __instance.energy.energy = 3; // Always reset to 3
             }
         }
     }
@@ -575,6 +625,7 @@ public static class FixedEnergyPatch {
 **Already Partially Implemented**: Players can modify each other's potions
 
 **Enhancement**:
+
 ```java
 // Add to P2PMessageSender
 Send_TradePotion(NetworkPotion potion, Integer fromPlayerID, Integer toPlayerID)
@@ -594,6 +645,7 @@ OnPotionTraded(potion, fromPlayer, toPlayer) {
 **Current**: Players can be in different rooms
 
 **Extension**:
+
 ```java
 // Add to GameSettings
 boolean sharedProgression;  // All players move together
@@ -617,11 +669,13 @@ if (GameSettings.sharedProgression) {
 **Board Game Rule**: Reveal (# players + 1) boss relics, each player picks one
 
 **Extension**:
+
 ```java
 // New screen type
 public class BossRelicSelectionScreen extends AbstractRoom {
-    List<AbstractRelic> availableRelics;  // Host generates, syncs to all
-    Map<Integer, AbstractRelic> playerChoices;  // Track selections
+
+    List<AbstractRelic> availableRelics; // Host generates, syncs to all
+    Map<Integer, AbstractRelic> playerChoices; // Track selections
 
     void onRelicClicked(AbstractRelic r, Integer playerID) {
         if (playerChoices.containsValue(r)) {
@@ -657,7 +711,7 @@ public class BossRelicSelectionScreen extends AbstractRoom {
 1. **No Turn Synchronization**: Sequential actions, not simultaneous
 2. **No Batch Resolution**: Actions resolve immediately as sent
 3. **No Server Authority**: Each player is authoritative for own state
-   - Works for co-op, but board game rules need centralized enforcement
+    - Works for co-op, but board game rules need centralized enforcement
 4. **No Rollback/Redo**: Once action sent, cannot undo
 5. **No Ready/Wait System**: No built-in "end turn" coordination for all players
 
@@ -669,16 +723,17 @@ public class BossRelicSelectionScreen extends AbstractRoom {
 
 ```java
 public enum TurnPhase {
-    PLANNING,      // Players select cards, don't execute
-    READY_CHECK,   // Wait for all players to mark ready
-    RESOLUTION,    // Execute all planned actions simultaneously
-    ENEMY_TURN,    // Enemies act
-    CLEANUP        // End of turn effects
+    PLANNING, // Players select cards, don't execute
+    READY_CHECK, // Wait for all players to mark ready
+    RESOLUTION, // Execute all planned actions simultaneously
+    ENEMY_TURN, // Enemies act
+    CLEANUP, // End of turn effects
 }
 
-public class BoardGameCombatManager {
+public class CoopBoardGameCombatManager {
+
     TurnPhase currentPhase;
-    Map<Integer, List<PlannedAction>> playerActions;  // Queued actions
+    Map<Integer, List<PlannedAction>> playerActions; // Queued actions
     Map<Integer, Boolean> playerReadyStates;
     Integer currentDieRoll;
 
@@ -723,19 +778,21 @@ public class BoardGameCombatManager {
 ### Integration with Existing System
 
 **Minimal Changes Required**:
-1. Add `BoardGameCombatManager` class
+
+1. Add `CoopBoardGameCombatManager` class
 2. Add new message types: `QueuedAction`, `PlayerReady`, `DieRolled`, `PhaseTransition`
 3. Add new callbacks: `OnActionQueued`, `OnPlayerReady`, `OnDieRolled`, `OnPhaseChanged`
 4. Modify combat screen UI to show queued cards and ready indicator
-5. Toggle with `GameSettings.boardGameMode` boolean
+5. Toggle with `GameSettings.coopBoardGameMode` boolean
 
-**Compatibility**: Can coexist with normal mode by checking `boardGameMode` flag
+**Compatibility**: Can coexist with normal mode by checking `coopBoardGameMode` flag
 
 ---
 
 ## Implementation Roadmap
 
 ### Phase 1: Core Board Game Mechanics (Minimal Viable)
+
 - [ ] Add turn phase state machine
 - [ ] Implement action queueing system
 - [ ] Add "Ready" button and all-players-ready check
@@ -743,6 +800,7 @@ public class BoardGameCombatManager {
 - [ ] Add die result broadcast and display
 
 ### Phase 2: Combat Rules
+
 - [ ] Implement row assignment system
 - [ ] Add row-based enemy targeting
 - [ ] Implement token caps (Strength 8, Block 20, Poison 30, Vulnerable/Weak 3)
@@ -750,12 +808,14 @@ public class BoardGameCombatManager {
 - [ ] Modify Block to reset at start of turn (not end)
 
 ### Phase 3: Progression & Items
+
 - [ ] Implement shared map progression (party moves together)
 - [ ] Add boss relic multi-choice system
 - [ ] Implement potion trading UI
 - [ ] Add gold pooling at merchants
 
 ### Phase 4: Polish
+
 - [ ] Add row switching UI between combats
 - [ ] Implement enemy action preview based on die result
 - [ ] Add visual indicators for simultaneous actions
@@ -768,11 +828,13 @@ public class BoardGameCombatManager {
 ### Current Trust Model
 
 **Full Trust**: Mod assumes all players are cooperative
+
 - No server-side validation
 - No anti-cheat
 - No rollback on desync
 
 **Acceptable Because**:
+
 - Cooperative game (not competitive)
 - Small player counts (2-4 friends)
 - Community-driven (modding scene)
@@ -780,13 +842,13 @@ public class BoardGameCombatManager {
 ### Potential Issues for Board Game Mode
 
 1. **Desync Risk**: If die rolls aren't synced perfectly, enemy actions differ
-   - **Solution**: Always use host's die roll, broadcast before resolution
+    - **Solution**: Always use host's die roll, broadcast before resolution
 
 2. **Action Timing**: If actions resolve at different times, results differ
-   - **Solution**: Enforce strict phase transitions, batch all actions
+    - **Solution**: Enforce strict phase transitions, batch all actions
 
 3. **Token Cap Enforcement**: If one client calculates different cap, desync
-   - **Solution**: Make caps server-authoritative (host validates)
+    - **Solution**: Make caps server-authoritative (host validates)
 
 ---
 
@@ -795,12 +857,14 @@ public class BoardGameCombatManager {
 ### Network Bandwidth
 
 **Measured Message Sizes**:
+
 - Small state changes (HP, Block): ~100-200 bytes
 - Card play: ~500-1000 bytes (includes card data, target)
 - Full player state: ~5-10KB (entire deck, relics, powers)
 - Map data: ~20-50KB (entire dungeon layout)
 
 **Frequency**:
+
 - Combat: ~10-30 messages/second (active play)
 - Non-combat: ~1-5 messages/second (cursor movement, chat)
 
@@ -821,12 +885,14 @@ public class BoardGameCombatManager {
 ### Suitability for Board Game Adaptation
 
 **Strengths**:
+
 - ✅ Robust state replication (all player data synced)
 - ✅ Extensible message system (easy to add new types)
 - ✅ Clean separation of concerns (network vs game logic)
 - ✅ Proven multiplayer stability (active mod with user base)
 
 **Gaps**:
+
 - ⚠️ No simultaneous turn system (needs implementation)
 - ⚠️ No batch action resolution (needs implementation)
 - ⚠️ No die roll system (needs implementation)

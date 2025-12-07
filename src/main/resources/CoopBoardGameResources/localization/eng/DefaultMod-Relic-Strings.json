@@ -1,0 +1,592 @@
+{
+    "CoopBoardGame:BGTheDieRelic": {
+        "NAME": "Loaded Die",
+        "FLAVOR": "Best not dwell on the other meaning of the word.",
+        "DESCRIPTIONS": [
+            "[CoopBoardGame:Die4Icon] [CoopBoardGame:Die5Icon] 1 [CoopBoardGame:BlockIcon] NL [CoopBoardGame:Die6Icon] Trigger a die relic ability.",
+            " NL You rolled a #b",
+            "."
+        ]
+    },
+
+    "CoopBoardGame:BurningBlood": {
+        "NAME": "Burning Blood",
+        "FLAVOR": "Your body's own blood burns with an undying rage.",
+        "DESCRIPTIONS": ["#yEnd #yof #ycombat: NL Heal 1 HP."]
+    },
+
+    "BGAkabeko": {
+        "NAME": "Akabeko",
+        "FLAVOR": "\"Muuu~\"",
+        "DESCRIPTIONS": ["#yOnce #yper #ycombat: NL Gain [CoopBoardGame:StrIcon] for one Attack."]
+    },
+    "BGAnchor": {
+        "NAME": "Anchor",
+        "FLAVOR": "Holding this miniature trinket, you feel heavier and more stable.",
+        "DESCRIPTIONS": ["#yStart #yof #ycombat: NL ", " [CoopBoardGame:BlockIcon]"]
+    },
+    "BGAstrolabe": {
+        "NAME": "Astrolabe",
+        "FLAVOR": "A tool to glean invaluable knowledge from the stars.",
+        "DESCRIPTIONS": [
+            "#yUpgrade #b3 cards. NL NL Use this immediately, then discard it.",
+            "Choose 3 cards for "
+        ]
+    },
+    "BGBag of Preparation": {
+        "NAME": "Bag of Preparation",
+        "FLAVOR": "Oversized adventurer's pack. Has many pockets and straps.",
+        "DESCRIPTIONS": ["#yStart #yof #ycombat: NL Draw ", " cards."]
+    },
+    "BGBird Faced Urn": {
+        "NAME": "Bird-Faced Urn",
+        "FLAVOR": "This urn shows the crow god Mazaleth looking mischievous.",
+        "DESCRIPTIONS": ["#yWhen #yyou #yplay #ya #yPower: NL 1 [CoopBoardGame:BlockIcon]"]
+    },
+    "BGBlack Blood": {
+        "NAME": "Black Blood",
+        "FLAVOR": "The rage grows darker.",
+        "DESCRIPTIONS": ["#yEnd #yof #ycombat: NL Heal ", " HP."]
+    },
+    "BGBlood Vial": {
+        "NAME": "Blood Vial",
+        "FLAVOR": "A vial containing the blood of a pure and elder vampire.",
+        "DESCRIPTIONS": ["#yStart #yof #ycombat: NL Heal 1 HP."]
+    },
+    "BGBlue Candle": {
+        "NAME": "Blue Candle",
+        "FLAVOR": "Holding this miniature trinket, you feel heavier and more stable.",
+        "DESCRIPTIONS": ["#yOnce #yper #ycombat: NL #yExhaust up to #b2 cards in your hand."]
+    },
+    "BGCalipers": {
+        "NAME": "Calipers",
+        "FLAVOR": "\"These would be good here.\"",
+        "DESCRIPTIONS": [
+            "#yOnce #yper #ycombat: NL Keep your leftover #yBlock [CoopBoardGame:BlockIcon] from last turn. NL (Gain #b",
+            " Block.)",
+            "#yOnce #yper #ycombat: NL [CoopBoardGame:BlockIcon] #yBlock is not removed at the start of your next turn."
+        ]
+    },
+    "BGCalling Bell": {
+        "NAME": "Calling Bell",
+        "FLAVOR": "This dark iron bell rang 3 times when you found it, but now stays silent.",
+        "DESCRIPTIONS": [
+            "Gain [CoopBoardGame:RelicIcon] [CoopBoardGame:RelicIcon] [CoopBoardGame:RelicIcon] . NL Gain a Curse. NL NL Use this immediately, then discard it.",
+            "The Bell Tolls...",
+            "Skip Rewards",
+            "Close"
+        ]
+    },
+    "BGCaptainsWheel": {
+        "NAME": "Captain's Wheel",
+        "FLAVOR": "Wooden trinket carved with delicate precision. A name is carved into it but the language is foreign.",
+        "DESCRIPTIONS": ["[CoopBoardGame:Die3Icon] NL 3 [CoopBoardGame:BlockIcon]"]
+    },
+    "BGCentennialPuzzle": {
+        "NAME": "Centennial Puzzle",
+        "FLAVOR": "Upon solving the puzzle, you feel a powerful warmth in your chest.",
+        "DESCRIPTIONS": ["#yOnce #yper #ycombat: NL Draw #b", " cards if you lost HP this combat."]
+    },
+    "BGCharonsAshes": {
+        "NAME": "Charon's Ashes",
+        "FLAVOR": "Charon was said to be the god of rebirth, eternally dying and reviving in a burst of flame.",
+        "DESCRIPTIONS": [
+            "[CoopBoardGame:Die1Icon] [CoopBoardGame:Die2Icon] NL You may #yExhaust a card to deal 2 damage."
+        ]
+    },
+    "BGCrackedCore": {
+        "NAME": "Cracked Core",
+        "FLAVOR": "The mysterious life force which powers the Automatons within the Spire. It appears to be cracked.",
+        "DESCRIPTIONS": ["#yStart #yof #ycombat: NL #yChannel 1 #yLightning."]
+    },
+    "BGCoffee Dripper": {
+        "NAME": "Coffee Dripper",
+        "FLAVOR": "\"Yes, another cup please. Back to work. Back to work!\" - The Architect",
+        "DESCRIPTIONS": [
+            " . NL NL #yAt #yCampfires: NL You can't Rest.",
+            "#yStart #yof #yturn: NL Gain [E]"
+        ]
+    },
+    "BGCursed Key": {
+        "NAME": "Cursed Key",
+        "FLAVOR": "You can feel the malicious energy emanating from the key. Power comes at a price.",
+        "DESCRIPTIONS": [
+            " . NL NL When obtained, NL gain 2 Curses.",
+            "#yStart #yof #yturn: NL Gain [E]",
+            "Phantoms pursue you..."
+        ]
+    },
+    "BGDollysMirror": {
+        "NAME": "Dolly's Mirror",
+        "FLAVOR": "\"I look funny in this.\"",
+        "DESCRIPTIONS": [
+            "[CoopBoardGame:Die1Icon] NL Trigger a die relic ability. Its owner gains the effect.",
+            ""
+        ]
+    },
+    "BGDuality": {
+        "NAME": "Duality",
+        "FLAVOR": "\"And the sun was extinguished forever, as if curtains fell before it.\" - Zoroth",
+        "DESCRIPTIONS": [
+            "[CoopBoardGame:Die2Icon] 2 [CoopBoardGame:BlockIcon] NL [CoopBoardGame:Die4Icon] Deal 2 damage."
+        ]
+    },
+    "BGDu-Vu Doll": {
+        "NAME": "Du-Vu Doll",
+        "FLAVOR": "A doll devised to gain strength from malicious energy.",
+        "DESCRIPTIONS": [
+            "Gain [CoopBoardGame:StrIcon] when you draw a Curse. NL Lose that [CoopBoardGame:StrIcon] at end of turn."
+        ]
+    },
+    "BGDead Branch": {
+        "NAME": "Dead Branch",
+        "FLAVOR": "The branch of a tree from a forgotten era.",
+        "DESCRIPTIONS": [
+            "#yOnce #yper #ycombat: NL Draw a card for each card in your #yExhaust pile."
+        ]
+    },
+    "BGEctoplasm": {
+        "NAME": "Ectoplasm",
+        "FLAVOR": "This blob of slime and energy seems to pulse with life.",
+        "DESCRIPTIONS": [" . NL NL You can't gain gold.", "#yStart #yof #yturn: NL Gain [E]"]
+    },
+    "BGEmpty Cage": {
+        "NAME": "Empty Cage",
+        "FLAVOR": "\"How unusual to cage that which you worship.\" - Ranwid",
+        "DESCRIPTIONS": [
+            "Remove 2 cards. NL NL Use this immediately, then discard it.",
+            "Choose 2 Cards to Remove."
+        ]
+    },
+    "BGEnchiridion": {
+        "NAME": "Enchiridion",
+        "FLAVOR": "The legendary journal of an ancient lich.",
+        "DESCRIPTIONS": [
+            "Gain [CoopBoardGame:RarepackIcon] . Look at 5 cards instead of 3. NL NL Use this immediately, then discard it.",
+            "Add a card to your deck."
+        ]
+    },
+    "BGEternal Feather": {
+        "NAME": "Eternal Feather",
+        "FLAVOR": "This feather appears to be completely indestructible. What bird does this possibly come from?",
+        "DESCRIPTIONS": ["Heal #b4 HP whenever you enter a Rest Site."]
+    },
+    "BGFrozenCore": {
+        "NAME": "Frozen Core",
+        "FLAVOR": "The crack in your core has been filled with a pulsating cold energy.",
+        "DESCRIPTIONS": ["#yEnd #yof #yturn: 1 [CoopBoardGame:BlockIcon]"]
+    },
+    "BGFusion Hammer": {
+        "NAME": "Fusion Hammer",
+        "FLAVOR": "Once wielded, the owner can never let go.",
+        "DESCRIPTIONS": [
+            " . NL NL #yAt #yCampfires: NL You can't Smith.",
+            "#yStart #yof #yturn: NL Gain [E]"
+        ]
+    },
+    "BGGambling Chip": {
+        "NAME": "Gambling Chip",
+        "FLAVOR": "You can see a small inscription on one side. It reads: \"Bear's Lucky Chip!\"",
+        "DESCRIPTIONS": ["#yOnce #yper #yroom: NL Reroll the die."]
+    },
+    "BGGoldenEye": {
+        "NAME": "Golden Eye",
+        "FLAVOR": "See into the minds of those nearby, predicting their future moves.",
+        "DESCRIPTIONS": ["#yOnce #yper #ycombat: NL #yScry #b3."]
+    },
+    "BGGolden Idol": {
+        "NAME": "Golden Idol",
+        "FLAVOR": "Made of solid gold, you feel richer just holding it.",
+        "DESCRIPTIONS": ["#yEnd #yof #ycombat: NL Gain #b1 #yGold."]
+    },
+    "BGGremlin Horn": {
+        "NAME": "Gremlin Horn",
+        "FLAVOR": "\"Gremlin Nobs are capable of growing until the day they die. Remarkable.\" - Ranwid",
+        "DESCRIPTIONS": [
+            "[CoopBoardGame:Die4Icon] Draw a card. NL [CoopBoardGame:Die5Icon] Gain [E] ."
+        ]
+    },
+    "BGHappy Flower": {
+        "NAME": "Happy Flower",
+        "FLAVOR": "This unceasingly joyous plant is a popular novelty item among nobles.",
+        "DESCRIPTIONS": ["[CoopBoardGame:Die3Icon] [CoopBoardGame:Die4Icon] NL Gain [E] ."]
+    },
+    "BGHolyWater": {
+        "NAME": "Holy Water",
+        "FLAVOR": "Collected from a time before the Spire.",
+        "DESCRIPTIONS": ["#yTwice #yper #ycombat: NL Gain [E] ."]
+    },
+    "BGHornCleat": {
+        "NAME": "Horn Cleat",
+        "FLAVOR": "Pleasant to hold in the hand. What was it for?",
+        "DESCRIPTIONS": [
+            "[CoopBoardGame:Die1Icon] [CoopBoardGame:Die2Icon] NL 1 [CoopBoardGame:BlockIcon]"
+        ]
+    },
+    "BGIce Cream": {
+        "NAME": "Ice Cream",
+        "FLAVOR": "\"Delicious!\"",
+        "DESCRIPTIONS": [
+            "#yStart #yof #yturn: NL Gain your leftover Energy [E] from last turn. NL (Max Energy is 6.)"
+        ]
+    },
+    "BGIncense Burner": {
+        "NAME": "Incense Burner",
+        "FLAVOR": "The smoke imbues its owner with the spirit of the burned.",
+        "DESCRIPTIONS": ["[CoopBoardGame:Die6Icon] You can't lose more than 1 HP this round."]
+    },
+    "BGInkBottle": {
+        "NAME": "Ink Bottle",
+        "FLAVOR": "Once exhausted, appears to refill itself in a different color.",
+        "DESCRIPTIONS": ["[CoopBoardGame:Die5Icon] [CoopBoardGame:Die6Icon] NL Draw a card."]
+    },
+    "BGLantern": {
+        "NAME": "Lantern",
+        "FLAVOR": "An eerie lantern which illuminates only for the wielder.",
+        "DESCRIPTIONS": ["#yStart #yof #ycombat: NL Gain ", "[E] ", "."]
+    },
+    "BGMarkOfPain": {
+        "NAME": "Mark of Pain",
+        "FLAVOR": "This brand was used by the northern tribes to signify warriors who had mastered pain in battle.",
+        "DESCRIPTIONS": [
+            " NL NL If your HP would go above 6, it becomes 6.",
+            "#yStart #yof #yturn: NL Gain [E] ."
+        ]
+    },
+    "BGMeat on the Bone": {
+        "NAME": "Meat on the Bone",
+        "FLAVOR": "The meat keeps replenishing, never seeming to fully run out.",
+        "DESCRIPTIONS": [
+            "#yEnd #yof #ycombat: NL If your HP is below #b4 at the end of combat, your HP becomes #b4.",
+            " HP."
+        ]
+    },
+    "BGMercury Hourglass": {
+        "NAME": "Mercury Hourglass",
+        "FLAVOR": "An enchanted hourglass that endlessly drips.",
+        "DESCRIPTIONS": [
+            "[CoopBoardGame:Die1Icon] [CoopBoardGame:Die2Icon] NL Deal 1 damage to any row."
+        ]
+    },
+    "CoopBoardGame:BGMiracles": {
+        "NAME": "Miracles",
+        "FLAVOR": "\"Let me tell you about the time I played Conjure Blade+ for 11 Energy...\"",
+        "DESCRIPTIONS": [
+            "Holds up to five [CoopBoardGame:MiracleIcon] generated during combat. #bRight-Click to use them to gain [W] or save them up to pay for cost #bX cards."
+        ]
+    },
+    "BGMolten Egg 2": {
+        "NAME": "Molten Egg",
+        "FLAVOR": "The egg of a Phoenix. It glows red hot with a simmering lava.",
+        "DESCRIPTIONS": ["When you add an Attack to your deck, upgrade it. NL Use 3x then discard."]
+    },
+    "BGMummified Hand": {
+        "NAME": "Mummified Hand",
+        "FLAVOR": "Frequently twitches, especially when your pulse is high.",
+        "DESCRIPTIONS": ["#yOnce #yper #ycombat: NL Gain [E] [E] if you played a Power this turn."]
+    },
+    "BGMutagenicStrength": {
+        "NAME": "Mutagenic Strength",
+        "FLAVOR": "\"The results seem fleeting, triggering when the subject is in danger.\" - Unknown",
+        "DESCRIPTIONS": [
+            "#yStart #yof #ycombat: NL Gain [CoopBoardGame:StrIcon] . Lose [CoopBoardGame:StrIcon] at end of turn.",
+            " #yStrength. At the end of your first turn, lose #b",
+            " #yStrength."
+        ]
+    },
+    "BGNecronomicon": {
+        "NAME": "Necronomicon",
+        "FLAVOR": "Only a fool would try and harness this evil power. At night your dreams are haunted by images of the book devouring your mind.",
+        "DESCRIPTIONS": [
+            "[CoopBoardGame:Die1Icon] NL Your next #yAttack this turn is played twice."
+        ]
+    },
+    "BGNilry's Codex": {
+        "NAME": "Nilry's Codex",
+        "FLAVOR": "Crafted by the infamous game master himself. Said to expand one's mind.",
+        "DESCRIPTIONS": [
+            "[CoopBoardGame:Die2Icon] Draw a card. NL [CoopBoardGame:Die4Icon] Trigger a [CoopBoardGame:Die2Icon] ability. Its owner gains the effect."
+        ]
+    },
+    "BGNinjaScroll": {
+        "NAME": "Ninja Scroll",
+        "FLAVOR": "Contains the secrets of assassination.",
+        "DESCRIPTIONS": [
+            "#yOnce #yper #ycombat: NL 1 [CoopBoardGame:HitIcon] [CoopBoardGame:HitIcon] NL Treat each [CoopBoardGame:HitIcon] as a separate 0 cost Attack."
+        ]
+    },
+    "BGOddly Smooth Stone": {
+        "NAME": "Oddly Smooth Stone",
+        "FLAVOR": "You have never seen something so smooth and pristine. This must be the work of the Ancients.",
+        "DESCRIPTIONS": ["[CoopBoardGame:Die4Icon] NL 2 [CoopBoardGame:BlockIcon] to any player."]
+    },
+    "BGOld Coin": {
+        "NAME": "Old Coin",
+        "FLAVOR": "Unique coins are highly valued by merchants for their historical value and rare metallic composition.",
+        "DESCRIPTIONS": [
+            "Gain #b10 #yGold, then discard this relic. NL If this appears at The Merchant or The Courier, discard it and draw again."
+        ]
+    },
+    "BGDiscardedOld Coin": {
+        "NAME": "Old Coin (Discarded)",
+        "FLAVOR": "",
+        "DESCRIPTIONS": [
+            "Old Coin was drawn at The Merchant or The Courier and subsequently discarded."
+        ]
+    },
+    "BGDiscardedHallwayEvent": {
+        "NAME": "Monster Event (Discarded)",
+        "FLAVOR": "",
+        "DESCRIPTIONS": ["A hallway encounter was drawn on floor 2 and subsequently discarded."]
+    },
+    "BGDiscardedMerchantEvent": {
+        "NAME": "Merchant Event (Discarded)",
+        "FLAVOR": "",
+        "DESCRIPTIONS": ["A Merchant was drawn on floor 2 and subsequently discarded."]
+    },
+    "BGOmamori": {
+        "NAME": "Omamori",
+        "FLAVOR": "A common charm for staving off vile spirits. This one seems to possess a spark of divine energy.",
+        "DESCRIPTIONS": [
+            "You can't gain Curses.",
+            "You can't gain Curses.",
+            "This relic has been used up."
+        ]
+    },
+    "BGOrichalcum": {
+        "NAME": "Orichalcum",
+        "FLAVOR": "A green tinted metal of an unknown origin. Seemingly indestructible.",
+        "DESCRIPTIONS": [
+            "#yEnd #yof #yturn: NL ",
+            " [CoopBoardGame:BlockIcon] if you don't have any Block."
+        ]
+    },
+    "BGOrrery": {
+        "NAME": "Orrery",
+        "FLAVOR": "\"Once you understand the universe...\" - Zoroth",
+        "DESCRIPTIONS": [
+            "Gain [CoopBoardGame:CardpackIcon] [CoopBoardGame:CardpackIcon] [CoopBoardGame:CardpackIcon] [CoopBoardGame:CardpackIcon] . NL NL Use this immediately, then discard it.",
+            "Knowledge!"
+        ]
+    },
+    "BGPandora's Box": {
+        "NAME": "Pandora's Box",
+        "FLAVOR": "You have a bad feeling about opening this.",
+        "DESCRIPTIONS": [
+            "#yTransform #b3 cards. NL NL Use this immediately, then discard it.",
+            "Pandora's Box has been opened...",
+            "Choose 3 cards for "
+        ]
+    },
+    "BGPeace Pipe": {
+        "NAME": "Peace Pipe",
+        "FLAVOR": "Clears the mind and cleanses the soul.",
+        "DESCRIPTIONS": ["#yWhen #yyou #yRest: NL You may also remove a card."]
+    },
+    "BGPen Nib": {
+        "NAME": "Pen Nib",
+        "FLAVOR": "Holding the nib, you can see everyone ever slain by a previous owner of the pen. A violent history.",
+        "DESCRIPTIONS": ["[CoopBoardGame:Die5Icon] NL [CoopBoardGame:VulnIcon]"]
+    },
+    "BGPrismaticShard": {
+        "NAME": "Prismatic Shard",
+        "FLAVOR": "Looking through the shard, you are able to see entirely new perspectives.",
+        "DESCRIPTIONS": ["Grants #b2 Orb slots."]
+    },
+    "BGPocketwatch": {
+        "NAME": "Pocketwatch",
+        "FLAVOR": "The hands seem stuck on the 3 o'clock position.",
+        "DESCRIPTIONS": ["[CoopBoardGame:Die3Icon] NL Draw 3 cards."]
+    },
+    "BGRedMask": {
+        "NAME": "Red Mask",
+        "FLAVOR": "This very stylish looking mask belongs to the leader of the Red Mask Bandits. Technically that makes you the leader now?",
+        "DESCRIPTIONS": [
+            "[CoopBoardGame:Die5Icon] [CoopBoardGame:Die6Icon] NL [CoopBoardGame:WeakIcon]"
+        ]
+    },
+    "BGRed Skull": {
+        "NAME": "Red Skull",
+        "FLAVOR": "A small skull covered in ornamental paint.",
+        "DESCRIPTIONS": [
+            "The first time you shuffle your draw pile each combat, gain [CoopBoardGame:StrIcon] ."
+        ]
+    },
+    "BGRegal Pillow": {
+        "NAME": "Regal Pillow",
+        "FLAVOR": "Now you can get a proper night's rest.",
+        "DESCRIPTIONS": ["#yWhen #yyou #yRest: NL Heal +3 HP."]
+    },
+    "BGRing of the Snake": {
+        "NAME": "Ring of the Snake",
+        "FLAVOR": "Made from a fossilized snake. Represents great skill as a huntress.",
+        "DESCRIPTIONS": ["#yStart #yof #ycombat: NL Draw ", " cards."]
+    },
+    "BGRing of the Serpent": {
+        "NAME": "Ring of the Serpent",
+        "FLAVOR": "Your ring has morphed and changed forms.",
+        "DESCRIPTIONS": ["", "#yStart #yof #yturn: NL Draw a card."]
+    },
+    "BGRunic Pyramid": {
+        "NAME": "Runic Pyramid",
+        "FLAVOR": "The runes are indecipherable.",
+        "DESCRIPTIONS": ["#yOnce #yper #ycombat: NL #yRetain any number of cards this turn.", ""]
+    },
+    "BGSecretPortalRelic": {
+        "NAME": "Secret Portal",
+        "FLAVOR": "WELCOME TO WARP ZONE!",
+        "DESCRIPTIONS": ["Upon pickup, move to any room above the current floor."]
+    },
+    "BGSelf Forming Clay": {
+        "NAME": "Self-Forming Clay",
+        "FLAVOR": "\"Most curious! It appears to form itself loosely on my thoughts! Tele-clay?\" - Ranwid",
+        "DESCRIPTIONS": [
+            "#yOnce #yper #ycombat: NL 3 [CoopBoardGame:BlockIcon] if you lost HP this combat."
+        ]
+    },
+    "CoopBoardGame:BGShivs": {
+        "NAME": "Shivs",
+        "FLAVOR": "It's like bringing a knife to a card fight.",
+        "DESCRIPTIONS": [
+            "Holds [CoopBoardGame:ShivIcon] generated during combat. #bRight-Click to use them to #yAttack for #b",
+            " damage."
+        ]
+    },
+    "BGSnecko Eye": {
+        "NAME": "Snecko Eye",
+        "FLAVOR": "An eye of a fallen snecko. Much larger than you imagined.",
+        "DESCRIPTIONS": [
+            "[CoopBoardGame:Die1Icon] [CoopBoardGame:Die2Icon] Draw 2 cards. NL [CoopBoardGame:Die3Icon] [CoopBoardGame:Die4Icon] Gain [E] . NL [CoopBoardGame:Die5Icon] [CoopBoardGame:Die6Icon] Gain [CoopBoardGame:DazedIcon] ."
+        ]
+    },
+    "BGSozu": {
+        "NAME": "Sozu",
+        "FLAVOR": "You notice that magical liquids seem to lose their properties when near this relic.",
+        "DESCRIPTIONS": [
+            " . NL NL You can't gain [CoopBoardGame:PotionIcon] .",
+            "#yStart #yof #yturn: NL Gain [E]"
+        ]
+    },
+    "BGSsserpentHead": {
+        "NAME": "Ssserpent Head",
+        "FLAVOR": "The most fulfilling of lives is that in which you can buy anything!",
+        "DESCRIPTIONS": ["Whenever you enter a #y? room, gain #b", " #yGold."]
+    },
+    "BGStoneCalendar": {
+        "NAME": "Stone Calendar",
+        "FLAVOR": "The passage of time is imperceptible in the Spire.",
+        "DESCRIPTIONS": ["[CoopBoardGame:Die4Icon] NL Deal #b4 damage."]
+    },
+    "BGStrikeDummy": {
+        "NAME": "Strike Dummy",
+        "FLAVOR": "It's beat up.",
+        "DESCRIPTIONS": ["When you play a starter Strike, it deals +", " damage."]
+    },
+    "BGSundial": {
+        "NAME": "Sundial",
+        "FLAVOR": "\"Early man's foolish obsession with time caused them to look to the sky for guidance, hoping for something permanent.\" - Zoroth",
+        "DESCRIPTIONS": ["[CoopBoardGame:Die2Icon] NL Gain [E] [E] ."]
+    },
+    "BGTiny House": {
+        "NAME": "Tiny House",
+        "FLAVOR": "\"A near perfect implementation of miniaturization. My finest work to date, but still not adequate.\" - The Architect",
+        "DESCRIPTIONS": [
+            "Gain [CoopBoardGame:CardpackIcon] , [CoopBoardGame:PotionIcon] , and ",
+            " #yGold.",
+            " NL Upgrade a card. NL NL Use this immediately, then discard it.",
+            "Tiny House!"
+        ]
+    },
+    "BGTheBoot": {
+        "NAME": "The Boot",
+        "FLAVOR": "When wound up, the boot grows larger in size.",
+        "DESCRIPTIONS": [
+            "[CoopBoardGame:Die4Icon] [CoopBoardGame:Die5Icon] [CoopBoardGame:Die6Icon] NL Deal 1 damage."
+        ]
+    },
+    "BGTheCourier": {
+        "NAME": "The Courier",
+        "FLAVOR": "The Merchant's personal pet!",
+        "DESCRIPTIONS": [
+            "#yOnce #yper #ycombat: NL Look at the top card of the [CoopBoardGame:PotionIcon] or [CoopBoardGame:RelicIcon] deck. NL Buy it or discard it."
+        ]
+    },
+    "BGUpgrade1Card": {
+        "NAME": "Upgrade 1 card",
+        "FLAVOR": "This is not a real relic. You're not supposed to be reading this.",
+        "DESCRIPTIONS": [
+            "Upon pickup, upgrade #b1 card. NL Discard relic after use.",
+            "",
+            "",
+            "Tiny House!"
+        ]
+    },
+    "BGTheAbacus": {
+        "NAME": "The Abacus",
+        "FLAVOR": "\"One...Two...Three...\"",
+        "DESCRIPTIONS": [
+            "#yOnce #yper #ycombat: NL +1 to the die result. NL ( [CoopBoardGame:Die6Icon] becomes [CoopBoardGame:Die1Icon] )"
+        ]
+    },
+    "BGToolbox": {
+        "NAME": "Toolbox",
+        "FLAVOR": "A tool for every job.",
+        "DESCRIPTIONS": [
+            "#yOnce #yper #ycombat: NL -1 to the die result. NL ( [CoopBoardGame:Die1Icon] becomes [CoopBoardGame:Die6Icon] )"
+        ]
+    },
+    "BGToxic Egg 2": {
+        "NAME": "Toxic Egg",
+        "FLAVOR": "\"What a marvelous discovery! This appears to be the inert egg of some magical creature. Who or what created this?\" - Ranwid",
+        "DESCRIPTIONS": ["When you add a Skill to your deck, upgrade it. NL Use 3x then discard."]
+    },
+    "BGTungstenRod": {
+        "NAME": "Tungsten Rod",
+        "FLAVOR": "It's very very heavy.",
+        "DESCRIPTIONS": [
+            "[CoopBoardGame:Die5Icon] NL 1 [CoopBoardGame:BlockIcon] to all players, NL 3 [CoopBoardGame:BlockIcon] instead if solo."
+        ]
+    },
+    "BGVajra": {
+        "NAME": "Vajra",
+        "FLAVOR": "An ornamental relic given to warriors displaying glory in battle.",
+        "DESCRIPTIONS": [
+            "[CoopBoardGame:Die2Icon] NL Gain [CoopBoardGame:StrIcon] . Lose [CoopBoardGame:StrIcon] at end of turn."
+        ]
+    },
+    "BGWar Paint": {
+        "NAME": "War Paint",
+        "FLAVOR": "In the past, Ironclads would create wards using enchanted war paint before charging into battle.",
+        "DESCRIPTIONS": [
+            "#yUpgrade a starter Defend and another #ySkill, then discard this item. NL Can't be used in combat or while otherwise occupied.",
+            "Choose 1 Skill to upgrade."
+        ]
+    },
+    "BGWhetstone": {
+        "NAME": "Whetstone",
+        "FLAVOR": "\"Flesh never beats steel.\" - Kublai the Great",
+        "DESCRIPTIONS": [
+            "#yUpgrade a starter Strike and another #yAttack, then discard this item. NL Can't be used in combat or while otherwise occupied.",
+            "Choose 1 Attack to upgrade."
+        ]
+    },
+    "BGWhite Beast Statue": {
+        "NAME": "White Beast Statue",
+        "FLAVOR": "A small white statue of a creature you have never seen before.",
+        "DESCRIPTIONS": ["#yEnd #yof #ycombat: NL Gain [CoopBoardGame:PotionIcon] .", ""]
+    },
+    "BGWingedGreaves": {
+        "NAME": "Wing Boots",
+        "FLAVOR": "Stylish.",
+        "DESCRIPTIONS": [
+            "You may ignore paths when moving up to the next room. NL Use this 3x, then discard it."
+        ]
+    },
+    "BGWristBlade": {
+        "NAME": "Wrist Blade",
+        "FLAVOR": "Handy for assassinations.",
+        "DESCRIPTIONS": [
+            "Your 0 cost Attacks deal +1 damage on each [CoopBoardGame:HitIcon] . (Include [CoopBoardGame:ShivIcon] .)"
+        ]
+    }
+}

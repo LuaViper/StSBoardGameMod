@@ -1,8 +1,8 @@
 {
   "modid": "${project.artifactId}",
   "name": "${project.name}",
-  "author_list": ["Lua Viper"],
-  "credits": "Original BG Game Design by Gary Dworetsky.  Special thanks to #modding-technical and #sts-playtesting-public.",
+  "author_list": ["degraffa"],
+  "credits": "Original BG Game Design by Gary Dworetsky. Original BG mod by Lua Viper.",
   "description": "${project.description}",
   "version": "${project.version}",
   "sts_version": "${SlayTheSpire.version}",

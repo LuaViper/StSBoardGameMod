@@ -13,7 +13,7 @@
               <option name="patterns">
                 <list>
                   <Item>
-                    <option name="path" value="file://$PROJECT_DIR$/src/main/resources/BoardGameResources/localization/eng/DefaultMod-Character-Strings.json" />
+                    <option name="path" value="file://$PROJECT_DIR$/src/main/resources/CoopBoardGameResources/localization/eng/DefaultMod-Character-Strings.json" />
                   </Item>
                 </list>
               </option>

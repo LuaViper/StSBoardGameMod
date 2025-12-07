@@ -1,0 +1,2627 @@
+{
+    "monsters": [
+        {
+            "name": "Acid Slime",
+            "id": "BGAcidSlime_M",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "C", "color": "GRAY" }],
+                            "name": "2 [CoopBoardGame:HitIcon] [CoopBoardGame:DazedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "L", "color": "GRAY" }],
+                            "name": "[CoopBoardGame:WeakIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "A", "color": "GRAY" }],
+                            "name": "2 [CoopBoardGame:HitIcon]"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Awakened One",
+            "id": "BGAwakenedOne",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "Phase 2 has its own separate monster card. No peeking.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<1", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<2", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 5 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<3", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] 2 [CoopBoardGame:HitIcon] 2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<4", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        },
+                        {
+                            "effects": [{ "name": "<5", "color": "GRAY" }],
+                            "name": "#yCuriosity: Each [CoopBoardGame:HitIcon] deals extra damage to you NL equal to how many Powers you have in play."
+                        },
+                        {
+                            "effects": [{ "name": "<6", "color": "GRAY" }],
+                            "name": "#yAwaken: On death, summon #yAwakened #yOne: #yPhase #y2 NL at the start of next round."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 10,
+                    "desc": "Phase 2 has its own separate monster card. No peeking.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<1", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<2", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 6 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<3", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] 2 [CoopBoardGame:HitIcon] 2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<4", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        },
+                        {
+                            "effects": [{ "name": "<5", "color": "GRAY" }],
+                            "name": "#yCuriosity: Each [CoopBoardGame:HitIcon] deals extra damage to you NL equal to how many Powers you have in play."
+                        },
+                        {
+                            "effects": [{ "name": "<6", "color": "GRAY" }],
+                            "name": "#yAwaken: On death, summon #yAwakened #yOne: #yPhase #y2 NL at the start of next round."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Awakened One: Phase 2",
+            "id": "BGAwakenedOne2",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<1", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] 7 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<2", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 4 [CoopBoardGame:HitIcon] [CoopBoardGame:SlimedIcon] [CoopBoardGame:SlimedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<3", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon] 3 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<4", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        },
+                        {
+                            "effects": [{ "name": "<5", "color": "GRAY" }],
+                            "name": "#yVoid: Whenever you draw a [CoopBoardGame:SlimedIcon] , NL you must immediately pay [E] to #yExhaust it, if able."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 10,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<0", "color": "GRAY" }],
+                            "name": "#yRebirth: When summoned, gain [CoopBoardGame:StrIcon] equal to the number of Powers NL controlled by the player with the most Powers."
+                        },
+                        {
+                            "effects": [{ "name": "<1", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] 6 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<2", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 4 [CoopBoardGame:HitIcon] [CoopBoardGame:SlimedIcon] [CoopBoardGame:SlimedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<3", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon] 3 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<4", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        },
+                        {
+                            "effects": [{ "name": "<5", "color": "GRAY" }],
+                            "name": "#yVoid: Whenever you draw a [CoopBoardGame:SlimedIcon] , NL you must immediately pay [E] to #yExhaust it, if able."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Blue Slaver",
+            "id": "BGBlueSlaver",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "d", "color": "GRAY" }],
+                            "name": "2 [CoopBoardGame:HitIcon] [CoopBoardGame:DazedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "D", "color": "GRAY" }],
+                            "name": "3 [CoopBoardGame:HitIcon] [CoopBoardGame:DazedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "W", "color": "GRAY" }],
+                            "name": "2 [CoopBoardGame:HitIcon] [CoopBoardGame:WeakIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "2", "color": "GRAY" }],
+                            "name": "2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "3", "color": "GRAY" }],
+                            "name": "3 [CoopBoardGame:HitIcon]"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Book of Stabbing",
+            "id": "BGBookOfStabbing",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "During playtesting, this enemy acted randomly.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] 1 [CoopBoardGame:HitIcon] 1 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] 3 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "#yPainful #yStabs: After Book of Stabbing attacks, NL gain [CoopBoardGame:DazedIcon] if it dealt unblocked damage to you.."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 1,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] 3 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 1 [CoopBoardGame:HitIcon] 1 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "#yPainful #yStabs: After Book of Stabbing attacks, NL gain [CoopBoardGame:DazedIcon] if it dealt unblocked damage to you.."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 12,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] 4 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 1 [CoopBoardGame:HitIcon] 1 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "#yPainful #yStabs: After Book of Stabbing attacks, NL gain [CoopBoardGame:DazedIcon] if it dealt unblocked damage to you.."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Bronze Automaton",
+            "id": "BGBronzeAutomaton",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<1", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<2", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 1 [CoopBoardGame:HitIcon] 1 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<3", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:StrIcon] [] Remove all [CoopBoardGame:WeakIcon] [CoopBoardGame:VulnIcon] from Automaton."
+                        },
+                        {
+                            "effects": [{ "name": "<4", "color": "GRAY" }],
+                            "name": "Turn 4: [] [] [] [CoopBoardGame:AOEIcon] 7 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<5", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 10,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<1", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:StrIcon] [] Remove all [CoopBoardGame:WeakIcon] [CoopBoardGame:VulnIcon] from Automaton."
+                        },
+                        {
+                            "effects": [{ "name": "<2", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 1 [CoopBoardGame:HitIcon] 1 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<3", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:StrIcon] [] Remove all [CoopBoardGame:WeakIcon] [CoopBoardGame:VulnIcon] from Automaton."
+                        },
+                        {
+                            "effects": [{ "name": "<4", "color": "GRAY" }],
+                            "name": "Turn 4: [] [] [] [CoopBoardGame:AOEIcon] 9 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<5", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Bronze Orb",
+            "id": "BGBronzeOrb",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "3", "color": "GRAY" }],
+                            "name": "3 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "D", "color": "GRAY" }],
+                            "name": "2 [CoopBoardGame:HitIcon] [CoopBoardGame:WeakIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "B", "color": "GRAY" }],
+                            "name": "3 [CoopBoardGame:BlockIcon] to Automaton."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Byrd",
+            "id": "BGByrd",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "These denizens of the Board Game have evolved hardier wings that do not falter after 3 consecutive hits.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "1", "color": "GRAY" }],
+                            "name": "1 [CoopBoardGame:HitIcon] 1 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "3", "color": "GRAY" }],
+                            "name": "3 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "S", "color": "GRAY" }],
+                            "name": "1 [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": ">", "color": "GRAY" }],
+                            "name": "#yFlying: Byrd takes a max of 1 damage from each [CoopBoardGame:HitIcon] ."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Centurion",
+            "id": "BGCenturion",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<", "color": "GRAY" }],
+                            "name": "#yFury: When the Mystic in this row dies, [CoopBoardGame:StrIcon] , NL and only take the attack action (intent changes immediately)."
+                        },
+                        {
+                            "effects": [{ "name": "B", "color": "GRAY" }],
+                            "name": "3 [CoopBoardGame:BlockIcon] to Mystic."
+                        },
+                        {
+                            "effects": [{ "name": "3", "color": "GRAY" }],
+                            "name": "3 [CoopBoardGame:HitIcon]"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Chosen",
+            "id": "BGChosen",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] 1 [CoopBoardGame:HitIcon] [CoopBoardGame:DazedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] 3 [CoopBoardGame:HitIcon] [CoopBoardGame:DazedIcon] [CoopBoardGame:DazedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] 5 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "Repeat from 2."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Corrupt Heart",
+            "id": "BGCorruptHeart",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "#yInvincible: Corrupt Heart can't gain [CoopBoardGame:WeakIcon] or go below 50 HP per player."
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "#yBeat #yof #yDeath: At end of turn, all players take 1 damage."
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] [CoopBoardGame:WeakIcon] [CoopBoardGame:VulnIcon] [CoopBoardGame:SlimedIcon] [CoopBoardGame:SlimedIcon] [CoopBoardGame:SlimedIcon] [CoopBoardGame:SlimedIcon] [CoopBoardGame:SlimedIcon] NL Shuffle the [CoopBoardGame:SlimedIcon] into your draw pile."
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 5 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<e", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] 2 [CoopBoardGame:HitIcon] 2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<f", "color": "GRAY" }],
+                            "name": "Turn 4: [] [] [] [CoopBoardGame:StrIcon] [CoopBoardGame:StrIcon] [] #yBeat #yof #yDeath +1. Lose #yInvincible ability."
+                        },
+                        {
+                            "effects": [{ "name": "<g", "color": "GRAY" }],
+                            "name": "Repeat from 2."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 11,
+                    "desc": "Thank you for playing!",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "#yInvincible: Corrupt Heart can't gain [CoopBoardGame:WeakIcon] or go below 60 HP per player."
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "#yBeat #yof #yDeath: At end of turn, all players take 1 damage."
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] [CoopBoardGame:WeakIcon] [CoopBoardGame:VulnIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon] NL Shuffle the [CoopBoardGame:BurnIcon] into your draw pile."
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 5 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<e", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] 2 [CoopBoardGame:HitIcon] 2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<f", "color": "GRAY" }],
+                            "name": "Turn 4: [] [] [] [CoopBoardGame:StrIcon] [CoopBoardGame:StrIcon] [] #yBeat #yof #yDeath +2. Lose #yInvincible ability."
+                        },
+                        {
+                            "effects": [{ "name": "<g", "color": "GRAY" }],
+                            "name": "Repeat from 2."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Cultist",
+            "id": "BGCultist",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "CAW CAW!",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "name": "Every turn: [] [] [] 1 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon]",
+                            "effects": [{ "name": "<", "color": "GRAY" }]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Darkling",
+            "id": "BGDarkling",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "During playtesting, these enemies revived with 5 HP, causing no small number of softlocks for solo characters.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "2", "color": "GRAY" }],
+                            "name": "2 [CoopBoardGame:HitIcon] 2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "S", "color": "GRAY" }],
+                            "name": "3 [CoopBoardGame:BlockIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "3", "color": "GRAY" }],
+                            "name": "3 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": ">", "color": "GRAY" }],
+                            "name": "#yRegrow: At start of round, return all dead Darklings to play with 4 HP."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Dagger",
+            "id": "BGSnakeDagger",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] 2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] 5 [CoopBoardGame:HitIcon] [] Dagger dies."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Deca",
+            "id": "BGDeca",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<1", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon] 3 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<2", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] [CoopBoardGame:DazedIcon] [CoopBoardGame:SlimedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<3", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 10,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<1", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon] 3 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<2", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] [CoopBoardGame:DazedIcon] [CoopBoardGame:SlimedIcon] [CoopBoardGame:SlimedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<3", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Donu",
+            "id": "BGDonu",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<1", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:StrIcon] to ALL enemies."
+                        },
+                        {
+                            "effects": [{ "name": "<2", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon] 3 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<3", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Exploder",
+            "id": "BGExploder",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "Your friends will be happier if you don't try to Block your way through this one.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] 3 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] \"...\""
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] 10 [CoopBoardGame:HitIcon] [] [] [] Exploder dies."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Fat Gremlin",
+            "id": "BGGremlinFat",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "During playtesting, this enemy had 2 HP and acted with #w1 [CoopBoardGame:HitIcon] [CoopBoardGame:WeakIcon] instead.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "name": "Every turn: [] [] [] [CoopBoardGame:AOEIcon] 1 [CoopBoardGame:HitIcon]",
+                            "effects": [{ "name": "<", "color": "GRAY" }]
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Fungi Beast",
+            "id": "BGFungiBeast",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "Remember, [CoopBoardGame:WeakIcon] and [CoopBoardGame:VulnIcon] cancel each other out.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "2", "color": "GRAY" }],
+                            "name": "2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "1", "color": "GRAY" }],
+                            "name": "[CoopBoardGame:AOEIcon] 1 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "S", "color": "GRAY" }],
+                            "name": "[CoopBoardGame:StrIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "s", "color": "GRAY" }],
+                            "name": "[CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "!", "color": "GRAY" }],
+                            "name": "1 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": ">", "color": "GRAY" }],
+                            "name": "#ySpore #yCloud: On death, [CoopBoardGame:VulnIcon] ."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Giant Head",
+            "id": "BGGiantHead",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "Why are you still here?",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] \"3...\""
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] \"2...\""
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] \"1...\""
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "Turn 4: [] [] [] [CoopBoardGame:AOEIcon] 7 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<e", "color": "GRAY" }],
+                            "name": "Repeat 4 until end of combat."
+                        },
+                        {
+                            "effects": [{ "name": "<f", "color": "GRAY" }],
+                            "name": "#ySlow: Giant Head takes +1 damage from all [CoopBoardGame:HitIcon] ."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 1,
+                    "desc": "Why are you still here?",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] \"3...\""
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] \"2...\" [] [CoopBoardGame:AOEIcon] 5 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] \"1...\""
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "Turn 4: [] [] [] [CoopBoardGame:AOEIcon] 8 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<e", "color": "GRAY" }],
+                            "name": "Repeat 4 until end of combat."
+                        },
+                        {
+                            "effects": [{ "name": "<f", "color": "GRAY" }],
+                            "name": "#ySlow: Giant Head takes +1 damage from all [CoopBoardGame:HitIcon] ."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 12,
+                    "desc": "Why are you still here?",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] \"3...\""
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] \"2...\" [] [CoopBoardGame:AOEIcon] 6 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] \"1...\""
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "Turn 4: [] [] [] [CoopBoardGame:AOEIcon] 9 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<e", "color": "GRAY" }],
+                            "name": "Repeat 4 until end of combat."
+                        },
+                        {
+                            "effects": [{ "name": "<f", "color": "GRAY" }],
+                            "name": "#ySlow: Giant Head takes +1 damage from all [CoopBoardGame:HitIcon] ."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Green Louse",
+            "id": "BGGreenLouse",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "The lice of the Board Game are more resilient and will curl up after taking even non-attack damage.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "1", "color": "GRAY" }],
+                            "name": "1 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "2", "color": "GRAY" }],
+                            "name": "2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "W", "color": "GRAY" }],
+                            "name": "[CoopBoardGame:WeakIcon]"
+                        },
+                        {
+                            "effects": [{ "name": ">a", "color": "GRAY" }],
+                            "name": "#yCurl #yUp: The first time Louse takes damage, it gets 2 [CoopBoardGame:BlockIcon] ."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Gremlin Leader",
+            "id": "BGGremlinLeader",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] 2 [CoopBoardGame:HitIcon] , 1 [CoopBoardGame:BlockIcon] [CoopBoardGame:StrIcon] to ALL enemies."
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 5 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] Revive all dead Gremlins."
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 1,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon] , 1 [CoopBoardGame:BlockIcon] [CoopBoardGame:StrIcon] to ALL enemies."
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 5 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] Revive all dead Gremlins."
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 12,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon] , 1 [CoopBoardGame:BlockIcon] [CoopBoardGame:StrIcon] to ALL enemies."
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 5 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] Revive all dead Gremlins. 1 [CoopBoardGame:StrIcon] to ALL enemies."
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Gremlin Nob",
+            "id": "BGGremlinNob",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "First turn: [] [] [] Gains #yEnraged for the rest of combat."
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Thereafter: [] [] [] [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "#yEnraged: After you play a Skill, you take 1 damage."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 1,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "First turn: [] [] [] Gains #yEnraged for the rest of combat."
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Thereafter: [] [] [] [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "#yEnraged: After you play a Skill, you take 1 damage."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 12,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "First turn: [] [] [] [CoopBoardGame:AOEIcon] 1 [CoopBoardGame:HitIcon] [] Gains #yEnraged for the rest of combat."
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Thereafter: [] [] [] [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "#yEnraged: After you play a Skill, you take 1 damage."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Gremlin Wizard",
+            "id": "BGGremlinWizard",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "The wizard gets buffed and the warrior gets nerfed. So it goes.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "First turn: [] [] [] \"Charging up...\""
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Thereafter: [] [] [] [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon]"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Hexaghost",
+            "id": "BGHexaghost",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<1", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] 1 [CoopBoardGame:HitIcon] [CoopBoardGame:BurnIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<2", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 2 [CoopBoardGame:HitIcon] 2 [CoopBoardGame:HitIcon] [CoopBoardGame:BurnIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<3", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<4", "color": "GRAY" }],
+                            "name": "Turn 4: [] [] [] [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon] 5 [CoopBoardGame:BlockIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<5", "color": "GRAY" }],
+                            "name": "Turn 5: [] [] [] [CoopBoardGame:AOEIcon] 2 [CoopBoardGame:HitIcon] [CoopBoardGame:BurnIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<6", "color": "GRAY" }],
+                            "name": "Turn 6: [] [] [] [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon] 3 [CoopBoardGame:HitIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<7", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 10,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<1", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] 1 [CoopBoardGame:HitIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<2", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 2 [CoopBoardGame:HitIcon] 2 [CoopBoardGame:HitIcon] [CoopBoardGame:BurnIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<3", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<4", "color": "GRAY" }],
+                            "name": "Turn 4: [] [] [] [CoopBoardGame:AOEIcon] 4 [CoopBoardGame:HitIcon] 5 [CoopBoardGame:BlockIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<5", "color": "GRAY" }],
+                            "name": "Turn 5: [] [] [] [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon] [CoopBoardGame:BurnIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<6", "color": "GRAY" }],
+                            "name": "Turn 6: [] [] [] [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon] 3 [CoopBoardGame:HitIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<7", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Jaw Worm",
+            "id": "BGJawWorm",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "It is believed that at least one \"unwinnable seed\" consists of a floor 1 Jaw Worm dealing a total of 12 unblocked damage to a solo Ironclad. This would require astronomically bad luck with Neow bonuses, dice rolls, and shuffle order. NL NL Perhaps you have seen it already.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "s", "color": "GRAY" }],
+                            "name": "2 [CoopBoardGame:BlockIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "d", "color": "GRAY" }],
+                            "name": "2 [CoopBoardGame:HitIcon] 1 [CoopBoardGame:BlockIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "a", "color": "GRAY" }],
+                            "name": "3 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "S", "color": "GRAY" }],
+                            "name": "3 [CoopBoardGame:BlockIcon] 1 [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "D", "color": "GRAY" }],
+                            "name": "3 [CoopBoardGame:HitIcon] 1 [CoopBoardGame:BlockIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "A", "color": "GRAY" }],
+                            "name": "4 [CoopBoardGame:HitIcon]"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Lagavulin",
+            "id": "BGLagavulin",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "Only time will tell if we encounter its siblings Ardbeg and Laphroaig in StS 2.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] \"Zzz... zzz...\""
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 4 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] 4 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "Turn 4: [] [] [] [CoopBoardGame:AOEIcon] [CoopBoardGame:WeakIcon] [CoopBoardGame:WeakIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<e", "color": "GRAY" }],
+                            "name": "Repeat from 2."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 1,
+                    "desc": "Lagavulin has undertaken a strict diet and exercise regimen to combat its chronic drowsiness.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] [CoopBoardGame:WeakIcon] [CoopBoardGame:WeakIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 4 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] 4 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<e", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 12,
+                    "desc": "Lagavulin has undertaken a strict diet and exercise regimen to combat its chronic drowsiness.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] [CoopBoardGame:WeakIcon] [CoopBoardGame:WeakIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 4 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] 4 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<e", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Nemesis",
+            "id": "BGNemesis",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "It seems that effects which \"set HP to 0\" do not count as HP loss.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 4 [CoopBoardGame:HitIcon] [] Nemesis can't lose HP this turn."
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] 2 [CoopBoardGame:HitIcon] 2 [CoopBoardGame:HitIcon] [CoopBoardGame:BurnIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "Turn 4: [] [] [] [CoopBoardGame:AOEIcon] 7 [CoopBoardGame:HitIcon] [] Nemesis can't lose HP this turn."
+                        },
+                        {
+                            "effects": [{ "name": "<e", "color": "GRAY" }],
+                            "name": "Repeat from 3."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 1,
+                    "desc": "It seems that effects which \"set HP to 0\" do not count as HP loss.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 5 [CoopBoardGame:HitIcon] [] Nemesis can't lose HP this turn."
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] 2 [CoopBoardGame:HitIcon] 2 [CoopBoardGame:HitIcon] [CoopBoardGame:BurnIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "Turn 4: [] [] [] [CoopBoardGame:AOEIcon] 8 [CoopBoardGame:HitIcon] [] Nemesis can't lose HP this turn."
+                        },
+                        {
+                            "effects": [{ "name": "<e", "color": "GRAY" }],
+                            "name": "Repeat from 3."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 12,
+                    "desc": "It seems that at some point during development, Nemesis was this strong on Ascension 0.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 6 [CoopBoardGame:HitIcon] [] Nemesis can't lose HP this turn."
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] 2 [CoopBoardGame:HitIcon] 2 [CoopBoardGame:HitIcon] 2 [CoopBoardGame:HitIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "Turn 4: [] [] [] [CoopBoardGame:AOEIcon] 8 [CoopBoardGame:HitIcon] [] Nemesis can't lose HP this turn."
+                        },
+                        {
+                            "effects": [{ "name": "<e", "color": "GRAY" }],
+                            "name": "Repeat from 3."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Large Slime",
+            "id": "BGAcidSlime_L",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "-a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] 1 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] 4 [CoopBoardGame:HitIcon] [CoopBoardGame:DazedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] #ySummon an Acid Slime at the start of the next round."
+                        },
+                        {
+                            "effects": [{ "name": "-d", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        },
+                        {
+                            "effects": [{ "name": "W", "color": "GRAY" }],
+                            "name": "1 [CoopBoardGame:HitIcon] [CoopBoardGame:WeakIcon] [CoopBoardGame:WeakIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "4", "color": "GRAY" }],
+                            "name": "4 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "S", "color": "GRAY" }],
+                            "name": "3 [CoopBoardGame:HitIcon] [CoopBoardGame:SlimedIcon] [CoopBoardGame:SlimedIcon]"
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 7,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "-a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] 2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] 4 [CoopBoardGame:HitIcon] [CoopBoardGame:DazedIcon] [CoopBoardGame:DazedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] #ySummon an Acid Slime at the start of the next round."
+                        },
+                        {
+                            "effects": [{ "name": "-d", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        },
+                        {
+                            "effects": [{ "name": "W", "color": "GRAY" }],
+                            "name": "1 [CoopBoardGame:HitIcon] [CoopBoardGame:WeakIcon] [CoopBoardGame:WeakIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "4", "color": "GRAY" }],
+                            "name": "4 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "S", "color": "GRAY" }],
+                            "name": "3 [CoopBoardGame:HitIcon] [CoopBoardGame:SlimedIcon] [CoopBoardGame:SlimedIcon]"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Looter",
+            "id": "BGLooter",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] 2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] 3 [CoopBoardGame:HitIcon] 1 [CoopBoardGame:BlockIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] Lose 2 gold. Looter leaves combat (you still get rewards)."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Mad Gremlin",
+            "id": "BGGremlinAngry",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Every turn: [] [] [] 1 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "#yAngry: Whenever this enemy takes damage from [CoopBoardGame:HitIcon] , [CoopBoardGame:StrIcon] ."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Mugger",
+            "id": "BGMugger",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "The newly-updated Thieves' Code requires all honorable cutpurses to wait until the last turn to steal anything.  Respect the Ectoplasm.  Respectoplasm.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] 2 [CoopBoardGame:HitIcon] 1 [CoopBoardGame:BlockIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] 2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] 4 [CoopBoardGame:HitIcon] 2 [CoopBoardGame:BlockIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 4: [] [] [] Lose 2 gold. Mugger leaves combat (you still get rewards)."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Mystic",
+            "id": "BGHealer",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "Everyone knows you take out the Centurion first, then the Mystic. Right? NL NL ...Just try it this time.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "2", "color": "GRAY" }],
+                            "name": "2 [CoopBoardGame:HitIcon] [CoopBoardGame:WeakIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "H", "color": "GRAY" }],
+                            "name": "ALL enemies heal 3 HP."
+                        },
+                        {
+                            "effects": [{ "name": "S", "color": "GRAY" }],
+                            "name": "[CoopBoardGame:StrIcon] to ALL enemies. Acts last."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Orb Walker",
+            "id": "BGOrb Walker",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "2", "color": "GRAY" }],
+                            "name": "2 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "3", "color": "GRAY" }],
+                            "name": "3 [CoopBoardGame:HitIcon] [CoopBoardGame:DazedIcon] [CoopBoardGame:StrIcon]"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Red Louse",
+            "id": "BGRedLouse",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "Fairly harmless, but be sure to take it out before it has a chance to bulk up.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "1", "color": "GRAY" }],
+                            "name": "1 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "2", "color": "GRAY" }],
+                            "name": "2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "S", "color": "GRAY" }],
+                            "name": "[CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": ">a", "color": "GRAY" }],
+                            "name": "#yCurl #yUp: The first time Louse takes damage, it gets 2 [CoopBoardGame:BlockIcon] ."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Red Slaver",
+            "id": "BGRedSlaver",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "D", "color": "GRAY" }],
+                            "name": "2 [CoopBoardGame:HitIcon] [CoopBoardGame:DazedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "V", "color": "GRAY" }],
+                            "name": "2 [CoopBoardGame:HitIcon] [CoopBoardGame:VulnIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "3", "color": "GRAY" }],
+                            "name": "3 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": ">", "color": "GRAY" }],
+                            "name": "Red Slavers act last when applying Vulnerable, NL and on all turns in Elite encounters."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Reptomancer",
+            "id": "BGReptomancer",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] Summon Daggers until there are 2 per player."
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon] 3 [CoopBoardGame:HitIcon] NL Then, if there are no Daggers, skip to turn 1."
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] 7 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 1,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] Summon Daggers until there are 2 per player."
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] NL [CoopBoardGame:AOEIcon] 7 [CoopBoardGame:HitIcon] [CoopBoardGame:DazedIcon] Then, if there are no Daggers, skip to turn 1."
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] 4 [CoopBoardGame:HitIcon] 4 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 12,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] Summon Daggers until there are 2 per player."
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] NL [CoopBoardGame:AOEIcon] 7 [CoopBoardGame:HitIcon] [CoopBoardGame:DazedIcon] [CoopBoardGame:DazedIcon] Then, if there are no Daggers, skip to turn 1."
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] 4 [CoopBoardGame:HitIcon] 4 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Repulsor",
+            "id": "BGRepulsor",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "Considerably more annoying when [CoopBoardGame:DazedIcon] land on top of your draw pile.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "D", "color": "GRAY" }],
+                            "name": "1 [CoopBoardGame:HitIcon] [CoopBoardGame:DazedIcon] [CoopBoardGame:DazedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "3", "color": "GRAY" }],
+                            "name": "3 [CoopBoardGame:HitIcon]"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Sentries",
+            "id": "BGSentry",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "-a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:DazedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] 2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:DazedIcon] [CoopBoardGame:DazedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-d", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        },
+                        {
+                            "effects": [{ "name": "D", "color": "GRAY" }],
+                            "name": "[CoopBoardGame:DazedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "2", "color": "GRAY" }],
+                            "name": "2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "3", "color": "GRAY" }],
+                            "name": "3 [CoopBoardGame:HitIcon]"
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 1,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "-a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:DazedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] 2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:DazedIcon] [CoopBoardGame:DazedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-d", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        },
+                        {
+                            "effects": [{ "name": "D", "color": "GRAY" }],
+                            "name": "[CoopBoardGame:DazedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "2", "color": "GRAY" }],
+                            "name": "2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "3", "color": "GRAY" }],
+                            "name": "3 [CoopBoardGame:HitIcon]"
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 12,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "-a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] [CoopBoardGame:DazedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] 2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:DazedIcon] [CoopBoardGame:DazedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-d", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        },
+                        {
+                            "effects": [{ "name": "D", "color": "GRAY" }],
+                            "name": "[CoopBoardGame:DazedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "2", "color": "GRAY" }],
+                            "name": "2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "3", "color": "GRAY" }],
+                            "name": "3 [CoopBoardGame:HitIcon]"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Shelled Parasite",
+            "id": "BGShelled Parasite",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] 4 [CoopBoardGame:HitIcon] 2 [CoopBoardGame:BlockIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] 3 [CoopBoardGame:HitIcon] [CoopBoardGame:VulnIcon] 2 [CoopBoardGame:BlockIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] 2 [CoopBoardGame:HitIcon] 2 [CoopBoardGame:BlockIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "Repeat from 2."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 7,
+                    "desc": "Pay very close attention on turn 2 if the Fungi Beast is still alive.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] 4 [CoopBoardGame:HitIcon] 2 [CoopBoardGame:BlockIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] 3 [CoopBoardGame:HitIcon] [CoopBoardGame:VulnIcon] 2 [CoopBoardGame:BlockIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] 2 [CoopBoardGame:HitIcon] 2 [CoopBoardGame:BlockIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "Repeat from 2."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Slime Boss",
+            "id": "BGSlimeBoss",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<1", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] [CoopBoardGame:SlimedIcon] [CoopBoardGame:SlimedIcon] [CoopBoardGame:SlimedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<2", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon] [CoopBoardGame:SlimedIcon] [CoopBoardGame:SlimedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<3", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] 6 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<4", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        },
+                        {
+                            "effects": [{ "name": "<5", "color": "GRAY" }],
+                            "name": "#ySplit: On death, at start of next round, summon a NL #yLarge #ySlime, #yAcid #ySlime, and #ySpike #ySlime (in that order) NL from the summon deck for each player."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 10,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<1", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] [CoopBoardGame:SlimedIcon] [CoopBoardGame:SlimedIcon] [CoopBoardGame:SlimedIcon] [CoopBoardGame:SlimedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<2", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon] [CoopBoardGame:SlimedIcon] [CoopBoardGame:SlimedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<3", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] 6 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<4", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        },
+                        {
+                            "effects": [{ "name": "<5", "color": "GRAY" }],
+                            "name": "#ySplit: On death, at start of next round, summon a NL #yLarge #ySlime, #yAcid #ySlime, and #ySpike #ySlime (in that order) NL from the summon deck for each player."
+                        },
+                        {
+                            "effects": [{ "name": "<6", "color": "GRAY" }],
+                            "name": "Then all #yLarge #ySlimes gain [CoopBoardGame:StrIcon] ."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Small Slime",
+            "id": "BGSpikeSlime_S",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "A Slime draws near! NL Command?",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Every turn: [] [] [] 1 [CoopBoardGame:HitIcon]"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Snake Plant",
+            "id": "BGSnakePlant",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "M", "color": "GRAY" }],
+                            "name": "3 [CoopBoardGame:HitIcon] 2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "W", "color": "GRAY" }],
+                            "name": "[CoopBoardGame:WeakIcon]"
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 7,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "M", "color": "GRAY" }],
+                            "name": "3 [CoopBoardGame:HitIcon] , [CoopBoardGame:AOEIcon] 2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "W", "color": "GRAY" }],
+                            "name": "[CoopBoardGame:WeakIcon]"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Sneaky Gremlin",
+            "id": "BGGremlinSneaky",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Every turn: [] [] [] 2 [CoopBoardGame:HitIcon]"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Snecko",
+            "id": "BGSnecko",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "#yStart #yof #yturn: If Snecko is in your row, the first card NL you play this turn costs the #yConfused value."
+                        },
+                        {
+                            "effects": [{ "name": "3", "color": "GRAY" }],
+                            "name": "3 [CoopBoardGame:HitIcon] [] #yConfused: 2"
+                        },
+                        {
+                            "effects": [{ "name": "4", "color": "GRAY" }],
+                            "name": "5 [CoopBoardGame:HitIcon] [] #yConfused: 1"
+                        },
+                        {
+                            "effects": [{ "name": "2", "color": "GRAY" }],
+                            "name": "2 [CoopBoardGame:HitIcon] [] #yConfused: 3"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Spheric Guardian",
+            "id": "BGSphericGuardian",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] 2 [CoopBoardGame:HitIcon] 5 [CoopBoardGame:BlockIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] 5 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "#yStart #yof #ycombat: 10 [CoopBoardGame:BlockIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<e", "color": "GRAY" }],
+                            "name": "#yBarricade: This enemy doesn't lose [CoopBoardGame:BlockIcon] during its turn."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Spike Slime",
+            "id": "BGSpikeSlime_M",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "V", "color": "GRAY" }],
+                            "name": "1 [CoopBoardGame:HitIcon] [CoopBoardGame:VulnIcon] [] Acts last."
+                        },
+                        {
+                            "effects": [{ "name": "D", "color": "GRAY" }],
+                            "name": "1 [CoopBoardGame:HitIcon] [CoopBoardGame:DazedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "2", "color": "GRAY" }],
+                            "name": "2 [CoopBoardGame:HitIcon]"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Spiker",
+            "id": "BGSpiker",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "#yThorns: After you play an Attack against Spiker, take 1 damage."
+                        },
+                        {
+                            "effects": [{ "name": "2", "color": "GRAY" }],
+                            "name": "2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "T", "color": "GRAY" }],
+                            "name": "+1 #yThorns"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Spire Growth",
+            "id": "BGSerpent",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "#yTurn #y1: [] [] [] No action."
+                        },
+                        {
+                            "effects": [{ "name": "2", "color": "GRAY" }],
+                            "name": "2 [CoopBoardGame:HitIcon] , [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "4", "color": "GRAY" }],
+                            "name": "4 [CoopBoardGame:HitIcon] , [CoopBoardGame:AOEIcon] 2 [CoopBoardGame:HitIcon]"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Spire Shield",
+            "id": "BGSpireShield",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "After #ystart #yof #yturn effects, players can switch rows. Then they're immediately NL targeted by the #yFacing ability from the enemy in their row."
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] #yFacing: Lose 1 Energy. NL [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] #yAction: 20 [CoopBoardGame:BlockIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] #yFacing: You can't draw cards this turn. NL [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] #yAction: [CoopBoardGame:AOEIcon] 8 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] #yFacing: Damage you deal this turn is reduced to 0. NL [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] #yAction: [CoopBoardGame:StrIcon] [CoopBoardGame:StrIcon] to all enemies."
+                        },
+                        {
+                            "effects": [{ "name": "<e", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Spire Spear",
+            "id": "BGSpireSpear",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "After #ystart #yof #yturn effects, players can switch rows. Then they're immediately NL targeted by the #yFacing ability from the enemy in their row."
+                        },
+                        {
+                            "effects": [{ "name": "<b", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] #yFacing: [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon] NL [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] #yAction: [CoopBoardGame:AOEIcon] 2 [CoopBoardGame:HitIcon] 2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<c", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] #yFacing: [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon] NL [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] #yAction: [CoopBoardGame:AOEIcon] [CoopBoardGame:DazedIcon] [CoopBoardGame:DazedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<d", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] #yFacing: [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon] NL [] [] [] [] [] [] [] [] [] [] [] [] [] [] [] #yAction: [CoopBoardGame:AOEIcon] 9 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<e", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Taskmaster",
+            "id": "BGSlaverBoss",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Every turn: [] [] [] [CoopBoardGame:AOEIcon] 1 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon]"
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 1,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "First turn: [] [] [] [CoopBoardGame:AOEIcon] 1 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Thereafter: [] [] [] [CoopBoardGame:AOEIcon] 2 [CoopBoardGame:DazedIcon] [CoopBoardGame:StrIcon]"
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 12,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Every turn: [] [] [] [CoopBoardGame:AOEIcon] 1 [CoopBoardGame:DazedIcon] [CoopBoardGame:StrIcon]"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "The Champ",
+            "id": "BGChamp",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<1", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] 4 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<2", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] [CoopBoardGame:WeakIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<3", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] 5 [CoopBoardGame:HitIcon] 3 [CoopBoardGame:BlockIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<4", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        },
+                        {
+                            "effects": [{ "name": "<5", "color": "GRAY" }],
+                            "name": "#yAnger: When The Champ reaches 0 HP, he immediately heals 40 HP per NL player and enters #yFury #yMode (intent changes immediately)."
+                        },
+                        {
+                            "effects": [{ "name": "<6", "color": "GRAY" }],
+                            "name": "#yFury A: Remove all [CoopBoardGame:WeakIcon] [CoopBoardGame:VulnIcon] tokens from The Champ."
+                        },
+                        {
+                            "effects": [{ "name": "<7", "color": "GRAY" }],
+                            "name": "#yFury B: [CoopBoardGame:AOEIcon] 4 [CoopBoardGame:HitIcon] 4 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<8", "color": "GRAY" }],
+                            "name": "#yFury C: [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<8", "color": "GRAY" }],
+                            "name": "Repeat from B."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 10,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<1", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] 4 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<2", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] [CoopBoardGame:WeakIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<3", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] 6 [CoopBoardGame:HitIcon] 3 [CoopBoardGame:BlockIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<4", "color": "GRAY" }],
+                            "name": "Repeat from 1."
+                        },
+                        {
+                            "effects": [{ "name": "<5", "color": "GRAY" }],
+                            "name": "#yAnger: When The Champ reaches 0 HP, he immediately heals 40 HP per NL player and enters #yFury #yMode (intent changes immediately)."
+                        },
+                        {
+                            "effects": [{ "name": "<6", "color": "GRAY" }],
+                            "name": "#yFury A: Remove all [CoopBoardGame:WeakIcon] [CoopBoardGame:VulnIcon] tokens from The Champ."
+                        },
+                        {
+                            "effects": [{ "name": "<7", "color": "GRAY" }],
+                            "name": "#yFury B: [CoopBoardGame:AOEIcon] 4 [CoopBoardGame:HitIcon] 4 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<8", "color": "GRAY" }],
+                            "name": "#yFury C: [CoopBoardGame:StrIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<8", "color": "GRAY" }],
+                            "name": "Repeat from B."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "The Collector",
+            "id": "BGTheCollector",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<1", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] Summon #yTorch #yHeads until there are 2 for each player."
+                        },
+                        {
+                            "effects": [{ "name": "<2", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon] , [CoopBoardGame:StrIcon] to all enemies."
+                        },
+                        {
+                            "effects": [{ "name": "<3", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] 5 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<4", "color": "GRAY" }],
+                            "name": "Turn 4: #y(Once #yper #ycombat) [CoopBoardGame:WeakIcon] [CoopBoardGame:WeakIcon] [CoopBoardGame:DazedIcon] [CoopBoardGame:DazedIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<5", "color": "GRAY" }],
+                            "name": "Repeat 1-3."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 10,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<1", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] Summon #yTorch #yHeads until there are 2 for each player."
+                        },
+                        {
+                            "effects": [{ "name": "<2", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon] , [CoopBoardGame:StrIcon] to all enemies."
+                        },
+                        {
+                            "effects": [{ "name": "<3", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:AOEIcon] 6 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<4", "color": "GRAY" }],
+                            "name": "Turn 4: #y(Once #yper #ycombat) [CoopBoardGame:WeakIcon] [CoopBoardGame:WeakIcon] [CoopBoardGame:DazedIcon] [CoopBoardGame:DazedIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon] [CoopBoardGame:BurnIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<5", "color": "GRAY" }],
+                            "name": "Repeat 1-3."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "The Guardian",
+            "id": "BGTheGuardian",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<1", "color": "GRAY" }],
+                            "name": "Attack 1: [] [] [] [CoopBoardGame:AOEIcon] 2 [CoopBoardGame:HitIcon] , 5 [CoopBoardGame:BlockIcon] per player"
+                        },
+                        {
+                            "effects": [{ "name": "<2", "color": "GRAY" }],
+                            "name": "Attack 2: [] [] [] #yMode #yShift [CoopBoardGame:AOEIcon] 6 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<3", "color": "GRAY" }],
+                            "name": "#yMode #yShift: If The Guardian starts this turn with no [CoopBoardGame:BlockIcon] , NL it doesn't attack this turn and enters #yDefensive #yMode A at start NL of next round. Otherwise, repeat from Attack 1."
+                        },
+                        {
+                            "effects": [{ "name": "<4", "color": "GRAY" }],
+                            "name": "NL Defensive A: [CoopBoardGame:AOEIcon] 2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<5", "color": "GRAY" }],
+                            "name": "Defensive B: [CoopBoardGame:AOEIcon] 4 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon] and enters #yAttack #yMode 1 at start of next round."
+                        },
+                        {
+                            "effects": [{ "name": "<6", "color": "GRAY" }],
+                            "name": "#ySharp #yHide: While in #yDefensive #yMode, after you play an Attack, take 1 damage."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 10,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<1", "color": "GRAY" }],
+                            "name": "Attack 1: [] [] [] [CoopBoardGame:AOEIcon] 2 [CoopBoardGame:HitIcon] , 6 [CoopBoardGame:BlockIcon] per player"
+                        },
+                        {
+                            "effects": [{ "name": "<2", "color": "GRAY" }],
+                            "name": "Attack 2: [] [] [] #yMode #yShift [CoopBoardGame:AOEIcon] 7 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<3", "color": "GRAY" }],
+                            "name": "#yMode #yShift: If The Guardian starts this turn with no [CoopBoardGame:BlockIcon] , NL it doesn't attack this turn and enters #yDefensive #yMode A at start NL of next round. Otherwise, repeat from Attack 1."
+                        },
+                        {
+                            "effects": [{ "name": "<4", "color": "GRAY" }],
+                            "name": "Defensive A: [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<5", "color": "GRAY" }],
+                            "name": "Defensive B: [CoopBoardGame:AOEIcon] 4 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon] and enters #yAttack #yMode 1 at start of next round."
+                        },
+                        {
+                            "effects": [{ "name": "<6", "color": "GRAY" }],
+                            "name": "#ySharp #yHide: While in #yDefensive #yMode, after you play an Attack, take 1 damage."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "The Maw",
+            "id": "BGMaw",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "Smells vaguely of ambergris.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "-1", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] [CoopBoardGame:VulnIcon] [] Acts last."
+                        },
+                        {
+                            "effects": [{ "name": "-2", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] 2 [CoopBoardGame:HitIcon] 2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-3", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:StrIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-4", "color": "GRAY" }],
+                            "name": "Turn 4: [] [] [] 8 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-4", "color": "GRAY" }],
+                            "name": "Repeat from 2."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 7,
+                    "desc": "Smells vaguely of ambergris.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "-1", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] [CoopBoardGame:AOEIcon] 2 [CoopBoardGame:HitIcon] [CoopBoardGame:VulnIcon] [] Acts last."
+                        },
+                        {
+                            "effects": [{ "name": "-2", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] 2 [CoopBoardGame:HitIcon] 2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-3", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] [CoopBoardGame:StrIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-4", "color": "GRAY" }],
+                            "name": "Turn 4: [] [] [] 8 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-4", "color": "GRAY" }],
+                            "name": "Repeat from 2."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Time Eater",
+            "id": "BGTimeEater",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<5", "color": "GRAY" }],
+                            "name": "#yTime #yWarp: Limits the number of cards each player can play this turn NL (include [CoopBoardGame:SlimedIcon] , exclude [CoopBoardGame:ShivIcon] .)"
+                        },
+                        {
+                            "effects": [{ "name": "<1", "color": "GRAY" }],
+                            "name": "Time Warp 5: [] [] [] [CoopBoardGame:AOEIcon] 2 [CoopBoardGame:HitIcon] 2 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<2", "color": "GRAY" }],
+                            "name": "Time Warp 4: [] [] [] [CoopBoardGame:SlimedIcon] [CoopBoardGame:SlimedIcon] [CoopBoardGame:SlimedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<3", "color": "GRAY" }],
+                            "name": "Time Warp 3: [] [] [] [CoopBoardGame:AOEIcon] 6 [CoopBoardGame:HitIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<4", "color": "GRAY" }],
+                            "name": "Repeat from 5."
+                        },
+                        {
+                            "effects": [{ "name": "<6", "color": "GRAY" }],
+                            "name": "#yHaste: The first time Time Eater reaches 0 HP, NL it immediately heals 30 HP per player, gains [CoopBoardGame:StrIcon] , NL and remove all [CoopBoardGame:WeakIcon] [CoopBoardGame:VulnIcon] ."
+                        }
+                    ]
+                },
+                {
+                    "min_asc": 10,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<5", "color": "GRAY" }],
+                            "name": "#yTime #yWarp: Limits the number of cards each player can play this turn NL (include [CoopBoardGame:SlimedIcon] , exclude [CoopBoardGame:ShivIcon] .)"
+                        },
+                        {
+                            "effects": [{ "name": "<1", "color": "GRAY" }],
+                            "name": "Time Warp 5: [] [] [] [CoopBoardGame:AOEIcon] 3 [CoopBoardGame:HitIcon] 3 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<2", "color": "GRAY" }],
+                            "name": "Time Warp 4: [] [] [] [CoopBoardGame:SlimedIcon] [CoopBoardGame:SlimedIcon] [CoopBoardGame:SlimedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<3", "color": "GRAY" }],
+                            "name": "Time Warp 3: [] [] [] [CoopBoardGame:AOEIcon] 6 [CoopBoardGame:HitIcon] [CoopBoardGame:DazedIcon] [CoopBoardGame:StrIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "<4", "color": "GRAY" }],
+                            "name": "Repeat from 5."
+                        },
+                        {
+                            "effects": [{ "name": "<6", "color": "GRAY" }],
+                            "name": "#yHaste: The first time Time Eater reaches 0 HP, NL it immediately heals 32 HP per player, gains [CoopBoardGame:StrIcon] , NL and remove all [CoopBoardGame:WeakIcon] [CoopBoardGame:VulnIcon] ."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Torch Head",
+            "id": "BGTorchHead",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "<a", "color": "GRAY" }],
+                            "name": "Every turn: [] [] [] 1 [CoopBoardGame:HitIcon]"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Transient",
+            "id": "BGTransient",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "In the original game, Juggernaut keeps working at 999 Block. Oh well.",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "-1", "color": "GRAY" }],
+                            "name": "Turn 1: [] [] [] 6 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-2", "color": "GRAY" }],
+                            "name": "Turn 2: [] [] [] 9 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-3", "color": "GRAY" }],
+                            "name": "Turn 3: [] [] [] 12 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-4", "color": "GRAY" }],
+                            "name": "Turn 4: [] [] [] 15 [CoopBoardGame:HitIcon] [] Transient dies."
+                        },
+                        {
+                            "effects": [{ "name": "-5", "color": "GRAY" }],
+                            "name": "#yShift: When Transient loses HP, the player in its row gains that much [CoopBoardGame:BlockIcon] ."
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "name": "Writhing Mass",
+            "id": "BGWrithingMass",
+            "ai": [
+                {
+                    "min_asc": 0,
+                    "desc": "",
+                    "hp": "",
+                    "moves": [
+                        {
+                            "effects": [{ "name": "-1", "color": "GRAY" }],
+                            "name": "[CoopBoardGame:Die1Icon] [] [] [] [CoopBoardGame:AOEIcon] [CoopBoardGame:VulnIcon] [] Acts last."
+                        },
+                        {
+                            "effects": [{ "name": "-2", "color": "GRAY" }],
+                            "name": "[CoopBoardGame:Die2Icon] [] [] [] [CoopBoardGame:AOEIcon] [CoopBoardGame:DazedIcon] [CoopBoardGame:DazedIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-3", "color": "GRAY" }],
+                            "name": "[CoopBoardGame:Die3Icon] [] [] [] 3 [CoopBoardGame:HitIcon] 3 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-4", "color": "GRAY" }],
+                            "name": "[CoopBoardGame:Die4Icon] [] [] [] 5 [CoopBoardGame:HitIcon] 5 [CoopBoardGame:BlockIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-5", "color": "GRAY" }],
+                            "name": "[CoopBoardGame:Die5Icon] [] [] [] 7 [CoopBoardGame:HitIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-6", "color": "GRAY" }],
+                            "name": "[CoopBoardGame:Die6Icon] [] [] [] 4 [CoopBoardGame:HitIcon] [CoopBoardGame:WeakIcon]"
+                        },
+                        {
+                            "effects": [{ "name": "-7", "color": "GRAY" }],
+                            "name": "#yReactive: When you damage Writhing Mass with an Attack, roll the die. NL (Don't trigger relics. ALL enemy die actions change.)"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

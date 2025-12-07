@@ -6,9 +6,12 @@
         <sourceOutputDir name="target/generated-sources/annotations" />
         <sourceTestOutputDir name="target/generated-test-sources/test-annotations" />
         <outputRelativeToContentRoot value="true" />
-        <module name="BoardGame" />
-        <module name="StSBoardGameMod" />
+        <module name="StSCoopBoardGameMod" />
+        <module name="CoopBoardGame" />
       </profile>
     </annotationProcessing>
+    <bytecodeTargetLevel>
+      <module name="BoardGame" target="1.8" />
+    </bytecodeTargetLevel>
   </component>
 </project>

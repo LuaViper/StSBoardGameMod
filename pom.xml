@@ -2,7 +2,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <properties>
-        <modID>BoardGame</modID>
+        <modID>CoopBoardGame</modID>
         <author>degraffa</author>
 
         <!-- Change the path for your system to match your Steam installation. -->
@@ -20,11 +20,16 @@
         <maven.compiler.source>1.8</maven.compiler.source>
         <maven.compiler.target>1.8</maven.compiler.target>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+
+        <!-- Test Dependencies -->
+        <junit.version>5.9.3</junit.version>
+        <mockito.version>4.11.0</mockito.version>
+        <assertj.version>3.24.2</assertj.version>
     </properties>
 
     <!-- This information will be displayed in ModTheSpire, the modded launcher. -->
     <name>The Co-op Board Game</name>
-    <version>1.0.1</version>
+    <version>1.0.2</version>
     <!-- Avoid using \ in this description, as they can cause the description to fail to load. -->
     <!-- If you really want to use them, you'll need to "escape" them by putting another one in front, like \\ -->
     <description>Video game adaptation of the board game adaptation of the video game.</description>
@@ -74,6 +79,42 @@
             <scope>system</scope>
             <systemPath>${steam.path}/workshop/content/646570/2285965269/Bestiary.jar</systemPath>
             <optional>true</optional>
+        </dependency>
+
+        <!-- Test Dependencies -->
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>${junit.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-core</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-inline</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.mockito</groupId>
+            <artifactId>mockito-junit-jupiter</artifactId>
+            <version>${mockito.version}</version>
+            <scope>test</scope>
+        </dependency>
+
+        <dependency>
+            <groupId>org.assertj</groupId>
+            <artifactId>assertj-core</artifactId>
+            <version>${assertj.version}</version>
+            <scope>test</scope>
         </dependency>
     </dependencies>
 
