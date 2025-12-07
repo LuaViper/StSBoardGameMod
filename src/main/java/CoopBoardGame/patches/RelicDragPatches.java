@@ -67,8 +67,8 @@ public class RelicDragPatches {
     }
 
     /**
-     * Patch AbstractRelic.renderInTopPanel() to skip rendering the dragged relic
-     * in its normal position and render it at the cursor instead.
+     * Patch AbstractRelic.renderInTopPanel() to apply position offsets for gap animation
+     * and skip rendering the dragged relic in its normal position.
      */
     @SpirePatch2(clz = AbstractRelic.class, method = "renderInTopPanel",
                  paramtypez = {SpriteBatch.class})
@@ -77,12 +77,32 @@ public class RelicDragPatches {
         public static SpireReturn<Void> Prefix(AbstractRelic __instance, SpriteBatch sb) {
             if (!RelicDragManager.isDragging()) return SpireReturn.Continue();
 
-            // Skip rendering the dragged relic in its normal position
+            // Skip the dragged relic entirely (rendered separately at cursor)
             if (__instance == RelicDragManager.draggedRelic) {
-                return SpireReturn.Return(); // Will render separately at cursor
+                return SpireReturn.Return();
+            }
+
+            // Apply offset to other relics for gap animation
+            int index = AbstractDungeon.player.relics.indexOf(__instance);
+            if (index >= 0) {
+                float offset = RelicDragManager.getRelicOffset(index);
+                __instance.currentX += offset;
             }
 
             return SpireReturn.Continue();
+        }
+
+        @SpirePostfixPatch
+        public static void Postfix(AbstractRelic __instance, SpriteBatch sb) {
+            if (!RelicDragManager.isDragging()) return;
+            if (__instance == RelicDragManager.draggedRelic) return;
+
+            // Restore original position after rendering
+            int index = AbstractDungeon.player.relics.indexOf(__instance);
+            if (index >= 0) {
+                float offset = RelicDragManager.getRelicOffset(index);
+                __instance.currentX -= offset;
+            }
         }
     }
 
