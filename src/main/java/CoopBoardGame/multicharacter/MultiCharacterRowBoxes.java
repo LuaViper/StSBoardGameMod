@@ -16,6 +16,7 @@ import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.MathHelper;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
+
 import java.util.ArrayList;
 
 public class MultiCharacterRowBoxes {
@@ -39,15 +40,22 @@ public class MultiCharacterRowBoxes {
     // Row selection and assignment
     private CharacterRowAssignment rowAssignment = new CharacterRowAssignment();
     private ArrayList<Hitbox> rowHitboxes = new ArrayList<>();
-    private Color selectedRowGlowColor = new Color(0.2F, 0.8F, 1.0F, 0.0F);
+    private Color selectedRowOutlineColor = new Color(0.2F, 0.8F, 1.0F, 0.0F);
 
     // Row slot dimensions (matching the grid image)
     private static final float ROW_WIDTH = 64.0F * Settings.scale * 2.0F;
     private static final float ROW_HEIGHT = 80.0F * Settings.scale * 2.0F;
 
+    // Outline thickness for selection highlight
+    private static final float OUTLINE_THICKNESS = 4.0F * Settings.scale;
+
+    // Flag to defer removal to avoid ConcurrentModificationException
+    private int pendingRemovalRow = -1;
+
     public MultiCharacterRowBoxes() {
         this.posX = this.targetX = this.START_X;
-        this.posY = (Settings.HEIGHT / 2) - 240.0F;
+        // Lower the boxes to be more centered on screen
+        this.posY = (Settings.HEIGHT / 2) - 320.0F * Settings.scale;
 
         // Initialize 4 row hitboxes
         for (int i = 0; i < CharacterRowAssignment.MAX_ROWS; i++) {
@@ -58,6 +66,13 @@ public class MultiCharacterRowBoxes {
 
     public void update() {
         this.posX = MathHelper.uiLerpSnap(this.posX, this.targetX);
+
+        // Handle deferred removal first (before iterating swapButtons)
+        if (pendingRemovalRow != -1) {
+            int rowToRemove = pendingRemovalRow;
+            pendingRemovalRow = -1;
+            performRemoval(rowToRemove);
+        }
 
         // Update row hitbox positions
         for (int i = 0; i < rowHitboxes.size(); i++) {
@@ -85,8 +100,9 @@ public class MultiCharacterRowBoxes {
             }
         }
 
-        // Update swap buttons
-        for (MultiCharacterSwapButton b : this.swapButtons) {
+        // Update swap buttons using index-based loop to avoid ConcurrentModificationException
+        for (int i = 0; i < this.swapButtons.size(); i++) {
+            MultiCharacterSwapButton b = this.swapButtons.get(i);
             b.update();
             b.hb.x = this.posX + 8.0F * Settings.scale * 2.0F;
         }
@@ -131,7 +147,7 @@ public class MultiCharacterRowBoxes {
             false
         );
 
-        // Render selected row highlight
+        // Render selected row highlight (outline only)
         renderSelectedRowHighlight(sb);
 
         // Render hover highlight during drag
@@ -153,7 +169,7 @@ public class MultiCharacterRowBoxes {
     }
 
     /**
-     * Renders a pulsing glow highlight on the selected row.
+     * Renders a pulsing outline highlight on the selected row.
      */
     private void renderSelectedRowHighlight(SpriteBatch sb) {
         int selectedRow = rowAssignment.getSelectedRow();
@@ -162,12 +178,24 @@ public class MultiCharacterRowBoxes {
         Hitbox hb = rowHitboxes.get(selectedRow);
 
         // Pulsing alpha
-        selectedRowGlowColor.a =
-            0.15F +
-            (MathUtils.cosDeg((float) ((System.currentTimeMillis() / 4L) % 360L)) + 1.25F) / 6.0F;
+        selectedRowOutlineColor.a =
+            0.4F +
+            (MathUtils.cosDeg((float) ((System.currentTimeMillis() / 4L) % 360L)) + 1.25F) / 4.0F;
 
-        sb.setColor(selectedRowGlowColor);
-        sb.draw(ImageMaster.WHITE_SQUARE_IMG, hb.x, hb.y, hb.width, hb.height);
+        sb.setColor(selectedRowOutlineColor);
+
+        float t = OUTLINE_THICKNESS;
+
+        // Draw 4 rectangles to form an outline (top, bottom, left, right)
+        // Top edge
+        sb.draw(ImageMaster.WHITE_SQUARE_IMG, hb.x - t, hb.y + hb.height, hb.width + 2 * t, t);
+        // Bottom edge
+        sb.draw(ImageMaster.WHITE_SQUARE_IMG, hb.x - t, hb.y - t, hb.width + 2 * t, t);
+        // Left edge
+        sb.draw(ImageMaster.WHITE_SQUARE_IMG, hb.x - t, hb.y, t, hb.height);
+        // Right edge
+        sb.draw(ImageMaster.WHITE_SQUARE_IMG, hb.x + hb.width, hb.y, t, hb.height);
+
         sb.setColor(Color.WHITE);
     }
 
@@ -196,9 +224,17 @@ public class MultiCharacterRowBoxes {
     }
 
     /**
-     * Removes the character from a specific row.
+     * Schedules a character removal from a specific row.
+     * The actual removal is deferred to avoid ConcurrentModificationException.
      */
     public void removeCharacterFromRow(int row) {
+        pendingRemovalRow = row;
+    }
+
+    /**
+     * Actually performs the character removal.
+     */
+    private void performRemoval(int row) {
         AbstractPlayer removed = rowAssignment.removeCharacterFromRow(row);
         if (removed != null) {
             CardCrawlGame.sound.play("CARD_BURN");

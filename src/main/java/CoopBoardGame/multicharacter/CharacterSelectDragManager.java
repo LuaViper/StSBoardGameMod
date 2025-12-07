@@ -158,9 +158,9 @@ public class CharacterSelectDragManager {
         if (!isDragging()) return;
 
         if (isInRemoveZone()) {
-            // Remove the character
+            // Remove the character (deferred to avoid ConcurrentModificationException)
             rowBoxes.removeCharacterFromRow(originalRow);
-            CardCrawlGame.sound.play("CARD_BURN");
+            // Sound is played in performRemoval
         } else if (hoverRow != -1 && hoverRow != originalRow) {
             // Swap rows
             rowBoxes.getRowAssignment().swapRows(originalRow, hoverRow);
