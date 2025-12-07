@@ -100,11 +100,14 @@ public class MultiCharacterSelectScreen extends CustomScreen {
         ((MultiCharacterRowBoxes) OverlayMenuPatches.OverlayMenuExtraInterface.multiCharacterRowBoxes.get(
                 AbstractDungeon.overlayMenu
             )).show();
+
+        // Reset button selection state based on current row assignments
+        MultiCharacterRowBoxes rowBoxes = (MultiCharacterRowBoxes)
+            OverlayMenuPatches.OverlayMenuExtraInterface.multiCharacterRowBoxes.get(
+                AbstractDungeon.overlayMenu
+            );
         for (MultiCharacterSelectButton b : this.buttons) {
-            b.selected = false;
-            for (AbstractPlayer c : ((MultiCharacter) AbstractDungeon.player).subcharacters) {
-                if (c.name.equals(b.c.name)) b.selected = true;
-            }
+            b.selected = rowBoxes.getRowAssignment().getRowForCharacter(b.c) != -1;
         }
     }
 
@@ -125,19 +128,26 @@ public class MultiCharacterSelectScreen extends CustomScreen {
             AbstractDungeon.closeCurrentScreen();
             return;
         }
-        MultiCharacter c = (MultiCharacter) AbstractDungeon.player;
-        if (c.subcharacters.isEmpty()) {
+
+        // Get the row boxes to check row 0 status
+        MultiCharacterRowBoxes rowBoxes = (MultiCharacterRowBoxes)
+            OverlayMenuPatches.OverlayMenuExtraInterface.multiCharacterRowBoxes.get(
+                AbstractDungeon.overlayMenu
+            );
+
+        // Require at least row 0 (bottom) to be occupied to proceed
+        boolean canProceed = rowBoxes.getRowAssignment().isRowOccupied(0);
+        if (!canProceed) {
             AbstractDungeon.overlayMenu.proceedButton.hide();
         } else {
             AbstractDungeon.overlayMenu.proceedButton.show();
         }
+
         for (MultiCharacterSelectButton b : this.buttons) b.update();
     }
 
     public void render(SpriteBatch sb) {
-        description = CoopBoardGame.ENABLE_TEST_FEATURES
-            ? "Choose up to 4 characters."
-            : "Choose 1 character.";
+        description = "Select a row, then choose a character.";
         FontHelper.renderFontCentered(
             sb,
             FontHelper.buttonLabelFont,

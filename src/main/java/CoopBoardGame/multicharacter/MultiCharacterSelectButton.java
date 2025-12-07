@@ -1,8 +1,6 @@
 package CoopBoardGame.multicharacter;
 
-import CoopBoardGame.CoopBoardGame;
 import CoopBoardGame.ui.OverlayMenuPatches;
-import basemod.BaseMod;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.Texture;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -17,7 +15,6 @@ import com.megacrit.cardcrawl.helpers.ImageMaster;
 import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.localization.UIStrings;
-import java.util.Iterator;
 
 public class MultiCharacterSelectButton {
 
@@ -47,52 +44,45 @@ public class MultiCharacterSelectButton {
         this.hb.update();
         this.hb.cX = this.hb.x + this.hb.width / 2.0F;
         this.hb.cY = this.hb.y + this.hb.height / 2.0F;
-        if (this.hb.justHovered) CardCrawlGame.sound.playA("UI_HOVER", -0.3F);
-        if (!this.hb.hovered || this.locked);
+
+        // Check if this character is already assigned
+        MultiCharacterRowBoxes rowBoxes = (MultiCharacterRowBoxes)
+            OverlayMenuPatches.OverlayMenuExtraInterface.multiCharacterRowBoxes.get(
+                AbstractDungeon.overlayMenu
+            );
+        boolean isAssigned = rowBoxes.getRowAssignment().getRowForCharacter(this.c) != -1;
+
+        // Update selected state to match assignment state
+        this.selected = isAssigned;
+
+        if (this.hb.justHovered && !isAssigned) {
+            CardCrawlGame.sound.playA("UI_HOVER", -0.3F);
+        }
+
+        // Block interaction if assigned
+        if (isAssigned) {
+            return;
+        }
+
         if (InputHelper.justClickedLeft && !this.locked && this.hb.hovered) {
             CardCrawlGame.sound.playA("UI_CLICK_1", -0.4F);
             this.hb.clickStarted = true;
         }
+
         if (this.hb.clicked) {
             this.hb.clicked = false;
-            if (!this.selected) {
-                boolean SOLO_MODE_ONLY = !CoopBoardGame.ENABLE_TEST_FEATURES;
-                if (SOLO_MODE_ONLY) {
-                    MultiCharacterSelectScreen screen =
-                        (MultiCharacterSelectScreen) BaseMod.getCustomScreen(
-                            MultiCharacterSelectScreen.Enum.MULTI_CHARACTER_SELECT
-                        );
-                    for (MultiCharacterSelectButton b : screen.buttons) {
-                        b.selected = false;
-                    }
-                }
 
-                this.selected = true;
+            // Create new character instance and assign to selected row
+            this.c.doCharSelectScreenSelectEffect();
 
-                MultiCharacter p = (MultiCharacter) AbstractDungeon.player;
-                if (SOLO_MODE_ONLY) {
-                    p.subcharacters.clear();
-                }
-
-                this.c.doCharSelectScreenSelectEffect();
-
-                AbstractPlayer newChar = (AbstractPlayer) this.c.newInstance();
-                if (newChar instanceof Defect) {
-                    newChar.maxOrbs = newChar.masterMaxOrbs = 3;
-                }
-                p.subcharacters.add(newChar);
-                newChar.initializeStarterDeck();
-            } else {
-                this.selected = false;
-                MultiCharacter p = (MultiCharacter) AbstractDungeon.player;
-                for (Iterator<AbstractPlayer> i = p.subcharacters.iterator(); i.hasNext(); ) {
-                    AbstractPlayer s = i.next();
-                    if (s.getClass() == this.c.getClass()) i.remove();
-                }
+            AbstractPlayer newChar = (AbstractPlayer) this.c.newInstance();
+            if (newChar instanceof Defect) {
+                newChar.maxOrbs = newChar.masterMaxOrbs = 3;
             }
-            ((MultiCharacterRowBoxes) OverlayMenuPatches.OverlayMenuExtraInterface.multiCharacterRowBoxes.get(
-                    AbstractDungeon.overlayMenu
-                )).remakeSwapButtonsAndPositionCharacters();
+            newChar.initializeStarterDeck();
+
+            // Assign to the currently selected row
+            rowBoxes.assignCharacterToSelectedRow(newChar);
         }
     }
 
@@ -102,56 +92,106 @@ public class MultiCharacterSelectButton {
     }
 
     private void renderOptionButton(SpriteBatch sb) {
-        if (this.selected) {
-            this.glowColor.a =
-                0.25F +
-                (MathUtils.cosDeg((float) ((System.currentTimeMillis() / 4L) % 360L)) + 1.25F) /
-                3.5F;
-            sb.setColor(this.glowColor);
-        } else {
+        // Check if assigned (grayed out)
+        MultiCharacterRowBoxes rowBoxes = (MultiCharacterRowBoxes)
+            OverlayMenuPatches.OverlayMenuExtraInterface.multiCharacterRowBoxes.get(
+                AbstractDungeon.overlayMenu
+            );
+        boolean isAssigned = rowBoxes.getRowAssignment().getRowForCharacter(this.c) != -1;
+
+        if (isAssigned) {
+            // Grayed out for assigned characters
             sb.setColor(BLACK_OUTLINE_COLOR);
-        }
-        sb.draw(
-            ImageMaster.CHAR_OPT_HIGHLIGHT,
-            this.hb.cX - 110.0F,
-            this.hb.cY - 110.0F,
-            110.0F,
-            110.0F,
-            220.0F,
-            220.0F,
-            Settings.scale,
-            Settings.scale,
-            0.0F,
-            0,
-            0,
-            220,
-            220,
-            false,
-            false
-        );
-        if (!this.selected && !this.hb.hovered) {
-            sb.setColor(Color.LIGHT_GRAY);
+            sb.draw(
+                ImageMaster.CHAR_OPT_HIGHLIGHT,
+                this.hb.cX - 110.0F,
+                this.hb.cY - 110.0F,
+                110.0F,
+                110.0F,
+                220.0F,
+                220.0F,
+                Settings.scale,
+                Settings.scale,
+                0.0F,
+                0,
+                0,
+                220,
+                220,
+                false,
+                false
+            );
+            sb.setColor(Color.DARK_GRAY.cpy().mul(1f, 1f, 1f, 0.5f));
+            sb.draw(
+                this.buttonImg,
+                this.hb.cX - 110.0F,
+                this.hb.cY - 110.0F,
+                110.0F,
+                110.0F,
+                220.0F,
+                220.0F,
+                Settings.scale,
+                Settings.scale,
+                0.0F,
+                0,
+                0,
+                220,
+                220,
+                false,
+                false
+            );
         } else {
-            sb.setColor(Color.WHITE);
+            // Normal rendering
+            if (this.selected) {
+                this.glowColor.a =
+                    0.25F +
+                    (MathUtils.cosDeg((float) ((System.currentTimeMillis() / 4L) % 360L)) + 1.25F) /
+                    3.5F;
+                sb.setColor(this.glowColor);
+            } else {
+                sb.setColor(BLACK_OUTLINE_COLOR);
+            }
+            sb.draw(
+                ImageMaster.CHAR_OPT_HIGHLIGHT,
+                this.hb.cX - 110.0F,
+                this.hb.cY - 110.0F,
+                110.0F,
+                110.0F,
+                220.0F,
+                220.0F,
+                Settings.scale,
+                Settings.scale,
+                0.0F,
+                0,
+                0,
+                220,
+                220,
+                false,
+                false
+            );
+            if (!this.selected && !this.hb.hovered) {
+                sb.setColor(Color.LIGHT_GRAY);
+            } else {
+                sb.setColor(Color.WHITE);
+            }
+            sb.draw(
+                this.buttonImg,
+                this.hb.cX - 110.0F,
+                this.hb.cY - 110.0F,
+                110.0F,
+                110.0F,
+                220.0F,
+                220.0F,
+                Settings.scale,
+                Settings.scale,
+                0.0F,
+                0,
+                0,
+                220,
+                220,
+                false,
+                false
+            );
         }
-        sb.draw(
-            this.buttonImg,
-            this.hb.cX - 110.0F,
-            this.hb.cY - 110.0F,
-            110.0F,
-            110.0F,
-            220.0F,
-            220.0F,
-            Settings.scale,
-            Settings.scale,
-            0.0F,
-            0,
-            0,
-            220,
-            220,
-            false,
-            false
-        );
     }
 
     private static final UIStrings uiStrings = CardCrawlGame.languagePack.getUIString(
