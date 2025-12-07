@@ -40,11 +40,11 @@ public class MultiCharacterRowBoxes {
     // Row selection and assignment
     private CharacterRowAssignment rowAssignment = new CharacterRowAssignment();
     private ArrayList<Hitbox> rowHitboxes = new ArrayList<>();
-    private Color selectedRowOutlineColor = new Color(0.2F, 0.8F, 1.0F, 0.0F);
+    private Color selectedRowOutlineColor = new Color(1.0F, 1.0F, 1.0F, 0.0F);
 
     // Row slot dimensions (matching the grid image)
     private static final float ROW_WIDTH = 64.0F * Settings.scale * 2.0F;
-    private static final float ROW_HEIGHT = 80.0F * Settings.scale * 2.0F;
+    private static final float ROW_HEIGHT = 72.0F * Settings.scale * 2.0F;
 
     // Outline thickness for selection highlight
     private static final float OUTLINE_THICKNESS = 4.0F * Settings.scale;
@@ -270,13 +270,12 @@ public class MultiCharacterRowBoxes {
             this.swapButtons.add(b);
         }
 
-        // Position characters in the world
-        for (int row = 0; row < CharacterRowAssignment.MAX_ROWS; row++) {
-            AbstractPlayer character = rowAssignment.getCharacterAtRow(row);
-            if (character != null) {
-                MultiCreature.Field.currentRow.set(character, row);
-                character.movePosition(Settings.WIDTH * 0.25F, AbstractDungeon.floorY);
-            }
+        // Position only the bottom-most character in the world (row 0)
+        // Other rows are just for show right now
+        AbstractPlayer bottomCharacter = rowAssignment.getCharacterAtRow(0);
+        if (bottomCharacter != null) {
+            MultiCreature.Field.currentRow.set(bottomCharacter, 0);
+            bottomCharacter.movePosition(Settings.WIDTH * 0.25F, AbstractDungeon.floorY);
         }
     }
 

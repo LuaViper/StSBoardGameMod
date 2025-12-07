@@ -45,17 +45,21 @@ public class HandLayoutHelper {
                             hand_target_y[i]
                         );
                     }
-                    if (InputHelper.scrolledDown) {
-                        int i = currentHand;
-                        i += 1;
-                        if (i >= MultiCharacter.getSubcharacters().size()) i = 0;
-                        changeHand(i, 1);
-                    }
-                    if (InputHelper.scrolledUp) {
-                        int i = currentHand;
-                        i -= 1;
-                        if (i < 0) i = MultiCharacter.getSubcharacters().size() - 1;
-                        changeHand(i, -1);
+                    // Scroll wheel switching is now handled by CombatRowManager
+                    // Only keep scroll wheel for non-grid mode or single character
+                    if (!GridBackground.isGridViewActive() || MultiCharacter.getSubcharacters().size() <= 1) {
+                        if (InputHelper.scrolledDown) {
+                            int i = currentHand;
+                            i += 1;
+                            if (i >= MultiCharacter.getSubcharacters().size()) i = 0;
+                            changeHand(i, 1);
+                        }
+                        if (InputHelper.scrolledUp) {
+                            int i = currentHand;
+                            i -= 1;
+                            if (i < 0) i = MultiCharacter.getSubcharacters().size() - 1;
+                            changeHand(i, -1);
+                        }
                     }
                 }
             }
@@ -188,6 +192,26 @@ public class HandLayoutHelper {
                 if (whichRow != MultiCharacter.handLayoutHelper.currentHand) {
                     return true;
                 }
+            }
+        }
+        return false;
+    }
+
+    /**
+     * Checks if a card should be completely hidden (not rendered at all) in grid mode.
+     * In grid mode with multiple characters, only the active character's hand is rendered.
+     */
+    public static boolean shouldCardBeHidden(AbstractCard __instance) {
+        if (CardCrawlGame.chosenCharacter != MultiCharacter.Enums.BG_MULTICHARACTER) return false;
+        if (cardIsAttachedToSoul(__instance)) return false;
+        if (!GridBackground.isGridViewActive()) return false;
+        if (MultiCharacter.getSubcharacters().size() <= 1) return false;
+
+        AbstractPlayer owner = CardPatches.Field.owner.get(__instance);
+        if (owner != null) {
+            int whichRow = MultiCreature.Field.currentRow.get(owner);
+            if (whichRow != MultiCharacter.handLayoutHelper.currentHand) {
+                return true;
             }
         }
         return false;
@@ -358,4 +382,24 @@ public class HandLayoutHelper {
     }
 
     //TODO: renderDescription patch will take a bit more effort -- need to set/unset, at minimum, __instance.textColor and __instance.goldColor
+
+    /**
+     * Patch to skip rendering cards from non-active hands entirely in grid mode.
+     * This prevents cards from other characters from being rendered at all.
+     */
+    @SpirePatch2(
+        clz = AbstractCard.class,
+        method = "renderCard",
+        paramtypez = { SpriteBatch.class, boolean.class, boolean.class }
+    )
+    public static class SkipRenderingHiddenCards {
+
+        @SpirePrefixPatch
+        public static SpireReturn<Void> Prefix(AbstractCard __instance, SpriteBatch sb) {
+            if (shouldCardBeHidden(__instance)) {
+                return SpireReturn.Return();
+            }
+            return SpireReturn.Continue();
+        }
+    }
 }

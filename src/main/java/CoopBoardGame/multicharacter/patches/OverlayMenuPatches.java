@@ -1,6 +1,7 @@
 package CoopBoardGame.multicharacter.patches;
 
 import CoopBoardGame.multicharacter.MultiCharacter;
+import CoopBoardGame.multicharacter.grid.GridBackground;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInstrumentPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
@@ -35,15 +36,26 @@ public class OverlayMenuPatches {
     // -- do we want to try to restore it, even if it means drawing 4 at once?
     public static void renderSubcharacterEnergyInstead(OverlayMenu __instance, SpriteBatch sb) {
         if (AbstractDungeon.player instanceof MultiCharacter) {
-            //energyPanel.render four times, drawn top to bottom
-            for (int i = 0; i < MultiCharacter.getSubcharacters().size(); i += 1) {
-                __instance.energyPanel.current_y += ENERGY_ORB_SPACING * Settings.scale;
-            }
-            for (int i = MultiCharacter.getSubcharacters().size() - 1; i >= 0; i -= 1) {
-                __instance.energyPanel.current_y -= ENERGY_ORB_SPACING * Settings.scale;
-                ContextPatches.pushPlayerContext(MultiCharacter.getSubcharacters().get(i));
-                __instance.energyPanel.render(sb);
-                ContextPatches.popPlayerContext();
+            // In grid mode with multiple characters, only render active character's energy
+            if (GridBackground.isGridViewActive() && MultiCharacter.getSubcharacters().size() > 1) {
+                int activeRow = MultiCharacter.handLayoutHelper.currentHand;
+                if (activeRow >= 0 && activeRow < MultiCharacter.getSubcharacters().size()) {
+                    AbstractPlayer activeChar = MultiCharacter.getSubcharacters().get(activeRow);
+                    ContextPatches.pushPlayerContext(activeChar);
+                    __instance.energyPanel.render(sb);
+                    ContextPatches.popPlayerContext();
+                }
+            } else {
+                // Non-grid mode or single character: render all energy orbs stacked
+                for (int i = 0; i < MultiCharacter.getSubcharacters().size(); i += 1) {
+                    __instance.energyPanel.current_y += ENERGY_ORB_SPACING * Settings.scale;
+                }
+                for (int i = MultiCharacter.getSubcharacters().size() - 1; i >= 0; i -= 1) {
+                    __instance.energyPanel.current_y -= ENERGY_ORB_SPACING * Settings.scale;
+                    ContextPatches.pushPlayerContext(MultiCharacter.getSubcharacters().get(i));
+                    __instance.energyPanel.render(sb);
+                    ContextPatches.popPlayerContext();
+                }
             }
         } else {
             __instance.energyPanel.render(sb);

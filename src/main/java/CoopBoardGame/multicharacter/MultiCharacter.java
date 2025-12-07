@@ -37,6 +37,7 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
+import CoopBoardGame.multicharacter.grid.GridBackground;
 
 //TODO: oops we forgot Watcher's add-miracle-to-hand-at-start-of-combat relic
 
@@ -63,6 +64,7 @@ public class MultiCharacter extends AbstractBGPlayer {
 
     public ArrayList<AbstractPlayer> subcharacters = new ArrayList<>();
     public static HandLayoutHelper handLayoutHelper = new HandLayoutHelper();
+    public static CombatRowManager combatRowManager = new CombatRowManager();
 
     public static ArrayList<AbstractPlayer> getSubcharacters() {
         if (ContextPatches.originalBGMultiCharacter == null) {
@@ -337,6 +339,9 @@ public class MultiCharacter extends AbstractBGPlayer {
         AbstractScenePatches.AbstractSceneExtraInterface.gridBackground
             .get(AbstractDungeon.scene)
             .resetGridAtStartOfCombat();
+
+        // Initialize combat row manager for this combat
+        combatRowManager.resetForCombat();
     }
 
     public void applyPreCombatLogic() {
@@ -398,6 +403,7 @@ public class MultiCharacter extends AbstractBGPlayer {
     public void update() {
         //super.update();
         handLayoutHelper.update();
+        combatRowManager.update();
         for (AbstractPlayer c : this.subcharacters) {
             ContextPatches.pushPlayerContext(c);
             c.update();
@@ -425,6 +431,9 @@ public class MultiCharacter extends AbstractBGPlayer {
 
     public void render(SpriteBatch sb) {
         //super.render(sb);
+        // Render row backgrounds first (behind characters)
+        combatRowManager.renderRowBackgrounds(sb);
+
         for (int i = subcharacters.size() - 1; i >= 0; i -= 1) {
             ContextPatches.pushPlayerContext(subcharacters.get(i));
             subcharacters.get(i).render(sb);
@@ -434,16 +443,27 @@ public class MultiCharacter extends AbstractBGPlayer {
 
     public void renderHand(SpriteBatch sb) {
         if (handLayoutHelper.currentHand >= 0) {
-            for (
-                int i = handLayoutHelper.currentHand + subcharacters.size() - 1;
-                i >= handLayoutHelper.currentHand;
-                i -= 1
-            ) {
-                //CoopBoardGame.logger.info("???   " + i + "   " + i % subcharacters.size());
-                AbstractPlayer c = subcharacters.get(i % subcharacters.size());
-                ContextPatches.pushPlayerContext(c);
-                c.renderHand(sb);
-                ContextPatches.popPlayerContext();
+            // In grid mode with multiple characters, only render active character's hand
+            if (GridBackground.isGridViewActive() && subcharacters.size() > 1) {
+                int activeRow = combatRowManager.getActiveCharacterIndex();
+                if (activeRow >= 0 && activeRow < subcharacters.size()) {
+                    AbstractPlayer activeChar = subcharacters.get(activeRow);
+                    ContextPatches.pushPlayerContext(activeChar);
+                    activeChar.renderHand(sb);
+                    ContextPatches.popPlayerContext();
+                }
+            } else {
+                // Non-grid mode or single character: render all hands with stacking
+                for (
+                    int i = handLayoutHelper.currentHand + subcharacters.size() - 1;
+                    i >= handLayoutHelper.currentHand;
+                    i -= 1
+                ) {
+                    AbstractPlayer c = subcharacters.get(i % subcharacters.size());
+                    ContextPatches.pushPlayerContext(c);
+                    c.renderHand(sb);
+                    ContextPatches.popPlayerContext();
+                }
             }
         }
     }
@@ -502,5 +522,7 @@ public class MultiCharacter extends AbstractBGPlayer {
             c.onVictory();
             ContextPatches.popPlayerContext();
         }
+        // Clean up combat row manager
+        combatRowManager.onCombatEnd();
     }
 }
