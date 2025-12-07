@@ -28,6 +28,10 @@ public class RelicDragManager {
     public static float dragOffsetX = 0;
     public static float dragOffsetY = 0;
 
+    // ===== Performance Cache =====
+    // Cache relic indices to avoid repeated indexOf() calls every frame
+    private static java.util.Map<AbstractRelic, Integer> relicIndexCache = null;
+
     // ===== Click Detection (to distinguish click from drag) =====
     public static boolean clickStarted = false;
     public static float clickStartX = 0;
@@ -103,6 +107,30 @@ public class RelicDragManager {
     }
 
     /**
+     * Builds a cache mapping each relic to its current index for fast lookups during dragging.
+     */
+    private static void buildRelicIndexCache() {
+        relicIndexCache = new java.util.HashMap<>();
+        ArrayList<AbstractRelic> relics = AbstractDungeon.player.relics;
+        for (int i = 0; i < relics.size(); i++) {
+            relicIndexCache.put(relics.get(i), i);
+        }
+    }
+
+    /**
+     * Gets a relic's cached index, or -1 if not found.
+     * Falls back to indexOf() if cache is not available.
+     */
+    public static int getCachedIndex(AbstractRelic relic) {
+        if (relicIndexCache != null) {
+            Integer index = relicIndexCache.get(relic);
+            if (index != null) return index;
+        }
+        // Fallback to indexOf if cache is not available (e.g., not dragging)
+        return AbstractDungeon.player.relics.indexOf(relic);
+    }
+
+    /**
      * Begins dragging a relic.
      */
     public static void startDrag(AbstractRelic relic, int index) {
@@ -118,6 +146,9 @@ public class RelicDragManager {
         int size = AbstractDungeon.player.relics.size();
         relicTargetOffsets = new float[size];
         relicCurrentOffsets = new float[size];
+
+        // Build index cache to avoid repeated indexOf() calls during dragging
+        buildRelicIndexCache();
 
         clickStarted = false;
         pendingDragRelic = null;
@@ -253,6 +284,7 @@ public class RelicDragManager {
         hoverIndex = -1;
         relicTargetOffsets = null;
         relicCurrentOffsets = null;
+        relicIndexCache = null; // Clear performance cache
         hoveringLeftArrow = false;
         hoveringRightArrow = false;
         arrowHoverTime = 0f;

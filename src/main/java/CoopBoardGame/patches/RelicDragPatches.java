@@ -26,17 +26,19 @@ public class RelicDragPatches {
         @SpirePostfixPatch
         public static void Postfix(AbstractRelic __instance) {
             // Only handle relics in player's relic list (not shop/reward relics)
-            if (AbstractDungeon.player == null ||
-                !AbstractDungeon.player.relics.contains(__instance)) {
-                return;
-            }
+            if (AbstractDungeon.player == null) return;
 
             // Check if dragging is allowed in current game state
             if (!RelicDragManager.canDragRelics()) return;
 
+            // Only process if relic has hitbox and is hovered (optimization)
+            if (__instance.hb == null || !__instance.hb.hovered) return;
+
             // Delegate to manager for drag detection
             int index = AbstractDungeon.player.relics.indexOf(__instance);
-            RelicDragManager.checkDragStart(__instance, index);
+            if (index >= 0) {
+                RelicDragManager.checkDragStart(__instance, index);
+            }
         }
     }
 
@@ -82,8 +84,8 @@ public class RelicDragPatches {
                 return SpireReturn.Return();
             }
 
-            // Apply offset to other relics for gap animation
-            int index = AbstractDungeon.player.relics.indexOf(__instance);
+            // Apply offset to other relics for gap animation (using cached index)
+            int index = RelicDragManager.getCachedIndex(__instance);
             if (index >= 0) {
                 float offset = RelicDragManager.getRelicOffset(index);
                 __instance.currentX += offset;
@@ -97,8 +99,8 @@ public class RelicDragPatches {
             if (!RelicDragManager.isDragging()) return;
             if (__instance == RelicDragManager.draggedRelic) return;
 
-            // Restore original position after rendering
-            int index = AbstractDungeon.player.relics.indexOf(__instance);
+            // Restore original position after rendering (using cached index)
+            int index = RelicDragManager.getCachedIndex(__instance);
             if (index >= 0) {
                 float offset = RelicDragManager.getRelicOffset(index);
                 __instance.currentX -= offset;
