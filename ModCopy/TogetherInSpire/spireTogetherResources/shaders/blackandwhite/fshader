@@ -1,0 +1,17 @@
+#ifdef GL_ES
+    #define LOWP lowp
+    precision mediump float;
+#else
+    #define LOWP
+#endif
+
+varying LOWP vec4 v_color;
+varying vec2 v_texCoords;
+uniform sampler2D u_texture;
+
+void main()
+{
+    vec4 sample = texture2D(u_texture, v_texCoords);
+     float gray = 0.21 * sample.r + 0.71 * sample.g + 0.07 * sample.b;
+     gl_FragColor = vec4(gray, gray, gray, sample.a * v_color.a);
+}

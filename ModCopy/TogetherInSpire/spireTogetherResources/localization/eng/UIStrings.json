@@ -1,0 +1,82 @@
+{
+  "spireTogether:Screen": {
+    "TEXT": [
+      "SAVE",
+      "PASTE FROM CLIPBOARD",
+      "CANCEL",
+      "CREATE LOBBY",
+      "HOST",
+      "MULTIPLAYER",
+      "PORT",
+      "IP",
+      "JOIN"
+    ],
+    "EXTRA_TEXT": [""]
+  },
+  "spireTogether:Panels": {
+    "TEXT": [
+      "Steam",
+      "Join or create a game through Steam",
+      "Port Forward",
+      "Manual port forwarding for non steam users",
+      "Host",
+      "Host a multiplayer room",
+      "Join",
+      "Join a multiplayer room",
+      "Slay the Spire",
+      "Base game patch notes",
+      "Together in Spire",
+      "Together in Spire patch notes"
+    ],
+    "EXTRA_TEXT": [""]
+  },
+  "spireTogether:MainMenuPanelOverlay": {
+    "TEXT": [
+      "CUSTOMIZE",
+      "REDEEM CODE",
+      "SAVE CLEANER"
+    ],
+    "EXTRA_TEXT": [""]
+  },
+  "spireTogether:MPCodeRedeemScreen": {
+    "TEXT": [
+      "REDEEM CODE",
+      "REDEEM",
+      "You already own this item",
+      "The code is not valid",
+      "The code was redeemed!"
+    ],
+    "EXTRA_TEXT": [""]
+  },
+  "spireTogether:SavePurgerScreen": {
+    "TEXT": [
+      "Which saves do you want to erase?",
+      "saves in total",
+      "saves with older mod versions",
+      "saves with different mods",
+      "saves older than",
+      "days",
+      "DELETE"
+    ],
+    "EXTRA_TEXT": [""]
+  },
+  "spireTogether:SteamLobbyListScreen": {
+    "TEXT": [
+      "Filters:",
+      "Name:",
+      "Type:",
+      "Show locked lobbies",
+      "Modlist match",
+      "Hide incompatible TiS versions",
+      "TEMP. DISABLED"
+    ],
+    "EXTRA_TEXT": [""]
+  },
+  "spireTogether:CreateLobbyScreen": {
+    "TEXT": [
+      "Lobby name:",
+      "Password:"
+    ],
+    "EXTRA_TEXT": [""]
+  }
+}

@@ -1,0 +1,104 @@
+
+skeleton.png
+size: 451,157
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+images/armleft
+  rotate: true
+  xy: 300, 2
+  size: 23, 42
+  orig: 23, 43
+  offset: 0, 1
+  index: -1
+images/armright
+  rotate: false
+  xy: 412, 35
+  size: 16, 50
+  orig: 17, 50
+  offset: 0, 0
+  index: -1
+images/body
+  rotate: false
+  xy: 384, 87
+  size: 28, 68
+  orig: 33, 73
+  offset: 4, 5
+  index: -1
+images/cloak1
+  rotate: false
+  xy: 165, 4
+  size: 133, 151
+  orig: 142, 159
+  offset: 5, 3
+  index: -1
+images/cloak2
+  rotate: true
+  xy: 2, 2
+  size: 153, 161
+  orig: 164, 169
+  offset: 4, 4
+  index: -1
+images/eyes
+  rotate: true
+  xy: 344, 4
+  size: 21, 8
+  orig: 21, 8
+  offset: 0, 0
+  index: -1
+images/head
+  rotate: false
+  xy: 414, 117
+  size: 32, 38
+  orig: 32, 38
+  offset: 0, 0
+  index: -1
+images/hornleft
+  rotate: true
+  xy: 430, 41
+  size: 19, 16
+  orig: 19, 16
+  offset: 0, 0
+  index: -1
+images/hornright
+  rotate: true
+  xy: 414, 89
+  size: 26, 18
+  orig: 26, 18
+  offset: 0, 0
+  index: -1
+images/legleft
+  rotate: false
+  xy: 430, 62
+  size: 15, 25
+  orig: 15, 26
+  offset: 0, 1
+  index: -1
+images/legright
+  rotate: false
+  xy: 434, 90
+  size: 15, 25
+  orig: 15, 25
+  offset: 0, 0
+  index: -1
+images/mask
+  rotate: false
+  xy: 300, 27
+  size: 82, 128
+  orig: 82, 128
+  offset: 0, 0
+  index: -1
+images/shadow
+  rotate: false
+  xy: 354, 5
+  size: 93, 20
+  orig: 94, 20
+  offset: 1, 0
+  index: -1
+images/wepon
+  rotate: true
+  xy: 384, 29
+  size: 56, 26
+  orig: 58, 27
+  offset: 2, 0
+  index: -1

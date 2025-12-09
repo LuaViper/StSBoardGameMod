@@ -1,0 +1,153 @@
+
+skeleton.png
+size: 256,256
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Back Leg Chains
+  rotate: false
+  xy: 138, 71
+  size: 13, 36
+  orig: 13, 36
+  offset: 0, 0
+  index: -1
+Back Foot
+  rotate: false
+  xy: 138, 33
+  size: 17, 36
+  orig: 17, 36
+  offset: 0, 0
+  index: -1
+Front Foot
+  rotate: false
+  xy: 110, 1
+  size: 16, 41
+  orig: 16, 41
+  offset: 0, 0
+  index: -1
+Back Lower Leg
+  rotate: false
+  xy: 77, 67
+  size: 28, 55
+  orig: 28, 55
+  offset: 0, 0
+  index: -1
+Back Upper Leg
+  rotate: false
+  xy: 128, 1
+  size: 22, 30
+  orig: 22, 30
+  offset: 0, 0
+  index: -1
+Back Upper Arm
+  rotate: false
+  xy: 58, 212
+  size: 19, 41
+  orig: 19, 41
+  offset: 0, 0
+  index: -1
+Back Arm Chains
+  rotate: false
+  xy: 104, 212
+  size: 7, 39
+  orig: 7, 39
+  offset: 0, 0
+  index: -1
+Front Lower Leg
+  rotate: false
+  xy: 77, 124
+  size: 23, 57
+  orig: 23, 57
+  offset: 0, 0
+  index: -1
+Back Lower Arm
+  rotate: false
+  xy: 77, 1
+  size: 31, 64
+  orig: 31, 64
+  offset: 0, 0
+  index: -1
+Front Upper Leg
+  rotate: false
+  xy: 79, 212
+  size: 23, 32
+  orig: 23, 32
+  offset: 0, 0
+  index: -1
+Neck Area
+  rotate: false
+  xy: 113, 204
+  size: 52, 34
+  orig: 52, 34
+  offset: 0, 0
+  index: -1
+Unchained_Character_design/Neck
+  rotate: false
+  xy: 110, 44
+  size: 21, 21
+  orig: 21, 21
+  offset: 0, 0
+  index: -1
+Body
+  rotate: false
+  xy: 1, 1
+  size: 74, 127
+  orig: 74, 127
+  offset: 0, 0
+  index: -1
+Front Upper Arm
+  rotate: false
+  xy: 107, 67
+  size: 29, 45
+  orig: 29, 45
+  offset: 0, 0
+  index: -1
+Front Lower Arm
+  rotate: false
+  xy: 113, 130
+  size: 38, 72
+  orig: 38, 72
+  offset: 0, 0
+  index: -1
+Front Arm Chains
+  rotate: false
+  xy: 64, 130
+  size: 8, 37
+  orig: 8, 37
+  offset: 0, 0
+  index: -1
+Face BG
+  rotate: false
+  xy: 30, 212
+  size: 26, 33
+  orig: 26, 33
+  offset: 0, 0
+  index: -1
+Shadow
+  rotate: false
+  xy: 1, 184
+  size: 110, 26
+  orig: 110, 26
+  offset: 0, 0
+  index: -1
+Mask
+  rotate: false
+  xy: 1, 212
+  size: 27, 32
+  orig: 27, 32
+  offset: 0, 0
+  index: -1
+Front Leg Chains
+  rotate: false
+  xy: 102, 124
+  size: 9, 40
+  orig: 9, 40
+  offset: 0, 0
+  index: -1
+Unchained_Character_design/Hair
+  rotate: false
+  xy: 1, 130
+  size: 61, 52
+  orig: 61, 52
+  offset: 0, 0
+  index: -1

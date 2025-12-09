@@ -1,0 +1,54 @@
+{
+"skeleton": {
+	"hash": "MwM3kPtbr7AYnrtMdethIGBj134",
+	"spine": "3.7-from-3.8.75",
+	"x": -166.5,
+	"y": -34.55,
+	"width": 319,
+	"height": 358,
+	"fps": 24,
+	"images": "",
+	"audio": "E:/Marino/Projects/Together in Spire/Source/TogetherInSpire/theDefault/src/main/resources/spireTogetherResources/images/ui/modcompat/charskins/downfall_hexaghost/gravestone/animation"
+},
+"bones": [
+	{ "name": "root", "scaleX": -1 },
+	{ "name": "core", "parent": "root", "length": 74, "rotation": 90.77, "y": 256 }
+],
+"slots": [
+	{ "name": "core", "bone": "root", "attachment": "core/core" },
+	{ "name": "shadow", "bone": "root", "attachment": "core/shadow" }
+],
+"animations": {
+	"idle2": {
+		"bones": {
+			"root": {
+				"translate": [
+					{ "y": 13.61, "time": 0.0 },
+					{ "time": 1.25, "y": -4.08 },
+					{ "time": 2.5, "y": 13.61 }
+				]
+			}
+		}
+	},
+	"idle2_mask": {
+		"bones": {
+			"core": {
+				"translate": [
+					{ "time": 0.0 },
+					{ "time": 5, "y": 1 }
+				]
+			}
+		}
+	}
+},
+"skins": {
+	"default": {
+		"core": {
+			"core/core": { "x": 11, "y": 257.45, "width": 141, "height": 161 }
+		},
+		"shadow": {
+			"core/shadow": { "x": 7, "y": -1.05, "width": 319, "height": 67 }
+		}
+	}
+}
+}

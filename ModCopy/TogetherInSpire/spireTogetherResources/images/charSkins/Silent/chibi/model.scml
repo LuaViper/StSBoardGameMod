@@ -1,0 +1,81 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="shadow.png" width="1000" height="1000" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="backbone.png" width="1000" height="1000" pivot_x="0" pivot_y="1"/>
+        <file id="2" name="cloak_b.png" width="1000" height="1000" pivot_x="0" pivot_y="1"/>
+        <file id="3" name="dagger.png" width="1000" height="1000" pivot_x="0" pivot_y="1"/>
+        <file id="4" name="cloak_f.png" width="1000" height="1000" pivot_x="0" pivot_y="1"/>
+        <file id="5" name="head.png" width="1000" height="1000" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="entity_000">
+        <animation id="0" name="idle" length="2000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="0" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="0" z_index="3"/>
+                    <object_ref id="4" timeline="4" key="0" z_index="4"/>
+                    <object_ref id="5" timeline="5" key="0" z_index="5"/>
+                </key>
+                <key id="1" time="1000">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                    <object_ref id="2" timeline="2" key="1" z_index="2"/>
+                    <object_ref id="3" timeline="3" key="1" z_index="3"/>
+                    <object_ref id="4" timeline="4" key="1" z_index="4"/>
+                    <object_ref id="5" timeline="5" key="1" z_index="5"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="shadow">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-439" y="624" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="0" x="-439" y="624" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="backbone">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-432" y="622" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="1" x="-432" y="610" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="2" name="cloak_b">
+                <key id="0" spin="0">
+                    <object folder="0" file="2" x="-434" y="618" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="2" x="-436" y="615" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="3" name="dagger">
+                <key id="0" spin="0">
+                    <object folder="0" file="3" x="-429" y="621" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="3" x="-430" y="616" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="4" name="cloak_f">
+                <key id="0" spin="0">
+                    <object folder="0" file="4" x="-434" y="614" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="4" x="-435" y="609" angle="0"/>
+                </key>
+            </timeline>
+            <timeline id="5" name="head">
+                <key id="0" spin="0">
+                    <object folder="0" file="5" x="-430" y="623" angle="0"/>
+                </key>
+                <key id="1" time="1000" spin="0">
+                    <object folder="0" file="5" x="-431" y="613" angle="0"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

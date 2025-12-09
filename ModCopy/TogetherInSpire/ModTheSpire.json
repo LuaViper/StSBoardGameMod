@@ -1,0 +1,18 @@
+{
+  "modid": "spireTogether",
+  "name": "Together in Spire",
+  "author_list": ["Draco9990"],
+  "credits": "Segatapes (for Ironclad, Silent, Defect, and Watcher nameplates), LuckyLunge and CaptPuppet (for testing), TheLethargicWeirdo (for the Poolside Watcher skin), flameblast12 (for the Pixel Ironclad, Silent, Defect, and Watcher skins). Also, a very special thanks to my patrons: Luigiespo, V L, ă‚­ă§ă‚¦ăŞăł ă‚˝ă„, Acacia H., Justin T., Kyle B., Dominick, Chuckle Duck, DroppedMyDagger, Robin A., King Yeetorah, Jonathan C., CatCalledBlep, fluxating, yuqiuchen, Zachary, lily o, Joshua H., SlowedCat, Kyle F., Jacket, Andrew T., Raum, Zero-113, Fancy Bulge Inspector, OnePunch, Felix Larouche, Choke_Me_Funny, UnOfficial, Dane S., Gutrune, JPK, Lunhui, bbaylor5, Lucky_Lunge, Sandl O., Christian F. K., Kaimedis, Doublecross422",
+  "description": "Join your friends in the Spire and defeat it together.",
+  "version": "6.4.20",
+  "sts_version": "03-07-2022",
+  "mts_version": "3.19.1",
+  "dependencies": ["basemod", "stslib"],
+  "update_json": "",
+  "discord_url": "https://discord.com/invite/uQGDpDr",
+  "patreon_url": "https://www.patreon.com/draco9990",
+  "loading_phrases": [
+    "Rounding up the friends",
+    "Preparing for a raid"
+  ]
+}

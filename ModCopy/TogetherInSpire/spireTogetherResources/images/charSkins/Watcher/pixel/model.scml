@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<spriter_data scml_version="1.0" generator="BrashMonkey Spriter" generator_version="r11">
+    <folder id="0">
+        <file id="0" name="idle_01.png" width="192" height="160" pivot_x="0" pivot_y="1"/>
+        <file id="1" name="idle_02.png" width="192" height="160" pivot_x="0" pivot_y="1"/>
+    </folder>
+    <entity id="0" name="entity_000">
+        <animation id="0" name="NewAnimation" length="2000" interval="100">
+            <mainline>
+                <key id="0">
+                    <object_ref id="0" timeline="0" key="0" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="0" z_index="1"/>
+                </key>
+                <key id="1" time="999">
+                    <object_ref id="0" timeline="0" key="1" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="1" z_index="1"/>
+                </key>
+                <key id="2" time="1000">
+                    <object_ref id="0" timeline="0" key="2" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="2" z_index="1"/>
+                </key>
+                <key id="3" time="1999">
+                    <object_ref id="0" timeline="0" key="3" z_index="0"/>
+                    <object_ref id="1" timeline="1" key="3" z_index="1"/>
+                </key>
+            </mainline>
+            <timeline id="0" name="idle_01">
+                <key id="0" spin="0">
+                    <object folder="0" file="0" x="-95.705521" y="160.122699"/>
+                </key>
+                <key id="1" time="999" spin="0">
+                    <object folder="0" file="0" x="-95.705521" y="160.122699"/>
+                </key>
+                <key id="2" time="1000" spin="0">
+                    <object folder="0" file="0" x="-95.705521" y="160.122699" a="0"/>
+                </key>
+                <key id="3" time="1999" spin="0">
+                    <object folder="0" file="0" x="-95.705521" y="160.122699" a="0"/>
+                </key>
+            </timeline>
+            <timeline id="1" name="idle_02">
+                <key id="0" spin="0">
+                    <object folder="0" file="1" x="-95.821532" y="160.157606" a="0"/>
+                </key>
+                <key id="1" time="999" spin="0">
+                    <object folder="0" file="1" x="-95.821532" y="160.157606" a="0"/>
+                </key>
+                <key id="2" time="1000" spin="0">
+                    <object folder="0" file="1" x="-95.821532" y="160.157606"/>
+                </key>
+                <key id="3" time="1999" spin="0">
+                    <object folder="0" file="1" x="-95.821532" y="160.157606"/>
+                </key>
+            </timeline>
+        </animation>
+    </entity>
+</spriter_data>

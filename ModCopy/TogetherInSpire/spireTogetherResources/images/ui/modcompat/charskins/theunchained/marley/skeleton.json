@@ -1,0 +1,490 @@
+{
+"skeleton": {
+	"hash": "nSN5Y/L4RMH1eP2iVnKlsI5q8xk",
+	"spine": "3.7-from-3.8.75",
+	"x": -105.58,
+	"y": -14.29,
+	"width": 232.11,
+	"height": 379.5,
+	"images": "",
+	"audio": "E:/Marino/Projects/Together in Spire/Source/TogetherInSpire/theDefault/src/main/resources/spireTogetherResources/images/ui/modcompat/charskins/theunchained/dev"
+},
+"bones": [
+	{ "name": "root", "y": 159.07 },
+	{ "name": "Shadow", "parent": "root", "y": -160.5 },
+	{ "name": "Char", "parent": "root" },
+	{ "name": "Head", "parent": "Char", "y": 122.89 },
+	{ "name": "Body", "parent": "Char", "y": 91.42 },
+	{ "name": "BackArm", "parent": "Body", "x": 26.19, "y": 0.04 },
+	{ "name": "FrontArm", "parent": "Body", "x": -22.29, "y": 0.04 },
+	{ "name": "Neck", "parent": "Head", "y": -8.77 },
+	{ "name": "BackLeg", "parent": "Body", "x": 9.46, "y": -120.6 },
+	{ "name": "FrontLeg", "parent": "Body", "x": -10.62, "y": -119.05 },
+	{ "name": "FrontLowerLeg", "parent": "FrontLeg", "x": -2.11, "y": -16.29 },
+	{ "name": "BackLowerArm", "parent": "BackArm", "y": -28.03 },
+	{ "name": "BackLowerLeg", "parent": "BackLeg", "x": -1.7, "y": -16.14 },
+	{ "name": "FrontLowerArm", "parent": "FrontArm", "x": -10.45, "y": -26.14 },
+	{ "name": "BackLegChain", "parent": "BackLowerLeg", "x": 1.59, "y": -35.38 },
+	{ "name": "FrontLegChain", "parent": "FrontLowerLeg", "x": -12.96, "y": -37.78 },
+	{ "name": "BackFoot", "parent": "BackLowerLeg", "x": -4.38, "y": -44.5 },
+	{ "name": "FrontFoot", "parent": "FrontLowerLeg", "x": -4.13, "y": -46.08 },
+	{ "name": "BackArmChains", "parent": "BackLowerArm", "x": 7.23, "y": -50.26 },
+	{ "name": "FrontArmChains", "parent": "FrontLowerArm", "x": -10.61, "y": -59.58 }
+],
+"slots": [
+	{ "name": "Back Leg Chains", "bone": "BackLegChain", "attachment": "Back Leg Chains" },
+	{ "name": "Back Foot", "bone": "BackFoot", "attachment": "Back Foot" },
+	{ "name": "Front Foot", "bone": "FrontFoot", "attachment": "Front Foot" },
+	{ "name": "Back Lower Leg", "bone": "BackLowerLeg", "attachment": "Back Lower Leg" },
+	{ "name": "Back Upper Leg", "bone": "BackLeg", "attachment": "Back Upper Leg" },
+	{ "name": "Back Upper Arm", "bone": "BackArm", "attachment": "Back Upper Arm" },
+	{ "name": "Back Arm Chains", "bone": "BackArmChains", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains3", "bone": "Char", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains15", "bone": "Char", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains17", "bone": "Char", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains18", "bone": "Char", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains19", "bone": "Char", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains20", "bone": "Char", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains16", "bone": "Char", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains22", "bone": "Char", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains23", "bone": "Char", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains24", "bone": "Char", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains25", "bone": "Char", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains26", "bone": "Char", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains27", "bone": "Char", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains28", "bone": "Char", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains30", "bone": "Char", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains13", "bone": "Char", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains4", "bone": "Char", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains21", "bone": "Char", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains14", "bone": "Char", "attachment": "Back Arm Chains" },
+	{ "name": "Front Lower Leg", "bone": "FrontLowerLeg", "attachment": "Front Lower Leg" },
+	{ "name": "Back Lower Arm", "bone": "BackLowerArm", "attachment": "Back Lower Arm" },
+	{ "name": "Front Upper Leg", "bone": "FrontLeg", "attachment": "Front Upper Leg" },
+	{ "name": "Neck Area", "bone": "Body", "attachment": "Neck Area" },
+	{ "name": "Neck", "bone": "Neck", "attachment": "Unchained_Character_design/Neck" },
+	{ "name": "Body", "bone": "Body", "attachment": "Body" },
+	{ "name": "Back Arm Chains6", "bone": "Body", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains11", "bone": "Body", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains7", "bone": "Body", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains10", "bone": "Body", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains12", "bone": "Body", "attachment": "Back Arm Chains" },
+	{ "name": "BigRing1", "bone": "Char", "attachment": "ChainRing" },
+	{ "name": "BigRing5", "bone": "Char", "attachment": "ChainRing" },
+	{ "name": "BigRing4", "bone": "Char", "attachment": "ChainRing" },
+	{ "name": "BigRing3", "bone": "Char", "attachment": "ChainRing" },
+	{ "name": "BigRing2", "bone": "Body", "attachment": "ChainRing" },
+	{ "name": "Front Upper Arm", "bone": "FrontArm", "attachment": "Front Upper Arm" },
+	{ "name": "Front Lower Arm", "bone": "FrontLowerArm", "attachment": "Front Lower Arm" },
+	{ "name": "Front Arm Chains", "bone": "FrontArmChains", "attachment": "Front Arm Chains" },
+	{ "name": "Face BG", "bone": "Head", "attachment": "Face BG" },
+	{ "name": "Shadow", "bone": "Shadow", "color": "ffffff4f", "attachment": "Shadow" },
+	{ "name": "Front Leg Chains", "bone": "FrontLegChain", "attachment": "Front Leg Chains" },
+	{ "name": "Hair", "bone": "Head", "attachment": "Unchained_Character_design/Hair" },
+	{ "name": "Bandages", "bone": "Head", "attachment": "Unchained_Character_design/Bandages" },
+	{ "name": "Mask", "bone": "Head", "attachment": "Mask" },
+	{ "name": "Back Arm Chains5", "bone": "Body", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains9", "bone": "FrontArm", "attachment": "Back Arm Chains" },
+	{ "name": "Back Arm Chains8", "bone": "Body", "attachment": "Back Arm Chains" }
+],
+"animations": {
+	"Idle": {
+		"bones": {
+			"Body": {
+				"rotate": [
+					{ "time": 0.0, "angle": 0.0 },
+					{ "time": 0.5, "angle": -1 },
+					{ "time": 1, "angle": 0.0 },
+					{ "time": 1.1667, "angle": 1 },
+					{ "time": 1.6333, "angle": 0.0 }
+				],
+				"shear": [
+					{ "curve": "stepped", "time": 0.0 },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 1, "curve": "stepped" },
+					{ "time": 1.1667, "curve": "stepped" },
+					{ "time": 1.6333 }
+				]
+			},
+			"FrontLeg": {
+				"rotate": [
+					{ "time": 0.0, "angle": 0.0 },
+					{ "time": 1, "angle": 3 },
+					{ "time": 2, "angle": 0.0 }
+				],
+				"shear": [
+					{ "curve": "stepped", "time": 0.0 },
+					{ "time": 1, "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"BackLeg": {
+				"rotate": [
+					{ "time": 0.0, "angle": 0.0 },
+					{ "time": 1, "angle": 3 },
+					{ "time": 2, "angle": 0.0 }
+				],
+				"shear": [
+					{ "curve": "stepped", "time": 0.0 },
+					{ "time": 1, "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"FrontLowerLeg": {
+				"rotate": [
+					{ "time": 0.0, "angle": 0.0 },
+					{ "time": 0.5, "angle": 3 },
+					{ "time": 1.5, "angle": -3 },
+					{ "time": 2, "angle": 0.0 }
+				],
+				"shear": [
+					{ "curve": "stepped", "time": 0.0 },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 1.5, "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"FrontLegChain": {
+				"rotate": [
+					{ "time": 0.0, "angle": 0.0 },
+					{ "time": 0.5, "angle": -15 },
+					{ "time": 1, "angle": 0.0 },
+					{ "time": 1.5, "angle": 15 },
+					{ "time": 2, "angle": 0.0 }
+				],
+				"shear": [
+					{ "curve": "stepped", "time": 0.0 },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 1, "curve": "stepped" },
+					{ "time": 1.5, "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"BackLowerLeg": {
+				"rotate": [
+					{ "time": 0.0, "angle": 0.0 },
+					{ "time": 0.5, "angle": 3 },
+					{ "time": 1.5, "angle": -3 },
+					{ "time": 2, "angle": 0.0 }
+				],
+				"shear": [
+					{ "curve": "stepped", "time": 0.0 },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 1.5, "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"BackLegChain": {
+				"rotate": [
+					{ "angle": 6, "time": 0.0 },
+					{ "time": 0.5, "angle": -20 },
+					{ "time": 1.3333, "angle": 3 },
+					{ "time": 2, "angle": 6 }
+				],
+				"shear": [
+					{ "curve": "stepped", "time": 0.0 },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 1.3333, "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"FrontArmChains": {
+				"rotate": [
+					{ "time": 0.0, "angle": 0.0 },
+					{ "time": 0.5, "angle": 5 },
+					{ "time": 1.5, "angle": -5 },
+					{ "time": 2, "angle": 0.0 }
+				],
+				"shear": [
+					{ "curve": "stepped", "time": 0.0 },
+					{ "time": 0.5, "curve": "stepped" },
+					{ "time": 1.5, "curve": "stepped" },
+					{ "time": 2 }
+				]
+			},
+			"Char": {
+				"translate": [
+					{ "time": 0.0 },
+					{ "time": 0.5, "y": 5 },
+					{
+						"time": 1,
+						"curve": [ 0.0, 0.0, 0.5, 1.0 ]
+					},
+					{ "time": 1.5, "y": -5 },
+					{ "time": 2 }
+				]
+			}
+		}
+	}
+},
+"skins": {
+	"default": {
+		"BigRing1": {
+			"ChainRing": {
+				"x": 82.18,
+				"y": 104.73,
+				"scaleX": 0.3,
+				"scaleY": 0.3,
+				"rotation": 61.86,
+				"width": 150,
+				"height": 150
+			}
+		},
+		"Hair": {
+			"Unchained_Character_design/Hair": { "x": 0.48, "y": 4.72, "rotation": 11.47, "width": 61, "height": 70 }
+		},
+		"BigRing3": {
+			"ChainRing": {
+				"x": -53.34,
+				"y": 127.35,
+				"scaleX": 0.3,
+				"scaleY": 0.3,
+				"rotation": 27.1,
+				"width": 150,
+				"height": 150
+			}
+		},
+		"Back Arm Chains3": {
+			"Back Arm Chains": { "x": 46.14, "y": 51.08, "rotation": -30.87, "width": 7, "height": 39 }
+		},
+		"BigRing5": {
+			"ChainRing": {
+				"x": -75.13,
+				"y": -5.86,
+				"scaleX": 0.3,
+				"scaleY": 0.3,
+				"rotation": 61.86,
+				"width": 150,
+				"height": 150
+			}
+		},
+		"Back Arm Chains5": {
+			"Back Arm Chains": { "x": -14.03, "y": -4.43, "rotation": -134.75, "width": 7, "height": 39 }
+		},
+		"Back Foot": {
+			"Back Foot": { "x": 1.15, "y": -12.06, "scaleX": 1.1, "scaleY": 1.1, "width": 17, "height": 36 }
+		},
+		"Back Arm Chains7": {
+			"Back Arm Chains": { "x": 12.99, "y": -14.56, "rotation": -79.26, "width": 7, "height": 39 }
+		},
+		"Back Arm Chains8": {
+			"Back Arm Chains": { "x": 13.6, "y": -32.67, "rotation": -134.75, "width": 7, "height": 39 }
+		},
+		"Back Arm Chains9": {
+			"Back Arm Chains": { "x": -8.44, "y": -28.13, "scaleY": 0.57, "rotation": -98.76, "width": 7, "height": 39 }
+		},
+		"Mask": {
+			"Mask": { "x": 2.76, "y": 6.51, "rotation": 13.61, "width": 35, "height": 32 }
+		},
+		"Back Arm Chains20": {
+			"Back Arm Chains": { "x": -54.23, "y": 127.73, "rotation": 149.24, "width": 7, "height": 39 }
+		},
+		"Back Arm Chains21": {
+			"Back Arm Chains": { "x": -51.89, "y": 23.9, "rotation": -38.9, "width": 7, "height": 39 }
+		},
+		"Back Arm Chains22": {
+			"Back Arm Chains": {
+				"color": "ffffff78",
+				"x": 39.94,
+				"y": 192.33,
+				"scaleY": 0.7,
+				"rotation": 2.88,
+				"width": 7,
+				"height": 39
+			}
+		},
+		"Back Arm Chains23": {
+			"Back Arm Chains": {
+				"color": "ffffff78",
+				"x": 112.57,
+				"y": 112.03,
+				"scaleY": 0.7,
+				"rotation": -67.49,
+				"width": 7,
+				"height": 39
+			}
+		},
+		"Back Arm Chains24": {
+			"Back Arm Chains": {
+				"color": "ffffff78",
+				"x": 98.34,
+				"y": 131.01,
+				"scaleY": 0.7,
+				"rotation": -30,
+				"width": 7,
+				"height": 39
+			}
+		},
+		"Back Arm Chains25": {
+			"Back Arm Chains": {
+				"color": "ffffff78",
+				"x": -65.91,
+				"y": 154.74,
+				"scaleY": 0.7,
+				"rotation": 28.83,
+				"width": 7,
+				"height": 39
+			}
+		},
+		"Back Arm Chains26": {
+			"Back Arm Chains": {
+				"color": "ffffff78",
+				"x": -72.52,
+				"y": -57.53,
+				"scaleY": 0.7,
+				"rotation": 5.13,
+				"width": 7,
+				"height": 39
+			}
+		},
+		"Back Arm Chains27": {
+			"Back Arm Chains": {
+				"color": "ffffff78",
+				"x": -83.08,
+				"y": -69.14,
+				"scaleY": 0.7,
+				"rotation": 97.76,
+				"width": 7,
+				"height": 39
+			}
+		},
+		"Back Arm Chains28": {
+			"Back Arm Chains": {
+				"color": "ffffff78",
+				"x": -84.14,
+				"y": -59.37,
+				"scaleY": 0.6,
+				"rotation": 97.76,
+				"width": 7,
+				"height": 39
+			}
+		},
+		"Back Leg Chains": {
+			"Back Leg Chains": { "x": 5.12, "y": -13.49, "width": 13, "height": 36 }
+		},
+		"BigRing4": {
+			"ChainRing": {
+				"x": 39.38,
+				"y": 163.19,
+				"scaleX": 0.3,
+				"scaleY": 0.3,
+				"rotation": 61.86,
+				"width": 150,
+				"height": 150
+			}
+		},
+		"Bandages": {
+			"Unchained_Character_design/Bandages": { "x": -0.44, "y": 4.61, "rotation": 11.47, "width": 61, "height": 70 }
+		},
+		"Front Lower Arm": {
+			"Front Lower Arm": { "x": -5.26, "y": -32.32, "width": 38, "height": 72 }
+		},
+		"BigRing2": {
+			"ChainRing": {
+				"x": -3.08,
+				"y": -16.97,
+				"scaleX": 0.1,
+				"scaleY": 0.1,
+				"rotation": 61.86,
+				"width": 150,
+				"height": 150
+			}
+		},
+		"Back Lower Arm": {
+			"Back Lower Arm": { "x": 6, "y": -23.97, "width": 31, "height": 64 }
+		},
+		"Back Arm Chains30": {
+			"Back Arm Chains": {
+				"color": "ffffff78",
+				"x": -73.58,
+				"y": -33.24,
+				"scaleY": 0.7,
+				"rotation": 5.13,
+				"width": 7,
+				"height": 39
+			}
+		},
+		"Neck Area": {
+			"Neck Area": { "x": 2, "y": 0.58, "width": 52, "height": 34 }
+		},
+		"Back Upper Arm": {
+			"Back Upper Arm": { "y": -9, "width": 19, "height": 41 }
+		},
+		"Back Arm Chains6": {
+			"Back Arm Chains": { "x": -9.12, "y": -18.85, "rotation": -79.26, "width": 7, "height": 39 }
+		},
+		"Shadow": {
+			"Shadow": { "x": -6.2, "y": 0.14, "width": 110, "height": 26 }
+		},
+		"Body": {
+			"Body": { "x": -4, "y": -42.42, "width": 74, "height": 137 }
+		},
+		"Front Foot": {
+			"Front Foot": { "x": -1.76, "y": -13.56, "scaleX": 1.1, "scaleY": 1.1, "width": 16, "height": 41 }
+		},
+		"Front Upper Arm": {
+			"Front Upper Arm": { "x": -4, "y": -13, "width": 29, "height": 45 }
+		},
+		"Face BG": {
+			"Face BG": { "x": 4, "y": 2, "width": 26, "height": 33 }
+		},
+		"Back Arm Chains": {
+			"Back Arm Chains": { "x": 0.77, "y": -22.71, "width": 7, "height": 39 }
+		},
+		"Front Arm Chains": {
+			"Front Arm Chains": { "x": -0.65, "y": -25.73, "width": 8, "height": 37 }
+		},
+		"Back Lower Leg": {
+			"Back Lower Leg": { "x": -4.3, "y": -18.86, "width": 28, "height": 55 }
+		},
+		"Front Lower Leg": {
+			"Front Lower Leg": { "x": -1.89, "y": -19.71, "width": 23, "height": 57 }
+		},
+		"Back Arm Chains4": {
+			"Back Arm Chains": { "x": 62.35, "y": 75.73, "rotation": -30.87, "width": 7, "height": 39 }
+		},
+		"Front Leg Chains": {
+			"Front Leg Chains": { "x": -1.93, "y": -15.93, "width": 9, "height": 40 }
+		},
+		"Back Upper Leg": {
+			"Back Upper Leg": { "x": -1.88, "y": 14.7, "width": 30, "height": 70 }
+		},
+		"Back Arm Chains10": {
+			"Back Arm Chains": { "x": 12.99, "y": -25, "rotation": -79.26, "width": 7, "height": 39 }
+		},
+		"Back Arm Chains11": {
+			"Back Arm Chains": { "x": -9.12, "y": -29.29, "rotation": -79.26, "width": 7, "height": 39 }
+		},
+		"Back Arm Chains12": {
+			"Back Arm Chains": { "x": 21.69, "y": -6.2, "rotation": -23.79, "width": 7, "height": 39 }
+		},
+		"Back Arm Chains13": {
+			"Back Arm Chains": { "x": 25.96, "y": 126.94, "scaleY": 1.2, "rotation": -19.7, "width": 7, "height": 39 }
+		},
+		"Back Arm Chains14": {
+			"Back Arm Chains": { "x": -36.63, "y": 95.22, "rotation": 26.1, "width": 7, "height": 39 }
+		},
+		"Back Arm Chains15": {
+			"Back Arm Chains": { "x": 62.57, "y": 134.66, "rotation": 37.75, "width": 7, "height": 39 }
+		},
+		"Back Arm Chains16": {
+			"Back Arm Chains": { "x": 83.37, "y": 105.1, "rotation": 2.88, "width": 7, "height": 39 }
+		},
+		"Back Arm Chains17": {
+			"Back Arm Chains": { "x": 49.79, "y": 113.49, "rotation": 77.42, "width": 7, "height": 39 }
+		},
+		"Back Arm Chains18": {
+			"Back Arm Chains": { "x": 13.29, "y": 122.25, "rotation": 77.42, "width": 7, "height": 39 }
+		},
+		"Back Arm Chains19": {
+			"Back Arm Chains": { "x": -17, "y": 127.36, "rotation": 77.42, "width": 7, "height": 39 }
+		},
+		"Front Upper Leg": {
+			"Front Upper Leg": { "x": 18.83, "y": 18.97, "width": 60, "height": 75 }
+		},
+		"Neck": {
+			"Unchained_Character_design/Neck": { "x": 2, "y": -8, "width": 21, "height": 21 }
+		}
+	}
+}
+}

@@ -1,0 +1,195 @@
+
+skeleton.png
+size: 697,198
+format: RGBA8888
+filter: Linear,Linear
+repeat: none
+Arm_L_B
+  rotate: true
+  xy: 650, 32
+  size: 23, 33
+  orig: 23, 33
+  offset: 0, 0
+  index: -1
+Arm_L_B1
+  rotate: true
+  xy: 650, 32
+  size: 23, 33
+  orig: 23, 33
+  offset: 0, 0
+  index: -1
+Arm_L_U
+  rotate: true
+  xy: 439, 2
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+Arm_L_U1
+  rotate: true
+  xy: 439, 2
+  size: 23, 31
+  orig: 23, 31
+  offset: 0, 0
+  index: -1
+Arm_R_B
+  rotate: true
+  xy: 635, 131
+  size: 11, 20
+  orig: 11, 20
+  offset: 0, 0
+  index: -1
+Arm_R_B1
+  rotate: true
+  xy: 635, 131
+  size: 11, 20
+  orig: 11, 20
+  offset: 0, 0
+  index: -1
+Body
+  rotate: true
+  xy: 558, 140
+  size: 56, 75
+  orig: 56, 78
+  offset: 0, 1
+  index: -1
+Body1
+  rotate: true
+  xy: 558, 140
+  size: 56, 75
+  orig: 56, 78
+  offset: 0, 1
+  index: -1
+Chair
+  rotate: false
+  xy: 2, 4
+  size: 285, 192
+  orig: 315, 260
+  offset: 27, 9
+  index: -1
+Head
+  rotate: false
+  xy: 483, 15
+  size: 77, 40
+  orig: 77, 40
+  offset: 0, 0
+  index: -1
+Head1
+  rotate: false
+  xy: 483, 15
+  size: 77, 40
+  orig: 77, 40
+  offset: 0, 0
+  index: -1
+Head_B
+  rotate: false
+  xy: 682, 116
+  size: 13, 28
+  orig: 13, 28
+  offset: 0, 0
+  index: -1
+Head_B1
+  rotate: false
+  xy: 682, 116
+  size: 13, 28
+  orig: 13, 28
+  offset: 0, 0
+  index: -1
+Leg_L
+  rotate: true
+  xy: 620, 4
+  size: 20, 33
+  orig: 22, 33
+  offset: 2, 0
+  index: -1
+Leg_L1
+  rotate: true
+  xy: 620, 4
+  size: 20, 33
+  orig: 22, 33
+  offset: 2, 0
+  index: -1
+Leg_R
+  rotate: true
+  xy: 405, 2
+  size: 23, 32
+  orig: 23, 32
+  offset: 0, 0
+  index: -1
+Leg_R1
+  rotate: true
+  xy: 405, 2
+  size: 23, 32
+  orig: 23, 32
+  offset: 0, 0
+  index: -1
+Shadow1
+  rotate: false
+  xy: 289, 131
+  size: 267, 65
+  orig: 267, 65
+  offset: 0, 0
+  index: -1
+coconut
+  rotate: false
+  xy: 635, 144
+  size: 44, 52
+  orig: 64, 89
+  offset: 11, 22
+  index: -1
+handRight
+  rotate: true
+  xy: 655, 13
+  size: 17, 33
+  orig: 17, 33
+  offset: 0, 0
+  index: -1
+legleft
+  rotate: true
+  xy: 562, 15
+  size: 40, 56
+  orig: 40, 56
+  offset: 0, 0
+  index: -1
+legright
+  rotate: true
+  xy: 289, 8
+  size: 17, 79
+  orig: 17, 79
+  offset: 0, 0
+  index: -1
+robeback
+  rotate: true
+  xy: 483, 57
+  size: 72, 197
+  orig: 72, 197
+  offset: 0, 0
+  index: -1
+robefront
+  rotate: true
+  xy: 289, 27
+  size: 102, 192
+  orig: 102, 192
+  offset: 0, 0
+  index: -1
+shoulderback
+  rotate: false
+  xy: 620, 26
+  size: 28, 29
+  orig: 29, 29
+  offset: 0, 0
+  index: -1
+suncream
+  rotate: true
+  xy: 370, 3
+  size: 22, 33
+  orig: 64, 89
+  offset: 22, 25
+  index: -1
+sunglasses
+  rotate: true
+  xy: 681, 146
+  size: 50, 12
+  orig: 51, 12
+  offset: 1, 0
+  index: -1

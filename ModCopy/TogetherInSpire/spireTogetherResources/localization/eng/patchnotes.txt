@@ -1,0 +1,1708 @@
+Changes in v6.4.20:
+- Added a new skin for The Unchained - "Marley's Ghost"
+
+Changes in v6.4.19:
+- Temporarily removed the ability to filter lobbies by name, as it was causing connection issues
+
+Changes in v6.4.18:
+- Removed Character Randomisation code from Raids
+
+Changes in v6.4.17:
+- Removed the ability to view incompatible mod version lobbies
+- Certain error messages will now log only once per error to prevent spamming and fps dropping
+
+Changes in v6.4.16:
+- Added a new Hexaghost "Grave Roots" skin as a raid reward!
+
+Changes in v6.4.15:
+- Added a new Collector "Cruisin'" skin as a raid reward!
+
+Changes in v6.4.14:
+- Added a "Feather" cursor as a reward for the February, March, and April 2024 raid rewards
+
+Changes in v6.4.13:
+- Fixed an issue where 'Blue Aviator The Silent' raid skin wasn't unlocked correctly
+- Mod compatibility:
+    - Skul: Hero Slayer:
+        - Added a new Skin - 'Royal Guard'
+        - All Skul skins now have custom card art
+        - Completely re-designed heartslayer skins
+        - Full credits to Aurin
+
+Changes in v6.4.12:
+- Minor raid changes
+
+Changes in v6.4.11:
+- Fixed crash issues that could happen in very specific cases when people connected mid-battle
+- Fixed general crash issues with modded content in several places
+- Slightly improved performance
+- Fixed an issue where .gif skins had a memory leak
+- Fixed an issue where the Silent Blue Aviator skin was not unlocked for people who participated in the raid.
+
+Changes in v6.4.10:
+- Nameplate:
+    - Added a new Streamer nameplate, as designed by Doublecross422
+- Fixed an issue where paper skins were not scaling correctly in some menus
+- Fixed an issue where the Defect RebelAI was not unlocked for people that it should have been
+- Mod Compatibility:
+    - The Unchained:
+        - Added the Pixel Unchained skin, credits to Mezix!
+    - Downfall:
+        - Updated Champ, Guardian, Slime, and Hexaghost nameplate icons to their new downfall ones.
+
+Changes in v6.4.9:
+- Mod compatibility:
+    - Downfall:
+        - Updated to work with latest Downfall version
+
+Changes in v6.4.8:
+- Mod compatibility:
+    - Downfall:
+        - Fixed an issue where the game would crash with this mod.
+
+Changes in v6.4.7:
+- Added a new skin:
+    - Blue Aviator Silent
+        - This skin can be unlocked by participating in February, March, or April 2024 raids.
+- Fixed an issue where custom skin card trail colors were not working
+- Mod compatibility:
+    - Downfall:
+        - Updated mod to support latest downfall version
+
+Changes in v6.4.6:
+- Fixed issues where The Unchained content was not working correctly
+
+Changes in v6.4.5:
+- Fixed a crash with The Unchained
+
+Changes in v6.4.4:
+- Fixed a crash issue with Defect's Rebel AI skin
+- It is no longer possible to join Raid lobbies indirectly (through friends on the steam menu)
+- Mod Compatibility:
+    - Duelist Mod:
+        - Fixed an issue where skins for this character would not be correctly unlocked
+- Dev:
+    - Added a disableRaidSpawn() method to custom multiplayer cards and relics
+
+Changes in v6.4.3:
+- To celebrate the release of the Together in Spire: Booster Pack, added a new Boomerang cursor that unlocks when playing a game with that mod.
+- Fixed an issue where the mod would fail to work if a game with an invalid id was generated due to certain mods
+- Mod Compatibility:
+    - The Unchained:
+        - Fixed an issue where the mod would crash with the Prince Unbound skin since the latest Packmaster Update
+        - Added compatibility with the new Birthday skin for the Unchained
+    - Packmaster:
+        - Fixed an issue where the skins for this character would not be unlocked correctly.
+    - Skul: Hero Slayer:
+        - Fixed an issue where character animations were not playing correctly
+    - Downfall:
+        - Bagpipes have been added to the list of untradeable relics
+- Dev:
+    - Refactored how Subscribers work
+        - You can now subscribe through events through SpireTogetherMod.java as well
+        - Each subscriber class now has an invoker as well that calls all subscribed subscribers
+        - Renamed existing subscribers to be more fitting
+    - Changed MP Targeting of the CustomMultiplayerCard to be more versatile
+
+Changes in v6.4.2:
+- Changed how Neow's Lament works in Raids:
+    - For the next 3 rooms, whenever you enter a room gain 3 Strength
+- Mod Compatibility:
+    - Duelist Mod:
+         - The duelist mod has been made fully compatible
+         - Added respective character skins and the nameplate
+     - Packmaster:
+        - Fixed an issue where the starting packmaster deck options would be the same for all players except the host.
+        - Slightly adjusted the Hellslayer skin to have more Neow eyes.
+
+Changes in v6.4.1:
+- Fixed an issue where The Packmaster nameplate unlock description said "Little Bone" instead of "The Packmaster"
+- Fixed an issue where The Packmaster would crash in singleplayer
+- Dev:
+    - Added the onExtraDataChanged and onReceivedNetworkPacket callbacks on CharacterEntity
+        - This only gets fired on the player that changed the data
+    - Removed the playNetworkAnimation callback
+
+Changes in v6.4.0:
+- Custom Multiplayer Cards that don't target enemies can no longer be played on them
+- Custom Multiplayer Card corners now also render in single card preview in the card library
+- Added experimental power filtering at battle start to better increase compatibility with base game and modded
+- Fixed an issue where you could resurrect at 0 HP on low HP resurrection settings
+- Fixed an issue where sending a chat message before fully connecting could crash the game
+- Fixed an issue where ally speech bubbles were off screen
+- Fixed an issue where killing someone would crash the game for you
+- Fixed an issue where a random character selection could crash
+- Fixed an issue where one-time play cards would stay in decks when added by your allies
+- Fixed an issue where you could crash when disconnecting
+- Fixed an issue where monster spawning could cause several monsters to spawn on screen instead of just one when reconnecting
+    - This also applies to Downfall's final boss fight.
+- Mod Compatibility:
+    - Downfall:
+        - Forbidden Fruit is no longer tradeable
+    - The Packmaster:
+        - Packmaster has been added as a supported mod, alongside a character icon, nameplate, skins
+            - Added extra Lobby UI when packmaster is selected to support choosing hats, disable/enable packs, or do drafts
+- Dev:
+    - Added a new Card field:
+        - isPlayedByAlly - bool - returns true if the card play was triggered by an ally
+    - Added a new command:
+        - Resurrect [player name]
+            - Resurrects a dead player and moves them to your location
+    - Custom Multiplayer Card class now contains a second magic number
+        - Keep in mind that when using it, the text is "!MP_SecondMagic!", instead of the usual modId
+
+Changes in v6.3.2:
+- Fixed an issue where lobbies with player counts greater than 4 would experience visual issues in trading and resurrect screens
+- Fixed an issue where a prototype Silent skin was available
+- Fixed an issue where playing with a modded character that has no skin would crash the game in the customization screen after the last character with skins was pressed next on
+
+Changes in v6.3.1:
+- Player Skins:
+    - Added a new skin:
+        - 0110 Defect - PATREON EXCLUSIVE
+- Multiplayer cards will now appear last in the card library
+- Fixed an issue where cards to play received from another player did not have correct stats
+- Fixed an issue where having multiple of the same skin caused visual issues and glitches
+- Fixed an issue where swapping into a different player would cause visual issues
+- Dev:
+    - Moved following content to Skindex
+        - Defect Rebel AI Skin
+    - Added a new class named NetworkSubscriber which accepts INetworkSubscriber
+        - Added MessageSubscriber, which allows you to receive an onMessageReceive event
+        - Added OnModResetSubscriber, which allows you to receive an onModReset event
+    - Added 2 new commands:
+        - Switch Character
+        - Switch Player Skin
+    - Mod Compatibility:
+        - Unchained Relay, NextTurnRelayedDamage, and ThisTurnRelayedDamage are now synced across clients
+
+Changes in v6.3.0:
+- Player Skins:
+    - Heartslayer skins now have an additional effect playing on them
+    - Added 4 new skins:
+        - Pixel Ironclad
+        - Pixel Silent
+        - Pixel Defect
+        - Pixel Watcher
+        - Credit to @flameblast12 for the awesome design and permission to use these!
+        - These skins are earned by playing the mod before or during the 100k celebration
+- Nameplates:
+    - Added 2 new nameplates:
+        - Flames of Hell
+        - Chad
+        - Credit to CaptPuppet for the awesome design
+- Necronomicurse can no longer be traded
+- A message is now printed in chat whenever a player joins or leaves
+- Added a new "Credits" section above unlockables in the customization screens for assets designed by other users
+- Fixed an issue where players with spaces would have their usernames displayed incorrectly in death messages
+- Fixed an issue where sudo and pull commands were not working on players with spaces in their name
+- Fixed an issue where the game would crash on the skins customization screen if the character had no skins
+- Fixed a rare instance where the game would crash when rapidly joining and leaving a lobby
+- Fixed an issue where having multiplayer content and launching singleplayer would crash the game
+- Dev:
+    - Split certain mod functionality and moved it to new modules named dLib and Skindex
+        - Over the next few updates, more functionality will be moved
+        - Together in Spire will never require any of these modules even when these modules are public themselves
+    - Unlocks is now a singleton, and is accessed through Unlocks.Get() rather than SpireTogetherMod.unlocks
+
+Changes in v6.2.2:
+- Fixed an issue where getting hit would freeze the character animation for other players
+- Fixed an issue where pressing the map clear button crashed the game
+- Fixed a general issue regarding reconnecting in large lobbies causing a crash
+- Dev:
+    - PlayerAnimationChanged request has been renamed to PlayerAnimationSet
+    - Added a PlayerAnimationAdded request
+
+Changes in v6.2.1:
+- Fixed an issue where certain modded characters could crash
+
+Changes in v6.2.0:
+- Player state changes will now synchronize between clients
+- Improved monster intent sync
+- Fixed an issue where every second player in a room would not have it's stances/visuals updated or its name/hitbox rendered
+- Fixed an issue where modlist match was not working correctly with large modlists
+- Fixed an issue where player usernames with spaces were not correctly showing in chat
+- Fixed an issue where sending a word that contained only of "#" in chat would crash the game for other players
+- Fixed an issue where The Sea of Ghosts achievement was not being counted correctly when playing solo
+- Fixed an issue where the map clear button was a bit overzealous, and instead of clearing the room mark on the map, it cleared the entire room cache
+    - This should fix various issues like rooms resetting on player enter or rooms not being cleared for new players that joined the run
+- Mod Compatibility:
+    - Skul Hero Slayer:
+        - Added compatibility for the mod, including animations, skins, character icon, and nameplate
+    - Downfall
+        - Completely reworked custom patches for The Gremlins, fixing existing bugs and crashes and improving stability greatly
+- Dev:
+    - LoadSkinOnPlayer of PlayerSkin now has a base method that loads the atlas, json, and corpse resources
+    - LoadSkinOnPlayer of PlayerSkin now returns bool for method success instead of void
+    - Removed LoadSkinOnPlayer method overrides from AtlasSkin and SpriterSkin
+    - Added extra logging to the End of Turn messages
+    - Removed some dev files from the mod, slightly reducing file size
+    - Added 2 new commands:
+        - pull [player]
+            - Pulls the player with the given player name to your current location
+        - turnTimerFreezeToggle
+            - Freezes/Unfreezes the turn timer for you
+    - Downfall:
+        - Removed DefaultPlasma method from HexaghostSkin, default plasma is now always loaded if no plasma textures were found
+        - GremlinsAtlasSkin class has been renamed to GremlinsSkin
+
+Changes in v6.1.1:
+- Mod Compatibility:
+    - Marisa Continued:
+        - Fixed an issue where the character would crash in multiplayer
+
+Changes in v6.1.0:
+- Skins:
+    - Added a new skin:
+        - Reaper Ironclad
+            - You can unlock this skin by participating in August, September, or October 2023 raid
+- Improved stability when connecting to lobbies with large amounts of people
+- Slightly improved general game stability and speed
+- Updated the display name of some skins to be more valid
+- Fixed an issue where switching a character in the lobby screen would not launch you with the shown skin if the skin was saved as default preference
+- Fixed an issue where having a currently unloaded modded character as default would not load the starting skin for ironclad correctly
+- Mod Compatibility:
+    - Downfall:
+        - Added custom patches for the Collector
+            - Patches include the character icon, both energy orbs, and skins
+        - Fixed an issue where certain Hexaghost skins would render the previous skin's plasma when they should not
+    - Marisa Continued:
+        - Updated to the latest version of Marisa Continued to fix crashes
+- Dev:
+    - ChangedMapMouseCoords request has been renamed to ChangedPlayerMapMouseCoords
+    - PlayerChangedHealthStatus request has been renamed to PlayerHealthStatusChanged
+    - Downfall:
+        - Added NoPlasma and DefaultPlasma methods to HexaghostSkin to allow for better control of Hexaghost skins
+
+Changes in v6.0.4:
+- Fixed an issue where connecting to a lobby with a character with no skins would sometimes result in a crash
+
+Changes in v6.0.3:
+- Disabled the Crown cursor until the Achievement to unlock it is complete
+- Dev:
+    - Removed the OnThisTrade callback from the CustomMultiplayerRelic
+    - Added methods sendNetworkMessage and sendNetworkMessageToPlayer to CustomMultiplayerPower and CustomMultiplayerRelic
+        - Functionally, they are the same as P2PManager.SendData, just easier access
+
+Changes in v6.0.2:
+- Fixed an issue where the booster pack version v0.0.5 would not work with this version
+- Fixed an issue where the game would crash on the cursor overview screen if you didn't have a saved default colour
+
+Changes in v6.0.1:
+- Fixed an issue where the Character customization screen would crash
+
+Changes in v6.0.0:
+- Picking up a key will now remove the possibility for others to pick up the same key again
+    - Picking up the ruby key will remove the Recall option from other allies at a campfire immediately
+    - Picking up the emerald/sapphire key will remove the key as the reward from all other ally screens
+- Player killing a player will now print a message in chat:
+    - A player killing you will say "{Player} killed you"
+    - You killing a player will say "You killed {Player}"
+    - A player killing a player will say "{Player} killed {Player}"
+- Added a new game setting:
+    - Turn Time Limit:
+        - Specifies the amount of time a player has to take their turn
+            - Minimum value is DISABLED and maximum is 300 seconds
+            - Default value for RECOMMENDED is DISABLED and for HELL mode is 30 seconds
+- Added a new customizable type:
+    - Player Cursors:
+        - You can now customize how your cursor looks for you and your allies
+        - The selected cursor is applied game-wide, not just in multiplayer menus
+        - Cursor Types:
+            - base - FREE, default design
+            - shiny - FREE
+            - Silent's Dagger - PATREON
+            - crown - ACHIEVEMENT
+- The customization screen has been reworked into multiple screens:
+    - Player customization screen
+        - You can now see all skins and set your default skins for each character separately
+    - Nameplate customization screen
+        - Allows the preview of both Alive and Dead designs
+    - UI customization screen
+    - Mouse customization screen
+        - Allows the preview of both own and ally designs
+    - This update will clear the saved preset for the favourite skin/character/colour/nameplate/ui
+- From this version on, you will no longer be able to connect to multiplayer if your Together in Spire version is out of date
+    - Previously, you'd be able to proceed with a warning
+- Misc:
+    - Slightly changed the text design of the Trade shop button
+- Fixed an issue where the game would disconnect without retrying to refetch room data on timeout
+- Fixed an issue where disconnecting from a lobby and starting a new lobby would play the leaving animation from old players in the previous lobby
+- Fixed an issue where players with a space in their username would not have their username coloured correctly in chat
+- Fixed an issue where trying to connect with a older game version to a lobby would fail through Port Forwarding
+- Dev:
+    - Added a general 'OnReceivedNetworkPacket' callback to the appropriate locations
+        - This callback is meant to provide an alternative to patching into the P2PMessageAnalyzer as a cleaner solution
+    - Added a 'OnPlayerKilledPlayer' callback
+    - Added a new "OpenScreen" command to debug screens
+    - Removed the TextButton element, correct usage is now a Clickable element with a BoxedLabel
+    - PlayerPresetSave and UIPresetSave are now singleton classes
+
+Changes in v5.2.4:
+- Multiplayer save files now store extra data for consistency, but will be saved asynchronously
+    - In total, players should notice less to no stutter on game save
+- Reworked how cleared rooms are tracked
+    - This should have no effect on regular gameplay where all players go together, but aims more to improve the experience of people who join after a few rooms have been cleared already
+- Fixed an issue where killing the first phase of the Awakened One with poison would softlock the game
+- Fixed an issue where toggling The Guardian with poison would lead to an incorrect next turn intent
+
+Changes in v5.2.3:
+- Added a queue system to Steam Networking
+    - The new system should prevent packet loss when dealing with huge amounts of data
+    - The new system could be quite buggy so more fixes might come out in the future if needed
+- Changed the duration of ally chat bubbles from 2.5s to 4s
+- Fixed an issue where monster HP values would desync massively in certain scenarios
+- Fixed an issue where a revived player would not get removed from the ressurect screen list until refreshed
+- Fixed an issue where connecting at the same time Draw power was applied would crash the game
+
+Changes in v5.2.2:
+- Fixed an issue where exiting the lobby would cause a crash
+- Fixed an issue where clicking on a player box would cause a crash
+
+Changes in v5.2.1:
+- Having more than 11 players in a lobby will now display the total count BELOW the list of players instead of replacing it
+    - Added arrows below the player count in the lobby when there's more than 11 players to be able to see all players
+    - Fixed an issue where the 5th player connecting would show as duplicate in the lobby screen
+- Reworked the player select screens (trading and resurrecting)
+    - The super small mode has been replaced with the medium size for player counts above 11
+    - Added arrows to the screen to scroll through the player list
+    - Added a player name filter to more easily find players
+- Player nameboxes in rooms will now have arrows to scroll for player counts above 11
+- Dev:
+    - Added 2 new commands:
+        - Add Player command
+            - Adds a dummy player with random character, name, gold, and energy to the game
+            - Useful for debugging player UI/player logic
+        - Verify Client Mods command
+            - Checks your current mods and matches them against the online list of allowed client mods
+
+Changes in v5.2.0:
+- Completely reworked enemy intent sync with the goal of making it desync less often
+    - This change is very technical and includes some back-end changes but ideally it should significantly reduce the amount of intent-related issues
+- Timing out on room data will now retry the request instead of generating a room, and failing a second timeout will disconnect you
+    - This should prevent the issue where rooms would refresh on ocassion with a large amount of players playing
+- Fixed an issue where turn counts were not syncing for players who joined the room after the room was loaded
+- Fixed issues where damaging monsters at certain times would not sync the data, leading to a temporary desync in hp values
+- Fixed an issue where The Guardian going into defensive mode due to debuffs (example - Poison) would not sync
+- Fixed an issue where the game would crash when marking yourself with the chat marker in the lobby
+
+Changes in v5.1.3:
+- You can now earn achievements in CUSTOM mode as long as Allow Cheats option is turned off
+- Fixed an issue where targeting allies with upgraded defends was not working since v5
+- Fixed an issue where the game would crash if the random character option selected a modded character without custom patches
+- Fixed an issue where a single-player game would crash on Gremlin Horn trigger
+- Fixed an issue where a single-player game would crash if you attempted to draw on the map
+- Fixed an issue where the game would crash on steam deck when opening the map
+
+Changes in v5.1.2:
+- Implemented missing changes for the Raid Event
+
+Changes in v5.1.1:
+- Added a new Watcher skin:
+    - Poolside
+- Removed the option to teleport to other players when dead
+    - While not buggy, this option proved to be pointles and confusing when paired with the new functionality of seeing ALLY items
+- Fixed an issue where toggleable items were not working correctly
+- Fixed an issue where Room nodes were not offset on X axis
+- Fixed an issue where Retain cards would stack in the "hand pile" ally screen instead of being removed properly
+- Fixed some issues where certain enemy attacks could get skipped/duplicated
+- Dev:
+    - Reworked the skin resource loading system to be more flexible and easier to expand on
+
+Changes in v5.1.0:
+- Players:
+    - You can now right click on players to view their current and max hp, gold, card piles, relics, blights, and potions
+- Map:
+    - You can now see other player cursors when they are at the map screen
+- Multiplayer Lobby:
+    - Added a random option at the end of the character select
+        - It will assign you a random character with a random owned skin upon embarking
+- Skins:
+    - Added a new Watcher Skin:
+        - Poolside
+            - You can unlock this skin by participating in the May, June, or July raids
+- Misc:
+    - Choke applied on players will now trigger whenever allies play cards
+    - Changed the design of the drawing dot to be a bit sharper
+    - When an ally plays a card through you your turn will now un-end
+    - When your turn is forcefully ended through a card/monster, you can no longer un-end it
+- Together in Spire Achievements will now be unlockable regardless of what client/content mods you have active
+- Improved player targeting to fail way less often
+- Improved syncing of Monster Intents - aiming to eliminate discrepancies on end of turn intent changes with some monsters
+- You can now target allies with potions that have a targeter
+- Fixed an issue where the Chibi Watcher skin would not apply on the own player model
+- Fixed issues where game ui would be clickable under custom screens
+- Fixed an issue where the mod would not launch in certain Windows language presets
+- Fixed an issue where the game could crash when new players joined mid-game
+- Fixed an issue where the game would crash when a Watcher player died for all players except the player who died
+- Fixed an issue where the game would crash if you opened the map after reconnecting before all the other players reconnected
+- Fixed an issue where the Awakened One's Powers would get removed only for the player that lands the deadly blow
+- Dev:
+    - Player Blights will now be synced
+    - Added a WatcherSpriterSkin to do easier Spriter Skins for the watcher
+    - Added callback methods for when a blight is obtained
+
+Changes in v5.0.1:
+- Fixed an issue where the game could crash when selecting the "Modlist Match" filter on the Steam Lobby List
+- Fixed an issue where the first player to mark a room would have their color persist permanently even when unmarked
+- Mod Compatibility:
+    - Fixed an issue where none of the compatible character mods were launchable since v5
+
+Changes in v5.0.0:
+- Map:
+    - Reworked the Map Mark system
+    - Changed the icon for Marked Rooms
+    - Holding right click will now draw on the map and also mark any rooms you hover over
+    - Added a clear button that clears any marks you made
+    - Map Nodes will now have their offsets synced between players
+- Chat:
+    - Added Chat to the game
+    - You can open the chat by pressing TAB
+    - It supports following effects:
+        - #y, #g, #r, #b, #p - for yellow, green, red, blue, and purple word colors
+        - #RRGGBB - for custom colours
+        - @word@ - for shaky word effect
+        - ~word~ - for wavy word effect
+- QOL:
+    - All RECOMMENDED reward character nameplates have been given an extra overlay on top to increase text visibility
+    - The Watcher's Eye will now render in the correct position on all skins
+    - The Watcher's Eye will now have unique textures for the following skins:
+        - CORRUPTED
+        - STREAMER
+        - ROMAN
+        - GHOST
+        - HEARTSLAYER
+    - Gremlin Horn will now un-end your turn on trigger
+- Improved monster state sync
+- Trade option will no longer say "Not connected to multiplayer" in certain scenarios
+- Fixed an issue where the game could crash on modded when obtaining certain relics
+- Fixed an issue where losing block due to teammate actions could reduce your block into negatives
+- Fixed an issue where having starting relics in CUSTOM would crash your game
+- Mod Compatibility:
+    - All currently officially supported modded characters will now be able to use their upgraded defends to block for their allies
+- Dev:
+    - The list of client mods will now be grabbed from an online url at game start instead of being coded into the mod
+    - Added a new CustomMultiplayerPower class with respective identical multiplayer methods found in CustomMultiplayerRelic
+    - onClick method in Clickable has been renamed to onLeftClick
+    - Added a onRightClick method to Clickable
+    - Added a Special Action method to CharacterEntity and P2PPlayer as well as a onFFSpecialAction methods to respective classes for modded scenarios
+    - Renamed all respective onAllyUsedCard methods to onAllyPlayedCard for better clarity
+    - Added new callback methods
+        - onTradeModifyReceivingCards
+        - onTradeModifyReceivingRelics
+        - onTradeModifyReceivingPotions
+        - onTradeModifyReceivingGold
+
+Changes in v4.2.0:
+- Fixed an issue where enemies would not scale their damage past the first move with damage settings
+- Mod Compatibility:
+    - The Abyssal
+        - The Abyssal has been added to the list of officially supported mods
+        - Added a new REDBEARD skin for the character, as well as the Ghost, Streamer, and Heartslayer skins
+        - Added The Abyssal reward nameplate
+        - Fixed an issue where applying ink on enemies would crash the game on enemy turn
+
+Changes in v4.1.1:
+- Mod Compatibility:
+    - Say the Spire
+        - Fixed an issue where the game would crash when selecting a boss node
+
+Changes in v4.1.0:
+- Player Skins
+    - Added new skins:
+        - Chibi Ironclad - PATREON
+        - Chibi Silent - PATREON
+        - Chibi Defect - PATREON
+        - Chibi Watcher - PATREON
+    - Reworked all Ghost skins for the base 4 characters to match the new style of ghost skins
+- Game Settings:
+    - RECOMMENDED:
+        - Will now start on Ascension 1
+- Nameplates
+    - Added a new discord nameplate you can get by becoming a discord member
+- The ended turn icon will now render above ally powers and other nameplates
+- Ally nameplates will now no longer render in events
+- Damaging monsters will now send more data to allies that gets modified
+- setgamesetting can no longer trigger on certain settings
+- Improved the intent sync system to be a bit more flexible and fixed some general errors
+- Adding cards directly to ally hand, adding energy, or drawing cards will now un-end ally turn
+- Fixed an issue where the max page counter would display '1' even when there was no lobbies displaying
+- Fixed an issue where the Steam Lobby name filter would continue filtering text when the screen was reopened but the input field would be empty
+- Fixed an issue where the Presets filter text was not centered
+- Fixed an issue where the endallturns command would not end your own turn
+- Fixed an issue where Emerald Elites would stack their power ups per player
+- Fixed an issue where any players more than 4 would be rendered on the left side of the combat in the Shield and Spear fight
+- Fixed an issue where opening any overlay and closing it would show back combat elements when dead
+- Fixed an issue where Campfire UI sounds could continue over to different rooms
+- Fixed an issue where boss music would not play for certain bosses in allies who join a generated room
+- Fixed an issue where The Ironclad charater could not go back to the default skin after scrolling
+- Fixed an issue where certain modded relics and cards would crash the game when joining certain cleared rooms
+- Fixed an issue where players leaving the room would play the end turn button sound if the combat was finished
+- Fixed an issue where a Trade ending for other players would cancel the own player trade
+- Fixed an issue where Philosopher's Stone would apply the Strength effect on enemies twice if entering after a room has been generated
+- Fixed an issue where you would be able to interact with the shop while trading
+- Fixed an issue where getting revived while being a ghost at the rest station would not show the campfire options
+- Fixed an issue where trading would permanently displace relic and potion hitboxes
+- Fixed an issue where playing accuracy would stack double for you, and teammates playinga accuracy would trigger for you
+- Fixed an issue where using the seed setting or the name filter in the Blight Select, Potion Select, Relic Select, and Steam Lobby screens would disable scroll inputs for the rest of the runtime
+- Fixed an issue where disconnecting with an unsupported modded character while dead would crash the game when reconnecting
+- Fixed an issue where Strike effects could still appear on dead monsters
+- Fixed an issue where the game could crash under really bad network connections when trading
+- Dev:
+    - Removed the OnPlayerChangedCard callback
+        - Single card changes will now call OnPlayerChangedCards with the ArrayList size of 1
+    - All P2PCallbacks will now be present in the CustomMultiplayerRelic class
+    - Removed the AtGameStart callback from CustomMultiplayerRelic class
+    - Renamed the OnPlayerNonFinalDeath callback from CustomMultiplayerRelic class to onDeath
+    - Added the OnFFResurrected, OnResurrectAlly, OnChatMessageSent, and OnChatMessageReceived callbacks to the P2PCallbacks and CustomMultiplayerRelic classes
+    - Renamed the onTraded callback from CustomMultiplayerRelic class to onTradedThisRelic for clarity purposes
+    - Fixed an issue where relics implementing CustomMultiplayerRelic would have "Cannot be traded." sometimes incorrectly
+    - InputfieldScreen class has been merged with the Screen class
+    - CharacterEntity class now has a getPlayer method that returns the respective P2PPlayer object
+    - P2PPlayer class now has hasPower and hasRelic methods
+- Mod Compatibility:
+    - Downfall:
+        - Implemented the new Downfall skins added in the latest update:
+            - The Perfect Automaton
+            - Lampghost Hexaghost
+        - Fixed an issue where the last player alive leaving the lobby could crash the game
+        - Following relics can no longer be traded:
+            - Gemstone Gun
+            - Signature Finisher
+            - Bottled Code
+            - Coat of Many Faces
+            - Extra Cursed Bell
+            - Gremlin Sack
+            - Mystical Octahedron
+            - Neow's Blessing
+            - Quantum Chamber
+            - The Broken Seal
+            - Lucky Shoe
+            - Bottled Anomaly
+            - Bottled Black Hole
+            - Rare Booster Box
+            - Sack of Gems
+    - The Unchained:
+        - Fixed an issue where Keep Swinging power would apply multiple times per power
+        - Fixed an issue where Full Swirl power would apply multiple times per power
+
+Changes in v4.0.10:
+- All Steam Lobby filtering is now done locally
+- Added a Lobby Name filter to the lobby select screen
+- Added a page counter to the lobby select screen
+- Fixed an issue where going past 40 lobbies on the steam screen would reset to page 0 on each lobby refresh
+- Mod compatibility:
+    - The Unchained:
+        - Fixed an issue where the game would crash when enemies took their turns with this mod enabled (my bad lol)
+
+Changes in v4.0.9:
+- Beating RECOMMENDED preset with a supported character will now unlock a nameplate for it consisting of its portrait
+    - Supported characters are any of the 4 base characters or any of the officially supported modded characters
+- Game Settings:
+    - Added 1 new setting:
+        - Allow reward collecting when dead
+            - When toggled, it will allow dead players to collect combat rewards and room chest rewards even if dead
+            - This setting will remain disabled on both RECOMMENDED and HELL difficulty presets
+- Console:
+    - Added 2 new commands:
+        - setgamesetting
+            - Usage:
+                - setgamesetting [setting name] [setting value]
+            - Allows for modification of MP game settings mid run
+                - Could have unpredictable results depending on setting changed
+        - sudo
+            - Usages:
+                - sudo <player name | all>
+            - Executes all future commands (not counting sudo) on the target player's game
+            - Entering an invalid name or no parameters at all will remove the sudo effect
+- Misc:
+    - Ally energy orbs will now use their respective fonts instead of the Ironclad one
+    - Added a new "CREATING LOBBY" screen that will display in the short amount of time between pressing the create lobby button and the time the lobby is created
+- Fixed general issues where reloading a save into modded combat could result in a missing hand pile
+- Fixed an issue where multiple lobbies could be created under a same instance if the button was pressed multiple times before a lobby was instanced
+- Fixed an issue where custom characters would not have a correct disconnect animation
+- Fixed an issue where triggering multiple lightning orbs would sometimes reduce the amount of damage dealt
+- Fixed an issue where the steam lobby list page would display only up to 50 results at a time
+- Fixed an issue where reloading a boss combat room or entering the first act room could crash the game
+- Fixed an issue where interacting with a game element would fail if there was a nameplate below it
+- Fixed an issue where the ally energy count would not be centered on energies larger than 9
+- Fixed an issue where a player connecting/disconnecting would not visually update its healthbar
+- Fixed an issue where sometimes connecting to an existing run would not display correct information in the lobby
+- Fixed an issue where a player smoke-bombing would softlock other players if they all ended their turns
+- Attempted to fix an issue where sometimes starting data wouldn't sync correctly with mods, causing issues
+- Mod Compatibility:
+    - Downfall:
+        - Removed HP Scaling protection on The Merchant upon player disconnects/reconnects when not fighting it
+        - Fixed an issue where Neow Elite would Rez multiple copies of enemy bosses
+    - Marisa Continued:
+        - This mod has been added as an officially supported mod
+        - Marisa (the character) will now have her own icon visible, and have skins added
+
+Changes in v4.0.8:
+- Monster powers will no longer get cleared on a MP death request
+    - This fixes an issue where corpse explosion would only trigger for the player that dealt the deadly blow
+- Fixed an issue where powers that get reduced due to certain actions would get fully removed on other player screens such as artifact or plated armour
+- Mod Compatibility:
+    - Downfall:
+        - Fixed an issue where the Gremlins could crash the game when resurrected at act start if dead, in certain cases
+
+Changes in v4.0.7:
+- Fixed an issue where modded powers missing an icon would crash the game for allies when applied
+- Fixed an issue where powers using an image instead of a region map would not have an icon
+- Fixed an issue where game settings would sometimes not save correctly and, in certain scenarios, cause a crash
+- Fixed an issue where game boss list could cause a crash when loading a boss room
+- Mod compatibility:
+    - The Unchained:
+        - Thread of Ariadne has received same reworks as Vault from base game
+    - Downfall:
+        - Fixed an issue where getting random Unknown Upgraded cards on characters that are not The Snecko would crash the game
+        - Fixed an issue where Slimeboss could crash when using any of the custom skins and loading a character animation
+
+Changes in v4.0.6:
+- Fixed an issue where monsters spawning mid combat would crash the game in Singleplayer
+- Fixed an issue where certain events would crash the game
+- Fixed an issue where the game could crash when gaining block
+- Fixed an issue where the "ALL READY" option could crash in Port Forwarding mode
+- Mod compatibility:
+    - Downfall
+        - Removed custom sync of Downfall boss cards
+            - This has been done to remove any issues that came up with syncing
+            - Boss Cards are very complicated and can cause issues, so their syncing will be added at a future date
+        - Fixed an issue where the Neow miniboss would revive enemies twice for players that entered the room after it was generated
+        - Fixed an issue where dying in a downfall map would mess up the map visuals
+
+Changes in v4.0.5:
+- Fixed an issue where the game would crash on startup for some players
+
+Changes in v4.0.4:
+- Fixed an issue where playing with the Gremlins would crash the game
+
+Changes in v4.0.3:
+- Fixed an issue where playing with the Gremlins would crash the game
+
+Changes in v4.0.2:
+- Fixed an issue where custom characters would crash the game
+
+Changes in v4.0.1:
+- Room marks and player dots will now also be syncrhonised with the "infinite" counter
+- Being resurrected in endless will now sync the "infinite" counter and change the amount of stacks on the Spear and Shield blights
+- Added Hitboxes to the list of possible extra data sync
+- Downfall broken keys will now sync
+    - For balance reasons only the player that breaks the key will get the relic
+- Selecting the "disable trading item blacklist" will now also allow players to stack relics in trading
+- Rooms where monsters escape will now escape for players that enter after instead of dying
+- Fixed an issue where unlocking bundles would not save the unlocks
+- Fixed an issue where entering a combat room that was originally of different type would softlock by not displaying combat options
+- Fixed an issue where some certain network sync actions would fail in specific parts of the game
+- (Hopefully) Fixed an issue where player models would be black boxes on death/when entering a campfire
+- Fixed an issue where the Orb variant of the Defect boss in Downfall could cause crashes
+- Fixed an issue where monster HP would be multiplied 2 times for every player for the player reconnecting into a combat room
+- Fixed an issue where cleared rooms would not be cleared in certain mods where monsters had multiple lives
+- Fixed an issue where allies playing the Champ would render it's stance UI for everyone
+- Fixed an issue where potion pedestals in trading would be red if valid and normal if invalid instead of the usual
+- Fixed an issue where dead players could close the map screen that popped up during events, allowing them to do the event
+- Fixed an issue where monsters replaced in rooms would still play their starting visual effects
+- Fixed an issue where starting relics/blights/potions would be duplicated if reopening the screen multiple times
+- Fixed an issue where odd indexed player infoboxes would below other infoboxes
+- Fixed an issue where custom characters would not play a disconnect animation
+- Mod Compatibility:
+    - Downfall
+        - Fixed an issue where Rest Site Wheel Event would give all players the option to roll it on a campfire
+        - Fixed an issue where the Neow Elite fight in Act 4 would not spawn bosses or apply curses for players that entered a generated room
+        - Fixed an issue where Merchant starting HP was not scaling with the amount of players
+        - Fixed an issue where Downfall Character Boss would have 0 energy for players entering the room after it was generated
+        - Fixed an issue where attempting to play multiple games after having Gremlins as your allies would crash the game
+
+Changes in v4.0.0:
+- Completely rewrote the Saving and Loading portions of the code
+    - This change has been done with mod compatibility in mind
+    - Together in Spire now effectively saves data equal to what would be saved in singleplayer, and loads it in the same way
+        - The only exception to this rule would be any modifications to the raw save data, which would require custom patches
+- Performance & optimizations:
+    - Massively improved overall game performance
+    - Improved performance when rendering nameplates
+    - Fixed memory leak issues when playing with custom characters
+- Networking & synchronization:
+    - Extended syncing code for monsters and powers with two goals in mind
+        - Expanding compatibility to support the majority of mods on the workshop
+            - The code has been generified to its maximum, any further desyncs will have to be followed by custom patches
+        - Preventing crashes in case of failed sync, instead just skipping it
+    - Extended syncing code for cards and relics with one goal in mind:
+        - Allowing modded items to keep any extra data they contain from their mods when traded
+    - Extended syncing code for rooms with one goal in mind:
+        - Allowing more flexibility for mods to use rooms in different ways and still have them be syncable
+- Custom settings:
+    - Added a new 'Disable Trading Blacklist' setting to the MULTIPLAYER tab:
+        - When toggled, this setting allows players to trade any blacklisted relics or cards in the game without restriction
+        - When trading certain relics there can be some visual glitches, however this is not going to be patched
+    - Added new "Starting Relics", "Starting Blights", and "Starting Potions" settings to the GAMEPLAY tab:
+        - Opens new screens with all available options in the game
+- Achievements:
+    - Added a new "Sea of Ghosts" secret achievement
+        - Unlocking this achievement unlocks ghost skins for all characters
+- QOL:
+    - You can now hover over player powers in the nameplate to see their tooltips
+    - You can now hover over relics and potions in the trading screen to see their tooltips
+    - Relic and Potion select screens have a search bar to filter out relics, and arrows to scroll through multiple pages
+    - Player infoboxes will now render the player's energy if you're sharing a combat room with the player
+    - Player infoboxes will now display gold instead of block if at you and the player were at a shop room
+    - Player nameboxes will now be transparent if the player is not in the same room instead of being darkened to reduce confusion
+    - The shop trading button will no longer show if the shop room is in combat state
+    - Strike effects will now appear on monster death and in other cases they would previously not appear
+    - Rooms will now also sync monster and event lists to prevent duplicate combats as much as possible
+- Misc:
+    - Changed the Delete Button texture on the default screen design to be black instead of red in the center.
+    - Control characters will no longer cause whitespace characters in inputfields
+    - Cards generated through multiplayer will now be centered in the middle of the screen in effects instead of the bottom left corner
+    - Infinte runs will now track the player's "run count" and sync it, making players that want to catch up go through the entire run
+- Fixes:
+    - Fixed an issue where failing to connect with PORT FORWARDING would crash the game when pressing multiplayer again
+    - Fixed an issue where achievements were not unlockable if playing with anything other than basemod, stslib and Together in Spire
+    - Fixed an issue where monsters replaced by other monsters would still play their visual effects
+    - Fixed an issue where the 'Teamwork' achievement wasn't unlockable correctly
+    - Fixed an issue where you could target players not present in the room with nameplates
+    - Fixed an issue where picking up cards on heavily modded setups could crash the game
+    - Fixed an issue where trading relics that apply powers on pickup would crash the game
+    - Fixed an issue where relic select screen in trading would have gaps for unavailable relics
+    - Fixed an issue where Reptomancer Daggers would overlap in certain scenarios
+    - Fixed an issue where intents would visually refresh for every person entering the room
+    - Fixed an issue where skins unlocked in other mods would crash the game if running the game without those mods
+    - Fixed an issue where players reconnecting at the second act 3 boss in A20 would have the fight be cleared
+    - Fixed an issue where monster intents would not be syncing correctly
+- Objenesis has been completely removed from the project as it was unused in previous versions and it's usage proved to be incompatible with the desired effect of the project
+    - This also includes the removal of the Objenesis license
+- Mod compatibility:
+    - Massively expanded the options for mod creators to patch their mods with custom settings/other misc items
+    - Started working on custom mod patches:
+        - These will be far in between and will be only for the most essential things until the base mod is done
+    - Downfall
+        - Downfall now has a custom checkmark to have the game in downfall mode
+        - Downfall boss combats will now sync with minor issues
+        - Downfall boss encounters will now be the same for all players
+        - Added custom patches for character icons, skins, and animations for all characters
+        - Following skins have been added:
+            - Bronze Automaton:
+                - Cosmos
+            - The Champ:
+                - Ironchamp
+            - The Gremlins:
+                - ?
+            - The Hermit:
+                - Nerf
+            - The Hexaghost:
+                - Sunchine
+                - Sand
+            - Slimeboss:
+                - Party
+            - The Snecko
+                - Stone
+                - Rainbow
+                - Nightshade
+            - The Guardian
+                - Forest Guardian
+            - Added Ghost, Streamer and Heartslayer skins for all above characters
+        - Cards with sockets will now sync properly when trading
+    - The Unchained
+        - Added custom patches for character icons
+        - Added following skins:
+            - Gold
+            - Streamer
+            - Heartslayer
+
+
+Changes in v3.1.10:
+- Fixed an issue introduced in the last patch where the mod could crash upon pressing multiplayer if playing with a lot of mods
+- Fixed an issue where your targeter could be stuck on a player if they died when your mouse was hovering over them
+
+Changes in v3.1.9:
+- Fixed an issue introduced in the last patch where the mod could crash upon finishing a game
+- Fixed an issue where the character texture could be a black square on death
+- Removed the mod settings panel as it contained no items
+- Cleaned up the mod to reduce the file size
+
+Changes in v3.1.8:
+- Changed the design of the "Requested" tag on the Pre Trading screen
+- Ally damage on targets will now always produce a strike effect, regardless of current amount of connected players
+- Fixed an issue where no achievements were unlockable
+- Fixed an issue where the game would crash if connecting at the exact time a key was picked up
+- Fixed an issue where players leaving would remove their icon on the map without redistributing the space between the remaining player icons
+- Fixed an issue where monster gaining block from other players would not display the block icon and amount
+- Fixed an issue where "Requested" tag from allies who want to trade would not scale size with the UI depending on amount of players
+- Fixed an issue where the End Turn button would be visible in rooms that replaced monster rooms
+- Fixed an issue where doing multiple runs could result in missing textures on default skins in campfires/when dead
+
+Changes in v3.1.7:
+- Non ASCII labels will now render correctly in all languages
+- Improved performance on room load
+- Improved general memory consumption
+- Added a new command:
+    - endallturns
+        - This command is intended to force all players to end turns in case one player hangs the game due to lag
+- The mod now contains Objenesis files, the license for which can be found under "docs/LICENSE"
+    - This change does not affect the project at the moment, but will in future have effect
+- Fixed an issue where "OWNER UNLOCK" game start method would crash the game on PORT FORWARD option
+- Fixed an issue where "OWNER UNLOCK" game start method would lock the lobby once the host embarked
+- Fixed an issue where "OWNER UNLOCK" game start method lobbies would be locked for any joining players after the lobby was unlocked
+- (RAID EVENT CHANGE ONLY) Catalyst now has a completely new effect
+    - Apply 5(10) Poison to ALL enemies.
+- Fixed an issue where lobby UI would be messed up on 4+ players
+- Fixed an issue where monster HP would be incorrect when players connected mid game
+
+Changes in v3.1.6:
+- Fixed an issue introduced in the last patch where inputfields couldn't accept any special characters
+- Fixed an issue introduced in the last patch where modded potions and relics would sometimes crash the potion and relic select screens in trading
+- Fixed an issue introduced in the last patch where selecting cards in trading and then selecting potions/relics would re-enable the top bar
+
+Changes in v3.1.5:
+- Adjusted the position of player info boxes to not overlap with blights
+- Adjusted the size of potions in trading potion select screen to fit the boxes more nicely
+- Fixed an issue where combat rooms replaced by non combat rooms could crash
+- Fixed an issue where certain powers could crash the game upon removal
+- Fixed an issue where saving player presets on modded characters would crash the game
+- Fixed an issue where input fields would not erase more than one character if not holding down the delete key
+- Fixed an issue where player relics and top panel items would be selectable even when custom screens were hovering them, most notably in trading
+- Fixed an issue where a player disconnecting would not kick you from the trade screen if you were trading with them
+- Fixed an issue where cards in the Trading screen scaled incorrectly
+- Fixed an issue where PORT FORWARDING games could crash if a player disconnected
+- Fixed an issue where the last player alive leaving a lobby would leave the rest of the players as ghosts instead of ending the run
+- Fixed an issue where having a corrupt Version file would crash the game
+
+Changes in v3.1.4:
+- Removed extra log lines added in last version that caused FPS drops
+- Fixed an issue where the "Draw" power applied to all allies
+- Fixed an issue where ally channeled mantra counted as self channeled mantra in game stats
+- Fixed an issue where triggering the connect button multiple times could result in multiple player nameboxes appearing
+
+Changes in v3.1.3:
+- Fixed an issue where direct lobby invites through Steam would crash the game
+- Fixed an issue where custom characters would not have hitboxes
+
+Changes in v3.1.2:
+- Fixed an issue where Potion and Relic trading screens would not be quittable if you were playing with Say the Spire
+
+Changes in v3.1.1:
+- Added new Filter options to the Steam Lobby List Screen
+    - Preset type
+    - Show Lobbies with passwords
+    - Modlist Match
+    - Show incompatible Together in Spire Versions
+- Players will now render their powers below their nameplate if you're in the same room as them
+- Players can now target Allies by targeting their player box
+- Other players will no longer render in event rooms if their "action status" is not the same
+    - Example of that is players that are still in the text part of the event won't render for players that are in it's combat
+- Improved the block syncing in monsters
+- Improved room loading code to speed up data sync on room enter
+- Players can now cast their upgraded starter Defend skills on their allies to give them block
+- Fixed an issue where Nightmare Power wouldn't sync across players
+- Fixed an issue where powers that don't sync fully crash the room for all other
+- Fixed an issue where healing at rest sites wouldn't update your HP on player boxes for other players
+- Fixed an issue where starting monster powers would stack for each player entering the room
+- Fixed an issue where monster rooms replaced by other rooms would crash the game
+- Fixed an issue where player orbs would still trigger while the player was dead
+- Fixed an issue where players would not be rendered at the "ALL READY" start type
+
+Changes in v3.1.0:
+- Added Achievements!
+    - 8 Achievements to unlock
+        - Heartslayer achievements will NOT be retroactive due to the change in the difficulty of HELL mode
+    - Achievements can only be unlocked on RECOMMENDED and HELL presets
+- Base game achievements can now be earned in Singleplayer as long as the only active mods are spireTogether and it's requirements
+    - If BaseMod console is enabled this feature is disabled
+- This mod is fully compatible with Achievement Enabler, enabling both Base Game and Multiplayer Achievements
+- Player Skins:
+    - Player skins will now have unique death and shoulder images
+    - This will be added over time with skins
+    - Currently applies to:
+        - Silent:
+            - Red, Yellow, Blue, Corrupted
+    - Heartslayer skins are no longer unlockable on modded runs (unless Achievement Enabler is installed)
+- Changed HELL mode preset:
+    - Enemy base HP increased from 125% to 150%
+    - Players now start with the "Time Maze" blight
+    - Players will no longer start with the "Deadly Events" modifier
+    - Players will now always get 4 random Neow's Blessing options alongside the random Heirloom relic
+- Added 2 new game settings:
+    - Player HP on resurrect
+        - Can be either Set HP or Percentage
+        - Default is 20% for RECOMMENDED and 1 flat for HELL (already in game)
+    - Resurrect after boss kill
+        - Resurrects all players on the same floor once its boss has been killed
+        - The players still can't collect any boss rewards
+        - Default is true for RECOMMENDED and false for HELL
+- Trading:
+    - Added Orrery to the no-trade relics list
+    - Added Curse of the Bell to the no-trade card list
+    - Added Ascender's Bane to the no-trade card list
+    - Added Necronomicurse to the no-trade card list
+    - Cards that are now selected by Bottle relics will no longer be tradeable
+- Selecting a character will now play their select effects
+- Rewrote the code that prevents multiplayer stuff in singleplayer to be more effective
+- Rewrote the code that manages which players generate a room to prevent desyncs
+- Rewrote the code that manages end turn to prevent desyncs
+- Rewrote the connecting & disconnecting steam code:
+    - This should fix any issues that occured when a player disconnected mid game
+- Player data is now synced on game start, preventing dummy info in player boxes from displaying
+- Implemented various improvements to the reflection code to make it compatible with more custom modded monsters
+- Added new words to the Lobby name filter
+- The list of banned words is now online instead of local so that it can be changed whenever needed
+- Patch Notes button on main menu now allows you to select if you want to read the base game or mod patch notes
+- Save picker screen will now render player icons in the colour of the text
+- Changed the way the latest version is tracked online to prevent game freezing when the address takes longer to respond
+- 4 Neow options will now be random for each player
+- Player talking due to masks/potions etc. will not be synced
+- Steam Lobby names can now contain any characters
+- Changed the way Unlocks work to make them more modifiable for the future
+    - All unlocks will be cleared on this patch
+- Vault card got a soft rewrite in multiplayer:
+    - The card will still act the same on a functional level but will now instantly reset your turn, not affecting other players
+- Readded the functionality to see dead players as ghosts if you're the watcher
+- Readded the functionality to see dead players as ghosts if you're dead
+- Readded the functionality of HELL lobbies having custom design
+    - The new custom background will now apply to other custom screens in the game as well
+- Readded Heartbeat functionality to PORT FORWARDING game types
+    - This system aims to detect game disconnects from server/client on time
+    - It also keeps the connection alive even when waiting for long periods of time
+- Readded the "Frostbite" Defect skin that wasn't working as intended
+- Attempted to fix issues where players could desync during end turns
+- Implemented performance improvements when playing over Steam
+- Added custom functionality patches for The Guardian and Giant Head
+- Player characters will now be synchronizing powers so interacting with them them will now correctly adjust for them
+- Fixed an issue where a player disconnecting would leave their Nameplate design on the <EMPTY> player slot
+- Fixed an issue where pressing cancel button on presets screen when hosting on steam would return you to the port forward host screen
+- Fixed an issue where certain game settings would reset to their default value when going to the customizer screen
+- Fixed an issue where Popup screen layers were incorrect
+- Fixed an issue where players could not spectate boss rooms if teleporting to players
+- Fixed an issue where modifiers would show duplicates visually on the modifiers tab under certain conditions
+- Fixed an issue where certain power counts would not sync correctly when affected by relics / other powers
+- Fixed an issue where the Save Character preset button was missing from the Lobby screen
+- Fixed an issue where losing connection would crash your game on steam
+- Fixed an issue where other players would not render in correct positions for any players who entered after the first one in the Shield and Spear combat
+- Fixed an issue where other players would not flip for any players in the Shield and Spear combat
+- Fixed an issue where players that disconnected would have their map dots remain on map
+- Fixed an issue where other player stances would not reset back to neutral after switching rooms
+- Fixed an issue where other player stances would not show if connecting after they have been activated
+- Fixed an issue where fighting the Chosen could result in double hex
+- Fixed more issues that could cause crashing upon other player disconnect
+- Fixed an issue where spawned slime HP would change incorrectly on player leaving
+- Fixed an issue where players dying/leaving could softlock other players if they were the last one not to end their turn
+- Fixed an issue where characters were incorrectly positioned in the HELL mode victory screen
+- Fixed an issue where enemy intent damage number would still be visible after dying
+- Fixed an issue where some damage would not be synced post end player turn
+- Fixed an issue where the "bubbles" nameplate would not have a selected image
+- Fixed an issue where Bottle relics wouldn't display "Cannot be traded" after selecting a card
+- Fixed an issue where using the master key code would not save
+- Fixed an issue where certain skins would crash the game
+- Fixed an issue where starting singleplayer runs would crash the game
+- Fixed an issue where trading relics that add campfire options would not change them for the current campfire
+- Fixed an issue where room status images were syncing cross act unintentionally
+- Fixed an issue where Darklings could stay alive and survive another turn after being killed
+- Fixed an issue where monsters would display 0 damage strike per player upon dying
+- Fixed an issue where a player smoke bombing would end the combat for everyone
+
+Changes in v3.0.11:
+- Fixed an issue where spawned slimes from a split big slime would scale their when they shouldn't
+- Fixed an issue where any powers applied to the guardian applied in the same amount Mode Shift does
+- Fixed an issue where Corpse Explosion would trigger for each player in the room
+- Fixed an issue where Hexaghost turns were not synced
+- Fixed an issue where saves made in v3.0.10 were automatically deleted upon loading multiplayer
+
+Changes in v3.0.10:
+- Added new security measures to further prevent complete room desyncs
+- Fixed an issue where players that joined the room after all players locked their turn would make the room cycle between turns for the players
+- Fixed an issue where the "Waiting on data" screen could get permanently stuck as an overlay
+- Fixed an issue where players could crash when other players entered a room if they were still in lobby
+- Fixed an issue where multiple players joining at the same time would cause a crash
+
+Changes in v3.0.9:
+- Monsters should now sync their state animations fully
+- Fixed an issue where Sentries, Gremlin Nobs, and Corrupt Heart monsters were able to cast their unique attacks multiple times
+- Attempted to fix an issue where Fairy in a Bottle would not trigger in certain cases
+- Fixed an issue where some monsters would not scale their max HP
+- Fixed an issue where monster Max HP wouldn't be properly calculated when players connected/disconnected in a fight
+- Fixed an issue where event rooms were not properly synced (again)
+- The Guardian's Mode Shift power will now sync the original amount of the damage needed instead of the damage needed from the player that's sending data
+- Fixed an issue where Awakened One's stages were not syncing correctly
+- Fixed an issue where monsters that already had block when entering a room would be missing the block icon and amount text
+- Fixed an issue where a crash could occur when a teammate left the game when playing with Port Forwarding
+
+Changes in v3.0.8:
+- Players can no longer play cards after ending their turn
+- Players can now see what rooms have been cleared and what rooms are fights happening in at any point
+    - This only applies to monster rooms
+- Fixed an issue where Gremlins spawned by Gremlin Leader could differ in type in between clients
+- Monsters will now sync their move history, preventing intent desyncs in certain cases
+- Monsters that have an unique first move will no longer cast it multiple times if players join after the battle starts
+- Fixed an issue where buttons would make sounds when held even they aren't doing anything
+- Fixed an issue where Corrupt Heart's Invincible Power would sync when not intended
+- Attempted to fix issues where players could get stuck in finished battles
+- Fixed an issue where certain combat events would load as random monster combats in the game
+- Attempted to fix an issue where players entering a room at the same time would cause the room to be permanently desynced
+
+Changes in v3.0.7:
+- Reworked the code that manages sync between monsters that are spawned in by other monsters
+    - Fixed an issue where duplicate monsters could spawn on top of another
+    - Fixed crashes when Gremlin leader spawned monsters
+- Changed the required game version to be 2022-03-07 in the mod launcher
+- Added Astrolabe to the no-trade relics list
+- Fixed an issue where temporary strength down effects would give strength back for every player, resulting in extreme damage numbers
+- Fixed an issue where event combats would switch end turn for players, resulting in a loss of 2 turns in the space of 1
+- Fixed an issue where dead monsters would still display their HP or render for other players if a player connected
+
+Changes in v3.0.6:
+- Fixed an issue where players playing in different languages would not be able to teleport to different acts
+- Fixed an issue where attack effects from other players played no strike sound
+- Fixed an issue where the mod would make the game display a black screen on MacOS systems
+
+Changes in v3.0.5:
+- Added a filter of words that get replaced if used as a lobby name
+- Fixed an issue where damage numbers would display monster's current hp instead of the damage dealt
+- Fixed an issue where trading would lead to a crash
+- Fixed an issue where some combat events would not sync enemies
+- Fixed an issue where disconnecting players could cause crashes for other players
+- Fixed an issue where killing a monster with Judgement would not kill the monster for other players
+
+Changes in v3.0.4:
+- Attempted to fix issues with monster health syncing
+- Attempted to fix issues with monster intents being set to NONE
+- Attempted to fix issues with combat events crashing the game
+- Fixed an issue where monster hp and damage % per player scalings could not be set to 0
+- Fixed an issue where continuing a game after disconnect would cause desyncs
+- Fixed an issue where joining through an invite crashed the game
+- Fixed an issue where certain rooms would crash the game if the monster rooms replaced had specific starting actions
+- Fixed an issue where event rewards for fights were only given to the player which initiated the fight
+
+Changes in v3.0.3:
+- Added arrows to the steam lobby so you can see more lobbies
+- Fixed an issue where certain players would display as ironclads
+- Fixed an issue where player nameboxes wouldn't load until a player entered a room
+- Fixed an issue where a player disconnecting would crash the game
+- Fixed an issue where player attack animations wouldn't apply properly
+- Fixed an issue where players would get softlocked on pre trading and resurrect screens
+- Fixed an issue where the cancel button on the waiting for trade screen was invisible
+- Fixed an issue where players were not able to properly connect through steam invites
+- Fixed an issue where continuing a run after saving would not sync data properly, leading to a lot of bugs
+- Fixed an issue where player nameboxes would not be grayed out for players not in the room at the moment
+
+Changes in v3.0.2:
+- Changed the way Enum settings display in menus to be without arrows
+- The mod is now fully integrated and patched to work with Say the Spire
+- Added 4 new free nameplates, courtesy of Lim
+    - The Ironclad
+    - The Silent
+    - The Defect
+    - The Watcher
+- Lobby names will now be [steam name]'s Lobby instead of [sts name]'s Lobby
+- Added the option to add passwords to steam lobbies
+- In recommended, you will now be revived with 20% of your max HP instead of 1 fixed hp
+    - You will still be revived at 1 HP in HELL mode
+- Attempted to fix an issue where lobby slots wouldn't scale properly with multiple players
+- Attempted to fix an issue where monster intents would be NONE for all players that join a player in a room for the first turn
+- Fixed an issue where the game wouldn't play visual effects when it should, and vice versa
+- Fixed an issue where being revived while in a campfire would prevent you from resting
+- Fixed an issue where the game would crash upon defeating the act 3 boss, making the game unable to progress
+- Fixed an issue where the game would crash in rare situations when resurrected
+- Fixed an issue where other player's models would change their scale in game, either being smaller or bigger
+- Fixed an issue where input fields would remain selected when using keyboard/controller, making the player unable to proceed
+
+Changes in v3.0.1:
+- Attempted to fix an issue where Steam connections wouldn't register correclty leading to crashes/softlocks upon connecting
+- Fixed an issue where certain powers would crash the game upon removal, such as bird flight
+- Player attack animations will now always render, not depending on player count
+- Added crash prevention when powers aren't syncing properly in events so the desync reason can be further analyzed
+- Attempted to fix an issue where monster intent would be invalid for players joining a room in the first turn
+- Fixed an issue where save games would turn into singleplayer saves if the host disconnected
+
+Changes in v3.0:
+- Added Steam multiplayer support
+    - Port forwarding begone, you can now use steam to host and play games
+    - Changed the main menu panels to include Steam support, with new art for the panels
+    - Implemented new screens for Steam hosting
+- Completely rewrote all network code
+    - This change affects the core code of the mod and how it works
+    - The focus is on making the mod stable long term
+	- I expect some new bugs/errors to arise and the mod to be a tiny bit less stable at the beginning, but after patching all the bugs the mod stability should in total improve
+    - With this update there should be less performance issues and memory leaks when playing with large amounts of people for a long amount of time
+    - This could also result in some new errors until all of them are patched
+- Retouched all custom UI screens in the game, improving their visuals a tiny bit
+- Completely revamped how mod multiplayer files are saved and loaded
+    - This will completely clear and reset the multiplayer folder
+        - This means that all stored configuration (saved IP's, player presets, owned skins, patreon status) will be fully cleared, except the respective character winter skins
+            - in case you need to restore some lost data like owned skins or patreon status, post in discord under any help chats
+    - All saves are now stored in the folder /saves inside the multiplayer folder, instead of being split into two files
+	- Any players can now rehost a saved game, even if they weren't a host in that game originally
+	- All saves now also generate a backup save to prevent game loss upon crash
+- Game Settings:
+    - Friendly fire has been split into three settings
+        - None
+        - Friendly targeting - now only controls whether you can manually target your allies with your cards
+        - Friendly fire - full friendly fire on all effects
+    - Added 'Game Seed' settings
+        - Works the same as in base game
+    - Added 'Allow Cheats' setting
+        - When cheats are enabled mod achievements are disabled
+        - Cheats are now going to be disabled by default
+    - Added the 'Start Game Type' setting
+        - Decides how the embarking functions
+        - Can be:
+            - FREE FOR ALL
+                - all players embark the run whenever they want to and the runs start immediately after pressing embark
+                - this is the setting that has been the default setting so far and will continue to be default
+            - OWNER UNLOCK
+                - no player can press embark until the game owner "unlocks" the lobby by pressing the unlock button
+                - after the lobby is unlocked, all players can start whenever they want
+            - ALL READY
+                - all current players in the lobby have to have press the ready button after which the game starts at the same time
+                - after a game has been started, all future/reconnecting players can embark whenever
+    - Added following trading settings:
+        - Card Trading Max
+            - Changes how many cards you can trade per trading instance
+            - Ranges from 0 (disabled) to 99999 with the default being 3
+        - Relic Trading Max
+            - Changes how many relics you can trade per trading instance
+            - Ranges from 0 (disabled) to 99999 with the default being 1
+        - Potion Trading Max
+            - Changes how many potions you can trade per trading instance
+            - Ranges from 0 (disabled) to 99999 with the default being 5
+        - Gold Trading Max
+            - Changes how much gold you can trade per trading instance
+            - Ranges from 0 (disabled) to 99999 with the default being 99999
+    - Changed all monster DMG and HP settings labels to now specify it's monster values being changed
+    - Removed the 'Player Max' setting
+        - All games will now be scaled by the number of currently connected players instead of a set amount
+        - This is to allow greater flexibility when playing with groups of people
+        - The player cap still remains at 11
+	- You can now choose any of the custom base game modifiers in multiplayer game settings
+		- As there's a lot of them, not all have been fully tested so this feature may not work as intended
+		- If you encounter any bugs please submit them to the discord!
+- Added 2 new customisation items
+    - Nameplates
+        - Another way to differentiate yourself in the game from other players
+    - UI Themes
+        - Allows players to customise the look of the custom in game UI
+    - They can be customized with the new button added on the main menu panel screen when multiplayer is selected
+- Added 2 new start game types:
+    - READY CHECK
+        - Starts the game once all players are ready
+    - OWNER UNLOCK
+        - Owner of the lobby (or host) unlocks the embark feature
+- Completely rewrote the trading system code:
+    - Trading options will now only display players that are currently not trading with anyone in the room
+    - Players who requested a trade with you will have an indicating icon and priority in rendering position
+    - Changed the UI of the trading screen completely
+        - You can now see exactly what cards, relics, and potions you're receiving
+    - Fixed an issue where the trade would go through for one player and not for other, resulting in loss of one player's elements and duplication of other's
+    - Fixed an issue where requesting a trade with a player would not go through to them, resulting in inability to trade with them
+    - Reduced the allowed number of traded potions in a trade from 10 to 5
+    - Implemented a new relic blacklist system that prevents them from being traded:
+        - Included relics are relics that have one time uses on receiving them
+        - Those blacklisted relics are:
+            - Bottled Flame
+            - Bottled Lightning
+            - Bottled Tornado
+            - Calling Bell
+            - Cauldron
+            - Dolly's Mirror
+            - Empty Cage
+            - Mango
+            - Old Coin
+            - Pandora's Box
+            - Pear
+            - Potion Belt
+            - Strawberry
+            - Tiny House
+            - Waffle
+            - Warpaint
+            - Whetstone
+        - Relics that are blacklisted will have "Cannot be traded." added to their description when playing a MP game
+- All room types should now be fully synced:
+	- Event rooms should have same events
+	- Treasure/Monster/Shop rooms generated on event room spots should sync for other players as well
+		- This includes rooms generated by relics such as Juzu Bracelet
+- Rewrote the network reset code
+    - Disconnecting/quitting games now fully resets the system, a game restart is no longer required to play a new game without errors
+    - Improved the detection of disconnects on both clients and the server
+- Changed the way custom mod characters are rendered, making the mod now support most of the custom characters and their animations
+    - This also removes the crash upon selecting a character with incompatible animations
+- Added auto save cleaning functionality:
+    - Saves that WILL get automatically erased:
+        - Saves made with an older version of the mod
+    - Saves that WILL NOT get erased but won't be displayed:
+        - Saves made with different mods
+        - Saves made with a newer version of the mod
+	- Added a new Save Purge screen that allows you to delete specific saves
+- Reworked all death code and visuals
+    - Loading a save where you died will now load you as dead
+    - Fixed all errors where some players would not receive end game screens properly
+    - Removed custom audio when dead
+    - Fixed the issues where the mod would not reset properly after death
+    - Fixed issues that would occur when teleporting to a player
+    - Players can now see enemy health when dead, allows for proper spectating
+- Adjusted HELL mode preset:
+    - Now starts with "Heirloom" daily mod
+    - Now starts with "Deadly Events" daily mod
+    - Now starts with "Binary" daily mod
+    - Now starts with "Elite Swarm" daily mod
+- Improved intent syncing in monsters, making duplicate intents way less common
+- All screens can now be navigated using keyboard/controller
+- Other players will now show as dots next to room icons on the map
+- Changed the font of the patreon support button to use the STS font
+- Removed a lot of deprecated/unused files which should reduce the total mod file size
+- Lobbies will no longer display a crown icon for the host
+- The Watcher can no longer see dead people as ghosts
+- Changed the Game Settings UI to now have multiple screens
+- Redesigned the Shop Trade Icon
+- Players can now save game settings as preference for future runs
+- End Turn buttons now disable themselves after pressing so you only can (and need to) press them once
+- When disconnected from the server you will now go back to main menu with a popup letting you know
+- Added a new fade animation for other players that enter/leave your current room
+- Added a new leave animation for players that disconnect
+- You will now be warned if you try to quit the game as a server
+- Removed custom lobby UI for Hell mode
+- Removed the 'Abandon Run' button in MP games because it had no different purpose to the 'Exit Game' one
+- Some buttons in the game will now disable themselves if pressing them would do nothing
+- Redesigned all HELL mode victory visuals
+- The code redeem screen will now display the result of the code redeem
+- Any added MP Cards or Relics will no longer show in singleplayer
+- True Victory cinematics should now play at the same time for all players
+- Port input field is now limited to 5 characters to prevent crashes
+- Removed the heartbeat system introduced in the last version, which is undergoing a rework
+- (Finally) Fixed an issue where custom UI wouldn't scale properly on different resolutions
+- Fixed an issue where the mod ID was "spireTogether:SpireTogether" instead of the intended "spireTogether"
+- Fixed an issue where a player "winning" on Act 3 without keys would cause other players to start the True Victory screen
+- Fixed all issues where Neow's Lament wouldn't apply properly in certain scenarios
+- Fixed an issue where Looters would not return money stolen if someone else killed them
+- Skins:
+    - Added a new Defect skin - "FROSTBITE"
+    - Updated corrupted skins for all characters
+
+Changes in v2.2.2:
+- Fixed an issue where traded cards sync their damage properly
+- Fixed an issue where all players dying wouldn't end the game but rather softlock all players
+- Fixed an issue where monsters that could summon gremlins would crash the game on rare occasions
+- Removed extra animation sync code
+    - This will get rid of double hit effects on monsters, and double poison effects
+    - This will also get rid of animations for allies gaining block, however those can be brought back if needed in the future
+    - This should reduce the amount of network data transferred and reduce the stress on the game a bit
+- Combat animations have been cleaned up a tiny bit
+    - No combat animations from allies will play in lobbies of 5 or more players
+    - Animations like block breaking should play more accurately now
+    - Added missing healing animations on monsters
+
+Changes in v2.2.1:
+- Fixed an issue where starting a singleplayer run would crash the game immediately
+
+Changes in v2.2
+- Changed RECOMMENDED modifiers:
+    - HP per player %:
+        - 50% -> 100%
+- Changed HELL modifiers:
+    - Base HP:
+        - 100% -> 125%
+- You can now see what players are in which stance
+- You can now see other players in the Neow Room
+- Removed the BASE game presets
+    - Some of the settings there like no trading / reviving were just useless and it was just taking up a slot
+    - New players are now recommended to select the RECOMMENDED difficulty
+- The default player max in a game is now 2 instead of 11
+    - This is because most players duo queue
+- Reorganized the position of UI elements in the presets screen to adjust for future plans
+- The game now saves after being resurrected
+- The game now saves after trading
+- Implemented "heartbeat" mechanics into both server and client functionality to prevent AFK disconnects and help detect server closure better
+- Retouched all UI screens before starting a game to make text fit into boxes and more centered, and to make UI look a tad nicer in general
+- Hell Mode now has custom lobby UI and sounds
+- Fixed an issue where you could still teleport to a room you're already in when dead
+- Fixed an issue where you couldn't fight double bosses at ascension 20
+- Fixed an issue where marked rooms didn't properly save
+- Fixed an issue where player information boxes wouldn't display people as already in room if you entered after them
+- Fixed an issue where joining a new game wouldn't sync initial player position, leading to (very unlikely) crashing
+- Fixed an issue where groups of 5 would see Lobby scaling meant for 6+ players instead of 2-4 scaling
+- Fixed an issue where everyone dying crashed the game
+- Fixed an issue where changing player max between runs crashed the game upon embarking
+- Fixed an issue where the lobby player scaling increased the player model on smaller resolutions instead of decreased it and vice versa
+- Fixed an issue where death music volume was at 100% regardless of your music sliders
+- Fixed an issue where the game would freeze rarely on connecting
+- Fixed an issue where the game could rarely crash if someone else picked up a key
+
+Changes in v2.1
+- Re-added the option to change player maximum in a room
+    - This setting is in the presets customization screen
+    - The arrows cycle by one but holding them speeds the process up
+- You can now hold arrows in preset customizer screen to make them go faster
+- Enemy HP and DMG scaling now scales from player max instead of current player connected count, which allows for more fair recommended and hell mode scalings
+- Changed HELL mode scalings:
+    - Changed base HP scaling from 500 to 100 percent
+    - Changed per player scaling from 0 to 100 percent
+    - This scaling will now be the same for 5 player runs, as it was before, but will be easier if you're running with less players and vice versa
+- Marked rooms are now saved server wide
+    - This means that going to other floors will now show already makred rooms and that restarting a game will keep the room marks
+- All multiplayer runs now have all the cards/relics unlocked and the final act available, even if you don't have it unlocked in your player save
+- Fixed an issue where Poison would trigger a semi-random amount of times per room
+    - The issue still persists in certain cases but happens very rarely, further fixes planned
+- Implemented security checks that should prevent total room desyncs (where monsters don't share HP bars)
+- You can now see other dead teammates in the room if you're dead yourself
+- Relics trading:
+    - traded relics now trigger their onEquip effects once again
+        - this was done for consistency's sake
+        - this also fixes traded relics not giving their intended effect on start of turn in some cases
+        - even though this will provide some really strong combinations, other parts of the game will be rebalanced to adjust for this
+- Friendly fire:
+    - The game no longer turns friendly fire on by default
+    - Friendly fire now targets allies on cards where the target is a random monster
+    - Friendly fire now targets allies on cards where the targets are all enemies (this only applies to the DMG part, cards applying effects aren't included due to technical limitations)
+- Fixed an issue where clicking on custom preset wouldn't copy the currently selected ascension level
+- Fixed an issue where UI player background elements weren't scaling properly on more than 4 players
+- Fixed an issue where player sprites wouldn't render in proper positions on more than 11 players
+- Fixed an issue where trading could go through for one player and not for the other, resulting in item duplication/loss
+- Fixed an issue where marking a room on upper floors had a chance of marking a room on a lower floor for other players
+- Fixed an issue where multiplayer would crash if a person tried to play a card while nobody else was connected
+- Fixed an issue where singleplayer would crash in certain situations
+- Fixed an issue where certain powers wouldn't properly apply in singleplayer situations
+- Fixed an issue where loadouts would load the incorrect skin since v2.0
+- Fixed an issue where players disconnecting from the game wouldn't mark their slot in lobby as empty
+- Fixed an issue where players disconnecting from the game wouldn't mark their player panel as empty
+- Fixed an issue where the game could crash if opening the lobby again after a run
+- Fixed an issue where dying as a group would softlock the game
+
+Changes in v2.0
+- Player Cap
+    - Player cap in game has been increased from 5 to 11
+    - The following UI will scale appropriately from 6-11 players
+        - Lobby Player Panels - with 11+ players these panels don't render and are instead replaced with a flat text saying how many players are connected
+        - Trading & Reviving Screens
+        - Player Information Boxes - with 11+ players these panels don't render
+- Death
+    - Completely reworked the death & revival system
+    - Upon death, you are no longer presented with the usual "You died" screen
+    - Instead, you enter ghost spectator state where you can still see the ongoing battle but cannot affect it in any way
+    - You can also now teleport to other players when dead to spectate their current room
+    - You are also no longer revived on the start of the floor if you are revived on a different floor
+        - You will now always be revived on the rest site, further penalizing death
+    - When in ghost state, you can not be seen by other players except Watchers
+- Player Panels
+    - When a player dies, the colour of the button now goes red
+    - Added a new icon for when the player has ended their turn
+    - When a player isn't in the same room as the target, the player box is now darker
+    - When a player hasn't embarked yet, their player box will show "?" as their HP and Block
+- Added 4 new character skins:
+    - Twitch Ironclad/Silent/Defect/Watcher - EVENT Skin
+- Friendly Fire:
+    - You can now target your allies with single target cards
+- Added an extra failsafe before connecting to make sure the connection works
+- Player rendering will now render teammates in their relative position instead of their real one
+- You can now hover over a teammate and see their name
+- Additionally adjusted the position of rendered teammates so they look better and scale correctly
+- Attempted to fix an issue where on really rare occasions the game would crash upon connecting
+- Fixed an issue where some screens could stay open in between runs, softlocking the game
+- Fixed an issue where you could revive a disconnected player, using your revive for nothing
+- Fixed an issue where the game would crash if one person generated a combat event room with other players still being on the event
+
+Changes in v1.2.5:
+- Changed the way death works:
+    - Instead of immediately going back to main menu after leaving game, you will now get the regular death screen back
+- Removed "On Pickup" functionality from relic trading
+- Fixed an issue where if two players entered at the same time, the room would generate two instances and desync
+- Fixed an issue where there was an extra 0 damage applied every time the enemy took damage from teammates, resulting in extra trigger of powers such as Talk to the Hand and Thorns
+- Fixed an issue where poison ticked too late, giving the enemy an opportunity to attack before ticking
+- Fixed an issue where poison wouldn't tick down on all clients
+- Fixed an issue where players were able to trade items that weren't gold in shops after trading in a rest site
+- Fixed an issue where clients would be able to see their own box with HP and block info
+- Fixed an issue where the game would crash if leaving after being slain by the Act 3 Heart
+
+Changes in v1.2.4:
+- Fixed an issue where players wouldn't be able to continue if the port was different from 25565
+
+Changes in v.1.2.3
+- Fixed an issue where playing with 5 players caused a game crash for the last player
+
+Changes in v1.2
+- Death & Revival
+    - Implemented revival mechanics
+    - Upon death, you'll be shown a custom death screen and will be unable to continue
+        - If resurrection mechanics are on, you'll see an additional line saying you can be resurrected
+        - Choosing to leave will disconnect you and delete your save file
+            - You are additionally warned that if you leave the game as host, it will delete the whole run for all players
+    - To resurrect a dead player, one must choose the "Resurrect" option at Rest Site rooms and select a dead player
+        - The player that is resurrecting will be forced to skip other benefits of the rest site as a price
+        - The player that is being resurrected will be revived at 1 HP and teleported to the rest site where they were resurrected
+            - This means that the player who died misses out on all the gold, card, relic, potion, and etc. rewards that they would have collected along the way
+            - The player CAN still use the rest site they were teleported to, allowing them to recover more quickly
+            - If you're being resurrected on a different floor, you'll start from the floor base instead
+- Trading
+    - Reordered the position of a few elements
+    - Implemented relic trading
+        - You can only trade 1 relic per trade instance
+        - You can't trade duplicate relics, if you select a relic that the other player already owns, the relic slot will glow red for them and the trade won't be able to be locked
+    - Implemented potion trading
+        - There is no limit on potion trading (technical cap is 10)
+        - You can't receive more potions than the number of free slots you would have after the trade is completed
+            - This means that if you have 3 potions, you can only trade if you're giving the same amount that you're getting
+    - Added 2 new limits into game settings: potionTradingMax and goldTradingMax
+        - these can be used to cap the max trade amount of respective values
+    - Removed the arrows vanishing when upper or lower limits were reached
+        - This is purely a cosmetic change
+    - Gold trading
+        - Added a cap of 9999 gold
+        - Added 2 extra arrows to add more gold faster, with them scaling gold amount by 10 instead of 1, and an extra button to trade all your gold at once
+        - You can now trade gold in Shop Sites
+- Game Customisation:
+    - Added an option to customise the Ascension Level
+- Changed the difficulties of selected modes to provide a more enjoyable playing experience:
+    - RECOMMENDED
+        - Removed DMG scaling per player from monsters
+    - HELL
+        - Removed flat DMG scaling
+        - Increased flat HP scaling from 400% to 500%
+        - Is now ran on Ascension 20
+- Locked the skins out as they respectively were meant to be:
+    - FREE skins are always available
+    - EVENT skins are available during certain events
+    - PATREON skins are available through entering a patreon code
+    - ACHIEVEMENT skins are available by completing a certain in game task
+- Added 4 new victory screens for first time beating of hell mode with 4 respective base characters
+- On victory all other players also get the victory screen, no matter their map position or their life status
+- Changed the trade description to state that it's a free action
+- Skin Arrows now loop instead of vanishing in the lobby screen, functionally the same as character arrows
+- Attempted to fix a super rare issue that causes you to crash when connecting
+- Attempted to fix some of the remaining issues that would cause desyncs in monster data
+- Attempted to fix an issue where clicking save button on HOST or JOIN would crash the game
+- Fixed an issue where monsters changing intent mid combat would result in unintended stuff
+- Fixed an issue where desyncs in values could happen when enemy block was broken
+- Fixed an issue where trading was available in the default game customization
+- Fixed an issue where the limits of scaling were 100x larger
+- Fixed an issue where the game could crash if the config file wasn't properly initialized
+- Fixed an issue where relic wouldn't properly apply their start of turn powers if you were't the first person in the room
+- Fixed an issue where new people that connected to a server that continued after exiting wouldn't be synced
+- Fixed an issue where monster HP could go below 0 and bug the HP bar
+- Fixed an issue where block applied to monster sometimes wouldn't have the intended effect
+- Fixed an issue where the game could get frozen on super rare instances when entering into a room
+- Fixed an issue where the game crashed if you selected any other option at main menu except multiplayer
+- Fixed an issue where player skin wouldn't be applied if continuing a game
+- Fixed an issue where loading saved lobby preset loaded wrong skin
+- Fixed an issue where the save loading screen would glitch if opened twice after first scrolling down with arrows
+- Fixed an issue where some UI elements wouldn't scale properly on different resolutions
+- Fixed an issue where Preserved Insect wasn't applying correctly
+    - This is the only case in the mod where an actual function of a game mechanic is changed to allow syncing
+        - Instead of removing 25% of their current hp at the battle start, this relic will now damage elites by 25% of their max hp whenever a player with the relic connects
+            - In essence, this works almost exactly the same as the base game mechanic, however, this relic can now break shields before of taking HP if monsters already have it when the player enters combat
+        - This only applies to multiplayer, singleplayer relic functionality hasn't been changed
+- Fixed an issue where entering a room could skip the first turn
+- Fixed an issue where the game wouldn't properly paste data from the clipboard
+- Fixed an issue where UI wouldn't properly close in custom game screens
+
+Changes in v1.1
+- Did some experimental changes with data processing
+    - In theory, this should eliminate most of the remaining crashes that currently happen in the mod
+- Changed the way the game sends combat data
+    - This was in an attempt to make desyncs and incorrect values less often
+    - This should also fix some bad issues where monsters would gain double their powers or just not lose powers they should in most cases
+- Completely rewrote the HP and Damage scaling systems:
+    - HP and DMG now scales as intentional
+    - Fixed an issue where enemy tooltips wouldn't show the right amount of damage
+    - Fixed an issue where recommended HP scaling was 5% instead of intended 50%
+- Added 7 new skins to the game:
+    - Executioner Ironclad
+    - Plague Doctor Silent
+    - Roman Solider Watcher
+    - Winter's Festival 2021 Ironclad
+    - Winter's Festival 2021 Silent
+    - Winter's Festival 2021 Defect
+    - Winter's Festival 2021 Watcher
+- Integrated Patreon memberships inside the mod:
+    - Added a new Code Redeem screen that will allow you to sync your game with your patreon tier
+    - Added a new "Support on patreon" button on the bottom left corners of Host and Join screens
+        - This button disappears upon claiming a patreon code of any tier
+- Added back Multiplayer Customization screen along with the CUSTOM game mode
+    - This option only offers HP and DMG scaling, all other settings currently aren't planned to be reimplemented for customization
+    - You can now hold shift on this screen to scale the values by 100
+- Added missing screens that appear when mods are mismatched when connecting
+- Player information boxes no longer expand when hovered over
+- QOL: Boxes showing player information now always show except in rest sites, even if you don't share a room with the player
+- QOL: You can now right click to clear all map nodes
+- QOL: Added a "Paste from clipboard" button on the join screen for IP and Port
+- Implemented potential fixes for a rare bug where the game starts to lag and has to be restarted
+- Implemented potential fixes to improve custom character animation playing
+- Fixed an issue where players that were joining later did not receive keys that were previously collected
+- Fixed an issue where selecting a colour through the colour wheel didn't sync with others
+- Fixed an issue where starting a multiplayer game still saved a singleplayer save game
+- Fixed an issue where Host screen would load in the saved Join IP
+- Fixed an issue where Neow's Lament relic wasn't properly syncing
+- Fixed an issue where Combat rooms hidden in event rooms weren't properly syncing
+- Fixed an issue where monsters would change their state due to combat events but not snyc
+- Fixed an issue where exiting the menu while hosting wouldn't properly close the server
+- Fixed an issue where sometimes the turn would end without pressing the end turn button
+
+Changes in v1.0
+- Game Saving and Loading is back with the following changes:
+    - Merged all previous files into a single file
+    - The new file is smaller than the sum of the previous file sizes, making the saving way quicker
+- Added new parameters that are checked upon game loading:
+    - Game Unique ID
+        - every match now has an unique ID
+        - with this change you can now have an indefinite amount of games saved
+    - Game Version / Mod List and Versions
+        - Checked upon connecting to make sure there isn't a mismatch in the code
+- Completely revamped all menus in the game to match it to base game as much as possible
+    - Removed the customizations menu
+        - This does mean that all settings previously customizable are no longer customizable
+        - The reasoning for it is - the settings themselves would be too rarely used or changed from the offered presets
+    - Added a new menu before hosting that allows you to pick a save
+- The game now separately saves ports for connecting to someone and hosting ports
+    - This means you can save your hosting port only for when you host, and your connecting port only for when you connect
+- The file containing IP data has been moved into a new file called "config.txt"
+    - This is the only file that doesn't use a custom extension/serialization because it is meant to be available to edit by hand for those that cannot use visuals in the screens to save manually
+    - This new file will also contain all future general config
+- Fixed an issue where the game would sometimes load the wrong skin or randomly crash upon startup if you change your character while you have a preset saved
+
+Changes in v0.4.2A
+- Added new settings in the GENERAL settings tab:
+    - Players must follow host's path - currently unimplemented
+    - Share collected keys - Whether Ruby, Emerald, and Sapphire keys should be shared in a run
+    - Advanced information on player hover - currently unimplemented
+    - Allow friendly fire - currently unimplemented
+- Added new settings in the MONSTER settings tab:
+    - Enemy Base HP % - Scale that multiplies with a monster's max HP value, 100% for no scaling - [10, 1000]%
+    - Enemy Scaled HP % Per Player  - Scale that is added to a monster's max HP value and is multiplied per player, 0% for no scaling - [0, 1000]%
+    - Enemy Base Damage % - Scale that multiplies with a monster's damage value, 100% for no scaling - [10, 1000]%
+    - Enemy Scaled HP % Per Player  - Scale that is added to a monster's damage value and is multiplied per player, 0% for no scaling - [0, 1000]%
+    - Enemy Heal Flat Per Turn - Flat value of how much enemies heal each turn - [-1000, 1000]
+    - Enemy Heal % Per Turn - % value of how much enemies heal each turn - [-100, 100]
+    - Enemy use smart attack - currently unimplemented
+- You can now see the skin you selected as your character skin in game
+    - This does not apply to, and isn't planned for, character sprites in rest rooms
+- Implemented fixes that prevent monsters from gaining multiple starting effects each time a player enters a room
+- Implemented the Trading System
+    - Things you can trade: Cards, Relics, Gold, Potions
+    - To trade, you and the player need to be at the same rest site
+    - You can trade up to 3 cards and 1 relic in one go
+    - This does NOT consume the rest site usage, however you can only trade once per rest site
+- You can now click on the color button to open up a RGB selector for custom colors
+- Fixed an issue where clicking the X button on main lobby crashes the game
+- You can now save your preset in the character select window for future runs:
+    - Things that get saved: Character Choice, Skin Choice, Colour
+
+Changes in v0.4.1A
+- Replaced the host lobby pre settings screen with a presets menu screen, which will allow for higher customizations in the future
+    - The screen above allows you to configure settings on your own, leading to a host settings screen
+        - Settings screen is currently divided into 4 categories of settings, and the player max setting from before has been moved to MAIN settings category
+- Fixed an issue where you were able to start a multiplayer lobby with player max set to 1
+- Added a small line in the main lobby below each player slot that represents the color they chose
+- Some arrows will now disappear instead of looping when they reach their maximum; This change applies to:
+    - Arrows that determine the player count
+    - Skin arrows
+- New MAIN setting: You can now choose if you want to start the game at the same time as everyone else or if all players start when they want
+- New MAIN setting: You can now choose if you want to lock the room to prevent new players joining once the game is started
+- Implemented missing color functionality, the color you select will now be the color of your room markers
+- New feature: When you share rooms with another player, you can now see their player details
+
+Changes in v0.4.0A
+- New feature: Completely new lobby menu
+    - The menu consists of 4 panels:
+        - Main multiplayer screen - the screen where you can choose to either host or connect to someone, as well as either start a new game or continue
+        - Pre game settings screen - for hosts only, settings that can't be changed once you host a room due to their nature
+        - Lobby screen - main screen of the mod, completely changed the design from the last one
+        - Connection screen - game screen where you go when connecting to a host
+    - Due to the nature of this feature, removed the following things from the game due to them being deprecated:
+        - IP and Port config in mod config
+        - Multiplayer panels
+        - IP reset button due to the host feature being separate from the join feature
+- New feature: Player skins - you can now change your appearance so that there is no mix up with multiple players of the same class
+    - The skins are divided into 3 categories
+        - Basic skins - simple recolors of characters that serve as basic differentiator
+        - Patreon Exclusives - skins that change more than just a color scheme, available to all patrons
+        - Achievement skins - skins that require you to do a certain thing to unlock them
+    - In this first Patreon version, all skins will be unlocked, but you won't be able to see yourself with a skin, only other players will be able to see you. This will be changed in the next update.
+- New feature: Due to the way the main menu is structured, first testing of custom characters has been implemented, with a few restrictions at this stage:
+    - Due to the way they are implemented, some characters will crash the game and will be completely unplayable, some will have missing animations but work, and some will work fully
+    - The game does not check if you have the same mods at this stage, so to test this out please load the same mods
+- Changed the maximum player count from 4 to 5
+- It is possible to now see who embarked and who is still in the lobby
+- Changed the icon of the mod in config
+- Temporarily removed the continue game feature due to some complications with the new UI
+
+Changes in v0.3.6A
+- Fixed an issue where a small percentage of players weren't able to play the mod at all
+- Changed it so that all monsters now spawn with their max HP instead of it being random
+
+Changes in v0.3.5A
+- Returned a feature missing in the last patch, monsters adding block to themselves now will sync
+- Fixed an issue where if a slime split, the resulting slimes would die
+- Fixed an issue where some unique powers would disappear with multiple people in the room
+    - This currently only applies to following powers:
+        - Invincible - Power that the heart has that limits the damage intake
+        - Time Warp - Power that limits the amount of cards played against the snail boss
+- Fixed an issue where the back attack power would glitch out if two people were turned differently
+- Fixed an issue where players who had any relics that postponed the end turn button or just lagged a bit behind had a chance to be hit with a different attack
+    - Example of this relic is Nilry's Codex
+- Fixed an issue where fighting darklings would result in a softlock for anyone who didn't deliver the killing blow
+- Removed the network reconnect command, to reconnect please save and quit to main menu and then join with continue
+- Fixed an issue where players dying wouldn't leave the server properly
+    - If the host dies, the server is closed. This is a bug and will be fixed in the future update
+
+Changes in v0.3.4A
+- New feature: Select map nodes with right click to select them for your teammates as well
+- New feature: Players are now visible on every map that has a typical combat layout (shops and boss treasure rooms)
+- New feature: Added 2 new buttons into the settings menu to save and reset the IP, the game will automatically load the last saved IP on startup
+- New feature: Added multiplayer runs saving
+    - The game saves data after entering each floor
+    - In a case of a desync or similar errors, you should restart the game before attempting to load a save
+    - When you start a new game, previous server data is wiped
+    - Hosts cannot continue as Clients, and vice versa
+    - New players cannot join a server that is on continue mode
+- New feature: Major damage animations are now synced, with player movements
+- Completely reworked the data sync system, it should reduce the amount of desyncs that occur
+- Brought back the singleplayer button with the following change:
+    - Multiplayer runs cannot be continued on singleplayer and vice versa
+- Disconnecting will now bring you to the main menu instead of keeping you in game, not working if the host disconnects
+- Fixed an issue where powers that reduced the enemy attack wouldn't do that if applied from another player
+- Fixed an issue where exiting the game as host would not close the sockets properly
+- Fixed an issue where having ascension mode turned on in base game would cause issues with the mod
+- Fixed an issue where players who left the room would still stay in the background for other players
+- Fixed an issue where some powers weren't applied
+- Fixed some issues where monster powers would be applied or ticked off at 2x rate
+- Fixed an issue where player models would be seen as black blobs if playing as the same character
+- Fixed an issue where players disconnecting in combat wouldn't mark them as missing for other players, locking the combat
+- Fixed an issue where intents sometimes wouldn't sync
+- Fixed an issue where intents would repeat itself constantly
+- Fixed an issue where the game would crash with a Bird opponent in Act 2
+- Fixed an issue where the game would sometimes crash if you broke an enemy shield
+
+Changes in v0.3.3A
+- Completely revamped the monster type sync system - monsters should now always be matching in color and type
+- Updated the mod for the newest Slay the Spire Version - 2.0 (2.2) Compatibility Mod is no longer required
+- Mod Settings now display $3 Patreon Subscriber names
+- The Multiplayer button will no longer display both the HOST and JOIN panel options. If your settings IP is the default one the game will show only the HOST option, and if your settings IP is different than default, the game will show only JOIN.
+- Updated description texts of both HOST and JOIN multiplayer panels to be more precise
+
+Changes in v0.3.2A
+- Key data is now synchronized. When a player collects a key, the key gets collected for everyone.
+- Further improved intent synchronization as now every time the monster changes their intent, it is synchronized
+- Reduced the sleep time on reconnecting from 3s to 1s
+- Fixed an issue where ending turn in rooms where fighting was caused by an event would crash the game - however players still aren't synced in those rooms for the time being
+- Fixed some minor game crashes
+
+Changes in v0.3.1A
+- Fixed an issue where ending turns would softlock the game if you played any cards afterwards
+- Ending turn now displays "Ended turn" text on the button
+- Added a new command to the BaseMod command system "network reconnect"
+- Disabled the option to play singleplayer mode, continue or abandon games with the mod on until it is stable
+- Fixed an issue where intents wouldn't display correctly
+
+Changes in v0.3.0A
+- Implemented first testings of intent synchronization. As this is the first development release of this feature, there will be some bugs. This first rollout focuses mainly on post combat enter sync - when one player is fighting a monster and the second player enters, they should now share the move that is being done
+
+Changes in v0.2.3A
+- Fixed an issue where players would be desynced in boss rooms
+- Implemented fixes towards the unpredictable StreamCorruptedException, it should happen less often/be fixed completely now
+- Boss Treasure Rooms will no longer sync as there's no combat in those
+
+Changes in v0.2.2A
+- Fixed an issue where taking damage in events was still crashing the game
+- Added extra logging functionality to Server and Client files
+- Fixed an issue where doing/taking damage, healing or applying powers after ending turn soft locked the game
+
+Changes in v0.2.1A
+- Fixed an issue where taking damage in events would crash the game
+- Added End Turn synchronization
+- Added Player Visibility synchronisation
+- Mod now synchronizes Max HP values
