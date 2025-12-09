@@ -5,6 +5,7 @@ import CoopBoardGame.actions.BGSpawnTwoGremlinsForGremlinLeaderAction;
 import CoopBoardGame.dungeons.BGExordium;
 import CoopBoardGame.monsters.AbstractBGMonster;
 import CoopBoardGame.monsters.BGDamageIcons;
+import CoopBoardGame.util.SpawnManager;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -80,9 +81,7 @@ public class BGGremlinLeader extends AbstractBGMonster implements BGDamageIcons 
     }
 
     public void usePreBattleAction() {
-        AbstractDungeon.actionManager.addToBottom(
-            (AbstractGameAction) new BGSpawnTwoGremlinsForGremlinLeaderAction(this)
-        );
+        SpawnManager.spawnIfNeeded(new BGSpawnTwoGremlinsForGremlinLeaderAction(this));
     }
 
     public void takeTurn() {

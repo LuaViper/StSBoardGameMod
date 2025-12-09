@@ -5,7 +5,9 @@
       "Bash(powershell -Command \"cd ''d:\\STS_BG_Mod\\StSCoopBoardGameCoopMod''; .\\mvnw.cmd test\")",
       "Bash(powershell -Command \"cd ''d:\\STS_BG_Mod\\StSBoardGameCoopMod''; .\\mvnw.cmd test -Dtest=BGStrike_RedTest\")",
       "Bash(find:*)",
-      "Bash(powershell -Command:*)"
+      "Bash(powershell -Command:*)",
+      "Bash(dir /s /b d:STS_BG_ModStSBoardGameCoopModModCopies)",
+      "Bash(findstr:*)"
     ],
     "deny": [],
     "ask": []

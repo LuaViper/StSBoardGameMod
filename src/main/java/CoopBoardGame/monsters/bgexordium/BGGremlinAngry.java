@@ -3,6 +3,7 @@ package CoopBoardGame.monsters.bgexordium;
 import CoopBoardGame.actions.BGSpawnTwoGremlinsAction;
 import CoopBoardGame.monsters.AbstractBGMonster;
 import CoopBoardGame.monsters.BGDamageIcons;
+import CoopBoardGame.util.SpawnManager;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
@@ -54,9 +55,7 @@ public class BGGremlinAngry extends AbstractBGMonster implements BGDamageIcons {
 
     public void usePreBattleAction() {
         if (this.leader) {
-            AbstractDungeon.actionManager.addToBottom(
-                (AbstractGameAction) new BGSpawnTwoGremlinsAction()
-            );
+            SpawnManager.spawnIfNeeded(new BGSpawnTwoGremlinsAction());
         }
         AbstractDungeon.actionManager.addToBottom(
             (AbstractGameAction) new ApplyPowerAction(

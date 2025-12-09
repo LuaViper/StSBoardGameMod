@@ -2,6 +2,7 @@ package CoopBoardGame.monsters.bgcity;
 
 import CoopBoardGame.monsters.AbstractBGMonster;
 import CoopBoardGame.monsters.BGDamageIcons;
+import CoopBoardGame.util.SpawnManager;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
