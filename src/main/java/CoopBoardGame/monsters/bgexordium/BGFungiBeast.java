@@ -33,6 +33,11 @@ public class BGFungiBeast extends AbstractBGMonster implements BGDamageIcons, Di
     public static final String[] DIALOG = monsterStrings.DIALOG;
     private int strAmount;
 
+    // Constructor for TogetherInSpire network sync - behavior is restored via extraData
+    public BGFungiBeast(float x, float y) {
+        this(x, y, "23", false); // Default behavior, will be overwritten by network sync
+    }
+
     public BGFungiBeast(float x, float y, String behavior, boolean a7summon) {
         super(NAME, "BGFungiBeast", 28, 0.0F, -16.0F, 260.0F, 170.0F, null, x, y);
         this.behavior = behavior;

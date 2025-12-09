@@ -45,6 +45,11 @@ public class BGJawWorm extends AbstractBGMonster implements BGDamageIcons, DieCo
     private int bellowStr;
     private int difficulty;
 
+    // Constructor for TogetherInSpire network sync - behavior is restored via extraData
+    public BGJawWorm(float x, float y) {
+        this(x, y, 0, "sda"); // Default behavior, will be overwritten by network sync
+    }
+
     public BGJawWorm(float x, float y, int difficulty, String behavior) {
         super(NAME, "BGJawWorm", 44, 0.0F, -25.0F, 260.0F, 170.0F, null, x, y);
         this.difficulty = difficulty;

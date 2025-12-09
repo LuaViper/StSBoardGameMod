@@ -36,6 +36,11 @@ public class BGSentry extends AbstractBGMonster implements BGDamageIcons, DieCon
     public static final String[] DIALOG = monsterStrings.DIALOG;
     public static final String ENC_NAME = "Sentries";
 
+    // Constructor for TogetherInSpire network sync - behavior is restored via extraData
+    public BGSentry(float x, float y) {
+        this(x, y, "3D"); // Default behavior, will be overwritten by network sync
+    }
+
     public BGSentry(float x, float y, String behavior) {
         super(NAME, "BGSentry", 42, 0.0F, -5.0F, 180.0F, 310.0F, null, x, y);
         this.behavior = behavior;

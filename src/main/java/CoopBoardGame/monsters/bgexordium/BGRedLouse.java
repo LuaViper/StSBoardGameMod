@@ -35,6 +35,11 @@ public class BGRedLouse extends AbstractBGMonster implements BGDamageIcons, DieC
     private boolean isOpen = true;
     private boolean hard;
 
+    // Constructor for TogetherInSpire network sync - behavior is restored via extraData
+    public BGRedLouse(float x, float y) {
+        this(x, y, false, "1W2"); // Default behavior, will be overwritten by network sync
+    }
+
     public BGRedLouse(float x, float y, boolean hard, String behavior) {
         super(NAME, "BGRedLouse", 15, 0.0F, -5.0F, 180.0F, 140.0F, null, x, y);
         this.hard = hard;

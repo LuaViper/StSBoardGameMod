@@ -32,6 +32,11 @@ public class BGRepulsor extends AbstractBGMonster implements DieControlledMoves,
     public static final String ENCOUNTER_NAME = "Ancient Shapes";
     private int dazeAmt;
 
+    // Constructor for TogetherInSpire network sync - behavior is restored via extraData
+    public BGRepulsor(float x, float y) {
+        this(x, y, "4D"); // Default behavior, will be overwritten by network sync
+    }
+
     public BGRepulsor(float x, float y, String behavior) {
         super(NAME, "BGRepulsor", 35, -8.0F, -10.0F, 150.0F, 150.0F, null, x, y + 10.0F);
         loadAnimation(

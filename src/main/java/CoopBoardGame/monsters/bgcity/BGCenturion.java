@@ -37,6 +37,11 @@ public class BGCenturion extends AbstractBGMonster implements DieControlledMoves
     private int furyStr;
     private int blockAmount;
 
+    // Constructor for TogetherInSpire network sync - behavior is restored via extraData
+    public BGCenturion(float x, float y) {
+        this(x, y, "B3"); // Default behavior, will be overwritten by network sync
+    }
+
     public BGCenturion(float x, float y, String behavior) {
         super(NAME, "BGCenturion", 80, -14.0F, -20.0F, 250.0F, 330.0F, null, x, y);
         this.behavior = behavior;

@@ -38,6 +38,11 @@ public class BGOrbWalker extends AbstractBGMonster implements DieControlledMoves
     public static final int A_2_LASER_DMG = 11;
     public static final int A_2_CLAW_DMG = 16;
 
+    // Constructor for TogetherInSpire network sync - behavior is restored via extraData
+    public BGOrbWalker(float x, float y) {
+        this(x, y, "L3"); // Default behavior, will be overwritten by network sync
+    }
+
     public BGOrbWalker(float x, float y, String behavior) {
         super(
             NAME,

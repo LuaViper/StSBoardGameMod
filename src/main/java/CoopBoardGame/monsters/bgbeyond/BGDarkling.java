@@ -48,6 +48,11 @@ public class BGDarkling extends AbstractBGMonster implements DieControlledMoves,
 
     public int turnCount = 0;
 
+    // Constructor for TogetherInSpire network sync - behavior is restored via extraData
+    public BGDarkling(float x, float y) {
+        this(x, y, "N2"); // Default behavior, will be overwritten by network sync
+    }
+
     public BGDarkling(float x, float y, String behavior) {
         super(NAME, "BGDarkling", 56, 0.0F, -20.0F, 260.0F, 200.0F, null, x, y + 20.0F);
         loadAnimation(
