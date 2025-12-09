@@ -7,11 +7,8 @@ import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.relics.AbstractRelic;
-import com.megacrit.cardcrawl.ui.panels.TopPanel;
-import basemod.ReflectionHacks;
 
 import java.util.ArrayList;
 
@@ -54,7 +51,6 @@ public class RelicDragManager {
     public static boolean hoveringRightArrow = false;
     public static float arrowHoverTime = 0f;
     public static final float ARROW_SCROLL_DELAY = 0.3f; // Seconds before scroll triggers
-    private static boolean arrowsExist = false; // Cached check for arrow existence
 
     // ===== Public API =====
 
@@ -170,9 +166,6 @@ public class RelicDragManager {
 
         // Build index cache to avoid repeated indexOf() calls during dragging
         buildRelicIndexCache();
-
-        // Check if arrows exist (only once at start of drag)
-        arrowsExist = (size > 12); // Approximate threshold for pagination
 
         clickStarted = false;
         pendingDragRelic = null;
@@ -346,44 +339,5 @@ public class RelicDragManager {
                 Settings.scale, Settings.scale,
                 0f, 0, 0, 128, 128, false, false);
         sb.setColor(Color.WHITE);
-    }
-
-    /**
-     * Checks if the dragged relic is hovering over scroll arrows.
-     * Skip this entirely if there aren't enough relics for pagination.
-     */
-    public static void checkArrowHover(TopPanel topPanel) {
-        // Skip entirely if arrows likely don't exist (performance optimization)
-        // This prevents reflection errors and improves performance when not needed
-        if (!arrowsExist) {
-            return;
-        }
-
-        // For now, disable arrow scrolling feature to avoid reflection errors
-        // TODO: Find correct field names or alternative approach
-        // The drag-and-drop works fine without this feature
-    }
-
-    /**
-     * Scrolls the relic bar left one page.
-     */
-    private static void scrollRelicsLeft(TopPanel topPanel) {
-        Integer currentPage = ReflectionHacks.getPrivate(topPanel, TopPanel.class, "relicPage");
-        if (currentPage != null && currentPage > 0) {
-            ReflectionHacks.setPrivate(topPanel, TopPanel.class, "relicPage", currentPage - 1);
-            CardCrawlGame.sound.play("UI_CLICK_1");
-        }
-    }
-
-    /**
-     * Scrolls the relic bar right one page.
-     */
-    private static void scrollRelicsRight(TopPanel topPanel) {
-        Integer currentPage = ReflectionHacks.getPrivate(topPanel, TopPanel.class, "relicPage");
-        Integer maxPage = ReflectionHacks.getPrivate(topPanel, TopPanel.class, "maxRelicPage");
-        if (currentPage != null && maxPage != null && currentPage < maxPage) {
-            ReflectionHacks.setPrivate(topPanel, TopPanel.class, "relicPage", currentPage + 1);
-            CardCrawlGame.sound.play("UI_CLICK_1");
-        }
     }
 }

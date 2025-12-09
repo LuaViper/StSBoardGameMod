@@ -70,9 +70,6 @@ public class RelicDragPatches {
             // Update drag position and hover index
             RelicDragManager.updateDrag();
 
-            // Check for arrow hover (scrolling while dragging)
-            RelicDragManager.checkArrowHover(__instance);
-
             // Check for drop (mouse released)
             if (!Gdx.input.isButtonPressed(Input.Buttons.LEFT)) {
                 RelicDragManager.endDrag();
