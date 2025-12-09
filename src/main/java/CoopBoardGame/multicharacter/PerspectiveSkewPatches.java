@@ -139,7 +139,7 @@ public class PerspectiveSkewPatches {
         float roomDrawX = GridTile.Field.originalDrawX.get(c);
         float roomDrawY = GridTile.Field.originalDrawY.get(c);
         if (CardCrawlGame.chosenCharacter != MultiCharacter.Enums.BG_MULTICHARACTER) return;
-        if (AbstractDungeon.getCurrRoom() == null) return;
+        if (AbstractDungeon.currMapNode == null || AbstractDungeon.getCurrRoom() == null) return;
         if (MultiCharacter.getSubcharacters() == null) return;
         int maxRows = MultiCharacter.getSubcharacters().size();
         if (maxRows <= 1) return;
