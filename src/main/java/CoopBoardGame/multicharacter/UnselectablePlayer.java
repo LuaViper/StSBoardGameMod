@@ -9,6 +9,11 @@ import javassist.expr.ExprEditor;
 import javassist.expr.MethodCall;
 
 //TODO: when a player profile is erased, unselectableplayer pref files are improperly staying behind
+/**
+ * Marker interface for characters that should NOT appear in the character select screen.
+ * Currently used to hide MultiCharacter from selection (the multi-character mode is accessed
+ * through individual BG characters in coop multiplayer mode).
+ */
 public interface UnselectablePlayer {
     @SpirePatch2(clz = BaseMod.class, method = "generateCharacterOptions")
     public static class CharacterOptionsPatch {
@@ -21,6 +26,7 @@ public interface UnselectablePlayer {
                         m.getClassName().equals(ArrayList.class.getName()) &&
                         m.getMethodName().equals("add")
                     ) {
+                        // Hide characters that implement UnselectablePlayer (currently just MultiCharacter)
                         m.replace(
                             "{ if(!(character instanceof " +
                                 UnselectablePlayer.class.getName() +
@@ -39,16 +45,14 @@ public interface UnselectablePlayer {
         public static ExprEditor Foo() {
             return new ExprEditor() {
                 public void edit(MethodCall m) throws CannotCompileException {
-                    //                    if (m.getClassName().equals(ArrayList.class.getName()) && m.getMethodName().equals("add")) {
-                    //                        m.replace("{ if(!(character instanceof "+UnselectablePlayer.class.getName()+")){ $_ = $proceed($$); } }");
-                    //                    }
                     if (
                         m.getClassName().equals(ArrayList.class.getName()) &&
                         m.getMethodName().equals("add")
                     ) {
+                        // Also hide UnselectablePlayer characters from custom game modes
                         m.replace(
                             "{ if(!(character instanceof " +
-                                MultiCharacter.class.getName() +
+                                UnselectablePlayer.class.getName() +
                                 ")){ $_ = $proceed($$); } }"
                         );
                     }

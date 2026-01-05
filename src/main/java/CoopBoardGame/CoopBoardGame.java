@@ -925,9 +925,11 @@ public class CoopBoardGame
             )
         );
 
-        addMonster("CoopBoardGame:Automaton", () -> new MonsterGroup(new AbstractMonster[] { new BGBronzeAutomaton() }));
-        addMonster("CoopBoardGame:Collector", () -> new MonsterGroup(new AbstractMonster[] { new BGTheCollector() }));
-        addMonster("CoopBoardGame:Champ", () -> new MonsterGroup(new AbstractMonster[] { new BGChamp() }));
+        addMonster("CoopBoardGame:Automaton", () -> new BGBronzeAutomaton());
+        addMonster("CoopBoardGame:Collector", () ->
+            new MonsterGroup(new AbstractMonster[] { new BGTheCollector() })
+        );
+        addMonster("CoopBoardGame:Champ", () -> new BGChamp());
 
         addMonster("CoopBoardGame:Jaw Worms (Hard)", () ->
             new MonsterGroup(

@@ -9,6 +9,7 @@ import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.*;
 import CoopBoardGame.dungeons.AbstractBGDungeon;
 import CoopBoardGame.multicharacter.MultiCharacter;
 import CoopBoardGame.multicharacter.MultiCharacterSelectScreen;
+import CoopBoardGame.multicharacter.MultiplayerCharacterAssignment;
 import basemod.BaseMod;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
@@ -123,9 +124,23 @@ public class BGNeowEvent extends AbstractEvent {
         } else if (!isDone) {
             //normally, CoopBoardGame starts HERE
 
+            // MultiCharacter is now hidden from normal character select and only used for multiplayer mode.
+            // Individual BG characters (BGIronclad, BGSilent, etc.) are directly selectable and don't need
+            // the MultiCharacterSelectScreen - they play in single-character board game mode.
             if (AbstractDungeon.player instanceof MultiCharacter) {
-                BaseMod.openCustomScreen(MultiCharacterSelectScreen.Enum.MULTI_CHARACTER_SELECT);
+                // In TogetherInSpire multiplayer mode, automatically assign players to rows
+                // based on their chosen character classes instead of showing the selection screen
+                if (MultiplayerCharacterAssignment.shouldAutoAssign()) {
+                    logger.info("Multiplayer mode detected - auto-assigning characters");
+                    MultiplayerCharacterAssignment.performAutoAssignment();
+                } else {
+                    // If somehow MultiCharacter was selected outside of multiplayer mode,
+                    // show the manual character selection screen (legacy behavior)
+                    BaseMod.openCustomScreen(MultiCharacterSelectScreen.Enum.MULTI_CHARACTER_SELECT);
+                }
             }
+            // For individual BG characters (BGIronclad, BGSilent, BGDefect, BGWatcher),
+            // no additional setup is needed - they use board game rules by default.
 
             this.roomEventText.addDialogOption(EXTRA[0]);
             blessing(true);

@@ -7,7 +7,11 @@
       "Bash(find:*)",
       "Bash(powershell -Command:*)",
       "Bash(dir /s /b d:STS_BG_ModStSBoardGameCoopModModCopies)",
-      "Bash(findstr:*)"
+      "Bash(findstr:*)",
+      "Bash(cat:*)",
+      "Bash(python3:*)",
+      "Bash(./mvnw.cmd compile:*)",
+      "Bash(.mvnw.cmd compile:*)"
     ],
     "deny": [],
     "ask": []
