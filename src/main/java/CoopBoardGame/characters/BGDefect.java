@@ -10,7 +10,6 @@ import CoopBoardGame.cards.BGBlue.BGDefend_Blue;
 import CoopBoardGame.cards.BGBlue.BGDualcast;
 import CoopBoardGame.cards.BGBlue.BGStrike_Blue;
 import CoopBoardGame.cards.BGBlue.BGZap;
-import CoopBoardGame.multicharacter.UnselectablePlayer;
 import CoopBoardGame.relics.BGCrackedCore;
 import CoopBoardGame.relics.BGTheDieRelic;
 import com.badlogic.gdx.graphics.Color;
@@ -48,7 +47,7 @@ import org.apache.logging.log4j.Logger;
 //and https://github.com/daviscook477/BaseMod/wiki/Migrating-to-5.0
 //All text (starting description and loadout, anything labeled TEXT[]) can be found in DefaultMod-character-Strings.json in the resources
 
-public class BGDefect extends AbstractBGPlayer implements UnselectablePlayer {
+public class BGDefect extends AbstractBGPlayer {
 
     public static final Logger logger = LogManager.getLogger(CoopBoardGame.class.getName());
 

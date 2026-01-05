@@ -45,7 +45,7 @@ import CoopBoardGame.multicharacter.grid.GridBackground;
 
 //REMINDER: players act from bottom lane to top lane, but monsters act from top lane to bottom lane
 
-public class MultiCharacter extends AbstractBGPlayer implements UnselectablePlayer {
+public class MultiCharacter extends AbstractBGPlayer {
 
     //public class MultiCharacter extends CustomPlayer {
     public static final Logger logger = LogManager.getLogger(MultiCharacter.class.getName());

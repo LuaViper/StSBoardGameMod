@@ -7,7 +7,6 @@ import CoopBoardGame.cards.BGGreen.BGDefend_Green;
 import CoopBoardGame.cards.BGGreen.BGNeutralize;
 import CoopBoardGame.cards.BGGreen.BGStrike_Green;
 import CoopBoardGame.cards.BGGreen.BGSurvivor;
-import CoopBoardGame.multicharacter.UnselectablePlayer;
 import CoopBoardGame.relics.BGBurningBlood;
 import CoopBoardGame.relics.BGShivs;
 import CoopBoardGame.relics.BGSnakeRing;
@@ -47,7 +46,7 @@ import org.apache.logging.log4j.Logger;
 //and https://github.com/daviscook477/BaseMod/wiki/Migrating-to-5.0
 //All text (starting description and loadout, anything labeled TEXT[]) can be found in DefaultMod-character-Strings.json in the resources
 
-public class BGSilent extends AbstractBGPlayer implements UnselectablePlayer {
+public class BGSilent extends AbstractBGPlayer {
 
     public static final Logger logger = LogManager.getLogger(CoopBoardGame.class.getName());
 

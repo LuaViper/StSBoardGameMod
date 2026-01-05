@@ -9,7 +9,6 @@ import CoopBoardGame.cards.BGPurple.BGDefend_W;
 import CoopBoardGame.cards.BGPurple.BGEruption;
 import CoopBoardGame.cards.BGPurple.BGStrike_W;
 import CoopBoardGame.cards.BGPurple.BGVigilance;
-import CoopBoardGame.multicharacter.UnselectablePlayer;
 import CoopBoardGame.relics.BGCrackedCore;
 import CoopBoardGame.relics.BGMiracles;
 import CoopBoardGame.relics.BGTheDieRelic;
@@ -48,7 +47,7 @@ import org.apache.logging.log4j.Logger;
 //and https://github.com/daviscook477/BaseMod/wiki/Migrating-to-5.0
 //All text (starting description and loadout, anything labeled TEXT[]) can be found in DefaultMod-character-Strings.json in the resources
 
-public class BGWatcher extends AbstractBGPlayer implements UnselectablePlayer {
+public class BGWatcher extends AbstractBGPlayer {
 
     public static final Logger logger = LogManager.getLogger(CoopBoardGame.class.getName());
 
