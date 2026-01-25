@@ -37,7 +37,6 @@ import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import java.util.ArrayList;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
-import CoopBoardGame.multicharacter.grid.GridBackground;
 
 //TODO: oops we forgot Watcher's add-miracle-to-hand-at-start-of-combat relic
 
@@ -443,8 +442,8 @@ public class MultiCharacter extends AbstractBGPlayer {
 
     public void renderHand(SpriteBatch sb) {
         if (handLayoutHelper.currentHand >= 0) {
-            // In grid mode with multiple characters, only render active character's hand
-            if (GridBackground.isGridViewActive() && subcharacters.size() > 1) {
+            // With multiple characters, only render the active character's hand
+            if (subcharacters.size() > 1) {
                 int activeRow = combatRowManager.getActiveCharacterIndex();
                 if (activeRow >= 0 && activeRow < subcharacters.size()) {
                     AbstractPlayer activeChar = subcharacters.get(activeRow);
@@ -453,7 +452,7 @@ public class MultiCharacter extends AbstractBGPlayer {
                     ContextPatches.popPlayerContext();
                 }
             } else {
-                // Non-grid mode or single character: render all hands with stacking
+                // Single character: render their hand normally
                 for (
                     int i = handLayoutHelper.currentHand + subcharacters.size() - 1;
                     i >= handLayoutHelper.currentHand;

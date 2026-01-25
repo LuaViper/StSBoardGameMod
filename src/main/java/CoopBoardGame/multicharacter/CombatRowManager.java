@@ -4,7 +4,6 @@ import CoopBoardGame.characters.BGDefect;
 import CoopBoardGame.characters.BGIronclad;
 import CoopBoardGame.characters.BGSilent;
 import CoopBoardGame.characters.BGWatcher;
-import CoopBoardGame.multicharacter.grid.GridBackground;
 import CoopBoardGame.multicharacter.patches.ContextPatches;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -206,7 +205,6 @@ public class CombatRowManager {
      */
     public void update() {
         if (!inCombat) return;
-        if (!GridBackground.isGridViewActive()) return;
         if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.NONE) return;
         if (AbstractDungeon.isScreenUp) return;
         if (AbstractDungeon.getCurrRoom() == null) return;
@@ -257,7 +255,6 @@ public class CombatRowManager {
      */
     public void renderRowBackgrounds(SpriteBatch sb) {
         if (!inCombat) return;
-        if (!GridBackground.isGridViewActive()) return;
 
         ArrayList<AbstractPlayer> subchars = MultiCharacter.getSubcharacters();
         if (subchars.size() <= 1) return;

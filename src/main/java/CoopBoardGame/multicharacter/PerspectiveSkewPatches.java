@@ -147,13 +147,22 @@ public class PerspectiveSkewPatches {
         int whichRow = MultiCreature.Field.currentRow.get(c);
 
         // New row-based positioning system
-        // rowCenterY is in unscaled pixels, we need to apply Settings.scale for actual screen position
-        float rowCenterY = CombatRowManager.getRowCenterY(whichRow, maxRows);
+        float rowHeight = CombatRowManager.getRowHeight(maxRows);
+
+        // Creatures are drawn from their feet (bottom), not center.
+        // Offset downward from row center to visually center the sprite in the row.
+        // Player offset: position at bottom 35% of row (feet near row bottom, sprite fills upward)
+        // Enemy offset: position at bottom 30% of row (slightly higher than players since enemies vary in size)
+        float playerYOffset = rowHeight * 0.35f;  // Players positioned at 35% from bottom of row
+        float enemyYOffset = rowHeight * 0.30f;   // Enemies positioned at 30% from bottom of row
 
         // Position based on whether this is a player or monster
         if (c instanceof AbstractPlayer) {
             // Players on the left side of the screen
             roomDrawX = Settings.WIDTH * CombatRowManager.PLAYER_X_FRACTION;
+            // Position Y at row bottom + offset (not row center)
+            float rowBottomY = CombatRowManager.getRowBottomY(whichRow, maxRows);
+            roomDrawY = (rowBottomY + playerYOffset) * Settings.scale;
         } else if (c instanceof AbstractMonster) {
             // Enemies on the right side - distribute them horizontally
             // Get the monster's index within its row to spread them out
@@ -161,30 +170,27 @@ public class PerspectiveSkewPatches {
             float xFraction = CombatRowManager.ENEMY_START_X_FRACTION +
                 (monsterIndexInRow * CombatRowManager.ENEMY_SPACING_FRACTION);
             roomDrawX = Settings.WIDTH * xFraction;
+            // Position Y at row bottom + offset (not row center)
+            float rowBottomY = CombatRowManager.getRowBottomY(whichRow, maxRows);
+            roomDrawY = (rowBottomY + enemyYOffset) * Settings.scale;
         }
 
-        // Set Y position to row center (apply scale since rowCenterY is in unscaled pixels)
-        roomDrawY = rowCenterY * Settings.scale;
-
+        // Apply row-based position immediately (no lerp needed for row positioning)
         c.drawX = roomDrawX;
         c.drawY = roomDrawY;
 
-        float gridDrawX = roomDrawX,
-            gridDrawY = roomDrawY;
+        // Grid tile lerp is separate from row positioning - only affects tile snap behavior
         GridTile tile = GridTile.Field.gridTile.get(c);
-
         float tilelerptarget = GridBackground.isGridViewActive() ? 1.0f : 0.0f;
         GridTile.Field.tileLerpTarget.set(c, tilelerptarget);
 
-        if (tile != null) {
-            gridDrawX = (tile.getXPosition() + GridTile.TILE_WIDTH / 2f) * Settings.scale;
-            gridDrawY = (tile.getYPosition()) * Settings.scale;
-            if (c instanceof AbstractMonster) {
-                //TODO: only move monster up if monster is drawn too low (but how do we detect that??)
-                //gridDrawY+=25*Settings.scale;
-            }
-            c.drawX = roomDrawX + (gridDrawX - roomDrawX) * GridTile.Field.tileLerpAmount.get(c);
-            c.drawY = roomDrawY + (gridDrawY - roomDrawY) * GridTile.Field.tileLerpAmount.get(c);
+        // If there's a tile and grid view is active, lerp towards tile position
+        if (tile != null && GridBackground.isGridViewActive()) {
+            float gridDrawX = (tile.getXPosition() + GridTile.TILE_WIDTH / 2f) * Settings.scale;
+            float gridDrawY = (tile.getYPosition()) * Settings.scale;
+            float lerpAmount = GridTile.Field.tileLerpAmount.get(c);
+            c.drawX = roomDrawX + (gridDrawX - roomDrawX) * lerpAmount;
+            c.drawY = roomDrawY + (gridDrawY - roomDrawY) * lerpAmount;
         }
 
         // Apply scaling based on number of rows
