@@ -46,6 +46,11 @@ public class CombatRowManager {
     public static final float ENEMY_START_X_FRACTION = 0.55f;  // First enemy at 55% from left
     public static final float ENEMY_SPACING_FRACTION = 0.15f;  // Space between enemies
 
+    // Row border constants
+    public static final float ROW_BORDER_THICKNESS = 4f;  // Border thickness in unscaled pixels
+    public static final float ROW_BORDER_ALPHA = 0.8f;    // Border alpha (more visible than fill)
+    public static final float ROW_PADDING = 10f;          // Padding inside each row
+
 
     // Active character tracking
     private int activeCharacterIndex = 0;
@@ -212,16 +217,26 @@ public class CombatRowManager {
 
         updateRowHitboxPositions();
 
-        // Update hitboxes and check for clicks
-        for (int i = 0; i < subchars.size(); i++) {
-            Hitbox hb = rowHitboxes.get(i);
-            hb.update();
-
-            if (hb.hovered && InputHelper.justClickedLeft) {
-                if (i != activeCharacterIndex) {
-                    setActiveCharacter(i);
-                    CardCrawlGame.sound.playA("UI_CLICK_1", -0.4f);
+        // Check for clicks on player character hitboxes (primary method)
+        if (InputHelper.justClickedLeft && !shouldBlockRowSwitch()) {
+            for (int i = 0; i < subchars.size(); i++) {
+                AbstractPlayer player = subchars.get(i);
+                // Check if the player's hitbox was clicked
+                if (player.hb != null && player.hb.hovered) {
+                    if (i != activeCharacterIndex) {
+                        setActiveCharacter(i);
+                        CardCrawlGame.sound.playA("UI_CLICK_1", -0.4f);
+                        InputHelper.justClickedLeft = false; // Consume the click
+                    }
+                    break;
                 }
+            }
+        }
+
+        // Update player hitboxes
+        for (AbstractPlayer player : subchars) {
+            if (player.hb != null) {
+                player.hb.update();
             }
         }
 
@@ -256,27 +271,54 @@ public class CombatRowManager {
 
             // Adjust brightness/alpha for active vs inactive rows
             Color renderColor = rowColor.cpy();
+            Color borderColor = rowColor.cpy();
             if (i == activeCharacterIndex) {
                 renderColor.r *= ACTIVE_ROW_BRIGHTNESS;
                 renderColor.g *= ACTIVE_ROW_BRIGHTNESS;
                 renderColor.b *= ACTIVE_ROW_BRIGHTNESS;
                 renderColor.a = ACTIVE_ROW_ALPHA;
+                borderColor.r = Math.min(1f, borderColor.r * 1.5f);
+                borderColor.g = Math.min(1f, borderColor.g * 1.5f);
+                borderColor.b = Math.min(1f, borderColor.b * 1.5f);
+                borderColor.a = ROW_BORDER_ALPHA;
             } else {
                 renderColor.a = INACTIVE_ROW_ALPHA;
+                borderColor.a = ROW_BORDER_ALPHA * 0.6f;
             }
-
-            sb.setColor(renderColor);
 
             float rowY = getRowBottomY(i, numRows) * Settings.scale;
             float scaledRowHeight = rowHeight * Settings.scale;
+            float scaledBorderThickness = ROW_BORDER_THICKNESS * Settings.scale;
 
-            // Draw full-width row background
+            // Draw row background fill
+            sb.setColor(renderColor);
             sb.draw(
                 ImageMaster.WHITE_SQUARE_IMG,
                 0,
                 rowY,
                 Settings.WIDTH,
                 scaledRowHeight
+            );
+
+            // Draw row border (top and bottom lines)
+            sb.setColor(borderColor);
+
+            // Bottom border
+            sb.draw(
+                ImageMaster.WHITE_SQUARE_IMG,
+                0,
+                rowY,
+                Settings.WIDTH,
+                scaledBorderThickness
+            );
+
+            // Top border
+            sb.draw(
+                ImageMaster.WHITE_SQUARE_IMG,
+                0,
+                rowY + scaledRowHeight - scaledBorderThickness,
+                Settings.WIDTH,
+                scaledBorderThickness
             );
         }
 

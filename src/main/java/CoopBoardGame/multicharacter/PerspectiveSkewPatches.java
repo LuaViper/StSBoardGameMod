@@ -147,23 +147,24 @@ public class PerspectiveSkewPatches {
         int whichRow = MultiCreature.Field.currentRow.get(c);
 
         // New row-based positioning system
+        // rowCenterY is in unscaled pixels, we need to apply Settings.scale for actual screen position
         float rowCenterY = CombatRowManager.getRowCenterY(whichRow, maxRows);
 
         // Position based on whether this is a player or monster
         if (c instanceof AbstractPlayer) {
             // Players on the left side of the screen
-            roomDrawX = Settings.WIDTH * CombatRowManager.PLAYER_X_FRACTION / Settings.scale;
+            roomDrawX = Settings.WIDTH * CombatRowManager.PLAYER_X_FRACTION;
         } else if (c instanceof AbstractMonster) {
             // Enemies on the right side - distribute them horizontally
             // Get the monster's index within its row to spread them out
             int monsterIndexInRow = getMonsterIndexInRow((AbstractMonster) c, whichRow);
             float xFraction = CombatRowManager.ENEMY_START_X_FRACTION +
                 (monsterIndexInRow * CombatRowManager.ENEMY_SPACING_FRACTION);
-            roomDrawX = Settings.WIDTH * xFraction / Settings.scale;
+            roomDrawX = Settings.WIDTH * xFraction;
         }
 
-        // Set Y position to row center (adjusted for character anchor point)
-        roomDrawY = rowCenterY;
+        // Set Y position to row center (apply scale since rowCenterY is in unscaled pixels)
+        roomDrawY = rowCenterY * Settings.scale;
 
         c.drawX = roomDrawX;
         c.drawY = roomDrawY;
