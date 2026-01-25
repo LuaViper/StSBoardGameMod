@@ -53,10 +53,9 @@ public class VotingNetworkHelper {
             p2pManagerClass = Class.forName("spireTogether.network.P2P.P2PManager");
             integrationClass = Class.forName("spireTogether.network.Integration");
 
-            // Find NetworkMessage constructor
-            // NetworkMessage(String request, Object object, Integer senderID, Integer targetID)
+            // NetworkMessage constructor: (String request, Object object, Integer senderID)
             networkMessageConstructor = networkMessageClass.getConstructor(
-                String.class, Object.class, Integer.class, Integer.class
+                String.class, Object.class, Integer.class
             );
 
             // Find P2PManager.SendData method
@@ -169,14 +168,10 @@ public class VotingNetworkHelper {
      */
     private static void sendMessage(String messageType, Object payload) throws Exception {
         // Get local player ID
-        int senderId = TogetherInSpireHelper.getLocalPlayerId();
+        Integer senderId = TogetherInSpireHelper.getLocalPlayerId();
 
-        // Create NetworkMessage
-        // NetworkMessage(request, object, senderID, targetID)
-        // targetID = null means broadcast to all
-        Object message = networkMessageConstructor.newInstance(
-            messageType, payload, senderId, null
-        );
+        // Create NetworkMessage(String request, Object object, Integer senderID)
+        Object message = networkMessageConstructor.newInstance(messageType, payload, senderId);
 
         // Send via P2PManager.SendData(message)
         sendDataMethod.invoke(null, message);
