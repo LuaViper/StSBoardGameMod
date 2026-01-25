@@ -244,4 +244,129 @@ public class TogetherInSpireHelper {
 
         return bgPlayerCount;
     }
+
+    /**
+     * Gets the game seed from TogetherInSpire's P2PClientData.
+     * This seed is shared across all players for deterministic behavior.
+     *
+     * @return the game seed, or null if not available
+     */
+    public static Long getGameSeed() {
+        if (!isTogetherInSpireLoaded()) {
+            return null;
+        }
+
+        try {
+            // Get P2PManager.data (P2PClientData)
+            java.lang.reflect.Field dataField = p2pManagerClass.getDeclaredField("data");
+            dataField.setAccessible(true);
+            Object clientData = dataField.get(null);
+
+            if (clientData != null) {
+                // Get P2PClientData.gameSeed
+                Class<?> clientDataClass = Class.forName("spireTogether.network.P2P.P2PClientData");
+                java.lang.reflect.Field gameSeedField = clientDataClass.getDeclaredField("gameSeed");
+                gameSeedField.setAccessible(true);
+                Object gameSeed = gameSeedField.get(clientData);
+
+                if (gameSeed instanceof Long) {
+                    return (Long) gameSeed;
+                }
+            }
+        } catch (Exception e) {
+            logger.warn("Failed to get game seed: " + e.getMessage());
+        }
+
+        return null;
+    }
+
+    /**
+     * Gets the username for a specific player ID.
+     *
+     * @param playerId the player ID to look up
+     * @return the player's username, or "Player " + playerId if not found
+     */
+    public static String getPlayerUsername(int playerId) {
+        if (!isTogetherInSpireLoaded()) {
+            return "Player " + playerId;
+        }
+
+        try {
+            java.lang.reflect.Field playersField = p2pManagerClass.getDeclaredField("players");
+            playersField.setAccessible(true);
+            Object players = playersField.get(null);
+
+            if (players instanceof List) {
+                List<?> playerList = (List<?>) players;
+
+                for (Object p2pPlayer : playerList) {
+                    if (p2pPlayer != null) {
+                        // Get player ID
+                        java.lang.reflect.Field idField = p2pPlayerClass.getDeclaredField("id");
+                        idField.setAccessible(true);
+                        Object id = idField.get(p2pPlayer);
+
+                        if (id instanceof Integer && (Integer) id == playerId) {
+                            // Get username
+                            java.lang.reflect.Field usernameField = p2pPlayerClass.getDeclaredField("username");
+                            usernameField.setAccessible(true);
+                            Object username = usernameField.get(p2pPlayer);
+
+                            if (username instanceof String) {
+                                return (String) username;
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            logger.warn("Failed to get player username: " + e.getMessage());
+        }
+
+        return "Player " + playerId;
+    }
+
+    /**
+     * Gets all player IDs currently in the session.
+     *
+     * @return list of player IDs
+     */
+    public static List<Integer> getAllPlayerIds() {
+        List<Integer> result = new ArrayList<>();
+
+        if (!isTogetherInSpireLoaded()) {
+            result.add(0);
+            return result;
+        }
+
+        try {
+            java.lang.reflect.Field playersField = p2pManagerClass.getDeclaredField("players");
+            playersField.setAccessible(true);
+            Object players = playersField.get(null);
+
+            if (players instanceof List) {
+                List<?> playerList = (List<?>) players;
+
+                for (Object p2pPlayer : playerList) {
+                    if (p2pPlayer != null) {
+                        java.lang.reflect.Field idField = p2pPlayerClass.getDeclaredField("id");
+                        idField.setAccessible(true);
+                        Object id = idField.get(p2pPlayer);
+
+                        if (id instanceof Integer) {
+                            result.add((Integer) id);
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            logger.warn("Failed to get player IDs: " + e.getMessage());
+        }
+
+        if (result.isEmpty()) {
+            result.add(0);
+        }
+
+        return result;
+    }
 }

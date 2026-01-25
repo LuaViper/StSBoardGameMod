@@ -11,7 +11,11 @@
       "Bash(cat:*)",
       "Bash(python3:*)",
       "Bash(./mvnw.cmd compile:*)",
-      "Bash(.mvnw.cmd compile:*)"
+      "Bash(.mvnw.cmd compile:*)",
+      "Bash(javap:*)",
+      "Bash(mvnw.cmd compile:*)",
+      "Bash(cmd //c mvnw.cmd:*)",
+      "Bash(d:/STS_BG_Mod/StSBoardGameCoopMod/mvnw.cmd compile:*)"
     ],
     "deny": [],
     "ask": []
