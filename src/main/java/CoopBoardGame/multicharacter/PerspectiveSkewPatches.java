@@ -4,6 +4,7 @@ import CoopBoardGame.characters.BGWatcher;
 import CoopBoardGame.multicharacter.grid.GridBackground;
 import CoopBoardGame.multicharacter.grid.GridTile;
 import CoopBoardGame.multicharacter.CombatRowManager;
+import CoopBoardGame.util.TogetherInSpireHelper;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.esotericsoftware.spine.Bone;
@@ -139,10 +140,22 @@ public class PerspectiveSkewPatches {
     public static void beforeRenderingCreature(AbstractCreature c) {
         float roomDrawX = GridTile.Field.originalDrawX.get(c);
         float roomDrawY = GridTile.Field.originalDrawY.get(c);
-        if (CardCrawlGame.chosenCharacter != MultiCharacter.Enums.BG_MULTICHARACTER) return;
         if (AbstractDungeon.currMapNode == null || AbstractDungeon.getCurrRoom() == null) return;
-        if (MultiCharacter.getSubcharacters() == null) return;
-        int maxRows = MultiCharacter.getSubcharacters().size();
+
+        // Determine the number of rows based on mode
+        int maxRows;
+        if (CardCrawlGame.chosenCharacter == MultiCharacter.Enums.BG_MULTICHARACTER) {
+            // Single player MultiCharacter mode
+            if (MultiCharacter.getSubcharacters() == null) return;
+            maxRows = MultiCharacter.getSubcharacters().size();
+        } else if (TogetherInSpireHelper.isMultiplayerBoardGameMode()) {
+            // TogetherInSpire multiplayer with individual BG characters
+            maxRows = TogetherInSpireHelper.getBoardGamePlayerCount();
+        } else {
+            // Standard single player mode - no row positioning needed
+            return;
+        }
+
         if (maxRows <= 1) return;
         int whichRow = MultiCreature.Field.currentRow.get(c);
 

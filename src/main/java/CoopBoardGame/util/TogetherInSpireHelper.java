@@ -178,4 +178,70 @@ public class TogetherInSpireHelper {
         // In TogetherInSpire, the host is typically ID 0
         return getLocalPlayerId() == 0;
     }
+
+    /**
+     * Checks if we are in a multiplayer session with multiple Board Game characters.
+     * This is used to determine if the grid/row system should be enabled.
+     *
+     * @return true if multiple BG players are in the session
+     */
+    public static boolean isMultiplayerBoardGameMode() {
+        if (!isMultiplayerActive()) {
+            return false;
+        }
+
+        List<AbstractPlayer.PlayerClass> playerClasses = getAllPlayerClasses();
+        int bgPlayerCount = 0;
+
+        for (AbstractPlayer.PlayerClass playerClass : playerClasses) {
+            if (isBoardGameClass(playerClass)) {
+                bgPlayerCount++;
+            }
+        }
+
+        return bgPlayerCount > 1;
+    }
+
+    /**
+     * Checks if a player class is a Board Game character class.
+     *
+     * @param playerClass The player class to check
+     * @return true if it's a BG character class
+     */
+    public static boolean isBoardGameClass(AbstractPlayer.PlayerClass playerClass) {
+        if (playerClass == null) {
+            return false;
+        }
+
+        String className = playerClass.name();
+
+        // Check for BG class names
+        return className.equals("BG_IRONCLAD") ||
+               className.equals("BG_SILENT") ||
+               className.equals("BG_DEFECT") ||
+               className.equals("BG_WATCHER") ||
+               className.equals("BG_MULTICHARACTER");
+    }
+
+    /**
+     * Gets the number of Board Game players in the current multiplayer session.
+     *
+     * @return count of BG players (0 if not in multiplayer or no BG players)
+     */
+    public static int getBoardGamePlayerCount() {
+        if (!isMultiplayerActive()) {
+            return 0;
+        }
+
+        List<AbstractPlayer.PlayerClass> playerClasses = getAllPlayerClasses();
+        int bgPlayerCount = 0;
+
+        for (AbstractPlayer.PlayerClass playerClass : playerClasses) {
+            if (isBoardGameClass(playerClass)) {
+                bgPlayerCount++;
+            }
+        }
+
+        return bgPlayerCount;
+    }
 }

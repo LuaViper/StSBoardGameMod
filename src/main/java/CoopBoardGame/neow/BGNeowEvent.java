@@ -124,10 +124,17 @@ public class BGNeowEvent extends AbstractEvent {
         } else if (!isDone) {
             //normally, CoopBoardGame starts HERE
 
-            // MultiCharacter is now hidden from normal character select and only used for multiplayer mode.
-            // Individual BG characters (BGIronclad, BGSilent, etc.) are directly selectable and don't need
-            // the MultiCharacterSelectScreen - they play in single-character board game mode.
-            if (AbstractDungeon.player instanceof MultiCharacter) {
+            // Handle multiplayer mode with individual BG characters:
+            // When a player selects an individual BG character (BGIronclad, BGSilent, etc.)
+            // in TogetherInSpire multiplayer mode, skip the MultiCharacter selection screen
+            // and directly assign them to their row based on player ID.
+            if (MultiplayerCharacterAssignment.shouldSkipCharacterSelection()) {
+                logger.info("Multiplayer mode with individual BG character - assigning to row directly");
+                MultiplayerCharacterAssignment.assignLocalPlayerToRow();
+            }
+            // MultiCharacter is used for single-player coop where one player controls multiple characters.
+            // In multiplayer mode with MultiCharacter selected, auto-assign based on TogetherInSpire players.
+            else if (AbstractDungeon.player instanceof MultiCharacter) {
                 // In TogetherInSpire multiplayer mode, automatically assign players to rows
                 // based on their chosen character classes instead of showing the selection screen
                 if (MultiplayerCharacterAssignment.shouldAutoAssign()) {
@@ -139,7 +146,7 @@ public class BGNeowEvent extends AbstractEvent {
                     BaseMod.openCustomScreen(MultiCharacterSelectScreen.Enum.MULTI_CHARACTER_SELECT);
                 }
             }
-            // For individual BG characters (BGIronclad, BGSilent, BGDefect, BGWatcher),
+            // For individual BG characters in single-player mode,
             // no additional setup is needed - they use board game rules by default.
 
             this.roomEventText.addDialogOption(EXTRA[0]);

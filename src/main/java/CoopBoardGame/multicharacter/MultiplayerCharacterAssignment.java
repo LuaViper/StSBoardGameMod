@@ -103,6 +103,12 @@ public class MultiplayerCharacterAssignment {
         mc.subcharacters.clear();
         mc.subcharacters.addAll(rowAssignment.getAssignedCharactersBottomToTop());
 
+        // Set currentRow for each character to their index in the subcharacters list
+        // This is needed for proper Y positioning during combat rendering
+        for (int i = 0; i < mc.subcharacters.size(); i++) {
+            MultiCreature.Field.currentRow.set(mc.subcharacters.get(i), i);
+        }
+
         logger.info("Auto-assignment complete. " + mc.subcharacters.size() + " characters assigned.");
     }
 
@@ -160,5 +166,51 @@ public class MultiplayerCharacterAssignment {
         rowBoxes.hide();
 
         logger.info("Character selection marked as complete for multiplayer");
+    }
+
+    /**
+     * Assigns the local player's individual character to their row in multiplayer mode.
+     * This is called when a player selects an individual BG character (not MultiCharacter)
+     * in TogetherInSpire multiplayer mode.
+     *
+     * Each player is assigned to a row based on their player ID:
+     * - Player 0 -> Row 0 (bottom)
+     * - Player 1 -> Row 1
+     * - Player 2 -> Row 2
+     * - Player 3 -> Row 3 (top)
+     */
+    public static void assignLocalPlayerToRow() {
+        if (!TogetherInSpireHelper.isMultiplayerActive()) {
+            logger.info("Not in multiplayer mode, skipping row assignment");
+            return;
+        }
+
+        // Get local player ID to determine row
+        int localPlayerId = TogetherInSpireHelper.getLocalPlayerId();
+
+        // Clamp to valid row range
+        int row = Math.min(localPlayerId, CharacterRowAssignment.MAX_ROWS - 1);
+
+        // Assign current player to their row
+        MultiCreature.Field.currentRow.set(AbstractDungeon.player, row);
+
+        logger.info("Assigned local player " + AbstractDungeon.player.name + " to row " + row +
+                   " (player ID: " + localPlayerId + ")");
+    }
+
+    /**
+     * Checks if we should skip the character selection screen in multiplayer mode.
+     * Returns true if TogetherInSpire is active and the player selected an individual BG character.
+     *
+     * @return true if we should skip character selection and directly assign to row
+     */
+    public static boolean shouldSkipCharacterSelection() {
+        if (!TogetherInSpireHelper.isMultiplayerActive()) {
+            return false;
+        }
+
+        // In multiplayer mode, individual BG characters should be directly assigned to rows
+        // without going through the MultiCharacter selection screen
+        return !(AbstractDungeon.player instanceof MultiCharacter);
     }
 }

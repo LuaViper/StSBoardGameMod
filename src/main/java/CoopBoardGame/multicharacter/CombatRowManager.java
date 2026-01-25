@@ -5,6 +5,7 @@ import CoopBoardGame.characters.BGIronclad;
 import CoopBoardGame.characters.BGSilent;
 import CoopBoardGame.characters.BGWatcher;
 import CoopBoardGame.multicharacter.patches.ContextPatches;
+import CoopBoardGame.util.TogetherInSpireHelper;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
@@ -17,6 +18,7 @@ import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Manages combat UI for row-based character display.
@@ -59,6 +61,14 @@ public class CombatRowManager {
 
     // Flag to track if we're in combat
     private boolean inCombat = false;
+
+    // Cached player count for multiplayer mode
+    private int multiplayerRowCount = 0;
+
+    // Colors for multiplayer rows (when we don't have direct character references)
+    private static final Color[] MULTIPLAYER_ROW_COLORS = {
+        IRONCLAD_BG, SILENT_BG, DEFECT_BG, WATCHER_BG
+    };
 
     /**
      * Calculates the dynamic row height based on number of active players.
@@ -126,7 +136,50 @@ public class CombatRowManager {
     public void resetForCombat() {
         activeCharacterIndex = 0;
         inCombat = true;
+
+        // Cache the multiplayer row count at combat start
+        if (TogetherInSpireHelper.isMultiplayerBoardGameMode()) {
+            multiplayerRowCount = TogetherInSpireHelper.getBoardGamePlayerCount();
+        } else {
+            multiplayerRowCount = 0;
+        }
+
         updateRowHitboxPositions();
+    }
+
+    /**
+     * Gets the number of active player rows.
+     * This supports both MultiCharacter mode and TogetherInSpire multiplayer mode.
+     *
+     * @return number of player rows (minimum 1)
+     */
+    public int getActiveRowCount() {
+        // Check for single player MultiCharacter mode
+        ArrayList<AbstractPlayer> subchars = MultiCharacter.getSubcharacters();
+        if (subchars != null && !subchars.isEmpty()) {
+            return subchars.size();
+        }
+
+        // Check for TogetherInSpire multiplayer mode
+        if (multiplayerRowCount > 1) {
+            return multiplayerRowCount;
+        }
+
+        // Fallback: check TogetherInSpire directly
+        if (TogetherInSpireHelper.isMultiplayerBoardGameMode()) {
+            return TogetherInSpireHelper.getBoardGamePlayerCount();
+        }
+
+        return 1;
+    }
+
+    /**
+     * Checks if we're in a multi-row combat mode (either MultiCharacter or multiplayer).
+     *
+     * @return true if multiple rows should be rendered
+     */
+    public boolean isMultiRowMode() {
+        return getActiveRowCount() > 1;
     }
 
     /**
@@ -185,8 +238,7 @@ public class CombatRowManager {
      * Updates row hitbox positions based on current grid settings.
      */
     private void updateRowHitboxPositions() {
-        ArrayList<AbstractPlayer> subchars = MultiCharacter.getSubcharacters();
-        int numRows = subchars.size();
+        int numRows = getActiveRowCount();
         if (numRows <= 1) numRows = 1;
 
         float rowHeight = getRowHeight(numRows);
@@ -210,10 +262,20 @@ public class CombatRowManager {
         if (AbstractDungeon.getCurrRoom() == null) return;
         if (AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) return;
 
-        ArrayList<AbstractPlayer> subchars = MultiCharacter.getSubcharacters();
-        if (subchars.size() <= 1) return; // No need for row switching with single character
+        int numRows = getActiveRowCount();
+        if (numRows <= 1) return; // No need for row management with single character/player
 
         updateRowHitboxPositions();
+
+        // In TogetherInSpire multiplayer mode, each player controls only their own character
+        // so character switching is disabled
+        if (TogetherInSpireHelper.isMultiplayerBoardGameMode()) {
+            return; // Skip character switching logic in multiplayer
+        }
+
+        // The following logic only applies to single-player MultiCharacter mode
+        ArrayList<AbstractPlayer> subchars = MultiCharacter.getSubcharacters();
+        if (subchars == null || subchars.isEmpty()) return;
 
         // Check for clicks on player character hitboxes (primary method)
         if (InputHelper.justClickedLeft && !shouldBlockRowSwitch()) {
@@ -256,20 +318,53 @@ public class CombatRowManager {
     public void renderRowBackgrounds(SpriteBatch sb) {
         if (!inCombat) return;
 
-        ArrayList<AbstractPlayer> subchars = MultiCharacter.getSubcharacters();
-        if (subchars.size() <= 1) return;
+        int numRows = getActiveRowCount();
+        if (numRows <= 1) return;
 
-        int numRows = subchars.size();
         float rowHeight = getRowHeight(numRows);
 
-        for (int i = 0; i < subchars.size(); i++) {
-            AbstractPlayer character = subchars.get(i);
-            Color rowColor = getColorForCharacter(character);
+        // Get subcharacters if available (for MultiCharacter mode)
+        ArrayList<AbstractPlayer> subchars = MultiCharacter.getSubcharacters();
+        boolean isMultiCharacterMode = subchars != null && !subchars.isEmpty();
+
+        // Get player classes for multiplayer mode
+        List<AbstractPlayer.PlayerClass> playerClasses = null;
+        if (!isMultiCharacterMode && TogetherInSpireHelper.isMultiplayerBoardGameMode()) {
+            playerClasses = TogetherInSpireHelper.getAllPlayerClasses();
+        }
+
+        // Determine the local player's row for highlighting in multiplayer mode
+        int localPlayerRow = -1;
+        if (!isMultiCharacterMode && AbstractDungeon.player != null) {
+            localPlayerRow = MultiCreature.Field.currentRow.get(AbstractDungeon.player);
+        }
+
+        for (int i = 0; i < numRows; i++) {
+            Color rowColor;
+
+            if (isMultiCharacterMode) {
+                // MultiCharacter mode: get color from subcharacter
+                AbstractPlayer character = subchars.get(i);
+                rowColor = getColorForCharacter(character);
+            } else if (playerClasses != null && i < playerClasses.size()) {
+                // Multiplayer mode: get color from player class
+                rowColor = getColorForPlayerClass(playerClasses.get(i));
+            } else {
+                // Fallback: use default color based on row index
+                rowColor = MULTIPLAYER_ROW_COLORS[i % MULTIPLAYER_ROW_COLORS.length];
+            }
 
             // Adjust brightness/alpha for active vs inactive rows
             Color renderColor = rowColor.cpy();
             Color borderColor = rowColor.cpy();
-            if (i == activeCharacterIndex) {
+
+            // In MultiCharacter mode, highlight active character's row
+            // In multiplayer mode, highlight local player's row
+            boolean isActiveRow = isMultiCharacterMode
+                ? (i == activeCharacterIndex)
+                : (i == localPlayerRow);
+
+            if (isActiveRow) {
                 renderColor.r *= ACTIVE_ROW_BRIGHTNESS;
                 renderColor.g *= ACTIVE_ROW_BRIGHTNESS;
                 renderColor.b *= ACTIVE_ROW_BRIGHTNESS;
@@ -320,6 +415,29 @@ public class CombatRowManager {
         }
 
         sb.setColor(Color.WHITE);
+    }
+
+    /**
+     * Gets the appropriate background color for a player class.
+     * Used in multiplayer mode where we have player classes but not character instances.
+     */
+    public static Color getColorForPlayerClass(AbstractPlayer.PlayerClass playerClass) {
+        if (playerClass == null) return DEFAULT_BG;
+
+        String className = playerClass.name();
+
+        // Check for BG character classes
+        if (className.equals("BG_IRONCLAD") || className.equals("IRONCLAD")) {
+            return IRONCLAD_BG;
+        } else if (className.equals("BG_SILENT") || className.equals("THE_SILENT")) {
+            return SILENT_BG;
+        } else if (className.equals("BG_DEFECT") || className.equals("DEFECT")) {
+            return DEFECT_BG;
+        } else if (className.equals("BG_WATCHER") || className.equals("WATCHER")) {
+            return WATCHER_BG;
+        }
+
+        return DEFAULT_BG;
     }
 
     /**

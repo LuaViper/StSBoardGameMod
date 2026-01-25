@@ -268,14 +268,9 @@ public class MultiCharacterRowBoxes {
             hb.y = this.posY + 8.0F + (80 * row) * Settings.scale * 2.0F;
 
             this.swapButtons.add(b);
-        }
 
-        // Position only the bottom-most character in the world (row 0)
-        // Other rows are just for show right now
-        AbstractPlayer bottomCharacter = rowAssignment.getCharacterAtRow(0);
-        if (bottomCharacter != null) {
-            MultiCreature.Field.currentRow.set(bottomCharacter, 0);
-            bottomCharacter.movePosition(Settings.WIDTH * 0.25F, AbstractDungeon.floorY);
+            // Set the currentRow field for each character so they position correctly in combat
+            MultiCreature.Field.currentRow.set(character, row);
         }
     }
 
@@ -287,6 +282,12 @@ public class MultiCharacterRowBoxes {
         MultiCharacter mc = (MultiCharacter) AbstractDungeon.player;
         mc.subcharacters.clear();
         mc.subcharacters.addAll(rowAssignment.getAssignedCharactersBottomToTop());
+
+        // Set currentRow for each character to their index in the subcharacters list
+        // This is needed for proper Y positioning during combat rendering
+        for (int i = 0; i < mc.subcharacters.size(); i++) {
+            MultiCreature.Field.currentRow.set(mc.subcharacters.get(i), i);
+        }
     }
 
     /**
