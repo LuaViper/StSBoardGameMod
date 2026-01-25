@@ -3,7 +3,6 @@ package CoopBoardGame.multicharacter.patches;
 import CoopBoardGame.multiplayer.voting.VotingNetworkHelper;
 import CoopBoardGame.util.TogetherInSpireHelper;
 import com.evacipated.cardcrawl.modthespire.lib.*;
-import javassist.CtBehavior;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,25 +21,28 @@ public class VotingMessagePatch {
      *
      * We patch P2PMessageAnalyzer.AnalyzeMessage to check for our custom message types
      * before they're processed by the normal TogetherInSpire handlers.
+     *
+     * Using SpirePatch (not SpirePatch2) for more flexible parameter handling.
      */
-    @SpirePatch2(
+    @SpirePatch(
         cls = "spireTogether.network.P2P.P2PMessageAnalyzer",
-        method = "AnalyzeMessage"
+        method = "AnalyzeMessage",
+        requiredModId = "spireTogether"
     )
     public static class InterceptVotingMessagesPatch {
 
         @SpirePrefixPatch
-        public static SpireReturn<Void> Prefix(Object message) {
+        public static SpireReturn<Void> Prefix(Object msg) {
             if (!TogetherInSpireHelper.isMultiplayerBoardGameMode()) {
                 return SpireReturn.Continue();
             }
 
             try {
                 // Get the message request type
-                Class<?> messageClass = message.getClass();
+                Class<?> messageClass = msg.getClass();
                 Field requestField = messageClass.getDeclaredField("request");
                 requestField.setAccessible(true);
-                String request = (String) requestField.get(message);
+                String request = (String) requestField.get(msg);
 
                 // Check if this is one of our voting messages
                 if (request == null) {
@@ -49,19 +51,19 @@ public class VotingMessagePatch {
 
                 switch (request) {
                     case VotingNetworkHelper.MSG_VOTE_CAST:
-                        handleVoteCast(message);
+                        handleVoteCast(msg);
                         return SpireReturn.Return(); // We handled it, skip normal processing
 
                     case VotingNetworkHelper.MSG_VOTE_CLEAR:
-                        handleVoteClear(message);
+                        handleVoteClear(msg);
                         return SpireReturn.Return();
 
                     case VotingNetworkHelper.MSG_VOTING_RESOLVED:
-                        handleVotingResolved(message);
+                        handleVotingResolved(msg);
                         return SpireReturn.Return();
 
                     case VotingNetworkHelper.MSG_ENTER_ROOM:
-                        handleEnterRoom(message);
+                        handleEnterRoom(msg);
                         return SpireReturn.Return();
 
                     default:
