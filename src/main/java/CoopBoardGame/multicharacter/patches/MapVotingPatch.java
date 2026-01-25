@@ -6,9 +6,9 @@ import CoopBoardGame.util.TogetherInSpireHelper;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
+import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.map.MapRoomNode;
 import com.megacrit.cardcrawl.screens.DungeonMapScreen;
-import javassist.CtBehavior;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -22,16 +22,15 @@ public class MapVotingPatch {
     private static final Logger logger = LogManager.getLogger(MapVotingPatch.class.getName());
 
     /**
-     * Patch to intercept map node clicks in multiplayer board game mode.
-     * Instead of entering the room immediately, cast a vote.
+     * Patch to intercept when AbstractDungeon.nextRoom is about to be set.
+     * This is called when a player clicks on a valid map node to enter it.
+     * We intercept this to cast a vote instead.
      */
-    @SpirePatch2(clz = MapRoomNode.class, method = "update")
-    public static class InterceptMapClickPatch {
+    @SpirePatch2(clz = AbstractDungeon.class, method = "nextRoomTransitionStart")
+    public static class InterceptRoomTransitionPatch {
 
-        @SpireInsertPatch(
-            locator = ClickLocator.class
-        )
-        public static SpireReturn<Void> Insert(MapRoomNode __instance) {
+        @SpirePrefixPatch
+        public static SpireReturn<Void> Prefix() {
             // Only intercept in multiplayer board game mode
             if (!TogetherInSpireHelper.isMultiplayerBoardGameMode()) {
                 return SpireReturn.Continue();
@@ -43,29 +42,54 @@ public class MapVotingPatch {
                 return SpireReturn.Continue();
             }
 
-            // Cast vote instead of entering room
-            logger.info("Intercepted map click, casting vote for node (" + __instance.x + ", " + __instance.y + ")");
-            manager.castLocalVote(__instance);
+            // Get the node that was clicked (stored in AbstractDungeon.nextRoom)
+            MapRoomNode clickedNode = AbstractDungeon.nextRoom;
+            if (clickedNode != null) {
+                logger.info("Intercepted room transition, casting vote for node (" + clickedNode.x + ", " + clickedNode.y + ")");
+                manager.castLocalVote(clickedNode);
+            }
 
-            // Block the normal room entry
+            // Block the normal room entry - clear the nextRoom so transition doesn't happen
+            AbstractDungeon.nextRoom = null;
             return SpireReturn.Return();
         }
+    }
 
-        /**
-         * Locator to find the point where the node click is processed.
-         * We look for where playNodeSelectedSound() is called or
-         * where AbstractDungeon.nextRoom is set.
-         */
-        private static class ClickLocator extends SpireInsertLocator {
-            @Override
-            public int[] Locate(CtBehavior ctBehavior) throws Exception {
-                // Find the line where the click sound is played
-                // This indicates a valid click has been detected
-                Matcher matcher = new Matcher.MethodCallMatcher(
-                    MapRoomNode.class,
-                    "playNodeSelectedSfx"
-                );
-                return LineFinder.findInOrder(ctBehavior, matcher);
+    /**
+     * Alternative approach: Patch the MapRoomNode.update method at the prefix level
+     * to track when a node is about to be selected.
+     */
+    @SpirePatch2(clz = MapRoomNode.class, method = "update")
+    public static class TrackNodeSelectionPatch {
+
+        // Track if we're in the process of handling a click
+        private static boolean handlingClick = false;
+
+        @SpirePrefixPatch
+        public static void Prefix(MapRoomNode __instance) {
+            // Only active in multiplayer board game mode with voting
+            if (!TogetherInSpireHelper.isMultiplayerBoardGameMode()) {
+                return;
+            }
+
+            RoomVotingManager manager = RoomVotingManager.getInstance();
+            if (!manager.isVotingActive() || !manager.shouldBlockRoomEntry()) {
+                return;
+            }
+
+            // Check if this node is being clicked
+            // We check if the hitbox is hovered and mouse was just clicked
+            if (__instance.hb.hovered && InputHelper.justClickedLeft && !handlingClick) {
+                // Check if this is a valid node to select (has a room, is connected, etc.)
+                // The node's own update() method will validate this, but we can do a basic check
+                if (__instance.room != null) {
+                    handlingClick = true;
+                    logger.info("Detected click on node (" + __instance.x + ", " + __instance.y + "), casting vote");
+                    manager.castLocalVote(__instance);
+                    // Consume the click to prevent vanilla handling
+                    InputHelper.justClickedLeft = false;
+                    handlingClick = false;
+                }
             }
         }
     }
