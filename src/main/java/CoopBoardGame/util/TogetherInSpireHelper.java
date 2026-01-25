@@ -369,4 +369,51 @@ public class TogetherInSpireHelper {
 
         return result;
     }
+
+    /**
+     * Checks if the given creature is a CharacterEntity (remote player) from TogetherInSpire.
+     * CharacterEntity extends AbstractMonster but represents an allied player.
+     *
+     * @param creature The creature to check
+     * @return true if it's a CharacterEntity (remote player)
+     */
+    public static boolean isCharacterEntity(Object creature) {
+        if (!isTogetherInSpireLoaded()) {
+            return false;
+        }
+
+        try {
+            Class<?> characterEntityClass = Class.forName("spireTogether.ui.CharacterEntity");
+            return characterEntityClass.isInstance(creature);
+        } catch (ClassNotFoundException e) {
+            return false;
+        }
+    }
+
+    /**
+     * Gets the player ID associated with a CharacterEntity.
+     *
+     * @param characterEntity The CharacterEntity to get the ID from
+     * @return The player ID, or -1 if not found
+     */
+    public static int getCharacterEntityPlayerId(Object characterEntity) {
+        if (!isCharacterEntity(characterEntity)) {
+            return -1;
+        }
+
+        try {
+            Class<?> characterEntityClass = Class.forName("spireTogether.ui.CharacterEntity");
+            java.lang.reflect.Field playerIdField = characterEntityClass.getDeclaredField("playerID");
+            playerIdField.setAccessible(true);
+            Object playerId = playerIdField.get(characterEntity);
+
+            if (playerId instanceof Integer) {
+                return (Integer) playerId;
+            }
+        } catch (Exception e) {
+            logger.warn("Failed to get CharacterEntity player ID: " + e.getMessage());
+        }
+
+        return -1;
+    }
 }

@@ -4,6 +4,7 @@ import CoopBoardGame.characters.BGWatcher;
 import CoopBoardGame.multicharacter.grid.GridBackground;
 import CoopBoardGame.multicharacter.grid.GridTile;
 import CoopBoardGame.multicharacter.CombatRowManager;
+import CoopBoardGame.multiplayer.rows.PlayerRowManager;
 import CoopBoardGame.util.TogetherInSpireHelper;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -169,23 +170,38 @@ public class PerspectiveSkewPatches {
         float playerYOffset = rowHeight * 0.35f;  // Players positioned at 35% from bottom of row
         float enemyYOffset = rowHeight * 0.30f;   // Enemies positioned at 30% from bottom of row
 
-        // Position based on whether this is a player or monster
+        // Position based on whether this is a player, remote player (CharacterEntity), or monster
         if (c instanceof AbstractPlayer) {
-            // Players on the left side of the screen
+            // Local player on the left side of the screen
             roomDrawX = Settings.WIDTH * CombatRowManager.PLAYER_X_FRACTION;
             // Position Y at row bottom + offset (not row center)
             float rowBottomY = CombatRowManager.getRowBottomY(whichRow, maxRows);
             roomDrawY = (rowBottomY + playerYOffset) * Settings.scale;
         } else if (c instanceof AbstractMonster) {
-            // Enemies on the right side - distribute them horizontally
-            // Get the monster's index within its row to spread them out
-            int monsterIndexInRow = getMonsterIndexInRow((AbstractMonster) c, whichRow);
-            float xFraction = CombatRowManager.ENEMY_START_X_FRACTION +
-                (monsterIndexInRow * CombatRowManager.ENEMY_SPACING_FRACTION);
-            roomDrawX = Settings.WIDTH * xFraction;
-            // Position Y at row bottom + offset (not row center)
-            float rowBottomY = CombatRowManager.getRowBottomY(whichRow, maxRows);
-            roomDrawY = (rowBottomY + enemyYOffset) * Settings.scale;
+            // Check if this is a CharacterEntity (remote player) from TogetherInSpire
+            if (TogetherInSpireHelper.isCharacterEntity(c)) {
+                // Remote players should be positioned like local players (left side)
+                // Get their row from PlayerRowManager based on their player ID
+                int remotePlayerId = TogetherInSpireHelper.getCharacterEntityPlayerId(c);
+                int remotePlayerRow = PlayerRowManager.getPlayerRow(remotePlayerId);
+                // Update whichRow for this creature
+                whichRow = remotePlayerRow;
+                MultiCreature.Field.currentRow.set(c, remotePlayerRow);
+
+                roomDrawX = Settings.WIDTH * CombatRowManager.PLAYER_X_FRACTION;
+                float rowBottomY = CombatRowManager.getRowBottomY(whichRow, maxRows);
+                roomDrawY = (rowBottomY + playerYOffset) * Settings.scale;
+            } else {
+                // Regular enemies on the right side - distribute them horizontally
+                // Get the monster's index within its row to spread them out
+                int monsterIndexInRow = getMonsterIndexInRow((AbstractMonster) c, whichRow);
+                float xFraction = CombatRowManager.ENEMY_START_X_FRACTION +
+                    (monsterIndexInRow * CombatRowManager.ENEMY_SPACING_FRACTION);
+                roomDrawX = Settings.WIDTH * xFraction;
+                // Position Y at row bottom + offset (not row center)
+                float rowBottomY = CombatRowManager.getRowBottomY(whichRow, maxRows);
+                roomDrawY = (rowBottomY + enemyYOffset) * Settings.scale;
+            }
         }
 
         // Apply row-based position immediately (no lerp needed for row positioning)

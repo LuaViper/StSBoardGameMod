@@ -3,6 +3,8 @@ package CoopBoardGame.multicharacter.patches;
 import CoopBoardGame.dungeons.BGExordium;
 import CoopBoardGame.multicharacter.MultiCharacter;
 import CoopBoardGame.multicharacter.MultiCreature;
+import CoopBoardGame.multiplayer.rows.PlayerRowManager;
+import CoopBoardGame.multiplayer.rows.RowNetworkHelper;
 import CoopBoardGame.util.TogetherInSpireHelper;
 import com.evacipated.cardcrawl.modthespire.lib.*;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
@@ -69,6 +71,19 @@ public class MultiCombatEncounterPatches {
                     AbstractDungeon.monsterList
                         .subList(1, AbstractDungeon.monsterList.size())
                         .clear();
+                }
+            }
+
+            // For multiplayer board game mode, assign player rows and broadcast all row assignments
+            if (TogetherInSpireHelper.isMultiplayerBoardGameMode()) {
+                // Assign rows to players (both host and clients need local assignment)
+                PlayerRowManager.assignPlayerRows();
+
+                // Host broadcasts row assignments to all clients
+                if (TogetherInSpireHelper.isHost()) {
+                    logger.info("Host broadcasting row assignments to clients");
+                    RowNetworkHelper.sendPlayerRowAssignments();
+                    RowNetworkHelper.sendMonsterRowAssignments();
                 }
             }
         }
