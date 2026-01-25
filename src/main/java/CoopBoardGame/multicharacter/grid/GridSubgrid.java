@@ -1,5 +1,6 @@
 package CoopBoardGame.multicharacter.grid;
 
+import CoopBoardGame.multicharacter.CombatRowManager;
 import CoopBoardGame.multicharacter.MultiCharacter;
 import CoopBoardGame.multicharacter.MultiCreature;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -19,10 +20,14 @@ public class GridSubgrid {
     public int numRows = 0;
 
     public GridSubgrid() {
-        for (int i = 0; i < MultiCharacter.getSubcharacters().size(); i += 1) {
+        int numRows = MultiCharacter.getSubcharacters().size();
+        float rowHeight = CombatRowManager.getRowHeight(numRows);
+
+        for (int i = 0; i < numRows; i += 1) {
             GridTile tile = new GridTile();
             tile.offsetX = 0;
-            tile.offsetY = i * GridTile.TILE_HEIGHT;
+            // Use dynamic row height instead of fixed TILE_HEIGHT
+            tile.offsetY = i * rowHeight;
             tile.parent = this;
             tiles.add(tile);
 
@@ -39,30 +44,38 @@ public class GridSubgrid {
             AbstractDungeon.getCurrMapNode() == null || AbstractDungeon.getCurrRoom() == null
         ) return;
 
+        int numRows = MultiCharacter.getSubcharacters().size();
+        float rowHeight = CombatRowManager.getRowHeight(numRows);
+
         ArrayList<ArrayList<AbstractMonster>> rows = new ArrayList<>();
         for (int i = 0; i < 4; i += 1) {
             rows.add(new ArrayList<>());
         }
         for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
-            int whichRow = 0;
-            whichRow = MultiCreature.Field.currentRow.get(m);
-            rows.get(whichRow).add(m);
+            int whichRow = MultiCreature.Field.currentRow.get(m);
+            if (whichRow < rows.size()) {
+                rows.get(whichRow).add(m);
+            }
         }
-        float offsetY = GridTile.TILE_HEIGHT * 3;
+
+        // Calculate tile width based on scale (use scaled tile size)
+        float scaledTileWidth = GridTile.TILE_WIDTH * CombatRowManager.getScaleForRows(numRows);
+
         int maxcolumn = 0;
-        for (int i = 3; i >= 0; i -= 1) {
-            for (int j = 0; j < rows.get(i).size(); j += 1) {
+        // Create tiles for each row (bottom to top, row 0 at bottom)
+        for (int i = 0; i < numRows; i++) {
+            float tileOffsetY = i * rowHeight;
+            for (int j = 0; j < rows.get(i).size(); j++) {
                 GridTile tile = new GridTile();
-                tile.offsetX = GridTile.TILE_WIDTH * j;
-                tile.offsetY = offsetY;
+                tile.offsetX = scaledTileWidth * j;
+                tile.offsetY = tileOffsetY;
                 tile.parent = this;
                 tiles.add(tile);
                 tile.creature = rows.get(i).get(j);
                 if (j > maxcolumn) maxcolumn = j;
             }
-            offsetY -= GridTile.TILE_HEIGHT;
         }
-        this.centeringOffsetX = (-(maxcolumn) / 2f) * GridTile.TILE_WIDTH;
+        this.centeringOffsetX = (-(maxcolumn) / 2f) * scaledTileWidth;
     }
 
     public void update() {

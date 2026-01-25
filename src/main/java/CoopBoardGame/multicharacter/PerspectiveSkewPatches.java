@@ -3,6 +3,7 @@ package CoopBoardGame.multicharacter;
 import CoopBoardGame.characters.BGWatcher;
 import CoopBoardGame.multicharacter.grid.GridBackground;
 import CoopBoardGame.multicharacter.grid.GridTile;
+import CoopBoardGame.multicharacter.CombatRowManager;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.esotericsoftware.spine.Bone;
@@ -144,21 +145,25 @@ public class PerspectiveSkewPatches {
         int maxRows = MultiCharacter.getSubcharacters().size();
         if (maxRows <= 1) return;
         int whichRow = MultiCreature.Field.currentRow.get(c);
-        float multiplier = whichRow - (maxRows - 1) / 2.0F;
-        float maxmultiplier = (maxRows - 1) / 2.0F;
-        multiplier /= maxmultiplier;
-        if (maxRows == 2) multiplier *= 0.75F;
-        float xmultiplier = -1.0F * multiplier * 0.25F + 1.0F;
-        roomDrawX = roomDrawX - (Settings.WIDTH / 2);
-        roomDrawX = roomDrawX * xmultiplier;
-        roomDrawX = roomDrawX + (Settings.WIDTH / 2);
-        float multiplier2 = (multiplier + 1.0F) / 2.0F;
-        multiplier2 = (float) Math.pow(multiplier2, 0.5D);
-        float max = 1.125F;
-        float min = 0.25F;
-        float range = max - min;
-        float ymultiplier = multiplier2 * range + min;
-        roomDrawY = roomDrawY * ymultiplier;
+
+        // New row-based positioning system
+        float rowCenterY = CombatRowManager.getRowCenterY(whichRow, maxRows);
+
+        // Position based on whether this is a player or monster
+        if (c instanceof AbstractPlayer) {
+            // Players on the left side of the screen
+            roomDrawX = Settings.WIDTH * CombatRowManager.PLAYER_X_FRACTION / Settings.scale;
+        } else if (c instanceof AbstractMonster) {
+            // Enemies on the right side - distribute them horizontally
+            // Get the monster's index within its row to spread them out
+            int monsterIndexInRow = getMonsterIndexInRow((AbstractMonster) c, whichRow);
+            float xFraction = CombatRowManager.ENEMY_START_X_FRACTION +
+                (monsterIndexInRow * CombatRowManager.ENEMY_SPACING_FRACTION);
+            roomDrawX = Settings.WIDTH * xFraction / Settings.scale;
+        }
+
+        // Set Y position to row center (adjusted for character anchor point)
+        roomDrawY = rowCenterY;
 
         c.drawX = roomDrawX;
         c.drawY = roomDrawY;
@@ -181,6 +186,7 @@ public class PerspectiveSkewPatches {
             c.drawY = roomDrawY + (gridDrawY - roomDrawY) * GridTile.Field.tileLerpAmount.get(c);
         }
 
+        // Apply scaling based on number of rows
         if (tile != null) {
             BoneData rootdata = ((Skeleton) ReflectionHacks.getPrivate(
                     c,
@@ -192,13 +198,16 @@ public class PerspectiveSkewPatches {
                     AbstractCreature.class,
                     "skeleton"
                 )).findBone("root");
-            //TODO: store original scale during constructor(?) or during animation setup
+
+            // Use dynamic scaling based on number of rows
             float originalscale = 1.0f;
-            float gridscale = 0.75f;
-            if (c instanceof Watcher || c instanceof BGWatcher) gridscale = 0.65f;
+            float gridscale = CombatRowManager.getScaleForRows(maxRows);
+            // Watcher needs slightly smaller scale due to staff
+            if (c instanceof Watcher || c instanceof BGWatcher) {
+                gridscale *= 0.85f;
+            }
             float lerpscale =
                 originalscale + (gridscale - originalscale) * GridTile.Field.tileLerpAmount.get(c);
-            //TODO: also scale down Watcher's staff
             rootdata.setScaleX(lerpscale);
             rootdata.setScaleY(lerpscale);
             root.setScaleX(lerpscale);
@@ -259,5 +268,25 @@ public class PerspectiveSkewPatches {
     public static void afterRenderingCreature(AbstractCreature c) {
         //c.drawX=GridTile.Field.originalDrawX.get(c);
         //c.drawY=GridTile.Field.originalDrawY.get(c);
+    }
+
+    /**
+     * Gets the index of a monster within its row (for horizontal distribution).
+     * @param monster The monster to find
+     * @param row The row the monster is in
+     * @return Index of the monster within its row (0-based)
+     */
+    private static int getMonsterIndexInRow(AbstractMonster monster, int row) {
+        if (AbstractDungeon.getMonsters() == null) return 0;
+        int index = 0;
+        for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
+            if (MultiCreature.Field.currentRow.get(m) == row) {
+                if (m == monster) {
+                    return index;
+                }
+                index++;
+            }
+        }
+        return 0;
     }
 }

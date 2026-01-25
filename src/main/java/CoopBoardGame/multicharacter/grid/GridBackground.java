@@ -1,6 +1,7 @@
 package CoopBoardGame.multicharacter.grid;
 
 import CoopBoardGame.CoopBoardGame;
+import CoopBoardGame.multicharacter.CombatRowManager;
 import CoopBoardGame.multicharacter.MultiCharacter;
 import CoopBoardGame.multicharacter.patches.AbstractScenePatches;
 import CoopBoardGame.util.TextureLoader;
@@ -44,14 +45,19 @@ public class GridBackground {
         tileSpawnTimer = INITIAL_TILE_SPAWN_TIMER;
         gridViewIsReady = false;
         subGrids.clear();
+
+        // Player grid on the left side
         playerGrid = new GridSubgrid();
         playerGrid.screenOffsetX =
-            (Settings.WIDTH * (1 / 3f)) / Settings.scale - GridTile.TILE_WIDTH / 2f;
-        playerGrid.offsetY = 350;
+            (Settings.WIDTH * CombatRowManager.PLAYER_X_FRACTION) / Settings.scale - GridTile.TILE_WIDTH / 2f;
+        playerGrid.offsetY = CombatRowManager.BOTTOM_MARGIN;
+
+        // Enemy grid on the right side
         enemyGrid = new GridSubgrid();
         enemyGrid.screenOffsetX =
-            (Settings.WIDTH * (2 / 3f)) / Settings.scale - GridTile.TILE_WIDTH / 2f;
-        enemyGrid.offsetY = 350;
+            (Settings.WIDTH * CombatRowManager.ENEMY_START_X_FRACTION) / Settings.scale - GridTile.TILE_WIDTH / 2f;
+        enemyGrid.offsetY = CombatRowManager.BOTTOM_MARGIN;
+
         subGrids.add(playerGrid);
         subGrids.add(enemyGrid);
         enemyGrid.createTilesForEnemies();

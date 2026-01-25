@@ -78,7 +78,7 @@ public class CoopBoardGame
         PreStartGameSubscriber {
 
     //////////////////////////////////////////////////////////////////////////////
-    public static boolean ENABLE_TEST_FEATURES = false;
+    public static boolean ENABLE_TEST_FEATURES = true;
     //////////////////////////////////////////////////////////////////////////////
 
     public static boolean alreadyShowedMaxPoisonWarning = false;
@@ -712,8 +712,12 @@ public class CoopBoardGame
 
         //TODO: non-repeating "monster deck" -- it's still possible to get the same encounter twice, especially with elites
 
-        addMonster(BGCultist.ID, () -> new MonsterGroup(new AbstractMonster[] { new BGCultist(0, 0) }));
-        addMonster("CoopBoardGame:Jaw Worm (Easy)", () -> new MonsterGroup(new AbstractMonster[] { new BGJawWorm(0, 0, 0, "") }));
+        addMonster(BGCultist.ID, () ->
+            new MonsterGroup(new AbstractMonster[] { new BGCultist(0, 0) })
+        );
+        addMonster("CoopBoardGame:Jaw Worm (Easy)", () ->
+            new MonsterGroup(new AbstractMonster[] { new BGJawWorm(0, 0, 0, "") })
+        );
         addMonster("CoopBoardGame:Easy Small Slimes", () ->
             new MonsterGroup(
                 new AbstractMonster[] {
@@ -772,13 +776,27 @@ public class CoopBoardGame
                 }
             )
         );
-        addMonster("CoopBoardGame:Large Slime", () -> new MonsterGroup(new AbstractMonster[] { new BGAcidSlime_L(-480.0F, 0.0F, false) }));
-        addMonster("CoopBoardGame:Sneaky Gremlin Team", () -> new MonsterGroup(new AbstractMonster[] { new BGGremlinSneaky(-220.0F, 0.0F, true) }));
-        addMonster("CoopBoardGame:Angry Gremlin Team", () -> new MonsterGroup(new AbstractMonster[] { new BGGremlinAngry(-220.0F, 0.0F, true) }));
-        addMonster("CoopBoardGame:Blue Slaver", () -> new MonsterGroup(new AbstractMonster[] { new BGBlueSlaver(0.0F, 0.0F, "W3D") }));
-        addMonster("CoopBoardGame:Red Slaver", () -> new MonsterGroup(new AbstractMonster[] { new BGRedSlaver(0.0F, 0.0F, "DV3") }));
-        addMonster("CoopBoardGame:Looter", () -> new MonsterGroup(new AbstractMonster[] { new BGLooter(0.0F, 0.0F, false) }));
-        addMonster("CoopBoardGame:Jaw Worm (Medium)", () -> new MonsterGroup(new AbstractMonster[] { new BGJawWorm(0, 0, 1, "") }));
+        addMonster("CoopBoardGame:Large Slime", () ->
+            new MonsterGroup(new AbstractMonster[] { new BGAcidSlime_L(-480.0F, 0.0F, false) })
+        );
+        addMonster("CoopBoardGame:Sneaky Gremlin Team", () ->
+            new MonsterGroup(new AbstractMonster[] { new BGGremlinSneaky(-220.0F, 0.0F, true) })
+        );
+        addMonster("CoopBoardGame:Angry Gremlin Team", () ->
+            new MonsterGroup(new AbstractMonster[] { new BGGremlinAngry(-220.0F, 0.0F, true) })
+        );
+        addMonster("CoopBoardGame:Blue Slaver", () ->
+            new MonsterGroup(new AbstractMonster[] { new BGBlueSlaver(0.0F, 0.0F, "W3D") })
+        );
+        addMonster("CoopBoardGame:Red Slaver", () ->
+            new MonsterGroup(new AbstractMonster[] { new BGRedSlaver(0.0F, 0.0F, "DV3") })
+        );
+        addMonster("CoopBoardGame:Looter", () ->
+            new MonsterGroup(new AbstractMonster[] { new BGLooter(0.0F, 0.0F, false) })
+        );
+        addMonster("CoopBoardGame:Jaw Worm (Medium)", () ->
+            new MonsterGroup(new AbstractMonster[] { new BGJawWorm(0, 0, 1, "") })
+        );
         addMonster("CoopBoardGame:A7 Jaw Worm and Spike Slime", () ->
             new MonsterGroup(
                 new AbstractMonster[] {
@@ -795,8 +813,12 @@ public class CoopBoardGame
                 }
             )
         );
-        addMonster("CoopBoardGame:Lagavulin", () -> new MonsterGroup(new AbstractMonster[] { new BGLagavulin() }));
-        addMonster("CoopBoardGame:Gremlin Nob", () -> new MonsterGroup(new AbstractMonster[] { new BGGremlinNob(0, 0) }));
+        addMonster("CoopBoardGame:Lagavulin", () ->
+            new MonsterGroup(new AbstractMonster[] { new BGLagavulin() })
+        );
+        addMonster("CoopBoardGame:Gremlin Nob", () ->
+            new MonsterGroup(new AbstractMonster[] { new BGGremlinNob(0, 0) })
+        );
         addMonster("CoopBoardGame:3 Sentries", () ->
             new MonsterGroup(
                 new AbstractMonster[] {
@@ -807,9 +829,15 @@ public class CoopBoardGame
             )
         );
         //note that we create boss encounters on-demand in AbstractBGDungeon; these are just here to register to console
-        addMonster("CoopBoardGame:Hexaghost", () -> new MonsterGroup(new AbstractMonster[] { new BGHexaghost() }));
-        addMonster("CoopBoardGame:SlimeBoss", () -> new MonsterGroup(new AbstractMonster[] { new BGSlimeBoss() }));
-        addMonster("CoopBoardGame:TheGuardian", () -> new MonsterGroup(new AbstractMonster[] { new BGTheGuardian() }));
+        addMonster("CoopBoardGame:Hexaghost", () ->
+            new MonsterGroup(new AbstractMonster[] { new BGHexaghost() })
+        );
+        addMonster("CoopBoardGame:SlimeBoss", () ->
+            new MonsterGroup(new AbstractMonster[] { new BGSlimeBoss() })
+        );
+        addMonster("CoopBoardGame:TheGuardian", () ->
+            new MonsterGroup(new AbstractMonster[] { new BGTheGuardian() })
+        );
 
         addMonster("CoopBoardGame:Centurion A", () ->
             new MonsterGroup(

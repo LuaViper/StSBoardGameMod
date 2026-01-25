@@ -60,18 +60,18 @@ public class BoardGameMenuButton {
         @SpirePostfixPatch
         public static void Postfix(MainMenuScreen __instance) {
             // Initialize the board game button hitbox
-            // Position it below the existing buttons
+            // Position it below the existing buttons using the hitbox Y position
             ArrayList<MenuButton> buttons = ReflectionHacks.getPrivate(__instance, MainMenuScreen.class, "buttons");
             if (buttons != null && !buttons.isEmpty()) {
                 // Find the lowest button and position our button below it
                 float lowestY = Float.MAX_VALUE;
                 for (MenuButton btn : buttons) {
-                    float btnY = ReflectionHacks.getPrivate(btn, MenuButton.class, "y");
-                    if (btnY < lowestY) {
-                        lowestY = btnY;
+                    // MenuButton has a hb (Hitbox) field, use its cY (center Y)
+                    if (btn.hb != null && btn.hb.cY < lowestY) {
+                        lowestY = btn.hb.cY;
                     }
                 }
-                boardGameY = lowestY - 75.0f * Settings.scale;
+                boardGameY = lowestY - 70.0f * Settings.scale;
             } else {
                 boardGameY = Settings.HEIGHT / 2.0f - 200.0f * Settings.scale;
             }
@@ -283,7 +283,8 @@ public class BoardGameMenuButton {
      */
     @SpirePatch2(
         clz = MainMenuScreen.class,
-        method = SpirePatch.CONSTRUCTOR
+        method = SpirePatch.CONSTRUCTOR,
+        paramtypez = { boolean.class }
     )
     public static class ResetModeOnMainMenuPatch {
         @SpirePostfixPatch

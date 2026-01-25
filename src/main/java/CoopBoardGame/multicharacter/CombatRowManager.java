@@ -5,7 +5,6 @@ import CoopBoardGame.characters.BGIronclad;
 import CoopBoardGame.characters.BGSilent;
 import CoopBoardGame.characters.BGWatcher;
 import CoopBoardGame.multicharacter.grid.GridBackground;
-import CoopBoardGame.multicharacter.grid.GridTile;
 import CoopBoardGame.multicharacter.patches.ContextPatches;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
@@ -38,9 +37,15 @@ public class CombatRowManager {
     private static final float INACTIVE_ROW_ALPHA = 0.35f;
     private static final float ACTIVE_ROW_ALPHA = 0.6f;
 
-    // Row dimensions (based on GridTile)
-    private static final float ROW_HEIGHT_BASE = GridTile.TILE_HEIGHT;
-    private static final float ROW_Y_OFFSET = 350f; // Matches GridBackground.playerGrid.offsetY
+    // Dynamic row layout constants
+    public static final float BOTTOM_MARGIN = 150f;  // Space for UI at bottom (hand, energy, etc.)
+    public static final float TOP_MARGIN = 100f;     // Space for UI at top
+
+    // Positioning constants
+    public static final float PLAYER_X_FRACTION = 0.20f;  // Players at 20% from left
+    public static final float ENEMY_START_X_FRACTION = 0.55f;  // First enemy at 55% from left
+    public static final float ENEMY_SPACING_FRACTION = 0.15f;  // Space between enemies
+
 
     // Active character tracking
     private int activeCharacterIndex = 0;
@@ -51,11 +56,62 @@ public class CombatRowManager {
     // Flag to track if we're in combat
     private boolean inCombat = false;
 
+    /**
+     * Calculates the dynamic row height based on number of active players.
+     * @param numRows Number of player rows (1-4)
+     * @return Height of each row in unscaled pixels
+     */
+    public static float getRowHeight(int numRows) {
+        if (numRows <= 1) {
+            // Single player: use full available height (not really "rows")
+            return (Settings.HEIGHT / Settings.scale) - BOTTOM_MARGIN - TOP_MARGIN;
+        }
+        float availableHeight = (Settings.HEIGHT / Settings.scale) - BOTTOM_MARGIN - TOP_MARGIN;
+        return availableHeight / numRows;
+    }
+
+    /**
+     * Gets the Y position of the bottom of a specific row.
+     * @param rowIndex Row index (0 = bottom row)
+     * @param numRows Total number of rows
+     * @return Y position in unscaled pixels
+     */
+    public static float getRowBottomY(int rowIndex, int numRows) {
+        float rowHeight = getRowHeight(numRows);
+        return BOTTOM_MARGIN + (rowIndex * rowHeight);
+    }
+
+    /**
+     * Gets the Y position of the center of a specific row.
+     * @param rowIndex Row index (0 = bottom row)
+     * @param numRows Total number of rows
+     * @return Y position in unscaled pixels
+     */
+    public static float getRowCenterY(int rowIndex, int numRows) {
+        float rowHeight = getRowHeight(numRows);
+        return BOTTOM_MARGIN + (rowIndex * rowHeight) + (rowHeight / 2f);
+    }
+
+    /**
+     * Gets the scale factor for characters based on number of rows.
+     * @param numRows Number of player rows (1-4)
+     * @return Scale factor to apply to characters
+     */
+    public static float getScaleForRows(int numRows) {
+        switch (numRows) {
+            case 1: return 1.0f;
+            case 2: return 0.65f;
+            case 3: return 0.50f;
+            case 4: return 0.40f;
+            default: return 0.40f;
+        }
+    }
+
     public CombatRowManager() {
         // Initialize 4 row hitboxes (max rows)
+        // Initial size doesn't matter - they get updated in updateRowHitboxPositions()
         for (int i = 0; i < CharacterRowAssignment.MAX_ROWS; i++) {
-            // Full screen width, GridTile height
-            Hitbox hb = new Hitbox(Settings.WIDTH, ROW_HEIGHT_BASE * Settings.scale);
+            Hitbox hb = new Hitbox(Settings.WIDTH, getRowHeight(4) * Settings.scale);
             rowHitboxes.add(hb);
         }
     }
@@ -125,12 +181,18 @@ public class CombatRowManager {
      * Updates row hitbox positions based on current grid settings.
      */
     private void updateRowHitboxPositions() {
+        ArrayList<AbstractPlayer> subchars = MultiCharacter.getSubcharacters();
+        int numRows = subchars.size();
+        if (numRows <= 1) numRows = 1;
+
+        float rowHeight = getRowHeight(numRows);
+
         for (int i = 0; i < rowHitboxes.size(); i++) {
             Hitbox hb = rowHitboxes.get(i);
             hb.width = Settings.WIDTH;
-            hb.height = ROW_HEIGHT_BASE * Settings.scale;
+            hb.height = rowHeight * Settings.scale;
             hb.x = 0;
-            hb.y = (ROW_Y_OFFSET + (i * ROW_HEIGHT_BASE)) * Settings.scale;
+            hb.y = getRowBottomY(i, numRows) * Settings.scale;
         }
     }
 
@@ -185,6 +247,9 @@ public class CombatRowManager {
         ArrayList<AbstractPlayer> subchars = MultiCharacter.getSubcharacters();
         if (subchars.size() <= 1) return;
 
+        int numRows = subchars.size();
+        float rowHeight = getRowHeight(numRows);
+
         for (int i = 0; i < subchars.size(); i++) {
             AbstractPlayer character = subchars.get(i);
             Color rowColor = getColorForCharacter(character);
@@ -202,8 +267,8 @@ public class CombatRowManager {
 
             sb.setColor(renderColor);
 
-            float rowY = (ROW_Y_OFFSET + (i * ROW_HEIGHT_BASE)) * Settings.scale;
-            float rowHeight = ROW_HEIGHT_BASE * Settings.scale;
+            float rowY = getRowBottomY(i, numRows) * Settings.scale;
+            float scaledRowHeight = rowHeight * Settings.scale;
 
             // Draw full-width row background
             sb.draw(
@@ -211,7 +276,7 @@ public class CombatRowManager {
                 0,
                 rowY,
                 Settings.WIDTH,
-                rowHeight
+                scaledRowHeight
             );
         }
 
