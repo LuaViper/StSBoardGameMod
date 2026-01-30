@@ -249,7 +249,6 @@ public class BGExordium
     }
 
     protected void generateMonsters() {
-        //TODO NEXT NEXT: game crash if encounter list is empty upon entering a "?" that turns into a combat
         generateWeakEnemies(1);
         //weak enemy pool will be cleared immediately after first encounter is populated
         generateStrongEnemies(12);

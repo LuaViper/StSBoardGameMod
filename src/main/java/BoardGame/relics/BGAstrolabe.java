@@ -43,27 +43,13 @@ public class BGAstrolabe
         }
         else if (!AbstractDungeon.isScreenUp) {
             AbstractDungeon.gridSelectScreen.open(tmp, 3, this.DESCRIPTIONS[1] + this.name + LocalizedStrings.PERIOD, false, false, false, false);
-
-
-
         }
         else {
-
-
-
             AbstractDungeon.dynamicBanner.hide();
             AbstractDungeon.previousScreen = AbstractDungeon.screen;
             AbstractDungeon.gridSelectScreen.open(tmp, 3, this.DESCRIPTIONS[1] + this.name + LocalizedStrings.PERIOD, false, false, false, false);
         }
     }
-
-
-
-
-
-
-
-
 
 
     public void update() {
@@ -82,17 +68,10 @@ public class BGAstrolabe
             AbstractCard card = i.next();
             card.untip();
             card.unhover();
-            //AbstractDungeon.player.masterDeck.removeCard(card);
-            //AbstractDungeon.transformCard(card, true, AbstractDungeon.miscRng);
             card.upgrade();
 
             if (true) {
-
-//                AbstractDungeon.topLevelEffectsQueue.add(new ShowCardAndObtainEffect(
-//
-//                        card, Settings.WIDTH / 3.0F + displayCount, Settings.HEIGHT / 2.0F, false));
                 AbstractDungeon.topLevelEffects.add(new ShowCardBrieflyEffect(card.makeStatEquivalentCopy(),Settings.WIDTH / 3.0F + displayCount,Settings.HEIGHT / 2.0F));
-
 
                 displayCount += Settings.WIDTH / 6.0F;
             }

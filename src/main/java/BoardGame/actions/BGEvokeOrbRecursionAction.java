@@ -14,14 +14,19 @@ public class BGEvokeOrbRecursionAction extends AbstractGameAction {
         if (this.duration == this.startDuration) {
             OrbSelectScreen.OrbSelectAction ossAction = (target) -> {
                 AbstractPlayer player = AbstractDungeon.player;
-                AbstractOrb orb = player.orbs.get(target);
-                if (orb instanceof com.megacrit.cardcrawl.orbs.EmptyOrbSlot) {
-                    this.isDone = true;
-                } else {
-                    //TODO: is there a convincing reason to do all this instead of BGEvokeWithoutRemovingOrbAction?
-                    //addToTop -- reverse order
-                    addToTop(new BGChannelAction(orb, false));
-                    addToTop((AbstractGameAction) new BGEvokeSpecificOrbAction(target));
+                AbstractOrb orb = null;
+                if(target>=0 && target<player.orbs.size()) {
+                    orb = player.orbs.get(target);
+                }
+                if(orb!=null) {
+                    if (orb instanceof com.megacrit.cardcrawl.orbs.EmptyOrbSlot) {
+                        this.isDone = true;
+                    } else {
+                        //TODO: is there a convincing reason to do all this instead of BGEvokeWithoutRemovingOrbAction?
+                        //addToTop -- reverse order
+                        addToTop(new BGChannelAction(orb, false));
+                        addToTop((AbstractGameAction) new BGEvokeSpecificOrbAction(target));
+                    }
                 }
             };
             addToTop((AbstractGameAction) new OrbSelectScreenAction(ossAction, "Choose an Orb to Evoke.",false));

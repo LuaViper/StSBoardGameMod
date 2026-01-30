@@ -59,6 +59,12 @@ public class BGSpireShield extends AbstractBGMonster implements BGDamageIcons {
     }
 
     public void usePreBattleAction() {
+        BoardGame.BoardGame.config.setBool("SEEN_ASCENSION_11_EFFECT",true);
+        try{
+            BoardGame.BoardGame.config.save();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction( AbstractDungeon.player,  this,
                 new BGSurroundedPower( AbstractDungeon.player)));
         AbstractDungeon.actionManager.addToBottom(new ApplyPowerAction( this,  this,

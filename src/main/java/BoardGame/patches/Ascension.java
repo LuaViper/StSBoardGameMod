@@ -199,6 +199,8 @@ public class Ascension {
             }
             if(!isABGCharacter)return;
 
+            checkAscension11SeenStatus();
+
             ////reminder: this block isn't necessary -- current ascension setting is saved per-character
 //            if(AbstractDungeon.ascensionLevel>CURRENT_MAX_ASCENSION){
 //                ___ascensionLevel=AbstractDungeon.ascensionLevel=CURRENT_MAX_ASCENSION;
@@ -215,6 +217,7 @@ public class Ascension {
         @SpirePostfixPatch
         public static void Postfix(@ByRef String[] ___ascensionString){
             if(AbstractDungeon.player instanceof AbstractBGPlayer) {
+                checkAscension11SeenStatus();
                 StringBuilder sb = new StringBuilder();
                 for (int i = 0; i < AbstractDungeon.ascensionLevel; i++) {
                     sb.append(A_TEXT[i]);
@@ -270,5 +273,13 @@ public class Ascension {
             };
         }
     }
+
+    public static void checkAscension11SeenStatus() {
+        boolean seen = BoardGame.BoardGame.config == null ? false : BoardGame.BoardGame.config.getBool("SEEN_ASCENSION_11_EFFECT");
+        if(seen)
+            //"???" <- "Act 4 Elites"
+            A_TEXT[10] = A_TEXT[20];
+    }
+
 
 }

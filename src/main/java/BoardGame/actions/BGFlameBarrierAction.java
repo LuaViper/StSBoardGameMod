@@ -39,14 +39,14 @@ public class BGFlameBarrierAction extends AbstractGameAction {
                     if (move != null) {
                         if (move.isMultiDamage && move.multiplier > 1) {
                             for (int i = 1; i <= move.multiplier; i += 1) {
-                                addToBot((AbstractGameAction) new DamageAction((AbstractCreature) mo, new DamageInfo((AbstractCreature) this.player, this.thornsDamage, DamageInfo.DamageType.THORNS), AttackEffect.FIRE));
+                                addToTop((AbstractGameAction) new DamageAction((AbstractCreature) mo, new DamageInfo((AbstractCreature) this.player, this.thornsDamage, DamageInfo.DamageType.THORNS), AttackEffect.FIRE));
                             }
                         } else if(mo instanceof MixedAttacks && ((MixedAttacks)mo).isMixedAttacking()){
                             for (int i = 1; i <= 2; i += 1) {
-                                addToBot((AbstractGameAction) new DamageAction((AbstractCreature) mo, new DamageInfo((AbstractCreature) this.player, this.thornsDamage, DamageInfo.DamageType.THORNS), AttackEffect.FIRE));
+                                addToTop((AbstractGameAction) new DamageAction((AbstractCreature) mo, new DamageInfo((AbstractCreature) this.player, this.thornsDamage, DamageInfo.DamageType.THORNS), AttackEffect.FIRE));
                             }
                         } else {
-                            addToBot((AbstractGameAction) new DamageAction((AbstractCreature) mo, new DamageInfo((AbstractCreature) this.player, this.thornsDamage, DamageInfo.DamageType.THORNS), AttackEffect.FIRE));
+                            addToTop((AbstractGameAction) new DamageAction((AbstractCreature) mo, new DamageInfo((AbstractCreature) this.player, this.thornsDamage, DamageInfo.DamageType.THORNS), AttackEffect.FIRE));
                         }
                     }
                 }

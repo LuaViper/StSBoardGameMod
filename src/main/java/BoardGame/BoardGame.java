@@ -49,6 +49,7 @@ import com.megacrit.cardcrawl.helpers.Prefs;
 import com.megacrit.cardcrawl.localization.*;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
+import com.megacrit.cardcrawl.monsters.exordium.JawWorm;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rewards.RewardSave;
 import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
@@ -96,9 +97,11 @@ public class BoardGame implements
     private static String modID;
 
     // Mod-settings settings. This is if you want an on/off savable button
+    public static SpireConfig config;
     public static Properties BoardGameSettings = new Properties();
     public static final String CLAW_PACK_COUNT = "enablePlaceholder";
     public static final String ENABLE_MULTICHAR_SAVE_FLAG = "enableMultichar";
+    public static final Boolean SEEN_ASCENSION_11_EFFECT = false;
     public static float clawPackCount = 0;
 
     //This is for the in-game mod settings panel.
@@ -309,7 +312,7 @@ public class BoardGame implements
         BoardGameSettings.setProperty(CLAW_PACK_COUNT, "0"); // This is the default setting. It's actually set...
         BoardGameSettings.setProperty(ENABLE_MULTICHAR_SAVE_FLAG, "false");
         try {
-            SpireConfig config = new SpireConfig("BoardGame", "BoardGameConfig", BoardGameSettings); // ...right here
+            BoardGame.config = new SpireConfig("BoardGame", "BoardGameConfig", BoardGameSettings); // ...right here
             // the "fileName" parameter is the name of the file MTS will create where it will save our setting.
             config.load(); // Load the setting and set the boolean to equal it
             clawPackCount = config.getFloat(CLAW_PACK_COUNT);
@@ -519,6 +522,9 @@ public class BoardGame implements
 
         //TODO: non-repeating "monster deck" -- it's still possible to get the same encounter twice, especially with elites
 
+        addMonster("BoardGame:TestEnemy",()->new MonsterGroup(new AbstractMonster[]{
+                new JawWorm(80.0F, 30.0F)
+        }));
         addMonster(BGCultist.ID, ()->new BGCultist(0,0));
         addMonster("BoardGame:Jaw Worm (Easy)", ()->new BGJawWorm(0,0, 0, ""));
         addMonster("BoardGame:Easy Small Slimes",()->new MonsterGroup(new AbstractMonster[]{
@@ -539,7 +545,7 @@ public class BoardGame implements
         }));
         addMonster("BoardGame:Fungi Beasts",()->new MonsterGroup(new AbstractMonster[]{
                 new BGFungiBeast(-200.0F, 10.0F, "21S",false),
-                new BGFungiBeast(80.0F, 30.0F,"2S1",false)
+                new BGFungiBeast(80.0F, 30.0F,"S21",false)
         }));
         addMonster("BoardGame:Slime Trio",()->new MonsterGroup(new AbstractMonster[]{
                 new BGSpikeSlime_S(-350.0F,0.0F),

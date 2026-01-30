@@ -18,7 +18,7 @@ public class BGSadisticNature extends AbstractBGCard {
     public static final String ID = "BGSadistic Nature";
 
     public BGSadisticNature() {
-        super("BGSadistic Nature", cardStrings.NAME, "colorless/power/sadistic_nature", 0, cardStrings.DESCRIPTION, AbstractCard.CardType.POWER, BGColorless.Enums.CARD_COLOR, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.SELF);
+        super("BGSadistic Nature", cardStrings.NAME, "colorless/power/sadistic_nature", 1, cardStrings.DESCRIPTION, AbstractCard.CardType.POWER, BGColorless.Enums.CARD_COLOR, AbstractCard.CardRarity.UNCOMMON, AbstractCard.CardTarget.SELF);
 
 
 

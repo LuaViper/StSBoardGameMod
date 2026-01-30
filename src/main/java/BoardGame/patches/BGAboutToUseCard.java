@@ -49,8 +49,6 @@ public class BGAboutToUseCard {
 //    }
 
 
-//    //TODO NEXT NEXT: above block ignores Weave and Havoc
-//    //TODO NEXT NEXT: this block catches Havoc and Weave but completely breaks ALL playtwice effects
 
     @SpirePatch2(clz = CardQueueItem.class, method= SpirePatch.CONSTRUCTOR,
         paramtypez = {AbstractCard.class, AbstractMonster.class, int.class, boolean.class, boolean.class})

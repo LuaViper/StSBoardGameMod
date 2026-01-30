@@ -1,5 +1,6 @@
 package BoardGame.relics;
 
+import BoardGame.powers.BGMetallicize2Power;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
 import com.megacrit.cardcrawl.actions.common.RelicAboveCreatureAction;
@@ -23,7 +24,7 @@ public class BGFrozenCore extends AbstractBGRelic {
 
     public void atBattleStart() {
         flash();
-        addToTop((AbstractGameAction)new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)AbstractDungeon.player, (AbstractPower)new MetallicizePower((AbstractCreature)AbstractDungeon.player, BLOCK_AMT), BLOCK_AMT));
+        addToTop((AbstractGameAction)new ApplyPowerAction((AbstractCreature)AbstractDungeon.player, (AbstractCreature)AbstractDungeon.player, (AbstractPower)new BGMetallicize2Power((AbstractCreature)AbstractDungeon.player, BLOCK_AMT), BLOCK_AMT));
         addToTop((AbstractGameAction)new RelicAboveCreatureAction((AbstractCreature)AbstractDungeon.player, this));
     }
 

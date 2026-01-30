@@ -49,10 +49,12 @@ public class BGSpikerProccedPower extends AbstractBGPower implements InvisiblePo
 
     public void onAfterUseCard(AbstractCard card, UseCardAction action) {
         //if monster, wears off after card resolves
-        addToBot(new BGForcedWaitAction(1.0f));
-        addToBot((AbstractGameAction) new DamageAction((AbstractCreature) AbstractDungeon.player, new DamageInfo(this.owner, this.amount,
-                DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, true));
-        addToBot((AbstractGameAction) new RemoveSpecificPowerAction(this.owner, this.owner, "BGSpikerProcced"));
+        //addToBot(new BGForcedWaitAction(1.0f));
+        if(!AbstractDungeon.getCurrRoom().monsters.areMonstersBasicallyDead()) {
+            addToBot((AbstractGameAction) new DamageAction((AbstractCreature) AbstractDungeon.player, new DamageInfo(this.owner, this.amount,
+                    DamageInfo.DamageType.THORNS), AbstractGameAction.AttackEffect.SLASH_HORIZONTAL, true));
+            addToBot((AbstractGameAction) new RemoveSpecificPowerAction(this.owner, this.owner, "BGSpikerProcced"));
+        }
     }
 
     public void updateDescription() {

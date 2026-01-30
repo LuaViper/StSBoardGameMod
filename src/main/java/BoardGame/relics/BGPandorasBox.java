@@ -48,14 +48,8 @@ public class BGPandorasBox
         }
         else if (!AbstractDungeon.isScreenUp) {
             AbstractDungeon.gridSelectScreen.open(tmp, 3, this.DESCRIPTIONS[1], false, false, false, false);
-
-
-
         }
         else {
-
-
-
             AbstractDungeon.dynamicBanner.hide();
             AbstractDungeon.previousScreen = AbstractDungeon.screen;
             AbstractDungeon.gridSelectScreen.open(tmp, 3, this.DESCRIPTIONS[1], false, false, false, false);
@@ -84,8 +78,6 @@ public class BGPandorasBox
             if (AbstractDungeon.screen != AbstractDungeon.CurrentScreen.TRANSFORM && AbstractDungeon.transformedCard != null) {
                 AbstractDungeon.topLevelEffectsQueue.add(new ShowCardAndObtainEffect(
                         AbstractDungeon.getTransformedCard(), Settings.WIDTH / 3.0F + displayCount, Settings.HEIGHT / 2.0F, false));
-
-
 
                 displayCount += Settings.WIDTH / 6.0F;
             }

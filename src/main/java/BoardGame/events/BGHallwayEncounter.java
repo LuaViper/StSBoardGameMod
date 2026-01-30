@@ -45,10 +45,10 @@ public class BGHallwayEncounter extends AbstractEvent {
                 //TODO LATER: this will probably break something if the player S&Qs immediately
                 AbstractDungeon.floorNum-=1;
             }else {
-                //TODO NEXT NEXT: "?" that turns into a combat changes after a S&Q
-                // (same for merchants)
                 (AbstractDungeon.getCurrRoom()).monsters = CardCrawlGame.dungeon.getMonsterForRoomCreation();
                 encounterID=AbstractDungeon.monsterList.get(0);
+                AbstractDungeon.monsterList.remove(0);
+                (AbstractDungeon.getCurrRoom()).rewards.clear();
                 this.enterCombat();
             }
         }

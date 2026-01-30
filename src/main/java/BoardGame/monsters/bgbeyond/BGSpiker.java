@@ -52,9 +52,6 @@ public class BGSpiker extends AbstractBGMonster implements DieControlledMoves, B
     private static final int BUFF_AMT = 2;
     private int thornsCount = 0;
 
-//TODO NEXT NEXT: final attack against GREMLIN NOB is bugged too.
-//              occurs with any multi-hit attack that Spiker survives the first hit of.
-//                  does not occur with Guardian defensive mode.
     public BGSpiker(float x, float y) {
         super(NAME, "BGSpiker", 56, -8.0F, -10.0F, 150.0F, 150.0F, null, x, y + 10.0F);
 

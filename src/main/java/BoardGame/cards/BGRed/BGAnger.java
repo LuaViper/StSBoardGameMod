@@ -2,16 +2,19 @@ package BoardGame.cards.BGRed;
 
 import BoardGame.cards.AbstractBGCard;
 import BoardGame.characters.BGIronclad;
+import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.animations.VFXAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.vfx.AbstractGameEffect;
@@ -44,12 +47,27 @@ public class BGAnger extends AbstractBGCard {
         addToBot((AbstractGameAction)new VFXAction((AbstractCreature)p, (AbstractGameEffect)new VerticalAuraEffect(Color.FIREBRICK, p.hb.cX, p.hb.cY), 0.0F));
         //addToBot((AbstractGameAction)new MakeTempCardInDiscardAction(makeStatEquivalentCopy(), 1));   //vanilla anger - do not use
 
-        //TODO: proper "isThisACopy" check
-        if(!this.purgeOnUse) {
-            this.purgeOnUse = true;
-            AbstractCard copy = this.makeStatEquivalentCopy();
-            addToBot(new MakeTempCardInDrawPileAction(copy, 1, false, true));
-        }
+//        //old instant-rebound implementation (not compatible with Havoc exhaust)
+//        if(!this.purgeOnUse) {
+//            this.purgeOnUse = true;
+//            AbstractCard copy = this.makeStatEquivalentCopy();
+//            addToBot(new MakeTempCardInDrawPileAction(copy, 1, false, true));
+//        }
+        addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                isDone = true;
+
+                for (AbstractGameAction action : AbstractDungeon.actionManager.actions) {
+                    if (action instanceof UseCardAction) {
+                        if (ReflectionHacks.getPrivate(action, UseCardAction.class, "targetCard") == BGAnger.this) {
+                            ((UseCardAction) action).reboundCard = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        });
     }
 
 

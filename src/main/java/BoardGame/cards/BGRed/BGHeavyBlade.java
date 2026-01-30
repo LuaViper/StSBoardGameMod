@@ -52,7 +52,7 @@ public class BGHeavyBlade extends AbstractBGCard {
         if (strength != null) {
             strength.amount *= this.magicNumber;
         }
-        //TODOLATER: make sure we aren't accidentally applying the str 10 cap here
+        //TODOLATER: make sure we aren't accidentally applying the str 8 cap here
         super.applyPowers();
 
         if (strength != null) {
@@ -66,7 +66,7 @@ public class BGHeavyBlade extends AbstractBGCard {
         if (strength != null) {
             strength.amount *= this.magicNumber;
         }
-        //TODOLATER: make sure we aren't accidentally applying the str 10 cap here
+        //TODOLATER: make sure we aren't accidentally applying the str 8 cap here
         super.calculateCardDamage(mo);
 
         if (strength != null) {

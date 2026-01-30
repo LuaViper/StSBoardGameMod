@@ -53,7 +53,7 @@ public class BGMugger extends AbstractBGMonster implements BGDamageIcons {
 
 
         this.goldAmt = 2;
-        setHp(10);
+        setHp(12);
 
 
         this.damage.add(new DamageInfo((AbstractCreature)this, 2));

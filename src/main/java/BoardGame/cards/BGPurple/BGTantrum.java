@@ -1,16 +1,20 @@
 package BoardGame.cards.BGPurple;
 
 import BoardGame.cards.AbstractBGCard;
+import BoardGame.cards.BGRed.BGAnger;
 import BoardGame.characters.BGWatcher;
+import basemod.ReflectionHacks;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAction;
 import com.megacrit.cardcrawl.actions.common.MakeTempCardInDrawPileAction;
+import com.megacrit.cardcrawl.actions.utility.UseCardAction;
 import com.megacrit.cardcrawl.actions.watcher.ChangeStanceAction;
 import com.megacrit.cardcrawl.cards.AbstractCard;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
 import com.megacrit.cardcrawl.core.CardCrawlGame;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.localization.CardStrings;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
 
@@ -36,16 +40,31 @@ public class BGTantrum extends AbstractBGCard {
             addToBot((AbstractGameAction)new DamageAction((AbstractCreature)m, new DamageInfo((AbstractCreature)p, this.damage, this.damageTypeForTurn), AbstractGameAction.AttackEffect.BLUNT_LIGHT));
 
 
-        //TODO: proper "isThisACopy" check
-        if(!this.purgeOnUse) {
-            this.purgeOnUse = true;
-            AbstractCard copy = this.makeStatEquivalentCopy();
-            copy.freeToPlayOnce=false;
-            addToBot(new MakeTempCardInDrawPileAction(copy, 1, false, true));
-        }
+//        //old instant-rebound implementation (not compatible with Havoc exhaust)
+//        if(!this.purgeOnUse) {
+//            this.purgeOnUse = true;
+//            AbstractCard copy = this.makeStatEquivalentCopy();
+//            copy.freeToPlayOnce=false;
+//            addToBot(new MakeTempCardInDrawPileAction(copy, 1, false, true));
+//        }
 
         addToBot((AbstractGameAction) new ChangeStanceAction("BGWrath"));
 
+        addToBot(new AbstractGameAction() {
+            @Override
+            public void update() {
+                isDone = true;
+
+                for (AbstractGameAction action : AbstractDungeon.actionManager.actions) {
+                    if (action instanceof UseCardAction) {
+                        if (ReflectionHacks.getPrivate(action, UseCardAction.class, "targetCard") == BGTantrum.this) {
+                            ((UseCardAction) action).reboundCard = true;
+                            break;
+                        }
+                    }
+                }
+            }
+        });
 
     }
 
