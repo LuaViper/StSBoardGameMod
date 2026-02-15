@@ -7,6 +7,7 @@ import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.actions.common.ApplyPowerAction;
+import com.megacrit.cardcrawl.actions.common.ReducePowerAction;
 import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.AbstractCreature;
@@ -136,4 +137,43 @@ public class RowBasedTargetingPatch {
             return SpireReturn.Continue();
         }
     }
+
+    /**
+     * Patches ReducePowerAction to check row targeting before reducing player powers.
+     * Used by enemies like Lagavulin to reduce Strength/Dexterity.
+     */
+    @SpirePatch2(clz = ReducePowerAction.class, method = "update")
+    public static class ReducePowerPatch {
+
+        @SpirePrefixPatch
+        public static SpireReturn<Void> Prefix(ReducePowerAction __instance,
+                                                AbstractCreature ___target,
+                                                AbstractCreature ___source) {
+            // Only intercept during combat
+            if (AbstractDungeon.getCurrRoom() == null ||
+                AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) {
+                return SpireReturn.Continue();
+            }
+
+            // Only intercept powers being reduced on the local player
+            if (___target != AbstractDungeon.player) {
+                return SpireReturn.Continue();
+            }
+
+            // Check if source is null
+            if (___source == null) {
+                return SpireReturn.Continue();
+            }
+
+            // Check if the monster can target this player
+            if (!canMonsterTargetLocalPlayer(___source)) {
+                // Skip this power reduction - monster is in a different row
+                __instance.isDone = true;
+                return SpireReturn.Return();
+            }
+
+            return SpireReturn.Continue();
+        }
+    }
+
 }

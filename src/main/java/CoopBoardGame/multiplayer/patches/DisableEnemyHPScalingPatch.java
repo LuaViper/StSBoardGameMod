@@ -32,11 +32,14 @@ public class DisableEnemyHPScalingPatch {
      * Prefix patch on setHp(int, int) to capture the intended HP values before
      * TogetherInSpire can modify them.
      */
-    @SpirePatch2(clz = AbstractMonster.class, method = "setHp", paramtypez = {int.class, int.class})
+    @SpirePatch(
+        clz = AbstractMonster.class,
+        method = "setHp",
+        paramtypez = {int.class, int.class}
+    )
     public static class CaptureIntendedHPRange {
 
-        @SpirePrefixPatch
-        public static void captureHP(AbstractMonster __instance, int minHP, int maxHP) {
+        public static void Prefix(AbstractMonster __instance, int minHP, int maxHP) {
             // Only capture for board game monsters in multiplayer mode
             if (__instance instanceof AbstractBGMonster && TogetherInSpireHelper.isMultiplayerActive()) {
                 IntendedHP.intendedMinHP.set(__instance, minHP);
@@ -49,11 +52,14 @@ public class DisableEnemyHPScalingPatch {
      * Postfix patch on setHp(int, int) to restore the original HP values
      * after TogetherInSpire has scaled them.
      */
-    @SpirePatch2(clz = AbstractMonster.class, method = "setHp", paramtypez = {int.class, int.class})
+    @SpirePatch(
+        clz = AbstractMonster.class,
+        method = "setHp",
+        paramtypez = {int.class, int.class}
+    )
     public static class RestoreIntendedHPRange {
 
-        @SpirePostfixPatch
-        public static void restoreHP(AbstractMonster __instance) {
+        public static void Postfix(AbstractMonster __instance) {
             if (!(__instance instanceof AbstractBGMonster) || !TogetherInSpireHelper.isMultiplayerActive()) {
                 return;
             }
@@ -94,11 +100,14 @@ public class DisableEnemyHPScalingPatch {
     /**
      * Prefix patch on setHp(int) (single value version) to capture the intended HP.
      */
-    @SpirePatch2(clz = AbstractMonster.class, method = "setHp", paramtypez = {int.class})
+    @SpirePatch(
+        clz = AbstractMonster.class,
+        method = "setHp",
+        paramtypez = {int.class}
+    )
     public static class CaptureIntendedHPSingle {
 
-        @SpirePrefixPatch
-        public static void captureHP(AbstractMonster __instance, int hp) {
+        public static void Prefix(AbstractMonster __instance, int hp) {
             if (__instance instanceof AbstractBGMonster && TogetherInSpireHelper.isMultiplayerActive()) {
                 IntendedHP.intendedMinHP.set(__instance, hp);
                 IntendedHP.intendedMaxHP.set(__instance, hp);
@@ -109,11 +118,14 @@ public class DisableEnemyHPScalingPatch {
     /**
      * Postfix patch on setHp(int) to restore the original HP value.
      */
-    @SpirePatch2(clz = AbstractMonster.class, method = "setHp", paramtypez = {int.class})
+    @SpirePatch(
+        clz = AbstractMonster.class,
+        method = "setHp",
+        paramtypez = {int.class}
+    )
     public static class RestoreIntendedHPSingle {
 
-        @SpirePostfixPatch
-        public static void restoreHP(AbstractMonster __instance) {
+        public static void Postfix(AbstractMonster __instance) {
             if (!(__instance instanceof AbstractBGMonster) || !TogetherInSpireHelper.isMultiplayerActive()) {
                 return;
             }
