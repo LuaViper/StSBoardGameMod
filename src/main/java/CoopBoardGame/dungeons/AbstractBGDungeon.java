@@ -721,9 +721,13 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
                 //CoopBoardGame.logger.info("...MonsterRoomBoss...");
                 encounter = "NO POTION";
             } else if (__instance instanceof MonsterRoomElite) {
-                encounter = AbstractDungeon.eliteMonsterList.get(0);
+                if (!AbstractDungeon.eliteMonsterList.isEmpty()) {
+                    encounter = AbstractDungeon.eliteMonsterList.get(0);
+                }
             } else if (__instance instanceof MonsterRoom) {
-                encounter = AbstractDungeon.monsterList.get(0);
+                if (!AbstractDungeon.monsterList.isEmpty()) {
+                    encounter = AbstractDungeon.monsterList.get(0);
+                }
             } else if (__instance instanceof EventRoom && __instance.event instanceof BGColosseum) {
                 encounter = ((BGColosseum) __instance.event).encounterID;
             } else if (
