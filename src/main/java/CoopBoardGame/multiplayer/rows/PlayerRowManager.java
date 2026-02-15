@@ -29,11 +29,12 @@ public class PlayerRowManager {
     public static void assignPlayerRows() {
         playerRows.clear();
 
-        List<Integer> playerIds = TogetherInSpireHelper.getAllPlayerIds();
+        // Use BG player IDs only, not all players
+        List<Integer> playerIds = TogetherInSpireHelper.getBoardGamePlayerIds();
         int row = 0;
         for (Integer playerId : playerIds) {
             playerRows.put(playerId, row);
-            logger.info("Assigned player " + playerId + " to row " + row);
+            logger.info("Assigned BG player " + playerId + " to row " + row);
             row++;
         }
 

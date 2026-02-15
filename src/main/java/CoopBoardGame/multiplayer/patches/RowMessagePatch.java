@@ -72,15 +72,18 @@ public class RowMessagePatch {
             try {
                 Class<?> messageClass = message.getClass();
 
-                // Get the payload (int array)
+                // Get the payload (String with format "id:occurrence:row,...")
                 Field objectField = messageClass.getDeclaredField("object");
                 objectField.setAccessible(true);
                 Object payload = objectField.get(message);
 
-                if (payload instanceof int[]) {
-                    int[] data = (int[]) payload;
-                    logger.info("Received monster row assignments: " + data.length / 2 + " monsters");
+                if (payload instanceof String) {
+                    String data = (String) payload;
+                    logger.info("Received monster row assignments payload");
                     RowNetworkHelper.onMonsterRowAssignmentsReceived(data);
+                } else {
+                    logger.warn("Unexpected monster row assignments payload type: " +
+                            (payload != null ? payload.getClass().getName() : "null"));
                 }
             } catch (Exception e) {
                 logger.error("Error handling monster row assignments message: " + e.getMessage());

@@ -11,7 +11,9 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Helper class for synchronizing row assignments between host and clients
@@ -31,6 +33,9 @@ public class RowNetworkHelper {
     private static Method sendDataMethod = null;
     private static Constructor<?> networkMessageConstructor = null;
     private static boolean initialized = false;
+
+    // Store pending row assignments for when monsters aren't loaded yet (timing issue with TogetherInSpire)
+    private static String pendingMonsterRowAssignments = null;
 
     /**
      * Initialize reflection lookups for TogetherInSpire networking classes.
@@ -81,8 +86,9 @@ public class RowNetworkHelper {
      * Sends monster row assignments from host to all clients.
      * Called after spawning enemies in combat.
      *
-     * Payload format: [monsterId1, row1, monsterId2, row2, ...]
-     * Uses monster index in the monster list as ID since monsters don't have unique IDs.
+     * Payload format: "monsterId:occurrence:row,monsterId:occurrence:row,..."
+     * Uses monster ID + occurrence count for stable identification across host/client.
+     * This is more reliable than index-based sync since TogetherInSpire may reorder monsters.
      */
     public static void sendMonsterRowAssignments() {
         if (!initialize()) {
@@ -96,22 +102,38 @@ public class RowNetworkHelper {
         }
 
         try {
-            // Build payload: [index, row, index, row, ...]
-            List<Integer> payloadList = new ArrayList<>();
+            // Build payload: "id:occurrence:row,id:occurrence:row,..."
+            // Track occurrence count per monster ID
+            Map<String, Integer> occurrenceCounts = new HashMap<>();
+            StringBuilder payloadBuilder = new StringBuilder();
 
             if (AbstractDungeon.getMonsters() != null) {
-                int index = 0;
+                boolean first = true;
                 for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
+                    // Skip CharacterEntities (remote players)
+                    if (TogetherInSpireHelper.isCharacterEntity(m)) {
+                        continue;
+                    }
+
+                    String monsterId = m.id;
+                    int occurrence = occurrenceCounts.getOrDefault(monsterId, 0);
+                    occurrenceCounts.put(monsterId, occurrence + 1);
+
                     int row = MultiCreature.Field.currentRow.get(m);
-                    payloadList.add(index);
-                    payloadList.add(row);
-                    index++;
+
+                    if (!first) {
+                        payloadBuilder.append(",");
+                    }
+                    payloadBuilder.append(monsterId).append(":").append(occurrence).append(":").append(row);
+                    first = false;
+
+                    logger.debug("Sending row assignment: " + monsterId + ":" + occurrence + " -> row " + row);
                 }
             }
 
-            int[] payload = payloadList.stream().mapToInt(Integer::intValue).toArray();
+            String payload = payloadBuilder.toString();
             sendMessage(MSG_ROW_ASSIGNMENTS, payload);
-            logger.info("Sent monster row assignments for " + (payload.length / 2) + " monsters");
+            logger.info("Sent monster row assignments: " + payload);
 
         } catch (Exception e) {
             logger.error("Failed to send monster row assignments: " + e.getMessage());
@@ -135,7 +157,8 @@ public class RowNetworkHelper {
         }
 
         try {
-            List<Integer> playerIds = TogetherInSpireHelper.getAllPlayerIds();
+            // Use BG player IDs only, not all players
+            List<Integer> playerIds = TogetherInSpireHelper.getBoardGamePlayerIds();
             List<Integer> payloadList = new ArrayList<>();
 
             // Assign rows based on player order (0-indexed)
@@ -148,7 +171,7 @@ public class RowNetworkHelper {
 
             int[] payload = payloadList.stream().mapToInt(Integer::intValue).toArray();
             sendMessage(MSG_PLAYER_ROW_ASSIGNMENTS, payload);
-            logger.info("Sent player row assignments for " + playerIds.size() + " players");
+            logger.info("Sent player row assignments for " + playerIds.size() + " BG players");
 
         } catch (Exception e) {
             logger.error("Failed to send player row assignments: " + e.getMessage());
@@ -172,28 +195,109 @@ public class RowNetworkHelper {
     /**
      * Processes received monster row assignments.
      * Called on clients when they receive MSG_ROW_ASSIGNMENTS from host.
+     *
+     * @param data String payload in format "monsterId:occurrence:row,monsterId:occurrence:row,..."
      */
-    public static void onMonsterRowAssignmentsReceived(int[] data) {
-        if (AbstractDungeon.getMonsters() == null) {
-            logger.warn("Received monster row assignments but no monsters exist yet");
+    public static void onMonsterRowAssignmentsReceived(String data) {
+        if (data == null || data.isEmpty()) {
+            logger.warn("Received empty monster row assignments");
             return;
         }
 
-        List<AbstractMonster> monsters = AbstractDungeon.getMonsters().monsters;
+        logger.info("Received monster row assignments: " + data);
 
-        // Process pairs: [index, row, index, row, ...]
-        for (int i = 0; i + 1 < data.length; i += 2) {
-            int monsterIndex = data[i];
-            int row = data[i + 1];
+        // Store for later - TogetherInSpire may not have synced monsters yet
+        pendingMonsterRowAssignments = data;
 
-            if (monsterIndex >= 0 && monsterIndex < monsters.size()) {
-                AbstractMonster m = monsters.get(monsterIndex);
-                MultiCreature.Field.currentRow.set(m, row);
-                logger.debug("Set monster " + monsterIndex + " (" + m.name + ") to row " + row);
+        // Try to apply immediately if monsters exist
+        applyPendingMonsterRowAssignments();
+    }
+
+    /**
+     * Applies pending monster row assignments if monsters are available.
+     * Called when row assignments are received and also after combat loads.
+     */
+    public static void applyPendingMonsterRowAssignments() {
+        if (pendingMonsterRowAssignments == null) {
+            return;
+        }
+
+        if (AbstractDungeon.getMonsters() == null || AbstractDungeon.getMonsters().monsters.isEmpty()) {
+            logger.debug("Cannot apply pending row assignments - no monsters yet");
+            return;
+        }
+
+        String data = pendingMonsterRowAssignments;
+
+        // Build a map of (monsterId, occurrence) -> monster from local monsters
+        Map<String, AbstractMonster> monsterByKey = new HashMap<>();
+        Map<String, Integer> localOccurrenceCounts = new HashMap<>();
+
+        for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
+            // Skip CharacterEntities (remote players)
+            if (TogetherInSpireHelper.isCharacterEntity(m)) {
+                continue;
+            }
+
+            String monsterId = m.id;
+            int occurrence = localOccurrenceCounts.getOrDefault(monsterId, 0);
+            localOccurrenceCounts.put(monsterId, occurrence + 1);
+
+            String key = monsterId + ":" + occurrence;
+            monsterByKey.put(key, m);
+        }
+
+        // Parse payload and apply row assignments
+        String[] entries = data.split(",");
+        int applied = 0;
+        int total = entries.length;
+        for (String entry : entries) {
+            String[] parts = entry.split(":");
+            if (parts.length != 3) {
+                logger.warn("Invalid row assignment entry: " + entry);
+                continue;
+            }
+
+            String monsterId = parts[0];
+            String occurrenceStr = parts[1];
+            String rowStr = parts[2];
+
+            try {
+                int occurrence = Integer.parseInt(occurrenceStr);
+                int row = Integer.parseInt(rowStr);
+
+                String key = monsterId + ":" + occurrence;
+                AbstractMonster m = monsterByKey.get(key);
+
+                if (m != null) {
+                    MultiCreature.Field.currentRow.set(m, row);
+                    logger.debug("Set monster " + key + " (" + m.name + ") to row " + row);
+                    applied++;
+                } else {
+                    logger.warn("Could not find monster for key: " + key);
+                }
+            } catch (NumberFormatException e) {
+                logger.warn("Invalid number in row assignment entry: " + entry);
             }
         }
 
-        logger.info("Applied monster row assignments from host");
+        logger.info("Applied " + applied + "/" + total + " monster row assignments from host");
+
+        // Only clear pending if we successfully applied ALL assignments
+        // If some are missing, TogetherInSpire may still be syncing monsters
+        if (applied == total) {
+            pendingMonsterRowAssignments = null;
+            logger.info("All monster row assignments applied successfully");
+        } else {
+            logger.debug("Still waiting for " + (total - applied) + " monsters to sync from TogetherInSpire");
+        }
+    }
+
+    /**
+     * Returns true if there are pending monster row assignments waiting to be applied.
+     */
+    public static boolean hasPendingMonsterRowAssignments() {
+        return pendingMonsterRowAssignments != null;
     }
 
     /**
@@ -229,6 +333,6 @@ public class RowNetworkHelper {
      * Resets the network helper state.
      */
     public static void reset() {
-        // Nothing to reset currently
+        pendingMonsterRowAssignments = null;
     }
 }

@@ -3,33 +3,76 @@ package CoopBoardGame.multiplayer.patches;
 import CoopBoardGame.multiplayer.rows.CombatRowManager;
 import CoopBoardGame.multiplayer.rows.MultiCreature;
 import CoopBoardGame.multiplayer.rows.PlayerRowManager;
+import CoopBoardGame.multiplayer.rows.RowNetworkHelper;
 import CoopBoardGame.util.TogetherInSpireHelper;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
-import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
+import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 /**
  * Patches to position players and enemies in their assigned combat rows.
  * This translates the row assignments (stored in MultiCreature.Field.currentRow)
  * into actual visual positions (drawX, drawY).
+ *
+ * Uses PREFIX patches on render() methods instead of update() to ensure our
+ * positioning happens AFTER TogetherInSpire's update-time positioning but
+ * BEFORE the actual rendering, so our positions take visual precedence.
  */
 public class CreatureRowPositionPatch {
 
+    private static final Logger logger = LogManager.getLogger(CreatureRowPositionPatch.class.getName());
+    private static boolean loggedPlayerInCombat = false;
+    private static boolean loggedMonsterInCombat = false;
+    private static boolean loggedCharacterEntity = false;
+    private static boolean appliedPendingRowAssignments = false;
+
+    /**
+     * Resets the logging flags so we get fresh logs for each combat.
+     * Called from MultiCombatEncounterPatches when combat starts.
+     */
+    public static void resetLogging() {
+        loggedPlayerInCombat = false;
+        loggedMonsterInCombat = false;
+        loggedCharacterEntity = false;
+        appliedPendingRowAssignments = false;
+    }
+
     /**
      * Positions the local player in their assigned row.
+     * Uses render() prefix to run after TogetherInSpire's update() positioning.
      */
-    @SpirePatch2(clz = AbstractPlayer.class, method = "update")
+    @SpirePatch2(clz = AbstractPlayer.class, method = "render")
     public static class PlayerPositionPatch {
 
-        @SpirePostfixPatch
-        public static void Postfix(AbstractPlayer __instance) {
-            if (!TogetherInSpireHelper.isMultiplayerBoardGameMode()) {
+        @SpirePrefixPatch
+        public static void Prefix(AbstractPlayer __instance, SpriteBatch sb) {
+            // Only position during combat
+            if (AbstractDungeon.getCurrRoom() == null ||
+                AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) {
                 return;
             }
 
+            boolean isBGMode = TogetherInSpireHelper.isMultiplayerBoardGameMode();
             int numRows = PlayerRowManager.getRowCount();
+
+            // Log once per combat for debugging
+            if (!loggedPlayerInCombat && isBGMode) {
+                int row = MultiCreature.Field.currentRow.get(__instance);
+                logger.info("PlayerPositionPatch RENDER: isBGMode=" + isBGMode + ", numRows=" + numRows + ", playerRow=" + row);
+                loggedPlayerInCombat = true;
+            }
+
+            if (!isBGMode) {
+                return;
+            }
+
             if (numRows <= 1) {
                 return;
             }
@@ -53,17 +96,48 @@ public class CreatureRowPositionPatch {
     /**
      * Positions monsters (enemies) and CharacterEntities (remote players) in their assigned rows.
      * CharacterEntities are positioned like players (left side), actual monsters on the right.
+     * Uses render() prefix to run after TogetherInSpire's update() positioning.
      */
-    @SpirePatch2(clz = AbstractMonster.class, method = "update")
+    @SpirePatch2(clz = AbstractMonster.class, method = "render")
     public static class MonsterPositionPatch {
 
-        @SpirePostfixPatch
-        public static void Postfix(AbstractMonster __instance) {
-            if (!TogetherInSpireHelper.isMultiplayerBoardGameMode()) {
+        @SpirePrefixPatch
+        public static void Prefix(AbstractMonster __instance, SpriteBatch sb) {
+            // Only position during combat
+            if (AbstractDungeon.getCurrRoom() == null ||
+                AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) {
                 return;
             }
 
+            boolean isBGMode = TogetherInSpireHelper.isMultiplayerBoardGameMode();
             int numRows = PlayerRowManager.getRowCount();
+
+            // Apply any pending row assignments from network (timing issue workaround)
+            // Row assignments may arrive before TogetherInSpire syncs monsters to the client
+            if (isBGMode && RowNetworkHelper.hasPendingMonsterRowAssignments()) {
+                if (!appliedPendingRowAssignments) {
+                    logger.info("Attempting to apply pending monster row assignments (delayed sync)");
+                }
+                RowNetworkHelper.applyPendingMonsterRowAssignments();
+                // Only mark as applied once pending assignments are actually cleared
+                if (!RowNetworkHelper.hasPendingMonsterRowAssignments()) {
+                    logger.info("Successfully applied pending monster row assignments");
+                    appliedPendingRowAssignments = true;
+                }
+            }
+
+            // Log once per combat for debugging
+            if (!loggedMonsterInCombat && isBGMode) {
+                int row = MultiCreature.Field.currentRow.get(__instance);
+                logger.info("MonsterPositionPatch RENDER: isBGMode=" + isBGMode + ", numRows=" + numRows +
+                        ", monster=" + __instance.name + ", row=" + row);
+                loggedMonsterInCombat = true;
+            }
+
+            if (!isBGMode) {
+                return;
+            }
+
             if (numRows <= 1) {
                 return;
             }
@@ -108,11 +182,22 @@ public class CreatureRowPositionPatch {
             // Get player ID from CharacterEntity
             int playerId = TogetherInSpireHelper.getCharacterEntityPlayerId(entity);
             if (playerId < 0) {
+                if (!loggedCharacterEntity) {
+                    logger.warn("CharacterEntity has invalid playerId: " + playerId);
+                }
                 return;
             }
 
             // Get row for this player
             int row = PlayerRowManager.getPlayerRow(playerId);
+
+            // Log once per combat for debugging
+            if (!loggedCharacterEntity) {
+                logger.info("CharacterEntity positioning: playerId=" + playerId +
+                        ", row=" + row + ", hasAssignments=" + PlayerRowManager.hasAssignments() +
+                        ", rowCount=" + PlayerRowManager.getRowCount());
+                loggedCharacterEntity = true;
+            }
 
             // Calculate target position (same X as local player)
             float targetX = Settings.WIDTH * CombatRowManager.PLAYER_X_FRACTION;

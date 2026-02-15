@@ -35,10 +35,12 @@ public class MultiCombatEncounterPatches {
             if (numRows > 1) {
                 logger.info("Initializing CombatRowManager for multiplayer mode with " + numRows + " rows");
                 MultiplayerRowRenderPatch.combatRowManager.resetForCombat();
+                CreatureRowPositionPatch.resetLogging();
             }
 
-            if (numRows > 1) {
-                logger.info("Spawning enemies for " + numRows + " player rows");
+            // Only HOST spawns additional monsters - clients receive them via TogetherInSpire sync
+            if (numRows > 1 && TogetherInSpireHelper.isHost()) {
+                logger.info("Host spawning enemies for " + numRows + " player rows");
 
                 // monsters need to end up in left-to-right, top-to-bottom order
                 // we're assembling the rows from bottom-to-top, so we'll add each row right-to-left then reverse
@@ -66,7 +68,7 @@ public class MultiCombatEncounterPatches {
                     // force switch to the strong enemies list by clearing entire list
                     AbstractDungeon.monsterList.clear();
                 }
-            } else if (CardCrawlGame.dungeon instanceof BGExordium && AbstractDungeon.floorNum == 1) {
+            } else if (numRows <= 1 && CardCrawlGame.dungeon instanceof BGExordium && AbstractDungeon.floorNum == 1) {
                 // if this was the first encounter of solo board game,
                 // force switch to the strong enemies list by clearing all but index 0
                 if (AbstractDungeon.monsterList.size() > 1) {
