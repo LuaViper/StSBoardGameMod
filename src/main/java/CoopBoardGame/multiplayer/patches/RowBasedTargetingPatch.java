@@ -92,7 +92,7 @@ public class RowBasedTargetingPatch {
             // Check if the monster can target this player
             if (!canMonsterTargetLocalPlayer(info.owner)) {
                 // Skip this damage - monster is in a different row
-                return SpireReturn.Return(null);
+                return SpireReturn.Return();
             }
 
             return SpireReturn.Continue();
