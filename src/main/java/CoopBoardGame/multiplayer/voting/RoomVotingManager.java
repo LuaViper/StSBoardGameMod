@@ -434,11 +434,16 @@ public class RoomVotingManager {
             return false;
         }
 
+        // At start of act (first room not chosen), any row 0 node is valid
+        if (!AbstractDungeon.firstRoomChosen) {
+            return targetNode.y == 0;
+        }
+
         // Get current map position
         MapRoomNode currentNode = AbstractDungeon.currMapNode;
         if (currentNode == null) {
-            // At start of act (floor 0), any row 0 node is valid
-            return targetNode.y == 0;
+            // Shouldn't happen if firstRoomChosen is true, but handle it safely
+            return false;
         }
 
         // Target must be exactly one row above current (forward progression)
