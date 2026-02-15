@@ -11,6 +11,7 @@ import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
+import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
 import java.util.List;
@@ -314,5 +315,55 @@ public class CombatRowManager {
         }
 
         return DEFAULT_BG;
+    }
+
+    /**
+     * Counts how many monsters are in a specific row.
+     * Excludes CharacterEntities (remote players) from the count.
+     *
+     * @param row The row index to count monsters in
+     * @return Number of monsters in that row
+     */
+    public static int countMonstersInRow(int row) {
+        int count = 0;
+        if (AbstractDungeon.getMonsters() != null) {
+            for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
+                if (!m.isDying && !m.isEscaping) {
+                    if (!TogetherInSpireHelper.isCharacterEntity(m)) {
+                        if (MultiCreature.Field.currentRow.get(m) == row) {
+                            count++;
+                        }
+                    }
+                }
+            }
+        }
+        return count;
+    }
+
+    /**
+     * Gets the index of a monster within its row (for horizontal spacing).
+     * Only counts non-dying, non-escaping monsters that aren't CharacterEntities.
+     *
+     * @param monster The monster to find the index of
+     * @param row The row the monster is in
+     * @return The index of the monster within its row (0-based)
+     */
+    public static int getMonsterIndexInRow(AbstractMonster monster, int row) {
+        int index = 0;
+        if (AbstractDungeon.getMonsters() != null) {
+            for (AbstractMonster m : AbstractDungeon.getMonsters().monsters) {
+                if (m == monster) {
+                    return index;
+                }
+                if (!m.isDying && !m.isEscaping) {
+                    if (!TogetherInSpireHelper.isCharacterEntity(m)) {
+                        if (MultiCreature.Field.currentRow.get(m) == row) {
+                            index++;
+                        }
+                    }
+                }
+            }
+        }
+        return index;
     }
 }
