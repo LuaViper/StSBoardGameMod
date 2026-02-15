@@ -80,17 +80,52 @@ public class MapVotingPatch {
             // Check if this node is being clicked
             // We check if the hitbox is hovered and mouse was just clicked
             if (__instance.hb.hovered && InputHelper.justClickedLeft && !handlingClick) {
-                // Check if this is a valid node to select (has a room, is connected, etc.)
-                // The node's own update() method will validate this, but we can do a basic check
-                if (__instance.room != null) {
+                // Check if this is a valid node to select (connected to current position)
+                if (isValidVotingTarget(__instance)) {
                     handlingClick = true;
                     logger.info("Detected click on node (" + __instance.x + ", " + __instance.y + "), casting vote");
                     manager.castLocalVote(__instance);
                     // Consume the click to prevent vanilla handling
                     InputHelper.justClickedLeft = false;
                     handlingClick = false;
+                } else if (__instance.room != null) {
+                    // Log invalid click for debugging
+                    logger.debug("Rejected click on non-connected node (" + __instance.x + ", " + __instance.y + ")");
                 }
             }
+        }
+
+        /**
+         * Validates if a map node is a valid voting target from the current position.
+         * Mirrors vanilla game's room selection logic.
+         *
+         * @param targetNode The node the player wants to vote for
+         * @return true if this is a valid next room to enter
+         */
+        private static boolean isValidVotingTarget(MapRoomNode targetNode) {
+            // Must have a room
+            if (targetNode.room == null) {
+                return false;
+            }
+
+            // Get current map position
+            MapRoomNode currentNode = AbstractDungeon.currMapNode;
+            if (currentNode == null) {
+                // At start of act (floor 0), any row 0 node is valid
+                return targetNode.y == 0;
+            }
+
+            // Target must be exactly one row above current (forward progression)
+            if (targetNode.y != currentNode.y + 1) {
+                return false;
+            }
+
+            // Check if current node has a connection to target node
+            // Use vanilla's isConnectedTo method which checks the edges ArrayList
+            boolean normalConnection = currentNode.isConnectedTo(targetNode);
+            boolean wingedConnection = currentNode.wingedIsConnectedTo(targetNode);
+
+            return normalConnection || wingedConnection;
         }
     }
 

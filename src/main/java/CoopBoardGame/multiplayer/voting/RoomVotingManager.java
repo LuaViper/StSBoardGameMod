@@ -65,7 +65,7 @@ public class RoomVotingManager {
         }
         reset();
         votingActive = true;
-        logger.info("Room voting activated for " + TogetherInSpireHelper.getPlayerCount() + " players");
+        logger.info("Room voting activated for " + TogetherInSpireHelper.getBoardGamePlayerCount() + " BG players");
     }
 
     /**
@@ -87,6 +87,12 @@ public class RoomVotingManager {
      */
     public void castLocalVote(MapRoomNode node) {
         if (!isVotingActive() || enteringRoom) {
+            return;
+        }
+
+        // Validate node is a valid voting target
+        if (!isValidVotingTarget(node)) {
+            logger.info("Rejected vote for invalid node (" + node.x + ", " + node.y + ")");
             return;
         }
 
@@ -184,7 +190,7 @@ public class RoomVotingManager {
      * Checks if all players have voted and triggers resolution if so.
      */
     private void checkAllVoted() {
-        int playerCount = TogetherInSpireHelper.getPlayerCount();
+        int playerCount = TogetherInSpireHelper.getBoardGamePlayerCount();
         int voteCount = playerVotes.size();
 
         logger.info("Vote check: " + voteCount + "/" + playerCount + " players have voted");
@@ -412,7 +418,39 @@ public class RoomVotingManager {
      * Gets the total number of players expected to vote.
      */
     public int getExpectedVoteCount() {
-        return TogetherInSpireHelper.getPlayerCount();
+        return TogetherInSpireHelper.getBoardGamePlayerCount();
+    }
+
+    /**
+     * Validates if a map node is a valid voting target from the current position.
+     * Mirrors vanilla game's room selection logic.
+     *
+     * @param targetNode The node the player wants to vote for
+     * @return true if this is a valid next room to enter
+     */
+    private boolean isValidVotingTarget(MapRoomNode targetNode) {
+        // Must have a room
+        if (targetNode == null || targetNode.room == null) {
+            return false;
+        }
+
+        // Get current map position
+        MapRoomNode currentNode = AbstractDungeon.currMapNode;
+        if (currentNode == null) {
+            // At start of act (floor 0), any row 0 node is valid
+            return targetNode.y == 0;
+        }
+
+        // Target must be exactly one row above current (forward progression)
+        if (targetNode.y != currentNode.y + 1) {
+            return false;
+        }
+
+        // Check if current node has a connection to target node
+        boolean normalConnection = currentNode.isConnectedTo(targetNode);
+        boolean wingedConnection = currentNode.wingedIsConnectedTo(targetNode);
+
+        return normalConnection || wingedConnection;
     }
 
     /**

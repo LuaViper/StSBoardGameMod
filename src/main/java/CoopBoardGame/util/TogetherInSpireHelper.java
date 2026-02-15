@@ -246,6 +246,53 @@ public class TogetherInSpireHelper {
     }
 
     /**
+     * Gets the player IDs of all Board Game players in the current multiplayer session.
+     *
+     * @return list of player IDs who are using BG character classes
+     */
+    public static List<Integer> getBoardGamePlayerIds() {
+        List<Integer> result = new ArrayList<>();
+
+        if (!isMultiplayerActive()) {
+            return result;
+        }
+
+        try {
+            java.lang.reflect.Field playersField = p2pManagerClass.getDeclaredField("players");
+            playersField.setAccessible(true);
+            Object players = playersField.get(null);
+
+            if (players instanceof List) {
+                List<?> playerList = (List<?>) players;
+
+                for (Object p2pPlayer : playerList) {
+                    if (p2pPlayer != null) {
+                        // Get player ID
+                        java.lang.reflect.Field idField = p2pPlayerClass.getDeclaredField("id");
+                        idField.setAccessible(true);
+                        Object id = idField.get(p2pPlayer);
+
+                        // Get player class
+                        java.lang.reflect.Field playerClassField = p2pPlayerClass.getDeclaredField("playerClass");
+                        playerClassField.setAccessible(true);
+                        Object playerClass = playerClassField.get(p2pPlayer);
+
+                        if (id instanceof Integer && playerClass instanceof AbstractPlayer.PlayerClass) {
+                            if (isBoardGameClass((AbstractPlayer.PlayerClass) playerClass)) {
+                                result.add((Integer) id);
+                            }
+                        }
+                    }
+                }
+            }
+        } catch (Exception e) {
+            logger.warn("Failed to get BG player IDs: " + e.getMessage());
+        }
+
+        return result;
+    }
+
+    /**
      * Gets the game seed from TogetherInSpire's P2PClientData.
      * This seed is shared across all players for deterministic behavior.
      *
