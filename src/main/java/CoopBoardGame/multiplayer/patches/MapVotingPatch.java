@@ -97,7 +97,8 @@ public class MapVotingPatch {
 
         /**
          * Validates if a map node is a valid voting target from the current position.
-         * Mirrors vanilla game's room selection logic.
+         * Uses lenient validation since in multiplayer, currMapNode may not be
+         * properly synchronized across clients.
          *
          * @param targetNode The node the player wants to vote for
          * @return true if this is a valid next room to enter
@@ -113,24 +114,29 @@ public class MapVotingPatch {
                 return targetNode.y == 0;
             }
 
-            // Get current map position
+            // After first room is chosen, validate forward progression
             MapRoomNode currentNode = AbstractDungeon.currMapNode;
+
             if (currentNode == null) {
-                // Shouldn't happen if firstRoomChosen is true, but handle it safely
+                // In multiplayer, currMapNode might not be set correctly on clients
+                // Allow if target is above row 0 (we've passed the first room)
+                return targetNode.y > 0;
+            }
+
+            // Check forward progression (y should increase)
+            if (targetNode.y <= currentNode.y) {
                 return false;
             }
 
-            // Target must be exactly one row above current (forward progression)
-            if (targetNode.y != currentNode.y + 1) {
-                return false;
+            // Check connection if currentNode is a real map node (not placeholder at y=-1)
+            if (currentNode.y >= 0) {
+                boolean normalConnection = currentNode.isConnectedTo(targetNode);
+                boolean wingedConnection = currentNode.wingedIsConnectedTo(targetNode);
+                return normalConnection || wingedConnection;
             }
 
-            // Check if current node has a connection to target node
-            // Use vanilla's isConnectedTo method which checks the edges ArrayList
-            boolean normalConnection = currentNode.isConnectedTo(targetNode);
-            boolean wingedConnection = currentNode.wingedIsConnectedTo(targetNode);
-
-            return normalConnection || wingedConnection;
+            // currMapNode is placeholder, trust vanilla validation
+            return true;
         }
     }
 

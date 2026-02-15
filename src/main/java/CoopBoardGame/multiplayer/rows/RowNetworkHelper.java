@@ -161,12 +161,11 @@ public class RowNetworkHelper {
             List<Integer> playerIds = TogetherInSpireHelper.getBoardGamePlayerIds();
             List<Integer> payloadList = new ArrayList<>();
 
-            // Assign rows based on player order (0-indexed)
-            int row = 0;
+            // Send the row assignments from PlayerRowManager (which uses sorted player IDs)
             for (Integer playerId : playerIds) {
+                int row = PlayerRowManager.getPlayerRow(playerId);
                 payloadList.add(playerId);
                 payloadList.add(row);
-                row++;
             }
 
             int[] payload = payloadList.stream().mapToInt(Integer::intValue).toArray();
@@ -305,28 +304,36 @@ public class RowNetworkHelper {
      * Called on clients when they receive MSG_PLAYER_ROW_ASSIGNMENTS from host.
      */
     public static void onPlayerRowAssignmentsReceived(int[] data) {
-        // Store player row assignments for later use
-        // The actual player positioning is handled by PerspectiveSkewPatches
-        // which reads from MultiCreature.Field.currentRow
-
         int localPlayerId = TogetherInSpireHelper.getLocalPlayerId();
+
+        // Check if we already computed row assignments locally
+        // If so, skip updating local player to avoid overwriting our own computation
+        // (In P2P mode, both machines compute and send, so we may receive our own broadcast back)
+        boolean hasLocalAssignments = PlayerRowManager.hasAssignments();
+        logger.info("Received player row assignments. hasLocalAssignments=" + hasLocalAssignments + ", localPlayerId=" + localPlayerId);
 
         // Process pairs: [playerId, row, playerId, row, ...]
         for (int i = 0; i + 1 < data.length; i += 2) {
             int playerId = data[i];
             int row = data[i + 1];
 
-            // If this is our row assignment, set it on the local player
+            // If this is our row assignment, only set it if we don't have local assignments
             if (playerId == localPlayerId && AbstractDungeon.player != null) {
-                MultiCreature.Field.currentRow.set(AbstractDungeon.player, row);
-                logger.info("Set local player to row " + row);
+                if (!hasLocalAssignments) {
+                    MultiCreature.Field.currentRow.set(AbstractDungeon.player, row);
+                    logger.info("Set local player to row " + row + " (from network)");
+                } else {
+                    int existingRow = MultiCreature.Field.currentRow.get(AbstractDungeon.player);
+                    logger.info("Keeping local player at row " + existingRow + " (ignoring network row " + row + ")");
+                }
             }
 
-            // Store for other players too (for CharacterEntity rendering if needed)
+            // Always store in PlayerRowManager for CharacterEntity positioning
+            // This ensures we have row info for all players, not just local
             PlayerRowManager.setPlayerRow(playerId, row);
         }
 
-        logger.info("Applied player row assignments from host");
+        logger.info("Applied player row assignments from network");
     }
 
     /**

@@ -7,6 +7,8 @@ import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -30,7 +32,15 @@ public class PlayerRowManager {
         playerRows.clear();
 
         // Use BG player IDs only, not all players
-        List<Integer> playerIds = TogetherInSpireHelper.getBoardGamePlayerIds();
+        // Create a mutable copy to ensure sorting works (original list might be immutable)
+        List<Integer> playerIds = new ArrayList<>(TogetherInSpireHelper.getBoardGamePlayerIds());
+        logger.info("Player IDs before sorting: " + playerIds);
+
+        // Sort player IDs to ensure consistent row assignments across all machines
+        // Without sorting, each machine may iterate players in different order
+        Collections.sort(playerIds);
+        logger.info("Player IDs after sorting: " + playerIds);
+
         int row = 0;
         for (Integer playerId : playerIds) {
             playerRows.put(playerId, row);
