@@ -7,8 +7,6 @@ import CoopBoardGame.characters.BGIronclad;
 import CoopBoardGame.characters.BGSilent;
 import CoopBoardGame.characters.BGWatcher;
 import CoopBoardGame.dungeons.AbstractBGDungeon;
-import CoopBoardGame.multicharacter.MultiCharacter;
-import CoopBoardGame.multicharacter.MultiCharacterSelectScreen;
 import CoopBoardGame.patches.Ascension259Patch;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.math.MathUtils;
@@ -236,66 +234,13 @@ public class BGNeowQuickStart {
     }
 
 
+    // MultiCharacter select screen patch removed - MultiCharacter no longer exists
     @SpirePatch(clz = ProceedButton.class, method = "update", paramtypez = {})
     public static class ProceedButtonUpdatePatch4 {
 
         @SpireInsertPatch(locator = Locator.class, localvars = {})
         public static SpireReturn<Void> update(ProceedButton __instance) {
-            //BGNeowQuickStart.logger.info("BGNeowQuickStart: ProceedButtonUpdatePatch4");
-            if (AbstractDungeon.screen == MultiCharacterSelectScreen.Enum.MULTI_CHARACTER_SELECT) {
-                if (AbstractDungeon.player instanceof MultiCharacter) {
-                    if (((MultiCharacter) AbstractDungeon.player).subcharacters.size() == 1) {
-                        //TODO: static BGMultiCharacter.switchToSoloMode function
-                        SaveAndContinue.deleteSave(AbstractDungeon.player);
-                        Ascension259Patch.applyAscension259ToSubCharacters();
-                        AbstractDungeon.player =
-                            ((MultiCharacter) AbstractDungeon.player).subcharacters.get(0);
-                        CardCrawlGame.chosenCharacter = AbstractDungeon.player.chosenClass;
-                        //TODO: this is reused code from AbstractBGDungeon; move to static event
-                        int whoAmI = 0;
-                        if (AbstractDungeon.player instanceof BGIronclad) whoAmI = 0;
-                        else if (AbstractDungeon.player instanceof BGSilent) whoAmI = 1;
-                        else if (AbstractDungeon.player instanceof BGDefect) whoAmI = 2;
-                        else if (AbstractDungeon.player instanceof BGWatcher) whoAmI = 3;
-                        AbstractBGDungeon.rewardDeck = AbstractBGDungeon.physicalRewardDecks.get(
-                            whoAmI
-                        );
-                        AbstractBGDungeon.rareRewardDeck =
-                            AbstractBGDungeon.physicalRareRewardDecks.get(whoAmI);
-
-                        ReflectionHacks.setPrivate(
-                            AbstractDungeon.overlayMenu,
-                            OverlayMenu.class,
-                            "player",
-                            AbstractDungeon.player
-                        );
-                        for (AbstractRelic r : AbstractDungeon.player.relics) {
-                            r.updateDescription(AbstractDungeon.player.chosenClass);
-                            r.onEquip();
-                        }
-                    }
-                    AbstractEvent event = AbstractDungeon.getCurrRoom().event;
-                    if (
-                        AbstractDungeon.player instanceof MultiCharacter &&
-                        ((MultiCharacter) player).subcharacters.size() != 1
-                    ) {
-                        ReflectionHacks.setPrivate(event, AbstractEvent.class, "body", EXTRA[73]);
-                    } else {
-                        ////display LATEST UPDATES
-                        //ReflectionHacks.setPrivate(event,AbstractEvent.class,"body", EXTRA[70]);
-                        ////skip LATEST UPDATES
-                        ReflectionHacks.setPrivate(event, AbstractEvent.class, "body", EXTRA[69]);
-                        BGNeowEvent.playSfx();
-                        BGNeowEvent.talk(BGNeowEvent.TEXT[MathUtils.random(1, 3)]);
-                    }
-                }
-                AbstractDungeon.closeCurrentScreen();
-                AbstractDungeon.overlayMenu.hideBlackScreen();
-                AbstractDungeon.overlayMenu.proceedButton.hide();
-                return SpireReturn.Return();
-            } else {
-                return SpireReturn.Continue();
-            }
+            return SpireReturn.Continue();
         }
 
         private static class Locator extends SpireInsertLocator {

@@ -4,7 +4,7 @@ import CoopBoardGame.cards.BGStatus.BGBurn;
 import CoopBoardGame.cards.BGStatus.BGDazed;
 import CoopBoardGame.monsters.AbstractBGMonster;
 import CoopBoardGame.monsters.BGDamageIcons;
-import CoopBoardGame.multicharacter.MultiCreature;
+import CoopBoardGame.multiplayer.rows.MultiCreature;
 import CoopBoardGame.powers.BGDifferentRowsPower;
 import com.badlogic.gdx.math.MathUtils;
 import com.esotericsoftware.spine.AnimationState;

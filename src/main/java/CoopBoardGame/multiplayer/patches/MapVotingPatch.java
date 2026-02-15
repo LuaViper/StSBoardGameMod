@@ -1,4 +1,4 @@
-package CoopBoardGame.multicharacter.patches;
+package CoopBoardGame.multiplayer.patches;
 
 import CoopBoardGame.multiplayer.voting.RoomVotingManager;
 import CoopBoardGame.ui.map.MapVoteRenderer;

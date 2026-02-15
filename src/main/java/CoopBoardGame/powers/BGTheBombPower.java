@@ -1,7 +1,5 @@
 package CoopBoardGame.powers;
 
-import CoopBoardGame.multicharacter.ALLEnemiesMonster;
-import CoopBoardGame.multicharacter.patches.ActionPatches;
 import CoopBoardGame.relics.BGTheDieRelic;
 import com.megacrit.cardcrawl.actions.AbstractGameAction;
 import com.megacrit.cardcrawl.actions.common.DamageAllEnemiesAction;
@@ -51,14 +49,13 @@ public class BGTheBombPower extends AbstractBGPower {
         if (!AbstractDungeon.getMonsters().areMonstersBasicallyDead()) {
             addToBot((AbstractGameAction) new ReducePowerAction(this.owner, this.owner, this, 1));
             if (this.amount == 1) {
-                AbstractGameAction action = new DamageAllEnemiesAction(
+                // Damage all enemies when bomb explodes
+                addToBot(new DamageAllEnemiesAction(
                     AbstractDungeon.player,
                     DamageInfo.createDamageMatrix(this.damage, true),
                     DamageInfo.DamageType.THORNS,
                     AbstractGameAction.AttackEffect.FIRE
-                );
-                ActionPatches.Field.rowTarget.set(action, new ALLEnemiesMonster());
-                addToBot(action);
+                ));
 
                 AbstractCard card = originalcard.makeStatEquivalentCopy();
                 AbstractDungeon.player.discardPile.addToBottom(card);

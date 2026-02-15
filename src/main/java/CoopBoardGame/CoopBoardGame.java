@@ -14,8 +14,6 @@ import CoopBoardGame.monsters.bgending.BGCorruptHeart;
 import CoopBoardGame.monsters.bgending.BGSpireShield;
 import CoopBoardGame.monsters.bgending.BGSpireSpear;
 import CoopBoardGame.monsters.bgexordium.*;
-import CoopBoardGame.multicharacter.MultiCharacter;
-import CoopBoardGame.multicharacter.MultiCharacterSelectScreen;
 import CoopBoardGame.patches.Ascension;
 import CoopBoardGame.potions.*;
 import CoopBoardGame.relics.AbstractBGRelic;
@@ -53,7 +51,6 @@ import com.megacrit.cardcrawl.monsters.AbstractMonster;
 import com.megacrit.cardcrawl.monsters.MonsterGroup;
 import com.megacrit.cardcrawl.potions.AbstractPotion;
 import com.megacrit.cardcrawl.rewards.RewardSave;
-import com.megacrit.cardcrawl.screens.charSelect.CharacterOption;
 import com.megacrit.cardcrawl.unlock.UnlockTracker;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -145,11 +142,6 @@ public class CoopBoardGame
         "CoopBoardGameResources/images/1024/card_default_gray_orb.png";
 
     // Character assets
-
-    public static final String CHAR_SELECT_BUTTON_MULTICHARACTER =
-        "CoopBoardGameResources/images/charSelect/BGMultiCharacterButton.png";
-    private static final String CHAR_SELECT_PORTRAIT_MULTICHARACTER =
-        "CoopBoardGameResources/images/charSelect/MultiCharacterPortrait.png";
 
     public static final String CHAR_SELECT_BUTTON_IRONCLAD =
         "images/ui/charSelect/ironcladButton.png";
@@ -512,7 +504,7 @@ public class CoopBoardGame
     public void receiveEditCharacters() {
         logger.info("Beginning to edit characters.");
 
-        //create BGIronclad before BGMultiCharacter so that red cards are labeled correctly in the compendium
+        //create BGIronclad first so that red cards are labeled correctly in the compendium
         BaseMod.addCharacter(
             new BGIronclad("the Ironclad", BGIronclad.Enums.BG_IRONCLAD),
             CHAR_SELECT_BUTTON_IRONCLAD,
@@ -520,14 +512,6 @@ public class CoopBoardGame
             BGIronclad.Enums.BG_IRONCLAD
         );
         logger.info("Added " + BGIronclad.Enums.BG_IRONCLAD.toString());
-
-        BaseMod.addCharacter(
-            new MultiCharacter("the Board Game", MultiCharacter.Enums.BG_MULTICHARACTER),
-            CHAR_SELECT_BUTTON_MULTICHARACTER,
-            CHAR_SELECT_PORTRAIT_MULTICHARACTER,
-            MultiCharacter.Enums.BG_MULTICHARACTER
-        );
-        logger.info("Added " + MultiCharacter.Enums.BG_MULTICHARACTER.toString());
 
         BaseMod.addCharacter(
             new BGSilent("the Silent", BGSilent.Enums.BG_SILENT),
@@ -635,29 +619,6 @@ public class CoopBoardGame
                     if (prefs.getInteger("WIN_COUNT") < 1) prefs.putInteger("WIN_COUNT", 1);
                     prefs.flush();
                 }
-                for (CharacterOption o : CardCrawlGame.mainMenuScreen.charSelectScreen.options) {
-                    if (o.c instanceof MultiCharacter) {
-                        if (o.c.getCharStat().getVictoryCount() < 1) {
-                            o.c.getCharStat().incrementVictory();
-                        }
-                        Prefs prefs = o.c.getPrefs();
-                        if (prefs.getInteger("WIN_COUNT") < 1) {
-                            prefs.putInteger("WIN_COUNT", 1);
-                            prefs.data.put("WIN_COUNT", "1");
-                        }
-                        prefs.putInteger("ASCENSION_LEVEL", 13);
-                        prefs.data.put("ASCENSION_LEVEL", "13");
-                        prefs.flush();
-
-                        //set unlocked ascension to 13
-                        ReflectionHacks.setPrivate(
-                            o,
-                            CharacterOption.class,
-                            "maxAscensionLevel",
-                            Ascension.CURRENT_MAX_ASCENSION
-                        );
-                    }
-                }
                 button.label = "Ascension 13 has been unlocked! Sorry for the inconvenience.";
             }
         );
@@ -693,7 +654,6 @@ public class CoopBoardGame
 
         BaseMod.registerModBadge(badgeTexture, MODNAME, AUTHOR, DESCRIPTION, settingsPanel);
 
-        BaseMod.addCustomScreen(new MultiCharacterSelectScreen());
         BaseMod.addCustomScreen(new TargetSelectScreen());
         BaseMod.addCustomScreen(new OrbSelectScreen());
         BaseMod.addCustomScreen(new RelicTradingScreen());
@@ -1102,7 +1062,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1112,7 +1071,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1122,7 +1080,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1132,7 +1089,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1142,7 +1098,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1152,7 +1107,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1162,7 +1116,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1172,7 +1125,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1182,7 +1134,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1192,7 +1143,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1202,7 +1152,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1212,7 +1161,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         //Ascension 3
@@ -1224,7 +1172,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1235,7 +1182,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1246,7 +1192,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1257,7 +1202,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1268,7 +1212,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1279,7 +1222,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
 
@@ -1290,7 +1232,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1300,7 +1241,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1310,7 +1250,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1320,7 +1259,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1330,7 +1268,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1340,7 +1277,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1350,7 +1286,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1360,7 +1295,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1370,7 +1304,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1380,7 +1313,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1390,7 +1322,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1400,7 +1331,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1410,7 +1340,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1420,7 +1349,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         //Ascension 3
@@ -1432,7 +1360,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1443,7 +1370,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1454,7 +1380,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1465,7 +1390,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1476,7 +1400,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
 
@@ -1487,7 +1410,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1497,7 +1419,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1507,7 +1428,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1517,7 +1437,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1527,7 +1446,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1537,7 +1455,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1547,7 +1464,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1557,7 +1473,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1567,7 +1482,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1577,7 +1491,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1587,7 +1500,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1597,7 +1509,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         //Ascension 3
@@ -1609,7 +1520,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1620,7 +1530,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
         BaseMod.addEvent(
@@ -1631,7 +1540,6 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
 
@@ -1642,13 +1550,8 @@ public class CoopBoardGame
                 .playerClass(BGSilent.Enums.BG_SILENT)
                 .playerClass(BGDefect.Enums.BG_DEFECT)
                 .playerClass(BGWatcher.Enums.BG_WATCHER)
-                .playerClass(MultiCharacter.Enums.BG_MULTICHARACTER)
                 .create()
         );
-        //        BaseMod.addEvent(new AddEventParams.Builder(BGMindBloom.ID, BGMindBloom.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
-        //        BaseMod.addEvent(new AddEventParams.Builder(BGTombRedMask.ID, BGTombRedMask.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
-        //        BaseMod.addEvent(new AddEventParams.Builder(BGFalling.ID, BGFalling.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
-        //        BaseMod.addEvent(new AddEventParams.Builder(BGSecretPortal.ID, BGSecretPortal.class).dungeonID(BGTheEnding.ID).playerClass(BGIronclad.Enums.BG_IRONCLAD).playerClass(BGSilent.Enums.BG_SILENT).playerClass(BGDefect.Enums.BG_DEFECT).playerClass(BGWatcher.Enums.BG_WATCHER).playerClass(BGMultiCharacter.Enums.BG_MULTICHARACTER).create());
 
         // =============== /EVENTS/ =================
 

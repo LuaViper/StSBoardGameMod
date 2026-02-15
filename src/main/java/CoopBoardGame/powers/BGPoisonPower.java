@@ -1,7 +1,6 @@
 package CoopBoardGame.powers;
 
 import CoopBoardGame.CoopBoardGame;
-import CoopBoardGame.multicharacter.patches.AbstractDungeonMonsterPatches;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
@@ -87,12 +86,8 @@ public class BGPoisonPower extends AbstractBGPower {
 
     public void capPoisonOnEnemy(AbstractMonster m) {
         int total = 0;
-        MonsterGroup oM = AbstractDungeonMonsterPatches.Field.originalMonsters.get(
-            AbstractDungeon.getCurrRoom()
-        );
-        ArrayList<AbstractMonster> monsters;
-        if (oM != null && !oM.monsters.isEmpty()) monsters = oM.monsters;
-        else monsters = AbstractDungeon.getMonsters().monsters;
+        // Get all monsters in the current combat
+        ArrayList<AbstractMonster> monsters = AbstractDungeon.getMonsters().monsters;
 
         for (AbstractMonster m2 : monsters) {
             if (m2 != m) {

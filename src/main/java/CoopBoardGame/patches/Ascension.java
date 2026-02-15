@@ -2,7 +2,6 @@ package CoopBoardGame.patches;
 
 import CoopBoardGame.characters.*;
 import CoopBoardGame.dungeons.AbstractBGDungeon;
-import CoopBoardGame.multicharacter.MultiCharacter;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.*;
@@ -52,64 +51,33 @@ public class Ascension {
     }
 
     public static void combineUnlockedAscensions() {
-        //BGMultiCharacter's prefs are recalculated from solo characters every time the game is reset.
+        // Combine ascension levels across all BG characters so they share unlocks
 
-        //TODO: combine death counts too
-
-        int totalVictories = 0;
-        int totalDeaths = 0;
         ArrayList<Integer> maxLevels = new ArrayList<>();
-        AbstractPlayer p, i, s, d, w;
-        p = new MultiCharacter("Prefs Lookup", MultiCharacter.Enums.BG_MULTICHARACTER);
-        Prefs multipref = p.getPrefs();
+        AbstractPlayer i, s, d, w;
         i = new BGIronclad("Prefs Lookup", BGIronclad.Enums.BG_IRONCLAD);
-        totalVictories += i.getCharStat().getVictoryCount();
-        totalDeaths += i.getCharStat().getDeathCount();
         Prefs pref = i.getPrefs();
         maxLevels.add(pref.getInteger("ASCENSION_LEVEL", 1));
         s = new BGSilent("Prefs Lookup", BGSilent.Enums.BG_SILENT);
-        totalVictories += s.getCharStat().getVictoryCount();
-        totalDeaths += s.getCharStat().getDeathCount();
         pref = s.getPrefs();
         maxLevels.add(pref.getInteger("ASCENSION_LEVEL", 1));
         d = new BGDefect("Prefs Lookup", BGDefect.Enums.BG_DEFECT);
-        totalVictories += d.getCharStat().getVictoryCount();
-        totalDeaths += d.getCharStat().getDeathCount();
         pref = d.getPrefs();
         maxLevels.add(pref.getInteger("ASCENSION_LEVEL", 1));
         w = new BGWatcher("Prefs Lookup", BGWatcher.Enums.BG_WATCHER);
-        totalVictories += w.getCharStat().getVictoryCount();
-        totalDeaths += w.getCharStat().getDeathCount();
         pref = w.getPrefs();
         maxLevels.add(pref.getInteger("ASCENSION_LEVEL", 1));
 
         int maxLevel = Collections.max(maxLevels);
         if (maxLevel > CURRENT_MAX_ASCENSION) maxLevel = CURRENT_MAX_ASCENSION;
-        multipref.putInteger("ASCENSION_LEVEL", maxLevel);
         i.getPrefs().putInteger("ASCENSION_LEVEL", maxLevel);
         s.getPrefs().putInteger("ASCENSION_LEVEL", maxLevel);
         d.getPrefs().putInteger("ASCENSION_LEVEL", maxLevel);
         w.getPrefs().putInteger("ASCENSION_LEVEL", maxLevel);
-        multipref.putInteger("WIN_COUNT", totalVictories);
-        multipref.putInteger("LOSE_COUNT", totalDeaths);
-        multipref.flush();
         i.getPrefs().flush();
         s.getPrefs().flush();
         d.getPrefs().flush();
         w.getPrefs().flush();
-
-        if (
-            CardCrawlGame.mainMenuScreen != null &&
-            CardCrawlGame.mainMenuScreen.charSelectScreen != null
-        ) {
-            for (CharacterOption o : CardCrawlGame.mainMenuScreen.charSelectScreen.options) {
-                if (o.c instanceof MultiCharacter) {
-                    if (o.c.getCharStat().getVictoryCount() < 1) {
-                        o.c.getCharStat().incrementVictory();
-                    }
-                }
-            }
-        }
     }
 
     @SpirePatch2(
@@ -129,10 +97,7 @@ public class Ascension {
                 for (CharacterOption o : __instance.options) {
                     //o.update();
                     if (o.selected) {
-                        //if (o.c instanceof AbstractBGPlayer) {
-                        if (o.c instanceof MultiCharacter) {
-                            //___isAscensionModeUnlocked[0] = false;
-                            //__instance.isAscensionMode=false;
+                        if (o.c instanceof AbstractBGPlayer) {
                             if (
                                 (int) ReflectionHacks.getPrivate(
                                     o,

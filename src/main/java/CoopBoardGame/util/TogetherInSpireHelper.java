@@ -219,8 +219,7 @@ public class TogetherInSpireHelper {
         return className.equals("BG_IRONCLAD") ||
                className.equals("BG_SILENT") ||
                className.equals("BG_DEFECT") ||
-               className.equals("BG_WATCHER") ||
-               className.equals("BG_MULTICHARACTER");
+               className.equals("BG_WATCHER");
     }
 
     /**

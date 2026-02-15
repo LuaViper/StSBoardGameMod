@@ -1,6 +1,5 @@
 package CoopBoardGame.ui;
 
-import CoopBoardGame.multicharacter.MultiCharacterRowBoxes;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireField;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
@@ -27,9 +26,6 @@ public class OverlayMenuPatches {
         public static SpireField<PotionButton> potionbutton = new SpireField<>(() ->
             new PotionButton()
         );
-        public static SpireField<MultiCharacterRowBoxes> multiCharacterRowBoxes = new SpireField<>(
-            () -> new MultiCharacterRowBoxes()
-        );
     }
 
     @SpirePatch2(clz = OverlayMenu.class, method = "update", paramtypez = {})
@@ -43,7 +39,6 @@ public class OverlayMenuPatches {
             OverlayMenuExtraInterface.theabacusbutton.get(__instance).update();
             OverlayMenuExtraInterface.toolboxbutton.get(__instance).update();
             OverlayMenuExtraInterface.potionbutton.get(__instance).update();
-            OverlayMenuExtraInterface.multiCharacterRowBoxes.get(__instance).update();
         }
     }
 
@@ -57,7 +52,6 @@ public class OverlayMenuPatches {
             OverlayMenuExtraInterface.theabacusbutton.get(__instance).render(sb);
             OverlayMenuExtraInterface.toolboxbutton.get(__instance).render(sb);
             OverlayMenuExtraInterface.potionbutton.get(__instance).render(sb);
-            OverlayMenuExtraInterface.multiCharacterRowBoxes.get(__instance).render(sb);
         }
     }
 

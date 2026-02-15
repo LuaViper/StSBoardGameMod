@@ -1,11 +1,6 @@
 package CoopBoardGame.patches.mainmenu;
 
 import CoopBoardGame.characters.AbstractBGPlayer;
-import CoopBoardGame.characters.BGDefect;
-import CoopBoardGame.characters.BGIronclad;
-import CoopBoardGame.characters.BGSilent;
-import CoopBoardGame.characters.BGWatcher;
-import CoopBoardGame.multicharacter.MultiCharacter;
 import basemod.BaseMod;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.graphics.Color;
@@ -192,12 +187,12 @@ public class BoardGameMenuButton {
             if (isBoardGameMode) {
                 logger.info("Filtering characters for Board Game mode");
 
-                // Remove non-BG characters and MultiCharacter, keep only individual BG characters
+                // Remove non-BG characters, keep only individual BG characters
                 ArrayList<CharacterOption> bgOptions = new ArrayList<>();
                 for (CharacterOption option : options) {
                     AbstractPlayer player = option.c;
-                    // Keep only individual BG characters (not MultiCharacter)
-                    if (player instanceof AbstractBGPlayer && !(player instanceof MultiCharacter)) {
+                    // Keep only BG characters
+                    if (player instanceof AbstractBGPlayer) {
                         bgOptions.add(option);
                         logger.info("Keeping BG character: " + player.getClass().getSimpleName());
                     }

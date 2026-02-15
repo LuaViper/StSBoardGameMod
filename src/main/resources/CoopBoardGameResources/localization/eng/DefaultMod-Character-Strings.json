@@ -1,14 +1,4 @@
 {
-    "${modID}:BGMultiCharacter": {
-        "NAMES": ["The Board Game", "the Board Game"],
-        "TEXT": [
-            "Based on the board game adaptation by Contention Games.",
-            "NL You switch to your phone's camera app...",
-            "Navigating an unlit street, you come across several hooded figures in the midst of some dark ritual. As you approach, they turn to you in eerie unison. The tallest among them bares fanged teeth and extends a long, pale hand towards you. NL ~\"Join~ ~us~ ~cousins,~ ~and~ ~feel~ ~the~ ~warmth~ ~of~ ~the~ ~Spire.\"~",
-            "Based on the board game adaptation by Contention Games."
-        ]
-    },
-
     "CoopBoardGame:BGIronclad": {
         "NAMES": ["[]The Ironclad (Board Game)", "the Ironclad"],
         "TEXT": [

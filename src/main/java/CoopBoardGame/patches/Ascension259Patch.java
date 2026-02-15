@@ -5,7 +5,6 @@ import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.player;
 import CoopBoardGame.cards.BGCurse.BGAscendersBane;
 import CoopBoardGame.dungeons.AbstractBGDungeon;
 import CoopBoardGame.dungeons.BGExordium;
-import CoopBoardGame.multicharacter.MultiCharacter;
 import com.badlogic.gdx.math.MathUtils;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInstrumentPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
@@ -21,22 +20,9 @@ import javassist.expr.MethodCall;
 public class Ascension259Patch {
 
     public static void applyAscension259ToSubCharacters() {
-        if (AbstractDungeon.player instanceof MultiCharacter) {
-            for (AbstractPlayer player : MultiCharacter.getSubcharacters()) {
-                if (CardCrawlGame.dungeon instanceof BGExordium) {
-                    if (AbstractDungeon.ascensionLevel >= 2) player.decreaseMaxHealth(
-                        player.getAscensionMaxHPLoss()
-                    );
-                    if (AbstractDungeon.ascensionLevel >= 5) {
-                        player.masterDeck.addToTop(new BGAscendersBane());
-                        UnlockTracker.markCardAsSeen("BGAscendersBane");
-                    }
-                    if (AbstractDungeon.ascensionLevel >= 9) player.currentHealth = MathUtils.round(
-                        player.maxHealth - 1
-                    );
-                }
-            }
-        }
+        // This method was used for MultiCharacter subcharacters.
+        // With MultiCharacter removed, this is now a no-op.
+        // TogetherInSpire multiplayer will handle ascension for multiple players separately.
     }
 
     @SpirePatch2(clz = AbstractDungeon.class, method = "dungeonTransitionSetup")

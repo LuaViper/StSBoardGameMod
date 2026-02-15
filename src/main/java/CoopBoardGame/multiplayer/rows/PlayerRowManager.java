@@ -1,6 +1,6 @@
 package CoopBoardGame.multiplayer.rows;
 
-import CoopBoardGame.multicharacter.MultiCreature;
+// MultiCreature is in the same package
 import CoopBoardGame.util.TogetherInSpireHelper;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;

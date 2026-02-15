@@ -21,7 +21,6 @@ import CoopBoardGame.monsters.bgexordium.BGCultist;
 import CoopBoardGame.monsters.bgexordium.BGHexaghost;
 import CoopBoardGame.monsters.bgexordium.BGSlimeBoss;
 import CoopBoardGame.monsters.bgexordium.BGTheGuardian;
-import CoopBoardGame.multicharacter.MultiCharacter;
 import CoopBoardGame.ui.EntropicBrewPotionButton;
 import basemod.ReflectionHacks;
 import com.evacipated.cardcrawl.modthespire.lib.*;
@@ -651,8 +650,6 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
 
         @SpirePrefixPatch
         public static SpireReturn<Void> addGoldToRewards(AbstractRoom __instance, int gold) {
-            //TODO: if multicharacter, need completely different reward interface
-            if (AbstractDungeon.player instanceof MultiCharacter) return SpireReturn.Continue();
             if (CardCrawlGame.dungeon instanceof AbstractBGDungeon) {
                 //logger.info("Encounter: "+AbstractDungeon.monsterList.get(0));  // <-- works as expected
                 String encounter = "";
@@ -709,8 +706,6 @@ public abstract class AbstractBGDungeon extends AbstractDungeon {
 
         @SpirePrefixPatch
         public static SpireReturn<Void> addPotionToRewards(AbstractRoom __instance) {
-            //TODO: if multicharacter, need completely different reward interface
-            if (AbstractDungeon.player instanceof MultiCharacter) return SpireReturn.Continue();
             boolean potion = false;
             String encounter = "";
             //CoopBoardGame.logger.info("addPotionToRewardsPatch...");

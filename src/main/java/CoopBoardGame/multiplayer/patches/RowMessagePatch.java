@@ -1,4 +1,4 @@
-package CoopBoardGame.multicharacter.patches;
+package CoopBoardGame.multiplayer.patches;
 
 import CoopBoardGame.multiplayer.rows.RowNetworkHelper;
 import CoopBoardGame.util.TogetherInSpireHelper;

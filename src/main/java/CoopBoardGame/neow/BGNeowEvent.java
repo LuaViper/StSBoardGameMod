@@ -7,10 +7,6 @@ import static com.megacrit.cardcrawl.dungeons.AbstractDungeon.*;
 //TODO: several rewards can softlock if player doesn't have enough cards (not just limited to Quick Start)
 
 import CoopBoardGame.dungeons.AbstractBGDungeon;
-import CoopBoardGame.multicharacter.MultiCharacter;
-import CoopBoardGame.multicharacter.MultiCharacterSelectScreen;
-import CoopBoardGame.multicharacter.MultiplayerCharacterAssignment;
-import basemod.BaseMod;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.badlogic.gdx.math.MathUtils;
 import com.megacrit.cardcrawl.blights.*;
@@ -123,31 +119,7 @@ public class BGNeowEvent extends AbstractEvent {
             this.roomEventText.addDialogOption(OPTIONS[1]);
         } else if (!isDone) {
             //normally, CoopBoardGame starts HERE
-
-            // Handle multiplayer mode with individual BG characters:
-            // When a player selects an individual BG character (BGIronclad, BGSilent, etc.)
-            // in TogetherInSpire multiplayer mode, skip the MultiCharacter selection screen
-            // and directly assign them to their row based on player ID.
-            if (MultiplayerCharacterAssignment.shouldSkipCharacterSelection()) {
-                logger.info("Multiplayer mode with individual BG character - assigning to row directly");
-                MultiplayerCharacterAssignment.assignLocalPlayerToRow();
-            }
-            // MultiCharacter is used for single-player coop where one player controls multiple characters.
-            // In multiplayer mode with MultiCharacter selected, auto-assign based on TogetherInSpire players.
-            else if (AbstractDungeon.player instanceof MultiCharacter) {
-                // In TogetherInSpire multiplayer mode, automatically assign players to rows
-                // based on their chosen character classes instead of showing the selection screen
-                if (MultiplayerCharacterAssignment.shouldAutoAssign()) {
-                    logger.info("Multiplayer mode detected - auto-assigning characters");
-                    MultiplayerCharacterAssignment.performAutoAssignment();
-                } else {
-                    // If somehow MultiCharacter was selected outside of multiplayer mode,
-                    // show the manual character selection screen (legacy behavior)
-                    BaseMod.openCustomScreen(MultiCharacterSelectScreen.Enum.MULTI_CHARACTER_SELECT);
-                }
-            }
-            // For individual BG characters in single-player mode,
-            // no additional setup is needed - they use board game rules by default.
+            // Individual BG characters use board game rules by default.
 
             this.roomEventText.addDialogOption(EXTRA[0]);
             blessing(true);

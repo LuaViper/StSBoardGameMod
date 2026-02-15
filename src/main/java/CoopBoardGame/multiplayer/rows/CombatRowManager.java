@@ -1,28 +1,23 @@
-package CoopBoardGame.multicharacter;
+package CoopBoardGame.multiplayer.rows;
 
 import CoopBoardGame.characters.BGDefect;
 import CoopBoardGame.characters.BGIronclad;
 import CoopBoardGame.characters.BGSilent;
 import CoopBoardGame.characters.BGWatcher;
-import CoopBoardGame.multicharacter.patches.ContextPatches;
 import CoopBoardGame.util.TogetherInSpireHelper;
 import com.badlogic.gdx.graphics.Color;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
-import com.megacrit.cardcrawl.core.CardCrawlGame;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
-import com.megacrit.cardcrawl.helpers.Hitbox;
 import com.megacrit.cardcrawl.helpers.ImageMaster;
-import com.megacrit.cardcrawl.helpers.input.InputHelper;
 import com.megacrit.cardcrawl.rooms.AbstractRoom;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
- * Manages combat UI for row-based character display.
- * Tracks the active character, renders colored row backgrounds, and handles click-to-switch.
+ * Manages combat UI for row-based character display in multiplayer mode.
+ * Tracks row rendering and handles colored row backgrounds for each player.
  */
 public class CombatRowManager {
 
@@ -52,12 +47,8 @@ public class CombatRowManager {
     public static final float ROW_BORDER_ALPHA = 0.8f;    // Border alpha (more visible than fill)
     public static final float ROW_PADDING = 10f;          // Padding inside each row
 
-
-    // Active character tracking
-    private int activeCharacterIndex = 0;
-
-    // Row hitboxes for click detection
-    private ArrayList<Hitbox> rowHitboxes = new ArrayList<>();
+    // Maximum number of rows supported
+    public static final int MAX_ROWS = 4;
 
     // Flag to track if we're in combat
     private boolean inCombat = false;
@@ -122,19 +113,12 @@ public class CombatRowManager {
     }
 
     public CombatRowManager() {
-        // Initialize 4 row hitboxes (max rows)
-        // Initial size doesn't matter - they get updated in updateRowHitboxPositions()
-        for (int i = 0; i < CharacterRowAssignment.MAX_ROWS; i++) {
-            Hitbox hb = new Hitbox(Settings.WIDTH, getRowHeight(4) * Settings.scale);
-            rowHitboxes.add(hb);
-        }
     }
 
     /**
      * Resets the manager state at the start of combat.
      */
     public void resetForCombat() {
-        activeCharacterIndex = 0;
         inCombat = true;
 
         // Cache the multiplayer row count at combat start
@@ -143,23 +127,15 @@ public class CombatRowManager {
         } else {
             multiplayerRowCount = 0;
         }
-
-        updateRowHitboxPositions();
     }
 
     /**
      * Gets the number of active player rows.
-     * This supports both MultiCharacter mode and TogetherInSpire multiplayer mode.
+     * This supports TogetherInSpire multiplayer mode.
      *
      * @return number of player rows (minimum 1)
      */
     public int getActiveRowCount() {
-        // Check for single player MultiCharacter mode
-        ArrayList<AbstractPlayer> subchars = MultiCharacter.getSubcharacters();
-        if (subchars != null && !subchars.isEmpty()) {
-            return subchars.size();
-        }
-
         // Check for TogetherInSpire multiplayer mode
         if (multiplayerRowCount > 1) {
             return multiplayerRowCount;
@@ -174,7 +150,7 @@ public class CombatRowManager {
     }
 
     /**
-     * Checks if we're in a multi-row combat mode (either MultiCharacter or multiplayer).
+     * Checks if we're in a multi-row combat mode (multiplayer).
      *
      * @return true if multiple rows should be rendered
      */
@@ -190,69 +166,6 @@ public class CombatRowManager {
     }
 
     /**
-     * Gets the currently active character index (0 = bottom row).
-     */
-    public int getActiveCharacterIndex() {
-        return activeCharacterIndex;
-    }
-
-    /**
-     * Sets the active character by index.
-     * @param index Row index (0 = bottom row)
-     */
-    public void setActiveCharacter(int index) {
-        ArrayList<AbstractPlayer> subchars = MultiCharacter.getSubcharacters();
-        if (index >= 0 && index < subchars.size()) {
-            // Release any held card from current character first
-            if (activeCharacterIndex >= 0 && activeCharacterIndex < subchars.size()) {
-                subchars.get(activeCharacterIndex).releaseCard();
-            }
-
-            activeCharacterIndex = index;
-
-            // Update HandLayoutHelper to sync
-            MultiCharacter.handLayoutHelper.changeHand(index);
-
-            // Apply powers for the newly active character's hand
-            AbstractPlayer newActive = subchars.get(activeCharacterIndex);
-            ContextPatches.pushPlayerContext(newActive);
-            for (com.megacrit.cardcrawl.cards.AbstractCard c : newActive.hand.group) {
-                c.applyPowers();
-            }
-            ContextPatches.popPlayerContext();
-        }
-    }
-
-    /**
-     * Gets the currently active character, or null if none.
-     */
-    public AbstractPlayer getActiveCharacter() {
-        ArrayList<AbstractPlayer> subchars = MultiCharacter.getSubcharacters();
-        if (activeCharacterIndex >= 0 && activeCharacterIndex < subchars.size()) {
-            return subchars.get(activeCharacterIndex);
-        }
-        return null;
-    }
-
-    /**
-     * Updates row hitbox positions based on current grid settings.
-     */
-    private void updateRowHitboxPositions() {
-        int numRows = getActiveRowCount();
-        if (numRows <= 1) numRows = 1;
-
-        float rowHeight = getRowHeight(numRows);
-
-        for (int i = 0; i < rowHitboxes.size(); i++) {
-            Hitbox hb = rowHitboxes.get(i);
-            hb.width = Settings.WIDTH;
-            hb.height = rowHeight * Settings.scale;
-            hb.x = 0;
-            hb.y = getRowBottomY(i, numRows) * Settings.scale;
-        }
-    }
-
-    /**
      * Updates the combat row manager each frame.
      */
     public void update() {
@@ -263,53 +176,7 @@ public class CombatRowManager {
         if (AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) return;
 
         int numRows = getActiveRowCount();
-        if (numRows <= 1) return; // No need for row management with single character/player
-
-        updateRowHitboxPositions();
-
-        // In TogetherInSpire multiplayer mode, each player controls only their own character
-        // so character switching is disabled
-        if (TogetherInSpireHelper.isMultiplayerBoardGameMode()) {
-            return; // Skip character switching logic in multiplayer
-        }
-
-        // The following logic only applies to single-player MultiCharacter mode
-        ArrayList<AbstractPlayer> subchars = MultiCharacter.getSubcharacters();
-        if (subchars == null || subchars.isEmpty()) return;
-
-        // Check for clicks on player character hitboxes (primary method)
-        if (InputHelper.justClickedLeft && !shouldBlockRowSwitch()) {
-            for (int i = 0; i < subchars.size(); i++) {
-                AbstractPlayer player = subchars.get(i);
-                // Check if the player's hitbox was clicked
-                if (player.hb != null && player.hb.hovered) {
-                    if (i != activeCharacterIndex) {
-                        setActiveCharacter(i);
-                        CardCrawlGame.sound.playA("UI_CLICK_1", -0.4f);
-                        InputHelper.justClickedLeft = false; // Consume the click
-                    }
-                    break;
-                }
-            }
-        }
-
-        // Update player hitboxes
-        for (AbstractPlayer player : subchars) {
-            if (player.hb != null) {
-                player.hb.update();
-            }
-        }
-
-        // Also allow number keys 1-4 to switch characters
-        if (com.badlogic.gdx.Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.NUM_1) && subchars.size() > 0) {
-            setActiveCharacter(0);
-        } else if (com.badlogic.gdx.Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.NUM_2) && subchars.size() > 1) {
-            setActiveCharacter(1);
-        } else if (com.badlogic.gdx.Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.NUM_3) && subchars.size() > 2) {
-            setActiveCharacter(2);
-        } else if (com.badlogic.gdx.Gdx.input.isKeyJustPressed(com.badlogic.gdx.Input.Keys.NUM_4) && subchars.size() > 3) {
-            setActiveCharacter(3);
-        }
+        if (numRows <= 1) return; // No need for row management with single player
     }
 
     /**
@@ -323,30 +190,22 @@ public class CombatRowManager {
 
         float rowHeight = getRowHeight(numRows);
 
-        // Get subcharacters if available (for MultiCharacter mode)
-        ArrayList<AbstractPlayer> subchars = MultiCharacter.getSubcharacters();
-        boolean isMultiCharacterMode = subchars != null && !subchars.isEmpty();
-
         // Get player classes for multiplayer mode
         List<AbstractPlayer.PlayerClass> playerClasses = null;
-        if (!isMultiCharacterMode && TogetherInSpireHelper.isMultiplayerBoardGameMode()) {
+        if (TogetherInSpireHelper.isMultiplayerBoardGameMode()) {
             playerClasses = TogetherInSpireHelper.getAllPlayerClasses();
         }
 
         // Determine the local player's row for highlighting in multiplayer mode
         int localPlayerRow = -1;
-        if (!isMultiCharacterMode && AbstractDungeon.player != null) {
+        if (AbstractDungeon.player != null) {
             localPlayerRow = MultiCreature.Field.currentRow.get(AbstractDungeon.player);
         }
 
         for (int i = 0; i < numRows; i++) {
             Color rowColor;
 
-            if (isMultiCharacterMode) {
-                // MultiCharacter mode: get color from subcharacter
-                AbstractPlayer character = subchars.get(i);
-                rowColor = getColorForCharacter(character);
-            } else if (playerClasses != null && i < playerClasses.size()) {
+            if (playerClasses != null && i < playerClasses.size()) {
                 // Multiplayer mode: get color from player class
                 rowColor = getColorForPlayerClass(playerClasses.get(i));
             } else {
@@ -358,11 +217,8 @@ public class CombatRowManager {
             Color renderColor = rowColor.cpy();
             Color borderColor = rowColor.cpy();
 
-            // In MultiCharacter mode, highlight active character's row
             // In multiplayer mode, highlight local player's row
-            boolean isActiveRow = isMultiCharacterMode
-                ? (i == activeCharacterIndex)
-                : (i == localPlayerRow);
+            boolean isActiveRow = (i == localPlayerRow);
 
             if (isActiveRow) {
                 renderColor.r *= ACTIVE_ROW_BRIGHTNESS;
@@ -458,44 +314,5 @@ public class CombatRowManager {
         }
 
         return DEFAULT_BG;
-    }
-
-    /**
-     * Checks if row switching should be blocked (e.g., during card dragging).
-     */
-    public boolean shouldBlockRowSwitch() {
-        if (AbstractDungeon.player == null) return true;
-        if (AbstractDungeon.player.isDraggingCard) return true;
-        if (AbstractDungeon.actionManager.turnHasEnded) return true;
-        return false;
-    }
-
-    /**
-     * Called when a character dies during combat.
-     * Switches to another character if the active one died.
-     */
-    public void onCharacterDeath(AbstractPlayer deadCharacter) {
-        ArrayList<AbstractPlayer> subchars = MultiCharacter.getSubcharacters();
-        if (subchars.isEmpty()) return;
-
-        // Find the dead character's index
-        int deadIndex = -1;
-        for (int i = 0; i < subchars.size(); i++) {
-            if (subchars.get(i) == deadCharacter) {
-                deadIndex = i;
-                break;
-            }
-        }
-
-        // If active character died, switch to another
-        if (deadIndex == activeCharacterIndex) {
-            // Try to find an alive character
-            for (int i = 0; i < subchars.size(); i++) {
-                if (i != deadIndex && !subchars.get(i).isDead) {
-                    setActiveCharacter(i);
-                    return;
-                }
-            }
-        }
     }
 }

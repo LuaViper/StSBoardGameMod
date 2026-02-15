@@ -1,8 +1,7 @@
-package CoopBoardGame.multicharacter.patches;
+package CoopBoardGame.multiplayer.patches;
 
 import CoopBoardGame.dungeons.BGExordium;
-import CoopBoardGame.multicharacter.MultiCharacter;
-import CoopBoardGame.multicharacter.MultiCreature;
+import CoopBoardGame.multiplayer.rows.MultiCreature;
 import CoopBoardGame.multiplayer.rows.PlayerRowManager;
 import CoopBoardGame.multiplayer.rows.RowNetworkHelper;
 import CoopBoardGame.util.TogetherInSpireHelper;
@@ -16,6 +15,10 @@ import java.util.Collections;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+/**
+ * Patches for spawning multiple enemy groups in multiplayer board game mode.
+ * Each player row gets its own set of enemies to fight.
+ */
 public class MultiCombatEncounterPatches {
 
     private static final Logger logger = LogManager.getLogger(MultiCombatEncounterPatches.class.getName());
@@ -29,10 +32,9 @@ public class MultiCombatEncounterPatches {
             int numRows = getNumberOfPlayerRows();
 
             // Initialize the CombatRowManager for multiplayer mode
-            // (In MultiCharacter mode, this is done in MultiCharacter.preBattlePrep())
-            if (numRows > 1 && !(AbstractDungeon.player instanceof MultiCharacter)) {
+            if (numRows > 1) {
                 logger.info("Initializing CombatRowManager for multiplayer mode with " + numRows + " rows");
-                MultiCharacter.combatRowManager.resetForCombat();
+                MultiplayerRowRenderPatch.combatRowManager.resetForCombat();
             }
 
             if (numRows > 1) {
@@ -90,18 +92,11 @@ public class MultiCombatEncounterPatches {
 
         /**
          * Determines the number of player rows for spawning enemies.
-         * This supports both:
-         * 1. Single player MultiCharacter mode (one player controlling multiple characters)
-         * 2. TogetherInSpire multiplayer mode (multiple players each controlling a BG character)
+         * This supports TogetherInSpire multiplayer mode (multiple players each controlling a BG character).
          *
          * @return number of player rows (1 for standard single player)
          */
         private static int getNumberOfPlayerRows() {
-            // Check for single player MultiCharacter mode
-            if (AbstractDungeon.player instanceof MultiCharacter) {
-                return MultiCharacter.getSubcharacters().size();
-            }
-
             // Check for TogetherInSpire multiplayer with multiple BG players
             if (TogetherInSpireHelper.isMultiplayerBoardGameMode()) {
                 return TogetherInSpireHelper.getBoardGamePlayerCount();
