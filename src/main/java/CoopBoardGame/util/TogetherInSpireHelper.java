@@ -6,6 +6,7 @@ import org.apache.logging.log4j.Logger;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.lang.reflect.Method;
 
 /**
  * Utility class for detecting and integrating with TogetherInSpire multiplayer mode.
@@ -24,6 +25,7 @@ public class TogetherInSpireHelper {
     private static Class<?> characterEntityUiClass = null;
     private static Class<?> characterEntityMonsterClass = null;
     private static boolean characterEntityClassesResolved = false;
+    private static boolean rowPositionSignaturesLogged = false;
 
     /**
      * Checks if TogetherInSpire mod is loaded.
@@ -620,5 +622,68 @@ public class TogetherInSpireHelper {
         }
 
         return null;
+    }
+
+    /**
+     * Logs TogetherInSpire method signatures relevant to row-position diagnostics.
+     * This verifies expected patch targets at runtime against the loaded TiS build.
+     */
+    public static void logRowPositionDiagnosticsSignaturesOnce() {
+        if (rowPositionSignaturesLogged) {
+            return;
+        }
+        if (!isTogetherInSpireLoaded()) {
+            return;
+        }
+
+        rowPositionSignaturesLogged = true;
+
+        logMethodSignatures("spireTogether.network.P2P.P2PPlayer", "RenderCharacter");
+        logMethodSignatures("spireTogether.monsters.CharacterEntity", "SetDrawPosition");
+        logMethodSignatures("spireTogether.ui.CharacterEntity", "SetDrawPosition");
+        logMethodSignatures("spireTogether.monsters.CharacterEntity", "render");
+        logMethodSignatures("spireTogether.ui.CharacterEntity", "render");
+        logMethodSignatures("spireTogether.monsters.CharacterEntity", "update");
+        logMethodSignatures("spireTogether.ui.CharacterEntity", "update");
+    }
+
+    private static void logMethodSignatures(String className, String methodName) {
+        try {
+            Class<?> cls = Class.forName(className);
+            Method[] methods = cls.getDeclaredMethods();
+            boolean found = false;
+
+            for (Method method : methods) {
+                if (!method.getName().equals(methodName)) {
+                    continue;
+                }
+                found = true;
+                logger.info("TiS signature: " + formatMethodSignature(className, method));
+            }
+
+            if (!found) {
+                logger.warn("TiS signature missing: " + className + "." + methodName + "(...)");
+            }
+        } catch (ClassNotFoundException e) {
+            logger.info("TiS class not present for signature check: " + className);
+        } catch (Exception e) {
+            logger.warn("TiS signature introspection failed for " + className + "." + methodName +
+                    ": " + e.getMessage());
+        }
+    }
+
+    private static String formatMethodSignature(String className, Method method) {
+        StringBuilder sb = new StringBuilder();
+        sb.append(className).append(".").append(method.getName()).append("(");
+
+        Class<?>[] params = method.getParameterTypes();
+        for (int i = 0; i < params.length; i++) {
+            if (i > 0) {
+                sb.append(", ");
+            }
+            sb.append(params[i].getName());
+        }
+        sb.append(")");
+        return sb.toString();
     }
 }
