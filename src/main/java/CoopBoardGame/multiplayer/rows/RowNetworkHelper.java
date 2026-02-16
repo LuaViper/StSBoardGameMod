@@ -369,27 +369,20 @@ public class RowNetworkHelper {
      */
     public static void onPlayerRowAssignmentsReceived(int[] data) {
         int localPlayerId = TogetherInSpireHelper.getLocalPlayerId();
+        logger.info("Received player row assignments from host. localPlayerId=" + localPlayerId);
 
-        // Check if we already computed row assignments locally
-        // If so, skip updating local player to avoid overwriting our own computation
-        // (In P2P mode, both machines compute and send, so we may receive our own broadcast back)
-        boolean hasLocalAssignments = PlayerRowManager.hasAssignments();
-        logger.info("Received player row assignments. hasLocalAssignments=" + hasLocalAssignments + ", localPlayerId=" + localPlayerId);
+        // Treat incoming data as authoritative snapshot.
+        PlayerRowManager.reset();
 
         // Process pairs: [playerId, row, playerId, row, ...]
         for (int i = 0; i + 1 < data.length; i += 2) {
             int playerId = data[i];
             int row = data[i + 1];
 
-            // If this is our row assignment, only set it if we don't have local assignments
+            // Always apply local row from host assignments for consistent ordering across clients.
             if (playerId == localPlayerId && AbstractDungeon.player != null) {
-                if (!hasLocalAssignments) {
-                    MultiCreature.Field.currentRow.set(AbstractDungeon.player, row);
-                    logger.info("Set local player to row " + row + " (from network)");
-                } else {
-                    int existingRow = MultiCreature.Field.currentRow.get(AbstractDungeon.player);
-                    logger.info("Keeping local player at row " + existingRow + " (ignoring network row " + row + ")");
-                }
+                MultiCreature.Field.currentRow.set(AbstractDungeon.player, row);
+                logger.info("Set local player to host-assigned row " + row);
             }
 
             // Always store in PlayerRowManager for CharacterEntity positioning

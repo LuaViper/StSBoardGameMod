@@ -85,6 +85,15 @@ public class CreatureRowPositionPatch {
                 return;
             }
 
+            // Keep local player row aligned with authoritative row assignments.
+            int localPlayerId = TogetherInSpireHelper.getLocalPlayerId();
+            if (PlayerRowManager.hasPlayerRow(localPlayerId)) {
+                int assignedRow = PlayerRowManager.getPlayerRow(localPlayerId);
+                if (MultiCreature.Field.currentRow.get(__instance) != assignedRow) {
+                    MultiCreature.Field.currentRow.set(__instance, assignedRow);
+                }
+            }
+
             int row = MultiCreature.Field.currentRow.get(__instance);
 
             // Calculate target position

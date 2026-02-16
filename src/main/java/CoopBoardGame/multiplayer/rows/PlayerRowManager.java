@@ -34,14 +34,9 @@ public class PlayerRowManager {
         playerRows.clear();
 
         // Use BG player IDs only, not all players
-        // Create a mutable copy to ensure sorting works (original list might be immutable)
+        // Preserve host join order (first joined = bottom row).
         List<Integer> playerIds = new ArrayList<>(TogetherInSpireHelper.getBoardGamePlayerIds());
-        logger.info("Player IDs before sorting: " + playerIds);
-
-        // Sort player IDs to ensure consistent row assignments across all machines
-        // Without sorting, each machine may iterate players in different order
-        Collections.sort(playerIds);
-        logger.info("Player IDs after sorting: " + playerIds);
+        logger.info("Assigning rows using host BG join order: " + playerIds);
 
         int row = 0;
         for (Integer playerId : playerIds) {

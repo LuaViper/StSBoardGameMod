@@ -80,14 +80,15 @@ public class MultiCombatEncounterPatches {
 
             // For multiplayer board game mode, assign player rows and broadcast all row assignments
             if (TogetherInSpireHelper.isMultiplayerBoardGameMode()) {
-                // Assign rows to players (both host and clients need local assignment)
-                PlayerRowManager.assignPlayerRows();
-
-                // Host broadcasts row assignments to all clients
                 if (TogetherInSpireHelper.isHost()) {
+                    // Host is authoritative for row order (join order).
+                    PlayerRowManager.assignPlayerRows();
                     logger.info("Host broadcasting row assignments to clients");
                     RowNetworkHelper.sendPlayerRowAssignments();
                     RowNetworkHelper.sendMonsterRowAssignments();
+                } else {
+                    // Clients wait for authoritative host assignments.
+                    PlayerRowManager.reset();
                 }
             }
         }

@@ -439,22 +439,40 @@ public class RoomVotingManager {
             return false;
         }
 
+        MapRoomNode currentNode = AbstractDungeon.currMapNode;
+        MapRoomNode nextNode = AbstractDungeon.nextRoom;
+        boolean transitioningToTarget = nextNode != null &&
+            nextNode.x == targetNode.x &&
+            nextNode.y == targetNode.y;
+
         logger.info("isValidVotingTarget: Checking node (" + targetNode.x + ", " + targetNode.y +
                    "), firstRoomChosen=" + AbstractDungeon.firstRoomChosen +
-                   ", currMapNode=" + (AbstractDungeon.currMapNode != null ?
-                   "(" + AbstractDungeon.currMapNode.x + ", " + AbstractDungeon.currMapNode.y + ")" : "null"));
+                   ", currMapNode=" + (currentNode != null ?
+                   "(" + currentNode.x + ", " + currentNode.y + ")" : "null") +
+                   ", nextRoom=" + (nextNode != null ?
+                   "(" + nextNode.x + ", " + nextNode.y + ")" : "null"));
+
+        // In multiplayer sync/join scenarios, firstRoomChosen can be stale even when we're already
+        // on or beyond the first room. If target is above row 0 and currMapNode is non-placeholder,
+        // infer that first room has effectively already been chosen.
+        boolean inferredFirstRoomChosen = !AbstractDungeon.firstRoomChosen &&
+            currentNode != null &&
+            currentNode.y >= 0 &&
+            targetNode.y > 0;
 
         // At start of act (first room not chosen), any row 0 node is valid
-        if (!AbstractDungeon.firstRoomChosen) {
+        if (!AbstractDungeon.firstRoomChosen && !inferredFirstRoomChosen) {
             boolean valid = targetNode.y == 0;
             logger.info("isValidVotingTarget: First room check - y=" + targetNode.y + ", valid=" + valid);
             return valid;
         }
 
+        if (inferredFirstRoomChosen) {
+            logger.info("isValidVotingTarget: Treating firstRoomChosen as true based on currMapNode state");
+        }
+
         // After first room is chosen, we need to validate progression
         // In multiplayer, currMapNode may not be properly synced, so we use a more lenient check
-        MapRoomNode currentNode = AbstractDungeon.currMapNode;
-
         if (currentNode == null) {
             // In multiplayer, currMapNode might not be set correctly on clients
             // Allow the vote if the target is above row 0 (we've passed the first room)
@@ -466,15 +484,19 @@ public class RoomVotingManager {
         // In board game mode, currMapNode starts at y=-1 (EmptyRoom/NeowRoom placeholder)
         // After entering first room at y=0, currMapNode.y becomes 0
         // Then second room should be at y=1, etc.
-        if (targetNode.y <= currentNode.y) {
-            logger.info("isValidVotingTarget: Rejected - target.y=" + targetNode.y + " is not above current.y=" + currentNode.y);
+        // If we're currently transitioning and currMapNode already equals nextRoom/target,
+        // allow same-row equality.
+        if (targetNode.y < currentNode.y || (targetNode.y == currentNode.y && !transitioningToTarget)) {
+            logger.info("isValidVotingTarget: Rejected - target.y=" + targetNode.y +
+                       " is not above current.y=" + currentNode.y +
+                       " (transitioningToTarget=" + transitioningToTarget + ")");
             return false;
         }
 
         // Check if current node has a connection to target node
         // Note: If currMapNode is the initial placeholder at y=-1, it won't have edges
         // In that case, we rely on y-check above and vanilla's earlier validation
-        if (currentNode.y >= 0) {
+        if (currentNode.y >= 0 && !transitioningToTarget) {
             boolean normalConnection = currentNode.isConnectedTo(targetNode);
             boolean wingedConnection = currentNode.wingedIsConnectedTo(targetNode);
 
@@ -485,8 +507,10 @@ public class RoomVotingManager {
             }
             logger.info("isValidVotingTarget: Connection verified");
         } else {
-            // currMapNode is placeholder (y=-1), trust vanilla validation
-            logger.info("isValidVotingTarget: Skipping connection check (currMapNode is placeholder at y=" + currentNode.y + ")");
+            // currMapNode is placeholder (y=-1), or we are already transitioning and
+            // currMapNode has advanced to the target. In both cases, trust vanilla validation.
+            logger.info("isValidVotingTarget: Skipping connection check (currMapNode.y=" + currentNode.y +
+                       ", transitioningToTarget=" + transitioningToTarget + ")");
         }
 
         return true;
