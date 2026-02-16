@@ -4,6 +4,7 @@ package CoopBoardGame.multiplayer.rows;
 import CoopBoardGame.util.TogetherInSpireHelper;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
 import com.megacrit.cardcrawl.monsters.AbstractMonster;
+import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -11,6 +12,7 @@ import java.lang.reflect.Constructor;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -36,6 +38,11 @@ public class RowNetworkHelper {
 
     // Store pending row assignments for when monsters aren't loaded yet (timing issue with TogetherInSpire)
     private static String pendingMonsterRowAssignments = null;
+
+    // Host-side roster tracking for late-join row re-sync during combat
+    private static String lastHostRosterSignature = null;
+    private static long lastHostResyncTimestampMs = 0;
+    private static final long HOST_RESYNC_COOLDOWN_MS = 750;
 
     /**
      * Initialize reflection lookups for TogetherInSpire networking classes.
@@ -158,7 +165,11 @@ public class RowNetworkHelper {
 
         try {
             // Use BG player IDs only, not all players
-            List<Integer> playerIds = TogetherInSpireHelper.getBoardGamePlayerIds();
+            List<Integer> playerIds = new ArrayList<>(TogetherInSpireHelper.getBoardGamePlayerIds());
+            Collections.sort(playerIds);
+
+            // Preserve existing in-combat rows while assigning deterministic rows for any missing IDs
+            PlayerRowManager.ensurePlayerRowsForIds(playerIds);
             List<Integer> payloadList = new ArrayList<>();
 
             // Send the row assignments from PlayerRowManager (which uses sorted player IDs)
@@ -172,9 +183,62 @@ public class RowNetworkHelper {
             sendMessage(MSG_PLAYER_ROW_ASSIGNMENTS, payload);
             logger.info("Sent player row assignments for " + playerIds.size() + " BG players");
 
+            // Keep host roster signature current so periodic combat tick does not resend unnecessarily
+            lastHostRosterSignature = buildRosterSignature(playerIds);
+            lastHostResyncTimestampMs = System.currentTimeMillis();
+
         } catch (Exception e) {
             logger.error("Failed to send player row assignments: " + e.getMessage());
         }
+    }
+
+    /**
+     * Host-only tick for re-sending row assignments if the multiplayer roster changes mid-combat.
+     * This handles leave/rejoin without requiring a new combat start.
+     */
+    public static void hostCombatResyncTick() {
+        if (!TogetherInSpireHelper.isTogetherInSpireLoaded() || !TogetherInSpireHelper.isHost()) {
+            return;
+        }
+
+        if (AbstractDungeon.getCurrRoom() == null ||
+            AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) {
+            // Clear cache outside combat so each combat starts with fresh detection
+            lastHostRosterSignature = null;
+            return;
+        }
+
+        // Only resync once monsters exist in this combat
+        if (AbstractDungeon.getMonsters() == null || AbstractDungeon.getMonsters().monsters == null ||
+            AbstractDungeon.getMonsters().monsters.isEmpty()) {
+            return;
+        }
+
+        List<Integer> bgPlayerIds = TogetherInSpireHelper.getBoardGamePlayerIds();
+        String rosterSignature = buildRosterSignature(bgPlayerIds);
+
+        if (rosterSignature.equals(lastHostRosterSignature)) {
+            return;
+        }
+
+        // If multiplayer is currently below 2 BG players, just cache state and wait for a later rejoin.
+        if (bgPlayerIds.size() <= 1) {
+            lastHostRosterSignature = rosterSignature;
+            logger.info("Host roster changed in combat (insufficient BG players for sync): " + rosterSignature);
+            return;
+        }
+
+        long now = System.currentTimeMillis();
+        if (now - lastHostResyncTimestampMs < HOST_RESYNC_COOLDOWN_MS) {
+            return;
+        }
+
+        PlayerRowManager.ensurePlayerRowsForIds(bgPlayerIds);
+        sendPlayerRowAssignments();
+        sendMonsterRowAssignments();
+        lastHostRosterSignature = rosterSignature;
+        lastHostResyncTimestampMs = now;
+        logger.info("Host re-sent row assignments after roster change: " + rosterSignature);
     }
 
     /**
@@ -341,5 +405,28 @@ public class RowNetworkHelper {
      */
     public static void reset() {
         pendingMonsterRowAssignments = null;
+        lastHostRosterSignature = null;
+        lastHostResyncTimestampMs = 0;
+    }
+
+    /**
+     * Builds a stable roster signature from sorted player IDs.
+     */
+    private static String buildRosterSignature(List<Integer> playerIds) {
+        if (playerIds == null || playerIds.isEmpty()) {
+            return "";
+        }
+
+        List<Integer> sorted = new ArrayList<>(playerIds);
+        Collections.sort(sorted);
+
+        StringBuilder builder = new StringBuilder();
+        for (int i = 0; i < sorted.size(); i++) {
+            if (i > 0) {
+                builder.append(",");
+            }
+            builder.append(sorted.get(i));
+        }
+        return builder.toString();
     }
 }

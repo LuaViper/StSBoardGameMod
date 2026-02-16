@@ -1,6 +1,7 @@
 package CoopBoardGame.multiplayer.patches;
 
 import CoopBoardGame.multiplayer.rows.CombatRowManager;
+import CoopBoardGame.multiplayer.rows.RowNetworkHelper;
 import CoopBoardGame.util.TogetherInSpireHelper;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
@@ -25,6 +26,9 @@ public class MultiplayerRowRenderPatch {
             if (__instance.phase != AbstractRoom.RoomPhase.COMBAT) {
                 return;
             }
+
+            // Host-only safety net: re-broadcast row assignments when roster changes mid-combat.
+            RowNetworkHelper.hostCombatResyncTick();
 
             // Only render in multiplayer BG mode
             if (!TogetherInSpireHelper.isMultiplayerBoardGameMode()) {
