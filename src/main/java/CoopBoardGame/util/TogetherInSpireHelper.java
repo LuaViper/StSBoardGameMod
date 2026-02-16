@@ -21,6 +21,7 @@ public class TogetherInSpireHelper {
     private static Boolean togetherInSpireLoaded = null;
     private static Class<?> p2pManagerClass = null;
     private static Class<?> p2pPlayerClass = null;
+    private static Class<?> characterEntityClass = null;
 
     /**
      * Checks if TogetherInSpire mod is loaded.
@@ -424,16 +425,16 @@ public class TogetherInSpireHelper {
      * @return true if it's a CharacterEntity (remote player)
      */
     public static boolean isCharacterEntity(Object creature) {
-        if (!isTogetherInSpireLoaded()) {
+        if (!isTogetherInSpireLoaded() || creature == null) {
             return false;
         }
 
-        try {
-            Class<?> characterEntityClass = Class.forName("spireTogether.ui.CharacterEntity");
-            return characterEntityClass.isInstance(creature);
-        } catch (ClassNotFoundException e) {
+        Class<?> resolvedClass = getCharacterEntityClass();
+        if (resolvedClass == null) {
             return false;
         }
+
+        return resolvedClass.isInstance(creature);
     }
 
     /**
@@ -443,15 +444,49 @@ public class TogetherInSpireHelper {
      * @return The player ID, or -1 if not found
      */
     public static int getCharacterEntityPlayerId(Object characterEntity) {
-        if (!isCharacterEntity(characterEntity)) {
+        if (characterEntity == null || !isCharacterEntity(characterEntity)) {
             return -1;
         }
 
         try {
-            Class<?> characterEntityClass = Class.forName("spireTogether.ui.CharacterEntity");
-            java.lang.reflect.Field playerIdField = characterEntityClass.getDeclaredField("playerID");
-            playerIdField.setAccessible(true);
-            Object playerId = playerIdField.get(characterEntity);
+            Class<?> entityClass = getCharacterEntityClass();
+            if (entityClass == null) {
+                return -1;
+            }
+
+            // Prefer resolving through CharacterEntity.GetPlayer().id, which is the
+            // authoritative mapping in newer TogetherInSpire versions.
+            Integer idFromPlayerObject = getCharacterEntityPlayerIdFromPlayerObject(characterEntity, entityClass);
+            if (idFromPlayerObject != null) {
+                return idFromPlayerObject;
+            }
+
+            // Next, try to resolve through P2P player -> entity identity mapping.
+            Integer idFromEntityMapping = getCharacterEntityPlayerIdFromEntityMapping(characterEntity);
+            if (idFromEntityMapping != null) {
+                return idFromEntityMapping;
+            }
+
+            Object playerId = null;
+
+            // Prefer the common TogetherInSpire field name.
+            try {
+                java.lang.reflect.Field playerIdField = entityClass.getDeclaredField("playerID");
+                playerIdField.setAccessible(true);
+                playerId = playerIdField.get(characterEntity);
+            } catch (NoSuchFieldException ignored) {
+                // Fall through and try an alternate field name used by some versions.
+            }
+
+            if (playerId == null) {
+                try {
+                    java.lang.reflect.Field playerIdFieldAlt = entityClass.getDeclaredField("playerId");
+                    playerIdFieldAlt.setAccessible(true);
+                    playerId = playerIdFieldAlt.get(characterEntity);
+                } catch (NoSuchFieldException ignored) {
+                    // No compatible field found.
+                }
+            }
 
             if (playerId instanceof Integer) {
                 return (Integer) playerId;
@@ -461,5 +496,116 @@ public class TogetherInSpireHelper {
         }
 
         return -1;
+    }
+
+    /**
+     * Attempts to resolve CharacterEntity player ID via CharacterEntity.GetPlayer().
+     */
+    private static Integer getCharacterEntityPlayerIdFromPlayerObject(Object characterEntity, Class<?> entityClass) {
+        try {
+            java.lang.reflect.Method getPlayerMethod = entityClass.getMethod("GetPlayer");
+            Object playerObj = getPlayerMethod.invoke(characterEntity);
+            return extractPlayerIdFromP2PPlayer(playerObj);
+        } catch (Exception ignored) {
+            return null;
+        }
+    }
+
+    /**
+     * Attempts to resolve CharacterEntity player ID by matching it against the active
+     * P2P player list's entity references.
+     */
+    private static Integer getCharacterEntityPlayerIdFromEntityMapping(Object characterEntity) {
+        if (!isTogetherInSpireLoaded() || p2pManagerClass == null || p2pPlayerClass == null) {
+            return null;
+        }
+
+        try {
+            java.lang.reflect.Field playersField = p2pManagerClass.getDeclaredField("players");
+            playersField.setAccessible(true);
+            Object playersObj = playersField.get(null);
+            if (!(playersObj instanceof List)) {
+                return null;
+            }
+
+            List<?> players = (List<?>) playersObj;
+            java.lang.reflect.Method getEntityMethod = p2pPlayerClass.getMethod("GetEntity");
+
+            for (Object player : players) {
+                if (player == null) {
+                    continue;
+                }
+
+                Object entity = getEntityMethod.invoke(player);
+                if (entity == characterEntity) {
+                    return extractPlayerIdFromP2PPlayer(player);
+                }
+            }
+        } catch (Exception ignored) {
+            return null;
+        }
+
+        return null;
+    }
+
+    /**
+     * Extracts player ID from a P2PPlayer object via field or GetID().
+     */
+    private static Integer extractPlayerIdFromP2PPlayer(Object playerObj) {
+        if (playerObj == null || p2pPlayerClass == null) {
+            return null;
+        }
+
+        try {
+            java.lang.reflect.Field idField = p2pPlayerClass.getDeclaredField("id");
+            idField.setAccessible(true);
+            Object id = idField.get(playerObj);
+            if (id instanceof Integer) {
+                return (Integer) id;
+            }
+        } catch (Exception ignored) {
+            // Fall through to method-based lookup.
+        }
+
+        try {
+            java.lang.reflect.Method getIdMethod = p2pPlayerClass.getMethod("GetID");
+            Object id = getIdMethod.invoke(playerObj);
+            if (id instanceof Integer) {
+                return (Integer) id;
+            }
+        } catch (Exception ignored) {
+            return null;
+        }
+
+        return null;
+    }
+
+    /**
+     * Resolves TogetherInSpire CharacterEntity class across TiS versions.
+     * Older versions used spireTogether.ui.CharacterEntity while newer versions
+     * use spireTogether.monsters.CharacterEntity.
+     */
+    private static Class<?> getCharacterEntityClass() {
+        if (!isTogetherInSpireLoaded()) {
+            return null;
+        }
+
+        if (characterEntityClass != null) {
+            return characterEntityClass;
+        }
+
+        try {
+            characterEntityClass = Class.forName("spireTogether.ui.CharacterEntity");
+            return characterEntityClass;
+        } catch (ClassNotFoundException ignored) {
+            // Try next known package.
+        }
+
+        try {
+            characterEntityClass = Class.forName("spireTogether.monsters.CharacterEntity");
+            return characterEntityClass;
+        } catch (ClassNotFoundException ignored) {
+            return null;
+        }
     }
 }

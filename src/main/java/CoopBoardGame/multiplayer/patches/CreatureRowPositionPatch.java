@@ -6,8 +6,11 @@ import CoopBoardGame.multiplayer.rows.PlayerRowManager;
 import CoopBoardGame.multiplayer.rows.RowNetworkHelper;
 import CoopBoardGame.util.TogetherInSpireHelper;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpireReturn;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.Settings;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -23,9 +26,9 @@ import java.util.List;
  * This translates the row assignments (stored in MultiCreature.Field.currentRow)
  * into actual visual positions (drawX, drawY).
  *
- * Uses PREFIX patches on render() methods instead of update() to ensure our
- * positioning happens AFTER TogetherInSpire's update-time positioning but
- * BEFORE the actual rendering, so our positions take visual precedence.
+ * Uses INSERT patches (rloc=0) on render() methods to ensure our positioning
+ * happens AFTER all Prefix patches (including TogetherInSpire's positioning)
+ * but BEFORE the actual rendering code executes.
  */
 public class CreatureRowPositionPatch {
 
@@ -52,77 +55,103 @@ public class CreatureRowPositionPatch {
 
     /**
      * Positions the local player in their assigned row.
-     * Uses render() prefix to run after TogetherInSpire's update() positioning.
+     * Uses Insert with rloc=0 to run after all Prefix patches (including TogetherInSpire's)
+     * but before the render method body executes.
      */
     @SpirePatch2(clz = AbstractPlayer.class, method = "render")
     public static class PlayerPositionPatch {
 
+        @SpireInsertPatch(rloc = 0)
+        public static void Insert(AbstractPlayer __instance, SpriteBatch sb) {
+            applyLocalPlayerRowPosition(__instance);
+        }
+    }
+
+    /**
+     * Late render hook for local player positioning.
+     * This runs right before player image drawing and acts as a safety net when
+     * other mods overwrite draw position later inside AbstractPlayer.render().
+     */
+    @SpirePatch2(clz = AbstractPlayer.class, method = "renderPlayerImage")
+    public static class PlayerRenderImagePositionPatch {
         @SpirePrefixPatch
         public static void Prefix(AbstractPlayer __instance, SpriteBatch sb) {
-            // Only position during combat
-            if (AbstractDungeon.getCurrRoom() == null ||
-                AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) {
-                return;
-            }
+            applyLocalPlayerRowPosition(__instance);
+        }
+    }
 
-            boolean isBGMode = TogetherInSpireHelper.isMultiplayerBoardGameMode();
-            int numRows = getEffectiveRowCount();
-            boolean shouldApplyRowPositioning = isBGMode || numRows > 1;
+    /**
+     * Applies row positioning for the local player in combat.
+     */
+    private static void applyLocalPlayerRowPosition(AbstractPlayer __instance) {
+        // Only position during combat
+        if (!isInCombatRoom()) {
+            return;
+        }
 
-            // Log once per combat for debugging
-            if (!loggedPlayerInCombat && shouldApplyRowPositioning) {
-                int row = MultiCreature.Field.currentRow.get(__instance);
-                logger.info("PlayerPositionPatch RENDER: isBGMode=" + isBGMode +
-                        ", numRows=" + numRows + ", playerRow=" + row);
-                loggedPlayerInCombat = true;
-            }
+        boolean isBGMode = TogetherInSpireHelper.isMultiplayerBoardGameMode();
+        int numRows = getEffectiveRowCount();
+        boolean shouldApplyRowPositioning = isBGMode || numRows > 1;
 
-            if (!shouldApplyRowPositioning) {
-                return;
-            }
-
-            if (numRows <= 1) {
-                return;
-            }
-
-            // Keep local player row aligned with authoritative row assignments.
-            int localPlayerId = TogetherInSpireHelper.getLocalPlayerId();
-            if (PlayerRowManager.hasPlayerRow(localPlayerId)) {
-                int assignedRow = PlayerRowManager.getPlayerRow(localPlayerId);
-                if (MultiCreature.Field.currentRow.get(__instance) != assignedRow) {
-                    MultiCreature.Field.currentRow.set(__instance, assignedRow);
-                }
-            }
-
+        // Log once per combat for debugging
+        if (!loggedPlayerInCombat && shouldApplyRowPositioning) {
             int row = MultiCreature.Field.currentRow.get(__instance);
+            logger.info("PlayerPositionPatch RENDER: isBGMode=" + isBGMode +
+                    ", numRows=" + numRows + ", playerRow=" + row);
+            loggedPlayerInCombat = true;
+        }
 
-            // Calculate target position
-            float targetX = Settings.WIDTH * CombatRowManager.PLAYER_X_FRACTION;
-            float targetY = (CombatRowManager.getRowCenterY(row, numRows) - ROW_Y_OFFSET) * Settings.scale;
+        if (!shouldApplyRowPositioning) {
+            return;
+        }
 
-            // Apply position
-            __instance.drawX = targetX;
-            __instance.drawY = targetY;
+        if (numRows <= 1) {
+            return;
+        }
 
-            // Update hitbox to match new position
-            __instance.hb.move(__instance.drawX, __instance.drawY);
-            __instance.healthHb.move(__instance.hb.cX, __instance.hb.cY - __instance.hb.height / 2f);
+        // Keep local player row aligned with authoritative row assignments.
+        int localPlayerId = TogetherInSpireHelper.getLocalPlayerId();
+        if (PlayerRowManager.hasPlayerRow(localPlayerId)) {
+            int assignedRow = PlayerRowManager.getPlayerRow(localPlayerId);
+            if (MultiCreature.Field.currentRow.get(__instance) != assignedRow) {
+                MultiCreature.Field.currentRow.set(__instance, assignedRow);
+            }
+        }
+
+        int row = MultiCreature.Field.currentRow.get(__instance);
+
+        // Calculate target position
+        float targetX = Settings.WIDTH * CombatRowManager.PLAYER_X_FRACTION;
+        float targetY = (CombatRowManager.getRowCenterY(row, numRows) - ROW_Y_OFFSET) * Settings.scale;
+
+        // Apply position
+        __instance.drawX = targetX;
+        __instance.drawY = targetY;
+
+        // Update hitbox to match new position
+        // drawY is the "feet" position; center hitbox on character body (above drawY)
+        if (__instance.hb != null) {
+            __instance.hb.move(__instance.drawX, __instance.drawY + __instance.hb.height / 2f);
+        }
+        // Position health bar at bottom of hitbox (hb.y is bottom edge)
+        if (__instance.healthHb != null && __instance.hb != null) {
+            __instance.healthHb.move(__instance.hb.cX, __instance.hb.y - __instance.healthHb.height / 2f);
         }
     }
 
     /**
      * Positions monsters (enemies) and CharacterEntities (remote players) in their assigned rows.
      * CharacterEntities are positioned like players (left side), actual monsters on the right.
-     * Uses render() prefix to run after TogetherInSpire's update() positioning.
+     * Uses Insert with rloc=0 to run after all Prefix patches (including TogetherInSpire's)
+     * but before the render method body executes.
      */
     @SpirePatch2(clz = AbstractMonster.class, method = "render")
     public static class MonsterPositionPatch {
 
-        @SpirePrefixPatch
-        public static void Prefix(AbstractMonster __instance, SpriteBatch sb) {
+        @SpireInsertPatch(rloc = 0)
+        public static void Insert(AbstractMonster __instance, SpriteBatch sb) {
             // Only position during combat
-            if (AbstractDungeon.getCurrRoom() == null ||
-                AbstractDungeon.getCurrRoom().phase != AbstractRoom.RoomPhase.COMBAT) {
+            if (!isInCombatRoom()) {
                 return;
             }
 
@@ -226,8 +255,108 @@ public class CreatureRowPositionPatch {
             entity.drawY = targetY;
 
             // Update hitbox to match new position
-            entity.hb.move(entity.drawX, entity.drawY);
-            entity.healthHb.move(entity.hb.cX, entity.hb.cY - entity.hb.height / 2f);
+            // drawY is the "feet" position; center hitbox on character body (above drawY)
+            entity.hb.move(entity.drawX, entity.drawY + entity.hb.height / 2f);
+            // Position health bar at bottom of hitbox (hb.y is bottom edge)
+            entity.healthHb.move(entity.hb.cX, entity.hb.y - entity.healthHb.height / 2f);
+        }
+    }
+
+    /**
+     * TogetherInSpire CharacterEntity has its own positioning flow that can overwrite
+     * row placement on host. Override its SetDrawPosition during BG multiplayer combat
+     * so remote players stay in their assigned rows.
+     */
+    @SpirePatch(
+        cls = "spireTogether.monsters.CharacterEntity",
+        method = "SetDrawPosition",
+        paramtypez = {float.class, float.class},
+        requiredModId = "spireTogether",
+        optional = true
+    )
+    public static class CharacterEntitySetDrawPositionPatch {
+        @SpirePrefixPatch
+        public static SpireReturn<Void> Prefix(Object __instance, float x, float y) {
+            return applyCharacterEntityRowPosition(__instance);
+        }
+    }
+
+    @SpirePatch(
+        cls = "spireTogether.ui.CharacterEntity",
+        method = "SetDrawPosition",
+        paramtypez = {float.class, float.class},
+        requiredModId = "spireTogether",
+        optional = true
+    )
+    public static class CharacterEntitySetDrawPositionPatchLegacy {
+        @SpirePrefixPatch
+        public static SpireReturn<Void> Prefix(Object __instance, float x, float y) {
+            return applyCharacterEntityRowPosition(__instance);
+        }
+    }
+
+    private static SpireReturn<Void> applyCharacterEntityRowPosition(Object __instance) {
+        if (!(__instance instanceof AbstractMonster)) {
+            return SpireReturn.Continue();
+        }
+
+        if (!isInCombatRoom()) {
+            return SpireReturn.Continue();
+        }
+
+        boolean isBGMode = TogetherInSpireHelper.isMultiplayerBoardGameMode();
+        int numRows = getEffectiveRowCount();
+        if (!(isBGMode || numRows > 1) || numRows <= 1) {
+            return SpireReturn.Continue();
+        }
+
+        AbstractMonster entity = (AbstractMonster)__instance;
+        int playerId = TogetherInSpireHelper.getCharacterEntityPlayerId(__instance);
+        if (playerId < 0) {
+            return SpireReturn.Continue();
+        }
+
+        int row = PlayerRowManager.getPlayerRow(playerId);
+        float targetX = Settings.WIDTH * CombatRowManager.PLAYER_X_FRACTION;
+        float targetY = (CombatRowManager.getRowCenterY(row, numRows) - ROW_Y_OFFSET) * Settings.scale;
+
+        entity.drawX = targetX;
+        entity.drawY = targetY;
+
+        if (AbstractDungeon.player != null && entity.hb != null && AbstractDungeon.player.hb != null) {
+            entity.hb.height = AbstractDungeon.player.hb.height;
+        }
+
+        // Update hitbox to match new position
+        // drawY is the "feet" position; center hitbox on character body (above drawY)
+        if (entity.hb != null) {
+            entity.hb.move(entity.drawX, entity.drawY + entity.hb.height / 2f);
+        }
+        // Position health bar at bottom of hitbox (hb.y is bottom edge)
+        if (entity.healthHb != null && entity.hb != null) {
+            entity.healthHb.move(entity.hb.cX, entity.hb.y - entity.healthHb.height / 2f);
+        }
+
+        return SpireReturn.Return();
+    }
+
+    /**
+     * Safe combat-room check that avoids AbstractDungeon.getCurrRoom() NPEs in menus/lobby.
+     */
+    private static boolean isInCombatRoom() {
+        AbstractRoom room = getCurrentRoomSafe();
+        return room != null && room.phase == AbstractRoom.RoomPhase.COMBAT;
+    }
+
+    /**
+     * Safely resolves current room. TogetherInSpire can call render-position paths in lobby,
+     * before dungeon room state is initialized.
+     */
+    private static AbstractRoom getCurrentRoomSafe() {
+        try {
+            return AbstractDungeon.getCurrRoom();
+        } catch (NullPointerException ignored) {
+            return null;
         }
     }
 
