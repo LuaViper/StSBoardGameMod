@@ -5,7 +5,6 @@ import CoopBoardGame.multiplayer.rows.MultiCreature;
 import CoopBoardGame.multiplayer.rows.PlayerRowManager;
 import CoopBoardGame.multiplayer.rows.RowNetworkHelper;
 import CoopBoardGame.util.TogetherInSpireHelper;
-import com.badlogic.gdx.Gdx;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
@@ -21,9 +20,7 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Patches to position players and enemies in their assigned combat rows.
@@ -40,45 +37,17 @@ public class CreatureRowPositionPatch {
 
     // Vertical offset to lower creatures within their rows (in unscaled pixels)
     private static final float ROW_Y_OFFSET = 75f;
-    private static final boolean ENABLE_ROW_RENDER_TRACE =
-            Boolean.parseBoolean(System.getProperty("coopbg.rowtrace.enabled", "true"));
-    private static final boolean DISABLE_COMBAT_ROW_AUTOFILL =
-            Boolean.parseBoolean(System.getProperty("coopbg.rowtrace.disableAutofill", "true"));
-    private static final int ROW_TRACE_MAX_COMBAT_FRAMES =
-            Integer.parseInt(System.getProperty("coopbg.rowtrace.maxFrames", "60"));
-    private static final int ROW_TRACE_MAX_LOGS_PER_FRAME =
-            Integer.parseInt(System.getProperty("coopbg.rowtrace.maxLogsPerFrame", "120"));
 
-    private static boolean loggedPlayerInCombat = false;
-    private static boolean loggedMonsterInCombat = false;
-    private static boolean loggedCharacterEntity = false;
     private static boolean appliedPendingRowAssignments = false;
     private static int renderingCharacterPlayerId = -1;
-    private static boolean loggedTiSSignatures = false;
-    private static long traceFirstFrameId = -1L;
-    private static long traceLastSeenFrameId = -1L;
-    private static int traceCombatFrameIndex = -1;
-    private static int traceLogsThisFrame = 0;
-    private static final Map<Integer, float[]> characterEntityRenderPrePosition = new HashMap<>();
-    private static final Map<Integer, float[]> characterEntityUpdatePrePosition = new HashMap<>();
 
     /**
      * Resets the logging flags so we get fresh logs for each combat.
      * Called from MultiCombatEncounterPatches when combat starts.
      */
     public static void resetLogging() {
-        loggedPlayerInCombat = false;
-        loggedMonsterInCombat = false;
-        loggedCharacterEntity = false;
         appliedPendingRowAssignments = false;
         renderingCharacterPlayerId = -1;
-        loggedTiSSignatures = false;
-        traceFirstFrameId = -1L;
-        traceLastSeenFrameId = -1L;
-        traceCombatFrameIndex = -1;
-        traceLogsThisFrame = 0;
-        characterEntityRenderPrePosition.clear();
-        characterEntityUpdatePrePosition.clear();
     }
 
     /**
@@ -91,7 +60,7 @@ public class CreatureRowPositionPatch {
 
         @SpireInsertPatch(rloc = 0)
         public static void Insert(AbstractPlayer __instance, SpriteBatch sb) {
-            applyLocalPlayerRowPosition(__instance, "AbstractPlayer.render.insert");
+            applyLocalPlayerRowPosition(__instance);
         }
     }
 
@@ -104,7 +73,7 @@ public class CreatureRowPositionPatch {
     public static class PlayerRenderImagePositionPatch {
         @SpirePrefixPatch
         public static void Prefix(AbstractPlayer __instance, SpriteBatch sb) {
-            applyLocalPlayerRowPosition(__instance, "AbstractPlayer.renderPlayerImage.prefix");
+            applyLocalPlayerRowPosition(__instance);
         }
     }
 
@@ -113,25 +82,15 @@ public class CreatureRowPositionPatch {
      * In TiS RenderCharacter context, use the currently-rendered remote player ID.
      * Otherwise, only position the true local player instance.
      */
-    private static void applyLocalPlayerRowPosition(AbstractPlayer __instance, String sourceTag) {
+    private static void applyLocalPlayerRowPosition(AbstractPlayer __instance) {
         // Only position during combat
         if (!isInCombatRoom()) {
             return;
         }
 
-        logTiSSignaturesOnce();
-
         boolean isBGMode = TogetherInSpireHelper.isMultiplayerBoardGameMode();
         int numRows = getEffectiveRowCount();
         boolean shouldApplyRowPositioning = isBGMode || numRows > 1;
-
-        // Log once per combat for debugging
-        if (!loggedPlayerInCombat && shouldApplyRowPositioning) {
-            int row = MultiCreature.Field.currentRow.get(__instance);
-            logger.info("PlayerPositionPatch RENDER: isBGMode=" + isBGMode +
-                    ", numRows=" + numRows + ", playerRow=" + row);
-            loggedPlayerInCombat = true;
-        }
 
         if (!shouldApplyRowPositioning) {
             return;
@@ -153,14 +112,6 @@ public class CreatureRowPositionPatch {
         } else if (isLocalPlayerInstance) {
             targetPlayerId = localPlayerId;
         } else {
-            traceDiagnostic("SKIP AbstractPlayer row write (non-local player outside P2P context)",
-                    __instance, -1, renderingCharacterPlayerId, -1);
-            return;
-        }
-
-        if (DISABLE_COMBAT_ROW_AUTOFILL && !PlayerRowManager.hasPlayerRow(targetPlayerId)) {
-            traceDiagnostic("SKIP AbstractPlayer row write (no authoritative row)",
-                    __instance, targetPlayerId, renderingCharacterPlayerId, -1);
             return;
         }
 
@@ -179,13 +130,10 @@ public class CreatureRowPositionPatch {
         // Calculate target position
         float targetX = Settings.WIDTH * CombatRowManager.PLAYER_X_FRACTION;
         float targetY = (CombatRowManager.getRowCenterY(row, numRows) - ROW_Y_OFFSET) * Settings.scale;
-        float beforeX = __instance.drawX;
-        float beforeY = __instance.drawY;
 
         // Apply position
         __instance.drawX = targetX;
         __instance.drawY = targetY;
-        traceWrite(sourceTag, __instance, targetPlayerId, row, beforeX, beforeY, targetX, targetY);
 
         // Update hitbox to match new position
         // drawY is the "feet" position; center hitbox on character body (above drawY)
@@ -214,8 +162,6 @@ public class CreatureRowPositionPatch {
                 return;
             }
 
-            logTiSSignaturesOnce();
-
             boolean isBGMode = TogetherInSpireHelper.isMultiplayerBoardGameMode();
             int numRows = getEffectiveRowCount();
             boolean shouldApplyRowPositioning = isBGMode || numRows > 1;
@@ -232,14 +178,6 @@ public class CreatureRowPositionPatch {
                     logger.info("Successfully applied pending monster row assignments");
                     appliedPendingRowAssignments = true;
                 }
-            }
-
-            // Log once per combat for debugging
-            if (!loggedMonsterInCombat && shouldApplyRowPositioning) {
-                int row = MultiCreature.Field.currentRow.get(__instance);
-                logger.info("MonsterPositionPatch RENDER: isBGMode=" + isBGMode + ", numRows=" + numRows +
-                        ", monster=" + __instance.name + ", row=" + row);
-                loggedMonsterInCombat = true;
             }
 
             if (!shouldApplyRowPositioning) {
@@ -290,38 +228,20 @@ public class CreatureRowPositionPatch {
             // Get player ID from CharacterEntity
             int playerId = TogetherInSpireHelper.getCharacterEntityPlayerId(entity);
             if (playerId < 0) {
-                if (!loggedCharacterEntity) {
-                    logger.warn("CharacterEntity has invalid playerId: " + playerId);
-                }
-                return;
-            }
-
-            if (DISABLE_COMBAT_ROW_AUTOFILL && !PlayerRowManager.hasPlayerRow(playerId)) {
-                traceDiagnostic("SKIP CharacterEntity position write (no host row)", entity, playerId, renderingCharacterPlayerId, -1);
+                logger.warn("CharacterEntity has invalid playerId: " + playerId);
                 return;
             }
 
             // Get row for this player
             int row = PlayerRowManager.getPlayerRow(playerId);
 
-            // Log once per combat for debugging
-            if (!loggedCharacterEntity) {
-                logger.info("CharacterEntity positioning: playerId=" + playerId +
-                        ", row=" + row + ", hasAssignments=" + PlayerRowManager.hasAssignments() +
-                        ", rowCount=" + PlayerRowManager.getRowCount());
-                loggedCharacterEntity = true;
-            }
-
             // Calculate target position (same X as local player)
             float targetX = Settings.WIDTH * CombatRowManager.PLAYER_X_FRACTION;
             float targetY = (CombatRowManager.getRowCenterY(row, numRows) - ROW_Y_OFFSET) * Settings.scale;
-            float beforeX = entity.drawX;
-            float beforeY = entity.drawY;
 
             // Apply position
             entity.drawX = targetX;
             entity.drawY = targetY;
-            traceWrite("AbstractMonster.render.insert(CharacterEntity)", entity, playerId, row, beforeX, beforeY, targetX, targetY);
 
             // Update hitbox to match new position
             // drawY is the "feet" position; center hitbox on character body (above drawY)
@@ -349,12 +269,12 @@ public class CreatureRowPositionPatch {
     public static class P2PPlayerRenderCharacterTrackingPatch {
         @SpirePrefixPatch
         public static void Prefix(Object __instance, SpriteBatch sb, Integer index) {
-            beginP2PRenderCharacterTracking(__instance, index == null ? -1 : index.intValue(), "Integer");
+            renderingCharacterPlayerId = getP2PPlayerId(__instance);
         }
 
         @SpirePostfixPatch
         public static void Postfix(Object __instance, SpriteBatch sb, Integer index) {
-            endP2PRenderCharacterTracking(__instance, index == null ? -1 : index.intValue(), "Integer");
+            renderingCharacterPlayerId = -1;
         }
     }
 
@@ -417,7 +337,7 @@ public class CreatureRowPositionPatch {
 
         // If host snapshot arrived incomplete on this client, backfill missing rows
         // from live BG roster so each CharacterEntity can still be placed.
-        if (!PlayerRowManager.hasPlayerRow(playerId) && !shouldDisableCombatAutofill()) {
+        if (!PlayerRowManager.hasPlayerRow(playerId)) {
             List<Integer> bgPlayerIds = TogetherInSpireHelper.getBoardGamePlayerIds();
             if (!bgPlayerIds.isEmpty()) {
                 PlayerRowManager.ensurePlayerRowsForIds(bgPlayerIds);
@@ -425,20 +345,12 @@ public class CreatureRowPositionPatch {
             }
         }
 
-        if (shouldDisableCombatAutofill() && !PlayerRowManager.hasPlayerRow(playerId)) {
-            traceDiagnostic("SetDrawPosition override skipped (no host row)", entity, playerId, renderingCharacterPlayerId, -1);
-            return SpireReturn.Continue();
-        }
-
         int row = PlayerRowManager.getPlayerRow(playerId);
         float targetX = Settings.WIDTH * CombatRowManager.PLAYER_X_FRACTION;
         float targetY = (CombatRowManager.getRowCenterY(row, numRows) - ROW_Y_OFFSET) * Settings.scale;
-        float beforeX = entity.drawX;
-        float beforeY = entity.drawY;
 
         entity.drawX = targetX;
         entity.drawY = targetY;
-        traceWrite("CharacterEntity.SetDrawPosition.prefixOverride", entity, playerId, row, beforeX, beforeY, targetX, targetY);
 
         if (AbstractDungeon.player != null && entity.hb != null && AbstractDungeon.player.hb != null) {
             entity.hb.height = AbstractDungeon.player.hb.height;
@@ -455,80 +367,6 @@ public class CreatureRowPositionPatch {
         }
 
         return SpireReturn.Return();
-    }
-
-    @SpirePatch(
-        cls = "spireTogether.monsters.CharacterEntity",
-        method = "render",
-        paramtypez = {SpriteBatch.class},
-        requiredModId = "spireTogether",
-        optional = true
-    )
-    public static class CharacterEntityRenderProbePatch {
-        @SpirePrefixPatch
-        public static void Prefix(Object __instance, SpriteBatch sb) {
-            recordProbePrefix(characterEntityRenderPrePosition, __instance);
-        }
-
-        @SpirePostfixPatch
-        public static void Postfix(Object __instance, SpriteBatch sb) {
-            recordProbePostfix("CharacterEntity.render", characterEntityRenderPrePosition, __instance);
-        }
-    }
-
-    @SpirePatch(
-        cls = "spireTogether.ui.CharacterEntity",
-        method = "render",
-        paramtypez = {SpriteBatch.class},
-        requiredModId = "spireTogether",
-        optional = true
-    )
-    public static class CharacterEntityRenderProbePatchLegacy {
-        @SpirePrefixPatch
-        public static void Prefix(Object __instance, SpriteBatch sb) {
-            recordProbePrefix(characterEntityRenderPrePosition, __instance);
-        }
-
-        @SpirePostfixPatch
-        public static void Postfix(Object __instance, SpriteBatch sb) {
-            recordProbePostfix("CharacterEntity.render(legacy)", characterEntityRenderPrePosition, __instance);
-        }
-    }
-
-    @SpirePatch(
-        cls = "spireTogether.monsters.CharacterEntity",
-        method = "update",
-        requiredModId = "spireTogether",
-        optional = true
-    )
-    public static class CharacterEntityUpdateProbePatch {
-        @SpirePrefixPatch
-        public static void Prefix(Object __instance) {
-            recordProbePrefix(characterEntityUpdatePrePosition, __instance);
-        }
-
-        @SpirePostfixPatch
-        public static void Postfix(Object __instance) {
-            recordProbePostfix("CharacterEntity.update", characterEntityUpdatePrePosition, __instance);
-        }
-    }
-
-    @SpirePatch(
-        cls = "spireTogether.ui.CharacterEntity",
-        method = "update",
-        requiredModId = "spireTogether",
-        optional = true
-    )
-    public static class CharacterEntityUpdateProbePatchLegacy {
-        @SpirePrefixPatch
-        public static void Prefix(Object __instance) {
-            recordProbePrefix(characterEntityUpdatePrePosition, __instance);
-        }
-
-        @SpirePostfixPatch
-        public static void Postfix(Object __instance) {
-            recordProbePostfix("CharacterEntity.update(legacy)", characterEntityUpdatePrePosition, __instance);
-        }
     }
 
     /**
@@ -563,56 +401,6 @@ public class CreatureRowPositionPatch {
         return -1;
     }
 
-    private static Object getP2PPlayerEntity(Object p2pPlayer) {
-        if (p2pPlayer == null) {
-            return null;
-        }
-
-        try {
-            java.lang.reflect.Method getEntityMethod = p2pPlayer.getClass().getMethod("GetEntity");
-            return getEntityMethod.invoke(p2pPlayer);
-        } catch (Exception ignored) {
-            return null;
-        }
-    }
-
-    private static void beginP2PRenderCharacterTracking(Object p2pPlayer, int index, String signatureTag) {
-        renderingCharacterPlayerId = getP2PPlayerId(p2pPlayer);
-        Object entityObj = getP2PPlayerEntity(p2pPlayer);
-        if (entityObj instanceof AbstractMonster) {
-            AbstractMonster entity = (AbstractMonster) entityObj;
-            int resolvedEntityPlayerId = TogetherInSpireHelper.getCharacterEntityPlayerId(entity);
-            int row = resolvedEntityPlayerId >= 0 && PlayerRowManager.hasPlayerRow(resolvedEntityPlayerId)
-                    ? PlayerRowManager.getPlayerRow(resolvedEntityPlayerId)
-                    : -1;
-            traceDiagnostic("P2PPlayer.RenderCharacter.prefix(" + signatureTag + ") idx=" + index,
-                    entity, resolvedEntityPlayerId, renderingCharacterPlayerId, row);
-        }
-    }
-
-    private static void endP2PRenderCharacterTracking(Object p2pPlayer, int index, String signatureTag) {
-        Object entityObj = getP2PPlayerEntity(p2pPlayer);
-        if (entityObj instanceof AbstractMonster) {
-            AbstractMonster entity = (AbstractMonster) entityObj;
-            int resolvedEntityPlayerId = TogetherInSpireHelper.getCharacterEntityPlayerId(entity);
-            int row = resolvedEntityPlayerId >= 0 && PlayerRowManager.hasPlayerRow(resolvedEntityPlayerId)
-                    ? PlayerRowManager.getPlayerRow(resolvedEntityPlayerId)
-                    : -1;
-            traceDiagnostic("P2PPlayer.RenderCharacter.postfix(" + signatureTag + ") idx=" + index,
-                    entity, resolvedEntityPlayerId, renderingCharacterPlayerId, row);
-        }
-        renderingCharacterPlayerId = -1;
-    }
-
-    private static void logTiSSignaturesOnce() {
-        if (loggedTiSSignatures) {
-            return;
-        }
-
-        loggedTiSSignatures = true;
-        TogetherInSpireHelper.logRowPositionDiagnosticsSignaturesOnce();
-    }
-
     /**
      * Safe combat-room check that avoids AbstractDungeon.getCurrRoom() NPEs in menus/lobby.
      */
@@ -640,175 +428,11 @@ public class CreatureRowPositionPatch {
     private static int getEffectiveRowCount() {
         int numRows = PlayerRowManager.getRowCount();
         List<Integer> bgPlayerIds = TogetherInSpireHelper.getBoardGamePlayerIds();
-        if (bgPlayerIds.size() > numRows && !shouldDisableCombatAutofill()) {
+        if (bgPlayerIds.size() > numRows) {
             PlayerRowManager.ensurePlayerRowsForIds(bgPlayerIds);
             numRows = PlayerRowManager.getRowCount();
         }
 
         return numRows;
-    }
-
-    private static boolean shouldDisableCombatAutofill() {
-        return DISABLE_COMBAT_ROW_AUTOFILL && isInCombatRoom();
-    }
-
-    private static int currentTraceCombatFrame() {
-        if (!ENABLE_ROW_RENDER_TRACE || !isInCombatRoom()) {
-            return -1;
-        }
-
-        long frameId = -1L;
-        try {
-            if (Gdx.graphics != null) {
-                frameId = Gdx.graphics.getFrameId();
-            }
-        } catch (Exception ignored) {
-            return -1;
-        }
-
-        if (frameId < 0L) {
-            return -1;
-        }
-
-        if (traceFirstFrameId < 0L) {
-            traceFirstFrameId = frameId;
-        }
-
-        if (frameId != traceLastSeenFrameId) {
-            traceLastSeenFrameId = frameId;
-            traceCombatFrameIndex = (int) (frameId - traceFirstFrameId);
-            traceLogsThisFrame = 0;
-        }
-
-        return traceCombatFrameIndex;
-    }
-
-    private static boolean shouldTraceFrame() {
-        int combatFrame = currentTraceCombatFrame();
-        return combatFrame >= 0 && combatFrame < ROW_TRACE_MAX_COMBAT_FRAMES;
-    }
-
-    private static boolean allowTraceLogThisFrame() {
-        if (!shouldTraceFrame()) {
-            return false;
-        }
-
-        if (traceLogsThisFrame >= ROW_TRACE_MAX_LOGS_PER_FRAME) {
-            return false;
-        }
-
-        traceLogsThisFrame++;
-        return true;
-    }
-
-    private static void traceWrite(
-            String source,
-            Object entityObj,
-            int resolvedPlayerId,
-            int row,
-            float beforeX,
-            float beforeY,
-            float afterX,
-            float afterY) {
-        if (!allowTraceLogThisFrame()) {
-            return;
-        }
-
-        logger.info("[RowTrace frame=" + currentTraceCombatFrame() +
-                " src=" + source +
-                "] entity=" + describeEntity(entityObj) +
-                ", resolvedPlayerId=" + resolvedPlayerId +
-                ", renderCtxPlayerId=" + renderingCharacterPlayerId +
-                ", row=" + row +
-                ", pos=(" + beforeX + "," + beforeY + ")->(" + afterX + "," + afterY + ")");
-    }
-
-    private static void traceDiagnostic(
-            String source,
-            Object entityObj,
-            int resolvedPlayerId,
-            int renderContextPlayerId,
-            int row) {
-        if (!allowTraceLogThisFrame()) {
-            return;
-        }
-
-        String pos = "";
-        if (entityObj instanceof AbstractMonster) {
-            AbstractMonster m = (AbstractMonster) entityObj;
-            pos = ", pos=(" + m.drawX + "," + m.drawY + ")";
-        } else if (entityObj instanceof AbstractPlayer) {
-            AbstractPlayer p = (AbstractPlayer) entityObj;
-            pos = ", pos=(" + p.drawX + "," + p.drawY + ")";
-        }
-
-        logger.info("[RowTrace frame=" + currentTraceCombatFrame() +
-                " src=" + source +
-                "] entity=" + describeEntity(entityObj) +
-                ", resolvedPlayerId=" + resolvedPlayerId +
-                ", renderCtxPlayerId=" + renderContextPlayerId +
-                ", row=" + row + pos);
-    }
-
-    private static void recordProbePrefix(Map<Integer, float[]> store, Object entityObj) {
-        if (!shouldTraceFrame()) {
-            return;
-        }
-
-        if (!(entityObj instanceof AbstractMonster)) {
-            return;
-        }
-
-        AbstractMonster entity = (AbstractMonster) entityObj;
-        int identity = System.identityHashCode(entity);
-        store.put(identity, new float[]{entity.drawX, entity.drawY});
-    }
-
-    private static void recordProbePostfix(String source, Map<Integer, float[]> store, Object entityObj) {
-        if (!(entityObj instanceof AbstractMonster)) {
-            return;
-        }
-        if (!allowTraceLogThisFrame()) {
-            return;
-        }
-
-        AbstractMonster entity = (AbstractMonster) entityObj;
-        int identity = System.identityHashCode(entity);
-        float[] before = store.remove(identity);
-        float beforeX = before != null ? before[0] : entity.drawX;
-        float beforeY = before != null ? before[1] : entity.drawY;
-        float afterX = entity.drawX;
-        float afterY = entity.drawY;
-
-        int resolvedPlayerId = TogetherInSpireHelper.getCharacterEntityPlayerId(entity);
-        int row = resolvedPlayerId >= 0 && PlayerRowManager.hasPlayerRow(resolvedPlayerId)
-                ? PlayerRowManager.getPlayerRow(resolvedPlayerId)
-                : -1;
-
-        logger.info("[RowTrace frame=" + currentTraceCombatFrame() +
-                " src=" + source +
-                "] entity=" + describeEntity(entity) +
-                ", resolvedPlayerId=" + resolvedPlayerId +
-                ", renderCtxPlayerId=" + renderingCharacterPlayerId +
-                ", row=" + row +
-                ", pos=(" + beforeX + "," + beforeY + ")->(" + afterX + "," + afterY + ")");
-    }
-
-    private static String describeEntity(Object entityObj) {
-        if (entityObj == null) {
-            return "null";
-        }
-
-        String className = entityObj.getClass().getName();
-        int identity = System.identityHashCode(entityObj);
-        if (entityObj instanceof AbstractMonster) {
-            AbstractMonster monster = (AbstractMonster) entityObj;
-            return className + "@" + identity + "[name=" + monster.name + ",id=" + monster.id + "]";
-        }
-        if (entityObj instanceof AbstractPlayer) {
-            AbstractPlayer player = (AbstractPlayer) entityObj;
-            return className + "@" + identity + "[name=" + player.name + "]";
-        }
-        return className + "@" + identity;
     }
 }

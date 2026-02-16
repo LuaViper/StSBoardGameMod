@@ -191,12 +191,6 @@ public class CombatRowManager {
 
         float rowHeight = getRowHeight(numRows);
 
-        // Get player classes for multiplayer mode
-        List<AbstractPlayer.PlayerClass> playerClasses = null;
-        if (TogetherInSpireHelper.isMultiplayerBoardGameMode()) {
-            playerClasses = TogetherInSpireHelper.getAllPlayerClasses();
-        }
-
         // Determine the local player's row for highlighting in multiplayer mode
         int localPlayerRow = -1;
         if (AbstractDungeon.player != null) {
@@ -205,12 +199,13 @@ public class CombatRowManager {
 
         for (int i = 0; i < numRows; i++) {
             Color rowColor;
-
-            if (playerClasses != null && i < playerClasses.size()) {
-                // Multiplayer mode: get color from player class
-                rowColor = getColorForPlayerClass(playerClasses.get(i));
+            Integer rowPlayerId = PlayerRowManager.getPlayerIdForRow(i);
+            AbstractPlayer.PlayerClass rowPlayerClass = rowPlayerId != null
+                    ? TogetherInSpireHelper.getPlayerClassForId(rowPlayerId)
+                    : null;
+            if (rowPlayerClass != null) {
+                rowColor = getColorForPlayerClass(rowPlayerClass);
             } else {
-                // Fallback: use default color based on row index
                 rowColor = MULTIPLAYER_ROW_COLORS[i % MULTIPLAYER_ROW_COLORS.length];
             }
 

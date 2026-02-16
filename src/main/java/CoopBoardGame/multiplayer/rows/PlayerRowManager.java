@@ -131,6 +131,21 @@ public class PlayerRowManager {
     }
 
     /**
+     * Gets the player ID assigned to a specific row.
+     *
+     * @param row row index
+     * @return player ID for that row, or null if no player is assigned
+     */
+    public static Integer getPlayerIdForRow(int row) {
+        for (Map.Entry<Integer, Integer> entry : playerRows.entrySet()) {
+            if (entry.getValue() == row) {
+                return entry.getKey();
+            }
+        }
+        return null;
+    }
+
+    /**
      * Gets the row for the local player.
      */
     public static int getLocalPlayerRow() {
