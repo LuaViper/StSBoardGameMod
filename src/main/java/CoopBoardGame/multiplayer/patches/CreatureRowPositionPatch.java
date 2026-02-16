@@ -89,7 +89,7 @@ public class CreatureRowPositionPatch {
 
             // Update hitbox to match new position
             __instance.hb.move(__instance.drawX, __instance.drawY);
-            __instance.healthHb.move(__instance.hb.cX, __instance.hb.cY - __instance.hb.height / 2f - __instance.healthHb.height / 2f);
+            __instance.healthHb.move(__instance.hb.cX, __instance.hb.cY - __instance.hb.height / 2f);
         }
     }
 
@@ -209,10 +209,7 @@ public class CreatureRowPositionPatch {
 
             // Update hitbox to match new position
             entity.hb.move(entity.drawX, entity.drawY);
-            entity.healthHb.move(
-                    entity.hb.cX,
-                    entity.hb.cY - entity.hb.height / 2f - entity.healthHb.height / 2f
-            );
+            entity.healthHb.move(entity.hb.cX, entity.hb.cY - entity.hb.height / 2f);
         }
     }
 }
