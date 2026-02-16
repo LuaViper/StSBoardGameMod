@@ -16,6 +16,8 @@ import com.megacrit.cardcrawl.rooms.AbstractRoom;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
+import java.util.List;
+
 /**
  * Patches to position players and enemies in their assigned combat rows.
  * This translates the row assignments (stored in MultiCreature.Field.currentRow)
@@ -64,16 +66,18 @@ public class CreatureRowPositionPatch {
             }
 
             boolean isBGMode = TogetherInSpireHelper.isMultiplayerBoardGameMode();
-            int numRows = PlayerRowManager.getRowCount();
+            int numRows = getEffectiveRowCount();
+            boolean shouldApplyRowPositioning = isBGMode || numRows > 1;
 
             // Log once per combat for debugging
-            if (!loggedPlayerInCombat && isBGMode) {
+            if (!loggedPlayerInCombat && shouldApplyRowPositioning) {
                 int row = MultiCreature.Field.currentRow.get(__instance);
-                logger.info("PlayerPositionPatch RENDER: isBGMode=" + isBGMode + ", numRows=" + numRows + ", playerRow=" + row);
+                logger.info("PlayerPositionPatch RENDER: isBGMode=" + isBGMode +
+                        ", numRows=" + numRows + ", playerRow=" + row);
                 loggedPlayerInCombat = true;
             }
 
-            if (!isBGMode) {
+            if (!shouldApplyRowPositioning) {
                 return;
             }
 
@@ -114,11 +118,12 @@ public class CreatureRowPositionPatch {
             }
 
             boolean isBGMode = TogetherInSpireHelper.isMultiplayerBoardGameMode();
-            int numRows = PlayerRowManager.getRowCount();
+            int numRows = getEffectiveRowCount();
+            boolean shouldApplyRowPositioning = isBGMode || numRows > 1;
 
             // Apply any pending row assignments from network (timing issue workaround)
             // Row assignments may arrive before TogetherInSpire syncs monsters to the client
-            if (isBGMode && RowNetworkHelper.hasPendingMonsterRowAssignments()) {
+            if (shouldApplyRowPositioning && RowNetworkHelper.hasPendingMonsterRowAssignments()) {
                 if (!appliedPendingRowAssignments) {
                     logger.info("Attempting to apply pending monster row assignments (delayed sync)");
                 }
@@ -131,14 +136,14 @@ public class CreatureRowPositionPatch {
             }
 
             // Log once per combat for debugging
-            if (!loggedMonsterInCombat && isBGMode) {
+            if (!loggedMonsterInCombat && shouldApplyRowPositioning) {
                 int row = MultiCreature.Field.currentRow.get(__instance);
                 logger.info("MonsterPositionPatch RENDER: isBGMode=" + isBGMode + ", numRows=" + numRows +
                         ", monster=" + __instance.name + ", row=" + row);
                 loggedMonsterInCombat = true;
             }
 
-            if (!isBGMode) {
+            if (!shouldApplyRowPositioning) {
                 return;
             }
 
@@ -215,5 +220,25 @@ public class CreatureRowPositionPatch {
             entity.hb.move(entity.drawX, entity.drawY);
             entity.healthHb.move(entity.hb.cX, entity.hb.cY - entity.hb.height / 2f);
         }
+    }
+
+    /**
+     * Gets an effective row count for combat positioning.
+     * On host, this also backfills missing row assignments from the live BG roster.
+     */
+    private static int getEffectiveRowCount() {
+        int numRows = PlayerRowManager.getRowCount();
+
+        if (!TogetherInSpireHelper.isHost()) {
+            return numRows;
+        }
+
+        List<Integer> bgPlayerIds = TogetherInSpireHelper.getBoardGamePlayerIds();
+        if (bgPlayerIds.size() > numRows) {
+            PlayerRowManager.ensurePlayerRowsForIds(bgPlayerIds);
+            numRows = PlayerRowManager.getRowCount();
+        }
+
+        return numRows;
     }
 }
