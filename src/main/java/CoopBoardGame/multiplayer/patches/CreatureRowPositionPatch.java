@@ -28,6 +28,10 @@ import org.apache.logging.log4j.Logger;
 public class CreatureRowPositionPatch {
 
     private static final Logger logger = LogManager.getLogger(CreatureRowPositionPatch.class.getName());
+
+    // Vertical offset to lower creatures within their rows (in unscaled pixels)
+    private static final float ROW_Y_OFFSET = 75f;
+
     private static boolean loggedPlayerInCombat = false;
     private static boolean loggedMonsterInCombat = false;
     private static boolean loggedCharacterEntity = false;
@@ -81,7 +85,7 @@ public class CreatureRowPositionPatch {
 
             // Calculate target position
             float targetX = Settings.WIDTH * CombatRowManager.PLAYER_X_FRACTION;
-            float targetY = CombatRowManager.getRowCenterY(row, numRows) * Settings.scale;
+            float targetY = (CombatRowManager.getRowCenterY(row, numRows) - ROW_Y_OFFSET) * Settings.scale;
 
             // Apply position
             __instance.drawX = targetX;
@@ -157,7 +161,7 @@ public class CreatureRowPositionPatch {
             // Calculate target position
             float targetX = Settings.WIDTH * CombatRowManager.ENEMY_START_X_FRACTION
                     + (indexInRow * Settings.WIDTH * CombatRowManager.ENEMY_SPACING_FRACTION);
-            float targetY = CombatRowManager.getRowCenterY(row, numRows) * Settings.scale;
+            float targetY = (CombatRowManager.getRowCenterY(row, numRows) - ROW_Y_OFFSET) * Settings.scale;
 
             // Apply position
             __instance.drawX = targetX;
@@ -201,7 +205,7 @@ public class CreatureRowPositionPatch {
 
             // Calculate target position (same X as local player)
             float targetX = Settings.WIDTH * CombatRowManager.PLAYER_X_FRACTION;
-            float targetY = CombatRowManager.getRowCenterY(row, numRows) * Settings.scale;
+            float targetY = (CombatRowManager.getRowCenterY(row, numRows) - ROW_Y_OFFSET) * Settings.scale;
 
             // Apply position
             entity.drawX = targetX;
