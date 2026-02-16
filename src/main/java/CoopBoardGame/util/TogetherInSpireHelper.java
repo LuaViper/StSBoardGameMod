@@ -21,7 +21,9 @@ public class TogetherInSpireHelper {
     private static Boolean togetherInSpireLoaded = null;
     private static Class<?> p2pManagerClass = null;
     private static Class<?> p2pPlayerClass = null;
-    private static Class<?> characterEntityClass = null;
+    private static Class<?> characterEntityUiClass = null;
+    private static Class<?> characterEntityMonsterClass = null;
+    private static boolean characterEntityClassesResolved = false;
 
     /**
      * Checks if TogetherInSpire mod is loaded.
@@ -429,12 +431,7 @@ public class TogetherInSpireHelper {
             return false;
         }
 
-        Class<?> resolvedClass = getCharacterEntityClass();
-        if (resolvedClass == null) {
-            return false;
-        }
-
-        return resolvedClass.isInstance(creature);
+        return getCharacterEntityClassForInstance(creature) != null;
     }
 
     /**
@@ -444,12 +441,12 @@ public class TogetherInSpireHelper {
      * @return The player ID, or -1 if not found
      */
     public static int getCharacterEntityPlayerId(Object characterEntity) {
-        if (characterEntity == null || !isCharacterEntity(characterEntity)) {
+        if (characterEntity == null) {
             return -1;
         }
 
         try {
-            Class<?> entityClass = getCharacterEntityClass();
+            Class<?> entityClass = getCharacterEntityClassForInstance(characterEntity);
             if (entityClass == null) {
                 return -1;
             }
@@ -581,31 +578,47 @@ public class TogetherInSpireHelper {
     }
 
     /**
-     * Resolves TogetherInSpire CharacterEntity class across TiS versions.
-     * Older versions used spireTogether.ui.CharacterEntity while newer versions
-     * use spireTogether.monsters.CharacterEntity.
+     * Resolves TogetherInSpire CharacterEntity classes across TiS versions.
+     * Some builds can include both packages, so we must check instance type against both.
      */
-    private static Class<?> getCharacterEntityClass() {
-        if (!isTogetherInSpireLoaded()) {
-            return null;
-        }
-
-        if (characterEntityClass != null) {
-            return characterEntityClass;
+    private static void resolveCharacterEntityClasses() {
+        if (characterEntityClassesResolved || !isTogetherInSpireLoaded()) {
+            return;
         }
 
         try {
-            characterEntityClass = Class.forName("spireTogether.ui.CharacterEntity");
-            return characterEntityClass;
+            characterEntityMonsterClass = Class.forName("spireTogether.monsters.CharacterEntity");
         } catch (ClassNotFoundException ignored) {
-            // Try next known package.
+            characterEntityMonsterClass = null;
         }
 
         try {
-            characterEntityClass = Class.forName("spireTogether.monsters.CharacterEntity");
-            return characterEntityClass;
+            characterEntityUiClass = Class.forName("spireTogether.ui.CharacterEntity");
         } catch (ClassNotFoundException ignored) {
+            characterEntityUiClass = null;
+        }
+
+        characterEntityClassesResolved = true;
+    }
+
+    /**
+     * Returns the CharacterEntity class matching the specific object instance.
+     */
+    private static Class<?> getCharacterEntityClassForInstance(Object characterEntity) {
+        if (characterEntity == null || !isTogetherInSpireLoaded()) {
             return null;
         }
+
+        resolveCharacterEntityClasses();
+
+        if (characterEntityMonsterClass != null && characterEntityMonsterClass.isInstance(characterEntity)) {
+            return characterEntityMonsterClass;
+        }
+
+        if (characterEntityUiClass != null && characterEntityUiClass.isInstance(characterEntity)) {
+            return characterEntityUiClass;
+        }
+
+        return null;
     }
 }

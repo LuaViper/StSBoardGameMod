@@ -380,8 +380,8 @@ public class RowNetworkHelper {
             int row = data[i + 1];
 
             // Always apply local row from host assignments for consistent ordering across clients.
-            if (playerId == localPlayerId && AbstractDungeon.player != null) {
-                MultiCreature.Field.currentRow.set(AbstractDungeon.player, row);
+            if (playerId == localPlayerId) {
+                PlayerRowManager.setLocalPlayerRow(row);
                 logger.info("Set local player to host-assigned row " + row);
             }
 

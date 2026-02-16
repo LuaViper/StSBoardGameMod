@@ -7,6 +7,7 @@ import CoopBoardGame.multiplayer.rows.RowNetworkHelper;
 import CoopBoardGame.util.TogetherInSpireHelper;
 import com.badlogic.gdx.graphics.g2d.SpriteBatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpireInsertPatch;
+import com.evacipated.cardcrawl.modthespire.lib.SpirePostfixPatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePatch2;
 import com.evacipated.cardcrawl.modthespire.lib.SpirePrefixPatch;
@@ -41,6 +42,7 @@ public class CreatureRowPositionPatch {
     private static boolean loggedMonsterInCombat = false;
     private static boolean loggedCharacterEntity = false;
     private static boolean appliedPendingRowAssignments = false;
+    private static int renderingCharacterPlayerId = -1;
 
     /**
      * Resets the logging flags so we get fresh logs for each combat.
@@ -51,6 +53,7 @@ public class CreatureRowPositionPatch {
         loggedMonsterInCombat = false;
         loggedCharacterEntity = false;
         appliedPendingRowAssignments = false;
+        renderingCharacterPlayerId = -1;
     }
 
     /**
@@ -110,9 +113,8 @@ public class CreatureRowPositionPatch {
         }
 
         // Keep local player row aligned with authoritative row assignments.
-        int localPlayerId = TogetherInSpireHelper.getLocalPlayerId();
-        if (PlayerRowManager.hasPlayerRow(localPlayerId)) {
-            int assignedRow = PlayerRowManager.getPlayerRow(localPlayerId);
+        if (PlayerRowManager.hasLocalPlayerRow()) {
+            int assignedRow = PlayerRowManager.getLocalPlayerRow();
             if (MultiCreature.Field.currentRow.get(__instance) != assignedRow) {
                 MultiCreature.Field.currentRow.set(__instance, assignedRow);
             }
@@ -263,6 +265,29 @@ public class CreatureRowPositionPatch {
     }
 
     /**
+     * Track which P2PPlayer is currently rendering a CharacterEntity so we can
+     * resolve row assignment by authoritative player ID.
+     */
+    @SpirePatch(
+        cls = "spireTogether.network.P2P.P2PPlayer",
+        method = "RenderCharacter",
+        paramtypez = {SpriteBatch.class, Integer.class},
+        requiredModId = "spireTogether",
+        optional = true
+    )
+    public static class P2PPlayerRenderCharacterTrackingPatch {
+        @SpirePrefixPatch
+        public static void Prefix(Object __instance, SpriteBatch sb, Integer index) {
+            renderingCharacterPlayerId = getP2PPlayerId(__instance);
+        }
+
+        @SpirePostfixPatch
+        public static void Postfix(Object __instance, SpriteBatch sb, Integer index) {
+            renderingCharacterPlayerId = -1;
+        }
+    }
+
+    /**
      * TogetherInSpire CharacterEntity has its own positioning flow that can overwrite
      * row placement on host. Override its SetDrawPosition during BG multiplayer combat
      * so remote players stay in their assigned rows.
@@ -304,6 +329,12 @@ public class CreatureRowPositionPatch {
             return SpireReturn.Continue();
         }
 
+        // Only trust player ID from active P2PPlayer.RenderCharacter context.
+        // Entity-level IDs can be stale/inconsistent across some TiS flows.
+        if (renderingCharacterPlayerId < 0) {
+            return SpireReturn.Continue();
+        }
+
         boolean isBGMode = TogetherInSpireHelper.isMultiplayerBoardGameMode();
         int numRows = getEffectiveRowCount();
         if (!(isBGMode || numRows > 1) || numRows <= 1) {
@@ -311,9 +342,16 @@ public class CreatureRowPositionPatch {
         }
 
         AbstractMonster entity = (AbstractMonster)__instance;
-        int playerId = TogetherInSpireHelper.getCharacterEntityPlayerId(__instance);
-        if (playerId < 0) {
-            return SpireReturn.Continue();
+        int playerId = renderingCharacterPlayerId;
+
+        // If host snapshot arrived incomplete on this client, backfill missing rows
+        // from live BG roster so each CharacterEntity can still be placed.
+        if (!PlayerRowManager.hasPlayerRow(playerId)) {
+            List<Integer> bgPlayerIds = TogetherInSpireHelper.getBoardGamePlayerIds();
+            if (!bgPlayerIds.isEmpty()) {
+                PlayerRowManager.ensurePlayerRowsForIds(bgPlayerIds);
+                numRows = Math.max(numRows, PlayerRowManager.getRowCount());
+            }
         }
 
         int row = PlayerRowManager.getPlayerRow(playerId);
@@ -341,6 +379,38 @@ public class CreatureRowPositionPatch {
     }
 
     /**
+     * Gets player ID from TogetherInSpire P2PPlayer via reflection.
+     */
+    private static int getP2PPlayerId(Object p2pPlayer) {
+        if (p2pPlayer == null) {
+            return -1;
+        }
+
+        try {
+            java.lang.reflect.Method getIdMethod = p2pPlayer.getClass().getMethod("GetID");
+            Object id = getIdMethod.invoke(p2pPlayer);
+            if (id instanceof Integer) {
+                return (Integer) id;
+            }
+        } catch (Exception ignored) {
+            // Fall through to direct field lookup.
+        }
+
+        try {
+            java.lang.reflect.Field idField = p2pPlayer.getClass().getDeclaredField("id");
+            idField.setAccessible(true);
+            Object id = idField.get(p2pPlayer);
+            if (id instanceof Integer) {
+                return (Integer) id;
+            }
+        } catch (Exception ignored) {
+            return -1;
+        }
+
+        return -1;
+    }
+
+    /**
      * Safe combat-room check that avoids AbstractDungeon.getCurrRoom() NPEs in menus/lobby.
      */
     private static boolean isInCombatRoom() {
@@ -362,15 +432,10 @@ public class CreatureRowPositionPatch {
 
     /**
      * Gets an effective row count for combat positioning.
-     * On host, this also backfills missing row assignments from the live BG roster.
+     * Also backfills missing row assignments from the live BG roster when needed.
      */
     private static int getEffectiveRowCount() {
         int numRows = PlayerRowManager.getRowCount();
-
-        if (!TogetherInSpireHelper.isHost()) {
-            return numRows;
-        }
-
         List<Integer> bgPlayerIds = TogetherInSpireHelper.getBoardGamePlayerIds();
         if (bgPlayerIds.size() > numRows) {
             PlayerRowManager.ensurePlayerRowsForIds(bgPlayerIds);

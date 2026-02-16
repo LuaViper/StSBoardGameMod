@@ -58,14 +58,22 @@ public class RoomVotingManager {
 
     /**
      * Activates the voting system. Call when entering the map screen in multiplayer mode.
+     * Note: Does NOT reset votes - votes may arrive before local activation due to network timing.
+     * Votes are cleared in deactivate() when entering a room.
      */
     public void activate() {
         if (!TogetherInSpireHelper.isMultiplayerActive()) {
             return;
         }
-        reset();
+        // Don't call reset() here - votes may have arrived before activation (race condition fix)
         votingActive = true;
         logger.info("Room voting activated for " + TogetherInSpireHelper.getBoardGamePlayerCount() + " BG players");
+
+        // Check if votes were received before activation
+        if (!playerVotes.isEmpty()) {
+            logger.info("Found " + playerVotes.size() + " pre-activation votes");
+            checkAllVoted();
+        }
     }
 
     /**
@@ -112,18 +120,29 @@ public class RoomVotingManager {
 
     /**
      * Receives a vote from a remote player.
+     * Note: Stores votes even before local activation to handle race conditions where
+     * remote votes arrive before the local map screen opens.
      * @param vote The vote received from the network
      */
     public void receiveRemoteVote(RoomVote vote) {
-        if (!isVotingActive() || enteringRoom) {
+        // Block votes only if we're already entering a room
+        if (enteringRoom) {
+            logger.info("Ignoring vote from player " + vote.getPlayerId() + " - already entering room");
             return;
+        }
+
+        // Log if receiving vote before activation (helps debug race conditions)
+        if (!isVotingActive()) {
+            logger.info("Storing pre-activation vote from player " + vote.getPlayerId());
         }
 
         playerVotes.put(vote.getPlayerId(), vote);
         logger.info("Received vote from player " + vote.getPlayerId() + " for node (" + vote.getNodeX() + ", " + vote.getNodeY() + ")");
 
-        // Check if all players have voted
-        checkAllVoted();
+        // Only check for consensus if voting is active
+        if (isVotingActive()) {
+            checkAllVoted();
+        }
     }
 
     /**

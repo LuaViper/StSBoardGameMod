@@ -25,6 +25,8 @@ public class PlayerRowManager {
 
     // Map of player ID to their assigned row
     private static final Map<Integer, Integer> playerRows = new HashMap<>();
+    // Authoritative local row snapshot from host assignment.
+    private static Integer localAssignedRow = null;
 
     /**
      * Assigns rows to all players based on their order in the player list.
@@ -32,6 +34,7 @@ public class PlayerRowManager {
      */
     public static void assignPlayerRows() {
         playerRows.clear();
+        localAssignedRow = null;
 
         // Use BG player IDs only, not all players
         // Preserve host join order (first joined = bottom row).
@@ -49,7 +52,7 @@ public class PlayerRowManager {
         int localPlayerId = TogetherInSpireHelper.getLocalPlayerId();
         if (playerRows.containsKey(localPlayerId) && AbstractDungeon.player != null) {
             int localRow = playerRows.get(localPlayerId);
-            MultiCreature.Field.currentRow.set(AbstractDungeon.player, localRow);
+            setLocalPlayerRow(localRow);
             logger.info("Set local player (ID " + localPlayerId + ") to row " + localRow);
         }
     }
@@ -60,6 +63,16 @@ public class PlayerRowManager {
      */
     public static void setPlayerRow(int playerId, int row) {
         playerRows.put(playerId, row);
+    }
+
+    /**
+     * Sets authoritative local player row (from host assignment).
+     */
+    public static void setLocalPlayerRow(int row) {
+        localAssignedRow = row;
+        if (AbstractDungeon.player != null) {
+            MultiCreature.Field.currentRow.set(AbstractDungeon.player, row);
+        }
     }
 
     /**
@@ -104,9 +117,9 @@ public class PlayerRowManager {
         }
 
         int localPlayerId = TogetherInSpireHelper.getLocalPlayerId();
-        if (playerRows.containsKey(localPlayerId) && AbstractDungeon.player != null) {
+        if (localAssignedRow == null && playerRows.containsKey(localPlayerId) && AbstractDungeon.player != null) {
             int localRow = playerRows.get(localPlayerId);
-            MultiCreature.Field.currentRow.set(AbstractDungeon.player, localRow);
+            setLocalPlayerRow(localRow);
         }
     }
 
@@ -121,8 +134,18 @@ public class PlayerRowManager {
      * Gets the row for the local player.
      */
     public static int getLocalPlayerRow() {
+        if (localAssignedRow != null) {
+            return localAssignedRow;
+        }
         int localPlayerId = TogetherInSpireHelper.getLocalPlayerId();
         return getPlayerRow(localPlayerId);
+    }
+
+    /**
+     * Returns true when authoritative local row is known.
+     */
+    public static boolean hasLocalPlayerRow() {
+        return localAssignedRow != null;
     }
 
     /**
@@ -138,6 +161,7 @@ public class PlayerRowManager {
      */
     public static void reset() {
         playerRows.clear();
+        localAssignedRow = null;
     }
 
     /**
