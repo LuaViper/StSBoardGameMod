@@ -7,6 +7,7 @@ import BoardGame.characters.BGWatcher;
 import BoardGame.dungeons.AbstractBGDungeon;
 import BoardGame.multicharacter.MultiCharacter;
 import BoardGame.multicharacter.MultiCharacterSelectScreen;
+import BoardGame.multicharacter.patches.ContextPatches;
 import BoardGame.patches.Ascension259Patch;
 import basemod.ReflectionHacks;
 import com.badlogic.gdx.math.MathUtils;
@@ -260,6 +261,7 @@ public class BGNeowQuickStart {
                         SaveAndContinue.deleteSave(AbstractDungeon.player);
                         Ascension259Patch.applyAscension259ToSubCharacters();
                         AbstractDungeon.player = ((MultiCharacter)AbstractDungeon.player).subcharacters.get(0);
+                        ContextPatches.originalBGMultiCharacter = null;
                         CardCrawlGame.chosenCharacter = AbstractDungeon.player.chosenClass;
                         //TODO: this is reused code from AbstractBGDungeon; move to static event
                         int whoAmI=0;

@@ -1,10 +1,13 @@
 package BoardGame.characters;
 
+import BoardGame.BoardGame;
 import BoardGame.cards.BGGreen.BGDoppelganger;
 import BoardGame.powers.BGSurroundedPower;
 import BoardGame.powers.ManualStartTurnPhasePower;
 import basemod.ReflectionHacks;
 import basemod.abstracts.CustomPlayer;
+import com.badlogic.gdx.graphics.g2d.SpriteBatch;
+import com.megacrit.cardcrawl.cards.DamageInfo;
 import com.megacrit.cardcrawl.characters.AbstractPlayer;
 import com.megacrit.cardcrawl.core.GameCursor;
 import com.megacrit.cardcrawl.dungeons.AbstractDungeon;
@@ -13,10 +16,14 @@ import com.megacrit.cardcrawl.orbs.AbstractOrb;
 import com.megacrit.cardcrawl.potions.PotionSlot;
 import com.megacrit.cardcrawl.powers.AbstractPower;
 import com.megacrit.cardcrawl.ui.panels.energyorb.EnergyOrbInterface;
+import org.apache.logging.log4j.LogManager;
+import org.apache.logging.log4j.Logger;
 
 import java.util.Iterator;
 
 public abstract class AbstractBGPlayer extends CustomPlayer {
+
+    public static final Logger logger = LogManager.getLogger(AbstractBGPlayer.class.getName());
 
 //    public static final String[] orbTextures = {
 //            "BoardGameResources/images/char/defaultCharacter/orb/layer1.png",
@@ -122,8 +129,16 @@ public abstract class AbstractBGPlayer extends CustomPlayer {
         this.hoveredCard = null;
         this.hand.refreshHandLayout();
         ReflectionHacks.setPrivate(this,AbstractPlayer.class,"touchscreenInspectCount" , 0);
-
     }
+
+
+//    public void damage(DamageInfo info){
+//        logger.info("Damaging player "+this.toString()+", while AbstractDungeon.player is "+AbstractDungeon.player.toString());
+//        if(this!=AbstractDungeon.player){
+//            logger.info("OI THEY DON'T MATCH");
+//        }
+//        super.damage(info);
+//    }
 
 //
 //    @Override

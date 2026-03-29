@@ -27,6 +27,8 @@ public class ContextPatches {
             EnergyPanel.totalCount = MultiCreature.Field.savedCurrentEnergy.get(AbstractDungeon.player);
         }else{
             //TODO: consider complaining loudly here -- energy tracking is liable to mess up
+            int temp=0;
+            temp+=1;
         }
     }
     public static void popPlayerContext(){

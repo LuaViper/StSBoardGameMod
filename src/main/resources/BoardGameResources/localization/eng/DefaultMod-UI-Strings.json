@@ -23,5 +23,10 @@
       "20. You shouldn't see this message. Max level is 13.",
       "11. Act IV Elites."
     ]
+  },
+  "BoardGame:IncompatibleQuickRestartMod": {
+    "TEXT": [
+      "(PLACEHOLDER)"
+    ]
   }
 }

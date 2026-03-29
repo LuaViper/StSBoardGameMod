@@ -259,9 +259,11 @@ public abstract class AbstractBGCard extends CustomCard
         if(wasRetainedLastTurn){
             AbstractPower p = AbstractDungeon.player.getPower("BGEstablishmentPower");
             if(p!=null) {
-                costForTurn -= p.amount;
-                if(costForTurn<0)costForTurn=0;
-                if(costForTurn!= nonvolatileBaseCost)isCostModifiedForTurn = true;
+                if(nonvolatileBaseCost>=0) {    //don't reduce cost if cost is -1 or less! (it will snap to 0 if we do)
+                    costForTurn -= p.amount;
+                    if (costForTurn < 0) costForTurn = 0;
+                    if (costForTurn != nonvolatileBaseCost) isCostModifiedForTurn = true;
+                }
             }
         }
         if(temporarilyCostsZero){
